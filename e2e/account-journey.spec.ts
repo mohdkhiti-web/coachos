@@ -53,7 +53,13 @@ test("full account lifecycle", async ({ page, browser }) => {
 
   await test.step("navigation only offers modules that exist", async () => {
     const nav = page.getByRole("navigation", { name: "Main navigation" }).first();
-    await expect(nav.getByRole("link")).toHaveText(["Dashboard", "Settings"]);
+    // Phase 2: Sports (with each real sport workspace nested under it). Nothing for features that don't exist yet.
+    await expect(nav.getByRole("link")).toHaveText([
+      "Dashboard",
+      "Sports",
+      "Basketball",
+      "Settings",
+    ]);
   });
 
   await test.step("profile: invalid input is rejected, valid input persists across reload", async () => {

@@ -14,7 +14,7 @@ import { getSessionCookie } from "better-auth/cookies";
  */
 
 const COOKIE_PREFIX = "coachos"; // keep in sync with `advanced.cookiePrefix` in identity/auth.ts
-const PROTECTED_PREFIXES = ["/dashboard", "/settings", "/onboarding"];
+const PROTECTED_PREFIXES = ["/dashboard", "/settings", "/onboarding", "/sports"];
 
 function buildCsp(nonce: string): string {
   const isDev = process.env.NODE_ENV === "development";

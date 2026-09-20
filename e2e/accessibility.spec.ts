@@ -63,8 +63,125 @@ for (const scheme of ["light", "dark"] as const) {
       await expect(page.getByRole("dialog")).toBeVisible();
       await audit(page, `delete dialog (${scheme})`);
     });
+
+    test("sports workspace, drill library, drill detail, and the drill form with its diagram builder", async ({
+      page,
+    }) => {
+      test.setTimeout(120_000);
+      await signUpAndVerify(page, newUser());
+      await completeOnboarding(page);
+
+      for (const path of [
+        "/sports",
+        "/sports/basketball",
+        "/sports/basketball/drills",
+        "/sports/basketball/drills?q=shoting&level=beginner", // active chips + filtered state
+        "/sports/basketball/drills?q=zzzzqqqq", // empty state
+      ]) {
+        await page.goto(path);
+        await expect(page.locator("main")).toBeVisible();
+        await audit(page, `${path} (${scheme})`);
+      }
+
+      await page.goto("/sports/basketball/drills");
+      await page.getByRole("link", { name: "Five-Spot Shooting" }).click();
+      await expect(page.getByRole("img", { name: /Five spots around the arc/ })).toBeVisible();
+      await audit(page, `drill detail (${scheme})`);
+
+      await page.goto("/sports/basketball/drills/new");
+      await page.getByRole("button", { name: "Create drill" }).click(); // show every error state
+      await expect(page.getByText("Some fields need attention").first()).toBeVisible();
+      await audit(page, `drill form with errors (${scheme})`);
+
+      await page.getByRole("button", { name: "Add a diagram" }).click();
+      const add = page.getByRole("group", { name: "Add to the court" });
+      await add.getByRole("button", { name: "Offense" }).click();
+      await add.getByRole("button", { name: "Defender" }).click();
+      await add.getByRole("button", { name: "Ball" }).click();
+      await page
+        .getByRole("group", { name: "Add an action" })
+        .getByRole("button", { name: "Pass" })
+        .click();
+      await expect(page.getByText("This diagram is valid.")).toBeVisible();
+      await audit(page, `diagram builder (${scheme})`);
+    });
   });
 }
+
+test("keyboard-only: the library can be filtered, paged and a drill opened without a mouse", async ({
+  page,
+}) => {
+  test.setTimeout(120_000);
+  await signUpAndVerify(page, newUser());
+  await completeOnboarding(page);
+  await page.goto("/sports/basketball/drills");
+
+  const search = page.getByRole("search", { name: "Filters" }).getByLabel("Search");
+  await search.focus();
+  await page.keyboard.type("closeout");
+  await expect(page).toHaveURL(/q=closeout/);
+  await expect(page.getByRole("link", { name: "Closeout and Contain" })).toBeVisible();
+
+  // the drill card is one link (a single tab stop), and Enter opens it
+  await page.getByRole("link", { name: "Closeout and Contain" }).focus();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("heading", { name: "Closeout and Contain", level: 2 })).toBeVisible();
+
+  // the archive confirmation isn't offered on library drills, but copying is a plain button
+  await page.getByRole("button", { name: "Copy to my drills" }).focus();
+  await page.keyboard.press("Enter");
+  await expect(
+    page.getByRole("heading", { name: "Copy of Closeout and Contain", level: 2 }),
+  ).toBeVisible({
+    timeout: 20_000,
+  });
+
+  // …and the archive dialog traps focus, closes on Escape, and returns focus to its trigger
+  const archive = page.getByRole("button", { name: "Archive" });
+  await archive.focus();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("dialog")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await expect(archive).toBeFocused();
+});
+
+test("no console errors, CSP violations, or missing translations across the Phase 2 pages", async ({
+  page,
+}) => {
+  test.setTimeout(120_000);
+  const problems: string[] = [];
+  page.on("console", (m) => {
+    if (m.type() === "error" || m.type() === "warning") problems.push(`${m.type()}: ${m.text()}`);
+  });
+  page.on("pageerror", (e) => problems.push(`pageerror: ${e.message}`));
+  page.on("response", (r) => {
+    if (r.status() >= 500) problems.push(`HTTP ${r.status()}: ${r.url()}`);
+  });
+
+  await signUpAndVerify(page, newUser());
+  await completeOnboarding(page);
+  for (const path of [
+    "/sports",
+    "/sports/basketball",
+    "/sports/basketball/drills",
+    "/sports/basketball/drills?category=shooting&level=beginner&age=12&duration=short",
+    "/sports/basketball/drills/new",
+  ]) {
+    await page.goto(path);
+    await expect(page.locator("main")).toBeVisible();
+    await page.waitForLoadState("networkidle");
+  }
+  await page.getByRole("button", { name: "Add a diagram" }).click();
+  await page
+    .getByRole("group", { name: "Add to the court" })
+    .getByRole("button", { name: "Offense" })
+    .click();
+
+  const body = await page.locator("body").innerText();
+  expect(body).not.toMatch(/MISSING_MESSAGE|drills\.\w+\.\w+|diagram\.builder\./);
+  expect(problems).toEqual([]);
+});
 
 test("keyboard-only: skip link, menu and dialog are operable without a mouse", async ({ page }) => {
   const user = newUser();

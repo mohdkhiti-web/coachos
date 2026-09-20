@@ -48,6 +48,43 @@ const eslintConfig = defineConfig([
     ),
   },
 
+  // Engines are PURE: no framework, database, modules, UI or sport knowledge (ARCHITECTURE.md §22).
+  {
+    files: ["src/engines/**/*.{ts,tsx}"],
+    rules: restrict(
+      [
+        "next",
+        "next/*",
+        "server-only",
+        "@/modules/**",
+        "@/app/**",
+        "@/lib/**",
+        "@/db/**",
+        "@/sports/**",
+        "@/components/**",
+      ],
+      "engines/* are pure TypeScript: they must not import Next, the database, modules, UI, or any sport.",
+    ),
+  },
+
+  // Sport modules may use the engines' interfaces — never the application above them.
+  {
+    files: ["src/sports/**/*.{ts,tsx}"],
+    rules: restrict(
+      [
+        "next",
+        "next/*",
+        "server-only",
+        "@/modules/**",
+        "@/app/**",
+        "@/lib/db/**",
+        "@/db/**",
+        "@/components/**",
+      ],
+      "sports/* may import engines only; never modules, the app, UI or the database.",
+    ),
+  },
+
   // Pure authorization policy: no framework, no I/O.
   {
     files: ["src/lib/authz/**/*.ts"],

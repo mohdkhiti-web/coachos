@@ -1,4 +1,5 @@
 import type { Viewer } from "@/modules/identity";
+import { DrillsWidget } from "./drills-widget";
 import { RecentActivity } from "./recent-activity";
 import { SetupChecklist } from "./setup-checklist";
 import { WorkspaceCard } from "./workspace-card";
@@ -21,5 +22,6 @@ export type DashboardWidget = {
 export const DASHBOARD_WIDGETS: readonly DashboardWidget[] = [
   { id: "setup-checklist", order: 10, span: "full", Component: SetupChecklist },
   { id: "workspace", order: 20, span: "half", Component: WorkspaceCard },
+  { id: "drills", order: 25, span: "half", Component: DrillsWidget },
   { id: "recent-activity", order: 30, span: "half", Component: RecentActivity },
 ];

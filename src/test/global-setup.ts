@@ -1,3 +1,4 @@
+import { seedAll } from "../db/seed/run";
 import {
   bootstrapRoles,
   localUrls,
@@ -15,6 +16,7 @@ export default async function setup() {
   const urls = localUrls(TEST_CLUSTER);
   await bootstrapRoles(urls.admin);
   await runMigrations(urls.owner);
+  await seedAll(urls.owner); // reference data + curated library drills, exactly as in dev/e2e/deploy
 
   return async () => {
     await pg.stop();

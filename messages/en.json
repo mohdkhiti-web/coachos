@@ -19,7 +19,8 @@
   "nav": {
     "primary": "Primary",
     "dashboard": "Dashboard",
-    "settings": "Settings"
+    "settings": "Settings",
+    "sports": "Sports"
   },
   "theme": {
     "toggle": "Theme: {mode}. Click to change.",
@@ -36,7 +37,33 @@
     "password_mismatch": "The passwords don't match.",
     "password_same": "Choose a password different from your current one.",
     "timezone_invalid": "Choose a valid timezone.",
-    "delete_confirm": "Type DELETE to confirm."
+    "delete_confirm": "Type DELETE to confirm.",
+    "too_short": "That's too short.",
+    "too_many": "That's too many items.",
+    "range_invalid": "Enter a number within the allowed range.",
+    "range_order": "The maximum can't be smaller than the minimum.",
+    "number_invalid": "Enter a whole number.",
+    "invalid": "That value isn't valid.",
+    "url_invalid": "Enter a full https:// link.",
+    "video_host": "Video links must be YouTube or Vimeo.",
+    "skill_duplicate": "Choose each skill only once, and not the main skill again.",
+    "equipment_duplicate": "Each equipment type can only be listed once.",
+    "source_name_required": "Say where this drill was adapted from.",
+    "source_external_required": "Give both the source name and its link.",
+    "tag_invalid": "Tags can use letters, numbers, spaces and hyphens (2–24 characters).",
+    "diagram_duplicate_id": "Two items in this diagram share the same identifier.",
+    "diagram_unknown_entity": "An action refers to a player or item that isn't in the diagram.",
+    "diagram_unknown_anchor": "A position refers to a court spot that doesn't exist on this court.",
+    "diagram_nested_reference": "A position can't be relative to another relative position.",
+    "diagram_ball_holder_invalid": "A ball is held by something that can't hold it.",
+    "diagram_out_of_bounds": "Something in the diagram is outside the court.",
+    "diagram_action_not_allowed": "This diagram uses an action this sport doesn't support.",
+    "diagram_invalid_actor": "Only players and coaches can pass, move, dribble, screen or shoot.",
+    "diagram_too_many_balls": "There are too many balls in the diagram.",
+    "diagram_ball_needs_holder_or_position": "Each ball needs either a player holding it or a position.",
+    "diagram_ball_holder_shared": "Two balls are held by the same player.",
+    "diagram_action_requires_ball": "A pass, dribble or shot happens without the ball.",
+    "diagram_court_unknown": "This diagram's court isn't available for this sport."
   },
   "errors": {
     "generic": "Something went wrong. Please try again.",
@@ -67,7 +94,7 @@
     "ctaSecondary": "Sign in",
     "ctaDashboard": "Open your dashboard",
     "statusTitle": "Where we are",
-    "statusBody": "Accounts and your personal workspace are live. The drill library, diagrams and session builder are being built next — you'll see each one appear here only when it actually works.",
+    "statusBody": "Accounts, your personal workspace and the basketball drill library — with structured court diagrams — are live. Session planning, lesson plans and teams are being built next; each appears here only when it actually works.",
     "footer": "© {year} CoachOS"
   },
   "auth": {
@@ -228,6 +255,14 @@
       "title": "Recent activity",
       "empty": "No activity yet.",
       "viewAll": "Review security settings"
+    },
+    "drills": {
+      "eyebrow": "{sport} drills",
+      "title": "Your drill library",
+      "library": "Library drills",
+      "mine": "Your drills",
+      "noneYet": "You haven't created a drill yet.",
+      "open": "Open the drill library"
     }
   },
   "audit": {
@@ -244,7 +279,11 @@
       "account_profile_updated": "Profile updated",
       "account_preferences_updated": "Preferences updated",
       "account_deleted": "Account deleted",
-      "organization_renamed": "Workspace renamed"
+      "organization_renamed": "Workspace renamed",
+      "drill_created": "Drill created",
+      "drill_updated": "Drill updated",
+      "drill_archived": "Drill archived",
+      "drill_duplicated": "Drill copied to your workspace"
     }
   },
   "settings": {
@@ -327,6 +366,379 @@
   "notFound": {
     "title": "Page not found",
     "body": "That page doesn't exist, or you don't have access to it.",
-    "home": "Go home"
+    "home": "Go home",
+    "toSports": "Back to sports"
+  },
+  "sports": {
+    "title": "Sports",
+    "subtitle": "Each sport has its own workspace with its own drills, court diagrams and vocabulary.",
+    "activeHeading": "Available sports",
+    "workspace": "Sport workspace",
+    "libraryDrills": "Library drills",
+    "yourDrills": "Your drills",
+    "open": "Open workspace",
+    "plannedTitle": "Planned — not available yet",
+    "plannedBody": "These sports are reserved in the data model but have no workspace yet. Each one appears here only once it fully works."
+  },
+  "workspace": {
+    "eyebrow": "Sport workspace",
+    "tabsLabel": "Workspace sections",
+    "tabs": {
+      "overview": "Overview",
+      "drills": "Drills"
+    },
+    "overview": {
+      "summary": "Drill counts",
+      "libraryLabel": "Library drills",
+      "mineLabel": "Your drills",
+      "browse": "Browse the library",
+      "create": "Create a drill",
+      "categoriesEyebrow": "Browse",
+      "categoriesTitle": "By category",
+      "drillsSuffix": "drills",
+      "recentEyebrow": "Library",
+      "recentTitle": "Recently added",
+      "viewAll": "View the whole library",
+      "mineEyebrow": "Yours",
+      "mineTitle": "Your drills",
+      "mineEmptyTitle": "You haven't created a drill yet",
+      "mineEmptyBody": "Build your own drill — with a court diagram — or copy one from the library and make it yours."
+    }
+  },
+  "drills": {
+    "title": "Drill library",
+    "create": "Create a drill",
+    "levels": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "spaces": {
+      "half_court": "Half court",
+      "full_court": "Full court",
+      "partial_court": "Part of the court",
+      "any_space": "Any space"
+    },
+    "scopes": {
+      "library": "CoachOS library",
+      "mine": "My drill",
+      "workspace": "Workspace",
+      "filter": {
+        "all": "All",
+        "library": "Library",
+        "mine": "Mine"
+      }
+    },
+    "durations": {
+      "short": "Up to 10 min",
+      "medium": "11–20 min",
+      "long": "21+ min"
+    },
+    "sorts": {
+      "relevance": "Best match",
+      "recent": "Newest",
+      "title": "Title A–Z",
+      "duration": "Shortest first"
+    },
+    "filters": {
+      "region": "Filter drills",
+      "title": "Filters",
+      "search": "Search",
+      "searchPlaceholder": "Name, skill or topic",
+      "scope": "Show",
+      "category": "Category",
+      "skill": "Skill",
+      "level": "Level",
+      "age": "Age",
+      "players": "Players",
+      "duration": "Duration",
+      "equipment": "Equipment",
+      "sort": "Sort by",
+      "any": "Any",
+      "apply": "Apply",
+      "clear": "Clear filters"
+    },
+    "chips": {
+      "label": "Applied filters",
+      "remove": "Remove filter: {label}",
+      "q": "“{value}”",
+      "age": "Age {value}",
+      "players": "{value} players"
+    },
+    "results": {
+      "all": "{total, plural, one {# drill} other {# drills}}",
+      "none": "No drills",
+      "of": "of {total, plural, one {# drill} other {# drills}}"
+    },
+    "empty": {
+      "filteredTitle": "No drills match those filters",
+      "filteredBody": "Try removing a filter or searching for something broader.",
+      "noneTitle": "No drills yet",
+      "noneBody": "Drills you create and library drills will appear here."
+    },
+    "pagination": {
+      "label": "Pages",
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page {page} of {count}"
+    },
+    "card": {
+      "minutes": "minutes",
+      "players": "players",
+      "ages": "age",
+      "equipment": "Equipment",
+      "more": "+{count} more"
+    },
+    "detail": {
+      "back": "All drills",
+      "level": "Level",
+      "space": "Space",
+      "primarySkill": "Main skill",
+      "diagrams": "Diagrams",
+      "diagramN": "Diagram {n}",
+      "objective": "Objective",
+      "setup": "Setup",
+      "instructions": "How it runs",
+      "stepN": "Step {n}.",
+      "coachingPoints": "Coaching points",
+      "commonMistakes": "Common mistakes",
+      "progressions": "Make it harder",
+      "regressions": "Make it easier",
+      "variations": "Variations",
+      "developing": "Progressions and variations",
+      "safety": "Safety",
+      "sidebar": "Drill details",
+      "equipment": "Equipment",
+      "noEquipment": "No equipment needed.",
+      "rule": {
+        "fixed": "{quantity} in total",
+        "per_player": "{quantity} per player",
+        "per_pair": "{quantity} per pair"
+      },
+      "skills": "Skills",
+      "tags": "Tags",
+      "resources": "Resources",
+      "resourceKind": {
+        "video": "video",
+        "article": "article"
+      },
+      "opensNewTab": "opens in a new tab",
+      "source": "Source",
+      "sourceLibrary": "Original CoachOS content",
+      "sourceKind": {
+        "original": "Original content",
+        "adapted": "Adapted from another source",
+        "external": "External source"
+      },
+      "sourceLink": "Open the source",
+      "updated": "Last updated {date}",
+      "edit": "Edit",
+      "duplicate": "Duplicate",
+      "duplicateLibrary": "Copy to my drills",
+      "archive": "Archive",
+      "archiveTitle": "Archive this drill?",
+      "archiveBody": "“{title}” will disappear from your library. It is archived, not deleted.",
+      "archiveConfirm": "Archive drill",
+      "archived": "Drill archived.",
+      "duplicated": "A copy is now in your drills.",
+      "archivedNotice": "This drill is archived. It can be read here but no longer appears in the library."
+    },
+    "form": {
+      "createTitle": "Create a drill",
+      "createSubtitle": "Write it once, draw it on the court, and reuse it in every session.",
+      "editTitle": "Edit drill",
+      "create": "Create drill",
+      "save": "Save changes",
+      "created": "Drill created.",
+      "saved": "Drill saved.",
+      "fixErrors": "Some fields need attention. Fix the highlighted items and save again.",
+      "conflict": "This drill was changed somewhere else after you opened it. Reload the page to see the latest version, then apply your changes again.",
+      "basics": "The basics",
+      "title": "Title",
+      "description": "Short description",
+      "descriptionHint": "Shown on cards and in search. {count} of 300 characters.",
+      "category": "Category",
+      "level": "Level",
+      "space": "Space needed",
+      "choose": "Choose…",
+      "who": "Who and how long",
+      "age": "Age",
+      "players": "Players",
+      "duration": "Duration",
+      "years": "years",
+      "people": "people",
+      "minutes": "minutes",
+      "min": "Min",
+      "max": "Max",
+      "skills": "Skills and tags",
+      "primarySkill": "Main skill",
+      "secondarySkills": "Other skills trained",
+      "secondaryHint": "Choose up to three.",
+      "tags": "Tags",
+      "tagsHint": "Separate with commas, e.g. layups, fast break.",
+      "content": "Coaching content",
+      "objective": "Objective",
+      "setup": "Setup",
+      "instructions": "Instructions",
+      "stepsHint": "One step per line, in order.",
+      "coachingPoints": "Coaching points",
+      "commonMistakes": "Common mistakes",
+      "safety": "Safety considerations",
+      "progressions": "Progressions",
+      "regressions": "Regressions",
+      "variations": "Variations",
+      "onePerLine": "One item per line.",
+      "equipment": "Equipment",
+      "equipmentHint": "Tick what the drill needs and say how much.",
+      "quantity": "Quantity",
+      "rule": "Rule",
+      "rules": {
+        "fixed": "in total",
+        "per_player": "per player",
+        "per_pair": "per pair"
+      },
+      "diagrams": "Court diagrams",
+      "diagramsHint": "Draw the drill with players, equipment and movement. Diagrams are structured data: crisp at any size and reusable in sessions and documents.",
+      "sourceAndSharing": "Resources, source and sharing",
+      "resources": "Helpful links",
+      "resourcesHint": "Up to three: videos (YouTube or Vimeo) or articles. They open in a new tab.",
+      "resourceKind": "Type",
+      "kindVideo": "Video",
+      "kindArticle": "Article",
+      "resourceTitle": "Link title",
+      "resourceUrl": "Link (https://)",
+      "removeResource": "Remove link {n}",
+      "addResource": "Add a link",
+      "sourceKind": "Where does it come from?",
+      "sourceKinds": {
+        "original": "My own drill",
+        "adapted": "Adapted from another source",
+        "external": "From an external source"
+      },
+      "sourceName": "Source name",
+      "sourceUrl": "Source link",
+      "visibility": "Who can see it",
+      "visibilityHint": "Private drills are visible only to you.",
+      "visibilityPrivate": "Only me",
+      "visibilityOrganization": "Everyone in this workspace",
+      "privateNote": "In your personal workspace, drills are private to you."
+    }
+  },
+  "diagram": {
+    "builder": {
+      "noneYet": "No diagram yet. Add one to draw the drill on the court.",
+      "addDiagram": "Add a diagram",
+      "maxDiagrams": "A drill can have up to {max} diagrams.",
+      "diagramN": "Diagram {n}",
+      "titleLabel": "Diagram title (optional)",
+      "titlePlaceholder": "e.g. Setup, Progression 1",
+      "court": "Court",
+      "courts": {
+        "half": "Half court",
+        "full": "Full court"
+      },
+      "courtMissing": "This diagram's court isn't available.",
+      "remove": "Remove",
+      "removeDiagram": "Remove diagram {n}",
+      "removeItem": "Remove {name}",
+      "removeWaypoint": "Remove point {n}",
+      "entities": "Players and equipment",
+      "entitiesEmpty": "Add players first, then describe what they do.",
+      "addEntity": "Add to the court",
+      "add": {
+        "offense": "Offense",
+        "defense": "Defender",
+        "coach": "Coach",
+        "ball": "Ball",
+        "cone": "Cone",
+        "marker": "Marker"
+      },
+      "kinds": {
+        "offense": "Offense player",
+        "defense": "Defender",
+        "coach": "Coach",
+        "ball": "Ball",
+        "cone": "Cone",
+        "marker": "Marker"
+      },
+      "label": "Label",
+      "markerKind": "Marker type",
+      "markerKinds": {
+        "start": "Start",
+        "end": "End",
+        "spot": "Spot"
+      },
+      "ballState": "Ball",
+      "ballHeld": "Held by a player",
+      "ballLoose": "Loose on the court",
+      "heldBy": "Held by",
+      "actions": "Passes and movement",
+      "actionsHelp": "Actions in the same step happen together. Use later steps for what follows.",
+      "addAction": "Add an action",
+      "actionTypes": {
+        "pass": "Pass",
+        "cut": "Cut",
+        "move": "Move",
+        "dribble": "Dribble",
+        "screen": "Screen",
+        "shot": "Shot"
+      },
+      "step": "Step",
+      "from": "From",
+      "to": "To",
+      "player": "Player",
+      "waypoint": "Point {n}",
+      "addWaypoint": "Add a point",
+      "target": "Target",
+      "aim": "Aim at a specific spot (otherwise the basket)",
+      "notes": "Notes and zones",
+      "addNote": "Add a note or zone",
+      "annotationTypes": {
+        "text": "Note",
+        "zone_rect": "Zone (rectangle)",
+        "zone_circle": "Zone (circle)"
+      },
+      "noteText": "Note text",
+      "zoneLabel": "Zone label (optional)",
+      "radius": "Radius (m)",
+      "where": "Where",
+      "corner1": "First corner",
+      "corner2": "Opposite corner",
+      "center": "Centre",
+      "preview": "Live preview",
+      "previewInvalid": "The preview appears once every field is valid.",
+      "valid": "This diagram is valid.",
+      "issuesTitle": "Fix these to save",
+      "schemaInvalid": "A field in this diagram isn't valid.",
+      "description": "Text description for screen readers",
+      "position": {
+        "mode": "Position type",
+        "anchor": "Court spot",
+        "xy": "Coordinates",
+        "entity": "Next to a player",
+        "spot": "Spot",
+        "thisEnd": "This end",
+        "farEnd": "Far end",
+        "offsetX": "Nudge sideways (m)",
+        "offsetY": "Nudge up/down (m)",
+        "x": "X (m)",
+        "y": "Y (m)",
+        "player": "Player"
+      }
+    },
+    "issues": {
+      "duplicate_id": "Two items share the identifier “{id}”.",
+      "unknown_entity": "Something refers to “{id}”, which isn't in the diagram.",
+      "unknown_anchor": "The court spot “{anchor}” doesn't exist on this court.",
+      "nested_reference": "The position next to “{id}” can't itself be relative to another player.",
+      "ball_holder_invalid": "A ball is held by “{id}”, which can't hold a ball.",
+      "ball_needs_holder_or_position": "A ball needs either a player holding it or a position.",
+      "ball_holder_shared": "“{id}” holds more than one ball.",
+      "too_many_balls": "There are too many balls.",
+      "action_not_allowed": "The action “{type}” isn't available for this sport.",
+      "invalid_actor": "“{id}” can't do a {type}: only players and coaches can.",
+      "action_requires_ball": "“{id}” doesn't have the ball for this {type}. Give a ball to that player, or pass it to them in an earlier step.",
+      "out_of_bounds": "“{id}” is outside the court."
+    }
   }
 }

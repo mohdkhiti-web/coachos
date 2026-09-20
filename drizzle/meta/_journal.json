@@ -15,6 +15,20 @@
       "when": 1789901349315,
       "tag": "0001_rls_and_grants",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789906559946,
+      "tag": "0002_sports_and_drills",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1789906561287,
+      "tag": "0003_drills_rls_search",
+      "breakpoints": true
     }
   ]
 }

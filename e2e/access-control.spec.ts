@@ -12,7 +12,14 @@ import {
 } from "./support/helpers";
 
 test.describe("signed-out visitors", () => {
-  for (const path of ["/dashboard", "/settings/profile", "/settings/security", "/onboarding"]) {
+  for (const path of [
+    "/dashboard",
+    "/settings/profile",
+    "/settings/security",
+    "/onboarding",
+    "/sports",
+    "/sports/basketball/drills",
+  ]) {
     test(`${path} redirects to sign-in and remembers where they were going`, async ({ page }) => {
       await page.goto(path);
       await expect(page).toHaveURL(

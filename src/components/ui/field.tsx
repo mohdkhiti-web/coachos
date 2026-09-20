@@ -28,6 +28,15 @@ export function Select({ className, children, ...props }: React.ComponentProps<"
   );
 }
 
+export function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
+  return (
+    <textarea
+      className={cn(controlBase, "min-h-24 py-2.5 leading-relaxed", className)}
+      {...props}
+    />
+  );
+}
+
 export function Checkbox({ className, ...props }: Omit<React.ComponentProps<"input">, "type">) {
   return (
     <input
