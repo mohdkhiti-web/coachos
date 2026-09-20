@@ -225,6 +225,12 @@ describe("drill input schema", () => {
     expect(issues({ level: "pro" }).level).toBe("required");
   });
 
+  it("an unchosen category/skill says 'required', a malformed one says 'invalid'", () => {
+    expect(issues({ category: "" }).category).toBe("required");
+    expect(issues({ primarySkill: "" }).primarySkill).toBe("required");
+    expect(issues({ category: "Bad Key!" }).category).toBe("invalid");
+  });
+
   it("min must not exceed max, on every pair", () => {
     expect(issues({ ageMin: 15, ageMax: 10 }).ageMax).toBe("range_order");
     expect(issues({ playersMin: 9, playersMax: 8 }).playersMax).toBe("range_order");

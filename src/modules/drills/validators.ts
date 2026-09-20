@@ -9,7 +9,10 @@ import { drillContentSchema, httpsUrl } from "./content";
  * module in the command, because they depend on the sport. Messages are i18n keys (`validation.*`).
  */
 
-const key = z.string().regex(/^[a-z][a-z0-9_]{1,40}$/, { error: "invalid" });
+/** A catalog key (category / skill / equipment / space). Empty means "not chosen yet" → "required", anything else malformed → "invalid". */
+const key = z.string().regex(/^[a-z][a-z0-9_]{1,40}$/, {
+  error: (issue) => (issue.input === "" ? "required" : "invalid"),
+});
 const int = (min: number, max: number) =>
   z
     .int({ error: "number_invalid" })
