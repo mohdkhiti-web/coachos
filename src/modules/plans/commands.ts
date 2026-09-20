@@ -10,7 +10,7 @@ import { fail, ok, type FieldErrors, type Result } from "@/lib/result";
 import { recordAuditInTx } from "@/modules/audit";
 import { drillContentSchema, getDrill } from "@/modules/drills";
 import { getOrganizationById } from "@/modules/organizations";
-import { getAgeGroups, getSport, getTaxonomy, type SportDto } from "@/modules/sports";
+import { getAgeGroups, getObjectives, getSport, type SportDto } from "@/modules/sports";
 import { getSportModule } from "@/sports/registry";
 import { totalMinutes } from "./schedule";
 import {
@@ -170,22 +170,22 @@ type Resolved = {
   ageGroupId: string | null;
   ageMin: number | null;
   ageMax: number | null;
-  primarySkillId: string | null;
-  secondarySkillIds: string[];
+  primaryObjectiveId: string | null;
+  secondaryObjectiveIds: string[];
 };
 
-/** Everything that depends on WHICH sport this is: its age groups and its skills. */
+/** Everything that depends on WHICH sport this is: its age groups and its objectives. */
 async function checkAgainstCatalog(sport: SportDto, input: PlanInput): Promise<Result<Resolved>> {
-  const [groups, taxonomy] = await Promise.all([getAgeGroups(sport.id), getTaxonomy(sport.id)]);
+  const [groups, catalog] = await Promise.all([getAgeGroups(sport.id), getObjectives(sport.id)]);
   const errors: FieldErrors = {};
 
   const group = input.ageGroup ? groups.find((g) => g.key === input.ageGroup) : undefined;
   if (input.ageGroup && !group) errors.ageGroup = ["age_group_unknown"];
 
-  const skill = (key: string) => taxonomy.skills.find((s) => s.key === key);
-  if (input.primaryObjective && !skill(input.primaryObjective))
+  const objective = (key: string) => catalog.find((o) => o.key === key);
+  if (input.primaryObjective && !objective(input.primaryObjective))
     errors.primaryObjective = ["objective_unknown"];
-  if (!input.secondaryObjectives.every((k) => skill(k)))
+  if (!input.secondaryObjectives.every((k) => objective(k)))
     errors.secondaryObjectives = ["objective_unknown"];
 
   if (Object.keys(errors).length > 0) return fail("VALIDATION", { fields: errors });
@@ -194,15 +194,15 @@ async function checkAgainstCatalog(sport: SportDto, input: PlanInput): Promise<R
     // choosing only an age group fills in its typical ages; explicit ages always win
     ageMin: input.ageMin ?? group?.ageMin ?? null,
     ageMax: input.ageMax ?? group?.ageMax ?? null,
-    primarySkillId: input.primaryObjective ? skill(input.primaryObjective)!.id : null,
-    secondarySkillIds: input.secondaryObjectives.map((k) => skill(k)!.id),
+    primaryObjectiveId: input.primaryObjective ? objective(input.primaryObjective)!.id : null,
+    secondaryObjectiveIds: input.secondaryObjectives.map((k) => objective(k)!.id),
   });
 }
 
 async function writeObjectives(tx: Tx, planId: string, sportId: string, r: Resolved) {
   const rows = [
-    ...(r.primarySkillId ? [{ skillId: r.primarySkillId, role: "primary" }] : []),
-    ...r.secondarySkillIds.map((skillId) => ({ skillId, role: "secondary" })),
+    ...(r.primaryObjectiveId ? [{ objectiveId: r.primaryObjectiveId, role: "primary" }] : []),
+    ...r.secondaryObjectiveIds.map((objectiveId) => ({ objectiveId, role: "secondary" })),
   ];
   if (rows.length)
     await tx.insert(planObjectives).values(rows.map((o) => ({ planId, sportId, ...o })));

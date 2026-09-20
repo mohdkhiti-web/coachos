@@ -17,7 +17,7 @@ import {
   libraryDrill,
   rawActivity,
   rawPlan,
-  skillIdOf,
+  objectiveIdOf,
 } from "./plan-fixtures";
 
 /**
@@ -120,6 +120,62 @@ describe("age groups (reference data)", () => {
       );
     } finally {
       await admin.end();
+    }
+  });
+});
+
+// ---------------------------------------------------------------------------------------------------
+describe("objectives catalog (reference data)", () => {
+  it("has the fourteen coach-facing objectives, each mapped onto real skills and/or categories", async () => {
+    const objs = await rows(
+      coach,
+      sql`select o.key, o.name,
+             (select count(*)::int from objective_skills s where s.objective_id = o.id) as skills,
+             (select count(*)::int from objective_categories c where c.objective_id = o.id) as categories
+           from objectives o where o.sport_id = ${BB} order by o.sort_order`,
+    );
+    expect(objs).toHaveLength(14);
+    for (const o of objs)
+      expect(Number(o.skills) + Number(o.categories), String(o.key)).toBeGreaterThan(0);
+    expect(objs[0]).toMatchObject({ key: "shooting", name: "Shooting" });
+  });
+
+  it("Shooting maps to Shooting form and Free throws; Transition to the Transition category", async () => {
+    const shooting = await rows(
+      coach,
+      sql`select s.key from objective_skills os join objectives o on o.id = os.objective_id join skills s on s.id = os.skill_id where o.key = 'shooting' order by s.key`,
+    );
+    expect(shooting.map((r) => r.key)).toEqual(["free_throws", "shooting_form"]);
+    const transition = await rows(
+      coach,
+      sql`select c.key from objective_categories oc join objectives o on o.id = oc.objective_id join categories c on c.id = oc.category_id where o.key = 'transition'`,
+    );
+    expect(transition.map((r) => r.key)).toEqual(["transition"]);
+  });
+
+  it("the runtime role can read the catalog but never change it", async () => {
+    for (const table of ["objectives", "objective_skills", "objective_categories"])
+      await expectDbError(db.execute(sql`delete from ${sql.raw(table)}`), /permission denied/);
+    await expectDbError(
+      db.execute(
+        sql`insert into objectives (id, sport_id, key, name) values (${newId()}, ${BB}, 'x', 'X')`,
+      ),
+      /permission denied/,
+    );
+  });
+
+  it("an objective's mappings must stay within one sport: the composite keys refuse a mismatch", async () => {
+    const superuser = adminPool();
+    try {
+      await expectDbError(
+        superuser.query(
+          "insert into objective_skills (objective_id, skill_id, sport_id) select o.id, s.id, $1::uuid from objectives o, skills s where o.key = 'shooting' and s.key = 'passing'",
+          [FB],
+        ),
+        /objective_skills_objective_fk|objective_skills_skill_fk/,
+      );
+    } finally {
+      await superuser.end();
     }
   });
 });
@@ -514,96 +570,107 @@ describe("lifecycle: archive, soft delete, restore", () => {
 });
 
 // ---------------------------------------------------------------------------------------------------
-describe("objectives: references into the sport's skills", () => {
+describe("objectives: references into the sport's objectives catalog", () => {
   let p: string;
   let shooting: string;
   let decision: string;
   let transition: string;
-  const objective = (a: Actor, planId: string, skillId: string, role: string, sportId = BB) =>
-    tenantTx(a, (tx) => tx.insert(planObjectives).values({ planId, skillId, sportId, role }));
+  const objective = (a: Actor, planId: string, objectiveId: string, role: string, sportId = BB) =>
+    tenantTx(a, (tx) => tx.insert(planObjectives).values({ planId, objectiveId, sportId, role }));
 
   beforeAll(async () => {
     p = await plan(coach, { visibility: "organization" });
-    shooting = await skillIdOf("shooting_form");
-    decision = await skillIdOf("decision_making");
-    transition = await skillIdOf("spacing");
+    shooting = await objectiveIdOf("shooting");
+    decision = await objectiveIdOf("decision_making");
+    transition = await objectiveIdOf("transition");
   });
 
-  it("one primary and several secondary objectives, all pointing at real catalog skills", async () => {
+  it("one primary and several secondary objectives, all pointing at real catalog objectives", async () => {
     await objective(coach, p, shooting, "primary");
     await objective(coach, p, decision, "secondary");
     await objective(coach, p, transition, "secondary");
     const r = await rows(
       coach,
-      sql`select s.key, o.role from plan_objectives o join skills s on s.id = o.skill_id where o.plan_id = ${p} order by o.role, s.key`,
+      sql`select s.key, o.role from plan_objectives o join objectives s on s.id = o.objective_id where o.plan_id = ${p} order by o.role, s.key`,
     );
     expect(r.map((x) => `${x.role}:${x.key}`)).toEqual(
       expect.arrayContaining([
-        "primary:shooting_form",
+        "primary:shooting",
         "secondary:decision_making",
-        "secondary:spacing",
+        "secondary:transition",
       ]),
     );
     expect(r).toHaveLength(3);
   });
 
-  it("only one primary per session, and a skill only once", async () => {
+  it("only one primary per session, and an objective only once", async () => {
     await expectDbError(
-      objective(coach, p, await skillIdOf("passing"), "primary"),
+      objective(coach, p, await objectiveIdOf("passing"), "primary"),
       /plan_objectives_one_primary_uq/,
     );
     await expectDbError(
       objective(coach, p, decision, "secondary"),
-      /plan_objectives_plan_id_skill_id_pk/,
+      /plan_objectives_plan_id_objective_id_pk/,
     );
   });
 
   it("a role is primary or secondary, nothing else", async () => {
     await expectDbError(
-      objective(coach, p, await skillIdOf("passing"), "tertiary"),
+      objective(coach, p, await objectiveIdOf("passing"), "tertiary"),
       /plan_objectives_role_chk/,
     );
   });
 
   it("a session has at most one primary and four secondary objectives", async () => {
     const q = await plan(coach);
-    const keys = ["shooting_form", "passing", "dribbling", "rebounding", "screening", "spacing"];
-    await objective(coach, q, await skillIdOf(keys[0]!), "primary");
-    for (const k of keys.slice(1, 5)) await objective(coach, q, await skillIdOf(k), "secondary");
+    const keys = [
+      "shooting",
+      "passing",
+      "ball_handling",
+      "rebounding",
+      "team_offense",
+      "transition",
+    ];
+    await objective(coach, q, await objectiveIdOf(keys[0]!), "primary");
+    for (const k of keys.slice(1, 5))
+      await objective(coach, q, await objectiveIdOf(k), "secondary");
     await expectDbError(
-      objective(coach, q, await skillIdOf(keys[5]!), "secondary"),
+      objective(coach, q, await objectiveIdOf(keys[5]!), "secondary"),
       /at most one primary and four secondary/,
     );
   });
 
-  it("a skill must belong to the session's sport", async () => {
+  it("an objective must belong to the session's sport", async () => {
     const football = await plan(coach, { sportId: FB });
     await expectDbError(
       objective(coach, football, shooting, "primary", FB),
-      /plan_objectives_skill_fk/,
+      /plan_objectives_objective_fk/,
     );
   });
 
   it("an objective's own sport must match its session's sport", async () => {
     await expectDbError(
-      objective(coach, p, await skillIdOf("passing"), "secondary", FB),
-      /plan_objectives_plan_fk|plan_objectives_skill_fk/,
+      objective(coach, p, await objectiveIdOf("passing"), "secondary", FB),
+      /plan_objectives_plan_fk|plan_objectives_objective_fk/,
     );
   });
 
   it("only those who may change the session may add or remove its objectives", async () => {
-    const skill = await skillIdOf("rebounding");
+    const skill = await objectiveIdOf("rebounding");
     for (const other of [teacher, assistant, outsider, stranger])
       await expectDbError(objective(other, p, skill, "secondary"), /row-level security/);
     expect(
-      await rows(teacher, sql`delete from plan_objectives where plan_id = ${p} returning skill_id`),
+      await rows(
+        teacher,
+        sql`delete from plan_objectives where plan_id = ${p} returning objective_id`,
+      ),
     ).toHaveLength(0);
     // owner (a manager of the workspace) may
     await objective(owner, p, skill, "secondary");
     expect(
       await rows(
         owner,
-        sql`delete from plan_objectives where plan_id = ${p} and skill_id = ${skill} returning skill_id`,
+        sql`delete from plan_objectives where plan_id = ${p} and objective_id = ${skill} returning objective_id`,
       ),
     ).toHaveLength(1);
   });

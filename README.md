@@ -40,7 +40,7 @@ are printed in the terminal running `npm run dev`. Copy the link into your brows
 ### Adding drills to the library
 
 The library is data, not code: **one JSON file per drill** in `content/<sport>/drills/<seed-key>.json`, and the
-sport's categories, skills (with sub-skills) and age groups (U8 … Senior) in `content/<sport>/taxonomy.json`. Copy an existing file, change
+sport's categories, skills (with sub-skills), the coach-facing objectives (Shooting, Transition… mapped onto them) and age groups (U8 … Senior) in `content/<sport>/taxonomy.json`. Copy an existing file, change
 it, run `npm run content:check` (it names the file and field of anything wrong: the fields, catalog keys, formats,
 sub-skill parents and every diagram against its court), then `npm run db:seed`. Nothing else changes: no code, no
 migration. Each drill carries its facets (category, skill and sub-skills, level, intensity, format such as `3v3`, the

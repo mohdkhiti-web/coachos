@@ -16,7 +16,7 @@ import {
  *
  *   content/sports.json                    the sports registry rows
  *   content/equipment.json                 equipment types (generic and per sport)
- *   content/<sport>/taxonomy.json          categories, skills and their sub-skills, age groups
+ *   content/<sport>/taxonomy.json          categories, skills and their sub-skills, objectives, age groups
  *   content/<sport>/drills/<seed-key>.json one file per library drill
  *
  * Adding a drill is adding a file. Everything is checked at load time with the app's own rules (the drill
@@ -45,6 +45,12 @@ export interface SeedSkill {
   /** Set for a sub-skill. Parents are always listed before their children. */
   parentKey: string | null;
 }
+export interface SeedObjective {
+  key: string;
+  name: string;
+  skills: string[];
+  categories: string[];
+}
 export interface SeedAgeGroup {
   key: string;
   name: string;
@@ -59,6 +65,7 @@ export interface SportContent {
   categories: SeedCategory[];
   skills: SeedSkill[];
   ageGroups: SeedAgeGroup[];
+  objectives: SeedObjective[];
   drills: SeedDrill[];
 }
 export interface SeedContent {
@@ -146,6 +153,19 @@ export function loadContent(dir: string = contentDir()): SeedContent {
     for (const k of duplicates(tax.data.ageGroups.map((g) => g.key)))
       problems.push(`${tFile}: duplicate age group key "${k}"`);
 
+    for (const k of duplicates(tax.data.objectives.map((o) => o.key)))
+      problems.push(`${tFile}: duplicate objective key "${k}"`);
+    for (const o of tax.data.objectives) {
+      if (o.skills.length + o.categories.length === 0)
+        problems.push(`${tFile}: objective "${o.key}" covers no skills and no categories`);
+      for (const k of o.skills)
+        if (!skills.some((x) => x.key === k))
+          problems.push(`${tFile}: objective "${o.key}" names unknown skill "${k}"`);
+      for (const k of o.categories)
+        if (!tax.data.categories.some((c) => c.key === k))
+          problems.push(`${tFile}: objective "${o.key}" names unknown category "${k}"`);
+    }
+
     const catalog = {
       categories: tax.data.categories,
       skills,
@@ -209,6 +229,7 @@ export function loadContent(dir: string = contentDir()): SeedContent {
       categories: tax.data.categories,
       skills,
       ageGroups: tax.data.ageGroups,
+      objectives: tax.data.objectives,
       drills,
     };
   }

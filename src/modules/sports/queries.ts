@@ -1,10 +1,20 @@
 import "server-only";
 import { cache } from "react";
 import { asc, eq, inArray, isNull, or } from "drizzle-orm";
-import { ageGroups, categories, equipmentTypes, skills, sports } from "@/db/schema";
+import {
+  ageGroups,
+  categories,
+  equipmentTypes,
+  objectiveCategories,
+  objectives,
+  objectiveSkills,
+  skills,
+  sports,
+} from "@/db/schema";
 import type { SportStatus } from "@/db/enums";
 import { db } from "@/lib/db/client";
 import { isSportKey, type SportKey } from "@/sports/registry";
+import { coveredSkillKeys } from "./objectives";
 
 /**
  * Catalog reads (sports + taxonomy). Reference data has no tenant scope and no RLS: it is readable by
@@ -28,6 +38,19 @@ export type AgeGroupItem = {
   name: string;
   ageMin: number;
   ageMax: number;
+};
+
+/**
+ * A coach-facing objective (Shooting, Transition…) and what it covers. `skillKeys` are the skills it names;
+ * `coveredSkillKeys` adds their sub-skills — the set a drill is matched against.
+ */
+export type ObjectiveItem = {
+  id: string;
+  key: string;
+  name: string;
+  skillKeys: string[];
+  coveredSkillKeys: string[];
+  categoryKeys: string[];
 };
 
 /** Sports a user can enter: implemented in code AND switched on in the catalog. Planned sports never appear. */
@@ -109,4 +132,41 @@ export const getAgeGroups = cache(async (sportId: string): Promise<AgeGroupItem[
     ageMin: g.ageMin,
     ageMax: g.ageMax,
   }));
+});
+
+/** The objectives of a sport, in the order a coach should see them, each with what it covers. */
+export const getObjectives = cache(async (sportId: string): Promise<ObjectiveItem[]> => {
+  const [objs, skillLinks, categoryLinks, allSkills] = await Promise.all([
+    db
+      .select()
+      .from(objectives)
+      .where(eq(objectives.sportId, sportId))
+      .orderBy(asc(objectives.sortOrder)),
+    db
+      .select({ objectiveId: objectiveSkills.objectiveId, key: skills.key })
+      .from(objectiveSkills)
+      .innerJoin(skills, eq(skills.id, objectiveSkills.skillId))
+      .where(eq(objectiveSkills.sportId, sportId)),
+    db
+      .select({ objectiveId: objectiveCategories.objectiveId, key: categories.key })
+      .from(objectiveCategories)
+      .innerJoin(categories, eq(categories.id, objectiveCategories.categoryId))
+      .where(eq(objectiveCategories.sportId, sportId)),
+    db.select().from(skills).where(eq(skills.sportId, sportId)),
+  ]);
+  const nodes = allSkills.map((k) => ({
+    key: k.key,
+    parentKey: k.parentId ? (allSkills.find((p) => p.id === k.parentId)?.key ?? null) : null,
+  }));
+  return objs.map((o) => {
+    const skillKeys = skillLinks.filter((l) => l.objectiveId === o.id).map((l) => l.key);
+    return {
+      id: o.id,
+      key: o.key,
+      name: o.name,
+      skillKeys,
+      coveredSkillKeys: [...coveredSkillKeys({ skillKeys }, nodes)],
+      categoryKeys: categoryLinks.filter((l) => l.objectiveId === o.id).map((l) => l.key),
+    };
+  });
 });

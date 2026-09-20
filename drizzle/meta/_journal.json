@@ -50,6 +50,13 @@
       "when": 1789930162807,
       "tag": "0006_drills_creator_erasure",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1789930331190,
+      "tag": "0007_objectives_catalog",
+      "breakpoints": true
     }
   ]
 }

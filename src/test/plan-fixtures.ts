@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { Pool } from "pg";
-import { drills, plans, planActivities, skills, sports } from "@/db/schema";
+import { drills, objectives, plans, planActivities, sports } from "@/db/schema";
 import { db } from "@/lib/db/client";
 import { tenantTx } from "@/lib/db/tx";
 import { newId } from "@/lib/ids";
@@ -38,8 +38,11 @@ export async function footballId(): Promise<string> {
   return row!.id;
 }
 
-export async function skillIdOf(key: string): Promise<string> {
-  const [row] = await db.select({ id: skills.id }).from(skills).where(eq(skills.key, key));
+export async function objectiveIdOf(key: string): Promise<string> {
+  const [row] = await db
+    .select({ id: objectives.id })
+    .from(objectives)
+    .where(eq(objectives.key, key));
   return row!.id;
 }
 

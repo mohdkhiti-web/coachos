@@ -4,11 +4,11 @@ import type { ActivityKind, DrillPhase, Level, PlanStatus, PlanVisibility } from
 import {
   ageGroups,
   drills,
+  objectives,
   planActivities,
   planObjectives,
   plans,
   planTotals,
-  skills,
 } from "@/db/schema";
 import { can, type Actor, type PlanResource } from "@/lib/authz/can";
 import { tenantTx } from "@/lib/db/tx";
@@ -82,11 +82,11 @@ export async function getPlan(
 
     // sequential on purpose: a transaction is a single connection (concurrent queries on it queue anyway)
     const objectiveRows = await tx
-      .select({ key: skills.key, name: skills.name, role: planObjectives.role })
+      .select({ key: objectives.key, name: objectives.name, role: planObjectives.role })
       .from(planObjectives)
-      .innerJoin(skills, eq(skills.id, planObjectives.skillId))
+      .innerJoin(objectives, eq(objectives.id, planObjectives.objectiveId))
       .where(eq(planObjectives.planId, id))
-      .orderBy(asc(planObjectives.role), asc(skills.sortOrder));
+      .orderBy(asc(planObjectives.role), asc(objectives.sortOrder));
     const activityRows = await tx
       .select()
       .from(planActivities)
@@ -142,7 +142,7 @@ export async function getPlan(
 
     const total = totalMinutes(activities);
     const primaryRow = objectiveRows.find((o) => o.role === "primary");
-    const objectives: PlanObjectivesDto = {
+    const planObjectiveSummary: PlanObjectivesDto = {
       primary: primaryRow ? { key: primaryRow.key, name: primaryRow.name } : null,
       secondary: objectiveRows
         .filter((o) => o.role === "secondary")
@@ -169,7 +169,7 @@ export async function getPlan(
       startTime: p.startTime,
       timezone: p.timezone,
       details,
-      objectives,
+      objectives: planObjectiveSummary,
       activities,
       totals: {
         totalMinutes: total,

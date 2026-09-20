@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterAll, describe, expect, it } from "vitest";
 import { DRILL_PHASES, INTENSITIES } from "../enums";
+import { drillMatchesObjective } from "../../modules/sports/objectives";
 import { getSportModule } from "../../sports/registry";
 import { loadContent } from "./load";
 
@@ -102,6 +103,91 @@ describe("the content files, as a whole", () => {
   });
 });
 
+describe("objectives: the coach-facing vocabulary over the detailed skills", () => {
+  const bb = () => loadContent().bySport["basketball"]!;
+  const objectiveDef = (o: {
+    key: string;
+    name: string;
+    skills: string[];
+    categories: string[];
+  }) => ({
+    key: o.key,
+    name: o.name,
+    skillKeys: o.skills,
+    categoryKeys: o.categories,
+  });
+
+  it("offers exactly the fourteen everyday coaching objectives, in a coach's order", () => {
+    expect(bb().objectives.map((o) => o.name)).toEqual([
+      "Shooting",
+      "Ball Handling",
+      "Passing",
+      "Finishing",
+      "Footwork",
+      "Defense",
+      "Rebounding",
+      "Transition",
+      "Team Offense",
+      "Team Defense",
+      "Pick-and-Roll",
+      "Decision Making",
+      "Conditioning",
+      "Special Situations",
+    ]);
+  });
+
+  it("Shooting reaches the detailed shooting skills, Transition the Transition category", () => {
+    const { objectives, skills } = bb();
+    const shooting = objectives.find((o) => o.key === "shooting")!;
+    const covered = (k: string) =>
+      drillMatchesObjective(objectiveDef(shooting), skills, {
+        category: "none",
+        primarySkill: k,
+        secondarySkills: [],
+        subSkills: [],
+      });
+    for (const k of ["shooting_form", "catch_and_shoot", "shooting_off_the_dribble", "free_throws"])
+      expect(covered(k), k).toBe(true);
+    expect(objectives.find((o) => o.key === "transition")!.categories).toContain("transition");
+  });
+
+  it("no drill is left out: every library drill serves at least one objective", () => {
+    const { objectives, skills, drills } = bb();
+    for (const d of drills) {
+      const serves = objectives.filter((o) => drillMatchesObjective(objectiveDef(o), skills, d));
+      expect(
+        serves.map((o) => o.key),
+        `${d.seedKey} serves no objective`,
+      ).not.toEqual([]);
+    }
+  });
+
+  it("no objective is a dead end: every one has at least one library drill", () => {
+    const { objectives, skills, drills } = bb();
+    for (const o of objectives)
+      expect(
+        drills.some((d) => drillMatchesObjective(objectiveDef(o), skills, d)),
+        `objective "${o.key}" has no drill`,
+      ).toBe(true);
+  });
+
+  it("every objective names skills and categories that exist (the loader checks; sub-skills are reachable through their parent)", () => {
+    const { objectives, skills, categories } = bb();
+    for (const o of objectives) {
+      for (const k of o.skills)
+        expect(
+          skills.some((s) => s.key === k),
+          `${o.key}: ${k}`,
+        ).toBe(true);
+      for (const k of o.categories)
+        expect(
+          categories.some((c) => c.key === k),
+          `${o.key}: ${k}`,
+        ).toBe(true);
+    }
+  });
+});
+
 describe("age groups", () => {
   const groups = () => loadContent().bySport["basketball"]!.ageGroups;
 
@@ -179,6 +265,33 @@ describe("a bad content file fails loudly, by name — nothing reaches the datab
   it("requires the file name to match its seedKey, and rejects unreadable JSON", () => {
     expect(load({ "some-other-name.json": good() })).toThrow(/must be named after its seedKey/);
     expect(load({ "broken.json": "{ not json" })).toThrow(/broken\.json/);
+  });
+
+  it("rejects broken objectives: unknown skill or category, an empty one, duplicate keys", () => {
+    const real = JSON.parse(readFileSync(path.join(REAL, "basketball", "taxonomy.json"), "utf8"));
+    const withObjectives = (objectives: unknown) => () => {
+      const dir = tree({ "mikan-drill.json": good() });
+      writeFileSync(
+        path.join(dir, "basketball", "taxonomy.json"),
+        JSON.stringify({ ...real, objectives }),
+      );
+      return loadContent(dir);
+    };
+    expect(
+      withObjectives([{ key: "flying", name: "Flying", skills: ["levitation"], categories: [] }]),
+    ).toThrow(/objective "flying" names unknown skill "levitation"/);
+    expect(
+      withObjectives([{ key: "flying", name: "Flying", skills: [], categories: ["sky"] }]),
+    ).toThrow(/objective "flying" names unknown category "sky"/);
+    expect(
+      withObjectives([{ key: "empty_one", name: "Empty", skills: [], categories: [] }]),
+    ).toThrow(/covers no skills and no categories/);
+    expect(
+      withObjectives([
+        { key: "shooting", name: "Shooting", skills: ["shooting_form"], categories: [] },
+        { key: "shooting", name: "Again", skills: ["free_throws"], categories: [] },
+      ]),
+    ).toThrow(/duplicate objective key "shooting"/);
   });
 
   it("rejects broken age groups: reversed ages, an out-of-range age, duplicate keys", () => {

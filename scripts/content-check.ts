@@ -10,7 +10,7 @@ try {
   for (const sc of Object.values(content.bySport)) {
     const sub = sc.skills.filter((s) => s.parentKey).length;
     console.log(
-      `✔ ${sc.sportKey}: ${sc.drills.length} drills · ${sc.categories.length} categories · ${sc.skills.length - sub} skills + ${sub} sub-skills · ${sc.ageGroups.length} age groups`,
+      `✔ ${sc.sportKey}: ${sc.drills.length} drills · ${sc.categories.length} categories · ${sc.skills.length - sub} skills + ${sub} sub-skills · ${sc.objectives.length} objectives · ${sc.ageGroups.length} age groups`,
     );
   }
   console.log(`✔ ${content.equipment.length} equipment types · ${content.sports.length} sports`);

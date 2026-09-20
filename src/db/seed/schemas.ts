@@ -34,6 +34,20 @@ export const taxonomyFileSchema = z.strictObject({
       children: z.array(z.strictObject({ key, name })).default([]),
     }),
   ),
+  /**
+   * What a coach says a session is FOR (Shooting, Transition, Defense…). Each maps onto the detailed catalog above:
+   * the skills it covers (a top-level skill stands for its sub-skills too) and the drill categories.
+   */
+  objectives: z
+    .array(
+      z.strictObject({
+        key,
+        name,
+        skills: z.array(key).default([]),
+        categories: z.array(key).default([]),
+      }),
+    )
+    .default([]),
   /** Age bands a session can be planned for (U8 … Senior). The ages are the band's TYPICAL range. */
   ageGroups: z
     .array(

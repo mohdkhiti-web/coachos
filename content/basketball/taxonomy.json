@@ -50,7 +50,11 @@
       "name": "Team Defense",
       "description": "Help, rotation and communication."
     },
-    { "key": "transition", "name": "Transition", "description": "Fast breaks and getting back." },
+    {
+      "key": "transition",
+      "name": "Transition",
+      "description": "Fast breaks and getting back."
+    },
     {
       "key": "press_break",
       "name": "Press Break",
@@ -87,137 +91,395 @@
       "key": "dribbling",
       "name": "Dribbling",
       "children": [
-        { "key": "crossover", "name": "Crossover" },
-        { "key": "change_of_pace", "name": "Change of pace" },
-        { "key": "protect_the_ball", "name": "Protecting the ball" },
-        { "key": "weak_hand", "name": "Weak-hand dribbling" }
+        {
+          "key": "crossover",
+          "name": "Crossover"
+        },
+        {
+          "key": "change_of_pace",
+          "name": "Change of pace"
+        },
+        {
+          "key": "protect_the_ball",
+          "name": "Protecting the ball"
+        },
+        {
+          "key": "weak_hand",
+          "name": "Weak-hand dribbling"
+        }
       ]
     },
-    { "key": "ball_control", "name": "Ball control" },
+    {
+      "key": "ball_control",
+      "name": "Ball control"
+    },
     {
       "key": "passing",
       "name": "Passing",
       "children": [
-        { "key": "passing_on_the_move", "name": "Passing on the move" },
-        { "key": "passing_under_pressure", "name": "Passing under pressure" },
-        { "key": "skip_passes", "name": "Skip passes" }
+        {
+          "key": "passing_on_the_move",
+          "name": "Passing on the move"
+        },
+        {
+          "key": "passing_under_pressure",
+          "name": "Passing under pressure"
+        },
+        {
+          "key": "skip_passes",
+          "name": "Skip passes"
+        }
       ]
     },
-    { "key": "catching", "name": "Catching" },
+    {
+      "key": "catching",
+      "name": "Catching"
+    },
     {
       "key": "shooting_form",
       "name": "Shooting form",
       "children": [
-        { "key": "catch_and_shoot", "name": "Catch and shoot" },
-        { "key": "shooting_off_the_dribble", "name": "Shooting off the dribble" },
-        { "key": "follow_through", "name": "Balance & follow-through" }
+        {
+          "key": "catch_and_shoot",
+          "name": "Catch and shoot"
+        },
+        {
+          "key": "shooting_off_the_dribble",
+          "name": "Shooting off the dribble"
+        },
+        {
+          "key": "follow_through",
+          "name": "Balance & follow-through"
+        }
       ]
     },
-    { "key": "free_throws", "name": "Free throws" },
+    {
+      "key": "free_throws",
+      "name": "Free throws"
+    },
     {
       "key": "finishing",
       "name": "Finishing at the rim",
       "children": [
-        { "key": "finishing_with_contact", "name": "Finishing through contact" },
-        { "key": "both_hands_finishing", "name": "Finishing with both hands" }
+        {
+          "key": "finishing_with_contact",
+          "name": "Finishing through contact"
+        },
+        {
+          "key": "both_hands_finishing",
+          "name": "Finishing with both hands"
+        }
       ]
     },
-    { "key": "footwork", "name": "Footwork" },
-    { "key": "pivoting", "name": "Pivoting" },
-    { "key": "cutting", "name": "Cutting" },
+    {
+      "key": "footwork",
+      "name": "Footwork"
+    },
+    {
+      "key": "pivoting",
+      "name": "Pivoting"
+    },
+    {
+      "key": "cutting",
+      "name": "Cutting"
+    },
     {
       "key": "screening",
       "name": "Screening",
       "children": [
-        { "key": "setting_screens", "name": "Setting screens" },
-        { "key": "using_screens", "name": "Using screens" }
+        {
+          "key": "setting_screens",
+          "name": "Setting screens"
+        },
+        {
+          "key": "using_screens",
+          "name": "Using screens"
+        }
       ]
     },
     {
       "key": "pick_and_roll",
       "name": "Pick-and-roll",
       "children": [
-        { "key": "pnr_ball_handler", "name": "Ball handler" },
-        { "key": "pnr_screener", "name": "Screener (roll and pop)" },
-        { "key": "pnr_defense", "name": "Defending the pick-and-roll" }
+        {
+          "key": "pnr_ball_handler",
+          "name": "Ball handler"
+        },
+        {
+          "key": "pnr_screener",
+          "name": "Screener (roll and pop)"
+        },
+        {
+          "key": "pnr_defense",
+          "name": "Defending the pick-and-roll"
+        }
       ]
     },
-    { "key": "spacing", "name": "Spacing" },
+    {
+      "key": "spacing",
+      "name": "Spacing"
+    },
     {
       "key": "decision_making",
       "name": "Decision making",
       "children": [
-        { "key": "reading_the_defense", "name": "Reading the defense" },
-        { "key": "numbers_advantage", "name": "Advantage & disadvantage situations" }
+        {
+          "key": "reading_the_defense",
+          "name": "Reading the defense"
+        },
+        {
+          "key": "numbers_advantage",
+          "name": "Advantage & disadvantage situations"
+        }
       ]
     },
     {
       "key": "on_ball_defense",
       "name": "On-ball defense",
       "children": [
-        { "key": "stance_and_slides", "name": "Stance & slides" },
-        { "key": "containing_the_dribble", "name": "Containing the dribbler" }
+        {
+          "key": "stance_and_slides",
+          "name": "Stance & slides"
+        },
+        {
+          "key": "containing_the_dribble",
+          "name": "Containing the dribbler"
+        }
       ]
     },
-    { "key": "closeouts", "name": "Closeouts" },
+    {
+      "key": "closeouts",
+      "name": "Closeouts"
+    },
     {
       "key": "help_defense",
       "name": "Help defense",
       "children": [
-        { "key": "help_position", "name": "Help position" },
-        { "key": "defensive_rotations", "name": "Rotations & recovery" }
+        {
+          "key": "help_position",
+          "name": "Help position"
+        },
+        {
+          "key": "defensive_rotations",
+          "name": "Rotations & recovery"
+        }
       ]
     },
-    { "key": "boxing_out", "name": "Boxing out" },
+    {
+      "key": "boxing_out",
+      "name": "Boxing out"
+    },
     {
       "key": "rebounding",
       "name": "Rebounding",
       "children": [
-        { "key": "offensive_rebounding", "name": "Offensive rebounding" },
-        { "key": "defensive_rebounding", "name": "Defensive rebounding" }
+        {
+          "key": "offensive_rebounding",
+          "name": "Offensive rebounding"
+        },
+        {
+          "key": "defensive_rebounding",
+          "name": "Defensive rebounding"
+        }
       ]
     },
-    { "key": "communication", "name": "Communication" },
+    {
+      "key": "communication",
+      "name": "Communication"
+    },
     {
       "key": "speed_agility",
       "name": "Speed & agility",
-      "children": [{ "key": "change_of_direction", "name": "Change of direction" }]
+      "children": [
+        {
+          "key": "change_of_direction",
+          "name": "Change of direction"
+        }
+      ]
     },
-    { "key": "conditioning", "name": "Conditioning" },
-    { "key": "competitiveness", "name": "Competitiveness" },
+    {
+      "key": "conditioning",
+      "name": "Conditioning"
+    },
+    {
+      "key": "competitiveness",
+      "name": "Competitiveness"
+    },
     {
       "key": "press_break",
       "name": "Press break",
       "children": [
-        { "key": "attacking_pressure", "name": "Attacking pressure" },
-        { "key": "press_release", "name": "Getting open against pressure" }
+        {
+          "key": "attacking_pressure",
+          "name": "Attacking pressure"
+        },
+        {
+          "key": "press_release",
+          "name": "Getting open against pressure"
+        }
       ]
     },
     {
       "key": "inbounding",
       "name": "Inbound plays",
       "children": [
-        { "key": "sideline_inbounds", "name": "Sideline out-of-bounds" },
-        { "key": "baseline_inbounds", "name": "Baseline out-of-bounds" }
+        {
+          "key": "sideline_inbounds",
+          "name": "Sideline out-of-bounds"
+        },
+        {
+          "key": "baseline_inbounds",
+          "name": "Baseline out-of-bounds"
+        }
       ]
     },
     {
       "key": "late_game_execution",
       "name": "Late-game execution",
       "children": [
-        { "key": "clock_management", "name": "Clock management" },
-        { "key": "foul_situations", "name": "Fouling & free-throw situations" }
+        {
+          "key": "clock_management",
+          "name": "Clock management"
+        },
+        {
+          "key": "foul_situations",
+          "name": "Fouling & free-throw situations"
+        }
       ]
     },
-    { "key": "recovery_mobility", "name": "Recovery & mobility" }
+    {
+      "key": "recovery_mobility",
+      "name": "Recovery & mobility"
+    }
   ],
   "ageGroups": [
-    { "key": "u8", "name": "U8", "ageMin": 5, "ageMax": 8 },
-    { "key": "u10", "name": "U10", "ageMin": 9, "ageMax": 10 },
-    { "key": "u12", "name": "U12", "ageMin": 11, "ageMax": 12 },
-    { "key": "u14", "name": "U14", "ageMin": 13, "ageMax": 14 },
-    { "key": "u16", "name": "U16", "ageMin": 15, "ageMax": 16 },
-    { "key": "u18", "name": "U18", "ageMin": 17, "ageMax": 18 },
-    { "key": "senior", "name": "Senior", "ageMin": 19, "ageMax": 99 }
+    {
+      "key": "u8",
+      "name": "U8",
+      "ageMin": 5,
+      "ageMax": 8
+    },
+    {
+      "key": "u10",
+      "name": "U10",
+      "ageMin": 9,
+      "ageMax": 10
+    },
+    {
+      "key": "u12",
+      "name": "U12",
+      "ageMin": 11,
+      "ageMax": 12
+    },
+    {
+      "key": "u14",
+      "name": "U14",
+      "ageMin": 13,
+      "ageMax": 14
+    },
+    {
+      "key": "u16",
+      "name": "U16",
+      "ageMin": 15,
+      "ageMax": 16
+    },
+    {
+      "key": "u18",
+      "name": "U18",
+      "ageMin": 17,
+      "ageMax": 18
+    },
+    {
+      "key": "senior",
+      "name": "Senior",
+      "ageMin": 19,
+      "ageMax": 99
+    }
+  ],
+  "objectives": [
+    {
+      "key": "shooting",
+      "name": "Shooting",
+      "skills": ["shooting_form", "free_throws"],
+      "categories": ["shooting"]
+    },
+    {
+      "key": "ball_handling",
+      "name": "Ball Handling",
+      "skills": ["dribbling", "ball_control"],
+      "categories": ["ball_handling"]
+    },
+    {
+      "key": "passing",
+      "name": "Passing",
+      "skills": ["passing", "catching"],
+      "categories": ["passing"]
+    },
+    {
+      "key": "finishing",
+      "name": "Finishing",
+      "skills": ["finishing"],
+      "categories": ["finishing"]
+    },
+    {
+      "key": "footwork",
+      "name": "Footwork",
+      "skills": ["footwork", "pivoting"],
+      "categories": ["footwork"]
+    },
+    {
+      "key": "defense",
+      "name": "Defense",
+      "skills": ["on_ball_defense", "closeouts"],
+      "categories": ["individual_defense"]
+    },
+    {
+      "key": "rebounding",
+      "name": "Rebounding",
+      "skills": ["rebounding", "boxing_out"],
+      "categories": ["rebounding"]
+    },
+    {
+      "key": "transition",
+      "name": "Transition",
+      "skills": ["numbers_advantage"],
+      "categories": ["transition"]
+    },
+    {
+      "key": "team_offense",
+      "name": "Team Offense",
+      "skills": ["cutting", "screening", "spacing"],
+      "categories": ["team_offense"]
+    },
+    {
+      "key": "team_defense",
+      "name": "Team Defense",
+      "skills": ["help_defense", "communication"],
+      "categories": ["team_defense"]
+    },
+    {
+      "key": "pick_and_roll",
+      "name": "Pick-and-Roll",
+      "skills": ["pick_and_roll"],
+      "categories": []
+    },
+    {
+      "key": "decision_making",
+      "name": "Decision Making",
+      "skills": ["decision_making"],
+      "categories": ["small_sided_games"]
+    },
+    {
+      "key": "conditioning",
+      "name": "Conditioning",
+      "skills": ["conditioning", "speed_agility", "recovery_mobility"],
+      "categories": ["conditioning"]
+    },
+    {
+      "key": "special_situations",
+      "name": "Special Situations",
+      "skills": ["press_break", "inbounding", "late_game_execution"],
+      "categories": ["special_situations", "press_break"]
+    }
   ]
 }

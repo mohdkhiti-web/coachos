@@ -30,6 +30,9 @@ export const GLOBAL_CATALOG_TABLES = [
   "skills",
   "equipment_types",
   "age_groups",
+  "objectives",
+  "objective_skills",
+  "objective_categories",
 ] as const;
 
 /** Tenant/user-scoped tables: RLS must be enabled AND forced. */

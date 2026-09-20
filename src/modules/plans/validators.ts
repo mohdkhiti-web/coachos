@@ -6,7 +6,7 @@ import { isClockTime, isIsoDate, isValidTimeZone } from "./schedule";
 
 /**
  * Input schemas for the session commands (the future Server Action payloads). Anything that depends on WHICH
- * sport this is — its age groups, its skills — is checked against the catalog inside the command. Messages
+ * sport this is — its age groups, its objectives — is checked against the catalog inside the command. Messages
  * are i18n keys (`validation.*`). Empty string = "not chosen"; numbers use `null` for the same.
  */
 
@@ -50,7 +50,7 @@ export const planInputSchema = z
       .union([z.literal(""), z.string().refine(isValidTimeZone, { error: "timezone_invalid" })])
       .default(""),
     visibility: z.enum(PLAN_VISIBILITIES).default("private"),
-    /** Skill keys of the sport: one primary, a few secondary. */
+    /** Objective keys of the sport (shooting, transition…): one primary, a few secondary. */
     primaryObjective: optionalKey,
     secondaryObjectives: z
       .array(key)

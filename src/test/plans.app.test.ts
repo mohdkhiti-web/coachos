@@ -155,7 +155,7 @@ describe("creating a session", () => {
       timezone: "Europe/Paris",
       visibility: "organization",
       primaryObjective: "finishing",
-      secondaryObjectives: ["decision_making", "spacing"],
+      secondaryObjectives: ["decision_making", "transition"],
       details: {
         location: "Court 2",
         season: "2025–26",
@@ -180,11 +180,11 @@ describe("creating a session", () => {
       visibility: "organization",
       totals: { targetMinutes: 75 },
       objectives: {
-        primary: { key: "finishing", name: "Finishing at the rim" },
+        primary: { key: "finishing", name: "Finishing" },
         // secondary objectives come back in the catalog's own order
         secondary: [
-          { key: "spacing", name: "Spacing" },
-          { key: "decision_making", name: "Decision making" },
+          { key: "transition", name: "Transition" },
+          { key: "decision_making", name: "Decision Making" },
         ],
       },
     });
@@ -211,21 +211,59 @@ describe("creating a session", () => {
     expect([c.ageGroup, c.ageMin, c.ageMax]).toEqual([null, 15, 17]);
   });
 
-  it("objectives are the sport's own skills: the rows point at the catalog's ids, sub-skills included", async () => {
+  it("objectives are coach-friendly names from the sport's objective catalog, in a stable order", async () => {
     const { id } = await makePlan(coach, {
-      primaryObjective: "dribbling",
-      secondaryObjectives: ["crossover"],
+      primaryObjective: "shooting",
+      secondaryObjectives: ["defense", "transition"],
     });
     const p = (await load(coach, id))!;
-    expect(p.objectives.primary?.key).toBe("dribbling");
-    expect(p.objectives.secondary.map((s) => s.key)).toEqual(["crossover"]);
+    expect(p.objectives).toEqual({
+      primary: { key: "shooting", name: "Shooting" },
+      secondary: [
+        { key: "defense", name: "Defense" },
+        { key: "transition", name: "Transition" },
+      ],
+    });
     const joined = await tenantTx(coach, (tx) =>
       tx.execute(
-        sql`select s.key, s.sport_id from plan_objectives o join skills s on s.id = o.skill_id where o.plan_id = ${id}`,
+        sql`select o.key, o.sport_id from plan_objectives po join objectives o on o.id = po.objective_id where po.plan_id = ${id}`,
       ),
     );
-    expect(joined.rows).toHaveLength(2);
+    expect(joined.rows).toHaveLength(3);
     for (const r of joined.rows) expect(r.sport_id).toBe(BB);
+  });
+
+  it("every objective in the catalog can be chosen as the main objective", async () => {
+    const keys = [
+      "shooting",
+      "ball_handling",
+      "passing",
+      "finishing",
+      "footwork",
+      "defense",
+      "rebounding",
+      "transition",
+      "team_offense",
+      "team_defense",
+      "pick_and_roll",
+      "decision_making",
+      "conditioning",
+      "special_situations",
+    ];
+    for (const k of keys) {
+      const { id } = await makePlan(coach, { primaryObjective: k });
+      expect((await load(coach, id))!.objectives.primary?.key, k).toBe(k);
+    }
+  });
+
+  it("the detailed skills are not objectives: a coach picks 'Ball Handling', not 'Dribbling' or 'Crossover'", async () => {
+    for (const skill of ["dribbling", "crossover", "shooting_form", "closeouts"]) {
+      const r = await createPlan(coach, SPORT, planInput({ primaryObjective: skill }));
+      expect(r, skill).toMatchObject({
+        ok: false,
+        error: { code: "VALIDATION", fields: { primaryObjective: ["objective_unknown"] } },
+      });
+    }
   });
 
   it("rejects an age group or an objective that is not in the sport's catalog", async () => {
@@ -459,7 +497,7 @@ describe("editing the session and optimistic concurrency", () => {
   it("replaces the objectives on update", async () => {
     const created = await makePlan(coach, {
       primaryObjective: "passing",
-      secondaryObjectives: ["catching"],
+      secondaryObjectives: ["shooting"],
     });
     good(
       await updatePlan(
@@ -468,7 +506,7 @@ describe("editing the session and optimistic concurrency", () => {
         created.id,
         planInput({
           title: "Same",
-          primaryObjective: "dribbling",
+          primaryObjective: "ball_handling",
           secondaryObjectives: [],
           version: created.version,
         }),
@@ -476,7 +514,7 @@ describe("editing the session and optimistic concurrency", () => {
     );
     const p = (await load(coach, created.id))!;
     expect(p.objectives).toEqual({
-      primary: { key: "dribbling", name: "Dribbling" },
+      primary: { key: "ball_handling", name: "Ball Handling" },
       secondary: [],
     });
     const rows = await tenantTx(coach, (tx) =>

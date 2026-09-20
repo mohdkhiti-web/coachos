@@ -4,6 +4,7 @@ import {
   index,
   integer,
   pgTable,
+  primaryKey,
   smallint,
   text,
   timestamp,
@@ -112,6 +113,80 @@ export const ageGroups = pgTable(
       "age_groups_age_chk",
       sql`${t.ageMin} BETWEEN 3 AND 99 AND ${t.ageMax} BETWEEN ${t.ageMin} AND 99`,
     ),
+  ],
+);
+
+/**
+ * What a coach says a session is FOR: "Shooting", "Transition", "Defense" — normal coaching language, not the
+ * internal taxonomy. An objective is an umbrella over the detailed catalog: it points at skills (a top-level
+ * skill also stands for its sub-skills) and at categories, and that mapping is what lets the session builder
+ * and, later, the generator find matching drills. Skills, sub-skills and drill validation are untouched.
+ */
+export const objectives = pgTable(
+  "objectives",
+  {
+    id: uuid("id").primaryKey(),
+    sportId: uuid("sport_id")
+      .notNull()
+      .references(() => sports.id, { onDelete: "cascade" }),
+    key: text("key").notNull(),
+    name: text("name").notNull(),
+    sortOrder: integer("sort_order").notNull().default(0),
+    createdAt: createdAt(),
+  },
+  (t) => [
+    unique("objectives_sport_key_uq").on(t.sportId, t.key),
+    // target of composite foreign keys: guarantees a session's objective belongs to the session's sport
+    unique("objectives_id_sport_uq").on(t.id, t.sportId),
+  ],
+);
+
+/** The detailed skills an objective covers. Pointing at a top-level skill covers its sub-skills too. */
+export const objectiveSkills = pgTable(
+  "objective_skills",
+  {
+    objectiveId: uuid("objective_id").notNull(),
+    skillId: uuid("skill_id").notNull(),
+    /** Denormalised so composite FKs can prove objective and skill share a sport. */
+    sportId: uuid("sport_id").notNull(),
+  },
+  (t) => [
+    primaryKey({ columns: [t.objectiveId, t.skillId] }),
+    foreignKey({
+      name: "objective_skills_objective_fk",
+      columns: [t.objectiveId, t.sportId],
+      foreignColumns: [objectives.id, objectives.sportId],
+    }).onDelete("cascade"),
+    foreignKey({
+      name: "objective_skills_skill_fk",
+      columns: [t.skillId, t.sportId],
+      foreignColumns: [skills.id, skills.sportId],
+    }).onDelete("cascade"),
+    index("objective_skills_skill_idx").on(t.skillId),
+  ],
+);
+
+/** The drill categories an objective covers (Transition → the Transition category). */
+export const objectiveCategories = pgTable(
+  "objective_categories",
+  {
+    objectiveId: uuid("objective_id").notNull(),
+    categoryId: uuid("category_id").notNull(),
+    sportId: uuid("sport_id").notNull(),
+  },
+  (t) => [
+    primaryKey({ columns: [t.objectiveId, t.categoryId] }),
+    foreignKey({
+      name: "objective_categories_objective_fk",
+      columns: [t.objectiveId, t.sportId],
+      foreignColumns: [objectives.id, objectives.sportId],
+    }).onDelete("cascade"),
+    foreignKey({
+      name: "objective_categories_category_fk",
+      columns: [t.categoryId, t.sportId],
+      foreignColumns: [categories.id, categories.sportId],
+    }).onDelete("cascade"),
+    index("objective_categories_category_idx").on(t.categoryId),
   ],
 );
 

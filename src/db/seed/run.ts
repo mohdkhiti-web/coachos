@@ -23,6 +23,7 @@ export interface SeedSummary {
   skills: number;
   subSkills: number;
   ageGroups: number;
+  objectives: number;
   equipment: number;
   drills: number;
   archived: number;
@@ -75,6 +76,7 @@ export async function seedAll(
       let skillCount = 0;
       let subSkills = 0;
       let ageGroupCount = 0;
+      let objectiveCount = 0;
       for (const sc of Object.values(content.bySport)) {
         const sid = sportId.get(sc.sportKey);
         if (!sid) throw new Error(`content/${sc.sportKey}: sport missing from content/sports.json`);
@@ -139,6 +141,52 @@ export async function seedAll(
             .set({ parentId: parent ?? null })
             .where(eq(s.skills.id, skillId.get(`${sc.sportKey}/${k.key}`)!));
         }
+      }
+
+      // ---- objectives: the coach-facing vocabulary and what each one covers -----------------------------
+      for (const sc of Object.values(content.bySport)) {
+        const sid = sportId.get(sc.sportKey)!;
+        for (const [i, o] of sc.objectives.entries()) {
+          const [row] = await tx
+            .insert(s.objectives)
+            .values({ id: newId(), sportId: sid, key: o.key, name: o.name, sortOrder: i })
+            .onConflictDoUpdate({
+              target: [s.objectives.sportId, s.objectives.key],
+              set: { name: o.name, sortOrder: i },
+            })
+            .returning({ id: s.objectives.id });
+          const oid = row!.id;
+          // the mappings are replaced wholesale, so re-seeding converges on the file
+          await tx.delete(s.objectiveSkills).where(eq(s.objectiveSkills.objectiveId, oid));
+          await tx.delete(s.objectiveCategories).where(eq(s.objectiveCategories.objectiveId, oid));
+          if (o.skills.length)
+            await tx.insert(s.objectiveSkills).values(
+              o.skills.map((k) => ({
+                objectiveId: oid,
+                skillId: skillId.get(`${sc.sportKey}/${k}`)!,
+                sportId: sid,
+              })),
+            );
+          if (o.categories.length)
+            await tx.insert(s.objectiveCategories).values(
+              o.categories.map((k) => ({
+                objectiveId: oid,
+                categoryId: categoryId.get(`${sc.sportKey}/${k}`)!,
+                sportId: sid,
+              })),
+            );
+          objectiveCount++;
+        }
+        // an objective dropped from the content file leaves the catalog; if a session still uses it the
+        // foreign key refuses and the seed fails loudly rather than orphaning that session
+        await tx
+          .delete(s.objectives)
+          .where(
+            and(
+              eq(s.objectives.sportId, sid),
+              notInArray(s.objectives.key, sc.objectives.map((o) => o.key).concat("__none__")),
+            ),
+          );
       }
 
       // ---- platform organization ------------------------------------------------------------------
@@ -269,13 +317,14 @@ export async function seedAll(
         skills: skillCount,
         subSkills,
         ageGroups: ageGroupCount,
+        objectives: objectiveCount,
         equipment: content.equipment.length,
         drills: seenKeys.length,
         archived: archived.length,
       };
     });
     log(
-      `seeded ${summary.sports} sports, ${summary.categories} categories, ${summary.skills} skills (${summary.subSkills} sub-skills), ${summary.ageGroups} age groups, ${summary.equipment} equipment types, ${summary.drills} library drills (${summary.archived} archived)`,
+      `seeded ${summary.sports} sports, ${summary.categories} categories, ${summary.skills} skills (${summary.subSkills} sub-skills), ${summary.ageGroups} age groups, ${summary.objectives} objectives, ${summary.equipment} equipment types, ${summary.drills} library drills (${summary.archived} archived)`,
     );
     return summary;
   } finally {

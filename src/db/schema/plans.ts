@@ -20,7 +20,7 @@ import {
 } from "drizzle-orm/pg-core";
 import { organization, user } from "./auth";
 import { drills } from "./drills";
-import { ageGroups, skills, sports } from "./sports";
+import { ageGroups, objectives, sports } from "./sports";
 
 /**
  * Plans (ARCHITECTURE.md §11, D8): the one model behind a training session (and, later, a lesson plan).
@@ -161,34 +161,35 @@ export const plans = pgTable(
 );
 
 /**
- * A session's objectives: references into the sport's skills catalog (no second, free-text taxonomy).
- * One primary, a few secondary. Any skill of the sport may be an objective, sub-skills included.
+ * A session's objectives, in a coach's own words ("Shooting", "Transition"): references into the sport's
+ * objectives catalog, which maps each one onto the detailed skills and categories drills are matched by.
+ * One primary, a few secondary. No free text.
  */
 export const planObjectives = pgTable(
   "plan_objectives",
   {
     planId: uuid("plan_id").notNull(),
-    skillId: uuid("skill_id").notNull(),
-    /** Denormalised so composite FKs can prove plan and skill share a sport. */
+    objectiveId: uuid("objective_id").notNull(),
+    /** Denormalised so composite FKs can prove plan and objective share a sport. */
     sportId: uuid("sport_id").notNull(),
     role: text("role").notNull(),
   },
   (t) => [
-    primaryKey({ columns: [t.planId, t.skillId] }),
+    primaryKey({ columns: [t.planId, t.objectiveId] }),
     foreignKey({
       name: "plan_objectives_plan_fk",
       columns: [t.planId, t.sportId],
       foreignColumns: [plans.id, plans.sportId],
     }).onDelete("cascade"),
     foreignKey({
-      name: "plan_objectives_skill_fk",
-      columns: [t.skillId, t.sportId],
-      foreignColumns: [skills.id, skills.sportId],
+      name: "plan_objectives_objective_fk",
+      columns: [t.objectiveId, t.sportId],
+      foreignColumns: [objectives.id, objectives.sportId],
     }),
     uniqueIndex("plan_objectives_one_primary_uq")
       .on(t.planId)
       .where(sql`${t.role} = 'primary'`),
-    index("plan_objectives_skill_idx").on(t.skillId, t.planId),
+    index("plan_objectives_objective_idx").on(t.objectiveId, t.planId),
     check("plan_objectives_role_chk", sql`${t.role} IN ('primary','secondary')`),
   ],
 );
