@@ -57,6 +57,17 @@ builder later. Write original content only. Seeding is idempotent, and a file re
 | `/sports/[sport]/drills/[id]`         | Court-ready drill page: diagram, steps, coaching points, equipment, source    |
 | `/sports/[sport]/drills/new`, `/edit` | Create / edit a personal or workspace drill (server-validated, versioned)     |
 
+### Session routes (the session builder)
+
+| Route                                                     | What it is                                                                             |
+| --------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `/sessions`                                               | "Sessions" in the main navigation: goes to the sport's sessions                        |
+| `/sessions/[sport]`                                       | My Sessions: search, status / age group / team / date filters, actions, all in the URL |
+| `/sessions/[sport]/new`                                   | Create a session: information, schedule, objectives                                    |
+| `/sessions/[sport]/[id]`                                  | The builder: timeline, totals and end time, details panel, autosave                    |
+| `/sessions/[sport]/[id]/drills` and `/drills/[drillId]`   | Add a drill: the library's own search, then a preview with the add form                |
+| `/sessions/[sport]/[id]/replace/[activityId]` and `/[id]` | Replace one drill in the timeline with another                                         |
+
 Adding another sport is data plus one module: rows in `sports` / `categories` / `skills` /
 `equipment_types`, and a `SportModule` (court packs, vocabulary) in `src/sports/<sport>/` registered in
 `src/sports/registry.ts`. The diagram engine (`src/engines/diagram`) knows nothing about basketball.
@@ -81,7 +92,7 @@ Adding another sport is data plus one module: rows in `sports` / `categories` / 
 ```
 src/
   app/            routes only, thin: (marketing) (auth) (onboarding) (app) api/
-  modules/        vertical slices — identity, organizations, audit, sports, drills (import others via index.ts only)
+  modules/        vertical slices — identity, organizations, audit, sports, drills, plans (import others via index.ts only)
   engines/        pure, sport-agnostic engines — diagram (typed data → validated → SVG)
   sports/         one module per sport: court packs, vocabulary (basketball today)
   lib/            infrastructure: env, db (+ RLS tx helpers), authz (can()), mail, logger, i18n

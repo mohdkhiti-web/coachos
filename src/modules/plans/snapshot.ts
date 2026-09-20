@@ -9,6 +9,7 @@ import {
 } from "@/db/enums";
 import { diagramSchema } from "@/engines/diagram";
 import { drillContentSchema, type DrillDetailDto } from "@/modules/drills";
+import { customContentShape } from "./custom-content";
 
 /**
  * The frozen copy of a drill that lives inside a session activity (`plan_activities.snapshot`).
@@ -88,14 +89,10 @@ export const drillSnapshotSchema = z.strictObject({
 
 export type DrillSnapshot = z.output<typeof drillSnapshotSchema>;
 
-const items = (max: number) => z.array(line(500)).max(max);
-
 /** What a coach-written activity carries. A subset of a drill: text the coach typed, no library provenance. */
 export const customSnapshotSchema = z.strictObject({
   schemaVersion: z.literal(SNAPSHOT_SCHEMA_VERSION),
-  description: z.string().trim().max(2000).default(""),
-  instructions: items(20).default([]),
-  coachingPoints: items(20).default([]),
+  ...customContentShape,
 });
 
 export type CustomSnapshot = z.output<typeof customSnapshotSchema>;

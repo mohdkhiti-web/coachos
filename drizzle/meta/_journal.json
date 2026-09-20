@@ -57,6 +57,13 @@
       "when": 1789930331190,
       "tag": "0007_objectives_catalog",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1789931044433,
+      "tag": "0008_plans_guard_delete_archived",
+      "breakpoints": true
     }
   ]
 }

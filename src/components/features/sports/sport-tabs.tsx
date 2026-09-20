@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { cn } from "@/lib/cn";
 
 /**
- * Sub-navigation of a sport workspace. It lists ONLY areas that exist today (Overview, Drills).
+ * Sub-navigation of a sport workspace. It lists ONLY areas that exist today (Overview, Drills, Sessions).
  * Sessions, Teams, Players, Lesson plans, Assessments… are added here by the phase that builds them.
  */
 export function SportTabs({ sport }: { sport: string }) {
@@ -20,6 +20,8 @@ export function SportTabs({ sport }: { sport: string }) {
       key: "drills" as const,
       active: pathname.startsWith(`${base}/drills`),
     },
+    // sessions have their own area (the builder needs the whole page); this tab is the way in from a sport workspace
+    { href: `/sessions/${sport}`, key: "sessions" as const, active: false },
   ];
 
   return (

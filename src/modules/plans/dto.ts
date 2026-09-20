@@ -119,9 +119,14 @@ export interface PlanListItemDto {
   /** Instants from the `plan_totals` view; null when there is no start time. */
   startsAt: Date | null;
   endsAt: Date | null;
+  primaryObjective: { key: string; name: string } | null;
+  /** The session's version, needed to archive it without opening it (optimistic concurrency). */
+  version: number;
   isMine: boolean;
   deletedAt: Date | null;
   updatedAt: Date;
+  /** manage = archive, restore, delete; duplicate = copy into the viewer's own workspace. */
+  permissions: { canManage: boolean; canDuplicate: boolean };
 }
 
 export interface PlanPage {

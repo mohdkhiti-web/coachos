@@ -8,6 +8,8 @@ export {
   addDrillActivity,
   createPlan,
   deletePlan,
+  duplicateActivity,
+  duplicatePlan,
   removeActivity,
   reorderActivities,
   replaceActivityDrill,
@@ -16,6 +18,7 @@ export {
   updateActivity,
   updatePlan,
 } from "./commands";
-export { getPlan, listPlans } from "./queries";
+export { getPlan, listPlans, listPlanTeams } from "./queries";
 export type { ListPlansOptions } from "./queries";
 export * from "./dto";
+export * from "./filters";

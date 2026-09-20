@@ -613,6 +613,16 @@ Deliberate differences from the first sketch: `position` is a 0-based integer wi
 - **Professional view** (Phase 3) is the print-styled HTML rendering of the document model (§13) — so "Print" works in Phase 3 via the browser, and Phase 5 adds files.
 - **Share later** (Phase 5+): `share_links` — hashed token, scope, expiry, read-only.
 
+### 11.3 As built in Step 3 (the first builder)
+
+- **Routes:** sessions are their own area, `/sessions/[sport]` (My Sessions), `/new`, `/[id]` (the builder), `/[id]/drills[/drillId]` (add a drill) and `/[id]/replace/[activityId][/drillId]` (replace one). "Sessions" is in the main navigation; `/sessions` goes straight to the only active sport.
+- **The drill selector is the library's own search**, not a second one: the same URL-driven filters, format chips, cards and pagination, pointed at a session; a result opens a preview with the add form. It is a page rather than a modal, so it works on a phone and every state is a link.
+- **One queue, optimistic UI.** Every change (details, duration, reorder, add…) goes through a single client queue that presents the session's version and runs requests strictly one after another; `useOptimistic` applies the change on screen at once and the server's answer replaces it. A refusal reverts it; a `CONFLICT` shows a "changed elsewhere" banner instead of overwriting.
+- **No second calculation.** Offsets, total, remaining time and end time in the browser come from the same pure functions the server and the `plan_totals` view use (`modules/plans/schedule`). The timeline labels are minutes into the session (`00:00–10:00 … 80:00–90:00`).
+- **Autosave** of the details form is debounced (0.9 s), sent through the same queue, validated with the server's own schemas first, saved immediately when the tab is hidden, and always visible as Saved / Saving… / Unsaved changes / Fix the highlighted fields / Couldn't save / Changed elsewhere.
+- **Reordering:** drag-and-drop with `@dnd-kit` (pointer, touch with a short press, keyboard) **and** labelled Up / Down buttons; every change is announced to screen readers.
+- **Objectives** in the form are the coach-facing catalog (Shooting, Transition…); the detailed skills never appear.
+
 ---
 
 ## 12. PE lesson plan architecture

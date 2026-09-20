@@ -19,6 +19,7 @@ export async function DrillCard({
   href,
   sportKey,
   headingLevel = 3,
+  footer,
   className,
 }: {
   drill: DrillCardDto;
@@ -26,6 +27,8 @@ export async function DrillCard({
   /** Needed for the favorite button (a real action against this sport's drill). */
   sportKey: string;
   headingLevel?: 2 | 3;
+  /** An action under the card (for example "Add to session"). Sits above the card-wide link, so it stays clickable. */
+  footer?: React.ReactNode;
   className?: string;
 }) {
   const t = await getTranslations("drills");
@@ -103,6 +106,7 @@ export async function DrillCard({
             ) : null}
           </ul>
         ) : null}
+        {footer ? <div className="relative z-10 pt-1">{footer}</div> : null}
       </div>
     </article>
   );

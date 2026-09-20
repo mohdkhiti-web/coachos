@@ -1551,8 +1551,8 @@ describe("lifecycle: draft, published, archived", () => {
     const a = await makePlan(coach, { title: "Filter A" });
     const b = await makePlan(coach, { title: "Filter B" });
     good(await setPlanStatus(coach, SPORT, b.id, "published", b.version));
-    const drafts = (await listPlans(coach, SPORT, { status: "draft" }))!.items.map((i) => i.id);
-    const published = (await listPlans(coach, SPORT, { status: "published" }))!.items.map(
+    const drafts = (await listPlans(coach, SPORT, { statuses: ["draft"] }))!.items.map((i) => i.id);
+    const published = (await listPlans(coach, SPORT, { statuses: ["published"] }))!.items.map(
       (i) => i.id,
     );
     expect(drafts).toContain(a.id);

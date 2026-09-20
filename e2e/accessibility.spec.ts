@@ -1,6 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 import { completeOnboarding, newUser, signUpAndVerify } from "./support/helpers";
+import { addBreak, addCustom, createSession, field, pickDrill, SESSIONS } from "./support/sessions";
 
 /**
  * WCAG 2.2 AA target (ARCHITECTURE.md §2.5): axe on every key screen, in BOTH themes.
@@ -62,6 +63,69 @@ for (const scheme of ["light", "dark"] as const) {
       await page.getByRole("button", { name: "Delete my account" }).click();
       await expect(page.getByRole("dialog")).toBeVisible();
       await audit(page, `delete dialog (${scheme})`);
+    });
+
+    test("sessions: list, create form, builder (empty and populated), dialogs, menus and the drill picker", async ({
+      page,
+    }) => {
+      test.setTimeout(240_000);
+      await signUpAndVerify(page, newUser());
+      await completeOnboarding(page);
+
+      await page.goto(SESSIONS);
+      await expect(page.getByRole("heading", { name: "No sessions yet" })).toBeVisible();
+      await audit(page, `sessions, empty list (${scheme})`);
+
+      await page.goto(`${SESSIONS}/new`);
+      await expect(field(page, "Session title")).toBeVisible();
+      await audit(page, `create session (${scheme})`);
+      await page.getByRole("button", { name: "Create session and start building" }).click();
+      await expect(page.getByText("Some fields need attention").first()).toBeVisible();
+      await audit(page, `create session with errors (${scheme})`);
+
+      const builder = await createSession(page, {
+        title: "Accessible session",
+        team: "Wolves",
+        objective: "Shooting",
+        also: ["Defense"],
+        date: "2030-06-11",
+        start: "18:00",
+      });
+      await expect(page.getByRole("heading", { name: "Your session is empty" })).toBeVisible();
+      await audit(page, `builder, empty session (${scheme})`);
+
+      await addBreak(page, "Water break", 2);
+      await addCustom(page, "Team talk", 5, "Goals for tonight");
+      await pickDrill(page, builder, "five-spot", "Five-Spot Shooting");
+      await audit(page, `add a drill to the session (${scheme})`);
+      await page.getByRole("button", { name: "Add to session" }).click();
+      await expect(page.getByRole("article", { name: "Five-Spot Shooting" })).toBeVisible();
+      await audit(page, `builder, populated session (${scheme})`);
+
+      await page.getByRole("button", { name: "Edit Team talk" }).click();
+      await expect(page.getByRole("dialog")).toBeVisible();
+      await audit(page, `edit activity dialog (${scheme})`);
+      await page.keyboard.press("Escape");
+
+      await page.getByRole("button", { name: "More actions for Team talk" }).click();
+      await expect(page.getByRole("menu")).toBeVisible();
+      await audit(page, `activity menu (${scheme})`);
+      await page.keyboard.press("Escape");
+
+      await page.getByRole("button", { name: "Session actions" }).click();
+      await expect(page.getByRole("menu")).toBeVisible();
+      await audit(page, `session menu (${scheme})`);
+      await page.keyboard.press("Escape");
+
+      await page.goto(`${builder}/drills`);
+      await expect(page.getByRole("heading", { level: 1, name: "Add a drill" })).toBeVisible();
+      await audit(page, `drill picker (${scheme})`);
+
+      await page.goto(SESSIONS);
+      await expect(page.getByRole("article", { name: "Accessible session" })).toBeVisible();
+      await audit(page, `sessions, populated list (${scheme})`);
+      await page.goto(`${SESSIONS}?status=archived`);
+      await audit(page, `sessions, archived view (${scheme})`);
     });
 
     test("sports workspace, drill library, drill detail, and the drill form with its diagram builder", async ({

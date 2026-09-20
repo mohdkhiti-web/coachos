@@ -1,7 +1,7 @@
 import "server-only";
-import { and, asc, eq, sql } from "drizzle-orm";
+import { and, asc, eq, inArray, sql } from "drizzle-orm";
 import { PLAN_LIMITS, type ActivityKind, type PlanStatus, type PlanVisibility } from "@/db/enums";
-import { planActivities, planObjectives, plans, profiles } from "@/db/schema";
+import { drills, planActivities, planObjectives, plans, profiles } from "@/db/schema";
 import { can, type Actor, type PlanResource } from "@/lib/authz/can";
 import type { Tx } from "@/lib/db/client";
 import { tenantTx } from "@/lib/db/tx";
@@ -12,6 +12,7 @@ import { drillContentSchema, getDrill } from "@/modules/drills";
 import { getOrganizationById } from "@/modules/organizations";
 import { getAgeGroups, getObjectives, getSport, type SportDto } from "@/modules/sports";
 import { getSportModule } from "@/sports/registry";
+import { migratePlanDetails } from "./details";
 import { totalMinutes } from "./schedule";
 import {
   buildDrillSnapshot,
@@ -78,6 +79,9 @@ type PlanRow = {
   version: number;
   targetMinutes: number;
   timezone: string | null;
+  ageGroupId: string | null;
+  ageMin: number | null;
+  ageMax: number | null;
 };
 
 const resourceOf = (row: PlanRow): PlanResource => ({
@@ -101,6 +105,9 @@ async function loadPlanRow(tx: Tx, sportId: string, id: string): Promise<PlanRow
       version: plans.version,
       targetMinutes: plans.targetMinutes,
       timezone: plans.timezone,
+      ageGroupId: plans.ageGroupId,
+      ageMin: plans.ageMin,
+      ageMax: plans.ageMax,
     })
     .from(plans)
     .where(and(eq(plans.id, id), eq(plans.sportId, sportId)))
@@ -175,7 +182,12 @@ type Resolved = {
 };
 
 /** Everything that depends on WHICH sport this is: its age groups and its objectives. */
-async function checkAgainstCatalog(sport: SportDto, input: PlanInput): Promise<Result<Resolved>> {
+async function checkAgainstCatalog(
+  sport: SportDto,
+  input: PlanInput,
+  /** On an update: the ages the session already has, kept when the age group is unchanged and no ages are sent. */
+  existing?: { ageGroupId: string | null; ageMin: number | null; ageMax: number | null },
+): Promise<Result<Resolved>> {
   const [groups, catalog] = await Promise.all([getAgeGroups(sport.id), getObjectives(sport.id)]);
   const errors: FieldErrors = {};
 
@@ -191,9 +203,18 @@ async function checkAgainstCatalog(sport: SportDto, input: PlanInput): Promise<R
   if (Object.keys(errors).length > 0) return fail("VALIDATION", { fields: errors });
   return ok({
     ageGroupId: group?.id ?? null,
-    // choosing only an age group fills in its typical ages; explicit ages always win
-    ageMin: input.ageMin ?? group?.ageMin ?? null,
-    ageMax: input.ageMax ?? group?.ageMax ?? null,
+    // explicit ages always win; else the session keeps the exact ages it has while its age group is unchanged;
+    // else choosing an age group fills in that group's typical ages
+    ageMin:
+      input.ageMin ??
+      (existing && group && existing.ageGroupId === group.id ? existing.ageMin : null) ??
+      group?.ageMin ??
+      null,
+    ageMax:
+      input.ageMax ??
+      (existing && group && existing.ageGroupId === group.id ? existing.ageMax : null) ??
+      group?.ageMax ??
+      null,
     primaryObjectiveId: input.primaryObjective ? objective(input.primaryObjective)!.id : null,
     secondaryObjectiveIds: input.secondaryObjectives.map((k) => objective(k)!.id),
   });
@@ -279,9 +300,6 @@ export async function updatePlan(
   if (input.version === undefined) return fail("VALIDATION", { fields: { version: ["required"] } });
   const sport = await getSport(sportKey);
   if (!sport) return fail("NOT_FOUND");
-  const checked = await checkAgainstCatalog(sport, input);
-  if (!checked.ok) return checked;
-  const r = checked.data;
   const visibility = await effectiveVisibility(actor, input.visibility);
 
   return inTx(actor, async (tx) => {
@@ -289,6 +307,10 @@ export async function updatePlan(
     if (!row || row.deletedAt) return fail("NOT_FOUND");
     if (!can(actor, "plan:update", resourceOf(row)) || row.status === "archived")
       return fail("FORBIDDEN");
+    // (needs the session's current ages, so it runs once the session is loaded; a failure rolls everything back)
+    const checked = await checkAgainstCatalog(sport, input, row);
+    if (!checked.ok) return checked;
+    const r = checked.data;
 
     const timezone = await resolveTimezone(
       tx,
@@ -804,5 +826,175 @@ export async function reorderActivities(
       return fail("VALIDATION", { fields: { orderedIds: ["order_mismatch"] } });
     await writePositions(tx, input.orderedIds);
     return ok({ version: opened.data.version });
+  });
+}
+
+// ---------------------------------------------------------------------------------------------------
+// duplicating
+// ---------------------------------------------------------------------------------------------------
+
+/**
+ * The drills, among `ids`, that the ACTOR can read right now (row-level security decides). A copied activity may
+ * only keep its link to a source drill the copier can read; otherwise it keeps its snapshot and loses the link.
+ */
+async function readableDrillIds(tx: Tx, ids: string[]): Promise<Set<string>> {
+  if (ids.length === 0) return new Set();
+  const rows = await tx.select({ id: drills.id }).from(drills).where(inArray(drills.id, ids));
+  return new Set(rows.map((r) => r.id));
+}
+
+/**
+ * Copy a session the actor can read into a NEW private draft of their own: new id, new objectives rows, new
+ * activity rows — each with its own copy of the snapshot, so editing the copy can never touch the original.
+ * The copy is "Copy of …", unscheduled (a duplicate is normally for another day: date, start time and session
+ * number are cleared; the zone is kept) and remembers where it came from (`forked_from_id`).
+ */
+export async function duplicatePlan(
+  actor: Actor,
+  sportKey: string,
+  id: string,
+): Promise<Result<{ id: string; version: number }>> {
+  const sport = await getSport(sportKey);
+  if (!sport) return fail("NOT_FOUND");
+  const newPlanId = newId();
+
+  return inTx(actor, async (tx) => {
+    if (!isUuid(id)) return fail("NOT_FOUND");
+    const [source] = await tx
+      .select()
+      .from(plans)
+      .where(and(eq(plans.id, id), eq(plans.sportId, sport.id)))
+      .limit(1);
+    if (!source || source.deletedAt) return fail("NOT_FOUND");
+    if (!can(actor, "plan:duplicate", resourceOf(source))) return fail("FORBIDDEN");
+    const details = migratePlanDetails(source.details);
+    if (!details) return fail("NOT_FOUND");
+
+    await tx.insert(plans).values({
+      id: newPlanId,
+      organizationId: actor.organizationId,
+      sportId: sport.id,
+      createdBy: actor.userId,
+      type: source.type,
+      title: `Copy of ${source.title}`.slice(0, 120),
+      status: "draft",
+      visibility: "private",
+      teamName: source.teamName,
+      ageGroupId: source.ageGroupId,
+      ageMin: source.ageMin,
+      ageMax: source.ageMax,
+      level: source.level,
+      players: source.players,
+      targetMinutes: source.targetMinutes,
+      objective: source.objective,
+      scheduledDate: null,
+      startTime: null,
+      timezone: source.timezone,
+      details: { ...details, sessionNumber: null },
+      forkedFromId: source.id,
+    });
+
+    const objectiveRows = await tx
+      .select()
+      .from(planObjectives)
+      .where(eq(planObjectives.planId, source.id));
+    if (objectiveRows.length)
+      await tx.insert(planObjectives).values(
+        objectiveRows.map((o) => ({
+          planId: newPlanId,
+          objectiveId: o.objectiveId,
+          sportId: o.sportId,
+          role: o.role,
+        })),
+      );
+
+    const activities = await tx
+      .select()
+      .from(planActivities)
+      .where(eq(planActivities.planId, source.id))
+      .orderBy(asc(planActivities.position));
+    const readable = await readableDrillIds(
+      tx,
+      activities.flatMap((a) => (a.sourceDrillId ? [a.sourceDrillId] : [])),
+    );
+    if (activities.length)
+      await tx.insert(planActivities).values(
+        activities.map((a) => ({
+          id: newId(),
+          planId: newPlanId,
+          sportId: a.sportId,
+          position: a.position,
+          phase: a.phase,
+          kind: a.kind,
+          title: a.title,
+          durationMin: a.durationMin,
+          repetitions: a.repetitions,
+          players: a.players,
+          notes: a.notes,
+          sourceDrillId: a.sourceDrillId && readable.has(a.sourceDrillId) ? a.sourceDrillId : null,
+          sourceDrillVersion: a.sourceDrillVersion,
+          snapshot: a.snapshot,
+          customized: a.customized,
+          changeReason: a.changeReason,
+        })),
+      );
+
+    await recordAuditInTx(tx, actor, {
+      action: "plan.duplicated",
+      entityType: "plan",
+      entityId: newPlanId,
+      metadata: { sport: sport.key, from: source.id },
+    });
+    return ok({ id: newPlanId, version: 1 });
+  });
+}
+
+/** Copy one activity right after itself (its own snapshot copy, so the two can be edited independently). */
+export async function duplicateActivity(
+  actor: Actor,
+  sportKey: string,
+  planId: string,
+  activityId: string,
+  version: number,
+): Promise<Result<{ id: string; version: number }>> {
+  const sport = await getSport(sportKey);
+  if (!sport) return fail("NOT_FOUND");
+  return inTx(actor, async (tx) => {
+    const opened = await openForEdit(tx, actor, sport.id, planId, version);
+    if (!opened.ok) return opened;
+    if (!isUuid(activityId)) return fail("NOT_FOUND");
+    const [a] = await tx
+      .select()
+      .from(planActivities)
+      .where(and(eq(planActivities.id, activityId), eq(planActivities.planId, planId)))
+      .limit(1);
+    if (!a) return fail("NOT_FOUND");
+    const readable = await readableDrillIds(tx, a.sourceDrillId ? [a.sourceDrillId] : []);
+    const added = await insertActivity(
+      tx,
+      planId,
+      sport.id,
+      {
+        kind: a.kind as ActivityKind,
+        phase: a.phase,
+        title: a.title,
+        durationMin: a.durationMin,
+        repetitions: a.repetitions,
+        players: a.players,
+        notes: a.notes,
+        sourceDrillId: a.sourceDrillId && readable.has(a.sourceDrillId) ? a.sourceDrillId : null,
+        sourceDrillVersion: a.sourceDrillVersion,
+        snapshot: a.snapshot,
+        changeReason: a.changeReason,
+      },
+      a.position + 1,
+    );
+    if (!added.ok) return added;
+    if (a.customized)
+      await tx
+        .update(planActivities)
+        .set({ customized: true })
+        .where(eq(planActivities.id, added.data.id));
+    return ok({ id: added.data.id, version: opened.data.version });
   });
 }

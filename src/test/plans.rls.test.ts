@@ -494,6 +494,36 @@ describe("lifecycle: archive, soft delete, restore", () => {
     expect(await activity(coach, id, { position: 1 })).toBeTruthy();
   });
 
+  it("an archived session can be deleted and restored (deleting is a lifecycle change, not an edit), and stays archived and frozen throughout", async () => {
+    const id = await plan(coach);
+    await tenantTx(coach, (tx) =>
+      tx.update(plans).set({ status: "archived" }).where(eq(plans.id, id)),
+    );
+    await tenantTx(coach, (tx) =>
+      tx.update(plans).set({ deletedAt: new Date() }).where(eq(plans.id, id)),
+    );
+    expect(
+      await count(
+        coach,
+        "plans",
+        sql`id = ${id} and deleted_at is not null and status = 'archived'`,
+      ),
+    ).toBe(1);
+    // in the trash it is frozen…
+    await expectDbError(
+      tenantTx(coach, (tx) => tx.update(plans).set({ title: "Edited" }).where(eq(plans.id, id))),
+      /deleted session cannot be edited/,
+    );
+    // …restoring returns it to the archive, where its content is still frozen
+    await tenantTx(coach, (tx) =>
+      tx.update(plans).set({ deletedAt: null }).where(eq(plans.id, id)),
+    );
+    await expectDbError(
+      tenantTx(coach, (tx) => tx.update(plans).set({ title: "Edited" }).where(eq(plans.id, id))),
+      /archived session cannot be edited/,
+    );
+  });
+
   it("a soft-deleted session stays in the table, stays readable for a trash view, and is frozen", async () => {
     const id = await plan(coach, { visibility: "organization" });
     const at = new Date();

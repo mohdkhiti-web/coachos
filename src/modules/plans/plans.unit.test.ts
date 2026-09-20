@@ -8,6 +8,14 @@ import {
   PLAN_DETAILS_VERSION,
 } from "./details";
 import {
+  activePlanFilterCount,
+  parsePlanFilters,
+  planFiltersToSearchParams,
+  planHrefFor,
+  statusesFor,
+} from "./filters";
+import { formatClockTime, formatDateOnly, formatInstantDate } from "./format";
+import {
   buildTimeline,
   computeSchedule,
   formatOffset,
@@ -101,11 +109,13 @@ describe("the timeline: totals and offsets are calculated, never stored", () => 
     expect(remainingMinutes(90, 100)).toBe(-10);
   });
 
-  it("formats offsets as hh:mm", () => {
+  it("labels offsets as minutes into the session, like the coach's own timeline: 00:00 … 65:00 … 90:00", () => {
     expect(formatOffset(0)).toBe("00:00");
-    expect(formatOffset(35)).toBe("00:35");
-    expect(formatOffset(75)).toBe("01:15");
-    expect(formatOffset(600)).toBe("10:00");
+    expect(formatOffset(10)).toBe("10:00");
+    expect(formatOffset(35)).toBe("35:00");
+    expect(formatOffset(65)).toBe("65:00");
+    expect(formatOffset(90)).toBe("90:00");
+    expect(formatOffset(125)).toBe("125:00");
   });
 });
 
@@ -637,5 +647,91 @@ describe("drill snapshot: complete, validated and version-aware", () => {
     const custom = customSnapshotSchema.parse({ schemaVersion: 1, description: "Team talk" });
     expect(parseSnapshot("custom", custom)).toEqual({ ok: true, data: custom });
     expect(parseSnapshot("custom", { schemaVersion: 3 })).toEqual({ ok: false });
+  });
+});
+
+// ---------------------------------------------------------------------------------------------------
+describe("My Sessions filters (URL round-trip, lenient parsing)", () => {
+  it("parses a full filter set and writes it back canonically", () => {
+    const f = parsePlanFilters({
+      q: "  shooting   drills ",
+      status: "archived",
+      age: "u14",
+      team: "U14 Girls",
+      from: "2025-06-01",
+      to: "2025-06-30",
+      page: "3",
+    });
+    expect(f).toEqual({
+      q: "shooting drills",
+      status: "archived",
+      age: "u14",
+      team: "U14 Girls",
+      from: "2025-06-01",
+      to: "2025-06-30",
+      page: 3,
+    });
+    expect(parsePlanFilters(Object.fromEntries(planFiltersToSearchParams(f)))).toEqual(f);
+    expect(planHrefFor("/sessions", { q: "x", page: 2 })).toBe("/sessions?q=x&page=2");
+    expect(planHrefFor("/sessions", {})).toBe("/sessions");
+  });
+
+  it("drops anything malformed instead of throwing: the URL is untrusted", () => {
+    const f = parsePlanFilters({
+      q: "x".repeat(200),
+      status: "bogus",
+      age: "U14; drop table",
+      team: "   ",
+      from: "2025-02-30",
+      to: "tomorrow",
+      page: "-4",
+    });
+    expect(f).toEqual({
+      q: "x".repeat(80),
+      status: undefined,
+      age: undefined,
+      team: undefined,
+      from: undefined,
+      to: undefined,
+      page: 1,
+    });
+    expect(parsePlanFilters({ page: "99999" }).page).toBe(1);
+    expect(parsePlanFilters({ page: "2.5" }).page).toBe(1);
+    expect(parsePlanFilters({ q: ["a", "b"] }).q).toBe("a");
+  });
+
+  it("ignores an end date before the start date", () => {
+    const f = parsePlanFilters({ from: "2025-06-10", to: "2025-06-01" });
+    expect([f.from, f.to]).toEqual(["2025-06-10", undefined]);
+  });
+
+  it("counts narrowing filters (paging does not count) and maps a status onto the query", () => {
+    expect(activePlanFilterCount(parsePlanFilters({}))).toBe(0);
+    expect(activePlanFilterCount(parsePlanFilters({ q: "a", status: "draft", page: "2" }))).toBe(2);
+    expect(statusesFor(undefined)).toEqual({ statuses: ["draft", "published"], trash: false });
+    expect(statusesFor("archived")).toEqual({ statuses: ["archived"], trash: false });
+    expect(statusesFor("deleted")).toEqual({ statuses: [], trash: true });
+  });
+});
+
+describe("display formatting (never arithmetic)", () => {
+  it("formats clock times for the locale, from HH:MM or the database's HH:MM:SS", () => {
+    expect(formatClockTime("19:30", "en")).toBe("7:30 PM");
+    expect(formatClockTime("19:30:00", "en")).toBe("7:30 PM");
+    expect(formatClockTime("00:05", "en")).toBe("12:05 AM");
+    expect(formatClockTime("19:30", "fr")).toBe("19:30");
+  });
+
+  it("formats a calendar date without ever shifting the day", () => {
+    expect(formatDateOnly("2025-06-10", "en")).toBe("Tue, Jun 10, 2025");
+    expect(formatDateOnly("2025-01-01", "en", false)).toBe("Wed, Jan 1");
+    expect(formatDateOnly("2025-12-31", "en")).toBe("Wed, Dec 31, 2025");
+  });
+
+  it("formats an instant in the viewer's zone, and falls back to UTC for a zone it does not know", () => {
+    const at = new Date("2025-06-10T23:30:00.000Z");
+    expect(formatInstantDate(at, "en", "UTC")).toBe("Jun 10, 2025");
+    expect(formatInstantDate(at, "en", "Asia/Tokyo")).toBe("Jun 11, 2025");
+    expect(formatInstantDate(at, "en", "Mars/Olympus")).toBe("Jun 10, 2025");
   });
 });

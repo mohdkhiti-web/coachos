@@ -100,7 +100,7 @@ test("the Phase 2 journey: sports → basketball → drills → filter → open 
     await expect(page.getByRole("heading", { level: 1, name: "Basketball" })).toBeVisible();
     await expect(page.getByText(String(LIBRARY), { exact: true }).first()).toBeVisible();
     const tabs = page.getByRole("navigation", { name: "Workspace sections" });
-    await expect(tabs.getByRole("link")).toHaveText(["Overview", "Drills"]); // no Sessions/Teams/Players tabs yet
+    await expect(tabs.getByRole("link")).toHaveText(["Overview", "Drills", "Sessions"]); // no Teams/Players tabs yet
     await expect(page.getByText("You haven't created a drill yet")).toBeVisible();
     await page.getByRole("link", { name: /^Shooting/ }).click(); // a category tile deep-links into the filtered library
     await expect(page).toHaveURL(/category=shooting/);

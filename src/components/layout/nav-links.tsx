@@ -12,7 +12,7 @@ export function NavLinks({ variant, sports }: { variant: "rail" | "bar"; sports:
   const pathname = usePathname();
 
   return (
-    <ul className={cn(variant === "rail" ? "flex flex-col gap-1" : "grid grid-cols-3")}>
+    <ul className={cn(variant === "rail" ? "flex flex-col gap-1" : "grid grid-cols-4")}>
       {NAV_ITEMS.map(({ href, labelKey, icon: Icon }) => {
         const isSports = href === "/sports";
         // "Sports" is only "current" on its own index; its child sports light up when inside them

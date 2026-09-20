@@ -31,7 +31,8 @@ export type AuditAction =
   | "plan.updated"
   | "plan.status_changed"
   | "plan.deleted"
-  | "plan.restored";
+  | "plan.restored"
+  | "plan.duplicated";
 
 export type AuditContext = { userId?: string | null; organizationId?: string | null };
 

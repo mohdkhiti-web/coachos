@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { DRILL_PHASES, LEVELS, PLAN_LIMITS, PLAN_STATUSES, PLAN_VISIBILITIES } from "@/db/enums";
 import { planDetailsSchema } from "./details";
-import { customSnapshotSchema } from "./snapshot";
+import { customContentSchema } from "./custom-content";
 import { isClockTime, isIsoDate, isValidTimeZone } from "./schedule";
 
 /**
@@ -122,7 +122,7 @@ export const addCustomActivitySchema = z.strictObject({
   players,
   notes,
   /** What the coach wrote about it (description, steps, coaching points). */
-  content: customSnapshotSchema.omit({ schemaVersion: true }).default({
+  content: customContentSchema.default({
     description: "",
     instructions: [],
     coachingPoints: [],

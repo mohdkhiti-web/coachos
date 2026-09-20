@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { completeOnboarding, newUser, signUpAndVerify } from "./support/helpers";
+import { addBreak, addCustom, createSession, pickDrill, SESSIONS } from "./support/sessions";
 
 // Runs in the "mobile" project (Pixel 7 viewport): the rail becomes a bottom tab bar (§2.3).
 
@@ -24,7 +25,7 @@ test("the app shell collapses to a bottom tab bar with 44px touch targets", asyn
   await expect(bar).toBeVisible();
   await expect(page.locator("aside")).toBeHidden(); // desktop rail is gone
 
-  for (const name of ["Dashboard", "Sports", "Settings"]) {
+  for (const name of ["Dashboard", "Sessions", "Sports", "Settings"]) {
     const box = await bar.getByRole("link", { name }).boundingBox();
     expect(box?.height ?? 0).toBeGreaterThanOrEqual(44);
     expect(box?.width ?? 0).toBeGreaterThanOrEqual(44);
@@ -97,4 +98,83 @@ test("Phase 2: sports, library, drill detail and the drill form fit a phone and 
   await add.getByRole("button", { name: "Offense" }).click();
   await expect(page.getByText("This diagram is valid.")).toBeVisible();
   expect(await noHorizontalScroll(page), "drill form overflows horizontally").toBe(true);
+});
+
+test("the session builder is usable on a phone: nothing overflows, controls are 44px, details are one tap away", async ({
+  page,
+}) => {
+  test.setTimeout(240_000);
+  await signUpAndVerify(page, newUser());
+  await completeOnboarding(page);
+
+  await page.goto(SESSIONS);
+  await expect(page.getByRole("heading", { name: "No sessions yet" })).toBeVisible();
+  expect(await noHorizontalScroll(page), "empty list overflows").toBe(true);
+  await page.goto(`${SESSIONS}/new`);
+  expect(await noHorizontalScroll(page), "create form overflows").toBe(true);
+
+  const builder = await createSession(page, {
+    title: "Phone session",
+    team: "Wolves",
+    objective: "Shooting",
+    date: "2030-06-11",
+    start: "18:00",
+  });
+  expect(await noHorizontalScroll(page), "empty builder overflows").toBe(true);
+
+  await addBreak(page, "Water break", 2);
+  await addCustom(
+    page,
+    "A rather long activity name that has to wrap on a small screen",
+    10,
+    "Some notes",
+  );
+  await pickDrill(page, builder, "five-spot", "Five-Spot Shooting");
+  expect(await noHorizontalScroll(page), "add-drill page overflows").toBe(true);
+  await page.getByRole("button", { name: "Add to session" }).click();
+  await expect(page.getByRole("article", { name: "Five-Spot Shooting" })).toBeVisible();
+  expect(await noHorizontalScroll(page), "populated builder overflows").toBe(true);
+
+  // the controls a coach uses at the court are real touch targets
+  const drill = page.getByRole("article", { name: "Five-Spot Shooting" });
+  for (const name of [
+    "Edit Five-Spot Shooting",
+    "Move Five-Spot Shooting down",
+    "More actions for Five-Spot Shooting",
+  ]) {
+    const box = await drill.getByRole("button", { name }).boundingBox();
+    expect(box?.height ?? 0, name).toBeGreaterThanOrEqual(44);
+  }
+  for (const name of ["Add drill", "Custom activity", "Break"]) {
+    const control = page.getByRole(name === "Add drill" ? "link" : "button", { name, exact: true });
+    expect((await control.boundingBox())?.height ?? 0, name).toBeGreaterThanOrEqual(44);
+  }
+
+  // the details are behind one button on a phone
+  const details = page.getByRole("button", { name: "Session details" });
+  await expect(page.getByLabel("Session title", { exact: true })).toBeHidden();
+  await details.click();
+  await expect(page.getByLabel("Session title", { exact: true })).toBeVisible();
+  expect(await noHorizontalScroll(page), "details overflow").toBe(true);
+  await details.click();
+
+  // the totals bar stays visible and clear of the tab bar
+  const totals = page.getByRole("region", { name: "Session totals" });
+  const tabs = page.getByRole("navigation", { name: "Main navigation" }).last();
+  await expect(totals).toBeVisible();
+  const [t, b] = await Promise.all([totals.boundingBox(), tabs.boundingBox()]);
+  expect((t?.y ?? 0) + (t?.height ?? 0)).toBeLessThanOrEqual((b?.y ?? 0) + 1);
+
+  // an activity dialog fits the screen
+  await drill.getByRole("button", { name: "Edit Five-Spot Shooting" }).click();
+  const dialog = page.getByRole("dialog");
+  await expect(dialog).toBeVisible();
+  const box = await dialog.boundingBox();
+  expect((box?.x ?? -1) + 1).toBeGreaterThanOrEqual(0);
+  expect((box?.x ?? 0) + (box?.width ?? 0)).toBeLessThanOrEqual(page.viewportSize()!.width + 1);
+  await page.keyboard.press("Escape");
+
+  await page.goto(SESSIONS);
+  await expect(page.getByRole("article", { name: "Phone session" })).toBeVisible();
+  expect(await noHorizontalScroll(page), "populated list overflows").toBe(true);
 });

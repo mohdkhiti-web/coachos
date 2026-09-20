@@ -52,6 +52,7 @@ describe("can(): role × action matrix (own resources)", () => {
     "plan:create": AUTHORS,
     "plan:update": AUTHORS,
     "plan:delete": AUTHORS,
+    "plan:duplicate": AUTHORS,
   };
 
   for (const action of GENERIC) {
@@ -259,6 +260,16 @@ describe("can(): session (plan) rules (ownership × visibility × role)", () => 
       });
     });
   }
+
+  it("duplicating copies anything you can read (own private, colleagues' shared), as an author only", () => {
+    for (const role of ["owner", "admin", "coach", "teacher"] as const) {
+      expect(can(actor(role), "plan:duplicate", plan())).toBe(true);
+      expect(can(actor(role), "plan:duplicate", othersShared)).toBe(true);
+    }
+    expect(can(actor("assistant"), "plan:duplicate", othersShared)).toBe(false);
+    expect(can(actor("owner"), "plan:duplicate", othersPrivate)).toBe(false);
+    expect(can(actor("owner"), "plan:duplicate", foreignShared)).toBe(false);
+  });
 
   it("a shared session whose creator's account is gone is managed by owner/admin; a private one is unreadable", () => {
     const orphan = plan({ createdBy: null, visibility: "organization" });

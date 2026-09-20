@@ -198,18 +198,32 @@ export async function getPlan(
 }
 
 export type ListPlansOptions = {
-  status?: PlanStatus;
+  /** Only these statuses (default: every status). */
+  statuses?: PlanStatus[];
   /** Only soft-deleted sessions (a trash view). Default: only live ones. */
   trash?: boolean;
   /** Only the actor's own sessions. */
   mineOnly?: boolean;
+  /** Free text over title, team and objective statement. */
+  q?: string;
+  /** Age group key. */
+  ageGroup?: string;
+  /** Exact team name. */
+  team?: string;
+  /** Scheduled date range, inclusive (`YYYY-MM-DD`). Sessions without a date never match a date filter. */
+  from?: string;
+  to?: string;
   limit?: number;
   offset?: number;
 };
 
+/** `!` is the LIKE escape character (chosen to avoid backslash-escaping ambiguity). */
+const escapeLike = (s: string) => s.replace(/[!%_]/g, (c) => `!${c}`);
+
 /**
- * Sessions the actor may read, newest change first, with total length and start/end instants taken from the
- * `plan_totals` view in the same query (no per-row work in the application).
+ * Sessions the actor may read, newest change first, with total length, start/end instants and the primary
+ * objective, all in the same query (the totals come from the `plan_totals` view: no per-row work in the
+ * application). Filtering and paging happen in SQL.
  */
 export async function listPlans(
   actor: Actor,
@@ -225,14 +239,25 @@ export async function listPlans(
     eq(plans.sportId, sport.id),
     opts.trash ? isNotNull(plans.deletedAt) : isNull(plans.deletedAt),
   ];
-  if (opts.status) conds.push(eq(plans.status, opts.status));
+  if (opts.statuses && opts.statuses.length) conds.push(inArray(plans.status, opts.statuses));
   if (opts.mineOnly) conds.push(eq(plans.createdBy, actor.userId));
+  if (opts.ageGroup) conds.push(eq(ageGroups.key, opts.ageGroup));
+  if (opts.team) conds.push(eq(plans.teamName, opts.team));
+  if (opts.from) conds.push(sql`${plans.scheduledDate} >= ${opts.from}`);
+  if (opts.to) conds.push(sql`${plans.scheduledDate} <= ${opts.to}`);
+  if (opts.q) {
+    const like = `%${escapeLike(opts.q)}%`;
+    conds.push(
+      sql`(${plans.title} ILIKE ${like} ESCAPE '!' OR ${plans.teamName} ILIKE ${like} ESCAPE '!' OR ${plans.objective} ILIKE ${like} ESCAPE '!')`,
+    );
+  }
   const where = and(...conds);
 
   return tenantTx(actor, async (tx) => {
     const [{ n } = { n: 0 }] = await tx
       .select({ n: sql<number>`count(*)::int` })
       .from(plans)
+      .leftJoin(ageGroups, eq(ageGroups.id, plans.ageGroupId))
       .where(where);
     const rows = await tx
       .select({
@@ -243,10 +268,17 @@ export async function listPlans(
         endsAt: planTotals.endsAt,
         ageGroupKey: ageGroups.key,
         ageGroupName: ageGroups.name,
+        primaryKey: objectives.key,
+        primaryName: objectives.name,
       })
       .from(plans)
       .innerJoin(planTotals, eq(planTotals.planId, plans.id))
       .leftJoin(ageGroups, eq(ageGroups.id, plans.ageGroupId))
+      .leftJoin(
+        planObjectives,
+        and(eq(planObjectives.planId, plans.id), eq(planObjectives.role, "primary")),
+      )
+      .leftJoin(objectives, eq(objectives.id, planObjectives.objectiveId))
       .where(where)
       .orderBy(desc(plans.updatedAt), desc(plans.id))
       .limit(limit)
@@ -268,10 +300,31 @@ export async function listPlans(
       targetMinutes: r.plan.targetMinutes,
       startsAt: r.startsAt,
       endsAt: r.endsAt,
+      primaryObjective: r.primaryKey ? { key: r.primaryKey, name: r.primaryName! } : null,
+      version: r.plan.version,
+      permissions: {
+        canManage: can(actor, "plan:delete", resourceOf(r.plan)),
+        canDuplicate: !r.plan.deletedAt && can(actor, "plan:duplicate", resourceOf(r.plan)),
+      },
       isMine: r.plan.createdBy === actor.userId,
       deletedAt: r.plan.deletedAt,
       updatedAt: r.plan.updatedAt,
     }));
     return { items, total: Number(n) };
+  });
+}
+
+/** The team names used across the sessions the actor can read (live ones), for the "Team" filter. */
+export async function listPlanTeams(actor: Actor, sportKey: string): Promise<string[]> {
+  const sport = await getSport(sportKey);
+  if (!sport) return [];
+  return tenantTx(actor, async (tx) => {
+    const rows = await tx
+      .selectDistinct({ team: plans.teamName })
+      .from(plans)
+      .where(and(eq(plans.sportId, sport.id), isNull(plans.deletedAt), isNotNull(plans.teamName)))
+      .orderBy(asc(plans.teamName))
+      .limit(100);
+    return rows.flatMap((r) => (r.team ? [r.team] : []));
   });
 }

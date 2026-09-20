@@ -65,6 +65,8 @@ export const POLICY = {
   "plan:update": { roles: AUTHORS, scope: "plan" },
   /** Delete (soft) and restore. */
   "plan:delete": { roles: AUTHORS, scope: "plan" },
+  /** Copy a session you can read into your own workspace (as a private draft). */
+  "plan:duplicate": { roles: AUTHORS, scope: "plan" },
 } as const satisfies Record<string, Rule>;
 
 export type Action = keyof typeof POLICY;
@@ -124,6 +126,7 @@ function drillAllows(action: Action, actor: Actor, d: DrillResource): boolean {
  * Session rules, mirrored by row-level security (drizzle/0005_*.sql):
  *  - read:   my workspace's sessions, except other people's private ones. Nobody reads another workspace's.
  *  - change: only what I can read, by its creator or an owner/admin of the workspace. Assistants never.
+ *  - duplicate: anything I can read, as an author (the copy is mine).
  * (Whether a session is archived or deleted is a matter for the command, not for ownership.)
  */
 function planAllows(action: Action, actor: Actor, p: PlanResource): boolean {
@@ -132,6 +135,7 @@ function planAllows(action: Action, actor: Actor, p: PlanResource): boolean {
     (p.visibility === "organization" || p.createdBy === actor.userId);
   switch (action) {
     case "plan:read":
+    case "plan:duplicate":
       return canRead;
     case "plan:update":
     case "plan:delete":

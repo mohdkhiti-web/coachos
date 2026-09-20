@@ -66,11 +66,9 @@ export function buildTimeline<T extends Timed>(activities: readonly T[]): OnTime
 export const remainingMinutes = (targetMinutes: number, total: number): number =>
   targetMinutes - total;
 
-/** 0 → "00:00", 75 → "01:15": the offset labels of the timeline. */
+/** Minutes into the session as the timeline labels them: 0 → "00:00", 10 → "10:00", 65 → "65:00", 90 → "90:00". */
 export function formatOffset(minutes: number): string {
-  const h = Math.floor(minutes / 60);
-  const m = minutes % 60;
-  return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+  return `${String(minutes).padStart(2, "0")}:00`;
 }
 
 // ---------------------------------------------------------------------------------------------------

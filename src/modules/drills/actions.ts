@@ -27,6 +27,7 @@ function unexpected(scope: string, err: unknown): Out {
 
 function refresh(sport: string) {
   revalidatePath(`/sports/${sport}`, "layout"); // drops the client router cache for the workspace
+  revalidatePath(`/sessions/${sport}`, "layout"); // …and the session builder's drill picker, which shows the same favorites
 }
 
 function parse(raw: unknown) {
