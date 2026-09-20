@@ -116,27 +116,27 @@ async function hydrateCards(
   const ids = rows.map((r) => r.id as string);
   if (ids.length === 0) return [];
 
-  const [primary, equip, diagrams] = await Promise.all([
-    tx
-      .select({ drillId: drillSkills.drillId, key: skills.key, name: skills.name })
-      .from(drillSkills)
-      .innerJoin(skills, eq(skills.id, drillSkills.skillId))
-      .where(and(inArray(drillSkills.drillId, ids), eq(drillSkills.role, "primary"))),
-    tx
-      .select({
-        drillId: drillEquipment.drillId,
-        key: equipmentTypes.key,
-        name: equipmentTypes.name,
-      })
-      .from(drillEquipment)
-      .innerJoin(equipmentTypes, eq(equipmentTypes.id, drillEquipment.equipmentTypeId))
-      .where(inArray(drillEquipment.drillId, ids))
-      .orderBy(asc(equipmentTypes.sortOrder)),
-    tx
-      .select({ drillId: drillDiagrams.drillId, data: drillDiagrams.data })
-      .from(drillDiagrams)
-      .where(and(inArray(drillDiagrams.drillId, ids), eq(drillDiagrams.position, 0))),
-  ]);
+  // One transaction = one connection: run these one after another (concurrent queries on a single
+  // `pg` client are deprecated and queue up behind each other anyway).
+  const primary = await tx
+    .select({ drillId: drillSkills.drillId, key: skills.key, name: skills.name })
+    .from(drillSkills)
+    .innerJoin(skills, eq(skills.id, drillSkills.skillId))
+    .where(and(inArray(drillSkills.drillId, ids), eq(drillSkills.role, "primary")));
+  const equip = await tx
+    .select({
+      drillId: drillEquipment.drillId,
+      key: equipmentTypes.key,
+      name: equipmentTypes.name,
+    })
+    .from(drillEquipment)
+    .innerJoin(equipmentTypes, eq(equipmentTypes.id, drillEquipment.equipmentTypeId))
+    .where(inArray(drillEquipment.drillId, ids))
+    .orderBy(asc(equipmentTypes.sortOrder));
+  const diagrams = await tx
+    .select({ drillId: drillDiagrams.drillId, data: drillDiagrams.data })
+    .from(drillDiagrams)
+    .where(and(inArray(drillDiagrams.drillId, ids), eq(drillDiagrams.position, 0)));
 
   return rows.map((r) => {
     const id = r.id as string;
@@ -278,28 +278,27 @@ export async function getSportOverview(
 
   return tenantTx(actor, async (tx) => {
     const base = and(eq(drills.sportId, sport.id), eq(drills.status, "published"));
-    const [[lib], [mine], perCategory] = await Promise.all([
-      tx
-        .select({ n: sql<number>`count(*)::int` })
-        .from(drills)
-        .where(and(base, eq(drills.visibility, "public"))),
-      tx
-        .select({ n: sql<number>`count(*)::int` })
-        .from(drills)
-        .where(
-          and(
-            base,
-            eq(drills.createdBy, actor.userId),
-            eq(drills.organizationId, actor.organizationId),
-          ),
+    // sequential on purpose: a transaction is a single connection (see hydrateCards)
+    const [lib] = await tx
+      .select({ n: sql<number>`count(*)::int` })
+      .from(drills)
+      .where(and(base, eq(drills.visibility, "public")));
+    const [mine] = await tx
+      .select({ n: sql<number>`count(*)::int` })
+      .from(drills)
+      .where(
+        and(
+          base,
+          eq(drills.createdBy, actor.userId),
+          eq(drills.organizationId, actor.organizationId),
         ),
-      // everything visible to the actor (library + their own/shared), grouped by category
-      tx
-        .select({ categoryId: drills.categoryId, n: sql<number>`count(*)::int` })
-        .from(drills)
-        .where(base)
-        .groupBy(drills.categoryId),
-    ]);
+      );
+    // everything visible to the actor (library + their own/shared), grouped by category
+    const perCategory = await tx
+      .select({ categoryId: drills.categoryId, n: sql<number>`count(*)::int` })
+      .from(drills)
+      .where(base)
+      .groupBy(drills.categoryId);
     const counts: CategoryCount[] = taxonomy.categories
       .map((c) => ({
         key: c.key,
@@ -353,30 +352,29 @@ export async function getDrill(
       return null;
     }
 
-    const [skillRows, equipRows, diagramRows] = await Promise.all([
-      tx
-        .select({ key: skills.key, name: skills.name, role: drillSkills.role })
-        .from(drillSkills)
-        .innerJoin(skills, eq(skills.id, drillSkills.skillId))
-        .where(eq(drillSkills.drillId, id))
-        .orderBy(asc(drillSkills.role), asc(skills.sortOrder)), // 'primary' < 'secondary' alphabetically → primary first
-      tx
-        .select({
-          key: equipmentTypes.key,
-          name: equipmentTypes.name,
-          rule: drillEquipment.rule,
-          quantity: drillEquipment.quantity,
-        })
-        .from(drillEquipment)
-        .innerJoin(equipmentTypes, eq(equipmentTypes.id, drillEquipment.equipmentTypeId))
-        .where(eq(drillEquipment.drillId, id))
-        .orderBy(asc(equipmentTypes.sortOrder)),
-      tx
-        .select()
-        .from(drillDiagrams)
-        .where(eq(drillDiagrams.drillId, id))
-        .orderBy(asc(drillDiagrams.position)),
-    ]);
+    // sequential on purpose: a transaction is a single connection (see hydrateCards)
+    const skillRows = await tx
+      .select({ key: skills.key, name: skills.name, role: drillSkills.role })
+      .from(drillSkills)
+      .innerJoin(skills, eq(skills.id, drillSkills.skillId))
+      .where(eq(drillSkills.drillId, id))
+      .orderBy(asc(drillSkills.role), asc(skills.sortOrder)); // 'primary' < 'secondary' alphabetically → primary first
+    const equipRows = await tx
+      .select({
+        key: equipmentTypes.key,
+        name: equipmentTypes.name,
+        rule: drillEquipment.rule,
+        quantity: drillEquipment.quantity,
+      })
+      .from(drillEquipment)
+      .innerJoin(equipmentTypes, eq(equipmentTypes.id, drillEquipment.equipmentTypeId))
+      .where(eq(drillEquipment.drillId, id))
+      .orderBy(asc(equipmentTypes.sortOrder));
+    const diagramRows = await tx
+      .select()
+      .from(drillDiagrams)
+      .where(eq(drillDiagrams.drillId, id))
+      .orderBy(asc(drillDiagrams.position));
 
     const resource = {
       organizationId: row.organizationId,

@@ -23,7 +23,7 @@ describe("sport registry", () => {
 });
 
 describe("FIBA court geometry", () => {
-  it("matches the verified dimensions", () => {
+  it("matches the current (provisional) dimensions", () => {
     expect(FIBA_DIMENSIONS).toMatchObject({
       courtLength: 28,
       courtWidth: 15,
@@ -50,10 +50,13 @@ describe("FIBA court geometry", () => {
     expect(Math.hypot(6.6, y)).toBeCloseTo(6.75, 3);
   });
 
-  it("cites its source and is explicit about what was not independently verified", () => {
+  it("is labelled honestly: provisional, secondary-source cross-check only, with the unchecked items listed", () => {
     for (const pack of [FIBA_HALF_COURT, FIBA_FULL_COURT]) {
       expect(pack.source.name).toMatch(/FIBA/);
-      expect(pack.source.verified.length).toBeGreaterThan(3);
+      expect(pack.source.name).toMatch(/provisional/i);
+      expect(pack.source.name).toMatch(/not yet verified/i);
+      expect(pack.label).toMatch(/FIBA-style/); // never presented as an official FIBA court
+      expect(pack.source.crossChecked.length).toBeGreaterThan(3);
       expect(pack.source.unverified.length).toBeGreaterThan(0);
     }
   });

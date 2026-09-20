@@ -29,7 +29,7 @@ const TOY: CourtPack = {
   primaryTarget: { x: 5, y: 0 },
   primitives: [{ d: "M 0 0 H 10 V 10 H 0 Z", stroke: "line" }],
   actions: ["pass", "cut", "move", "dribble", "shot"], // no "screen" on the toy field
-  source: { name: "toy", verified: [], unverified: [] },
+  source: { name: "toy", crossChecked: [], unverified: [] },
 };
 
 const make = (over: Partial<DiagramInput> = {}): Diagram =>

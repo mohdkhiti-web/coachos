@@ -35,8 +35,12 @@ export interface CourtPack {
   primitives: readonly CourtPrimitive[];
   /** Actions this sport's vocabulary allows on this surface. */
   actions: readonly ActionType[];
-  /** Where the numbers come from, and what has NOT been independently verified. */
-  source: { name: string; verified: readonly string[]; unverified: readonly string[] };
+  /**
+   * Where the numbers come from and how far they can be trusted. `crossChecked` = compared against a
+   * SECONDARY source only (never call that "verified"); `unverified` = not checked at all. Verification
+   * against the governing body's own text is a separate step that has to be recorded explicitly.
+   */
+  source: { name: string; crossChecked: readonly string[]; unverified: readonly string[] };
 }
 
 export const anchorLabel = (name: string) => name.replaceAll("_", " ");

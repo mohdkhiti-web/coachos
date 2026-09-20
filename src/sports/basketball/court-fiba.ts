@@ -1,16 +1,19 @@
 import type { CourtPack, CourtPrimitive, Pt } from "@/engines/diagram";
 
 /**
- * FIBA basketball court pack (ARCHITECTURE.md §10.3).
+ * Basketball court pack, FIBA-style layout (ARCHITECTURE.md §10.3). An independent CoachOS drawing;
+ * not affiliated with or endorsed by FIBA.
  *
  * Coordinates are metres. Origin = centre of the basket; +y runs from the basket toward the halfway
  * line; +x is screen-right. Viewed from above with the basket at the top, so an offensive player
  * facing the basket has their left on screen-left.
  *
- * SOURCE. Dimensions cross-checked (2026-09-20) against the published summary of the FIBA
- * "Official Basketball Rules 2024" (Wikipedia, "Basketball court"). Items are listed as verified or
- * unverified below rather than asserted. Nothing here is a substitute for the rulebook — check the
- * official text before using the drawings for regulatory or marketing purposes. (§15.2)
+ * STATUS: PROVISIONAL. The dimensions below were cross-checked (2026-09-20) only against a published
+ * SECONDARY summary of the FIBA Official Basketball Rules (Wikipedia, "Basketball court"). None of
+ * them has been verified against the official FIBA text, so none may be treated as canonical yet.
+ * `SOURCE` lists what the secondary source agreed with (`crossChecked`) and what it did not cover
+ * (`unverified`). Official verification (citing article and edition) is required before these
+ * drawings appear on exported documents and before any "official" claim. (§10.3, §15.2)
  */
 
 const HALF_WIDTH = 7.5; //  court width 15 m
@@ -104,8 +107,8 @@ const FULL_ANCHORS: Record<string, Pt> = {
 };
 
 const SOURCE = {
-  name: "FIBA Official Basketball Rules 2024 (dimensions cross-checked 2026-09-20 against a published summary)",
-  verified: [
+  name: "PROVISIONAL — FIBA-style court dimensions cross-checked (2026-09-20) against a secondary summary of the FIBA Official Basketball Rules; not yet verified against the official FIBA text",
+  crossChecked: [
     "Court 28 m × 15 m",
     "Three-point arc radius 6.75 m from the basket centre",
     "Corner three-point lines 6.60 m from the court centre line (0.90 m from the sideline)",
@@ -128,7 +131,7 @@ const ACTIONS = ["pass", "cut", "move", "dribble", "screen", "shot"] as const;
 
 export const FIBA_HALF_COURT: CourtPack = {
   id: "basketball.fiba.half",
-  label: "Half basketball court (FIBA)",
+  label: "Half basketball court (FIBA-style)",
   bounds: { minX: -HALF_WIDTH, maxX: HALF_WIDTH, minY: BASELINE, maxY: HALF_LINE },
   margin: 0.9,
   tolerance: 0.6,
@@ -152,7 +155,7 @@ export const FIBA_HALF_COURT: CourtPack = {
 
 export const FIBA_FULL_COURT: CourtPack = {
   id: "basketball.fiba.full",
-  label: "Full basketball court (FIBA)",
+  label: "Full basketball court (FIBA-style)",
   bounds: { minX: -HALF_WIDTH, maxX: HALF_WIDTH, minY: BASELINE, maxY: HALF_LINE * 2 - BASELINE },
   margin: 0.9,
   tolerance: 0.6,
