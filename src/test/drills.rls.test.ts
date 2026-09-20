@@ -22,7 +22,8 @@ import { createDrill } from "@/modules/drills/commands";
 import { drillContentSchema } from "@/modules/drills/content";
 import { getCourtPack as courtPackFor } from "@/sports/registry";
 import { createTestActor } from "./factories";
-import { drillInput, expectDbError, ownerPool } from "./drill-fixtures";
+import { createClub, drillInput, expectDbError, ownerPool } from "./drill-fixtures";
+import { adminPool } from "./plan-fixtures";
 
 /**
  * Sports/drill data model + row-level security, exercised against real PostgreSQL as the real
@@ -360,6 +361,62 @@ describe("row-level security: writes", () => {
         tx.execute(sql`update drills set visibility = 'public' where id = ${aDrillId}`),
       ),
       /row-level security/,
+    );
+  });
+
+  it("erasing the account of a workspace member who authored drills works: the drills stay, with no creator", async () => {
+    const founder = await createTestActor("Club Founder");
+    const club = await createClub(founder, [{ role: "coach", name: "Leaving Coach" }]);
+    const leaver = club.members[0]!;
+    const shared = await createDrill(
+      leaver,
+      "basketball",
+      drillInput({ title: "Leaver Shared Drill", visibility: "organization" }),
+    );
+    const mine = await createDrill(
+      leaver,
+      "basketball",
+      drillInput({ title: "Leaver Private Drill", visibility: "private" }),
+    );
+    if (!shared.ok || !mine.ok) throw new Error("fixture failed");
+
+    // the account is erased (a foreign-key action clears created_by on the drills)
+    await db.execute(sql`delete from "user" where id = ${leaver.userId}`);
+
+    const owner = club.ownerActor;
+    const after = await rows(
+      owner,
+      sql`select id, created_by, organization_id from drills where id in (${shared.data.id}, ${mine.data.id})`,
+    );
+    // the shared drill is still there for the workspace; the private one has no reader left but is not destroyed
+    expect(after.map((r) => r.id)).toEqual([shared.data.id]);
+    expect(after[0]!.created_by).toBeNull();
+    expect(after[0]!.organization_id).toBe(club.orgId);
+    // the private drill was not destroyed either (only a superuser can see it: it has no reader left)
+    const superuser = adminPool();
+    try {
+      const { rows: all } = await superuser.query(
+        "select created_by, organization_id from drills where id = $1",
+        [mine.data.id],
+      );
+      expect(all[0]).toEqual({ created_by: null, organization_id: club.orgId });
+    } finally {
+      await superuser.end();
+    }
+    // a workspace owner can still manage the orphaned shared drill
+    const managed = await rows(
+      owner,
+      sql`update drills set title = 'Adopted drill' where id = ${shared.data.id} returning id`,
+    );
+    expect(managed).toHaveLength(1);
+  });
+
+  it("…but nobody can clear or change the creator while the account exists", async () => {
+    await expectDbError(
+      tenantTx(A, (tx) =>
+        tx.execute(sql`update drills set created_by = null where id = ${aDrillId}`),
+      ),
+      /immutable/,
     );
   });
 
