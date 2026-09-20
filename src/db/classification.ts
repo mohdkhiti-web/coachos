@@ -20,11 +20,21 @@ export const IDENTITY_TABLES = [
   "rate_limit",
 ] as const;
 
-/** Platform-owned catalog data, readable by everyone, writable only via admin tooling (Phase 2+). */
-export const GLOBAL_CATALOG_TABLES = [] as const;
+/**
+ * Platform-owned reference data: readable by everyone, writable only by the owner role
+ * (migrations / seed). The guard asserts the runtime role has SELECT and nothing else on these.
+ */
+export const GLOBAL_CATALOG_TABLES = ["sports", "categories", "skills", "equipment_types"] as const;
 
 /** Tenant/user-scoped tables: RLS must be enabled AND forced. */
-export const TENANT_TABLES = ["profiles", "audit_events"] as const;
+export const TENANT_TABLES = [
+  "profiles",
+  "audit_events",
+  "drills",
+  "drill_skills",
+  "drill_equipment",
+  "drill_diagrams",
+] as const;
 
 /** Drizzle's own bookkeeping table. */
 export const SYSTEM_TABLES = ["__drizzle_migrations"] as const;

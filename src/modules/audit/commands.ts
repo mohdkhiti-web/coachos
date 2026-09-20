@@ -22,7 +22,11 @@ export type AuditAction =
   | "account.profile_updated"
   | "account.preferences_updated"
   | "account.deleted"
-  | "organization.renamed";
+  | "organization.renamed"
+  | "drill.created"
+  | "drill.updated"
+  | "drill.archived"
+  | "drill.duplicated";
 
 export type AuditContext = { userId?: string | null; organizationId?: string | null };
 

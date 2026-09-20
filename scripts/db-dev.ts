@@ -8,6 +8,7 @@
  *                                      that answers only once roles + migrations are applied
  */
 import { createServer } from "node:http";
+import { seedAll } from "../src/db/seed/run";
 import {
   bootstrapRoles,
   DEV_CLUSTER,
@@ -28,6 +29,7 @@ async function main() {
   const urls = localUrls(cluster);
   await bootstrapRoles(urls.admin);
   await runMigrations(urls.owner);
+  await seedAll(urls.owner, (m) => console.log(`✔ ${m}`));
 
   if (readyPort) {
     createServer((_req, res) => res.end("ready")).listen(Number(readyPort), "127.0.0.1");
