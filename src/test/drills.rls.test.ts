@@ -535,3 +535,216 @@ describe("integrity constraints (defence in depth, independent of app validation
     await expectDbError(bad({ content: [] }), /drills_content_chk/);
   });
 });
+
+describe("skills tree: sub-skills (catalog integrity)", () => {
+  const owner = ownerPool();
+  afterAll(async () => {
+    await owner.query("delete from skills where key like 'tt\\_%'");
+    await owner.end();
+  });
+  const sportId = async (key: string) =>
+    ((await owner.query("select id from sports where key = $1", [key])).rows[0] as { id: string })
+      .id;
+  const addSkill = async (sport: string, key: string, parentId: string | null = null) => {
+    const id = newId();
+    await owner.query(
+      "insert into skills (id, sport_id, key, name, parent_id) values ($1, $2, $3, $3, $4)",
+      [id, await sportId(sport), key, parentId],
+    );
+    return id;
+  };
+
+  it("the seeded taxonomy is a clean two-level tree: every sub-skill has a top-level parent in the same sport", async () => {
+    const r = await owner.query(`
+      select c.key as child, p.key as parent, (c.sport_id = p.sport_id) as same_sport, (p.parent_id is null) as parent_top
+      from skills c join skills p on p.id = c.parent_id`);
+    expect(r.rows.length).toBeGreaterThanOrEqual(30);
+    for (const row of r.rows) {
+      expect(row.same_sport, `${row.child} parent in same sport`).toBe(true);
+      expect(row.parent_top, `${row.parent} is top-level`).toBe(true);
+    }
+  });
+
+  it("a sub-skill's parent must belong to the same sport (composite foreign key)", async () => {
+    const foreignParent = await addSkill("football", "tt_football_parent");
+    await expectDbError(
+      addSkill("basketball", "tt_cross_child", foreignParent),
+      /skills_parent_sport_fk|foreign key/,
+    );
+  });
+
+  it("two levels only: a sub-skill cannot be a parent, and a parent cannot become a sub-skill", async () => {
+    const parent = await addSkill("basketball", "tt_parent");
+    const child = await addSkill("basketball", "tt_child", parent);
+    await expectDbError(addSkill("basketball", "tt_grandchild", child), /two levels only/);
+    const other = await addSkill("basketball", "tt_other_top");
+    await expectDbError(
+      owner.query("update skills set parent_id = $1 where id = $2", [other, parent]),
+      /two levels only/,
+    );
+  });
+
+  it("a skill cannot be its own parent", async () => {
+    const id = await addSkill("basketball", "tt_self");
+    await expectDbError(
+      owner.query("update skills set parent_id = id where id = $1", [id]),
+      /skills_parent_not_self_chk/,
+    );
+  });
+
+  it("the runtime role can read the tree but not change it", async () => {
+    const r = await rows(A, sql`select count(*)::int as n from skills where parent_id is not null`);
+    expect(Number(r[0]?.n)).toBeGreaterThan(0);
+    await expectDbError(
+      tenantTx(A, (tx) =>
+        tx.execute(sql`update skills set parent_id = null where key = 'crossover'`),
+      ),
+      /permission denied/,
+    );
+  });
+});
+
+describe("drill facets: constraints and the sub-skill role", () => {
+  const asA = (statement: ReturnType<typeof sql>) => tenantTx(A, (tx) => tx.execute(statement));
+
+  it("intensity, format and phases are constrained in the database, whatever the application says", async () => {
+    await expectDbError(
+      asA(sql`update drills set intensity = 'extreme' where id = ${aDrillId}`),
+      /drills_intensity_chk/,
+    );
+    await expectDbError(
+      asA(sql`update drills set format = '3 v 3!' where id = ${aDrillId}`),
+      /drills_format_chk/,
+    );
+    await expectDbError(
+      asA(sql`update drills set format = ${"x".repeat(17)} where id = ${aDrillId}`),
+      /drills_format_chk/,
+    );
+    await expectDbError(
+      asA(sql`update drills set phases = '{overtime}' where id = ${aDrillId}`),
+      /drills_phases_chk/,
+    );
+    await expectDbError(
+      asA(
+        sql`update drills set phases = '{warm_up,skill,small_sided,game,conditioning,cool_down,skill}' where id = ${aDrillId}`,
+      ),
+      /drills_phases_chk/,
+    );
+    // …and the good values are accepted
+    await asA(
+      sql`update drills set intensity = 'high', format = '3v3', phases = '{skill,game}' where id = ${aDrillId}`,
+    );
+    const r = await rows(
+      A,
+      sql`select intensity, format, phases from drills where id = ${aDrillId}`,
+    );
+    expect(r[0]).toEqual({ intensity: "high", format: "3v3", phases: ["skill", "game"] });
+    await asA(
+      sql`update drills set intensity = 'medium', format = null, phases = '{}' where id = ${aDrillId}`,
+    );
+  });
+
+  it("a drill_skills row may have the role 'sub' (and only primary / secondary / sub)", async () => {
+    const [sub] = await db
+      .select({ id: skills.id, sportId: skills.sportId })
+      .from(skills)
+      .where(eq(skills.key, "crossover"));
+    await tenantTx(A, (tx) =>
+      tx
+        .insert(drillSkills)
+        .values({ drillId: aDrillId, skillId: sub!.id, sportId: sub!.sportId, role: "sub" }),
+    );
+    await expectDbError(
+      tenantTx(A, (tx) =>
+        tx
+          .insert(drillSkills)
+          .values({ drillId: aDrillId, skillId: sub!.id, sportId: sub!.sportId, role: "tertiary" }),
+      ),
+      /drill_skills_role_chk|duplicate key/,
+    );
+    await tenantTx(A, (tx) =>
+      tx
+        .delete(drillSkills)
+        .where(and(eq(drillSkills.drillId, aDrillId), eq(drillSkills.skillId, sub!.id))),
+    );
+  });
+});
+
+describe("row-level security: favorites", () => {
+  let aFav: string;
+  beforeAll(async () => {
+    aFav = libraryId;
+    await rows(
+      A,
+      sql`insert into drill_favorites (user_id, drill_id) values (${A.userId}, ${aFav}) on conflict do nothing`,
+    );
+  });
+
+  it("a user can add and read their own favorite of a drill they may read", async () => {
+    const r = await rows(A, sql`select drill_id from drill_favorites where user_id = ${A.userId}`);
+    expect(r.map((x) => x.drill_id)).toContain(aFav);
+  });
+
+  it("B cannot see A's favorites — by scan, by user id or by drill id", async () => {
+    expect(await rows(B, sql`select * from drill_favorites`)).toEqual([]);
+    expect(await rows(B, sql`select * from drill_favorites where user_id = ${A.userId}`)).toEqual(
+      [],
+    );
+    expect(await rows(B, sql`select * from drill_favorites where drill_id = ${aFav}`)).toEqual([]);
+  });
+
+  it("B cannot create a favorite in A's name", async () => {
+    await expectDbError(
+      tenantTx(B, (tx) =>
+        tx.execute(
+          sql`insert into drill_favorites (user_id, drill_id) values (${A.userId}, ${libraryId})`,
+        ),
+      ),
+      /row-level security/,
+    );
+  });
+
+  it("B cannot favorite a drill B cannot read (A's private drill), even as themselves", async () => {
+    await expectDbError(
+      tenantTx(B, (tx) =>
+        tx.execute(
+          sql`insert into drill_favorites (user_id, drill_id) values (${B.userId}, ${aDrillId})`,
+        ),
+      ),
+      /row-level security/,
+    );
+  });
+
+  it("B cannot remove A's favorite (0 rows affected), and A still has it", async () => {
+    expect(
+      await rows(
+        B,
+        sql`delete from drill_favorites where user_id = ${A.userId} returning drill_id`,
+      ),
+    ).toEqual([]);
+    const r = await rows(A, sql`select drill_id from drill_favorites where user_id = ${A.userId}`);
+    expect(r.map((x) => x.drill_id)).toContain(aFav);
+  });
+
+  it("a session with no tenant context sees no favorites (fails closed)", async () => {
+    const r = await db.execute(sql`select count(*)::int as n from drill_favorites`);
+    expect(Number((r.rows[0] as { n: number }).n)).toBe(0);
+  });
+
+  it("favorites are add/remove only: the runtime role cannot UPDATE them", async () => {
+    await expectDbError(
+      tenantTx(A, (tx) =>
+        tx.execute(sql`update drill_favorites set created_at = now() where user_id = ${A.userId}`),
+      ),
+      /permission denied/,
+    );
+  });
+
+  it("a user can remove their own favorite", async () => {
+    const r = await rows(
+      A,
+      sql`delete from drill_favorites where user_id = ${A.userId} and drill_id = ${aFav} returning drill_id`,
+    );
+    expect(r).toHaveLength(1);
+  });
+});

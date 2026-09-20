@@ -1,0 +1,214 @@
+{
+  "categories": [
+    {
+      "key": "warm_up",
+      "name": "Warm-up & Activation",
+      "description": "Prepare the body and get the ball moving."
+    },
+    {
+      "key": "ball_handling",
+      "name": "Ball Handling",
+      "description": "Dribbling control, change of pace and direction."
+    },
+    {
+      "key": "passing",
+      "name": "Passing & Catching",
+      "description": "Accurate, on-time passes and secure catches."
+    },
+    {
+      "key": "shooting",
+      "name": "Shooting",
+      "description": "Form, balance and repeatable mechanics."
+    },
+    {
+      "key": "finishing",
+      "name": "Finishing at the Rim",
+      "description": "Layups and finishes with control."
+    },
+    {
+      "key": "footwork",
+      "name": "Footwork & Body Control",
+      "description": "Stops, pivots and balance."
+    },
+    {
+      "key": "individual_defense",
+      "name": "Individual Defense",
+      "description": "Stance, slides and containing the ball."
+    },
+    {
+      "key": "rebounding",
+      "name": "Rebounding",
+      "description": "Boxing out and securing the ball."
+    },
+    {
+      "key": "team_offense",
+      "name": "Team Offense",
+      "description": "Spacing, cutting and screening together."
+    },
+    {
+      "key": "team_defense",
+      "name": "Team Defense",
+      "description": "Help, rotation and communication."
+    },
+    { "key": "transition", "name": "Transition", "description": "Fast breaks and getting back." },
+    {
+      "key": "press_break",
+      "name": "Press Break",
+      "description": "Attacking full-court pressure with poise."
+    },
+    {
+      "key": "small_sided_games",
+      "name": "Small-Sided Games",
+      "description": "3v3 and 4v4 play with constraints that teach decisions."
+    },
+    {
+      "key": "special_situations",
+      "name": "Special Situations",
+      "description": "Inbound plays, late-game and end-of-game execution."
+    },
+    {
+      "key": "conditioning",
+      "name": "Conditioning",
+      "description": "Basketball-specific fitness."
+    },
+    {
+      "key": "competition",
+      "name": "Games & Competition",
+      "description": "Pressure, scoring and fun."
+    },
+    {
+      "key": "cooldown",
+      "name": "Cool-down",
+      "description": "Bring the heart rate down and finish the session well."
+    }
+  ],
+  "skills": [
+    {
+      "key": "dribbling",
+      "name": "Dribbling",
+      "children": [
+        { "key": "crossover", "name": "Crossover" },
+        { "key": "change_of_pace", "name": "Change of pace" },
+        { "key": "protect_the_ball", "name": "Protecting the ball" },
+        { "key": "weak_hand", "name": "Weak-hand dribbling" }
+      ]
+    },
+    { "key": "ball_control", "name": "Ball control" },
+    {
+      "key": "passing",
+      "name": "Passing",
+      "children": [
+        { "key": "passing_on_the_move", "name": "Passing on the move" },
+        { "key": "passing_under_pressure", "name": "Passing under pressure" },
+        { "key": "skip_passes", "name": "Skip passes" }
+      ]
+    },
+    { "key": "catching", "name": "Catching" },
+    {
+      "key": "shooting_form",
+      "name": "Shooting form",
+      "children": [
+        { "key": "catch_and_shoot", "name": "Catch and shoot" },
+        { "key": "shooting_off_the_dribble", "name": "Shooting off the dribble" },
+        { "key": "follow_through", "name": "Balance & follow-through" }
+      ]
+    },
+    { "key": "free_throws", "name": "Free throws" },
+    {
+      "key": "finishing",
+      "name": "Finishing at the rim",
+      "children": [
+        { "key": "finishing_with_contact", "name": "Finishing through contact" },
+        { "key": "both_hands_finishing", "name": "Finishing with both hands" }
+      ]
+    },
+    { "key": "footwork", "name": "Footwork" },
+    { "key": "pivoting", "name": "Pivoting" },
+    { "key": "cutting", "name": "Cutting" },
+    {
+      "key": "screening",
+      "name": "Screening",
+      "children": [
+        { "key": "setting_screens", "name": "Setting screens" },
+        { "key": "using_screens", "name": "Using screens" }
+      ]
+    },
+    {
+      "key": "pick_and_roll",
+      "name": "Pick-and-roll",
+      "children": [
+        { "key": "pnr_ball_handler", "name": "Ball handler" },
+        { "key": "pnr_screener", "name": "Screener (roll and pop)" },
+        { "key": "pnr_defense", "name": "Defending the pick-and-roll" }
+      ]
+    },
+    { "key": "spacing", "name": "Spacing" },
+    {
+      "key": "decision_making",
+      "name": "Decision making",
+      "children": [
+        { "key": "reading_the_defense", "name": "Reading the defense" },
+        { "key": "numbers_advantage", "name": "Advantage & disadvantage situations" }
+      ]
+    },
+    {
+      "key": "on_ball_defense",
+      "name": "On-ball defense",
+      "children": [
+        { "key": "stance_and_slides", "name": "Stance & slides" },
+        { "key": "containing_the_dribble", "name": "Containing the dribbler" }
+      ]
+    },
+    { "key": "closeouts", "name": "Closeouts" },
+    {
+      "key": "help_defense",
+      "name": "Help defense",
+      "children": [
+        { "key": "help_position", "name": "Help position" },
+        { "key": "defensive_rotations", "name": "Rotations & recovery" }
+      ]
+    },
+    { "key": "boxing_out", "name": "Boxing out" },
+    {
+      "key": "rebounding",
+      "name": "Rebounding",
+      "children": [
+        { "key": "offensive_rebounding", "name": "Offensive rebounding" },
+        { "key": "defensive_rebounding", "name": "Defensive rebounding" }
+      ]
+    },
+    { "key": "communication", "name": "Communication" },
+    {
+      "key": "speed_agility",
+      "name": "Speed & agility",
+      "children": [{ "key": "change_of_direction", "name": "Change of direction" }]
+    },
+    { "key": "conditioning", "name": "Conditioning" },
+    { "key": "competitiveness", "name": "Competitiveness" },
+    {
+      "key": "press_break",
+      "name": "Press break",
+      "children": [
+        { "key": "attacking_pressure", "name": "Attacking pressure" },
+        { "key": "press_release", "name": "Getting open against pressure" }
+      ]
+    },
+    {
+      "key": "inbounding",
+      "name": "Inbound plays",
+      "children": [
+        { "key": "sideline_inbounds", "name": "Sideline out-of-bounds" },
+        { "key": "baseline_inbounds", "name": "Baseline out-of-bounds" }
+      ]
+    },
+    {
+      "key": "late_game_execution",
+      "name": "Late-game execution",
+      "children": [
+        { "key": "clock_management", "name": "Clock management" },
+        { "key": "foul_situations", "name": "Fouling & free-throw situations" }
+      ]
+    },
+    { "key": "recovery_mobility", "name": "Recovery & mobility" }
+  ]
+}

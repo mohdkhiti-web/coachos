@@ -1,0 +1,84 @@
+{
+  "seedKey": "cooldown-relaxed-free-throws",
+  "title": "Relaxed Free-Throw Wind-Down",
+  "description": "Pairs shoot free throws at a walking pace with a fixed routine, finishing practice on a calm, positive note while heart rates settle.",
+  "category": "cooldown",
+  "primarySkill": "free_throws",
+  "secondarySkills": ["recovery_mobility"],
+  "subSkills": [],
+  "level": "beginner",
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "format": "individual",
+  "intensity": "low",
+  "phases": ["cool_down"],
+  "tags": ["free throws", "cool-down", "routine", "shooting"],
+  "equipment": [
+    { "type": "basketball", "rule": "per_pair", "quantity": 1 },
+    { "type": "hoop", "rule": "fixed", "quantity": 2 }
+  ],
+  "content": {
+    "objective": "Lower the heart rate while finishing on a positive, low-pressure shooting routine.",
+    "setup": "Two or three players at each basket. One shoots free throws while a partner rebounds and passes the ball back at a walking pace.",
+    "organization": "Use every available basket. Rotate roles after every five shots, so each player shoots, rebounds and passes in turn.",
+    "instructions": [
+      "Take one deep breath, then shoot using the same routine every time: bounce, breathe, shoot.",
+      "The shooter takes five free throws, walking to the line rather than jogging.",
+      "The partner rebounds, walks the ball back and makes a chest pass to the shooter.",
+      "Swap roles after five shots and keep a running total for each pair.",
+      "After three rounds, walk one slow lap and stretch calves and shoulders."
+    ],
+    "coachingPoints": [
+      "Use the same routine on every shot.",
+      "Follow through and hold the finish until the ball lands.",
+      "Breathe out as you release."
+    ],
+    "commonMistakes": [
+      "Rushing the routine because practice is almost over.",
+      "Passing the ball back hard so the shooter has to catch on the move.",
+      "Standing still and cold between shots instead of walking to stay loose."
+    ],
+    "safety": "Keep the area under each basket clear and walk, do not run, when fetching a loose ball.",
+    "progressions": ["Pairs try to beat their total from the last session."],
+    "regressions": [
+      "Move one step closer to the basket for players who are struggling with range."
+    ],
+    "variations": ["Each make earns the partner a 10-second stretch held by the shooter."]
+  },
+  "diagrams": [
+    {
+      "title": "Shooter and rebounder",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": { "type": "half", "variant": "fiba" },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": { "anchor": "free_throw_line" }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": { "anchor": "right_block" }
+          },
+          { "id": "b1", "type": "ball", "heldBy": "o1" }
+        ],
+        "actions": [{ "id": "a1", "step": 1, "type": "shot", "entity": "o1" }],
+        "annotations": [
+          { "type": "text", "at": { "anchor": "top_key" }, "text": "Walk, don't run" }
+        ]
+      }
+    }
+  ]
+}

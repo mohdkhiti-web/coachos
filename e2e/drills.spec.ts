@@ -1,8 +1,12 @@
 import { expect, test, type Page } from "@playwright/test";
-import { SEED_DRILLS } from "../src/db/seed/drills";
+import { readdirSync } from "node:fs";
+import path from "node:path";
 import { completeOnboarding, newUser, signUpAndVerify, toast } from "./support/helpers";
 
-const LIBRARY = SEED_DRILLS.length;
+// one JSON file per library drill (content/basketball/drills): the library size comes straight from the content
+const LIBRARY = readdirSync(path.join(process.cwd(), "content", "basketball", "drills")).filter(
+  (f) => f.endsWith(".json"),
+).length;
 
 async function signedIn(page: Page, label = "Coach") {
   const user = newUser(label);
@@ -30,6 +34,9 @@ async function fillDrill(page: Page, title: string) {
     );
   await page.getByLabel("Category", { exact: true }).selectOption("passing");
   await page.getByLabel("Level", { exact: true }).selectOption("intermediate");
+  await page.getByLabel("Intensity", { exact: true }).selectOption("high");
+  await page.getByLabel("Format", { exact: true }).selectOption("3v3");
+  await page.getByRole("checkbox", { name: "Small-sided game" }).check();
   const age = page.getByRole("group", { name: /^Age/ });
   await age.getByLabel("Min").fill("10");
   await age.getByLabel("Max").fill("16");
@@ -40,6 +47,8 @@ async function fillDrill(page: Page, title: string) {
   await duration.getByLabel("Min").fill("8");
   await duration.getByLabel("Max").fill("12");
   await page.getByLabel("Main skill").selectOption("passing");
+  await page.getByRole("checkbox", { name: "Passing on the move" }).check(); // a focus area under the chosen skill
+  await page.getByLabel("Organization").fill("Two groups of five rotate every three minutes.");
   await page.getByLabel("Tags").fill("test, passing");
   await page.getByLabel("Objective").fill("Move the ball quickly and accurately to a teammate.");
   await page
@@ -132,11 +141,85 @@ test("the Phase 2 journey: sports → basketball → drills → filter → open 
     await expect(page.getByText(`Page 1 of ${Math.ceil(LIBRARY / 12)}`)).toBeVisible();
     await page.getByRole("link", { name: "Next" }).click();
     await expect(page).toHaveURL(/page=2/);
-    await expect(results(page)).toContainText("13–19");
+    await expect(results(page)).toContainText(`13–${Math.min(24, LIBRARY)}`);
     await page.getByRole("link", { name: "Previous" }).click();
   });
 
+  await test.step("format chips, intensity, phase and sub-skill filters work on the server and live in the URL", async () => {
+    await page.goto("/sports/basketball/drills");
+    const chips = page.getByRole("navigation", { name: "Filter by format" });
+    await expect(chips.getByRole("link")).toHaveText([
+      "Individual",
+      "1v1",
+      "2v2",
+      "3v3",
+      "4v4",
+      "5v5",
+      "Group",
+      "Team",
+    ]);
+    const chip3v3 = chips.getByRole("link", { name: "3v3", exact: true });
+    await chip3v3.click();
+    await expect(page).toHaveURL(/format=3v3/);
+    await expect(results(page)).toHaveText("1 drill");
+    await expect(page.getByRole("link", { name: "3v3 Half-Court Game to Seven" })).toBeVisible();
+    await expect(chip3v3).toHaveAttribute("aria-current", "true");
+    await chip3v3.click(); // pressing the active chip clears it
+    await expect(page).not.toHaveURL(/format=/);
+    await expect(results(page)).toHaveText(new RegExp(`of ${LIBRARY} drills`));
+
+    await filters(page).getByLabel("Intensity", { exact: true }).selectOption("low");
+    await expect(page).toHaveURL(/intensity=low/);
+    await expect(page.getByRole("link", { name: "Cool-Down Walk and Stretch" })).toBeVisible();
+    await page.getByRole("link", { name: "Remove filter: Low intensity" }).click();
+    await expect(page).not.toHaveURL(/intensity=/); // let each navigation settle before the next change
+
+    await filters(page).getByLabel("Best used in", { exact: true }).selectOption("cool_down");
+    await expect(results(page)).toHaveText("2 drills"); // the two cool-down drills
+    await page.getByRole("link", { name: "Remove filter: Best for: Cool-down" }).click();
+    await expect(page).not.toHaveURL(/phase=/);
+    await expect(results(page)).toHaveText(new RegExp(`of ${LIBRARY} drills`));
+
+    // a sub-skill finds its drills, and its parent skill finds them too
+    await filters(page).getByLabel("Skill", { exact: true }).selectOption("weak_hand");
+    await expect(results(page)).toHaveText("1 drill");
+    await expect(page.getByRole("link", { name: "Stationary Ball-Handling Series" })).toBeVisible();
+    await filters(page).getByLabel("Skill", { exact: true }).selectOption("dribbling");
+    await expect(page.getByRole("link", { name: "Stationary Ball-Handling Series" })).toBeVisible();
+    await page.goto("/sports/basketball/drills");
+  });
+
+  await test.step("favorites: star a drill, it persists across a reload, and the Favorites view shows only it", async () => {
+    await page.goto("/sports/basketball/drills?q=mikan&scope=library");
+    const star = page.getByRole("button", { name: "Favorite: Mikan Drill" });
+    await expect(star).toHaveAttribute("aria-pressed", "false");
+    await star.click();
+    await expect(star).toHaveAttribute("aria-pressed", "true");
+    await page.reload();
+    await expect(page.getByRole("button", { name: "Favorite: Mikan Drill" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+
+    await page.goto("/sports/basketball/drills");
+    await filters(page).getByLabel("Favorites only").check();
+    await expect(page).toHaveURL(/favorites=1/);
+    await expect(results(page)).toHaveText("1 drill");
+    await expect(page.getByRole("link", { name: "Mikan Drill", exact: true })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Remove filter: Favorites only" })).toBeVisible();
+
+    // the detail page shows the same state and can undo it
+    await page.getByRole("link", { name: "Mikan Drill", exact: true }).click();
+    const detailStar = page.getByRole("button", { name: "Favorite", exact: true });
+    await expect(detailStar).toHaveAttribute("aria-pressed", "true");
+    await detailStar.click();
+    await expect(detailStar).toHaveAttribute("aria-pressed", "false");
+    await page.goto("/sports/basketball/drills?favorites=1");
+    await expect(page.getByText("No drills match those filters")).toBeVisible();
+  });
+
   await test.step("a library drill opens with everything a coach needs", async () => {
+    await page.goto("/sports/basketball/drills?q=five-spot"); // newest-first pages move as the library grows: find it by search
     await page.getByRole("link", { name: "Five-Spot Shooting" }).click();
     await expect(page.getByRole("heading", { name: "Five-Spot Shooting", level: 2 })).toBeVisible();
     for (const h of [
@@ -184,6 +267,13 @@ test("the Phase 2 journey: sports → basketball → drills → filter → open 
     await expect(page.getByRole("img", { name: /Diagram 1/ })).toBeVisible();
     await expect(page.getByText("Chest pass to the player opposite.")).toBeVisible();
     await expect(page.getByRole("link", { name: "Edit" })).toBeVisible();
+    // the new facets round-trip to the detail page
+    await expect(page.getByText("3v3", { exact: true })).toBeVisible(); // format
+    await expect(page.getByText("High", { exact: true })).toBeVisible(); // intensity
+    await expect(page.getByText("Small-sided game", { exact: true })).toBeVisible(); // best used in
+    await expect(page.getByText("Passing on the move", { exact: true })).toBeVisible(); // focus area
+    await expect(page.getByRole("heading", { name: "Organization" })).toBeVisible();
+    await expect(page.getByText("Two groups of five rotate every three minutes.")).toBeVisible();
   });
 
   await test.step("it persists: reload, the library's 'Mine' view, and the overview count", async () => {
@@ -205,9 +295,25 @@ test("the Phase 2 journey: sports → basketball → drills → filter → open 
       "Move the ball quickly and accurately to a teammate.",
     );
     await expect(page.getByRole("checkbox", { name: "Basketballs" })).toBeChecked();
+    await expect(page.getByLabel("Intensity", { exact: true })).toHaveValue("high");
+    await expect(page.getByLabel("Format", { exact: true })).toHaveValue("3v3");
+    await expect(page.getByRole("checkbox", { name: "Small-sided game" })).toBeChecked();
+    await expect(page.getByRole("checkbox", { name: "Passing on the move" })).toBeChecked();
+    await expect(page.getByLabel("Organization")).toHaveValue(
+      "Two groups of five rotate every three minutes.",
+    );
     await expect(page.getByText("This diagram is valid.")).toBeVisible(); // the saved diagram was loaded into the builder
 
     await page.getByRole("textbox", { name: "Title", exact: true }).fill(`${title} (edited)`);
+    // a focus area follows its skill: switching the main skill removes the options (and the choice) that no longer apply
+    await page.getByLabel("Main skill").selectOption("dribbling");
+    await expect(page.getByRole("checkbox", { name: "Passing on the move" })).toHaveCount(0);
+    await expect(page.getByRole("checkbox", { name: "Crossover" })).toBeVisible();
+    await page.getByLabel("Main skill").selectOption("passing");
+    await expect(page.getByRole("checkbox", { name: "Passing on the move" })).not.toBeChecked();
+    // …and the facets can be changed
+    await page.getByLabel("Intensity", { exact: true }).selectOption("low");
+    await page.getByLabel("Format", { exact: true }).selectOption("");
     await page
       .getByLabel("Coaching points", { exact: true })
       .fill("Step into the pass.\nCatch with two hands.\nCall the name before you pass.");
@@ -216,6 +322,8 @@ test("the Phase 2 journey: sports → basketball → drills → filter → open 
       timeout: 20_000,
     });
     await expect(page.getByText("Call the name before you pass.")).toBeVisible();
+    await expect(page.getByText("Low", { exact: true })).toBeVisible(); // the new intensity
+    await expect(page.getByText("3v3", { exact: true })).toHaveCount(0); // the format was cleared
 
     // open the editor in two tabs; save in one; the other must not silently overwrite
     const stale = await page.context().newPage();
@@ -289,6 +397,14 @@ test("private drills belong to their owner: another user cannot find, open, or e
   const url = a.url();
   const id = url.split("/").pop()!;
 
+  // A stars her private drill. Capture the real Server Action call so it can be replayed as B (below).
+  const star = a.getByRole("button", { name: "Favorite", exact: true });
+  const [favoriteCall] = await Promise.all([
+    a.waitForRequest((r) => r.method() === "POST" && !!r.headers()["next-action"]),
+    star.click(),
+  ]);
+  await expect(star).toHaveAttribute("aria-pressed", "true");
+
   // Bob: direct link and edit link are indistinguishable from a page that doesn't exist
   for (const path of [`/sports/basketball/drills/${id}`, `/sports/basketball/drills/${id}/edit`]) {
     await b.goto(path); // (the not-found UI streams in behind loading.tsx, so the content — not the HTTP status — is the contract)
@@ -300,6 +416,21 @@ test("private drills belong to their owner: another user cannot find, open, or e
   await b.goto(`/sports/basketball/drills?q=${encodeURIComponent(secret.slice(0, 12))}`);
   await expect(b.getByText("No drills match those filters")).toBeVisible();
   await b.goto(`/sports/basketball/drills?q=${encodeURIComponent("Secrat Drll")}`);
+  await expect(b.getByText(secret)).toHaveCount(0);
+
+  // …B cannot star it either, by replaying A's own favorite request against A's drill (the Server Action re-authorizes)
+  const replay = await ctxB.request.post(favoriteCall.url(), {
+    headers: {
+      "next-action": favoriteCall.headers()["next-action"]!,
+      "content-type": favoriteCall.headers()["content-type"] ?? "text/plain;charset=UTF-8",
+      accept: "text/x-component",
+      origin: new URL(favoriteCall.url()).origin,
+    },
+    data: favoriteCall.postData() ?? "",
+  });
+  expect(await replay.text()).toContain("NOT_FOUND"); // indistinguishable from a drill that does not exist
+  await b.goto("/sports/basketball/drills?favorites=1");
+  await expect(b.getByText("No drills match those filters")).toBeVisible(); // nothing was stored for B
   await expect(b.getByText(secret)).toHaveCount(0);
 
   // …and Bob's own view is unaffected: the library is his, Alice's private drill is not

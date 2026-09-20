@@ -1,8 +1,10 @@
 import "server-only";
 import { and, asc, eq, inArray, sql, type SQL } from "drizzle-orm";
 import type {
+  DrillPhase,
   DrillStatus,
   EquipmentRule,
+  Intensity,
   Level,
   SkillRole,
   SourceKind,
@@ -12,6 +14,7 @@ import {
   categories,
   drillDiagrams,
   drillEquipment,
+  drillFavorites,
   drills,
   drillSkills,
   equipmentTypes,
@@ -101,6 +104,8 @@ const cardFields = {
   durationMin: drills.durationMin,
   durationMax: drills.durationMax,
   space: drills.space,
+  intensity: drills.intensity,
+  format: drills.format,
   visibility: drills.visibility,
   createdBy: drills.createdBy,
   updatedAt: drills.updatedAt,
@@ -137,6 +142,15 @@ async function hydrateCards(
     .select({ drillId: drillDiagrams.drillId, data: drillDiagrams.data })
     .from(drillDiagrams)
     .where(and(inArray(drillDiagrams.drillId, ids), eq(drillDiagrams.position, 0)));
+  // favorites are row-level-secured to the viewer, so this can only ever return the viewer's own
+  const favorites = new Set(
+    (
+      await tx
+        .select({ drillId: drillFavorites.drillId })
+        .from(drillFavorites)
+        .where(and(eq(drillFavorites.userId, actor.userId), inArray(drillFavorites.drillId, ids)))
+    ).map((f) => f.drillId),
+  );
 
   return rows.map((r) => {
     const id = r.id as string;
@@ -156,20 +170,26 @@ async function hydrateCards(
       durationMin: r.durationMin as number,
       durationMax: r.durationMax as number,
       space: r.space as string,
+      intensity: r.intensity as Intensity,
+      format: (r.format as string | null) ?? null,
       equipment: equip.filter((e) => e.drillId === id).map((e) => ({ key: e.key, name: e.name })),
       scope: scopeOf(r.visibility as string, r.createdBy as string | null, actor),
+      isFavorite: favorites.has(id),
       diagram: d ? firstDiagram(d.data, id) : null,
       updatedAt: r.updatedAt as Date,
     };
   });
 }
 
-/** Resolve filter keys to ids within the sport. `null` = a filter names something that doesn't exist → no results. */
+/**
+ * Resolve filter keys to ids within the sport. `null` = a filter names something that doesn't exist → no results.
+ * A skill filter is a SET of ids: choosing a skill also matches drills trained under any of its sub-skills.
+ */
 function resolveFilterIds(
   filters: DrillFilters,
   taxonomy: Taxonomy,
-): { category?: string; skill?: string; equipment?: string } | null {
-  const out: { category?: string; skill?: string; equipment?: string } = {};
+): { category?: string; skills?: string[]; equipment?: string } | null {
+  const out: { category?: string; skills?: string[]; equipment?: string } = {};
   if (filters.category) {
     const c = taxonomy.categories.find((x) => x.key === filters.category);
     if (!c) return null;
@@ -178,7 +198,7 @@ function resolveFilterIds(
   if (filters.skill) {
     const s = taxonomy.skills.find((x) => x.key === filters.skill);
     if (!s) return null;
-    out.skill = s.id;
+    out.skills = [s.id, ...taxonomy.skills.filter((x) => x.parentKey === s.key).map((x) => x.id)];
   }
   if (filters.equipment) {
     const e = taxonomy.equipment.find((x) => x.key === filters.equipment);
@@ -217,9 +237,19 @@ export async function searchDrills(
     // a drill matches a band when its [min, max] duration range overlaps it
     conds.push(sql`${drills.durationMin} <= ${band.max} AND ${drills.durationMax} >= ${band.min}`);
   }
-  if (ids.skill)
+  if (filters.intensity) conds.push(eq(drills.intensity, filters.intensity));
+  if (filters.format) conds.push(eq(drills.format, filters.format));
+  if (filters.phase) conds.push(sql`${filters.phase} = ANY(${drills.phases})`);
+  if (filters.favorites)
     conds.push(
-      sql`EXISTS (SELECT 1 FROM drill_skills ds WHERE ds.drill_id = ${drills.id} AND ds.skill_id = ${ids.skill})`,
+      sql`EXISTS (SELECT 1 FROM drill_favorites f WHERE f.drill_id = ${drills.id} AND f.user_id = ${actor.userId})`,
+    );
+  if (ids.skills)
+    conds.push(
+      sql`EXISTS (SELECT 1 FROM drill_skills ds WHERE ds.drill_id = ${drills.id} AND ds.skill_id IN (${sql.join(
+        ids.skills.map((id) => sql`${id}`),
+        sql`, `,
+      )}))`,
     );
   if (ids.equipment)
     conds.push(
@@ -332,6 +362,7 @@ export async function getDrill(
         organizationId: drills.organizationId,
         status: drills.status,
         content: drills.content,
+        phases: drills.phases,
         tags: drills.tags,
         sourceKind: drills.sourceKind,
         sourceName: drills.sourceName,
@@ -375,6 +406,11 @@ export async function getDrill(
       .from(drillDiagrams)
       .where(eq(drillDiagrams.drillId, id))
       .orderBy(asc(drillDiagrams.position));
+    const [favorite] = await tx
+      .select({ drillId: drillFavorites.drillId })
+      .from(drillFavorites)
+      .where(and(eq(drillFavorites.userId, actor.userId), eq(drillFavorites.drillId, id)))
+      .limit(1);
 
     const resource = {
       organizationId: row.organizationId,
@@ -400,9 +436,13 @@ export async function getDrill(
       durationMin: row.durationMin,
       durationMax: row.durationMax,
       space: row.space,
+      intensity: row.intensity as Intensity,
+      format: row.format ?? null,
       scope: scopeOf(row.visibility, row.createdBy, actor),
+      isFavorite: favorite !== undefined,
       updatedAt: row.updatedAt,
       content: content.data,
+      phases: row.phases as DrillPhase[],
       tags: row.tags,
       skills: skillRows.map((s) => ({ key: s.key, name: s.name, role: s.role as SkillRole })),
       equipment: equipRows.map((e) => ({

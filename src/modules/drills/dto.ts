@@ -1,5 +1,7 @@
 import type {
+  DrillPhase,
   DrillStatus,
+  Intensity,
   Level,
   SourceKind,
   Visibility,
@@ -32,8 +34,13 @@ export interface DrillCardDto {
   durationMin: number;
   durationMax: number;
   space: string;
+  intensity: Intensity;
+  /** How many-on-how-many (individual, 1v1, 3v3, group, team…); null = not specified. */
+  format: string | null;
   equipment: Array<{ key: string; name: string }>;
   scope: DrillScope;
+  /** Is this drill in the viewer's own favorites? */
+  isFavorite: boolean;
   /** First diagram, for the thumbnail. Null when the drill has none. */
   diagram: Diagram | null;
   updatedAt: Date;
@@ -50,6 +57,8 @@ export interface DrillPage {
 export interface DrillDetailDto extends Omit<DrillCardDto, "equipment" | "diagram"> {
   sportKey: SportKey;
   content: DrillContent;
+  /** Where in a session this drill fits best. */
+  phases: DrillPhase[];
   tags: string[];
   skills: Array<{ key: string; name: string; role: SkillRole }>;
   equipment: Array<{ key: string; name: string; rule: EquipmentRule; quantity: number }>;

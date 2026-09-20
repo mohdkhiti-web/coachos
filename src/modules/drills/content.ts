@@ -57,6 +57,8 @@ export const drillContentSchema = z.strictObject({
   schemaVersion: z.literal(CONTENT_SCHEMA_VERSION).default(CONTENT_SCHEMA_VERSION),
   objective: line(600),
   setup: line(2000),
+  /** How the players are grouped and rotate (lines, groups, stations). Optional; printed as its own block. */
+  organization: z.string().trim().max(1000, { error: "too_long" }).default(""),
   instructions: items(20).min(1, { error: "required" }),
   coachingPoints: items(20).min(1, { error: "required" }),
   commonMistakes: items(20).default([]),

@@ -1,0 +1,144 @@
+{
+  "seedKey": "box-out-pairs",
+  "title": "Box-Out and Rebound Pairs",
+  "description": "Defenders find their opponent, make contact and seal them off the basket before securing the rebound of a shot taken by the coach.",
+  "category": "rebounding",
+  "primarySkill": "boxing_out",
+  "secondarySkills": ["rebounding", "competitiveness"],
+  "subSkills": ["defensive_rebounding"],
+  "level": "intermediate",
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "format": "1v1",
+  "intensity": "medium",
+  "phases": ["skill"],
+  "tags": ["rebounding", "boxing out", "defense"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Make contact first, seal the opponent away from the basket, then pursue the ball with two hands.",
+    "setup": "Pairs stand in the paint: an offensive player on the block and a defender between them and the basket. The coach stands at the free-throw line with the ball.",
+    "instructions": [
+      "On the coach's shot, the defender turns and finds the offensive player, making contact with the forearm and back.",
+      "Hold the seal with a wide base and bent knees, feeling the opponent with the back and hands.",
+      "Only after the ball hits the rim, go get it with two hands and land with a wide base.",
+      "Secure the rebound with the chin tucked and elbows out, then outlet or pivot to protect it.",
+      "Swap roles after every rebound and keep score of secured rebounds."
+    ],
+    "coachingPoints": [
+      "Find your opponent before the shot leaves the coach's hand.",
+      "Contact first, then rebound: never watch the ball while the offensive player slides around.",
+      "Go to the ball with two hands at the highest point."
+    ],
+    "commonMistakes": [
+      "Watching the shot and losing sight of the opponent.",
+      "Standing tall with no base, so the offensive player pushes through.",
+      "Leaping to the ball too early and letting the offensive player in."
+    ],
+    "safety": "Contact stays controlled: forearm and back only, no pushing, holding or grabbing shirts.",
+    "progressions": [
+      "Add a second offensive player who crashes from the wing, or play live 2-on-2 with a box-out requirement."
+    ],
+    "regressions": [
+      "Have the coach roll the ball so the box-out is practiced without a rebound contest."
+    ],
+    "variations": [
+      "Award two points for a rebound after a successful box-out and one point for any other rebound."
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "Seal, then rebound",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "coach",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "O",
+            "at": {
+              "anchor": "right_block"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X",
+            "at": {
+              "x": 1.7,
+              "y": 1
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "c1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "x1",
+            "path": [
+              {
+                "x": 2.05,
+                "y": 1.55
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "zone_rect",
+            "from": {
+              "x": -1.5,
+              "y": -0.9
+            },
+            "to": {
+              "x": 1.5,
+              "y": 1.6
+            },
+            "label": "Rebound zone"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -59,6 +59,15 @@ export const drills = pgTable(
     durationMax: smallint("duration_max").notNull(),
     /** Sport facet (e.g. half_court); allowed values come from the sport module. */
     space: text("space").notNull(),
+    /** How hard the drill is on the players. Drives session balance and (later) the session generator. */
+    intensity: text("intensity").notNull().default("medium"),
+    /** Sport facet: how many-on-how-many (individual, 1v1, 3v3, group, team…); allowed values come from the sport module. */
+    format: text("format"),
+    /** Where in a session this drill fits (warm_up, skill, small_sided, game, conditioning, cool_down). May suit several. */
+    phases: text("phases")
+      .array()
+      .notNull()
+      .default(sql`'{}'::text[]`),
     tags: text("tags")
       .array()
       .notNull()
@@ -102,7 +111,19 @@ export const drills = pgTable(
     index("drills_library_idx").on(t.sportId, t.visibility, t.status, t.categoryId),
     index("drills_level_idx").on(t.sportId, t.level),
     index("drills_created_idx").on(t.sportId, t.createdAt.desc()),
+    index("drills_intensity_idx").on(t.sportId, t.intensity),
+    index("drills_format_idx").on(t.sportId, t.format),
+    index("drills_phases_idx").using("gin", t.phases),
 
+    check("drills_intensity_chk", sql`${t.intensity} IN ('low','medium','high')`),
+    check(
+      "drills_format_chk",
+      sql`${t.format} IS NULL OR ${t.format} ~ '^[a-z0-9][a-z0-9_]{0,15}$'`,
+    ),
+    check(
+      "drills_phases_chk",
+      sql`${t.phases} <@ ARRAY['warm_up','skill','small_sided','game','conditioning','cool_down']::text[] AND cardinality(${t.phases}) <= 6`,
+    ),
     check("drills_title_len_chk", sql`char_length(${t.title}) BETWEEN 3 AND 120`),
     check("drills_description_len_chk", sql`char_length(${t.description}) BETWEEN 10 AND 300`),
     check("drills_visibility_chk", sql`${t.visibility} IN ('private','organization','public')`),
@@ -157,7 +178,7 @@ export const drillSkills = pgTable(
       .on(t.drillId)
       .where(sql`${t.role} = 'primary'`),
     index("drill_skills_skill_idx").on(t.skillId, t.drillId),
-    check("drill_skills_role_chk", sql`${t.role} IN ('primary','secondary')`),
+    check("drill_skills_role_chk", sql`${t.role} IN ('primary','secondary','sub')`),
   ],
 );
 
@@ -179,6 +200,27 @@ export const drillEquipment = pgTable(
     index("drill_equipment_type_idx").on(t.equipmentTypeId, t.drillId),
     check("drill_equipment_rule_chk", sql`${t.rule} IN ('fixed','per_player','per_pair')`),
     check("drill_equipment_qty_chk", sql`${t.quantity} BETWEEN 1 AND 60`),
+  ],
+);
+
+/**
+ * A coach's personal shortlist. Belongs to the USER (not the organization), and a favorite can only
+ * point at a drill the user may read — both enforced by row-level security (drizzle/0004_*.sql).
+ */
+export const drillFavorites = pgTable(
+  "drill_favorites",
+  {
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    drillId: uuid("drill_id")
+      .notNull()
+      .references(() => drills.id, { onDelete: "cascade" }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [
+    primaryKey({ columns: [t.userId, t.drillId] }),
+    index("drill_favorites_user_idx").on(t.userId, t.createdAt.desc()),
   ],
 );
 

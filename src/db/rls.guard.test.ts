@@ -119,6 +119,17 @@ describe("runtime role least privilege", () => {
     expect(rows.map((r) => r.tableowner)).toEqual(["coachos_owner"]);
   });
 
+  it("drill_favorites is add/remove only: SELECT + INSERT + DELETE, never UPDATE or TRUNCATE", async () => {
+    const [r] = await q<{ ins: boolean; sel: boolean; upd: boolean; del: boolean; trunc: boolean }>(
+      `select has_table_privilege(current_user, 'drill_favorites', 'INSERT') as ins,
+              has_table_privilege(current_user, 'drill_favorites', 'SELECT') as sel,
+              has_table_privilege(current_user, 'drill_favorites', 'UPDATE') as upd,
+              has_table_privilege(current_user, 'drill_favorites', 'DELETE') as del,
+              has_table_privilege(current_user, 'drill_favorites', 'TRUNCATE') as trunc`,
+    );
+    expect(r).toEqual({ ins: true, sel: true, upd: false, del: true, trunc: false });
+  });
+
   it("audit_events is append-only: INSERT + SELECT only", async () => {
     const [r] = await q<{ ins: boolean; sel: boolean; upd: boolean; del: boolean; trunc: boolean }>(
       `select has_table_privilege(current_user, 'audit_events', 'INSERT') as ins,

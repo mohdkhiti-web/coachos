@@ -1,0 +1,120 @@
+{
+  "seedKey": "partner-passing",
+  "title": "Partner Chest & Bounce Passing",
+  "description": "Pairs pass to each other across a short distance to build accurate, crisp chest and bounce passes and secure two-handed catches.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["catching"],
+  "subSkills": [],
+  "level": "beginner",
+  "ageMin": 7,
+  "ageMax": 14,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "any_space",
+  "format": "group",
+  "intensity": "low",
+  "phases": ["warm_up", "skill"],
+  "tags": ["passing", "pairs", "fundamentals"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Deliver and receive an accurate pass to a target on time, using proper technique.",
+    "setup": "Partners face each other about four to five metres apart with one ball between them. Hands ready as a target.",
+    "instructions": [
+      "Chest passes for one minute: step toward the target, extend both arms and snap the thumbs down through the release.",
+      "Switch to bounce passes for one minute, aiming for a spot about two-thirds of the way to the partner.",
+      "Add a step: pass, then move two steps to the side and receive the next pass on the move.",
+      "Finish with overhead passes for 30 seconds, releasing from above the forehead."
+    ],
+    "coachingPoints": [
+      "Give the target: show both hands to the passer before the pass leaves.",
+      "Step to pass and follow through with the fingers pointing at the target.",
+      "Catch with soft hands and bring the ball to the chest immediately to be ready."
+    ],
+    "commonMistakes": [
+      "Passing with the arms only and no step, which loses accuracy and power.",
+      "Catching with stiff hands and letting the ball bounce off.",
+      "Throwing to where the partner is, not to where they will be."
+    ],
+    "safety": "Keep a pair at least two metres from the next pair, and use a lighter ball for the youngest players.",
+    "progressions": [
+      "Increase the distance to six or seven metres, or add a passive defender between the partners."
+    ],
+    "regressions": ["Shorten the distance to three metres and slow the pace."],
+    "variations": [
+      "Turn it into a scoring game where each clean catch counts a point, first pair to twenty wins."
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "Chest pass exchange",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 2.4]
+            },
+            "text": "4 to 5 metres apart"
+          }
+        ]
+      }
+    }
+  ]
+}

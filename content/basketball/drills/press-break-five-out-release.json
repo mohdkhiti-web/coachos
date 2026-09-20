@@ -1,0 +1,173 @@
+{
+  "seedKey": "press-break-five-out-release",
+  "title": "Five-Out Press Release",
+  "description": "Five offensive players spread the full court against three pressuring defenders, learning to pivot, pass away from traps and attack the open space.",
+  "category": "press_break",
+  "primarySkill": "press_break",
+  "secondarySkills": ["passing", "spacing", "decision_making"],
+  "subSkills": ["attacking_pressure", "press_release"],
+  "level": "intermediate",
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 8,
+  "playersMax": 15,
+  "durationMin": 10,
+  "durationMax": 15,
+  "space": "full_court",
+  "format": "team",
+  "intensity": "high",
+  "phases": ["small_sided"],
+  "tags": ["press break", "full court", "pressure", "poise"],
+  "equipment": [
+    { "type": "basketball", "rule": "fixed", "quantity": 1 },
+    { "type": "bibs", "rule": "fixed", "quantity": 8 }
+  ],
+  "content": {
+    "objective": "Beat full-court pressure by keeping spacing, passing away from traps and attacking open space instead of dribbling into the press.",
+    "setup": "Five offensive players start on the baseline with the ball. Three defenders pressure in the first half of the court: one on the ball and two in the nearest passing lanes. Once the ball crosses half court, the group plays the possession out live to the far basket.",
+    "organization": "Run in groups of eight: five on offense and three on defense, with the other groups waiting at the far baseline. Rotate after each possession so everyone plays both roles.",
+    "instructions": [
+      "The inbounder passes to the ball handler at the free-throw line. The two wings spread to the sidelines and the fifth player fills the middle, near half court, to give safe passing options.",
+      "The ball handler pivots to protect the ball and looks first for the middle player, then the far side. Avoid dribbling toward the sideline, where a trap is easy to set.",
+      "If a trap comes, the nearest teammate steps toward the ball to give an outlet while the others space away, ready to catch and go.",
+      "Once the ball is past half court, play live 5v3 to a score or a stop; the defenders may fall back.",
+      "Count how many possessions in six get across half court cleanly. The goal is five."
+    ],
+    "coachingPoints": [
+      "Pivot and see the floor before you dribble.",
+      "Pass away from pressure, not into it.",
+      "Sprint to open passing lanes; do not wait for the ball to come to you.",
+      "Stay spread: keep clear space between teammates so one defender cannot guard two players."
+    ],
+    "commonMistakes": [
+      "Dribbling toward the sideline into a trap.",
+      "Cutters standing next to the ball handler instead of creating space.",
+      "Throwing long, high-risk passes across traffic."
+    ],
+    "safety": "Defenders trap with hands up and no reaching or contact on the ball handler's body.",
+    "progressions": ["Add a fourth defender to deny the middle passing lane."],
+    "regressions": [
+      "Start with only two defenders so the offense builds confidence and spacing habits."
+    ],
+    "variations": [
+      "Allow the ball handler only two dribbles before the first pass.",
+      "Play with a 10-second full-court clock."
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "Release and attack",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": { "type": "full", "variant": "fiba" },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": { "anchor": "under_basket", "offset": [0, -0.4] }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": { "anchor": "free_throw_line" }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": { "anchor": "left_wing" }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": { "anchor": "right_wing" }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": { "anchor": "half_court_center" }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": { "anchor": "free_throw_line", "offset": [0, 1.4] }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": { "anchor": "left_wing", "offset": [0, 2] }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": { "anchor": "right_wing", "offset": [0, 2] }
+          },
+          { "id": "b1", "type": "ball", "heldBy": "o1" }
+        ],
+        "actions": [
+          { "id": "a1", "step": 1, "type": "pass", "from": "o1", "to": "o2" },
+          { "id": "a2", "step": 2, "type": "pass", "from": "o2", "to": "o5" },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o3",
+            "path": [{ "anchor": "left_half_court" }]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "cut",
+            "entity": "o4",
+            "path": [{ "anchor": "right_half_court" }]
+          },
+          {
+            "id": "a5",
+            "step": 3,
+            "type": "dribble",
+            "entity": "o5",
+            "path": [{ "anchor": "far_top_key" }]
+          },
+          {
+            "id": "a6",
+            "step": 3,
+            "type": "cut",
+            "entity": "o3",
+            "path": [{ "anchor": "far_left_wing" }]
+          },
+          {
+            "id": "a7",
+            "step": 3,
+            "type": "cut",
+            "entity": "o4",
+            "path": [{ "anchor": "far_right_wing" }]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "zone_rect",
+            "from": { "x": -7, "y": 2 },
+            "to": { "x": 7, "y": 9 },
+            "label": "Press zone"
+          }
+        ]
+      }
+    }
+  ]
+}

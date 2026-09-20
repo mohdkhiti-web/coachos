@@ -1,4 +1,4 @@
-import type { EquipmentRule, Level, SourceKind } from "@/db/enums";
+import type { DrillPhase, EquipmentRule, Intensity, Level, SourceKind } from "@/db/enums";
 import type { DiagramInput } from "@/engines/diagram";
 import type { DrillDetailDto } from "@/modules/drills/dto";
 import type { DrillInputRaw } from "@/modules/drills/validators";
@@ -27,6 +27,10 @@ export interface DrillFormValues {
   category: string;
   level: Level | "";
   space: string;
+  intensity: Intensity;
+  /** "" = not specified. */
+  format: string;
+  phases: DrillPhase[];
   ageMin: string;
   ageMax: string;
   playersMin: string;
@@ -35,9 +39,12 @@ export interface DrillFormValues {
   durationMax: string;
   primarySkill: string;
   secondarySkills: string[];
+  /** Focus areas within the main/secondary skills. */
+  subSkills: string[];
   tags: string;
   objective: string;
   setup: string;
+  organization: string;
   instructions: string;
   coachingPoints: string;
   commonMistakes: string;
@@ -71,6 +78,9 @@ export function emptyValues(o: { space: string; equipmentKeys: string[] }): Dril
     category: "",
     level: "",
     space: o.space,
+    intensity: "medium",
+    format: "",
+    phases: [],
     ageMin: "",
     ageMax: "",
     playersMin: "",
@@ -79,9 +89,11 @@ export function emptyValues(o: { space: string; equipmentKeys: string[] }): Dril
     durationMax: "",
     primarySkill: "",
     secondarySkills: [],
+    subSkills: [],
     tags: "",
     objective: "",
     setup: "",
+    organization: "",
     instructions: "",
     coachingPoints: "",
     commonMistakes: "",
@@ -111,6 +123,9 @@ export function valuesFromDrill(d: DrillDetailDto, equipmentKeys: string[]): Dri
     description: d.description,
     category: d.category.key,
     level: d.level,
+    intensity: d.intensity,
+    format: d.format ?? "",
+    phases: d.phases,
     ageMin: String(d.ageMin),
     ageMax: String(d.ageMax),
     playersMin: String(d.playersMin),
@@ -119,9 +134,11 @@ export function valuesFromDrill(d: DrillDetailDto, equipmentKeys: string[]): Dri
     durationMax: String(d.durationMax),
     primarySkill: d.skills.find((s) => s.role === "primary")?.key ?? "",
     secondarySkills: d.skills.filter((s) => s.role === "secondary").map((s) => s.key),
+    subSkills: d.skills.filter((s) => s.role === "sub").map((s) => s.key),
     tags: d.tags.join(", "),
     objective: d.content.objective,
     setup: d.content.setup,
+    organization: d.content.organization,
     instructions: fromLines(d.content.instructions),
     coachingPoints: fromLines(d.content.coachingPoints),
     commonMistakes: fromLines(d.content.commonMistakes),
@@ -146,7 +163,11 @@ export function toPayload(v: DrillFormValues, version?: number): DrillInputRaw {
     category: v.category,
     primarySkill: v.primarySkill,
     secondarySkills: v.secondarySkills,
+    subSkills: v.subSkills,
     level: v.level as Level,
+    intensity: v.intensity,
+    format: v.format,
+    phases: v.phases,
     ageMin: num(v.ageMin) as number,
     ageMax: num(v.ageMax) as number,
     playersMin: num(v.playersMin) as number,
@@ -164,6 +185,7 @@ export function toPayload(v: DrillFormValues, version?: number): DrillInputRaw {
     content: {
       objective: v.objective,
       setup: v.setup,
+      organization: v.organization,
       instructions: toLines(v.instructions),
       coachingPoints: toLines(v.coachingPoints),
       commonMistakes: toLines(v.commonMistakes),

@@ -62,6 +62,8 @@ export function FilterForm({
       const value = searchParams.get(el.name) ?? fallback;
       if (value === undefined) continue;
       if (el instanceof HTMLInputElement && el.type === "radio") el.checked = el.value === value;
+      else if (el instanceof HTMLInputElement && el.type === "checkbox")
+        el.checked = el.value === value;
       else if (el.value !== value) el.value = value;
     }
   }, [searchParams]);
@@ -71,6 +73,7 @@ export function FilterForm({
     if (!form) return;
     for (const el of Array.from(form.elements)) {
       if (el instanceof HTMLInputElement && el.type === "radio") el.checked = el.value === "all";
+      else if (el instanceof HTMLInputElement && el.type === "checkbox") el.checked = false;
       else if (el instanceof HTMLInputElement || el instanceof HTMLSelectElement) {
         if (el.name && el.name !== "sort") el.value = "";
       }

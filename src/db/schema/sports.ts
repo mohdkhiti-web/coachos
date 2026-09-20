@@ -1,4 +1,14 @@
-import { check, index, integer, pgTable, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
+import {
+  check,
+  foreignKey,
+  index,
+  integer,
+  pgTable,
+  text,
+  timestamp,
+  unique,
+  uuid,
+} from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 
 /**
@@ -55,12 +65,22 @@ export const skills = pgTable(
       .references(() => sports.id, { onDelete: "cascade" }),
     key: text("key").notNull(),
     name: text("name").notNull(),
+    /** A sub-skill points at its parent skill (two levels only, enforced by a trigger). NULL = a top-level skill. */
+    parentId: uuid("parent_id"),
     sortOrder: integer("sort_order").notNull().default(0),
     createdAt: createdAt(),
   },
   (t) => [
     unique("skills_sport_key_uq").on(t.sportId, t.key),
     unique("skills_id_sport_uq").on(t.id, t.sportId),
+    // a sub-skill belongs to the same sport as its parent
+    foreignKey({
+      name: "skills_parent_sport_fk",
+      columns: [t.parentId, t.sportId],
+      foreignColumns: [t.id, t.sportId],
+    }),
+    index("skills_parent_idx").on(t.sportId, t.parentId),
+    check("skills_parent_not_self_chk", sql`${t.parentId} IS NULL OR ${t.parentId} <> ${t.id}`),
   ],
 );
 

@@ -1,0 +1,132 @@
+{
+  "seedKey": "cooldown-walk-and-stretch",
+  "title": "Cool-Down Walk and Stretch",
+  "description": "Two slow laps and a guided stretch circle bring heart rates down, loosen tired muscles and let the coach close the session with a calm, positive message.",
+  "category": "cooldown",
+  "primarySkill": "recovery_mobility",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 30,
+  "durationMin": 4,
+  "durationMax": 8,
+  "space": "any_space",
+  "format": "team",
+  "intensity": "low",
+  "phases": ["cool_down"],
+  "tags": ["cool-down", "stretching", "recovery", "breathing"],
+  "equipment": [],
+  "content": {
+    "objective": "Bring heart rates down gradually, loosen the muscles used in practice and finish the session calmly.",
+    "setup": "Players form a loose circle at the top of the key, an arm's length apart, with the coach standing in the middle where everyone can see and hear.",
+    "organization": "One circle for the whole team (up to about 20 players). With a bigger group, make two circles and ask an assistant to lead the second one.",
+    "instructions": [
+      "Walk two slow laps around the court, breathing in through the nose for four steps and out through the mouth for four steps.",
+      "Gather in the circle. Hold each stretch for 20 seconds without bouncing: calves, quadriceps, hamstrings, hip flexors and groin.",
+      "Finish with the shoulders and arms: a cross-body stretch, a triceps stretch and slow shoulder rolls forward and back.",
+      "Stand or sit quietly for one minute while the coach names two positives from today and one focus for the next session."
+    ],
+    "coachingPoints": [
+      "Stretch to mild tension only, never to pain.",
+      "Breathe slowly and exhale as you move deeper into a stretch.",
+      "Use the quiet minute to reinforce what went well."
+    ],
+    "commonMistakes": [
+      "Rushing the stretches to leave early.",
+      "Bouncing in a stretch instead of holding still.",
+      "Talking over the coach's closing message."
+    ],
+    "safety": "Anyone with a sore joint or muscle skips that stretch and tells the coach.",
+    "progressions": [
+      "Add a guided breathing pattern (four counts in, six out) for the last minute."
+    ],
+    "regressions": [
+      "For younger players, shorten each hold to 10 seconds and lead by demonstration."
+    ],
+    "variations": [
+      "Let a different player lead one stretch each session.",
+      "Play calm background music to set the tone."
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "Stretch circle",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": { "type": "half", "variant": "fiba" },
+        "entities": [
+          { "id": "c1", "type": "coach", "label": "C", "at": { "anchor": "top_key" } },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": { "anchor": "top_key", "offset": [2.4, 0] }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": { "anchor": "top_key", "offset": [1.7, 1.7] }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": { "anchor": "top_key", "offset": [0, 2.4] }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": { "anchor": "top_key", "offset": [-1.7, 1.7] }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": { "anchor": "top_key", "offset": [-2.4, 0] }
+          },
+          {
+            "id": "o6",
+            "type": "player",
+            "side": "offense",
+            "label": "6",
+            "at": { "anchor": "top_key", "offset": [-1.7, -1.7] }
+          },
+          {
+            "id": "o7",
+            "type": "player",
+            "side": "offense",
+            "label": "7",
+            "at": { "anchor": "top_key", "offset": [0, -2.4] }
+          },
+          {
+            "id": "o8",
+            "type": "player",
+            "side": "offense",
+            "label": "8",
+            "at": { "anchor": "top_key", "offset": [1.7, -1.7] }
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "zone_circle",
+            "center": { "anchor": "top_key" },
+            "radius": 3.2,
+            "label": "Stretch circle"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -47,6 +47,7 @@
     "url_invalid": "Enter a full https:// link.",
     "video_host": "Video links must be YouTube or Vimeo.",
     "skill_duplicate": "Choose each skill only once, and not the main skill again.",
+    "sub_skill_parent": "Choose a focus area only under a skill this drill trains.",
     "equipment_duplicate": "Each equipment type can only be listed once.",
     "source_name_required": "Say where this drill was adapted from.",
     "source_external_required": "Give both the source name and its link.",
@@ -413,6 +414,36 @@
       "intermediate": "Intermediate",
       "advanced": "Advanced"
     },
+    "intensities": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    },
+    "formats": {
+      "individual": "Individual",
+      "1v1": "1v1",
+      "2v2": "2v2",
+      "3v3": "3v3",
+      "4v4": "4v4",
+      "5v5": "5v5",
+      "group": "Group",
+      "team": "Team"
+    },
+    "formatChips": {
+      "label": "Filter by format"
+    },
+    "phases": {
+      "warm_up": "Warm-up",
+      "skill": "Skill work",
+      "small_sided": "Small-sided game",
+      "game": "Game / competition",
+      "conditioning": "Conditioning",
+      "cool_down": "Cool-down"
+    },
+    "favorite": {
+      "label": "Favorite: {title}",
+      "detailLabel": "Favorite"
+    },
     "spaces": {
       "half_court": "Half court",
       "full_court": "Full court",
@@ -453,6 +484,10 @@
       "players": "Players",
       "duration": "Duration",
       "equipment": "Equipment",
+      "intensity": "Intensity",
+      "phase": "Best used in",
+      "favorites": "Favorites only",
+      "allOfSkill": "All {skill}",
       "sort": "Sort by",
       "any": "Any",
       "apply": "Apply",
@@ -463,7 +498,9 @@
       "remove": "Remove filter: {label}",
       "q": "“{value}”",
       "age": "Age {value}",
-      "players": "{value} players"
+      "players": "{value} players",
+      "intensity": "{value} intensity",
+      "phase": "Best for: {value}"
     },
     "results": {
       "all": "{total, plural, one {# drill} other {# drills}}",
@@ -492,8 +529,12 @@
     "detail": {
       "back": "All drills",
       "level": "Level",
+      "intensity": "Intensity",
+      "format": "Format",
       "space": "Space",
       "primarySkill": "Main skill",
+      "phases": "Best used in",
+      "organization": "Organization",
       "diagrams": "Diagrams",
       "diagramN": "Diagram {n}",
       "objective": "Objective",
@@ -560,6 +601,11 @@
       "category": "Category",
       "level": "Level",
       "space": "Space needed",
+      "intensity": "Intensity",
+      "format": "Format",
+      "formatNone": "Not specified",
+      "phases": "Best used in",
+      "phasesHint": "Where in a session this drill fits. Choose any that apply.",
       "choose": "Choose…",
       "who": "Who and how long",
       "age": "Age",
@@ -574,11 +620,16 @@
       "primarySkill": "Main skill",
       "secondarySkills": "Other skills trained",
       "secondaryHint": "Choose up to three.",
+      "subSkills": "Focus areas",
+      "subSkillsHint": "Choose up to three areas within the skills above (for example Crossover under Dribbling).",
+      "subSkillsEmpty": "Focus areas appear here once the main or an other skill has some to choose from.",
       "tags": "Tags",
       "tagsHint": "Separate with commas, e.g. layups, fast break.",
       "content": "Coaching content",
       "objective": "Objective",
       "setup": "Setup",
+      "organization": "Organization",
+      "organizationHint": "How players are grouped and rotate: lines, groups or stations (optional).",
       "instructions": "Instructions",
       "stepsHint": "One step per line, in order.",
       "coachingPoints": "Coaching points",

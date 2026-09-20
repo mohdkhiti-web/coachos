@@ -1,0 +1,141 @@
+{
+  "seedKey": "pass-and-cut-layups",
+  "title": "Pass-and-Cut Layup Lines",
+  "description": "Players pass to a coach at the top, cut to the basket, receive the return pass and finish with a layup. A game-like way to practice finishing in rhythm.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["cutting", "passing"],
+  "subSkills": [],
+  "level": "beginner",
+  "ageMin": 8,
+  "ageMax": 14,
+  "playersMin": 6,
+  "playersMax": 16,
+  "durationMin": 10,
+  "durationMax": 15,
+  "space": "half_court",
+  "format": "group",
+  "intensity": "medium",
+  "phases": ["skill"],
+  "tags": ["layups", "give and go", "lines"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Finish at the basket after a pass-and-cut sequence, with the footwork and timing of a real game situation.",
+    "setup": "One line forms on the left wing with a ball. A coach or a designated passer stands at the top of the key. The rebounder waits under the basket.",
+    "instructions": [
+      "The first player in line passes the ball to the passer at the top of the key.",
+      "Immediately cut hard toward the basket, showing the inside hand as a target.",
+      "Catch the return pass in stride, take two steps and lay the ball off the backboard.",
+      "Rebound your own shot and pass to the next player in line, then join the end of the line.",
+      "Switch to the right side after a set number of turns."
+    ],
+    "coachingPoints": [
+      "Cut sharply: a change of pace makes the cut more realistic.",
+      "Receive the pass in front of the body with two hands, then step into the layup.",
+      "Take off from the foot opposite the shooting hand and jump up, not out."
+    ],
+    "commonMistakes": [
+      "Passing and then walking, so the return pass arrives after the cut.",
+      "Taking too many steps before the layup.",
+      "Finishing with the wrong hand on the wrong side."
+    ],
+    "safety": "Rebounders stay clear of the cutter, and lines are spaced so nobody runs into the waiting group.",
+    "progressions": ["Add a defender who plays passively behind the cutter, then actively."],
+    "regressions": ["Have the coach roll the ball to the cutter so they catch it on one bounce."],
+    "variations": [
+      "Run the drill from the right side, or change the finish to a jump stop and shot."
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "Pass, cut, receive, finish",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing",
+              "offset": [-0.9, 1.1]
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "c1"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "x": -1.3,
+                "y": 3
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "c1",
+            "to": "o1"
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

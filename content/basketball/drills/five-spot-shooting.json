@@ -1,0 +1,173 @@
+{
+  "seedKey": "five-spot-shooting",
+  "title": "Five-Spot Shooting",
+  "description": "Shoot from five spots around the arc, moving to the next spot after a set number of makes, to build catch-and-shoot rhythm and shooting stamina.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["conditioning", "decision_making"],
+  "subSkills": ["catch_and_shoot"],
+  "level": "intermediate",
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 10,
+  "durationMin": 10,
+  "durationMax": 15,
+  "space": "half_court",
+  "format": "individual",
+  "intensity": "medium",
+  "phases": ["skill"],
+  "tags": ["shooting", "spot shooting", "rhythm"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "markers",
+      "rule": "fixed",
+      "quantity": 5
+    }
+  ],
+  "content": {
+    "objective": "Shoot with the same balanced form from different spots, and move efficiently between them.",
+    "setup": "Place markers at the two corners, two wings and the top of the arc. Groups of two or three: one shoots, one rebounds, one gets ready as the passer.",
+    "instructions": [
+      "The shooter starts at the left corner and takes five shots, moving to the next spot immediately after each attempt.",
+      "Rebounders return the ball to the passer, who feeds the shooter on the move to keep the rhythm.",
+      "The shooter records makes and moves clockwise around the five spots for one lap.",
+      "Rotate roles after each lap and compare totals to track improvement week to week.",
+      "Finish with a final round of five shots from the spot the player likes best."
+    ],
+    "coachingPoints": [
+      "Get feet ready before the ball arrives: hop into the shot with the knees already bent.",
+      "Same form on every spot; do not rush the mechanics because the drill is timed.",
+      "Call for the ball with a target hand and finish every shot with a full follow-through."
+    ],
+    "commonMistakes": [
+      "Catching, then dipping the ball low before shooting, which wastes time.",
+      "Squaring up late so the shooting base is unbalanced.",
+      "Chasing missed shots instead of resetting to the next spot."
+    ],
+    "safety": "Keep the rebounders out of the shooter's path, and only start feeding once the shooter is set.",
+    "progressions": [
+      "Add a closeout defender at each spot, or require a shot fake and one dribble before shooting."
+    ],
+    "regressions": ["Reduce to three spots and shoot from closer to the basket."],
+    "variations": ["Play it as a competition: first player to 25 total makes wins."]
+  },
+  "diagrams": [
+    {
+      "title": "Five spots around the arc",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "m1",
+            "type": "marker",
+            "kind": "spot",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "m2",
+            "type": "marker",
+            "kind": "spot",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "m3",
+            "type": "marker",
+            "kind": "spot",
+            "label": "3",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "m4",
+            "type": "marker",
+            "kind": "spot",
+            "label": "4",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "m5",
+            "type": "marker",
+            "kind": "spot",
+            "label": "5",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "S",
+            "at": {
+              "anchor": "left_corner",
+              "offset": [0.9, 1.2]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [0.9, 1.2]
+              },
+              {
+                "anchor": "top_key",
+                "offset": [0, 1.2]
+              },
+              {
+                "anchor": "right_wing",
+                "offset": [-0.9, 1.2]
+              },
+              {
+                "anchor": "right_corner",
+                "offset": [-0.9, 1.2]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

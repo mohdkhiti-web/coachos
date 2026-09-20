@@ -1,8 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Field, Input, Select } from "@/components/ui/field";
-import { LEVELS } from "@/db/enums";
+import { Checkbox, Field, Input, Select } from "@/components/ui/field";
+import { DRILL_PHASES, INTENSITIES, LEVELS } from "@/db/enums";
 import {
   activeFilterCount,
   DURATION_BAND_KEYS,
@@ -68,6 +68,10 @@ export function LibraryFilters({
             </label>
           ))}
         </div>
+        <label className="mt-3 flex min-h-10 cursor-pointer items-center gap-3 text-sm font-medium text-ink">
+          <Checkbox name="favorites" value="1" defaultChecked={filters.favorites} />
+          {t("filters.favorites")}
+        </label>
       </fieldset>
 
       <Field label={t("filters.category")}>
@@ -87,11 +91,26 @@ export function LibraryFilters({
         {(c) => (
           <Select {...c} name="skill" defaultValue={filters.skill ?? ""}>
             <option value="">{any}</option>
-            {taxonomy.skills.map((x) => (
-              <option key={x.key} value={x.key}>
-                {x.name}
-              </option>
-            ))}
+            {/* a skill with sub-skills is a group: choosing the group's own entry matches all of its sub-skills too */}
+            {taxonomy.skills
+              .filter((x) => !x.parentKey)
+              .map((x) => {
+                const children = taxonomy.skills.filter((s) => s.parentKey === x.key);
+                return children.length === 0 ? (
+                  <option key={x.key} value={x.key}>
+                    {x.name}
+                  </option>
+                ) : (
+                  <optgroup key={x.key} label={x.name}>
+                    <option value={x.key}>{t("filters.allOfSkill", { skill: x.name })}</option>
+                    {children.map((s) => (
+                      <option key={s.key} value={s.key}>
+                        {s.name}
+                      </option>
+                    ))}
+                  </optgroup>
+                );
+              })}
           </Select>
         )}
       </Field>
@@ -103,6 +122,19 @@ export function LibraryFilters({
             {LEVELS.map((l) => (
               <option key={l} value={l}>
                 {t(`levels.${l}`)}
+              </option>
+            ))}
+          </Select>
+        )}
+      </Field>
+
+      <Field label={t("filters.intensity")}>
+        {(c) => (
+          <Select {...c} name="intensity" defaultValue={filters.intensity ?? ""}>
+            <option value="">{any}</option>
+            {INTENSITIES.map((i) => (
+              <option key={i} value={i}>
+                {t(`intensities.${i}`)}
               </option>
             ))}
           </Select>
@@ -160,6 +192,19 @@ export function LibraryFilters({
             {taxonomy.equipment.map((x) => (
               <option key={x.key} value={x.key}>
                 {x.name}
+              </option>
+            ))}
+          </Select>
+        )}
+      </Field>
+
+      <Field label={t("filters.phase")}>
+        {(c) => (
+          <Select {...c} name="phase" defaultValue={filters.phase ?? ""}>
+            <option value="">{any}</option>
+            {DRILL_PHASES.map((p) => (
+              <option key={p} value={p}>
+                {t(`phases.${p}`)}
               </option>
             ))}
           </Select>

@@ -11,13 +11,15 @@ import { Card, CardBody } from "@/components/ui/card";
 import { Checkbox, Field, Input, Select, Textarea } from "@/components/ui/field";
 import { SectionMarker } from "@/components/ui/section-marker";
 import { useToast } from "@/components/ui/toast";
-import { EQUIPMENT_RULES, LEVELS, SOURCE_KINDS } from "@/db/enums";
+import { DRILL_PHASES, EQUIPMENT_RULES, INTENSITIES, LEVELS, SOURCE_KINDS } from "@/db/enums";
 import { createDrillAction, updateDrillAction } from "@/modules/drills/actions";
 import { DiagramBuilder } from "./diagram-builder/diagram-builder";
 import { errorsFor, type DrillFormValues } from "./form-model";
 import { toPayload } from "./form-model";
 
 type Option = { key: string; name: string };
+/** A skill; `parentKey` set = a sub-skill (a focus area) of that top-level skill. */
+type SkillOption = Option & { parentKey: string | null };
 
 /**
  * Create / edit a drill. One controlled form; the Server Action validates everything again (Zod +
@@ -31,6 +33,7 @@ export function DrillForm({
   skills,
   equipment,
   spaces,
+  formats,
   showVisibility,
   initial,
   drillId,
@@ -40,9 +43,10 @@ export function DrillForm({
   mode: "create" | "edit";
   sportKey: string;
   categories: Option[];
-  skills: Option[];
+  skills: SkillOption[];
   equipment: Option[];
   spaces: string[];
+  formats: string[];
   showVisibility: boolean;
   initial: DrillFormValues;
   drillId?: string;
@@ -65,6 +69,26 @@ export function DrillForm({
 
   const set = <K extends keyof DrillFormValues>(key: K, value: DrillFormValues[K]) =>
     setV((prev) => ({ ...prev, [key]: value }));
+
+  const topSkills = skills.filter((s) => !s.parentKey);
+  // a focus area is only offered under a skill this drill actually trains
+  const trainedSkills = new Set([v.primarySkill, ...v.secondarySkills]);
+  const subSkillOptions = skills.filter((s) => s.parentKey && trainedSkills.has(s.parentKey));
+  /** Change the main/secondary skills and, in the same step, drop any focus area that no longer has its parent skill. */
+  const setSkillChoice = (
+    patch: Partial<Pick<DrillFormValues, "primarySkill" | "secondarySkills">>,
+  ) =>
+    setV((prev) => {
+      const next = { ...prev, ...patch };
+      const allowed = new Set([next.primarySkill, ...next.secondarySkills]);
+      return {
+        ...next,
+        subSkills: next.subSkills.filter((k) => {
+          const parent = skills.find((s) => s.key === k)?.parentKey;
+          return parent ? allowed.has(parent) : false;
+        }),
+      };
+    });
   const text = (path: string): string[] | undefined => {
     const list = errorsFor(fields, path).map((k) => (tv.has(k) ? tv(k) : tv("invalid")));
     return list.length ? list : undefined;
@@ -274,6 +298,71 @@ export function DrillForm({
               )}
             </Field>
           </div>
+          <div className="grid gap-5 sm:grid-cols-3">
+            <Field label={t("intensity")} errors={text("intensity")}>
+              {(c) => (
+                <Select
+                  {...c}
+                  required
+                  value={v.intensity}
+                  onChange={(e) => set("intensity", e.target.value as never)}
+                >
+                  {INTENSITIES.map((i) => (
+                    <option key={i} value={i}>
+                      {tl(`intensities.${i}`)}
+                    </option>
+                  ))}
+                </Select>
+              )}
+            </Field>
+            <Field label={t("format")} errors={text("format")}>
+              {(c) => (
+                <Select {...c} value={v.format} onChange={(e) => set("format", e.target.value)}>
+                  <option value="">{t("formatNone")}</option>
+                  {formats.map((f) => (
+                    <option key={f} value={f}>
+                      {tl(`formats.${f}`)}
+                    </option>
+                  ))}
+                </Select>
+              )}
+            </Field>
+          </div>
+          <fieldset className="space-y-2" aria-describedby="phases-hint">
+            <legend className="text-sm font-medium text-ink">{t("phases")}</legend>
+            <p id="phases-hint" className="text-sm text-ink-muted">
+              {t("phasesHint")}
+            </p>
+            <div className="grid gap-x-6 gap-y-1 sm:grid-cols-3">
+              {DRILL_PHASES.map((p) => (
+                <label
+                  key={p}
+                  className="flex min-h-10 cursor-pointer items-center gap-3 text-sm text-ink"
+                >
+                  <Checkbox
+                    checked={v.phases.includes(p)}
+                    onChange={(e) =>
+                      set(
+                        "phases",
+                        e.target.checked ? [...v.phases, p] : v.phases.filter((x) => x !== p),
+                      )
+                    }
+                  />
+                  {tl(`phases.${p}`)}
+                </label>
+              ))}
+            </div>
+            {text("phases") ? (
+              <p
+                role="alert"
+                data-invalid="true"
+                tabIndex={-1}
+                className="text-sm font-medium text-danger"
+              >
+                {text("phases")!.join(" ")}
+              </p>
+            ) : null}
+          </fieldset>
         </CardBody>
       </Card>
 
@@ -304,12 +393,12 @@ export function DrillForm({
                 required
                 className="sm:max-w-sm"
                 value={v.primarySkill}
-                onChange={(e) => set("primarySkill", e.target.value)}
+                onChange={(e) => setSkillChoice({ primarySkill: e.target.value })}
               >
                 <option value="" disabled>
                   {t("choose")}
                 </option>
-                {skills.map((o) => (
+                {topSkills.map((o) => (
                   <option key={o.key} value={o.key}>
                     {o.name}
                   </option>
@@ -323,7 +412,7 @@ export function DrillForm({
               {t("secondaryHint")}
             </p>
             <div className="grid gap-x-6 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
-              {skills
+              {topSkills
                 .filter((s) => s.key !== v.primarySkill)
                 .map((s) => {
                   const checked = v.secondarySkills.includes(s.key);
@@ -336,12 +425,11 @@ export function DrillForm({
                         checked={checked}
                         disabled={!checked && v.secondarySkills.length >= 3}
                         onChange={(e) =>
-                          set(
-                            "secondarySkills",
-                            e.target.checked
+                          setSkillChoice({
+                            secondarySkills: e.target.checked
                               ? [...v.secondarySkills, s.key]
                               : v.secondarySkills.filter((k) => k !== s.key),
-                          )
+                          })
                         }
                       />
                       {s.name}
@@ -357,6 +445,47 @@ export function DrillForm({
                 className="text-sm font-medium text-danger"
               >
                 {text("secondarySkills")!.join(" ")}
+              </p>
+            ) : null}
+          </fieldset>
+          <fieldset className="space-y-2" aria-describedby="sub-skills-hint">
+            <legend className="text-sm font-medium text-ink">{t("subSkills")}</legend>
+            <p id="sub-skills-hint" className="text-sm text-ink-muted">
+              {subSkillOptions.length > 0 ? t("subSkillsHint") : t("subSkillsEmpty")}
+            </p>
+            <div className="grid gap-x-6 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
+              {subSkillOptions.map((s) => {
+                const checked = v.subSkills.includes(s.key);
+                return (
+                  <label
+                    key={s.key}
+                    className="flex min-h-10 cursor-pointer items-center gap-3 text-sm text-ink"
+                  >
+                    <Checkbox
+                      checked={checked}
+                      disabled={!checked && v.subSkills.length >= 3}
+                      onChange={(e) =>
+                        set(
+                          "subSkills",
+                          e.target.checked
+                            ? [...v.subSkills, s.key]
+                            : v.subSkills.filter((k) => k !== s.key),
+                        )
+                      }
+                    />
+                    {s.name}
+                  </label>
+                );
+              })}
+            </div>
+            {text("subSkills") ? (
+              <p
+                role="alert"
+                data-invalid="true"
+                tabIndex={-1}
+                className="text-sm font-medium text-danger"
+              >
+                {text("subSkills")!.join(" ")}
               </p>
             ) : null}
           </fieldset>
@@ -391,6 +520,20 @@ export function DrillForm({
                 rows={3}
                 value={v.setup}
                 onChange={(e) => set("setup", e.target.value)}
+              />
+            )}
+          </Field>
+          <Field
+            label={t("organization")}
+            hint={t("organizationHint")}
+            errors={text("content.organization")}
+          >
+            {(c) => (
+              <Textarea
+                {...c}
+                rows={2}
+                value={v.organization}
+                onChange={(e) => set("organization", e.target.value)}
               />
             )}
           </Field>

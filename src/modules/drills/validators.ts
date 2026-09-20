@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { EQUIPMENT_RULES, LEVELS } from "@/db/enums";
+import { DRILL_PHASES, EQUIPMENT_RULES, FORMAT_KEY_PATTERN, INTENSITIES, LEVELS } from "@/db/enums";
 import { diagramSchema } from "@/engines/diagram";
 import { drillContentSchema, httpsUrl } from "./content";
 
@@ -43,7 +43,19 @@ export const drillInputSchema = z
     category: key,
     primarySkill: key,
     secondarySkills: z.array(key).max(3, { error: "too_many" }).default([]),
+    /** Focus areas within the main/secondary skills (e.g. Crossover under Dribbling). Each must belong to one of them. */
+    subSkills: z.array(key).max(3, { error: "too_many" }).default([]),
     level: z.enum(LEVELS, { error: "required" }),
+    intensity: z.enum(INTENSITIES, { error: "required" }).default("medium"),
+    /** "" = not specified. Allowed values come from the sport module (checked against the catalog in the command). */
+    format: z
+      .union([z.literal(""), z.string().regex(FORMAT_KEY_PATTERN, { error: "invalid" })])
+      .default(""),
+    /** Where in a session the drill fits best. */
+    phases: z
+      .array(z.enum(DRILL_PHASES, { error: "invalid" }))
+      .max(DRILL_PHASES.length, { error: "too_many" })
+      .default([]),
     ageMin: int(3, 99),
     ageMax: int(3, 99),
     playersMin: int(1, 60),
@@ -77,6 +89,12 @@ export const drillInputSchema = z
     }
     if (new Set(v.secondarySkills).size !== v.secondarySkills.length) {
       ctx.addIssue({ code: "custom", path: ["secondarySkills"], message: "skill_duplicate" });
+    }
+    if (new Set(v.subSkills).size !== v.subSkills.length) {
+      ctx.addIssue({ code: "custom", path: ["subSkills"], message: "skill_duplicate" });
+    }
+    if (new Set(v.phases).size !== v.phases.length) {
+      ctx.addIssue({ code: "custom", path: ["phases"], message: "skill_duplicate" });
     }
     if (new Set(v.equipment.map((e) => e.type)).size !== v.equipment.length) {
       ctx.addIssue({ code: "custom", path: ["equipment"], message: "equipment_duplicate" });

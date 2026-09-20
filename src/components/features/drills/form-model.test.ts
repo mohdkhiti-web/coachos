@@ -34,13 +34,18 @@ function dtoFrom(seedKey: string): DrillDetailDto {
     durationMin: d.durationMin,
     durationMax: d.durationMax,
     space: d.space,
+    intensity: d.intensity,
+    format: d.format || null,
+    phases: d.phases,
+    isFavorite: false,
     scope: "library",
     updatedAt: new Date(),
     content: drillContentSchema.parse(d.content),
     tags: d.tags,
     skills: [
       { key: d.primarySkill, name: "", role: "primary" },
-      ...(d.secondarySkills ?? []).map((k) => ({ key: k, name: "", role: "secondary" as const })),
+      ...d.secondarySkills.map((k) => ({ key: k, name: "", role: "secondary" as const })),
+      ...d.subSkills.map((k) => ({ key: k, name: "", role: "sub" as const })),
     ],
     equipment: d.equipment.map((e) => ({
       key: e.type,
@@ -81,7 +86,30 @@ describe("form model", () => {
       visibility: "private",
       sourceKind: "original",
       diagrams: [],
+      intensity: "medium", // a sensible default, not a blank the coach must fill
+      format: "",
+      phases: [],
+      subSkills: [],
+      organization: "",
     });
+  });
+
+  it("sends the new facets: intensity, format, phases, sub-skills and the organization block", () => {
+    const v = emptyValues({ space: "half_court", equipmentKeys });
+    v.intensity = "high";
+    v.format = "3v3";
+    v.phases = ["small_sided", "game"];
+    v.primarySkill = "dribbling";
+    v.subSkills = ["crossover"];
+    v.organization = "Groups of six.";
+    const p = toPayload(v);
+    expect(p).toMatchObject({
+      intensity: "high",
+      format: "3v3",
+      phases: ["small_sided", "game"],
+      subSkills: ["crossover"],
+    });
+    expect(p.content.organization).toBe("Groups of six.");
   });
 
   it("empty numeric fields become undefined (rejected server-side), not 0", () => {
@@ -102,7 +130,12 @@ describe("form model", () => {
       if (!parsed.success) continue;
       expect(parsed.data.title).toBe(d.title);
       expect(parsed.data.primarySkill).toBe(d.primarySkill);
-      expect(parsed.data.secondarySkills).toEqual(d.secondarySkills ?? []);
+      expect(parsed.data.secondarySkills).toEqual(d.secondarySkills);
+      expect(parsed.data.subSkills).toEqual(d.subSkills);
+      expect(parsed.data.intensity).toBe(d.intensity);
+      expect(parsed.data.format).toBe(d.format);
+      expect(parsed.data.phases).toEqual(d.phases);
+      expect(parsed.data.content.organization).toBe(d.content.organization);
       // order follows the catalog, not the seed file, so compare as sets
       const eq = (list: Array<{ type: string; rule: string; quantity: number }>) =>
         list.map((e) => `${e.type}:${e.rule}:${e.quantity}`).sort();

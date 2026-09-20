@@ -1,0 +1,181 @@
+{
+  "seedKey": "three-man-weave",
+  "title": "Three-Man Weave",
+  "description": "Three players pass and run behind the receiver down the full court, then finish with a layup: a classic drill for spacing, passing on the move and communication.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["cutting", "communication", "spacing"],
+  "subSkills": ["passing_on_the_move"],
+  "level": "intermediate",
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 15,
+  "durationMin": 10,
+  "durationMax": 15,
+  "space": "full_court",
+  "format": "group",
+  "intensity": "medium",
+  "phases": ["warm_up", "skill"],
+  "tags": ["passing", "transition", "layups", "groups of three"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Pass accurately on the move, keep even spacing across the court, and finish the break with a controlled layup.",
+    "setup": "Groups of three start on the baseline, one in each lane (left, middle, right), with the middle player holding the ball. Additional groups wait behind the baseline.",
+    "instructions": [
+      "The middle player passes to a wing and immediately runs behind the receiver toward the wing lane.",
+      "The receiver catches on the move, takes one or two dribbles toward the middle lane and passes to the far player.",
+      "The passer always runs behind the pass, so the three players weave across the court.",
+      "At the far end, the player who receives the last pass finishes with a layup while the other two rebound and prepare to weave back.",
+      "Continue back down the court and rotate positions after each length."
+    ],
+    "coachingPoints": [
+      "Pass ahead of the receiver so they catch in stride without slowing.",
+      "Call for the ball and communicate so everyone knows where teammates are.",
+      "Hold the width: keep about four to five metres between players.",
+      "Run behind the pass, not in front of it, to keep the weave flowing."
+    ],
+    "commonMistakes": [
+      "Passing behind the receiver, which forces them to stop.",
+      "Bunching together instead of spreading the width of the court.",
+      "Slowing the run after the pass, which breaks the rhythm of the weave."
+    ],
+    "safety": "Run the lanes one group at a time and stay clear of the baseline structure and the stage or wall behind the basket.",
+    "progressions": ["Add a defender at the end to finish against, or require no dribbles."],
+    "regressions": ["Walk through the pattern first, then jog, then increase the speed."],
+    "variations": ["Make the ending a jump stop and a shot instead of a layup."]
+  },
+  "diagrams": [
+    {
+      "title": "Weave down the court",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "x": -4.2,
+              "y": -0.4
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "x": 0,
+              "y": -0.4
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "x": 4.2,
+              "y": -0.4
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "x": -4.2,
+                "y": 7
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 1,
+            "type": "move",
+            "entity": "o3",
+            "path": [
+              {
+                "x": 4.2,
+                "y": 6
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "x": 0,
+                "y": 12.5
+              }
+            ]
+          },
+          {
+            "id": "a5",
+            "step": 2,
+            "type": "move",
+            "entity": "o3",
+            "path": [
+              {
+                "x": 4.2,
+                "y": 12.5
+              }
+            ]
+          },
+          {
+            "id": "a6",
+            "step": 3,
+            "type": "pass",
+            "from": "o1",
+            "to": "o3"
+          },
+          {
+            "id": "a7",
+            "step": 3,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "x": 4.2,
+                "y": 17
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

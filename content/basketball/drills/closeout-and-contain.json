@@ -1,0 +1,140 @@
+{
+  "seedKey": "closeout-and-contain",
+  "title": "Closeout and Contain",
+  "description": "From a help position in the paint, defenders sprint to close out on a wing shooter with control, then contain the drive.",
+  "category": "individual_defense",
+  "primarySkill": "closeouts",
+  "secondarySkills": ["on_ball_defense", "footwork"],
+  "subSkills": ["containing_the_dribble"],
+  "level": "intermediate",
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "format": "1v1",
+  "intensity": "medium",
+  "phases": ["skill"],
+  "tags": ["defense", "closeout", "1-on-1"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Close out under control, take away the shot, and stay in front on the drive.",
+    "setup": "A passer stands at the top of the key with a ball. An offensive player waits on the wing. The defender starts in a help position near the lane on the same side.",
+    "instructions": [
+      "The passer swings the ball to the wing. The defender sprints toward the shooter as the pass is made.",
+      "Two steps before arriving, shorten the steps and chop the feet to break down into a balanced stance.",
+      "Arrive with one hand high to contest the shot and the other low; the lead foot is inside the shooter's.",
+      "If the shooter drives, slide with the dribbler and contain them without reaching until they pick up the ball.",
+      "Play live until a score, a stop or a turnover, then rotate players."
+    ],
+    "coachingPoints": [
+      "Sprint, then chop: fast at the start, controlled at the finish.",
+      "Take away the shot and force the offensive player toward help, not the baseline.",
+      "Keep the weight on the balls of the feet and the hips low."
+    ],
+    "commonMistakes": [
+      "Flying by the shooter because of no controlled finish.",
+      "Jumping at the shot and getting beaten off the dribble.",
+      "Standing straight up with the arms low at the end of the closeout."
+    ],
+    "safety": "The shooter lands with space to spare; defenders do not close out with a leap or step under the shooter's landing area.",
+    "progressions": [
+      "Add a second offensive player on the opposite wing so the defender must also read the next pass."
+    ],
+    "regressions": ["Walk through the closeout without live offence, then add the shooter."],
+    "variations": ["Make the rule that the offensive player only gets three dribbles to score."]
+  },
+  "diagrams": [
+    {
+      "title": "Sprint, chop, contain",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "coach",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X",
+            "at": {
+              "anchor": "left_block",
+              "offset": [1, 0.7]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "c1",
+            "to": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "move",
+            "entity": "x1",
+            "path": [
+              {
+                "x": -4.1,
+                "y": 4.3
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "x": -3.4,
+                "y": 2.6
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

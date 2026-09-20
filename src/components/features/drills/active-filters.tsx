@@ -65,6 +65,21 @@ export async function ActiveFilters({
       label: name(taxonomy.equipment, filters.equipment)!,
       without: { equipment: undefined },
     });
+  if (filters.intensity)
+    chips.push({
+      id: "intensity",
+      label: t("chips.intensity", { value: t(`intensities.${filters.intensity}`) }),
+      without: { intensity: undefined },
+    });
+  // (the format is shown — and cleared — by the highlighted chip in the format row, so it has no chip here)
+  if (filters.phase)
+    chips.push({
+      id: "phase",
+      label: t("chips.phase", { value: t(`phases.${filters.phase}`) }),
+      without: { phase: undefined },
+    });
+  if (filters.favorites)
+    chips.push({ id: "favorites", label: t("filters.favorites"), without: { favorites: false } });
   if (chips.length === 0) return null;
 
   return (

@@ -1,0 +1,155 @@
+{
+  "seedKey": "cone-weave-dribble",
+  "title": "Cone Weave Dribble",
+  "description": "Dribble through a line of cones with changes of direction, then finish with a controlled shot or layup at the rim.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["ball_control", "decision_making"],
+  "subSkills": ["change_of_pace"],
+  "level": "intermediate",
+  "ageMin": 9,
+  "ageMax": 16,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "format": "individual",
+  "intensity": "medium",
+  "phases": ["skill"],
+  "tags": ["dribbling", "change of direction", "cones"],
+  "equipment": [
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 4
+    },
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Change direction with the ball under control and maintain a low, protected dribble at speed.",
+    "setup": "Place four cones in a line about two metres apart running toward the basket. Players line up behind the first cone, each with a ball.",
+    "instructions": [
+      "The first player dribbles toward the first cone with the strong hand.",
+      "At each cone, plant the outside foot and change direction with a crossover, keeping the ball low.",
+      "After the last cone, accelerate to the basket and finish with a layup or pull-up shot.",
+      "Rebound your own shot and return to the end of the line by jogging around the outside.",
+      "Start the next player once the previous one has reached the third cone."
+    ],
+    "coachingPoints": [
+      "Change of pace as well as direction: slow into the cone, explode out of it.",
+      "Protect the ball with the off-hand and the body when changing direction.",
+      "Keep eyes up so the finish is seen before arriving at the basket."
+    ],
+    "commonMistakes": [
+      "Dribbling the ball too high, giving defenders a target.",
+      "Turning wide of the cone so the change of direction loses speed.",
+      "Stopping the dribble early and travelling on the finish."
+    ],
+    "safety": "Stagger the start so dribblers do not collide, and keep the return lane clear.",
+    "progressions": ["Add a defender who guards passively and then actively after the last cone."],
+    "regressions": ["Remove the finish and dribble to the free-throw line, or use only two cones."],
+    "variations": [
+      "Require weak-hand only through the cones, or swap in a specific move at each cone (crossover, between the legs, behind the back)."
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "Weave then finish",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "x": 0,
+              "y": 9.6
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "x": 0,
+              "y": 7.6
+            }
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "x": 0,
+              "y": 5.6
+            }
+          },
+          {
+            "id": "c4",
+            "type": "cone",
+            "at": {
+              "x": 0,
+              "y": 3.6
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "x": 0,
+              "y": 11.6
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "x": -1.4,
+                "y": 8.6
+              },
+              {
+                "x": 1.4,
+                "y": 6.6
+              },
+              {
+                "x": -1.4,
+                "y": 4.6
+              },
+              {
+                "x": 0.6,
+                "y": 2.6
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -34,6 +34,7 @@ export const TENANT_TABLES = [
   "drill_skills",
   "drill_equipment",
   "drill_diagrams",
+  "drill_favorites",
 ] as const;
 
 /** Drizzle's own bookkeeping table. */

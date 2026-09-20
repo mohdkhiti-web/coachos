@@ -1,0 +1,139 @@
+{
+  "seedKey": "dynamic-court-warm-up",
+  "title": "Dynamic Court Warm-up",
+  "description": "A progressive lines warm-up that raises heart rate and prepares ankles, hips and shoulders using jogging, skips and lateral shuffles.",
+  "category": "warm_up",
+  "primarySkill": "conditioning",
+  "secondarySkills": ["footwork"],
+  "subSkills": [],
+  "level": "beginner",
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 6,
+  "playersMax": 30,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "format": "team",
+  "intensity": "low",
+  "phases": ["warm_up"],
+  "tags": ["warm-up", "movement", "whole team"],
+  "equipment": [],
+  "content": {
+    "objective": "Raise body temperature and rehearse the movement patterns of the session before any high-intensity work.",
+    "setup": "Players form three lines on the baseline. Each line moves in turn to the half-court line and back, so every movement covers about 14 metres and gives natural rest.",
+    "instructions": [
+      "Easy jog to half court and walk back, arms swinging freely.",
+      "High knees to half court, jog back.",
+      "Butt kicks to half court, jog back.",
+      "Side shuffle to half court, keeping hips low and feet from crossing; shuffle back leading with the other side.",
+      "Skip with an arm swing, then two bounding strides, to half court.",
+      "Finish with three build-up runs at 60%, 75% and 90% effort."
+    ],
+    "coachingPoints": [
+      "Quality of movement over speed: tall posture, quiet feet, controlled landings.",
+      "Start each movement slowly and progress the intensity across the sets.",
+      "Ask players to land on the balls of their feet and soften the knees."
+    ],
+    "commonMistakes": [
+      "Rushing the first sets so the warm-up becomes a race.",
+      "Crossing feet during the shuffle, which loses balance.",
+      "Slouching shoulders and looking at the floor."
+    ],
+    "safety": "Check the floor is dry and clear. Players with pain should stop and tell the coach; do not warm up through pain.",
+    "progressions": [
+      "Add a ball to a jog-and-dribble variation once the movement patterns are clean."
+    ],
+    "regressions": ["Shorten the distance to the free-throw line and drop the bounding stride."],
+    "variations": [
+      "Turn it into a follow-the-leader warm-up with a different movement chosen by each line leader."
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "Three lines to half court",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "under_basket"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_corner"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_half_court"
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "half_court_center"
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 1,
+            "type": "move",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "right_half_court"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 15.2
+            },
+            "text": "Move, then return"
+          }
+        ]
+      }
+    }
+  ]
+}

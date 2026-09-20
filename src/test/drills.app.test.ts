@@ -1,11 +1,18 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { desc, eq } from "drizzle-orm";
-import { auditEvents, drills, drillSkills } from "@/db/schema";
+import { auditEvents, drillFavorites, drills, drillSkills } from "@/db/schema";
 import { SEED_DRILLS } from "@/db/seed/drills";
 import { db, pool } from "@/lib/db/client";
 import { userTx } from "@/lib/db/tx";
 import type { Actor } from "@/lib/authz/can";
-import { archiveDrill, createDrill, duplicateDrill, updateDrill } from "@/modules/drills/commands";
+import { loadContent } from "@/db/seed/load";
+import {
+  archiveDrill,
+  createDrill,
+  duplicateDrill,
+  setFavorite,
+  updateDrill,
+} from "@/modules/drills/commands";
 import { parseFilters, type DrillFilters, PAGE_SIZE } from "@/modules/drills/filters";
 import { getDrill, getSportOverview, searchDrills } from "@/modules/drills/queries";
 import { createClub, drillInput } from "./drill-fixtures";
@@ -502,12 +509,45 @@ describe("search: filters agree with an independent oracle built from the seed d
     }
   });
 
-  it("skill matches primary OR secondary skills", async () => {
-    for (const s of ["closeouts", "footwork", "cutting", "passing"]) {
+  const tree = loadContent().bySport["basketball"]!.skills;
+  const parentOf = (k: string) => tree.find((s) => s.key === k)?.parentKey ?? null;
+  /** every skill a drill trains, in any role */
+  const trained = (d: (typeof lib)[number]) => [
+    d.primarySkill,
+    ...d.secondarySkills,
+    ...d.subSkills,
+  ];
+
+  it("skill matches primary, secondary OR sub-skill; choosing a parent skill also matches its sub-skills (every skill in the taxonomy)", async () => {
+    expect(tree.length).toBeGreaterThan(50);
+    for (const { key: s } of tree) {
       expect(await run({ skill: s }), s).toEqual(
-        oracle((d) => d.primarySkill === s || (d.secondarySkills ?? []).includes(s)),
+        oracle((d) => trained(d).some((k) => k === s || parentOf(k) === s)),
       );
     }
+    // the sub-skills really are used by the library (the assertion above is not vacuous)
+    expect((await run({ skill: "weak_hand" })).length).toBeGreaterThan(0);
+    expect((await run({ skill: "defensive_rebounding" })).length).toBeGreaterThan(0);
+  });
+
+  it("intensity, format and phase", async () => {
+    for (const intensity of ["low", "medium", "high"] as const)
+      expect(await run({ intensity }), intensity).toEqual(oracle((d) => d.intensity === intensity));
+    for (const format of ["individual", "1v1", "2v2", "3v3", "4v4", "5v5", "group", "team"])
+      expect(await run({ format }), format).toEqual(oracle((d) => d.format === format));
+    for (const phase of [
+      "warm_up",
+      "skill",
+      "small_sided",
+      "game",
+      "conditioning",
+      "cool_down",
+    ] as const)
+      expect(await run({ phase }), phase).toEqual(oracle((d) => d.phases.includes(phase)));
+    // every quick-filter chip leads somewhere useful, and so does every phase
+    for (const f of ["individual", "1v1", "2v2", "3v3", "4v4", "5v5", "group", "team"])
+      expect((await run({ format: f })).length, f).toBeGreaterThan(0);
+    expect(await run({ format: "9v9" })).toEqual([]); // unknown format: no results, never everything
   });
 
   it("age and player count select drills that cover that value", async () => {
@@ -642,19 +682,23 @@ describe("search: scopes, sorting and pagination", () => {
   });
 
   it("paginates in the database: stable, disjoint pages that add up to the total", async () => {
+    // data-driven: the library keeps growing, so the page count comes from the seed, not a constant
+    const pageCount = Math.ceil(SEED_DRILLS.length / PAGE_SIZE);
+    expect(pageCount).toBeGreaterThanOrEqual(2);
     const f: Partial<DrillFilters> = { scope: "library", sort: "title" };
-    const p1 = await searchDrills(A, "basketball", { ...parseFilters({}), ...f, page: 1 });
-    const p2 = await searchDrills(A, "basketball", { ...parseFilters({}), ...f, page: 2 });
-    expect(p1).toMatchObject({
+    const pages = [];
+    for (let page = 1; page <= pageCount; page++)
+      pages.push(await searchDrills(A, "basketball", { ...parseFilters({}), ...f, page }));
+    expect(pages[0]).toMatchObject({
       total: SEED_DRILLS.length,
       pageSize: PAGE_SIZE,
-      pageCount: 2,
+      pageCount,
       page: 1,
     });
-    expect(p1!.items).toHaveLength(PAGE_SIZE);
-    expect(p2!.items).toHaveLength(SEED_DRILLS.length - PAGE_SIZE);
-    const ids = [...p1!.items, ...p2!.items].map((i) => i.id);
-    expect(new Set(ids).size).toBe(SEED_DRILLS.length);
+    pages.slice(0, -1).forEach((p) => expect(p!.items).toHaveLength(PAGE_SIZE));
+    expect(pages.at(-1)!.items).toHaveLength(SEED_DRILLS.length - PAGE_SIZE * (pageCount - 1));
+    const ids = pages.flatMap((p) => p!.items.map((i) => i.id));
+    expect(new Set(ids).size).toBe(SEED_DRILLS.length); // disjoint pages that add up to the total
   });
 
   it("a stale ?page=999 lands on the last page instead of an empty screen", async () => {
@@ -663,7 +707,8 @@ describe("search: scopes, sorting and pagination", () => {
       scope: "library",
       page: 999,
     });
-    expect(p).toMatchObject({ page: 2, pageCount: 2 });
+    const pageCount = Math.ceil(SEED_DRILLS.length / PAGE_SIZE);
+    expect(p).toMatchObject({ page: pageCount, pageCount });
     expect(p!.items.length).toBeGreaterThan(0);
   });
 
@@ -733,5 +778,221 @@ describe("child rows", () => {
       const sk = await db.select().from(drillSkills).where(eq(drillSkills.drillId, d.id));
       expect(sk.filter((s) => s.role === "primary").length).toBeLessThanOrEqual(1);
     }
+  });
+});
+
+describe("library facets: intensity, format, phases and sub-skills", () => {
+  const withFacets = (over: Record<string, unknown> = {}) =>
+    drillInput({
+      title: "Facet Test Drill",
+      primarySkill: "dribbling",
+      secondarySkills: ["ball_control"],
+      subSkills: ["crossover", "change_of_pace"],
+      intensity: "high",
+      format: "2v2",
+      phases: ["skill", "small_sided"],
+      ...over,
+    } as never);
+
+  it("saves and reads back intensity, format, phases and sub-skills", async () => {
+    const r = await createDrill(A, "basketball", withFacets());
+    if (!r.ok) throw new Error(`create failed: ${JSON.stringify(r)}`);
+    const d = await getDrill(A, "basketball", r.data.id);
+    expect(d).toMatchObject({ intensity: "high", format: "2v2", phases: ["skill", "small_sided"] });
+    expect(d!.skills.map((s) => [s.key, s.role])).toEqual([
+      ["dribbling", "primary"],
+      ["ball_control", "secondary"],
+      ["crossover", "sub"],
+      ["change_of_pace", "sub"],
+    ]);
+    // …and the card the library shows carries them too
+    const card = (await search(A, { scope: "mine", format: "2v2" })).items.find(
+      (i) => i.id === r.data.id,
+    );
+    expect(card).toMatchObject({ intensity: "high", format: "2v2" });
+  });
+
+  it("defaults: medium intensity, no format, no phases", async () => {
+    const r = await createDrill(A, "basketball", drillInput({ title: "Defaults Drill" }));
+    if (!r.ok) throw new Error("create failed");
+    expect(await getDrill(A, "basketball", r.data.id)).toMatchObject({
+      intensity: "medium",
+      format: null,
+      phases: [],
+    });
+  });
+
+  it("update replaces the facets and the sub-skills", async () => {
+    const r = await createDrill(A, "basketball", withFacets({ title: "Facet Update Drill" }));
+    if (!r.ok) throw new Error("create failed");
+    const before = await getDrill(A, "basketball", r.data.id);
+    const upd = await updateDrill(
+      A,
+      "basketball",
+      r.data.id,
+      withFacets({
+        title: "Facet Update Drill",
+        subSkills: ["weak_hand"],
+        intensity: "low",
+        format: "",
+        phases: ["cool_down"],
+        version: before!.version,
+      }),
+    );
+    expect(upd.ok).toBe(true);
+    const after = await getDrill(A, "basketball", r.data.id);
+    expect(after).toMatchObject({ intensity: "low", format: null, phases: ["cool_down"] });
+    expect(after!.skills.filter((s) => s.role === "sub").map((s) => s.key)).toEqual(["weak_hand"]);
+  });
+
+  it("copying a drill carries its facets and sub-skills along", async () => {
+    const [lib] = await db
+      .select({ id: drills.id })
+      .from(drills)
+      .where(eq(drills.seedKey, "ball-screen-2v2"));
+    const copy = await duplicateDrill(A, "basketball", lib!.id);
+    if (!copy.ok) throw new Error(`duplicate failed: ${JSON.stringify(copy)}`);
+    const d = await getDrill(A, "basketball", copy.data.id);
+    expect(d).toMatchObject({ intensity: "high", format: "2v2", phases: ["small_sided"] });
+    expect(d!.skills.map((s) => [s.key, s.role])).toEqual([
+      ["pick_and_roll", "primary"],
+      ["screening", "secondary"], // secondary skills come back in taxonomy order
+      ["spacing", "secondary"],
+      ["decision_making", "secondary"],
+      ["pnr_ball_handler", "sub"],
+      ["pnr_screener", "sub"],
+    ]);
+  });
+
+  describe("server-side validation", () => {
+    const fieldsOf = async (over: Record<string, unknown>) => {
+      const r = await createDrill(A, "basketball", withFacets(over));
+      expect(r.ok).toBe(false);
+      return r.ok ? {} : (r.error.fields ?? {});
+    };
+
+    it("a format the sport does not offer is rejected", async () => {
+      expect(await fieldsOf({ format: "9v9" })).toMatchObject({ format: ["invalid"] });
+    });
+    it("a sub-skill needs a skill the drill trains as its parent", async () => {
+      expect(await fieldsOf({ subSkills: ["catch_and_shoot"] })).toMatchObject({
+        subSkills: ["sub_skill_parent"],
+      });
+    });
+    it("an unknown sub-skill, or a top-level skill given as a sub-skill, is rejected", async () => {
+      expect(await fieldsOf({ subSkills: ["no_such_skill"] })).toMatchObject({
+        subSkills: ["invalid"],
+      });
+      expect(await fieldsOf({ subSkills: ["ball_control"] })).toMatchObject({
+        subSkills: ["invalid"],
+      });
+    });
+    it("the main and secondary skills must be top-level skills, not sub-skills", async () => {
+      expect(await fieldsOf({ primarySkill: "crossover", subSkills: [] })).toMatchObject({
+        primarySkill: ["invalid"],
+      });
+      expect(await fieldsOf({ secondarySkills: ["crossover"], subSkills: [] })).toMatchObject({
+        secondarySkills: ["invalid"],
+      });
+    });
+    it("nothing is saved when it fails", async () => {
+      const before = await search(A, { scope: "mine", q: "Rejected Facet Drill" });
+      await fieldsOf({ title: "Rejected Facet Drill", format: "9v9" });
+      expect((await search(A, { scope: "mine", q: "Rejected Facet Drill" })).total).toBe(
+        before.total,
+      );
+    });
+  });
+});
+
+describe("favorites", () => {
+  let libId: string;
+  let aPrivateId: string;
+  beforeAll(async () => {
+    const [lib] = await db
+      .select({ id: drills.id })
+      .from(drills)
+      .where(eq(drills.seedKey, "give-and-go"));
+    libId = lib!.id;
+    const r = await createDrill(A, "basketball", drillInput({ title: "Alice Favorite Candidate" }));
+    if (!r.ok) throw new Error("fixture failed");
+    aPrivateId = r.data.id;
+  });
+  // favorites are row-level-secured to their owner, so read them in that user's own context
+  // (a plain connection with no user context correctly sees none: it fails closed)
+  const favoriteRows = async (userId: string) =>
+    userTx(userId, (tx) =>
+      tx.select().from(drillFavorites).where(eq(drillFavorites.userId, userId)),
+    );
+
+  it("a user can favorite a library drill and their own drill; it shows on cards, on the detail page and in the Favorites view", async () => {
+    expect(await setFavorite(A, "basketball", libId, true)).toEqual({
+      ok: true,
+      data: { favorite: true },
+    });
+    expect(await setFavorite(A, "basketball", aPrivateId, true)).toMatchObject({ ok: true });
+
+    const cards = await search(A, { scope: "all" });
+    expect(cards.items.find((i) => i.id === libId)?.isFavorite).toBe(true);
+    expect((await getDrill(A, "basketball", libId))!.isFavorite).toBe(true);
+    expect((await getDrill(A, "basketball", aPrivateId))!.isFavorite).toBe(true);
+
+    const onlyFavorites = await search(A, { favorites: true });
+    expect(onlyFavorites.items.map((i) => i.id).sort()).toEqual([libId, aPrivateId].sort());
+    expect(onlyFavorites.items.every((i) => i.isFavorite)).toBe(true);
+  });
+
+  it("is idempotent: asking for the same state twice leaves one row, and never flips it", async () => {
+    await setFavorite(A, "basketball", libId, true);
+    await setFavorite(A, "basketball", libId, true);
+    expect((await favoriteRows(A.userId)).filter((f) => f.drillId === libId)).toHaveLength(1);
+    await setFavorite(A, "basketball", libId, false);
+    await setFavorite(A, "basketball", libId, false);
+    expect((await favoriteRows(A.userId)).filter((f) => f.drillId === libId)).toHaveLength(0);
+    expect((await getDrill(A, "basketball", libId))!.isFavorite).toBe(false);
+    await setFavorite(A, "basketball", libId, true); // leave it starred for the tests below
+  });
+
+  it("favorites are personal: B sees none of A's, and the same drill is not starred for B", async () => {
+    expect((await search(B, { favorites: true })).total).toBe(0);
+    expect((await search(B, { scope: "library" })).items.some((i) => i.isFavorite)).toBe(false);
+    expect((await getDrill(B, "basketball", libId))!.isFavorite).toBe(false);
+    // B starring the same library drill does not touch A's
+    await setFavorite(B, "basketball", libId, true);
+    expect((await favoriteRows(A.userId)).some((f) => f.drillId === libId)).toBe(true);
+    expect((await favoriteRows(B.userId)).map((f) => f.drillId)).toEqual([libId]);
+    await setFavorite(B, "basketball", libId, false);
+    expect(await favoriteRows(B.userId)).toEqual([]);
+  });
+
+  it("nobody can favorite a drill they cannot read: A's private drill is 'not found' for B, and nothing is stored", async () => {
+    expect(await setFavorite(B, "basketball", aPrivateId, true)).toMatchObject({
+      ok: false,
+      error: { code: "NOT_FOUND" },
+    });
+    expect((await favoriteRows(B.userId)).some((f) => f.drillId === aPrivateId)).toBe(false);
+  });
+
+  it("unknown sports and malformed ids simply don't exist", async () => {
+    expect(await setFavorite(A, "football", libId, true)).toMatchObject({
+      ok: false,
+      error: { code: "NOT_FOUND" },
+    });
+    expect(await setFavorite(A, "basketball", "not-a-uuid", true)).toMatchObject({
+      ok: false,
+      error: { code: "NOT_FOUND" },
+    });
+    expect(
+      await setFavorite(A, "basketball", "0192a000-0000-7000-8000-000000000001", true),
+    ).toMatchObject({
+      ok: false,
+      error: { code: "NOT_FOUND" },
+    });
+  });
+
+  it("the Favorites view combines with the other filters", async () => {
+    const both = await search(A, { favorites: true, scope: "library" });
+    expect(both.items.map((i) => i.id)).toEqual([libId]);
+    expect((await search(A, { favorites: true, level: "advanced" })).total).toBe(0);
   });
 });

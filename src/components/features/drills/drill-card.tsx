@@ -4,7 +4,8 @@ import { CourtMark } from "@/components/ui/court-mark";
 import { cn } from "@/lib/cn";
 import type { DrillCardDto } from "@/modules/drills/dto";
 import { DrillDiagram } from "./drill-diagram";
-import { LevelMeter, range, ScopeBadge, Stat } from "./drill-badges";
+import { FormatPill, IntensityMeter, LevelMeter, range, ScopeBadge, Stat } from "./drill-badges";
+import { FavoriteButton } from "./favorite-button";
 
 const MAX_EQUIPMENT = 3;
 
@@ -16,11 +17,14 @@ const MAX_EQUIPMENT = 3;
 export async function DrillCard({
   drill,
   href,
+  sportKey,
   headingLevel = 3,
   className,
 }: {
   drill: DrillCardDto;
   href: string;
+  /** Needed for the favorite button (a real action against this sport's drill). */
+  sportKey: string;
   headingLevel?: 2 | 3;
   className?: string;
 }) {
@@ -43,6 +47,12 @@ export async function DrillCard({
           <CourtMark className="h-28 w-auto opacity-60" />
         )}
       </div>
+      <FavoriteButton
+        sportKey={sportKey}
+        drillId={drill.id}
+        title={drill.title}
+        initial={drill.isFavorite}
+      />
 
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-2">
@@ -69,10 +79,12 @@ export async function DrillCard({
 
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <LevelMeter level={drill.level} label={t(`levels.${drill.level}`)} />
-          {drill.primarySkill ? (
-            <span className="text-sm text-ink-muted">{drill.primarySkill.name}</span>
-          ) : null}
+          <IntensityMeter intensity={drill.intensity} label={t(`intensities.${drill.intensity}`)} />
+          {drill.format ? <FormatPill label={t(`formats.${drill.format}`)} /> : null}
         </div>
+        {drill.primarySkill ? (
+          <p className="-mt-1 text-sm text-ink-muted">{drill.primarySkill.name}</p>
+        ) : null}
 
         {shownEquipment.length > 0 ? (
           <ul className="flex flex-wrap gap-1.5" aria-label={t("card.equipment")}>

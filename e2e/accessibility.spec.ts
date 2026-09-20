@@ -77,21 +77,35 @@ for (const scheme of ["light", "dark"] as const) {
         "/sports/basketball/drills",
         "/sports/basketball/drills?q=shoting&level=beginner", // active chips + filtered state
         "/sports/basketball/drills?q=zzzzqqqq", // empty state
+        "/sports/basketball/drills?format=3v3&intensity=high", // an active format chip + chips
+        "/sports/basketball/drills?skill=dribbling&phase=skill", // sub-skill-aware filter + phase
+        "/sports/basketball/drills?favorites=1", // the (empty) Favorites view
       ]) {
         await page.goto(path);
         await expect(page.locator("main")).toBeVisible();
         await audit(page, `${path} (${scheme})`);
       }
 
-      await page.goto("/sports/basketball/drills");
+      await page.goto("/sports/basketball/drills?q=five-spot");
       await page.getByRole("link", { name: "Five-Spot Shooting" }).click();
       await expect(page.getByRole("img", { name: /Five spots around the arc/ })).toBeVisible();
       await audit(page, `drill detail (${scheme})`);
+
+      // a drill that uses every new part of the page: format, intensity, phases, focus areas, organization
+      await page.goto("/sports/basketball/drills?format=3v3");
+      await page.getByRole("link", { name: "3v3 Half-Court Game to Seven" }).click();
+      await expect(page.getByRole("heading", { name: "Organization" })).toBeVisible();
+      await audit(page, `drill detail with facets (${scheme})`);
 
       await page.goto("/sports/basketball/drills/new");
       await page.getByRole("button", { name: "Create drill" }).click(); // show every error state
       await expect(page.getByText("Some fields need attention").first()).toBeVisible();
       await audit(page, `drill form with errors (${scheme})`);
+
+      // choosing a main skill that has sub-skills reveals the focus-area checkboxes
+      await page.getByLabel("Main skill").selectOption("dribbling");
+      await expect(page.getByRole("checkbox", { name: "Crossover" })).toBeVisible();
+      await audit(page, `drill form with focus areas (${scheme})`);
 
       await page.getByRole("button", { name: "Add a diagram" }).click();
       const add = page.getByRole("group", { name: "Add to the court" });

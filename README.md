@@ -37,6 +37,16 @@ are printed in the terminal running `npm run dev`. Copy the link into your brows
    library drill into your own drills, archive it. The library is 19 original drills, seeded by
    `npm run db:dev` (or `npm run db:seed` against any migrated database — idempotent).
 
+### Adding drills to the library
+
+The library is data, not code: **one JSON file per drill** in `content/<sport>/drills/<seed-key>.json`, and the
+sport's categories and skills (with sub-skills) in `content/<sport>/taxonomy.json`. Copy an existing file, change
+it, run `npm run content:check` (it names the file and field of anything wrong: the fields, catalog keys, formats,
+sub-skill parents and every diagram against its court), then `npm run db:seed`. Nothing else changes: no code, no
+migration. Each drill carries its facets (category, skill and sub-skills, level, intensity, format such as `3v3`, the
+session phases it suits, players, duration, equipment) so it can be found by filters today and picked by the session
+builder later. Write original content only. Seeding is idempotent, and a file removed from `content/` is archived.
+
 ### Phase 2 routes
 
 | Route                                 | What it is                                                                    |
@@ -62,6 +72,7 @@ Adding another sport is data plus one module: rows in `sports` / `categories` / 
 | `npm run check`                               | lint + typecheck + test + build                                                        |
 | `npm run db:dev`                              | Local embedded Postgres (`-- --fresh` wipes it)                                        |
 | `npm run db:generate` / `db:migrate`          | Create / apply migrations (`drizzle/`)                                                 |
+| `npm run content:check`                       | Validate every content file (drills, taxonomy, diagrams) without a database            |
 | `npm run db:seed`                             | Load/refresh the sports catalog and the library drills (idempotent, run after migrate) |
 | `npm run db:bootstrap`                        | One-time role setup on a hosted database (see below)                                   |
 
@@ -78,6 +89,7 @@ src/
   components/     ui/ (design system) · layout/ (shell) · features/ (domain UI)
   styles/         globals.css — "Playbook" tokens (light = paper, dark = arena)
   proxy.ts        optimistic auth redirect + per-request CSP nonce
+content/          the library: sports, equipment, and per sport a taxonomy + one JSON file per drill
 drizzle/          SQL migrations (generated + hand-written RLS/grants)
 messages/en.json  all UI strings (next-intl, no URL locale routing)
 e2e/              Playwright specs

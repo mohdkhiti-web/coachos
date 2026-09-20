@@ -1,0 +1,197 @@
+{
+  "seedKey": "three-on-two-fast-break",
+  "title": "3-on-2 Fast Break",
+  "description": "Three attackers race against two defenders down the full court, practising lane filling, quick decisions and finishing before help arrives.",
+  "category": "transition",
+  "primarySkill": "decision_making",
+  "secondarySkills": ["passing", "spacing", "finishing"],
+  "subSkills": ["numbers_advantage"],
+  "level": "intermediate",
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 5,
+  "playersMax": 15,
+  "durationMin": 10,
+  "durationMax": 15,
+  "space": "full_court",
+  "format": "group",
+  "intensity": "high",
+  "phases": ["small_sided"],
+  "tags": ["transition", "fast break", "3-on-2", "decisions"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 5
+    }
+  ],
+  "content": {
+    "objective": "Attack an outnumbered defence with speed and spacing, making the simple play to a good shot before the defence recovers.",
+    "setup": "Three attackers start at the centre circle with the middle player holding the ball. Two defenders wait near the free-throw line at the far end, one at the top and one in the lane.",
+    "instructions": [
+      "The middle player pushes the ball up the court while the wings fill their lanes wide.",
+      "Attack the top defender with the dribble to make them commit to the ball.",
+      "As the defender stops the ball, pass to the open wing, who finishes or passes again to the other wing.",
+      "Attackers rebound and outlet quickly if the shot is missed. Play ends on a score, a stop or a turnover.",
+      "The defenders become attackers on the next repetition and three players return the other way, so play is continuous."
+    ],
+    "coachingPoints": [
+      "Wide lanes: the wings run wide so defenders cannot guard two at once.",
+      "The ball handler attacks the top defender and reads their feet, not the ball.",
+      "Make the first good pass and finish under control instead of forcing a difficult shot.",
+      "Communicate: 'ball', 'left', 'right', 'shot'."
+    ],
+    "commonMistakes": [
+      "Bunching in the middle so the defenders can guard everybody.",
+      "Dribbling too much or passing too early before the defence commits.",
+      "Rushing the finish and missing an easy layup."
+    ],
+    "safety": "Run in straight lanes and go around the basket support after finishing, keeping the return lane clear.",
+    "progressions": [
+      "Add a trailer who runs late for a 4-on-3 situation, or add a time limit of eight seconds."
+    ],
+    "regressions": ["Walk through with two defenders in fixed positions, then increase speed."],
+    "variations": ["Play 2-on-1 to isolate decisions, or 3-on-3 when the group is comfortable."]
+  },
+  "diagrams": [
+    {
+      "title": "Fill the lanes, attack the top defender",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "center_circle"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [-4.5, 0.3]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [4.5, 0.3]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "x": 0,
+              "y": 19.6
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "x": 0,
+              "y": 22.6
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "x": 0,
+                "y": 15
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "x": -5.2,
+                "y": 17.5
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 1,
+            "type": "cut",
+            "entity": "o3",
+            "path": [
+              {
+                "x": 5.2,
+                "y": 17.5
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "x": 0,
+                "y": 17.6
+              }
+            ]
+          },
+          {
+            "id": "a5",
+            "step": 3,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a6",
+            "step": 4,
+            "type": "shot",
+            "entity": "o2",
+            "to": {
+              "anchor": "far_basket"
+            }
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

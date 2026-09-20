@@ -1,5 +1,5 @@
 import { cn } from "@/lib/cn";
-import type { Level } from "@/db/enums";
+import type { Intensity, Level } from "@/db/enums";
 import type { DrillScope } from "@/modules/drills/dto";
 
 const PIPS: Record<Level, number> = { beginner: 1, intermediate: 2, advanced: 3 };
@@ -71,5 +71,50 @@ export function Stat({
         {value}
       </dd>
     </div>
+  );
+}
+
+const INTENSITY_PIPS: Record<Intensity, number> = { low: 1, medium: 2, high: 3 };
+
+/** How hard the drill is: three flame-coloured pips plus the word — never colour alone. */
+export function IntensityMeter({
+  intensity,
+  label,
+  className,
+}: {
+  intensity: Intensity;
+  label: string;
+  className?: string;
+}) {
+  return (
+    <span className={cn("inline-flex items-center gap-2 text-sm font-medium text-ink", className)}>
+      <span aria-hidden className="flex items-end gap-0.5">
+        {[1, 2, 3].map((i) => (
+          <span
+            key={i}
+            className={cn(
+              "w-1.5 rounded-[1px]",
+              i === 1 ? "h-2" : i === 2 ? "h-2.5" : "h-3",
+              i <= INTENSITY_PIPS[intensity] ? "bg-warning" : "bg-line-strong",
+            )}
+          />
+        ))}
+      </span>
+      {label}
+    </span>
+  );
+}
+
+/** "3v3", "Individual", "Team" — how many-on-how-many. */
+export function FormatPill({ label, className }: { label: string; className?: string }) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center rounded-xs border border-line-strong bg-surface px-2 py-0.5 numeral text-sm font-semibold text-ink",
+        className,
+      )}
+    >
+      {label}
+    </span>
   );
 }

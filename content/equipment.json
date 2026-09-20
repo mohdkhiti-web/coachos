@@ -1,0 +1,10 @@
+[
+  { "key": "basketball", "name": "Basketballs", "sport": "basketball" },
+  { "key": "hoop", "name": "Basket / hoop", "sport": "basketball" },
+  { "key": "cones", "name": "Cones", "sport": null },
+  { "key": "markers", "name": "Flat markers / spots", "sport": null },
+  { "key": "bibs", "name": "Bibs / pinnies", "sport": null },
+  { "key": "chairs", "name": "Chairs", "sport": null },
+  { "key": "stopwatch", "name": "Stopwatch / timer", "sport": null },
+  { "key": "agility_ladder", "name": "Agility ladder", "sport": null }
+]

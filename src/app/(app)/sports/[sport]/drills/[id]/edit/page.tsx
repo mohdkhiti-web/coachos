@@ -40,6 +40,7 @@ export default async function EditDrillPage({
         skills={taxonomy.skills}
         equipment={taxonomy.equipment}
         spaces={[...mod.spaces]}
+        formats={[...mod.formats]}
         showVisibility={viewer.organization.type !== "personal"}
         initial={valuesFromDrill(
           drill,

@@ -1,0 +1,35 @@
+import { z } from "zod";
+import { SPORT_STATUSES } from "../enums";
+
+/**
+ * Shapes of the content files under `content/` (the seed's source of truth). Drill files are validated
+ * with the app's own `drillInputSchema` plus the catalog and diagram rules — see load.ts — so this file
+ * only describes the catalog files and the file-name convention.
+ */
+
+const key = z.string().regex(/^[a-z][a-z0-9_]{1,40}$/, { error: "keys are lower_snake_case" });
+const name = z.string().trim().min(2).max(80);
+
+/** A drill file `content/<sport>/drills/<seedKey>.json` must be named after its `seedKey`. */
+export const SEED_KEY_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
+export const sportsFileSchema = z.array(
+  z.strictObject({ key, name, status: z.enum(SPORT_STATUSES) }),
+);
+
+/** `sport: null` = generic equipment usable by any sport (cones, bibs…). */
+export const equipmentFileSchema = z.array(z.strictObject({ key, name, sport: key.nullable() }));
+
+export const taxonomyFileSchema = z.strictObject({
+  categories: z.array(
+    z.strictObject({ key, name, description: z.string().trim().max(200).optional() }),
+  ),
+  /** Two levels only: a top-level skill and its sub-skills (mirrors the database rule). */
+  skills: z.array(
+    z.strictObject({
+      key,
+      name,
+      children: z.array(z.strictObject({ key, name })).default([]),
+    }),
+  ),
+});

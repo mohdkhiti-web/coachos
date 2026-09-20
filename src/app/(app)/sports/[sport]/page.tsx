@@ -115,7 +115,12 @@ export default async function SportOverviewPage({ params }: PageProps<"/sports/[
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {recent.items.map((d) => (
             <li key={d.id}>
-              <DrillCard drill={d} href={`${drillsHref}/${d.id}`} className="h-full" />
+              <DrillCard
+                drill={d}
+                href={`${drillsHref}/${d.id}`}
+                sportKey={sport.key}
+                className="h-full"
+              />
             </li>
           ))}
         </ul>
@@ -132,7 +137,12 @@ export default async function SportOverviewPage({ params }: PageProps<"/sports/[
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {mine.items.map((d) => (
               <li key={d.id}>
-                <DrillCard drill={d} href={`${drillsHref}/${d.id}`} className="h-full" />
+                <DrillCard
+                  drill={d}
+                  href={`${drillsHref}/${d.id}`}
+                  sportKey={sport.key}
+                  className="h-full"
+                />
               </li>
             ))}
           </ul>

@@ -1,0 +1,126 @@
+{
+  "seedKey": "free-throw-pressure-ladder",
+  "title": "Free-Throw Pressure Ladder",
+  "description": "Players shoot free throws in a game-like sequence where each make earns a step up the ladder and each miss sends the shooter back, adding pressure to the routine.",
+  "category": "competition",
+  "primarySkill": "free_throws",
+  "secondarySkills": ["competitiveness", "shooting_form"],
+  "subSkills": [],
+  "level": "intermediate",
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 10,
+  "durationMax": 15,
+  "space": "half_court",
+  "format": "group",
+  "intensity": "medium",
+  "phases": ["game"],
+  "tags": ["free throws", "pressure", "competition"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Repeat a calm free-throw routine while under the pressure of a scoreboard and teammates watching.",
+    "setup": "Pairs at each basket. Each player builds a three-step routine (breath, bounce, shoot) and shoots in turn. The coach records the ladder on a whiteboard.",
+    "instructions": [
+      "Rung one: shoot two free throws. Make both to climb to rung two.",
+      "Rung two: shoot two free throws again, but the shooter must have the same routine and stance as the first rung.",
+      "Continue up to rung five. A miss drops the shooter one rung and their partner shoots.",
+      "First player to complete rung five and make the finishing pair wins the round.",
+      "Debrief: ask each player how the routine changed under pressure and how they reset."
+    ],
+    "coachingPoints": [
+      "The routine matters more than the makes: same breath, same bounce, same target.",
+      "Use a cue word (for example 'smooth') to keep the mind quiet.",
+      "Follow through on every shot, even when nervous."
+    ],
+    "commonMistakes": [
+      "Rushing the routine after a miss.",
+      "Changing the shooting form to try to force the ball in.",
+      "Watching the ball instead of the front of the rim."
+    ],
+    "safety": "Rebounders wait outside the lane until the shooter releases the ball.",
+    "progressions": ["Shoot after a short sprint to simulate fatigue at the end of a game."],
+    "regressions": ["Reduce to three rungs and let each rung be only one shot."],
+    "variations": ["Play in teams with a shared ladder so teammates cheer each other on."]
+  },
+  "diagrams": [
+    {
+      "title": "Shooter and waiting players",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 0.9]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-1.4, 1.6]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [1.4, 1.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1.4]
+            },
+            "text": "Same routine every time"
+          }
+        ]
+      }
+    }
+  ]
+}

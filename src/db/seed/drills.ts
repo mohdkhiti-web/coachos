@@ -1,11 +1,9 @@
-import { FINISHING_DRILLS } from "./basketball-finishing";
-import { SKILL_DRILLS } from "./basketball-skills";
-import { TEAM_DRILLS } from "./basketball-team";
-import type { SeedDrill } from "./helpers";
+import { loadContent, type SeedDrill } from "./load";
 
-/** The initial, curated basketball library. Adding hundreds later = adding entries here (validated at seed time). */
-export const SEED_DRILLS: readonly SeedDrill[] = [
-  ...SKILL_DRILLS,
-  ...FINISHING_DRILLS,
-  ...TEAM_DRILLS,
-];
+export type { SeedDrill };
+
+/**
+ * The curated basketball library, loaded and validated from `content/basketball/drills/*.json`.
+ * Adding hundreds later = adding files there (checked at load time; `npm run content:check`).
+ */
+export const SEED_DRILLS: readonly SeedDrill[] = loadContent().bySport["basketball"]!.drills;

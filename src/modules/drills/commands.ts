@@ -1,16 +1,17 @@
 import "server-only";
 import { and, eq, sql } from "drizzle-orm";
-import { drillDiagrams, drillEquipment, drills, drillSkills } from "@/db/schema";
+import { drillDiagrams, drillEquipment, drillFavorites, drills, drillSkills } from "@/db/schema";
 import { DIAGRAM_SCHEMA_VERSION, validateDiagram } from "@/engines/diagram";
 import { can, type Actor, type DrillResource } from "@/lib/authz/can";
 import type { Tx } from "@/lib/db/client";
 import { tenantTx } from "@/lib/db/tx";
-import { newId } from "@/lib/ids";
+import { isUuid, newId } from "@/lib/ids";
 import { fail, ok, type FieldErrors, type Result } from "@/lib/result";
 import { recordAuditInTx } from "@/modules/audit";
 import { getOrganizationById } from "@/modules/organizations";
 import { getSport, getTaxonomy, type SportDto, type Taxonomy } from "@/modules/sports";
 import { getCourtPack, getSportModule } from "@/sports/registry";
+import { checkAgainstCatalog } from "./catalog-check";
 import { getDrill } from "./queries";
 import type { DrillInput } from "./validators";
 
@@ -25,27 +26,25 @@ type Resolved = {
   categoryId: string;
   primarySkillId: string;
   secondarySkillIds: string[];
+  subSkillIds: string[];
   equipment: Array<{ id: string; rule: "fixed" | "per_player" | "per_pair"; quantity: number }>;
 };
 
-/** Everything that depends on WHICH sport this is: catalog keys, allowed spaces, diagram courts and vocabulary. */
+/** Everything that depends on WHICH sport this is: catalog keys, allowed spaces/formats, diagram courts and vocabulary. */
 function checkSport(sport: SportDto, taxonomy: Taxonomy, input: DrillInput): Result<Resolved> {
-  const errors: FieldErrors = {};
   const mod = getSportModule(sport.key);
   if (!mod) return fail("NOT_FOUND");
 
+  // the catalog rules are shared with the seed loader (pure, no database), so both apply the same ones
+  const errors: FieldErrors = checkAgainstCatalog(mod, taxonomy, input);
   const category = taxonomy.categories.find((c) => c.key === input.category);
-  if (!category) errors.category = ["invalid"];
   const primary = taxonomy.skills.find((s) => s.key === input.primarySkill);
-  if (!primary) errors.primarySkill = ["invalid"];
   const secondary = input.secondarySkills.map((k) => taxonomy.skills.find((s) => s.key === k));
-  if (secondary.some((s) => !s)) errors.secondarySkills = ["invalid"];
+  const sub = input.subSkills.map((k) => taxonomy.skills.find((s) => s.key === k));
   const equipment = input.equipment.map((e) => ({
     item: taxonomy.equipment.find((t) => t.key === e.type),
     e,
   }));
-  if (equipment.some((x) => !x.item)) errors.equipment = ["invalid"];
-  if (!mod.spaces.includes(input.space)) errors.space = ["invalid"];
 
   input.diagrams.forEach((g, i) => {
     const d = g.diagram;
@@ -63,6 +62,7 @@ function checkSport(sport: SportDto, taxonomy: Taxonomy, input: DrillInput): Res
     categoryId: category!.id,
     primarySkillId: primary!.id,
     secondarySkillIds: secondary.map((s) => s!.id),
+    subSkillIds: sub.map((s) => s!.id),
     equipment: equipment.map(({ item, e }) => ({
       id: item!.id,
       rule: e.rule,
@@ -83,6 +83,7 @@ async function writeChildren(
     .values([
       { drillId, skillId: r.primarySkillId, sportId, role: "primary" },
       ...r.secondarySkillIds.map((skillId) => ({ drillId, skillId, sportId, role: "secondary" })),
+      ...r.subSkillIds.map((skillId) => ({ drillId, skillId, sportId, role: "sub" })),
     ]);
   if (r.equipment.length) {
     await tx.insert(drillEquipment).values(
@@ -121,6 +122,9 @@ const rowValues = (input: DrillInput, r: Resolved, visibility: "private" | "orga
   durationMin: input.durationMin,
   durationMax: input.durationMax,
   space: input.space,
+  intensity: input.intensity,
+  format: input.format || null,
+  phases: input.phases,
   tags: input.tags,
   content: input.content,
   sourceKind: input.sourceKind,
@@ -309,7 +313,11 @@ export async function duplicateDrill(
     category: source.category.key,
     primarySkill: source.skills.find((s) => s.role === "primary")?.key ?? "",
     secondarySkills: source.skills.filter((s) => s.role === "secondary").map((s) => s.key),
+    subSkills: source.skills.filter((s) => s.role === "sub").map((s) => s.key),
     level: source.level,
+    intensity: source.intensity,
+    format: source.format ?? "",
+    phases: source.phases,
     ageMin: source.ageMin,
     ageMax: source.ageMax,
     playersMin: source.playersMin,
@@ -336,4 +344,43 @@ export async function duplicateDrill(
       auditAction: "drill.duplicated",
     }),
   );
+}
+
+/**
+ * Add a drill to (or remove it from) the ACTOR'S OWN favorites. Idempotent — the caller states the wanted
+ * state, so a double click or a retry cannot flip it back. Favorites belong to the user, so this needs no
+ * `can()` rule beyond being signed in; what is enforced (in the database, by row-level security) is that a
+ * favorite can only point at a drill the user may read, and that a user only ever sees their own favorites.
+ * Removing is always allowed, even if the drill has since become unreadable (for example, archived).
+ */
+export async function setFavorite(
+  actor: Actor,
+  sportKey: string,
+  id: string,
+  favorite: boolean,
+): Promise<Result<{ favorite: boolean }>> {
+  if (!isUuid(id)) return fail("NOT_FOUND");
+  const sport = await getSport(sportKey);
+  if (!sport) return fail("NOT_FOUND");
+
+  return tenantTx(actor, async (tx): Promise<Result<{ favorite: boolean }>> => {
+    if (!favorite) {
+      await tx
+        .delete(drillFavorites)
+        .where(and(eq(drillFavorites.userId, actor.userId), eq(drillFavorites.drillId, id)));
+      return ok({ favorite: false });
+    }
+    // RLS hides drills the actor cannot read → "not found", never "forbidden" (no existence oracle)
+    const [row] = await tx
+      .select({ id: drills.id })
+      .from(drills)
+      .where(and(eq(drills.id, id), eq(drills.sportId, sport.id)))
+      .limit(1);
+    if (!row) return fail("NOT_FOUND");
+    await tx
+      .insert(drillFavorites)
+      .values({ userId: actor.userId, drillId: id })
+      .onConflictDoNothing();
+    return ok({ favorite: true });
+  });
 }

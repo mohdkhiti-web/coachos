@@ -1,0 +1,97 @@
+{
+  "seedKey": "stationary-ball-handling",
+  "title": "Stationary Ball-Handling Series",
+  "description": "Every player has a ball and a spot. A short sequence of stationary dribbles and ball movements builds feel, wrist control and confidence.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["ball_control"],
+  "subSkills": ["weak_hand"],
+  "level": "beginner",
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 30,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "any_space",
+  "format": "individual",
+  "intensity": "low",
+  "phases": ["warm_up", "skill"],
+  "tags": ["dribbling", "warm-up", "individual"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build hand-eye coordination and a comfortable feel for the ball with both hands.",
+    "setup": "Each player finds an open spot with one ball, an arm's length from teammates. The coach stands where everyone can see and calls each exercise.",
+    "instructions": [
+      "Pound dribble: 20 hard dribbles with the right hand, then the left, at waist height with the head up.",
+      "Crossover: 20 low, quick crossovers in front of the body.",
+      "Around the body: pass the ball around the waist, then the knees, then the head, for 10 seconds each.",
+      "Figure eight: weave the ball in a figure eight through the legs for 20 seconds.",
+      "Two-ball or tennis-ball finish (optional): catch and toss a small ball while dribbling."
+    ],
+    "coachingPoints": [
+      "Use the finger pads, not the palm, and push the ball down rather than slapping it.",
+      "Eyes up: pick a spot on the wall or watch the coach's hand signals.",
+      "Stay low in a balanced athletic stance with the knees bent."
+    ],
+    "commonMistakes": [
+      "Looking down at the ball, which prevents seeing the court later.",
+      "Dribbling with a flat palm so the ball is hard to control.",
+      "Standing upright and stiff instead of staying balanced and low."
+    ],
+    "safety": "Give players enough space so a loose ball does not strike a neighbour.",
+    "progressions": [
+      "Add a moving element: dribble on the spot while the coach calls a colour or number to react to."
+    ],
+    "regressions": [
+      "Allow a two-hand dribble or use slightly deflated smaller balls for the youngest players."
+    ],
+    "variations": ["Perform the whole series while walking slowly around the court."]
+  },
+  "diagrams": [
+    {
+      "title": "Own spot, own ball",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 2.2]
+            },
+            "text": "Head up, ball low"
+          }
+        ]
+      }
+    }
+  ]
+}

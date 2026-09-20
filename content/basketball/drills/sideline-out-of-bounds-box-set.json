@@ -1,0 +1,160 @@
+{
+  "seedKey": "sideline-out-of-bounds-box-set",
+  "title": "Sideline Out-of-Bounds Box Set",
+  "description": "A simple box formation with two screens gives the inbounder a safe, well-timed option and a clear release valve against pressure.",
+  "category": "special_situations",
+  "primarySkill": "inbounding",
+  "secondarySkills": ["screening", "cutting", "communication"],
+  "subSkills": ["sideline_inbounds"],
+  "level": "intermediate",
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 5,
+  "playersMax": 10,
+  "durationMin": 10,
+  "durationMax": 15,
+  "space": "half_court",
+  "format": "team",
+  "intensity": "medium",
+  "phases": ["skill"],
+  "tags": ["inbound", "sideline out of bounds", "box set", "special situations"],
+  "equipment": [
+    { "type": "basketball", "rule": "fixed", "quantity": 1 },
+    { "type": "hoop", "rule": "fixed", "quantity": 1 },
+    { "type": "bibs", "rule": "fixed", "quantity": 4 }
+  ],
+  "content": {
+    "objective": "Inbound the ball safely against pressure using a simple box formation, timed screens and a clear signal.",
+    "setup": "The inbounder stands on the sideline level with the free-throw line. Four teammates form a box on the blocks and elbows. Four defenders guard the box players.",
+    "organization": "Groups of nine: five on offense, four on defense. Rotate roles every two possessions; extra players wait behind the baseline and rotate in.",
+    "instructions": [
+      "The offense sets the box: two players on the blocks and two on the elbows. The inbounder holds the ball and calls the play by number.",
+      "On the call, the two elbow players screen for the two block players, who cut to the ball side and to the top.",
+      "The inbounder passes to the first open cutter, using a firm pass with a step.",
+      "If nothing is open, the closest player breaks back to the ball as a safety valve before the five-second count ends.",
+      "Once the ball is in, play out the possession live."
+    ],
+    "coachingPoints": [
+      "Signal early and call loudly so everyone hears the play.",
+      "Set screens with feet still and arms tucked; the cutter reads the defender before cutting.",
+      "Cut sharply off the screen and show a target hand.",
+      "The inbounder stays behind the line and waits for the cutter to be open."
+    ],
+    "commonMistakes": [
+      "Passing before a cutter is open, into traffic.",
+      "Screeners moving as they set the screen.",
+      "Every player cutting to the same side, leaving no safety valve."
+    ],
+    "safety": "Keep hands off cutters' bodies, and keep the inbounding space clear of players and equipment.",
+    "progressions": [
+      "Add a second option: the inbounder passes to the safety, and the ball is reversed to the far side."
+    ],
+    "regressions": ["Run the set with no defenders until the timing is smooth."],
+    "variations": [
+      "Run the same set from the opposite sideline.",
+      "Add a five-second count that the inbounder must beat."
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "Box set: screen, cut, inbound",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": { "type": "half", "variant": "fiba" },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": { "x": 7.5, "y": 4.2 }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": { "anchor": "right_block" }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": { "anchor": "left_block" }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": { "anchor": "right_elbow" }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": { "anchor": "left_elbow" }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": { "entity": "o2", "offset": [-0.9, 0.7] }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": { "entity": "o3", "offset": [0.9, 0.7] }
+          },
+          {
+            "id": "x4",
+            "type": "player",
+            "side": "defense",
+            "label": "X4",
+            "at": { "entity": "o4", "offset": [-0.9, 0.7] }
+          },
+          {
+            "id": "x5",
+            "type": "player",
+            "side": "defense",
+            "label": "X5",
+            "at": { "entity": "o5", "offset": [0.9, 0.7] }
+          },
+          { "id": "b1", "type": "ball", "heldBy": "o1" }
+        ],
+        "actions": [
+          { "id": "a1", "step": 1, "type": "screen", "entity": "o4", "target": { "entity": "x2" } },
+          { "id": "a2", "step": 1, "type": "screen", "entity": "o5", "target": { "entity": "x3" } },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [{ "anchor": "right_wing" }]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "cut",
+            "entity": "o3",
+            "path": [{ "anchor": "top_key" }]
+          },
+          { "id": "a5", "step": 3, "type": "pass", "from": "o1", "to": "o2" }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": { "anchor": "half_court_center" },
+            "text": "Call it, screen, cut, pass"
+          }
+        ]
+      }
+    }
+  ]
+}

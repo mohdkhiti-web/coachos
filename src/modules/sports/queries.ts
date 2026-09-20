@@ -13,9 +13,11 @@ import { isSportKey, type SportKey } from "@/sports/registry";
 
 export type SportDto = { id: string; key: SportKey; name: string; status: SportStatus };
 export type TaxonomyItem = { id: string; key: string; name: string; description?: string | null };
+/** `parentKey` set = a sub-skill of that (top-level) skill. */
+export type SkillItem = TaxonomyItem & { parentKey: string | null };
 export type Taxonomy = {
   categories: TaxonomyItem[];
-  skills: TaxonomyItem[];
+  skills: SkillItem[];
   equipment: TaxonomyItem[];
 };
 
@@ -74,7 +76,12 @@ export const getTaxonomy = cache(async (sportId: string): Promise<Taxonomy> => {
       name: c.name,
       description: c.description,
     })),
-    skills: sk.map((s) => ({ id: s.id, key: s.key, name: s.name })),
+    skills: sk.map((s) => ({
+      id: s.id,
+      key: s.key,
+      name: s.name,
+      parentKey: s.parentId ? (sk.find((p) => p.id === s.parentId)?.key ?? null) : null,
+    })),
     equipment: equip.map((e) => ({ id: e.id, key: e.key, name: e.name })),
   };
 });

@@ -1,0 +1,155 @@
+{
+  "seedKey": "give-and-go",
+  "title": "Give-and-Go (Pass and Cut)",
+  "description": "Pass to a teammate and cut hard to the basket to receive the return pass. This is the foundation of moving without the ball against a defender.",
+  "category": "team_offense",
+  "primarySkill": "cutting",
+  "secondarySkills": ["passing", "spacing", "decision_making"],
+  "subSkills": [],
+  "level": "beginner",
+  "ageMin": 9,
+  "ageMax": 15,
+  "playersMin": 4,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "format": "group",
+  "intensity": "low",
+  "phases": ["skill"],
+  "tags": ["cutting", "2-on-2", "spacing", "fundamentals"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Use a pass and a sharp cut to create a scoring chance against a defender who is watching the ball.",
+    "setup": "Groups of four play 2-on-2 on one basket. One offensive player starts at the top of the key with the ball, the other on the wing. Each has a defender.",
+    "instructions": [
+      "The ball handler passes to the wing player.",
+      "Immediately cut toward the basket, going behind or in front of the defender depending on where they look.",
+      "The wing player passes back to the cutter early, leading them toward the basket.",
+      "The cutter catches in stride and finishes with a layup.",
+      "Start with passive defenders and progress to live defence once the timing is clear."
+    ],
+    "coachingPoints": [
+      "Fake one way, then cut the other: use the defender's attention against them.",
+      "Cut hard with the hands up as a target, then stop the cut if the pass is not there.",
+      "The passer sees the cutter before releasing the ball and leads them to the basket."
+    ],
+    "commonMistakes": [
+      "Passing and standing still, so there is no cut.",
+      "Cutting in front of the passer so the pass path is blocked.",
+      "Passing late after the cutter has already gone."
+    ],
+    "safety": "Use passive defence at first to avoid collisions at the cut, and keep the lane clear.",
+    "progressions": [
+      "Add a third defender (help defence) so the cutter must read and use a different pass."
+    ],
+    "regressions": ["Perform without defenders, focusing on timing and footwork of the cut."],
+    "variations": [
+      "Start the give-and-go from the wing and cut to the corner or the opposite block."
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "Pass, cut, return pass",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [0.2, -1.1]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [0.6, -1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "x": -1.2,
+                "y": 3.6
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import { Plus } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { ActiveFilters } from "@/components/features/drills/active-filters";
 import { DrillCard } from "@/components/features/drills/drill-card";
+import { FormatChips } from "@/components/features/drills/format-chips";
 import { LibraryFilters } from "@/components/features/drills/library-filters";
 import { Pagination } from "@/components/features/drills/pagination";
 import { Button } from "@/components/ui/button";
@@ -13,6 +14,7 @@ import { can } from "@/lib/authz/can";
 import { activeFilterCount, hrefFor, parseFilters, searchDrills } from "@/modules/drills";
 import { requireViewer } from "@/modules/identity";
 import { getSport, getTaxonomy } from "@/modules/sports";
+import { getSportModule } from "@/sports/registry";
 
 export const metadata: Metadata = { title: "Drills" };
 
@@ -79,6 +81,12 @@ export default async function DrillLibraryPage({
           ) : null}
         </header>
 
+        <FormatChips
+          basePath={basePath}
+          filters={filters}
+          formats={getSportModule(sport.key)?.formats ?? []}
+        />
+
         <ActiveFilters basePath={basePath} filters={filters} taxonomy={taxonomy} />
 
         {result.items.length > 0 ? (
@@ -86,7 +94,12 @@ export default async function DrillLibraryPage({
             <ul className="grid gap-5 sm:grid-cols-2 2xl:grid-cols-3">
               {result.items.map((d) => (
                 <li key={d.id}>
-                  <DrillCard drill={d} href={`${basePath}/${d.id}`} className="h-full" />
+                  <DrillCard
+                    drill={d}
+                    href={`${basePath}/${d.id}`}
+                    sportKey={sport.key}
+                    className="h-full"
+                  />
                 </li>
               ))}
             </ul>

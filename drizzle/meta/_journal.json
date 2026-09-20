@@ -29,6 +29,13 @@
       "when": 1789906561287,
       "tag": "0003_drills_rls_search",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1789924373083,
+      "tag": "0004_drill_library_facets",
+      "breakpoints": true
     }
   ]
 }

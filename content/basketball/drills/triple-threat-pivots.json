@@ -1,0 +1,124 @@
+{
+  "seedKey": "triple-threat-pivots",
+  "title": "Triple-Threat Stance and Pivots",
+  "description": "Learn to catch in a balanced triple-threat stance and protect the ball with front and reverse pivots without travelling.",
+  "category": "footwork",
+  "primarySkill": "pivoting",
+  "secondarySkills": ["footwork", "decision_making"],
+  "subSkills": [],
+  "level": "beginner",
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "any_space",
+  "format": "individual",
+  "intensity": "low",
+  "phases": ["skill"],
+  "tags": ["footwork", "pivoting", "fundamentals"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Receive the ball balanced and pivot without travelling so the player always has the option to shoot, pass or drive.",
+    "setup": "Pairs stand about three metres apart. One player is the passer, the other is the receiver who practices the stance and pivots. Swap after each set of six.",
+    "instructions": [
+      "Receiver catches a chest pass and lands in a balanced stance: feet shoulder-width apart, knees bent, ball on one hip.",
+      "Establish a pivot foot and hold the position for a two-second count while looking at the basket.",
+      "Perform a front pivot: turn toward the basket while keeping the pivot foot planted.",
+      "Perform a reverse pivot: turn away from the passer while keeping the pivot foot planted.",
+      "Add a defender who applies light pressure to the ball so the pivot has a purpose."
+    ],
+    "coachingPoints": [
+      "Weight on the balls of the feet with the head up.",
+      "Keep the ball protected close to the body with elbows out.",
+      "The pivot foot never lifts or slides before the ball is released or dribbled."
+    ],
+    "commonMistakes": [
+      "Lifting or dragging the pivot foot, which is a travelling violation.",
+      "Bringing the ball to the chest and standing tall so the stance is not balanced.",
+      "Looking down at the feet instead of scanning the court."
+    ],
+    "safety": "Keep the pressure light and controlled so the pivots do not become collisions.",
+    "progressions": [
+      "Make the receiver catch on the move, jump-stop into the stance and finish with a decision: shoot, pass or dribble."
+    ],
+    "regressions": [
+      "Start without a ball and rehearse the foot movements with the coach's demonstration."
+    ],
+    "variations": [
+      "Make it a game: the receiver has to pivot around a cone placed on the floor to face a target."
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "Catch, then pivot",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "coach",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X",
+            "at": {
+              "entity": "o1",
+              "offset": [-0.9, -1.1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "c1",
+            "to": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [-1.6, 2.4]
+            },
+            "text": "Pivot foot stays planted"
+          }
+        ]
+      }
+    }
+  ]
+}

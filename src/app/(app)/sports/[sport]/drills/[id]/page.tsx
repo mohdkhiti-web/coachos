@@ -5,7 +5,14 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import { getFormatter, getTranslations } from "next-intl/server";
 import { DrillActions } from "@/components/features/drills/drill-actions";
 import { DrillDiagram } from "@/components/features/drills/drill-diagram";
-import { LevelMeter, range, ScopeBadge, Stat } from "@/components/features/drills/drill-badges";
+import {
+  IntensityMeter,
+  LevelMeter,
+  range,
+  ScopeBadge,
+  Stat,
+} from "@/components/features/drills/drill-badges";
+import { FavoriteButton } from "@/components/features/drills/favorite-button";
 import { SectionMarker } from "@/components/ui/section-marker";
 import { cn } from "@/lib/cn";
 import { getDrill } from "@/modules/drills";
@@ -44,6 +51,9 @@ export default async function DrillDetailPage({
     { id: "regressions", title: t("detail.regressions"), items: c.regressions },
     { id: "variations", title: t("detail.variations"), items: c.variations },
   ].filter((s) => s.items.length > 0);
+  // numbered sections: the optional "Organization" block shifts the ones after it
+  const hasOrganization = c.organization.length > 0;
+  const nHow = hasOrganization ? 4 : 3;
 
   return (
     <article className="space-y-10" aria-labelledby="drill-title">
@@ -74,16 +84,25 @@ export default async function DrillDetailPage({
             {drill.title}
           </h2>
           <p className="max-w-3xl text-lg leading-relaxed text-ink-muted">{drill.description}</p>
-          <DrillActions
-            sportKey={drill.sportKey}
-            drillId={drill.id}
-            title={drill.title}
-            isLibrary={isLibrary}
-            permissions={drill.permissions}
-          />
+          <div className="flex flex-wrap items-center gap-2">
+            <DrillActions
+              sportKey={drill.sportKey}
+              drillId={drill.id}
+              title={drill.title}
+              isLibrary={isLibrary}
+              permissions={drill.permissions}
+            />
+            <FavoriteButton
+              sportKey={drill.sportKey}
+              drillId={drill.id}
+              title={drill.title}
+              initial={drill.isFavorite}
+              variant="detail"
+            />
+          </div>
         </header>
 
-        <dl className="grid grid-cols-2 gap-x-6 gap-y-5 border-y border-line py-5 sm:grid-cols-3 lg:grid-cols-6">
+        <dl className="grid grid-cols-2 gap-x-6 gap-y-5 border-y border-line py-5 sm:grid-cols-3 lg:grid-cols-4">
           <Stat value={range(drill.durationMin, drill.durationMax)} label={t("card.minutes")} />
           <Stat value={range(drill.playersMin, drill.playersMax)} label={t("card.players")} />
           <Stat value={range(drill.ageMin, drill.ageMax)} label={t("card.ages")} />
@@ -98,6 +117,22 @@ export default async function DrillDetailPage({
               />
             </dd>
           </div>
+          <div className="flex min-w-0 flex-col-reverse">
+            <dt className="mt-2 text-xs text-ink-muted">{t("detail.intensity")}</dt>
+            <dd>
+              <IntensityMeter
+                intensity={drill.intensity}
+                label={t(`intensities.${drill.intensity}`)}
+                className="text-base"
+              />
+            </dd>
+          </div>
+          {drill.format ? (
+            <div className="flex min-w-0 flex-col-reverse">
+              <dt className="mt-1 text-xs text-ink-muted">{t("detail.format")}</dt>
+              <dd className="text-base font-medium text-ink">{t(`formats.${drill.format}`)}</dd>
+            </div>
+          ) : null}
           <div className="flex min-w-0 flex-col-reverse">
             <dt className="mt-1 text-xs text-ink-muted">{t("detail.space")}</dt>
             <dd className="text-base font-medium text-ink">{t(`spaces.${drill.space}`)}</dd>
@@ -151,8 +186,17 @@ export default async function DrillDetailPage({
             <p className="text-lg leading-relaxed text-ink">{c.setup}</p>
           </section>
 
+          {hasOrganization ? (
+            <section aria-labelledby="organization" className="space-y-3">
+              <SectionMarker as="h3" id="organization" n={3}>
+                {t("detail.organization")}
+              </SectionMarker>
+              <p className="text-lg leading-relaxed text-ink">{c.organization}</p>
+            </section>
+          ) : null}
+
           <section aria-labelledby="how" className="space-y-4">
-            <SectionMarker as="h3" id="how" n={3}>
+            <SectionMarker as="h3" id="how" n={nHow}>
               {t("detail.instructions")}
             </SectionMarker>
             <ol className="space-y-4">
@@ -174,7 +218,7 @@ export default async function DrillDetailPage({
           </section>
 
           <section aria-labelledby="points" className="space-y-4">
-            <SectionMarker as="h3" id="points" n={4}>
+            <SectionMarker as="h3" id="points" n={nHow + 1}>
               {t("detail.coachingPoints")}
             </SectionMarker>
             <BulletList items={c.coachingPoints} className="text-lg" />
@@ -182,7 +226,7 @@ export default async function DrillDetailPage({
 
           {c.commonMistakes.length > 0 ? (
             <section aria-labelledby="mistakes" className="space-y-4">
-              <SectionMarker as="h3" id="mistakes" n={5}>
+              <SectionMarker as="h3" id="mistakes" n={nHow + 2}>
                 {t("detail.commonMistakes")}
               </SectionMarker>
               <BulletList items={c.commonMistakes} className="text-lg" />
@@ -252,7 +296,9 @@ export default async function DrillDetailPage({
                     "rounded-full border px-3 py-1 text-sm",
                     s.role === "primary"
                       ? "border-accent bg-accent-soft font-semibold text-accent-strong"
-                      : "border-line-strong text-ink-muted",
+                      : s.role === "sub"
+                        ? "border-dashed border-line-strong text-ink"
+                        : "border-line-strong text-ink-muted",
                   )}
                 >
                   {s.name}
@@ -263,6 +309,24 @@ export default async function DrillDetailPage({
               ))}
             </ul>
           </section>
+
+          {drill.phases.length > 0 ? (
+            <section aria-labelledby="phases" className="space-y-3">
+              <h3 id="phases" className="eyebrow">
+                {t("detail.phases")}
+              </h3>
+              <ul className="flex flex-wrap gap-2">
+                {drill.phases.map((p) => (
+                  <li
+                    key={p}
+                    className="rounded-xs border border-line bg-surface px-2 py-0.5 text-sm text-ink"
+                  >
+                    {t(`phases.${p}`)}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
 
           {drill.tags.length > 0 ? (
             <section aria-labelledby="tags" className="space-y-3">

@@ -7,7 +7,7 @@ import { logger } from "@/lib/logger";
 import { fail, type Result } from "@/lib/result";
 import { requireViewer } from "@/modules/identity";
 import { isSportKey } from "@/sports/registry";
-import { archiveDrill, createDrill, duplicateDrill, updateDrill } from "./commands";
+import { archiveDrill, createDrill, duplicateDrill, setFavorite, updateDrill } from "./commands";
 import { drillInputSchema } from "./validators";
 
 /**
@@ -90,5 +90,28 @@ export async function duplicateDrillAction(sportKey: string, id: string): Promis
     return result;
   } catch (err) {
     return unexpected("drill.duplicate", err);
+  }
+}
+
+/** Star / un-star a drill. The caller states the wanted state (idempotent). Returns the resulting state. */
+export async function setFavoriteAction(
+  sportKey: string,
+  id: string,
+  favorite: boolean,
+): Promise<Result<{ favorite: boolean }>> {
+  const { actor } = await requireViewer();
+  if (!isSportKey(sportKey) || !isUuid(id) || typeof favorite !== "boolean")
+    return fail("NOT_FOUND");
+  try {
+    const result = await setFavorite(actor, sportKey, id, favorite);
+    // the list, the Favorites view and the detail page all show the star: refresh the whole workspace
+    if (result.ok) refresh(sportKey);
+    return result;
+  } catch (err) {
+    logger.error(
+      { err: err instanceof Error ? err.message : String(err), scope: "drill.favorite" },
+      "action.failed",
+    );
+    return fail("INTERNAL");
   }
 }

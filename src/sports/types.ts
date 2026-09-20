@@ -18,6 +18,12 @@ export interface SportModule {
   defaultCourt: CourtRef;
   /** Values allowed for a drill's `space` facet. Labels: messages `sports.spaces.<value>`. */
   spaces: readonly string[];
+  /**
+   * Values allowed for a drill's `format` facet (how many-on-how-many), in the order shown as quick-filter
+   * chips. Labels: messages `drills.formats.<value>`. Owned by the sport, like `spaces`, so a sport without
+   * "3v3" never has to carry it.
+   */
+  formats: readonly string[];
   defaults: { sessionMinutes: number };
 }
 

@@ -1,0 +1,142 @@
+{
+  "seedKey": "defensive-slide-zigzag",
+  "title": "Defensive Slide Zig-Zag",
+  "description": "Defenders slide through a zig-zag of cones in a low stance, changing direction with quick, controlled steps and keeping their chest facing forward.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": ["footwork", "speed_agility"],
+  "subSkills": ["stance_and_slides"],
+  "level": "beginner",
+  "ageMin": 9,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "format": "individual",
+  "intensity": "medium",
+  "phases": ["warm_up", "skill"],
+  "tags": ["defense", "slides", "stance", "agility"],
+  "equipment": [
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Move laterally in a balanced defensive stance without crossing the feet and change direction without standing up.",
+    "setup": "Place four cones in a zig-zag pattern about two and a half metres apart, alternating sides of the lane. Players line up behind the first cone in a defensive stance.",
+    "instructions": [
+      "Start in a low stance: feet wider than the shoulders, knees bent, hands active and chest up.",
+      "Slide to the first cone with quick, short steps, pushing off the trail foot without crossing the feet.",
+      "At the cone, drop the lead foot, pivot and push off in the opposite direction with a drop step.",
+      "Continue through all four cones, then sprint back on the outside to the start.",
+      "Repeat for a fixed time, with rest equal to the work time."
+    ],
+    "coachingPoints": [
+      "Stay low: hips down, back straight, head up.",
+      "Push off the inside foot rather than reaching with the lead foot.",
+      "Active hands: one high on the ball, one low in the passing lane.",
+      "Change direction with the drop step, not by turning the hips or crossing the feet."
+    ],
+    "commonMistakes": [
+      "Crossing the feet, which loses balance and speed.",
+      "Standing up at each change of direction.",
+      "Letting the heels touch when sliding, which slows the movement."
+    ],
+    "safety": "Space lines so players do not collide when returning, and stop if a player feels knee or ankle pain.",
+    "progressions": ["Add a ball handler to mirror, or a coach pointing directions to react to."],
+    "regressions": [
+      "Reduce the distance between the cones and slow the pace until the footwork is clean."
+    ],
+    "variations": [
+      "Time each player through the sequence and encourage them to beat their own best."
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "Slide through the zig-zag",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "x": -3,
+              "y": 10.4
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "x": 3,
+              "y": 8.4
+            }
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "x": -3,
+              "y": 6.4
+            }
+          },
+          {
+            "id": "c4",
+            "type": "cone",
+            "at": {
+              "x": 3,
+              "y": 4.4
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X",
+            "at": {
+              "x": 0,
+              "y": 11.6
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "x1",
+            "path": [
+              {
+                "x": -2.4,
+                "y": 10.3
+              },
+              {
+                "x": 2.4,
+                "y": 8.3
+              },
+              {
+                "x": -2.4,
+                "y": 6.3
+              },
+              {
+                "x": 2.4,
+                "y": 4.3
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

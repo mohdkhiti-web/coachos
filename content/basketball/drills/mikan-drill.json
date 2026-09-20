@@ -1,0 +1,124 @@
+{
+  "seedKey": "mikan-drill",
+  "title": "Mikan Drill",
+  "description": "Continuous alternating layups under the basket with a soft touch off the backboard build finishing touch with both hands and footwork under the rim.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["footwork", "ball_control"],
+  "subSkills": ["both_hands_finishing"],
+  "level": "beginner",
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 12,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "format": "individual",
+  "intensity": "medium",
+  "phases": ["warm_up", "skill"],
+  "tags": ["layups", "finishing", "touch"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Finish softly around the basket with either hand while staying balanced and keeping the ball high.",
+    "setup": "Players line up on one side of the basket. The first player starts under the rim to one side of the basket with a ball.",
+    "instructions": [
+      "Step with the outside foot and shoot a right-hand layup off the backboard.",
+      "Catch the ball as it drops through the net without letting it bounce.",
+      "Step across the basket and shoot a left-hand layup off the backboard from the other side.",
+      "Continue alternating for 30 seconds or a set number of makes, keeping the ball above the shoulders.",
+      "Rotate to the next player and go to the end of the line."
+    ],
+    "coachingPoints": [
+      "Use the backboard: aim for a small square above the rim on the near side.",
+      "Finger-roll or lay the ball up softly rather than throwing it.",
+      "Keep the ball high between shots and catch it above the head to avoid a low dip."
+    ],
+    "commonMistakes": [
+      "Dropping the ball to the waist between shots and wasting time.",
+      "Jumping away from the basket instead of going straight up.",
+      "Using the wrong hand: right-hand layup off the right side, left off the left."
+    ],
+    "safety": "Only one shooter under the basket; other players wait at least three metres away.",
+    "progressions": ["Add a second ball or count makes in 30 seconds to make it a challenge."],
+    "regressions": ["Shoot one layup at a time, resetting the feet between each attempt."],
+    "variations": ["Perform the drill using only the weak hand for the second round."]
+  },
+  "diagrams": [
+    {
+      "title": "Alternate sides under the rim",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [-1, 0.9]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "under_basket",
+                "offset": [1, 0.9]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 3.3
+            },
+            "text": "Right hand, then left hand"
+          }
+        ]
+      }
+    }
+  ]
+}

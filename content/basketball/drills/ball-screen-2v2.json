@@ -1,0 +1,173 @@
+{
+  "seedKey": "ball-screen-2v2",
+  "title": "Ball Screen 2-on-2",
+  "description": "A ball handler and a screener use an on-ball screen against two defenders, practising the screen, the use of the screen and the roll to the basket.",
+  "category": "team_offense",
+  "primarySkill": "pick_and_roll",
+  "secondarySkills": ["screening", "decision_making", "spacing"],
+  "subSkills": ["pnr_ball_handler", "pnr_screener"],
+  "level": "advanced",
+  "ageMin": 14,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 12,
+  "durationMin": 10,
+  "durationMax": 15,
+  "space": "half_court",
+  "format": "2v2",
+  "intensity": "high",
+  "phases": ["small_sided"],
+  "tags": ["pick and roll", "screening", "2-on-2", "reads"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Set a legal, effective ball screen, use it patiently, and read the defence to decide between scoring, passing or rolling.",
+    "setup": "Groups of four play live 2-on-2 from the top of the key. The ball handler starts at the top, the screener at the elbow, each with a defender.",
+    "instructions": [
+      "The screener sprints to the ball handler's defender and sets a stationary, wide screen, feet planted and arms in.",
+      "The ball handler waits for the screen, then uses it by dribbling off the screener's shoulder, staying close to it.",
+      "Read the defence: if the screener's defender steps up, pass to the roller; if the defenders switch, attack the mismatch.",
+      "The screener rolls to the basket after the screen, turning to face the ball with a hand up as a target.",
+      "Finish with a shot, layup or pass to the open player. Rotate roles after each possession."
+    ],
+    "coachingPoints": [
+      "Set the screen with the body still, not moving; contact should be firm but legal.",
+      "The ball handler must set up the screen with a fake or a change of pace before using it.",
+      "Roll with the chest facing the ball and hands ready as a target.",
+      "Communicate: talk about the screen ('screen left') so defenders and teammates react quickly."
+    ],
+    "commonMistakes": [
+      "Setting a moving screen, which is a foul.",
+      "The ball handler using the screen too early so the defender is not delayed.",
+      "Rolling with the back to the ball, so the screener cannot catch a pass."
+    ],
+    "safety": "Teach screeners to set with the arms tucked close, and check that players are balanced to avoid injuries during contact.",
+    "progressions": [
+      "Add a third defender helping from the weak side, so the ball handler reads two defenders."
+    ],
+    "regressions": [
+      "Practice the screen and roll against no defence first, then add one defender."
+    ],
+    "variations": ["Set the screen on the wing or from a side angle to change the read."]
+  },
+  "diagrams": [
+    {
+      "title": "Screen, use, roll, finish",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [0, -1.1]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [-0.3, -1.1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o2",
+            "target": {
+              "entity": "x1"
+            }
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "x": 2.8,
+                "y": 6
+              },
+              {
+                "x": 1.6,
+                "y": 3.8
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_block"
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a5",
+            "step": 4,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

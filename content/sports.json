@@ -1,0 +1,10 @@
+[
+  { "key": "basketball", "name": "Basketball", "status": "active" },
+  { "key": "football", "name": "Football", "status": "planned" },
+  { "key": "volleyball", "name": "Volleyball", "status": "planned" },
+  { "key": "handball", "name": "Handball", "status": "planned" },
+  { "key": "swimming", "name": "Swimming", "status": "planned" },
+  { "key": "athletics", "name": "Athletics", "status": "planned" },
+  { "key": "cricket", "name": "Cricket", "status": "planned" },
+  { "key": "tennis", "name": "Tennis", "status": "planned" }
+]

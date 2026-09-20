@@ -20,6 +20,10 @@ describe("URL filters (untrusted input: lenient, never throws)", () => {
       players: "8",
       duration: "medium",
       equipment: "cones",
+      intensity: "high",
+      format: "3v3",
+      phase: "small_sided",
+      favorites: "1",
       scope: "mine",
       sort: "title",
       page: "3",
@@ -33,6 +37,10 @@ describe("URL filters (untrusted input: lenient, never throws)", () => {
       players: 8,
       duration: "medium",
       equipment: "cones",
+      intensity: "high",
+      format: "3v3",
+      phase: "small_sided",
+      favorites: true,
       scope: "mine",
       sort: "title",
       page: 3,
@@ -47,6 +55,10 @@ describe("URL filters (untrusted input: lenient, never throws)", () => {
       age: "abc",
       players: "-1",
       duration: "epic",
+      intensity: "extreme",
+      format: "3 v 3!",
+      phase: "overtime",
+      favorites: "yes",
       scope: "everything",
       sort: "random",
       page: "0",
@@ -58,6 +70,10 @@ describe("URL filters (untrusted input: lenient, never throws)", () => {
       age: undefined,
       players: undefined,
       duration: undefined,
+      intensity: undefined,
+      format: undefined,
+      phase: undefined,
+      favorites: false, // only the exact value "1" turns it on
       scope: "all",
       page: 1,
     });
@@ -74,6 +90,28 @@ describe("URL filters (untrusted input: lenient, never throws)", () => {
   it("takes the first value of repeated params and tolerates arrays", () => {
     expect(parseFilters({ level: ["beginner", "advanced"] }).level).toBe("beginner");
     expect(parseFilters({ q: ["one", "two"] }).q).toBe("one");
+  });
+
+  it("format keys may start with a digit (1v1, 3v3); catalog keys may not", () => {
+    for (const ok of ["individual", "1v1", "2v2", "3v3", "4v4", "5v5", "group", "team"])
+      expect(parseFilters({ format: ok }).format, ok).toBe(ok);
+    for (const bad of ["", "-1v1", "1 v 1", "UPPER", "a".repeat(17), "1v1;drop"])
+      expect(parseFilters({ format: bad }).format, bad).toBeUndefined();
+    expect(parseFilters({ category: "3v3" }).category).toBeUndefined(); // still the stricter catalog rule
+  });
+
+  it("intensity, phase and favorites survive a URL round trip, and count as filters", () => {
+    const f = parseFilters({
+      intensity: "low",
+      phase: "cool_down",
+      favorites: "1",
+      format: "team",
+    });
+    const qs = filtersToSearchParams(f).toString();
+    expect(qs).toBe("intensity=low&format=team&phase=cool_down&favorites=1");
+    expect(parseFilters(Object.fromEntries(new URLSearchParams(qs)))).toEqual(f);
+    expect(activeFilterCount(f)).toBe(4);
+    expect(activeFilterCount(parseFilters({ favorites: "0" }))).toBe(0);
   });
 
   it("sort defaults to relevance only when there is a search term", () => {
@@ -319,5 +357,84 @@ describe("drill input schema", () => {
     };
     expect(drillInputSchema.safeParse({ ...base, diagrams: [d, d, d] }).success).toBe(true);
     expect(drillInputSchema.safeParse({ ...base, diagrams: [d, d, d, d] }).success).toBe(false);
+  });
+});
+
+describe("drill input schema: library facets", () => {
+  const base = {
+    title: "Good Title",
+    description: "A perfectly reasonable one-paragraph description.",
+    category: "passing",
+    primarySkill: "passing",
+    level: "beginner",
+    ageMin: 8,
+    ageMax: 12,
+    playersMin: 2,
+    playersMax: 8,
+    durationMin: 5,
+    durationMax: 10,
+    space: "half_court",
+    content: {
+      objective: "Pass well.",
+      setup: "Two lines.",
+      instructions: ["Pass."],
+      coachingPoints: ["Step."],
+    },
+  };
+  const issues = (over: object) => {
+    const r = drillInputSchema.safeParse({ ...base, ...over });
+    return r.success
+      ? {}
+      : Object.fromEntries(r.error.issues.map((i) => [i.path.join("."), i.message]));
+  };
+
+  it("defaults: medium intensity, no format, no phases, no sub-skills, an empty organization block", () => {
+    expect(drillInputSchema.parse(base)).toMatchObject({
+      intensity: "medium",
+      format: "",
+      phases: [],
+      subSkills: [],
+      content: { organization: "" },
+    });
+  });
+
+  it("intensity is low, medium or high", () => {
+    for (const i of ["low", "medium", "high"])
+      expect(drillInputSchema.safeParse({ ...base, intensity: i }).success, i).toBe(true);
+    expect(issues({ intensity: "extreme" }).intensity).toBe("required");
+  });
+
+  it("format may be empty, or a key that starts with a letter or digit (the sport decides which are valid)", () => {
+    for (const f of ["", "individual", "1v1", "3v3", "team"])
+      expect(drillInputSchema.safeParse({ ...base, format: f }).success, f).toBe(true);
+    for (const bad of ["3 v 3", "3V3", "-1v1", "x".repeat(17), "1v1;drop table"])
+      expect(issues({ format: bad }).format, bad).toBe("invalid");
+  });
+
+  it("phases: only the known slots, each at most once", () => {
+    expect(drillInputSchema.parse({ ...base, phases: ["warm_up", "cool_down"] }).phases).toEqual([
+      "warm_up",
+      "cool_down",
+    ]);
+    expect(issues({ phases: ["overtime"] })["phases.0"]).toBe("invalid");
+    expect(issues({ phases: ["skill", "skill"] }).phases).toBe("skill_duplicate");
+  });
+
+  it("sub-skills: keys only, at most three, no repeats", () => {
+    expect(issues({ subSkills: ["a_b", "c_d", "e_f", "g_h"] }).subSkills).toBe("too_many");
+    expect(issues({ subSkills: ["crossover", "crossover"] }).subSkills).toBe("skill_duplicate");
+    expect(issues({ subSkills: ["Bad Key!"] })["subSkills.0"]).toBe("invalid");
+  });
+
+  it("the organization block is optional text with a length limit", () => {
+    const content = { ...base.content, organization: "Three groups rotate every two minutes." };
+    expect(drillInputSchema.parse({ ...base, content }).content.organization).toBe(
+      "Three groups rotate every two minutes.",
+    );
+    expect(
+      issues({ content: { ...base.content, organization: "x".repeat(1001) } })[
+        "content.organization"
+      ],
+    ).toBe("too_long");
   });
 });

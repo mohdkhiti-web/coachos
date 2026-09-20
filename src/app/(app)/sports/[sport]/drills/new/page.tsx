@@ -36,6 +36,7 @@ export default async function NewDrillPage({ params }: PageProps<"/sports/[sport
         skills={taxonomy.skills}
         equipment={taxonomy.equipment}
         spaces={[...mod.spaces]}
+        formats={[...mod.formats]}
         showVisibility={viewer.organization.type !== "personal"}
         initial={emptyValues({
           space: mod.spaces[0]!,

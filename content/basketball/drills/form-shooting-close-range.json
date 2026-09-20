@@ -1,0 +1,130 @@
+{
+  "seedKey": "form-shooting-close-range",
+  "title": "Form Shooting Close to the Basket",
+  "description": "Partners shoot from one to three metres using the one-hand form shot, focusing on balance, elbow alignment and a full follow-through before adding distance.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["ball_control"],
+  "subSkills": ["follow_through"],
+  "level": "beginner",
+  "ageMin": 7,
+  "ageMax": 14,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "format": "individual",
+  "intensity": "low",
+  "phases": ["warm_up", "skill"],
+  "tags": ["shooting", "form", "pairs"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Groove a repeatable shooting motion: balanced base, elbow under the ball, and a high, relaxed follow-through.",
+    "setup": "Pairs share a basket, standing one to two metres from the rim. One player shoots while the partner rebounds and passes back. Switch after ten shots.",
+    "instructions": [
+      "Start with the shooting foot slightly ahead, knees bent, ball in the shooting hand with the guide hand on the side.",
+      "Set the elbow under the ball and pointed at the basket, eyes on the front of the rim.",
+      "Extend the legs, arm and wrist in one smooth motion and hold the follow-through until the ball reaches the net.",
+      "After ten makes from close range, take one big step back and repeat.",
+      "Finish with ten free throws from the line, focusing on the same routine."
+    ],
+    "coachingPoints": [
+      "Balance first: shoulders square, feet under the shoulders.",
+      "The guide hand steadies the ball but does not push it.",
+      "Hold the follow-through like reaching into a cookie jar so the wrist snaps down.",
+      "Aim for arc: the ball should enter the basket from above, not flat."
+    ],
+    "commonMistakes": [
+      "Pushing the ball from the chest instead of lifting it through the shooting pocket.",
+      "The elbow flaring out, which sends the shot sideways.",
+      "Dropping the follow-through immediately after release."
+    ],
+    "safety": "Shooters and rebounders stay out of each other's landing area, and only one ball per basket at a time.",
+    "progressions": [
+      "Move to the elbow and wing positions, add a catch-and-shoot from a partner's pass."
+    ],
+    "regressions": [
+      "Use a smaller ball or lower rim, and start with one-handed shooting into a target on the wall."
+    ],
+    "variations": [
+      "Shoot with the eyes closed on the follow-through for three shots to build muscle memory of the motion."
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "Feed and shoot",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "x": 0,
+              "y": 2.4
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "x": 2.7,
+              "y": 2
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 4.6
+            },
+            "text": "Close range: 1 to 3 m"
+          }
+        ]
+      }
+    }
+  ]
+}
