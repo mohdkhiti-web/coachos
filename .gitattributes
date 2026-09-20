@@ -1,0 +1,5 @@
+# Text files are always LF in the working tree, on every platform. Prettier (`format:check`) expects LF, and Git for
+# Windows' default `core.autocrlf=true` would otherwise rewrite files as CRLF on checkout and fail that check.
+* text=auto eol=lf
+
+*.ico binary
