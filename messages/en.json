@@ -1,0 +1,332 @@
+{
+  "common": {
+    "appName": "CoachOS",
+    "skipToContent": "Skip to content",
+    "cancel": "Cancel",
+    "save": "Save changes",
+    "saving": "Saving…",
+    "continue": "Continue",
+    "back": "Back",
+    "close": "Close",
+    "dismiss": "Dismiss notification",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "loading": "Loading…",
+    "tryAgain": "Try again",
+    "you": "You",
+    "current": "This device"
+  },
+  "nav": {
+    "primary": "Primary",
+    "dashboard": "Dashboard",
+    "settings": "Settings"
+  },
+  "theme": {
+    "toggle": "Theme: {mode}. Click to change.",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "validation": {
+    "required": "This field is required.",
+    "email_invalid": "Enter a valid email address.",
+    "too_long": "That's too long.",
+    "password_min": "Use at least 12 characters.",
+    "password_max": "Use at most 128 characters.",
+    "password_mismatch": "The passwords don't match.",
+    "password_same": "Choose a password different from your current one.",
+    "timezone_invalid": "Choose a valid timezone.",
+    "delete_confirm": "Type DELETE to confirm."
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "rateLimited": "Too many attempts. Please wait a minute and try again.",
+    "invalidCredentials": "That email and password don't match.",
+    "invalidPassword": "That password isn't correct.",
+    "passwordCompromised": "That password has appeared in a known data breach. Please choose a different one.",
+    "invalidToken": "This link is invalid or has expired.",
+    "sessionNotFresh": "For your security, please sign in again before making this change.",
+    "network": "We couldn't reach the server. Check your connection and try again.",
+    "FORBIDDEN": "You don't have permission to do that.",
+    "NOT_FOUND": "We couldn't find that.",
+    "CONFLICT": "That can't be done right now.",
+    "VALIDATION": "Please check the highlighted fields.",
+    "UNAUTHENTICATED": "Please sign in again.",
+    "INTERNAL": "Something went wrong on our side. Please try again."
+  },
+  "landing": {
+    "nav": {
+      "signIn": "Sign in",
+      "signUp": "Create account",
+      "dashboard": "Go to dashboard"
+    },
+    "eyebrow": "Early access",
+    "title": "Plan the session. Run the practice. Keep the record.",
+    "subtitle": "CoachOS is the operating system for coaches and PE teachers — one calm place to plan, deliver and document your training.",
+    "ctaPrimary": "Create your account",
+    "ctaSecondary": "Sign in",
+    "ctaDashboard": "Open your dashboard",
+    "statusTitle": "Where we are",
+    "statusBody": "Accounts and your personal workspace are live. The drill library, diagrams and session builder are being built next — you'll see each one appear here only when it actually works.",
+    "footer": "© {year} CoachOS"
+  },
+  "auth": {
+    "panel": {
+      "eyebrow": "Built for the sideline",
+      "title": "Your whole season, on one clipboard.",
+      "body": "Secure by design: your data stays in your workspace, and only you decide who sees it."
+    },
+    "signIn": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your CoachOS workspace.",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "forgot": "Forgot password?",
+      "noAccount": "New to CoachOS?",
+      "signUp": "Create an account",
+      "resetDone": "Password updated. Sign in with your new password.",
+      "deleted": "Your account and workspace have been deleted."
+    },
+    "signUp": {
+      "title": "Create your account",
+      "subtitle": "Start with a free personal workspace. No card needed.",
+      "name": "Full name",
+      "email": "Email",
+      "password": "Password",
+      "passwordHint": "At least 12 characters. A memorable passphrase beats symbols.",
+      "submit": "Create account",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in"
+    },
+    "verify": {
+      "title": "Check your inbox",
+      "body": "We sent a verification link to {email}. It works once and expires in 1 hour.",
+      "bodyNoEmail": "We sent you a verification link. It works once and expires in 1 hour.",
+      "unverifiedTitle": "Verify your email to continue",
+      "unverifiedBody": "Your account isn't verified yet. We've sent a fresh link to {email}.",
+      "noEmail": "Didn't get it? Check spam, or send another.",
+      "resend": "Send a new link",
+      "resendIn": "Send a new link in {seconds}s",
+      "resent": "A new link is on its way.",
+      "invalidTitle": "That link didn't work",
+      "invalidBody": "It may have expired or already been used. Enter your email and we'll send a new one.",
+      "email": "Email",
+      "backToSignIn": "Back to sign in"
+    },
+    "forgot": {
+      "title": "Reset your password",
+      "subtitle": "Enter your email and we'll send you a reset link.",
+      "email": "Email",
+      "submit": "Send reset link",
+      "sentTitle": "Check your inbox",
+      "sentBody": "If an account exists for that email, a reset link is on its way. It works once and expires in 1 hour.",
+      "backToSignIn": "Back to sign in"
+    },
+    "reset": {
+      "title": "Choose a new password",
+      "subtitle": "You'll be signed out on all other devices.",
+      "password": "New password",
+      "confirm": "Confirm new password",
+      "passwordHint": "At least 12 characters.",
+      "submit": "Update password",
+      "invalidTitle": "This reset link is invalid",
+      "invalidBody": "It may have expired or already been used.",
+      "requestNew": "Request a new link"
+    }
+  },
+  "onboarding": {
+    "eyebrow": "Step 1 of 1",
+    "title": "Let's set up your workspace",
+    "subtitle": "Three quick questions so CoachOS fits how you work.",
+    "name": "Your name",
+    "nameHint": "Shown to you in the app. Players never see it.",
+    "profession": "What best describes you?",
+    "professions": {
+      "coach": "Coach",
+      "coachHint": "I train a club, academy or team.",
+      "pe_teacher": "PE teacher",
+      "pe_teacherHint": "I plan lessons for school classes.",
+      "both": "Both",
+      "bothHint": "I coach and teach."
+    },
+    "timezone": "Your timezone",
+    "timezoneHint": "Used for greetings, schedules and reminders.",
+    "submit": "Go to my dashboard"
+  },
+  "shell": {
+    "workspace": "Workspace",
+    "accountMenu": "Account menu",
+    "signedInAs": "Signed in as",
+    "profile": "Profile",
+    "security": "Security",
+    "preferences": "Preferences",
+    "signOut": "Sign out",
+    "signingOut": "Signing out…",
+    "mainNav": "Main navigation"
+  },
+  "roles": {
+    "owner": "Owner",
+    "admin": "Admin",
+    "coach": "Coach",
+    "teacher": "Teacher",
+    "assistant": "Assistant"
+  },
+  "orgTypes": {
+    "personal": "Personal workspace",
+    "club": "Club",
+    "academy": "Academy",
+    "school": "School",
+    "company": "Company",
+    "platform": "Platform"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "greeting": {
+      "morning": "Good morning, {name}",
+      "afternoon": "Good afternoon, {name}",
+      "evening": "Good evening, {name}"
+    },
+    "subtitle": "Here's where your workspace stands.",
+    "clock": {
+      "label": "Your local time",
+      "zone": "{zone}"
+    },
+    "checklist": {
+      "eyebrow": "Get set up",
+      "title": "Setup checklist",
+      "progress": "{done} of {total} done",
+      "doneTitle": "You're all set",
+      "doneBody": "Your account is verified and your profile and preferences are in place.",
+      "items": {
+        "email_verified": {
+          "title": "Verify your email",
+          "description": "Your address is confirmed, so you can recover your account."
+        },
+        "profile_complete": {
+          "title": "Complete your profile",
+          "description": "Your name, role and timezone are saved.",
+          "action": "Open profile"
+        },
+        "preferences": {
+          "title": "Review your preferences",
+          "description": "Choose your measurement units and theme.",
+          "action": "Open preferences"
+        }
+      }
+    },
+    "workspace": {
+      "eyebrow": "Your workspace",
+      "name": "Name",
+      "type": "Type",
+      "role": "Your role",
+      "memberSince": "Account created",
+      "manage": "Edit workspace"
+    },
+    "activity": {
+      "eyebrow": "Security",
+      "title": "Recent activity",
+      "empty": "No activity yet.",
+      "viewAll": "Review security settings"
+    }
+  },
+  "audit": {
+    "events": {
+      "auth_sign_up": "Account created",
+      "auth_sign_in": "Signed in",
+      "auth_sign_in_failed": "Failed sign-in attempt",
+      "auth_session_revoked": "A session ended",
+      "auth_email_verified": "Email verified",
+      "auth_password_changed": "Password changed",
+      "auth_password_reset": "Password reset",
+      "auth_email_change_requested": "Email change requested",
+      "account_onboarded": "Profile set up",
+      "account_profile_updated": "Profile updated",
+      "account_preferences_updated": "Preferences updated",
+      "account_deleted": "Account deleted",
+      "organization_renamed": "Workspace renamed"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your profile, security and preferences.",
+    "navLabel": "Settings sections",
+    "nav": {
+      "profile": "Profile",
+      "security": "Security",
+      "preferences": "Preferences",
+      "danger": "Danger zone"
+    },
+    "saved": "Changes saved.",
+    "profile": {
+      "eyebrow": "Profile",
+      "title": "Your profile",
+      "description": "How you appear to yourself in CoachOS.",
+      "name": "Name",
+      "email": "Email",
+      "emailHint": "Change your email in Security settings.",
+      "profession": "Profession",
+      "timezone": "Timezone",
+      "workspaceTitle": "Workspace",
+      "workspaceDescription": "The name of your workspace, shown in the sidebar.",
+      "workspaceName": "Workspace name",
+      "workspaceReadOnly": "Only owners and admins can rename the workspace."
+    },
+    "security": {
+      "passwordTitle": "Password",
+      "passwordDescription": "Use a long, unique passphrase.",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password",
+      "signOutOthers": "Sign out of all other devices",
+      "changePassword": "Change password",
+      "passwordChanged": "Password changed.",
+      "emailTitle": "Email address",
+      "emailDescription": "Changing your email needs approval from your current address.",
+      "currentEmail": "Current email",
+      "newEmail": "New email",
+      "changeEmail": "Change email",
+      "emailChangeSent": "Check your current inbox to approve the change.",
+      "sessionsTitle": "Active sessions",
+      "sessionsDescription": "Devices signed in to your account. Revoke any you don't recognise.",
+      "sessionThisDevice": "This device",
+      "sessionUnknown": "Unknown device",
+      "sessionSince": "Signed in {date}",
+      "revoke": "Revoke",
+      "revoked": "Session revoked.",
+      "activityTitle": "Recent activity",
+      "activityDescription": "Sign-ins and account changes on your account.",
+      "activityEmpty": "No activity yet."
+    },
+    "preferences": {
+      "themeTitle": "Appearance",
+      "themeDescription": "Applies on this device.",
+      "unitsTitle": "Measurements",
+      "unitsDescription": "Court and distance sizes will be shown in your units. They're always stored in metres.",
+      "units": "Units",
+      "metric": "Metric (metres)",
+      "imperial": "Imperial (feet)"
+    },
+    "danger": {
+      "title": "Delete account",
+      "description": "Permanently delete your account and personal workspace, including everything in it. This cannot be undone.",
+      "button": "Delete my account",
+      "dialogTitle": "Delete your account?",
+      "dialogBody": "This permanently removes your account, your workspace and all of its data. Enter your password and type DELETE to confirm.",
+      "password": "Your password",
+      "confirm": "Type DELETE to confirm",
+      "confirmAction": "Delete permanently"
+    }
+  },
+  "errorPage": {
+    "title": "Something went wrong",
+    "body": "An unexpected error occurred. It's been logged. You can try again, or head back to the dashboard.",
+    "digest": "Error ID: {digest}",
+    "home": "Go to dashboard"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "That page doesn't exist, or you don't have access to it.",
+    "home": "Go home"
+  }
+}

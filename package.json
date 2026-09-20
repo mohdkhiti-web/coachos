@@ -2,25 +2,66 @@
   "name": "coachos",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "setup": "tsx scripts/setup-env.ts",
+    "db:dev": "tsx scripts/db-dev.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "db:bootstrap": "tsx scripts/bootstrap-roles.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run build"
   },
   "dependencies": {
+    "better-auth": "1.7.5",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "drizzle-orm": "^0.45.2",
+    "lucide-react": "^1.47.0",
     "next": "16.3.5",
+    "next-intl": "^4.14.5",
+    "pg": "^8.23.0",
+    "pino": "^10.3.1",
+    "radix-ui": "^1.6.7",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "resend": "^6.28.1",
+    "server-only": "^0.0.1",
+    "tailwind-merge": "^3.7.0",
+    "uuidv7": "^1.2.1",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^24.13.6",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.10",
+    "embedded-postgres": "^18.4.0-beta.17",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
+    "prettier": "^3.9.8",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "tsx": "^4.23.15",
+    "typescript": "^5",
+    "vitest": "^5.0.1"
+  },
+  "allowScripts": {
+    "@embedded-postgres/windows-x64@18.4.0-beta.17": true
   }
 }
