@@ -6,6 +6,7 @@
     "node": ">=24"
   },
   "scripts": {
+    "predev": "tsx scripts/check-db.ts",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

@@ -19,6 +19,11 @@ npm run db:dev     # terminal 1: starts Postgres, creates roles, runs migrations
 npm run dev        # terminal 2: http://localhost:3000
 ```
 
+**`ECONNREFUSED 127.0.0.1:54329`?** The local database is not running. It is a separate process
+(`npm run db:dev`) that must stay open in its own terminal, and it stops when that terminal closes or the
+machine restarts. `npm run dev` checks for it first and tells you when it is missing. Migrations and the
+library drills are applied automatically each time `npm run db:dev` starts.
+
 **Emails in development** are not sent: verification and password-reset emails (with their links)
 are printed in the terminal running `npm run dev`. Copy the link into your browser.
 
