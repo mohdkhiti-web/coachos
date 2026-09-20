@@ -4,6 +4,7 @@ import {
   index,
   integer,
   pgTable,
+  smallint,
   text,
   timestamp,
   unique,
@@ -81,6 +82,36 @@ export const skills = pgTable(
     }),
     index("skills_parent_idx").on(t.sportId, t.parentId),
     check("skills_parent_not_self_chk", sql`${t.parentId} IS NULL OR ${t.parentId} <> ${t.id}`),
+  ],
+);
+
+/**
+ * Age bands a coach picks from (U8 … Senior). Per sport, because the bands differ between sports and federations.
+ * `age_min`/`age_max` are the TYPICAL ages of the band — a session keeps its own numeric range, so "U12 with
+ * 11-year-olds" can be stated exactly, and the generator can match drills by age either way.
+ */
+export const ageGroups = pgTable(
+  "age_groups",
+  {
+    id: uuid("id").primaryKey(),
+    sportId: uuid("sport_id")
+      .notNull()
+      .references(() => sports.id, { onDelete: "cascade" }),
+    key: text("key").notNull(),
+    name: text("name").notNull(),
+    ageMin: smallint("age_min").notNull(),
+    ageMax: smallint("age_max").notNull(),
+    sortOrder: integer("sort_order").notNull().default(0),
+    createdAt: createdAt(),
+  },
+  (t) => [
+    unique("age_groups_sport_key_uq").on(t.sportId, t.key),
+    // target of composite foreign keys: guarantees a session's age group belongs to the session's sport
+    unique("age_groups_id_sport_uq").on(t.id, t.sportId),
+    check(
+      "age_groups_age_chk",
+      sql`${t.ageMin} BETWEEN 3 AND 99 AND ${t.ageMax} BETWEEN ${t.ageMin} AND 99`,
+    ),
   ],
 );
 

@@ -16,7 +16,7 @@ import {
  *
  *   content/sports.json                    the sports registry rows
  *   content/equipment.json                 equipment types (generic and per sport)
- *   content/<sport>/taxonomy.json          categories, skills and their sub-skills
+ *   content/<sport>/taxonomy.json          categories, skills and their sub-skills, age groups
  *   content/<sport>/drills/<seed-key>.json one file per library drill
  *
  * Adding a drill is adding a file. Everything is checked at load time with the app's own rules (the drill
@@ -45,6 +45,12 @@ export interface SeedSkill {
   /** Set for a sub-skill. Parents are always listed before their children. */
   parentKey: string | null;
 }
+export interface SeedAgeGroup {
+  key: string;
+  name: string;
+  ageMin: number;
+  ageMax: number;
+}
 /** A drill file after validation: the app's drill input plus the stable key it is seeded under. */
 export type SeedDrill = DrillInput & { seedKey: string };
 
@@ -52,6 +58,7 @@ export interface SportContent {
   sportKey: string;
   categories: SeedCategory[];
   skills: SeedSkill[];
+  ageGroups: SeedAgeGroup[];
   drills: SeedDrill[];
 }
 export interface SeedContent {
@@ -136,6 +143,9 @@ export function loadContent(dir: string = contentDir()): SeedContent {
         `${tFile}: duplicate skill key "${k}" (top-level and sub-skills share one namespace)`,
       );
 
+    for (const k of duplicates(tax.data.ageGroups.map((g) => g.key)))
+      problems.push(`${tFile}: duplicate age group key "${k}"`);
+
     const catalog = {
       categories: tax.data.categories,
       skills,
@@ -198,6 +208,7 @@ export function loadContent(dir: string = contentDir()): SeedContent {
       sportKey,
       categories: tax.data.categories,
       skills,
+      ageGroups: tax.data.ageGroups,
       drills,
     };
   }

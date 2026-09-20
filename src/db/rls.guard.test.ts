@@ -130,6 +130,89 @@ describe("runtime role least privilege", () => {
     expect(r).toEqual({ ins: true, sel: true, upd: false, del: true, trunc: false });
   });
 
+  /** What the runtime role may do to a table, as one comparable object. */
+  const privileges = async (table: string) => {
+    const [r] = await q<{ ins: boolean; sel: boolean; upd: boolean; del: boolean; trunc: boolean }>(
+      `select has_table_privilege(current_user, $1, 'INSERT') as ins,
+              has_table_privilege(current_user, $1, 'SELECT') as sel,
+              has_table_privilege(current_user, $1, 'UPDATE') as upd,
+              has_table_privilege(current_user, $1, 'DELETE') as del,
+              has_table_privilege(current_user, $1, 'TRUNCATE') as trunc`,
+      [table],
+    );
+    return r;
+  };
+
+  it("plans can be read, created and edited but never DELETED or truncated: they are archived or soft-deleted", async () => {
+    expect(await privileges("plans")).toEqual({
+      ins: true,
+      sel: true,
+      upd: true,
+      del: false,
+      trunc: false,
+    });
+  });
+
+  it("plan_objectives can be added and removed but never edited in place", async () => {
+    expect(await privileges("plan_objectives")).toEqual({
+      ins: true,
+      sel: true,
+      upd: false,
+      del: true,
+      trunc: false,
+    });
+  });
+
+  it("plan_activities can be added, edited and removed, but never truncated", async () => {
+    expect(await privileges("plan_activities")).toEqual({
+      ins: true,
+      sel: true,
+      upd: true,
+      del: true,
+      trunc: false,
+    });
+  });
+
+  it("plan_totals (the calculated length and end time) is a read-only view read with the caller's own rights", async () => {
+    expect(await privileges("plan_totals")).toEqual({
+      ins: false,
+      sel: true,
+      upd: false,
+      del: false,
+      trunc: false,
+    });
+    const [v] = await q<{ reloptions: string[] | null; relkind: string }>(
+      "select reloptions, relkind from pg_class where relname = 'plan_totals'",
+    );
+    expect(v?.relkind).toBe("v");
+    expect(v?.reloptions).toContain("security_invoker=true");
+  });
+
+  it("age_groups is reference data: the runtime role can only read it", async () => {
+    expect(await privileges("age_groups")).toEqual({
+      ins: false,
+      sel: true,
+      upd: false,
+      del: false,
+      trunc: false,
+    });
+  });
+
+  it("the session helper functions and triggers run with the CALLER's rights (none is SECURITY DEFINER)", async () => {
+    const rows = await q<{ proname: string; prosecdef: boolean }>(
+      `select proname, prosecdef from pg_proc
+        where proname in ('org_authors','can_write_plan','plans_guard','plan_activities_guard','plan_objectives_guard')`,
+    );
+    expect(rows.map((r) => r.proname).sort()).toEqual([
+      "can_write_plan",
+      "org_authors",
+      "plan_activities_guard",
+      "plan_objectives_guard",
+      "plans_guard",
+    ]);
+    for (const r of rows) expect(r.prosecdef, r.proname).toBe(false);
+  });
+
   it("audit_events is append-only: INSERT + SELECT only", async () => {
     const [r] = await q<{ ins: boolean; sel: boolean; upd: boolean; del: boolean; trunc: boolean }>(
       `select has_table_privilege(current_user, 'audit_events', 'INSERT') as ins,

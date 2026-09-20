@@ -210,5 +210,14 @@
       ]
     },
     { "key": "recovery_mobility", "name": "Recovery & mobility" }
+  ],
+  "ageGroups": [
+    { "key": "u8", "name": "U8", "ageMin": 5, "ageMax": 8 },
+    { "key": "u10", "name": "U10", "ageMin": 9, "ageMax": 10 },
+    { "key": "u12", "name": "U12", "ageMin": 11, "ageMax": 12 },
+    { "key": "u14", "name": "U14", "ageMin": 13, "ageMax": 14 },
+    { "key": "u16", "name": "U16", "ageMin": 15, "ageMax": 16 },
+    { "key": "u18", "name": "U18", "ageMin": 17, "ageMax": 18 },
+    { "key": "senior", "name": "Senior", "ageMin": 19, "ageMax": 99 }
   ]
 }

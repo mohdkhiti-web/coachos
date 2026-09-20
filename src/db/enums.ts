@@ -51,3 +51,42 @@ export type DrillPhase = (typeof DRILL_PHASES)[number];
 
 /** A drill "format" key (1v1, 3v3, individual, team…). The allowed values belong to each sport module. */
 export const FORMAT_KEY_PATTERN = /^[a-z0-9][a-z0-9_]{0,15}$/;
+
+// --- Plans: training sessions (Step 2 of the session-creator work) --------------------------------
+/** Sessions and (later) lesson plans share one model, told apart by `type` (ARCHITECTURE.md D8). */
+export const PLAN_TYPES = ["training_session"] as const;
+export type PlanType = (typeof PLAN_TYPES)[number];
+
+/** draft = still being built · published = the coach's final version · archived = kept, frozen and out of the way. */
+export const PLAN_STATUSES = ["draft", "published", "archived"] as const;
+export type PlanStatus = (typeof PLAN_STATUSES)[number];
+
+/** private = the creator only · organization = every member of the workspace. Public sharing arrives later, as share links. */
+export const PLAN_VISIBILITIES = ["private", "organization"] as const;
+export type PlanVisibility = (typeof PLAN_VISIBILITIES)[number];
+
+/** A drill copied into the session, the coach's own activity, or a break (water, transition…). */
+export const ACTIVITY_KINDS = ["drill", "custom", "break"] as const;
+export type ActivityKind = (typeof ACTIVITY_KINDS)[number];
+
+/** Session objectives reuse the sport's skills; a session has one primary objective and a few secondary ones. */
+export const OBJECTIVE_ROLES = ["primary", "secondary"] as const;
+export type ObjectiveRole = (typeof OBJECTIVE_ROLES)[number];
+
+/**
+ * Hard limits shared by the database (CHECKs / triggers in drizzle/0005_*.sql) and the application, so a
+ * direct SQL statement and a command are held to the same numbers. Change them in both places.
+ */
+export const PLAN_LIMITS = {
+  /** Activities per session (positions 0…59). */
+  maxActivities: 60,
+  /** One activity, in minutes. */
+  maxActivityMinutes: 240,
+  /** All activities of a session together, in minutes (12 hours: a full-day camp fits). */
+  maxSessionMinutes: 720,
+  /** The session's target length, in minutes. */
+  minTargetMinutes: 5,
+  maxTargetMinutes: 480,
+  /** One primary objective plus this many secondary ones. */
+  maxSecondaryObjectives: 4,
+} as const;

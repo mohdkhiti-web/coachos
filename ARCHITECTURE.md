@@ -249,7 +249,7 @@ Server Action / Route Handler
 | **Audit** | `audit_events` (append-only) | org | 1 |
 | **Catalog (global)** | `sports`, `categories`, `skills`, `equipment_types`, `age_groups`, `external_sources`, `knowledge_items` | none (platform) | 2 |
 | **Drills** | `drills`, `drill_diagrams`, `favorites`, `recent_items` | org | 2 |
-| **Plans** | `plans`, `plan_activities` | org | 3, 4 |
+| **Plans** | `plans`, `plan_objectives`, `plan_activities` (+ view `plan_totals`) | org | 2–4 |
 | **People** | `groups`, `group_members`, `participants`, `group_participants` | org | 6 |
 | **Time** | `calendar_events` (+ exceptions), `attendance_records` | org | 6 |
 | **Development** | `assessment_templates`, `assessments`, `assessment_scores` | org | 7 |
@@ -577,9 +577,19 @@ SVG + Pointer Events; tools: select/move, add player/ball/cone/marker, draw pass
 
 ### 11.1 Data model
 
-`plans` (`type = 'training_session'`) + `plan_activities`. Common columns: `title`, `sport_id`, `status (draft|ready|archived)`, `target_minutes`, `objective`, audience facets (`age_min/max`, `level`, `players`, `space`), `group_id?` (Phase 6), `visibility`, `version`. Type-specific data in `details` (jsonb, Zod discriminated union).
+**As built in Step 2 (`drizzle/0005_plans_and_age_groups.sql`).** Three tables, one view, one catalog:
 
-`plan_activities`: `plan_id`, `position` (fractional index), `phase` (`warm_up | main | cool_down | custom`), `kind` (`drill | custom | break`), `duration_min`, `source_drill_id?`, and **`content` (jsonb snapshot)** — title, objective, setup, instructions, coaching points, equipment, safety, notes, embedded diagrams.
+- `plans` (`type = 'training_session'`): `organization_id`, `sport_id`, `title`, `status` (`draft | published | archived`), `visibility` (`private | organization` — public sharing comes later as share links, never as a visibility), `created_by`, `version`, `deleted_at` (soft delete), filterable facts as real columns (`team_name`, `age_group_id` + `age_min/max`, `level`, `players`, `target_minutes`, `objective`), scheduling as **local wall-clock time in an IANA zone** (`scheduled_date`, `start_time`, `timezone`), and everything else in versioned JSON `details` (location, season, session number, coach, club/school/academy, coach notes). `forked_from_id` keeps duplication open.
+- `plan_objectives`: references into the sport's existing `skills` (one primary, up to four secondary) — no second objective taxonomy.
+- `plan_activities`: `position`, `phase` (the shared drill phases), `kind` (`drill | custom | break`), `title`, `duration_min`, `repetitions`, `players`, `notes`, `source_drill_id` + `source_drill_version` (lineage), **`snapshot`** (validated, versioned JSON copy of the drill — see below), `customized`, `change_reason`.
+- `plan_totals` (view, `security_invoker`): total length and start/end instants. **Nothing derived is stored**: total = `SUM(duration_min)`, end = start + total.
+- `age_groups` (global catalog, per sport): U8 … Senior with the band's typical ages.
+
+Deliberate differences from the first sketch: `position` is a 0-based integer with a *deferrable* unique constraint (a reorder is one `UPDATE`; sessions have ≤ 60 activities, so fractional indexes buy nothing); `phase` reuses the drill phases (warm-up, skill, small-sided, game, conditioning, cool-down) instead of a second list; the snapshot column is called `snapshot` because it is a frozen copy, not live content.
+
+**Snapshot on use.** Adding a drill copies it (`buildDrillSnapshot`) — title, description, category, skills and sub-skills, ages, players, duration, intensity, format, phases, equipment, the full drill content (organization, setup, instructions, coaching points, mistakes, safety, progressions, regressions, variations, resource links) and diagrams — plus provenance (drill id, the drill's version, when, and its licence/credit fields). Later library edits, or the drill becoming private or archived, never change a session. "Update from library" is an explicit command (`replaceActivityDrill`); the read model only *reports* `update_available` / `unavailable`.
+
+**Security.** Row-level security on all three tables, forced. Reads: your workspace's sessions, except colleagues' private ones. Writes additionally verify real membership and an authoring role (`org_authors`) against the `member` table. Children follow the parent (`can_write_plan`); deleted and archived sessions are frozen by trigger. A drill can only be *added* if the actor can read it (checked when the link is set, so a source that becomes unreadable later never blocks editing).
 
 ### 11.2 Client architecture
 

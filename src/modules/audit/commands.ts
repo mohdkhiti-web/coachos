@@ -26,7 +26,12 @@ export type AuditAction =
   | "drill.created"
   | "drill.updated"
   | "drill.archived"
-  | "drill.duplicated";
+  | "drill.duplicated"
+  | "plan.created"
+  | "plan.updated"
+  | "plan.status_changed"
+  | "plan.deleted"
+  | "plan.restored";
 
 export type AuditContext = { userId?: string | null; organizationId?: string | null };
 

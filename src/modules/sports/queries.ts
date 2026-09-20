@@ -1,7 +1,7 @@
 import "server-only";
 import { cache } from "react";
 import { asc, eq, inArray, isNull, or } from "drizzle-orm";
-import { categories, equipmentTypes, skills, sports } from "@/db/schema";
+import { ageGroups, categories, equipmentTypes, skills, sports } from "@/db/schema";
 import type { SportStatus } from "@/db/enums";
 import { db } from "@/lib/db/client";
 import { isSportKey, type SportKey } from "@/sports/registry";
@@ -19,6 +19,15 @@ export type Taxonomy = {
   categories: TaxonomyItem[];
   skills: SkillItem[];
   equipment: TaxonomyItem[];
+};
+
+/** An age band (U12…). `ageMin`/`ageMax` are its typical ages. */
+export type AgeGroupItem = {
+  id: string;
+  key: string;
+  name: string;
+  ageMin: number;
+  ageMax: number;
 };
 
 /** Sports a user can enter: implemented in code AND switched on in the catalog. Planned sports never appear. */
@@ -84,4 +93,20 @@ export const getTaxonomy = cache(async (sportId: string): Promise<Taxonomy> => {
     })),
     equipment: equip.map((e) => ({ id: e.id, key: e.key, name: e.name })),
   };
+});
+
+/** The age bands of a sport, youngest first (a separate read: only the session builder needs them). */
+export const getAgeGroups = cache(async (sportId: string): Promise<AgeGroupItem[]> => {
+  const rows = await db
+    .select()
+    .from(ageGroups)
+    .where(eq(ageGroups.sportId, sportId))
+    .orderBy(asc(ageGroups.sortOrder));
+  return rows.map((g) => ({
+    id: g.id,
+    key: g.key,
+    name: g.name,
+    ageMin: g.ageMin,
+    ageMax: g.ageMax,
+  }));
 });

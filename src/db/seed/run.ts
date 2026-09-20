@@ -22,6 +22,7 @@ export interface SeedSummary {
   /** Top-level skills plus sub-skills. */
   skills: number;
   subSkills: number;
+  ageGroups: number;
   equipment: number;
   drills: number;
   archived: number;
@@ -73,6 +74,7 @@ export async function seedAll(
       let categories = 0;
       let skillCount = 0;
       let subSkills = 0;
+      let ageGroupCount = 0;
       for (const sc of Object.values(content.bySport)) {
         const sid = sportId.get(sc.sportKey);
         if (!sid) throw new Error(`content/${sc.sportKey}: sport missing from content/sports.json`);
@@ -95,6 +97,25 @@ export async function seedAll(
             .returning({ id: s.categories.id });
           categoryId.set(`${sc.sportKey}/${c.key}`, row!.id);
           categories++;
+        }
+
+        for (const [i, g] of sc.ageGroups.entries()) {
+          await tx
+            .insert(s.ageGroups)
+            .values({
+              id: newId(),
+              sportId: sid,
+              key: g.key,
+              name: g.name,
+              ageMin: g.ageMin,
+              ageMax: g.ageMax,
+              sortOrder: i,
+            })
+            .onConflictDoUpdate({
+              target: [s.ageGroups.sportId, s.ageGroups.key],
+              set: { name: g.name, ageMin: g.ageMin, ageMax: g.ageMax, sortOrder: i },
+            });
+          ageGroupCount++;
         }
 
         // two passes: every skill exists first, then the sub-skills are pointed at their parents
@@ -247,13 +268,14 @@ export async function seedAll(
         categories,
         skills: skillCount,
         subSkills,
+        ageGroups: ageGroupCount,
         equipment: content.equipment.length,
         drills: seenKeys.length,
         archived: archived.length,
       };
     });
     log(
-      `seeded ${summary.sports} sports, ${summary.categories} categories, ${summary.skills} skills (${summary.subSkills} sub-skills), ${summary.equipment} equipment types, ${summary.drills} library drills (${summary.archived} archived)`,
+      `seeded ${summary.sports} sports, ${summary.categories} categories, ${summary.skills} skills (${summary.subSkills} sub-skills), ${summary.ageGroups} age groups, ${summary.equipment} equipment types, ${summary.drills} library drills (${summary.archived} archived)`,
     );
     return summary;
   } finally {

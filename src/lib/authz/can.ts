@@ -37,8 +37,9 @@ const AUTHORS: readonly MembershipRole[] = ["owner", "admin", "coach", "teacher"
  *  - "self":  the resource must belong to the acting user (`resource.userId === actor.userId`)
  *  - "org":   the resource must belong to the actor's active organization
  *  - "drill": drill-specific rules (visibility, creator, library) — see `drillAllows`
+ *  - "plan":  session-specific rules (visibility, creator, workspace managers) — see `planAllows`
  */
-type Rule = { roles: readonly MembershipRole[]; scope: "self" | "org" | "drill" };
+type Rule = { roles: readonly MembershipRole[]; scope: "self" | "org" | "drill" | "plan" };
 
 export const POLICY = {
   "profile:read": { roles: ALL, scope: "self" },
@@ -56,6 +57,14 @@ export const POLICY = {
   "drill:update": { roles: AUTHORS, scope: "drill" },
   "drill:archive": { roles: AUTHORS, scope: "drill" },
   "drill:duplicate": { roles: AUTHORS, scope: "drill" },
+
+  // Sessions / plans (Step 2 of the session-creator work). Assistants read; they do not author.
+  "plan:read": { roles: ALL, scope: "plan" },
+  "plan:create": { roles: AUTHORS, scope: "org" },
+  /** Edit the session, its objectives and its timeline; change its status (draft / published / archived). */
+  "plan:update": { roles: AUTHORS, scope: "plan" },
+  /** Delete (soft) and restore. */
+  "plan:delete": { roles: AUTHORS, scope: "plan" },
 } as const satisfies Record<string, Rule>;
 
 export type Action = keyof typeof POLICY;
@@ -68,9 +77,19 @@ export type DrillResource = {
   status?: string;
 };
 
-export type Resource = { userId: string } | { organizationId: string } | DrillResource;
+/** A session (plan) as loaded from the database — the only shape plan rules accept. */
+export type PlanResource = {
+  organizationId: string;
+  createdBy: string | null;
+  visibility: "private" | "organization";
+  status?: string;
+};
 
-const isDrillResource = (r: Resource): r is DrillResource =>
+export type Resource =
+  { userId: string } | { organizationId: string } | DrillResource | PlanResource;
+
+/** Drills and plans both carry a workspace, a creator and a visibility; the rule (by scope) says what that means. */
+const isOwnedResource = (r: Resource): r is DrillResource | PlanResource =>
   "organizationId" in r && "visibility" in r && "createdBy" in r;
 
 /**
@@ -101,11 +120,35 @@ function drillAllows(action: Action, actor: Actor, d: DrillResource): boolean {
   }
 }
 
+/**
+ * Session rules, mirrored by row-level security (drizzle/0005_*.sql):
+ *  - read:   my workspace's sessions, except other people's private ones. Nobody reads another workspace's.
+ *  - change: only what I can read, by its creator or an owner/admin of the workspace. Assistants never.
+ * (Whether a session is archived or deleted is a matter for the command, not for ownership.)
+ */
+function planAllows(action: Action, actor: Actor, p: PlanResource): boolean {
+  const canRead =
+    p.organizationId === actor.organizationId &&
+    (p.visibility === "organization" || p.createdBy === actor.userId);
+  switch (action) {
+    case "plan:read":
+      return canRead;
+    case "plan:update":
+    case "plan:delete":
+      return canRead && (p.createdBy === actor.userId || MANAGERS.includes(actor.role));
+    default:
+      return false;
+  }
+}
+
 export function can(actor: Actor, action: Action, resource: Resource): boolean {
   const rule: Rule = POLICY[action];
   if (!rule.roles.includes(actor.role)) return false;
   if (rule.scope === "self") return "userId" in resource && resource.userId === actor.userId;
   if (rule.scope === "org")
     return "organizationId" in resource && resource.organizationId === actor.organizationId;
-  return isDrillResource(resource) && drillAllows(action, actor, resource);
+  if (!isOwnedResource(resource)) return false;
+  return rule.scope === "plan"
+    ? planAllows(action, actor, resource as PlanResource)
+    : drillAllows(action, actor, resource as DrillResource);
 }

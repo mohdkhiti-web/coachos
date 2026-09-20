@@ -37,6 +37,14 @@
     "password_mismatch": "The passwords don't match.",
     "password_same": "Choose a password different from your current one.",
     "timezone_invalid": "Choose a valid timezone.",
+    "date_invalid": "Enter a real date.",
+    "time_invalid": "Enter a time as HH:MM (24-hour).",
+    "session_too_long": "A session can run for at most 12 hours in total.",
+    "session_too_many": "A session can have at most 60 activities.",
+    "order_mismatch": "The list of activities is out of date. Reload and try again.",
+    "age_group_unknown": "Choose one of the age groups listed for this sport.",
+    "objective_unknown": "Choose objectives from this sport's skills.",
+    "content_invalid": "Some of the edited text isn't valid.",
     "delete_confirm": "Type DELETE to confirm.",
     "too_short": "That's too short.",
     "too_many": "That's too many items.",
@@ -284,7 +292,12 @@
       "drill_created": "Drill created",
       "drill_updated": "Drill updated",
       "drill_archived": "Drill archived",
-      "drill_duplicated": "Drill copied to your workspace"
+      "drill_duplicated": "Drill copied to your workspace",
+      "plan_created": "Session created",
+      "plan_updated": "Session updated",
+      "plan_status_changed": "Session status changed",
+      "plan_deleted": "Session deleted",
+      "plan_restored": "Session restored"
     }
   },
   "settings": {

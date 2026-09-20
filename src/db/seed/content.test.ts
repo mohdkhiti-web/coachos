@@ -102,6 +102,31 @@ describe("the content files, as a whole", () => {
   });
 });
 
+describe("age groups", () => {
+  const groups = () => loadContent().bySport["basketball"]!.ageGroups;
+
+  it("basketball offers U8 to Senior, youngest first, as contiguous bands with real numeric ages", () => {
+    const g = groups();
+    expect(g.map((x) => x.key)).toEqual(["u8", "u10", "u12", "u14", "u16", "u18", "senior"]);
+    for (const x of g) {
+      expect(x.ageMin, x.key).toBeGreaterThanOrEqual(3);
+      expect(x.ageMax, x.key).toBeLessThanOrEqual(99);
+      expect(x.ageMin, x.key).toBeLessThanOrEqual(x.ageMax);
+    }
+    for (let i = 1; i < g.length; i++) expect(g[i]!.ageMin).toBe(g[i - 1]!.ageMax + 1);
+  });
+
+  it("the youngest band covers the youngest drills and the oldest covers adults, so no drill age is unreachable", () => {
+    const g = groups();
+    const drills = loadContent().bySport["basketball"]!.drills;
+    const covered = (age: number) => g.some((x) => x.ageMin <= age && age <= x.ageMax);
+    for (const d of drills) {
+      expect(covered(d.ageMin), `${d.seedKey} ageMin ${d.ageMin}`).toBe(true);
+      expect(covered(d.ageMax), `${d.seedKey} ageMax ${d.ageMax}`).toBe(true);
+    }
+  });
+});
+
 describe("a bad content file fails loudly, by name — nothing reaches the database", () => {
   const dirs: string[] = [];
   afterAll(() => dirs.forEach((d) => rmSync(d, { recursive: true, force: true })));
@@ -154,6 +179,32 @@ describe("a bad content file fails loudly, by name — nothing reaches the datab
   it("requires the file name to match its seedKey, and rejects unreadable JSON", () => {
     expect(load({ "some-other-name.json": good() })).toThrow(/must be named after its seedKey/);
     expect(load({ "broken.json": "{ not json" })).toThrow(/broken\.json/);
+  });
+
+  it("rejects broken age groups: reversed ages, an out-of-range age, duplicate keys", () => {
+    const real = JSON.parse(readFileSync(path.join(REAL, "basketball", "taxonomy.json"), "utf8"));
+    const withGroups = (ageGroups: unknown) => () => {
+      const dir = tree({ "mikan-drill.json": good() });
+      writeFileSync(
+        path.join(dir, "basketball", "taxonomy.json"),
+        JSON.stringify({ ...real, ageGroups }),
+      );
+      return loadContent(dir);
+    };
+    expect(withGroups([{ key: "u12", name: "U12", ageMin: 12, ageMax: 11 }])).toThrow(
+      /taxonomy.json: ageGroups.0.ageMax/,
+    );
+    expect(withGroups([{ key: "u12", name: "U12", ageMin: 1, ageMax: 12 }])).toThrow(
+      /taxonomy.json: ageGroups.0.ageMin/,
+    );
+    expect(
+      withGroups([
+        { key: "u12", name: "U12", ageMin: 9, ageMax: 12 },
+        { key: "u12", name: "Again", ageMin: 9, ageMax: 12 },
+      ]),
+    ).toThrow(/duplicate age group key "u12"/);
+    // and none at all is allowed (a sport that has no age bands yet)
+    expect(withGroups(undefined)().bySport["basketball"]!.ageGroups).toEqual([]);
   });
 
   it("reports several problems at once, so one run shows everything to fix", () => {

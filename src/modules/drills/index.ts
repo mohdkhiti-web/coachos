@@ -4,5 +4,7 @@
  */
 export { archiveDrill, createDrill, duplicateDrill, updateDrill } from "./commands";
 export { getDrill, getSportOverview, searchDrills } from "./queries";
+export { drillContentSchema } from "./content";
+export type { DrillContent } from "./content";
 export * from "./dto";
 export * from "./filters";

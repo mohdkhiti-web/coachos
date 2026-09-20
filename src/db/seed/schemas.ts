@@ -20,6 +20,8 @@ export const sportsFileSchema = z.array(
 /** `sport: null` = generic equipment usable by any sport (cones, bibs…). */
 export const equipmentFileSchema = z.array(z.strictObject({ key, name, sport: key.nullable() }));
 
+const age = z.number().int().min(3).max(99);
+
 export const taxonomyFileSchema = z.strictObject({
   categories: z.array(
     z.strictObject({ key, name, description: z.string().trim().max(200).optional() }),
@@ -32,4 +34,12 @@ export const taxonomyFileSchema = z.strictObject({
       children: z.array(z.strictObject({ key, name })).default([]),
     }),
   ),
+  /** Age bands a session can be planned for (U8 … Senior). The ages are the band's TYPICAL range. */
+  ageGroups: z
+    .array(
+      z
+        .strictObject({ key, name, ageMin: age, ageMax: age })
+        .refine((g) => g.ageMin <= g.ageMax, { path: ["ageMax"], error: "ageMax is below ageMin" }),
+    )
+    .default([]),
 });
