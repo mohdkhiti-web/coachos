@@ -67,6 +67,11 @@ export default defineConfig({
         AUTH_BREACH_CHECK: "false", // no network dependency in tests (the check itself is verified manually)
         AUTH_RATE_LIMIT: "false",
         PDF_RATE_PER_MINUTE: "600", // the export matrix takes dozens of PDFs in a minute
+        GENERATOR_RATE_PER_MINUTE: "600",
+        AI_PROVIDER: "scripted", // a deterministic stand-in for a model, so the assistant is tested end to end without one
+        ALLOW_DEV_AI: "true",
+        AI_RATE_PER_MINUTE: "600",
+        AI_DAILY_MESSAGES: "1000",
         LOG_LEVEL: "warn",
       },
     },

@@ -1,0 +1,193 @@
+{
+  "seedKey": "sharks-and-minnows-dribble",
+  "title": "Sharks and Minnows Dribble Game",
+  "description": "Minnows dribble across the court while sharks try to knock the ball away, a lively game that builds protected dribbling, vision and quick changes of direction.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["ball_control", "competitiveness"],
+  "subSkills": ["protect_the_ball", "change_of_pace"],
+  "level": "beginner",
+  "ageMin": 8,
+  "ageMax": 13,
+  "playersMin": 8,
+  "playersMax": 24,
+  "durationMin": 6,
+  "durationMax": 12,
+  "space": "full_court",
+  "format": "group",
+  "intensity": "high",
+  "phases": ["game", "small_sided"],
+  "tags": ["sharks", "minnows", "dribble game"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Dribble across the court under pressure, keeping the ball protected with the body and the head up.",
+    "setup": "All minnows stand on one baseline, each with a ball. Two or three sharks stand in the middle of the court without a ball.",
+    "instructions": [
+      "On the whistle the minnows dribble to the opposite baseline while the sharks try to knock the balls away.",
+      "A minnow who loses control of the ball, or has it knocked out of bounds, becomes a shark for the next round.",
+      "Minnows who reach the far baseline wait until all have crossed, then run back on the whistle.",
+      "Play until one minnow remains, then restart with new sharks.",
+      "For the final round, minnows may use only the weak hand."
+    ],
+    "coachingPoints": [
+      "Keep the head up and look for open space between the sharks.",
+      "Use the body as a shield: dribble on the side away from the shark.",
+      "Change speed and direction; do not run in a straight line.",
+      "Sharks: stay low, keep your hands active, and never reach in from behind."
+    ],
+    "commonMistakes": [
+      "Watching the ball instead of the sharks.",
+      "Dribbling in a straight line at full speed.",
+      "Sharks reaching in and fouling."
+    ],
+    "safety": "Sharks must stay below shoulder height and play the ball only; stop the game if players collide.",
+    "progressions": ["Add a third shark or shrink the width of the court."],
+    "regressions": ["Sharks walk, or minnows may use both hands freely."],
+    "variations": ["Minnows must switch hands after every shark they pass."]
+  },
+  "diagrams": [
+    {
+      "title": "Dribble past the sharks",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "x": -4.5,
+              "y": 0.6
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "x": -1.5,
+              "y": 0.6
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "x": 1.5,
+              "y": 0.6
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "x": 4.5,
+              "y": 0.6
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "x": -2.2,
+              "y": 12
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "x": 2.2,
+              "y": 12
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b3",
+            "type": "ball",
+            "heldBy": "o3"
+          },
+          {
+            "id": "b4",
+            "type": "ball",
+            "heldBy": "o4"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "x": -5,
+                "y": 8
+              },
+              {
+                "x": -4.5,
+                "y": 23
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o3",
+            "path": [
+              {
+                "x": 1.2,
+                "y": 8
+              },
+              {
+                "x": 0.6,
+                "y": 23
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 17
+            },
+            "text": "Minnows cross, sharks try to steal"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -13,6 +13,10 @@ import {
   Coffee,
   Copy,
   GripVertical,
+  Lock,
+  LockOpen,
+  PenLine,
+  Sparkles,
   Pencil,
   RefreshCw,
   Repeat,
@@ -36,6 +40,10 @@ export type CardActions = {
   onDuplicate: (id: string) => void;
   onRemove: (id: string) => void;
   onUpdateFromSource: (id: string) => void;
+  onToggleLock: (id: string, locked: boolean) => void;
+  onEditDiagram: (activity: BuilderActivity) => void;
+  /** Ask the AI assistant about this activity (only when the assistant is set up). */
+  onAskAi?: (activity: BuilderActivity) => void;
 };
 
 /**
@@ -94,6 +102,12 @@ export function ActivityCard({
         <PhaseBadge phase="break" label={t("breakLabel")} />
       ) : activity.phase ? (
         <PhaseBadge phase={activity.phase} label={td(`phases.${activity.phase}`)} />
+      ) : null}
+      {activity.locked ? (
+        <span className="inline-flex items-center gap-1 rounded-full border border-line-strong bg-surface-sunken px-2.5 py-0.5 text-xs font-medium text-ink">
+          <Lock className="size-3" aria-hidden />
+          {t("locked")}
+        </span>
       ) : null}
       {activity.customized ? (
         <span className="rounded-full border border-line-strong bg-surface-sunken px-2.5 py-0.5 text-xs font-medium text-ink">
@@ -266,6 +280,26 @@ export function ActivityCard({
                         </Link>
                       </MenuItem>
                     ) : null}
+                    {!isBreak ? (
+                      <MenuItem onSelect={() => actions.onEditDiagram(activity)}>
+                        <PenLine className="size-4" aria-hidden />
+                        {activity.diagrams.length > 0 ? t("editDiagram") : t("addDiagram")}
+                      </MenuItem>
+                    ) : null}
+                    {actions.onAskAi ? (
+                      <MenuItem onSelect={() => actions.onAskAi?.(activity)}>
+                        <Sparkles className="size-4" aria-hidden />
+                        {t("askAi")}
+                      </MenuItem>
+                    ) : null}
+                    <MenuItem onSelect={() => actions.onToggleLock(activity.id, !activity.locked)}>
+                      {activity.locked ? (
+                        <LockOpen className="size-4" aria-hidden />
+                      ) : (
+                        <Lock className="size-4" aria-hidden />
+                      )}
+                      {activity.locked ? t("unlock") : t("lock")}
+                    </MenuItem>
                     <MenuItem onSelect={() => actions.onDuplicate(activity.id)}>
                       <Copy className="size-4" aria-hidden />
                       {t("duplicate")}

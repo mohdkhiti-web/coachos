@@ -29,6 +29,8 @@ export interface BuilderActivity {
   players: number | null;
   notes: string;
   customized: boolean;
+  /** The generator and the AI assistant leave a locked activity alone. */
+  locked: boolean;
   changeReason: string | null;
   source: { drillId: string | null; status: SourceStatus };
   /** From the drill copy (null for custom activities and breaks). */
@@ -36,6 +38,8 @@ export interface BuilderActivity {
   intensity: Intensity | null;
   category: string | null;
   diagram: Diagram | null;
+  /** All the activity's diagrams (title + drawing), for the diagram editor. */
+  diagrams: Array<{ title: string; diagram: Diagram }>;
   /** A coach-written activity's own text, for editing. */
   custom: { description: string; instructions: string[]; coachingPoints: string[] } | null;
 }
@@ -69,12 +73,14 @@ export function toBuilderActivity(a: PlanActivityDto): BuilderActivity {
     players: a.players,
     notes: a.notes,
     customized: a.customized,
+    locked: a.locked,
     changeReason: a.changeReason,
     source: { drillId: a.source.drillId, status: a.source.status },
     format: drill?.format ?? null,
     intensity: drill?.intensity ?? null,
     category: drill?.category.name ?? null,
-    diagram: drill?.diagrams[0]?.diagram ?? null,
+    diagram: (drill ?? custom)?.diagrams[0]?.diagram ?? null,
+    diagrams: (drill ?? custom)?.diagrams ?? [],
     custom: custom
       ? {
           description: custom.description,

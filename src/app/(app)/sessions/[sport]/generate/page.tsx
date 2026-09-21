@@ -1,0 +1,64 @@
+import type { Metadata } from "next";
+import { notFound, redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
+import { GeneratorWorkspace } from "@/components/features/generator/generator-workspace";
+import { emptySessionValues } from "@/components/features/sessions/session-model";
+import { can } from "@/lib/authz/can";
+import { listTimezones } from "@/lib/timezones";
+import { requireViewer } from "@/modules/identity";
+import { getAgeGroups, getObjectives, getSport } from "@/modules/sports";
+import { getSportModule } from "@/sports/registry";
+
+export const metadata: Metadata = { title: "Generate session" };
+
+export default async function GenerateSessionPage({
+  params,
+}: PageProps<"/sessions/[sport]/generate">) {
+  const { sport: key } = await params;
+  const viewer = await requireViewer();
+  const sport = await getSport(key);
+  const mod = sport ? getSportModule(sport.key) : undefined;
+  if (!sport || !mod) notFound();
+  const base = `/sessions/${sport.key}`;
+  // assistants read and run sessions but do not author; the server action enforces this again
+  if (!can(viewer.actor, "plan:create", { organizationId: viewer.actor.organizationId }))
+    redirect(base);
+
+  const [t, ageGroups, objectives] = await Promise.all([
+    getTranslations("generator"),
+    getAgeGroups(sport.id),
+    getObjectives(sport.id),
+  ]);
+  const personal = viewer.organization.type === "personal";
+
+  return (
+    <div className="mx-auto max-w-4xl space-y-6">
+      <header className="space-y-2">
+        <p className="eyebrow text-accent">{sport.name}</p>
+        <h1 className="display text-4xl text-ink md:text-5xl">{t("title")}</h1>
+        <p className="max-w-2xl text-base text-ink-muted">{t("subtitle")}</p>
+      </header>
+      <GeneratorWorkspace
+        sportKey={sport.key}
+        initial={emptySessionValues({
+          timezone: viewer.profile.timezone ?? "UTC",
+          coachName: viewer.user.name,
+          clubName: personal ? "" : viewer.organization.name,
+          targetMinutes: mod.defaults.sessionMinutes,
+        })}
+        catalog={{
+          ageGroups: ageGroups.map((g) => ({
+            key: g.key,
+            name: g.name,
+            ageMin: g.ageMin,
+            ageMax: g.ageMax,
+          })),
+          objectives: objectives.map((o) => ({ key: o.key, name: o.name })),
+          timezones: listTimezones(),
+        }}
+        showVisibility={!personal}
+        cancelHref={base}
+      />
+    </div>
+  );
+}

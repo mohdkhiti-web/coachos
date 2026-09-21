@@ -38,6 +38,7 @@ export type AuditAction =
   | "plan.exported"
   | "media.logo_uploaded"
   | "media.logo_deleted"
+  | "assistant.proposal_applied"
   | "share.created"
   | "share.regenerated"
   | "share.revoked"

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Plus } from "lucide-react";
+import { Bot, Plus, Sparkles } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { SessionCard } from "@/components/features/sessions/session-card";
 import { SessionFilters } from "@/components/features/sessions/session-filters";
@@ -10,6 +10,7 @@ import { SessionStatusTabs } from "@/components/features/sessions/session-status
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { can } from "@/lib/authz/can";
+import { assistantAvailability } from "@/modules/assistant";
 import { requireViewer } from "@/modules/identity";
 import {
   activePlanFilterCount,
@@ -79,12 +80,30 @@ export default async function MySessionsPage({
           <h1 className="display text-5xl text-ink md:text-6xl">{t("title")}</h1>
         </div>
         {canCreate ? (
-          <Button asChild size="lg">
-            <Link href={createHref}>
-              <Plus className="size-5" aria-hidden />
-              {t("create")}
-            </Link>
-          </Button>
+          <div className="flex flex-wrap items-center gap-3">
+            {assistantAvailability().available ? (
+              <Button asChild size="lg" variant="secondary">
+                <Link
+                  href={`/assistant/${sport.key}?prompt=${encodeURIComponent(t("createWithAiPrompt"))}`}
+                >
+                  <Bot className="size-5" aria-hidden />
+                  {t("createWithAi")}
+                </Link>
+              </Button>
+            ) : null}
+            <Button asChild size="lg" variant="secondary">
+              <Link href={`${basePath}/generate`}>
+                <Sparkles className="size-5" aria-hidden />
+                {t("generate")}
+              </Link>
+            </Button>
+            <Button asChild size="lg">
+              <Link href={createHref}>
+                <Plus className="size-5" aria-hidden />
+                {t("create")}
+              </Link>
+            </Button>
+          </div>
         ) : null}
       </header>
 

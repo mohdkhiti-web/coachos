@@ -1,6 +1,12 @@
 import "server-only";
 import { and, asc, eq, inArray, sql } from "drizzle-orm";
-import { PLAN_LIMITS, type ActivityKind, type PlanStatus, type PlanVisibility } from "@/db/enums";
+import {
+  PLAN_LIMITS,
+  type ActivityKind,
+  type DrillPhase,
+  type PlanStatus,
+  type PlanVisibility,
+} from "@/db/enums";
 import {
   documentTemplates,
   drills,
@@ -16,6 +22,7 @@ import { tenantTx } from "@/lib/db/tx";
 import { isUuid, newId } from "@/lib/ids";
 import { fail, ok, type FieldErrors, type Result } from "@/lib/result";
 import { recordAuditInTx } from "@/modules/audit";
+import { validateDiagram } from "@/engines/diagram";
 import { drillContentSchema, getDrill } from "@/modules/drills";
 import {
   checkDesign,
@@ -36,12 +43,14 @@ import {
   readConfig as readTemplateConfig,
   resourceOf as templateResourceOf,
 } from "@/modules/templates";
-import { getSportModule } from "@/sports/registry";
+import { getCourtPack, getSportModule } from "@/sports/registry";
 import { migratePlanDetails } from "./details";
 import { totalMinutes } from "./schedule";
 import {
   buildDrillSnapshot,
   customSnapshotSchema,
+  type ActivitySnapshot,
+  drillSnapshotSchema,
   parseSnapshot,
   SNAPSHOT_SCHEMA_VERSION,
 } from "./snapshot";
@@ -243,10 +252,22 @@ const scheduleColumns = (input: PlanInput, timezone: string | null) => ({
   timezone,
 });
 
+/** A timeline entry a new session is created WITH (the generator's result): a real drill, or a break. */
+export type SeedActivity =
+  | { kind: "drill"; drillId: string; phase: DrillPhase | null; durationMin: number }
+  | { kind: "break"; title: string; durationMin: number };
+
+/**
+ * Create a session. With `activities` the timeline is created in the SAME transaction (a generated session): each
+ * drill is read as the actor sees it and copied into a versioned snapshot exactly like `addDrillActivity`, so a
+ * session made by the generator is an ordinary session — nothing about it is special afterwards.
+ */
 export async function createPlan(
   actor: Actor,
   sportKey: string,
   input: PlanInput,
+  activities: readonly SeedActivity[] = [],
+  origin: "manual" | "generator" | "assistant" = "manual",
 ): Promise<Result<{ id: string; version: number }>> {
   if (!can(actor, "plan:create", { organizationId: actor.organizationId }))
     return fail("FORBIDDEN");
@@ -258,6 +279,40 @@ export async function createPlan(
   const r = checked.data;
   const visibility = await effectiveVisibility(actor, input.visibility);
   const id = newId();
+
+  // read every drill as the actor sees it BEFORE the transaction; an unreadable or unpublished one is "not found"
+  const prepared: NewActivity[] = [];
+  const known = new Map<string, Awaited<ReturnType<typeof getDrill>>>();
+  for (const activity of activities) {
+    if (activity.kind === "break") {
+      prepared.push({
+        kind: "break",
+        phase: null,
+        title: activity.title,
+        durationMin: activity.durationMin,
+        repetitions: null,
+        players: null,
+        notes: "",
+      });
+      continue;
+    }
+    if (!known.has(activity.drillId))
+      known.set(activity.drillId, await getDrill(actor, sportKey, activity.drillId));
+    const drill = known.get(activity.drillId);
+    if (!drill || drill.status !== "published") return fail("NOT_FOUND");
+    prepared.push({
+      kind: "drill",
+      phase: activity.phase,
+      title: drill.title,
+      durationMin: activity.durationMin,
+      repetitions: null,
+      players: null,
+      notes: "",
+      sourceDrillId: drill.id,
+      sourceDrillVersion: drill.version,
+      snapshot: buildDrillSnapshot(drill, new Date()),
+    });
+  }
 
   return inTx(actor, async (tx) => {
     const timezone = await resolveTimezone(
@@ -301,11 +356,19 @@ export async function createPlan(
       ...scheduleColumns(input, timezone),
     });
     await writeObjectives(tx, id, sport.id, r);
+    for (const activity of prepared) {
+      const added = await insertActivity(tx, id, sport.id, activity, undefined);
+      if (!added.ok) return added;
+    }
     await recordAuditInTx(tx, actor, {
       action: "plan.created",
       entityType: "plan",
       entityId: id,
-      metadata: { sport: sport.key, ...(template ? { template: template.snapshot.id } : {}) },
+      metadata: {
+        sport: sport.key,
+        ...(template ? { template: template.snapshot.id } : {}),
+        ...(origin === "manual" ? {} : { origin, activities: prepared.length }),
+      },
     });
     return ok({ id, version: 1 });
   });
@@ -949,10 +1012,35 @@ export async function updateActivity(
       }
     }
 
+    if (input.diagrams !== undefined) {
+      if (kind === "break") return fail("VALIDATION", { fields: { diagrams: ["invalid"] } });
+      const stored = parseSnapshot(kind, current.snapshot);
+      const base = (snapshot as ActivitySnapshot | undefined) ?? (stored.ok ? stored.data : null);
+      if (!base) return fail("VALIDATION", { fields: { diagrams: ["invalid"] } });
+      const mod = getSportModule(sportKey);
+      for (const [i, g] of input.diagrams.entries()) {
+        const pack =
+          mod && g.diagram.sport === sportKey
+            ? getCourtPack(g.diagram.sport, g.diagram.court)
+            : undefined;
+        if (!pack || validateDiagram(g.diagram, pack).length > 0)
+          return fail("VALIDATION", { fields: { [`diagrams.${i}`]: ["diagram_invalid"] } });
+      }
+      const next = { ...base, diagrams: input.diagrams };
+      const parsed =
+        "provenance" in base
+          ? drillSnapshotSchema.safeParse(next)
+          : customSnapshotSchema.safeParse(next);
+      if (!parsed.success) return fail("VALIDATION", { fields: { diagrams: ["diagram_invalid"] } });
+      snapshot = parsed.data;
+      if ("provenance" in base) customized = true;
+    }
+
     await tx
       .update(planActivities)
       .set({
         ...(input.title !== undefined && { title: input.title }),
+        ...(input.locked !== undefined && { locked: input.locked }),
         ...(input.phase !== undefined && { phase: kind === "break" ? null : input.phase }),
         ...(input.durationMin !== undefined && { durationMin: input.durationMin }),
         ...(input.repetitions !== undefined && { repetitions: input.repetitions }),
@@ -1060,6 +1148,50 @@ export async function reorderActivities(
     )
       return fail("VALIDATION", { fields: { orderedIds: ["order_mismatch"] } });
     await writePositions(tx, input.orderedIds);
+    return ok({ version: opened.data.version });
+  });
+}
+
+/**
+ * Set the minutes of several activities in ONE transaction (the session's version moves once): all of them change or none
+ * does. Used to fit a session to a new length. An activity id that is not in the session is "not found" for the whole batch.
+ */
+export async function setActivityDurations(
+  actor: Actor,
+  sportKey: string,
+  planId: string,
+  changes: ReadonlyArray<{ activityId: string; durationMin: number }>,
+  version: number,
+): Promise<Result<{ version: number }>> {
+  const sport = await getSport(sportKey);
+  if (!sport) return fail("NOT_FOUND");
+  if (
+    changes.length === 0 ||
+    changes.some(
+      (c) =>
+        !Number.isInteger(c.durationMin) ||
+        c.durationMin < 1 ||
+        c.durationMin > PLAN_LIMITS.maxSessionMinutes,
+    )
+  )
+    return fail("VALIDATION", { fields: { durationMin: ["range_invalid"] } });
+  return inTx(actor, async (tx) => {
+    const opened = await openForEdit(tx, actor, sport.id, planId, version);
+    if (!opened.ok) return opened;
+    const timeline = await timelineOf(tx, planId);
+    const next = new Map(changes.map((c) => [c.activityId, c.durationMin]));
+    if (
+      next.size !== changes.length ||
+      ![...next.keys()].every((id) => timeline.some((a) => a.id === id))
+    )
+      return fail("NOT_FOUND");
+    const total = timeline.reduce((n, a) => n + (next.get(a.id) ?? a.durationMin), 0);
+    if (total > PLAN_LIMITS.maxSessionMinutes) return tooLong();
+    for (const [id, durationMin] of next)
+      await tx
+        .update(planActivities)
+        .set({ durationMin, updatedAt: new Date() })
+        .where(and(eq(planActivities.id, id), eq(planActivities.planId, planId)));
     return ok({ version: opened.data.version });
   });
 }

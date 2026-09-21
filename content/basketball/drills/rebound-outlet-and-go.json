@@ -1,0 +1,203 @@
+{
+  "seedKey": "rebound-outlet-and-go",
+  "title": "Rebound, Outlet and Go",
+  "description": "Rebound with a strong chin-tuck landing, pivot away from pressure, outlet to the sideline and fill the lanes for a three-player fast break.",
+  "category": "transition",
+  "primarySkill": "rebounding",
+  "secondarySkills": ["passing", "decision_making"],
+  "subSkills": ["defensive_rebounding", "passing_on_the_move"],
+  "level": "intermediate",
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 15,
+  "durationMin": 10,
+  "durationMax": 15,
+  "space": "full_court",
+  "format": "group",
+  "intensity": "high",
+  "phases": ["skill", "small_sided"],
+  "tags": ["outlet pass", "rebound", "fast break"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Turn a defensive rebound into an immediate outlet pass and a controlled three-player fast break with wide lanes.",
+    "setup": "A rebounder stands on the block with a defender beside them. A coach shoots and the group rebounds. A teammate waits on the sideline as the outlet and a third player fills the far lane.",
+    "instructions": [
+      "The coach shoots. The rebounder secures the ball with two hands, chin tucked and elbows out.",
+      "Pivot to the outside away from the defender and look for the outlet on the sideline.",
+      "Outlet pass to the sideline player, who catches on the move and dribbles to the middle of the court.",
+      "The rebounder fills the lane on one side and the third player fills the opposite lane.",
+      "Finish the fast break at the far basket; the trio stays to rebound the next attempt."
+    ],
+    "coachingPoints": [
+      "Secure the rebound first; a fast break starts only after you own the ball.",
+      "Pivot away from pressure and keep the ball high and protected.",
+      "The outlet catches on the move and gets the ball to the middle quickly.",
+      "Fill the lanes wide: at least four metres from the ball handler."
+    ],
+    "commonMistakes": [
+      "Rushing the outlet before the ball is secured.",
+      "Outlet player waiting at the sideline instead of moving to the ball.",
+      "Lane runners crowding the ball handler."
+    ],
+    "safety": "Coach shoots only from the free-throw line; rebounders keep elbows below shoulder height on contact.",
+    "progressions": [
+      "Add a defender who pressures the rebounder and a second who challenges the outlet."
+    ],
+    "regressions": ["Coach tosses the ball off the backboard for an easier rebound."],
+    "variations": ["Finish with a 3-on-2 attack against two defenders."]
+  },
+  "diagrams": [
+    {
+      "title": "Outlet to the sideline and fill the lanes",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "x": -6.6,
+              "y": 4.5
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "x": 5.2,
+              "y": 4.5
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "x": -0.6,
+              "y": 1.2
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "x": -1.5,
+                "y": 12
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "x": -5.4,
+                "y": 14
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "cut",
+            "entity": "o3",
+            "path": [
+              {
+                "x": 5.4,
+                "y": 14
+              }
+            ]
+          },
+          {
+            "id": "a5",
+            "step": 3,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "x": 0,
+                "y": 19
+              }
+            ]
+          },
+          {
+            "id": "a6",
+            "step": 4,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "a7",
+            "step": 5,
+            "type": "shot",
+            "entity": "o3",
+            "to": {
+              "anchor": "far_basket"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 9
+            },
+            "text": "Fill the lanes"
+          }
+        ]
+      }
+    }
+  ]
+}

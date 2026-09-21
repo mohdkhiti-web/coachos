@@ -1,9 +1,4 @@
-import {
-  resolveDiagram,
-  type CourtPack,
-  type DiagramInput,
-  type Position,
-} from "@/engines/diagram";
+import { type CourtPack, type DiagramInput, type Position } from "@/engines/diagram";
 
 /**
  * Pure helpers for the diagram builder. The builder edits a plain `DiagramInput` object directly
@@ -36,11 +31,8 @@ const ID_PREFIX: Record<EntityKind, string> = {
   marker: "m",
 };
 
-export function nextId(prefix: string, taken: Iterable<string>): string {
-  const used = new Set(taken);
-  for (let i = 1; i < 1000; i++) if (!used.has(`${prefix}${i}`)) return `${prefix}${i}`;
-  return `${prefix}${Date.now() % 100000}`;
-}
+export { nextId, removeEntity } from "@/engines/diagram";
+import { nextId } from "@/engines/diagram";
 
 export const kindOf = (e: Entity): EntityKind =>
   e.type === "player" ? (e.side === "defense" ? "defense" : "offense") : (e.type as EntityKind);
@@ -185,60 +177,6 @@ export function newAnnotation(
     from: { anchor, offset: [-1.5, -1] },
     to: { anchor, offset: [1.5, 1] },
   };
-}
-
-const refsEntity = (p: Position | undefined, id: string) => !!p && "entity" in p && p.entity === id;
-
-/**
- * Remove an entity and everything that depends on it: actions it takes part in, a ball it holds
- * becomes loose where it lay, and positions defined relative to it are frozen to where it stood.
- */
-export function removeEntity(d: Diagram, id: string, pack: CourtPack): Diagram {
-  const strict = d as Parameters<typeof resolveDiagram>[0];
-  const resolved = resolveDiagram(strict, pack).resolved.entities;
-  const where = resolved.find((r) => r.entity.id === id)?.at;
-  const freeze = (p: Position): Position => {
-    if (!refsEntity(p, id)) return p;
-    const off = (p as { offset?: [number, number] }).offset ?? [0, 0];
-    return where
-      ? { x: round(where.x + off[0]), y: round(where.y + off[1]) }
-      : { anchor: Object.keys(pack.anchors)[0] ?? "basket" };
-  };
-  const round = (n: number) => Math.round(n * 100) / 100;
-
-  const entities: Entity[] = d.entities
-    .filter((e) => e.id !== id)
-    .map((e) => {
-      if (e.type === "ball" && e.heldBy === id) {
-        const ball = resolved.find((r) => r.entity.id === e.id)?.at;
-        return {
-          id: e.id,
-          type: "ball",
-          at: ball ? { x: round(ball.x), y: round(ball.y) } : { anchor: "basket" },
-        } as Entity;
-      }
-      return "at" in e && e.at ? ({ ...e, at: freeze(e.at) } as Entity) : e;
-    });
-
-  const involves = (a: Action) =>
-    a.type === "pass" ? a.from === id || a.to === id : a.entity === id;
-  const actions: Action[] = (d.actions ?? [])
-    .filter((a) => !involves(a))
-    .map((a) => {
-      if (a.type === "screen") return { ...a, target: freeze(a.target) };
-      if (a.type === "shot") return a.to ? { ...a, to: freeze(a.to) } : a;
-      if (a.type === "cut" || a.type === "move" || a.type === "dribble")
-        return { ...a, path: a.path.map(freeze) };
-      return a;
-    });
-
-  const annotations: Annotation[] = (d.annotations ?? []).map((n) => {
-    if (n.type === "text") return { ...n, at: freeze(n.at) };
-    if (n.type === "zone_rect") return { ...n, from: freeze(n.from), to: freeze(n.to) };
-    return { ...n, center: freeze(n.center) };
-  });
-
-  return { ...d, entities, actions, annotations };
 }
 
 /** Anchors grouped for pickers: this end of the court first, then the far end. */

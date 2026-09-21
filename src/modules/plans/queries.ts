@@ -198,6 +198,7 @@ async function loadPlanDetail(
           players: a.players,
           notes: a.notes,
           customized: a.customized,
+          locked: a.locked,
           changeReason: a.changeReason,
           source: { drillId: a.sourceDrillId, drillVersion: a.sourceDrillVersion, status },
           snapshot: snap.ok ? snap.data : null,

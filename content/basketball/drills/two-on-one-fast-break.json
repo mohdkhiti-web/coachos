@@ -1,0 +1,176 @@
+{
+  "seedKey": "two-on-one-fast-break",
+  "title": "2-on-1 Fast Break",
+  "description": "Two attackers race a lone defender up the court and must make the defender commit before finishing, teaching the basic decision of a numbers advantage.",
+  "category": "transition",
+  "primarySkill": "decision_making",
+  "secondarySkills": ["passing", "finishing"],
+  "subSkills": ["numbers_advantage", "reading_the_defense"],
+  "level": "beginner",
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 15,
+  "space": "full_court",
+  "format": "group",
+  "intensity": "high",
+  "phases": ["skill", "small_sided"],
+  "tags": ["fast break", "2 on 1", "transition"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Attack at pace with two players against one defender, force the defender to pick a player, and finish or pass to the open teammate.",
+    "setup": "Two lines of attackers on the baseline, a defender waiting near the free-throw line at the far end. The middle attacker starts with the ball. When the play ends, the defender becomes an attacker in the next round.",
+    "organization": "Three lines: two attacking lines at one baseline and a defending line at the other end. Attackers who finish become the defenders on the way back.",
+    "instructions": [
+      "Attackers sprint up the court, ball handler in the middle, the second attacker in a lane about four metres wide of the ball handler.",
+      "The ball handler attacks the defender at full speed until the defender has to step to the ball.",
+      "If the defender stays with the ball handler, pass to the lane runner for a layup; if the defender stops the passing lane, the ball handler finishes.",
+      "The defender tries to stop the ball first and recover to the second attacker.",
+      "After the shot, the attackers stay to rebound and the defender starts the next attack with the second pair."
+    ],
+    "coachingPoints": [
+      "Keep the lanes wide: attackers stretch the defender before the pass is needed.",
+      "Ball handler attacks the defender's front foot; do not stop and wait.",
+      "Pass early enough for the receiver to finish without breaking stride.",
+      "Defender: sprint back, get in the lane, then stop the ball first."
+    ],
+    "commonMistakes": [
+      "Both attackers run close together, so one defender covers both.",
+      "Ball handler picks up the dribble too early.",
+      "Passing after the defender has already recovered."
+    ],
+    "safety": "Keep the finishing lanes clear of other lines. Attackers and defender finish in a balanced stop, never running into the stanchion.",
+    "progressions": [
+      "Add a second defender that trails so it becomes 2-on-1, then 2-on-2 recovery."
+    ],
+    "regressions": ["Walk through at half speed with the defender standing still in the key."],
+    "variations": ["Award two points for a layup on a pass and one point for an unassisted finish."]
+  },
+  "diagrams": [
+    {
+      "title": "Stretch the lone defender",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "x": 0,
+              "y": 7.5
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "x": 4.2,
+              "y": 7.5
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "x": 0.8,
+              "y": 19
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "x": -0.6,
+                "y": 15.5
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "x": 4.4,
+                "y": 17
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "x": -0.2,
+                "y": 19.6
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a5",
+            "step": 4,
+            "type": "shot",
+            "entity": "o2",
+            "to": {
+              "anchor": "far_basket"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 13
+            },
+            "text": "Defender must choose"
+          }
+        ]
+      }
+    }
+  ]
+}

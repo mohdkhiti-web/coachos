@@ -57,7 +57,7 @@ export function snapshotContent(s: ActivitySnapshot | null): DocumentActivityCon
     regressions: [],
     variations: [],
     equipment: [],
-    diagrams: [],
+    diagrams: s.diagrams.map((d) => ({ title: d.title, diagram: d.diagram })),
     format: null,
     intensity: null,
     playersRange: null,

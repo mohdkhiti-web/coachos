@@ -22,7 +22,8 @@
     "settings": "Settings",
     "sports": "Sports",
     "sessions": "Sessions",
-    "templates": "Templates"
+    "templates": "Templates",
+    "assistant": "AI Coach"
   },
   "theme": {
     "toggle": "Theme: {mode}. Click to change.",
@@ -317,6 +318,7 @@
       "plan_template_applied": "Template applied to a session",
       "plan_template_detached": "Session detached from its template",
       "plan_exported": "Session exported",
+      "assistant_proposal_applied": "AI suggestion applied",
       "media_logo_uploaded": "Logo uploaded",
       "media_logo_deleted": "Logo deleted",
       "share_created": "Session link created",
@@ -626,7 +628,9 @@
       "archiveConfirm": "Archive drill",
       "archived": "Drill archived.",
       "duplicated": "A copy is now in your drills.",
-      "archivedNotice": "This drill is archived. It can be read here but no longer appears in the library."
+      "archivedNotice": "This drill is archived. It can be read here but no longer appears in the library.",
+      "explainWithAi": "Explain with AI",
+      "explainWithAiPrompt": "Explain the {title} drill"
     },
     "form": {
       "createTitle": "Create a drill",
@@ -833,7 +837,17 @@
       "action_not_allowed": "The action “{type}” isn't available for this sport.",
       "invalid_actor": "“{id}” can't do a {type}: only players and coaches can.",
       "action_requires_ball": "“{id}” doesn't have the ball for this {type}. Give a ball to that player, or pass it to them in an earlier step.",
-      "out_of_bounds": "“{id}” is outside the court."
+      "out_of_bounds": "“{id}” is outside the court.",
+      "ball_is_held": "“{id}” is held by a player. Give the ball to someone else instead of moving it.",
+      "no_label": "“{id}” can't have a label.",
+      "not_a_player": "“{id}” is not a player.",
+      "not_a_ball": "“{id}” is not a ball.",
+      "no_path": "“{id}” has no path to change.",
+      "unknown_action": "There is no action “{id}”.",
+      "unknown_annotation": "There is no note number {index}.",
+      "no_duplicate_ball": "A ball can't be duplicated.",
+      "action_invalid": "That action isn't valid.",
+      "schema": "That change isn't valid: {message}"
     }
   },
   "sessions": {
@@ -1018,7 +1032,9 @@
         "reordered": "Moved {title}.",
         "duplicated": "Activity duplicated.",
         "removed": "Removed {title}.",
-        "added": "Activity added."
+        "added": "Activity added.",
+        "locked": "{title} is locked. The generator and the AI assistant will leave it alone.",
+        "unlocked": "{title} is unlocked."
       },
       "toast": {
         "duplicated": "Activity duplicated",
@@ -1028,7 +1044,8 @@
         "published": "Marked as final",
         "backToDraft": "Moved back to draft",
         "archived": "Session archived",
-        "restored": "Session restored as a draft"
+        "restored": "Session restored as a draft",
+        "diagramSaved": "Diagram saved"
       },
       "dnd": {
         "instructions": "To reorder, press space to pick up an activity, use the arrow keys to move it, and press space again to drop it. Escape cancels.",
@@ -1041,7 +1058,9 @@
         "open": "Customize & Preview",
         "fixFirst": "Fix the highlighted fields first, then open the design.",
         "saveFirst": "Your latest changes couldn’t be saved yet, so the design wasn’t opened."
-      }
+      },
+      "improveWithAi": "Improve with AI",
+      "askAiPrompt": "Suggest a good alternative for “{title}” and explain why."
     },
     "activity": {
       "addCustom": "Add a custom activity",
@@ -1094,7 +1113,13 @@
       "updateTitle": "Update from the library?",
       "updateBody": "“{title}” will be replaced by the drill’s current version. Its duration, players and notes stay as they are.",
       "updateBodyCustomized": "You customized “{title}”. Updating replaces your changes with the drill’s current version. Its duration, players and notes stay as they are.",
-      "updateConfirm": "Update"
+      "updateConfirm": "Update",
+      "locked": "Locked",
+      "lock": "Lock activity",
+      "unlock": "Unlock activity",
+      "editDiagram": "Edit diagram",
+      "addDiagram": "Add a diagram",
+      "askAi": "Ask the AI about this"
     },
     "picker": {
       "back": "Back to {title}",
@@ -1479,7 +1504,10 @@
         "readySaved": "Images downloaded. They show the saved design, not your unsaved changes.",
         "tooMany": "That is too many pages for one image. Download the ZIP of pages instead."
       }
-    }
+    },
+    "generate": "Generate a session",
+    "createWithAi": "Create with AI",
+    "createWithAiPrompt": "Create a 60 minute shooting session for 12 players U14 beginner"
   },
   "templates": {
     "title": "Templates",
@@ -1733,6 +1761,431 @@
       "revoked": "Sharing turned off",
       "forbidden": "Only the session's author or a workspace admin can share it, and only while it isn't archived.",
       "done": "Done"
+    }
+  },
+  "generator": {
+    "title": "Generate a session",
+    "subtitle": "Tell CoachOS who you are coaching and what you have. It builds a balanced timeline from real drills in your library, tells you why it chose each one, and opens a normal session you can change however you like.",
+    "cancel": "Cancel",
+    "generate": "Generate session",
+    "fixErrors": "Some fields need attention. They are highlighted above.",
+    "rateLimited": "You are generating very quickly. Wait a moment and try again.",
+    "options": {
+      "heading": "What you have to work with",
+      "intro": "Optional. CoachOS only chooses drills you can run with this. Leave a box empty when it is not a limit.",
+      "baskets": "Baskets available",
+      "basketsHint": "Hoops you can use at the same time.",
+      "basketball": "Basketballs",
+      "cones": "Cones",
+      "bibs": "Bibs",
+      "notCounted": "Not a limit",
+      "space": "Space",
+      "spaceAny": "Any space",
+      "spaceHalf": "Half a court only",
+      "spaceFull": "A full court",
+      "intensity": "Overall intensity",
+      "intensityBalanced": "Balanced",
+      "sessionType": "Kind of session",
+      "types": {
+        "practice": "Team practice",
+        "skills": "Skill development",
+        "game_prep": "Game preparation",
+        "conditioning": "Conditioning focus"
+      }
+    },
+    "preview": {
+      "heading": "Your generated session",
+      "summary": "{count, plural, one {# drill} other {# drills}} · {minutes} minutes.",
+      "considered": "{eligible} of {total} library drills could run with what you told us.",
+      "announce": "Session generated with {count, plural, one {# drill} other {# drills}}.",
+      "replaced": "Drill replaced. The session was checked again.",
+      "timeline": "Generated timeline",
+      "break": "Break",
+      "breakTitle": "Water break",
+      "range": "{from}–{to} min",
+      "minutes": "{minutes} minutes",
+      "min": "min",
+      "kept": "Kept",
+      "opensNewTab": "(opens in a new tab)",
+      "facts": "Drill is designed for {min}–{max} min · {players} players.",
+      "groups": "Runs in {groups} groups.",
+      "why": "Why this drill",
+      "keep": "Keep this drill",
+      "unkeep": "Stop keeping",
+      "replaceWith": "Replace with",
+      "chooseAlternative": "Choose another drill",
+      "another": "Try another version",
+      "create": "Create session and open the builder",
+      "cannotCreate": "Fix the problems above before creating the session."
+    },
+    "reasons": {
+      "primary_objective": "Trains {objective}",
+      "secondary_objective": "Also covers {objective}",
+      "phase_fit": "Suits the {phase} block",
+      "level_fit": "{level} level",
+      "age_fit": "Right for this age",
+      "players_fit": "Works with {players} players",
+      "groups": "Needs {groups} groups",
+      "equipment_ok": "Fits your equipment",
+      "intensity_fit": "{intensity} intensity",
+      "variety": "Adds variety",
+      "locked": "Chosen by you"
+    },
+    "issues": {
+      "errorsHeading": "This session cannot be created yet",
+      "warningsHeading": "Worth a look",
+      "empty": "There are no drills in the timeline.",
+      "duration_mismatch": "The activities add up to {total} minutes but the session is {wanted} minutes.",
+      "too_many_activities": "The timeline has {count} activities; a session can have at most {max}.",
+      "players_below_min": "“{title}” needs at least {min} players; you have {players}.",
+      "equipment_short": "“{title}” needs {need} {key} and you have {have}.",
+      "space_not_available": "“{title}” needs a full court.",
+      "objective_uncovered": "No drill trains {objective}.",
+      "age_mismatch": "“{title}” is designed for a different age.",
+      "level_mismatch": "“{title}” may be too hard for this level.",
+      "no_warm_up": "The session does not start with a warm-up.",
+      "no_cool_down": "The session does not finish with a cool-down.",
+      "high_intensity_run": "{count} high-intensity drills in a row.",
+      "duplicate_drill": "“{title}” appears more than once.",
+      "duration_outside_range": "“{title}” has {minutes} minutes; it is designed for {min}–{max}.",
+      "no_drill_for_phase": "No {phase} drill matched, so a similar drill was used."
+    },
+    "equipment": {
+      "heading": "Kit needed at once",
+      "none": "No counted equipment is needed.",
+      "items": {
+        "basketball": "basketballs",
+        "hoop": "baskets",
+        "cones": "cones",
+        "bibs": "bibs",
+        "markers": "markers",
+        "stopwatch": "stopwatch"
+      }
+    },
+    "created": {
+      "toast": "Session created",
+      "break": "Water break",
+      "title": "{objective} · {minutes} min"
+    }
+  },
+  "diagramEditor": {
+    "cannotEdit": "This diagram can't be edited here because it isn't valid.",
+    "toolbar": "Diagram tools",
+    "canvasTitle": "Diagram being edited",
+    "refused": "That change isn't possible.",
+    "textNeeded": "Type the note first, then click where it goes.",
+    "textLabel": "Note text",
+    "pathFull": "A path can have at most {max} points.",
+    "needCarrier": "Choose a player or a coach.",
+    "finishPath": "Finish this movement",
+    "cancelPath": "Cancel",
+    "selection": "Selected",
+    "nothingSelected": "Nothing selected. Choose “Select and move”, then click a player.",
+    "actionSelected": "An action is selected.",
+    "labelField": "Label (up to 3 characters)",
+    "role": "Role",
+    "duplicate": "Duplicate",
+    "remove": "Remove",
+    "court": "Court",
+    "courtHalf": "Half court",
+    "courtFull": "Full court",
+    "actionsHeading": "Movements and passes",
+    "clearActions": "Clear all",
+    "noActions": "None yet. Choose a tool such as Pass, then click the players.",
+    "step": "Step",
+    "stepOf": "Step of {id}",
+    "removeAction": "Remove this {text}",
+    "invalid": "This diagram has a problem and can't be saved yet.",
+    "undo": "Undo",
+    "redo": "Redo",
+    "reset": "Reset",
+    "cancel": "Cancel",
+    "save": "Save diagram",
+    "entityLabel": "{name}, {kind}",
+    "tools": {
+      "select": "Select and move",
+      "offense": "Attacker",
+      "defense": "Defender",
+      "coach": "Coach",
+      "cone": "Cone",
+      "ball": "Ball",
+      "pass": "Pass",
+      "dribble": "Dribble",
+      "cut": "Cut",
+      "move": "Move",
+      "screen": "Screen",
+      "shot": "Shot",
+      "text": "Note"
+    },
+    "kinds": {
+      "player": "Player",
+      "offense": "Attacker",
+      "defense": "Defender",
+      "coach": "Coach",
+      "ball": "Ball",
+      "cone": "Cone",
+      "marker": "Marker"
+    },
+    "hint": {
+      "select": "Drag a player to move it, or select it and use the arrow keys.",
+      "offense": "Click the court to place an attacker.",
+      "defense": "Click the court to place a defender.",
+      "coach": "Click the court to place a coach.",
+      "cone": "Click the court to place a cone.",
+      "ball": "Click a player to give them the ball, or the court to put a ball down.",
+      "pass": "Click the passer, then the receiver.",
+      "dribble": "Click the player, then click the points of the dribble.",
+      "cut": "Click the player, then click the points of the cut.",
+      "move": "Click the player, then click the points of the movement.",
+      "screen": "Click the screener, then the player being screened.",
+      "shot": "Click the player who shoots.",
+      "text": "Type a short note, then click where it goes.",
+      "path": "{count, plural, =0 {Now click where it goes.} one {# point set. Click more points, or finish.} other {# points set. Click more points, or finish.}}",
+      "second": "Now click the second player."
+    },
+    "actionText": {
+      "pass": "Pass {from} → {to}",
+      "shot": "{who} shoots",
+      "cut": "{who} cuts",
+      "move": "{who} moves",
+      "dribble": "{who} dribbles",
+      "screen": "{who} sets a screen"
+    },
+    "announce": {
+      "added": "{what} added.",
+      "removed": "{who} removed.",
+      "moved": "{who} moved.",
+      "ball": "{who} has the ball.",
+      "duplicated": "Duplicated.",
+      "cleared": "All movements cleared.",
+      "undone": "Undone.",
+      "redone": "Redone.",
+      "reset": "Diagram reset."
+    },
+    "dialog": {
+      "title": "Diagram for {title}",
+      "bodyEdit": "Change the diagram for this session. The library drill is not changed.",
+      "bodyNew": "Draw a diagram for this activity."
+    }
+  },
+  "assistant": {
+    "title": "AI Coach",
+    "subtitle": "Ask for a session, change one you have, explain a drill or draw a diagram. The assistant only uses real CoachOS drills, and it only suggests: nothing changes until you apply it.",
+    "chooseSport": "Choose a sport to coach with.",
+    "unavailable": {
+      "title": "The AI Coach is not set up",
+      "body": "An AI provider has not been configured for this CoachOS, so the assistant is unavailable. Everything else works: you can still generate a complete session from the drill library without AI, and change it in the Session Builder.",
+      "generator": "Generate a session without AI"
+    },
+    "noRole": {
+      "title": "The AI Coach is for coaches",
+      "body": "Your role in this workspace can read sessions but not plan them, so the assistant is not available to you."
+    },
+    "log": "Conversation",
+    "empty": {
+      "title": "What would you like to plan?",
+      "body": "For example: “Create a 60 minute shooting session for 12 players U14”. Open a session first to change it: make it harder, shorten it, add a game or draw a diagram."
+    },
+    "context": {
+      "working": "Working on",
+      "activities": "{count, plural, one {# activity} other {# activities}}",
+      "none": "No session is open. Choose one to change it, or ask for a new session.",
+      "choose": "Session",
+      "noSession": "No session"
+    },
+    "history": {
+      "heading": "Conversations",
+      "new": "New",
+      "empty": "No conversations yet.",
+      "untitled": "Conversation",
+      "delete": "Delete conversation “{title}”",
+      "deleted": "Conversation deleted"
+    },
+    "prompts": {
+      "heading": "Suggestions",
+      "create": {
+        "label": "Create a session",
+        "text": "Create a 60 minute shooting session for 12 players U14 beginner"
+      },
+      "harder": {
+        "label": "Make it harder",
+        "text": "Make it harder"
+      },
+      "easier": {
+        "label": "Make it easier",
+        "text": "Make it easier"
+      },
+      "shorten": {
+        "label": "Shorten to 45 min",
+        "text": "Shorten it to 45 minutes"
+      },
+      "game": {
+        "label": "Add a competitive game",
+        "text": "Add a competitive game"
+      },
+      "diagram": {
+        "label": "Draw a diagram",
+        "text": "Draw a diagram for this session"
+      },
+      "validate": {
+        "label": "Check my session",
+        "text": "Check my session"
+      },
+      "explain": {
+        "label": "Explain a drill",
+        "text": "Explain the Mikan drill"
+      }
+    },
+    "composer": {
+      "label": "Message the AI Coach",
+      "placeholder": "Ask for a session, or a change to the one you have open…",
+      "send": "Send",
+      "hint": "{count} of {max} characters. Enter sends, Shift+Enter adds a line."
+    },
+    "cancel": "Cancel",
+    "retry": "Try again",
+    "status": {
+      "thinking": "Thinking…",
+      "working": "Working…",
+      "tools": {
+        "search_drills": "Searching the drill library…",
+        "get_drill": "Reading the drill…",
+        "find_matching_drills": "Finding drills that fit…",
+        "get_objectives": "Looking up objectives…",
+        "get_age_groups": "Looking up age groups…",
+        "get_session": "Reading your session…",
+        "validate_session": "Checking your session…",
+        "generate_session": "Building a session…",
+        "create_session": "Building a session…",
+        "add_activity": "Preparing a change…",
+        "replace_activity": "Preparing a change…",
+        "remove_activity": "Preparing a change…",
+        "update_activity": "Preparing a change…",
+        "reorder_activity": "Preparing a change…",
+        "change_duration": "Working out the new timings…",
+        "change_player_count": "Checking the drills for that many players…",
+        "change_objectives": "Preparing a change…",
+        "create_custom_activity": "Writing a custom activity…",
+        "add_break": "Preparing a change…",
+        "create_diagram": "Drawing a diagram…",
+        "update_diagram": "Changing the diagram…"
+      }
+    },
+    "announce": {
+      "answered": "The AI Coach has answered.",
+      "cancelled": "Cancelled. Your message is back in the box."
+    },
+    "problems": {
+      "unavailable": "The AI Coach is not available right now.",
+      "rate_limited": "The AI service is busy. Wait a moment and try again.",
+      "daily_limit": "You have reached today’s limit of AI messages. Try again tomorrow, or use the generator without AI.",
+      "timeout": "That took too long. Try again, or ask for something smaller.",
+      "cancelled": "Cancelled.",
+      "failed": "Something went wrong and there is no answer. Nothing was changed. Try again.",
+      "refused": "The AI service declined to answer that. Nothing was changed.",
+      "NETWORK": "Could not reach the server. Check your connection and try again.",
+      "RATE_LIMITED": "You are sending messages very quickly, or you have reached today’s limit. Wait a little and try again.",
+      "UNAVAILABLE": "The AI Coach is not available right now.",
+      "VALIDATION": "That message could not be sent. It may be empty, too long, or this conversation is full: start a new one."
+    },
+    "message": {
+      "assistant": "AI Coach",
+      "sources": "Based on CoachOS drills:"
+    },
+    "proposal": {
+      "badge": "AI suggestion",
+      "appliedToast": "Suggestion applied",
+      "nothingChanged": "Nothing has changed yet.",
+      "dismiss": "Dismiss",
+      "applying": "Applying…",
+      "applied": "Applied",
+      "dismissed": "Dismissed",
+      "openBuilder": "Open in Session Builder",
+      "openSession": "Open session",
+      "none": "none",
+      "kinds": {
+        "create_session": "New session",
+        "add_drill": "Add a drill",
+        "replace_drill": "Replace a drill",
+        "remove_activity": "Remove an activity",
+        "update_activity": "Change an activity",
+        "reorder_activity": "Move an activity",
+        "set_durations": "Change the length",
+        "update_plan": "Change the session",
+        "add_custom": "Custom activity",
+        "add_break": "Add a break",
+        "set_diagram": "Diagram"
+      },
+      "buttons": {
+        "createSession": "Create Session",
+        "addDrill": "Add Drill",
+        "replaceDrill": "Replace Drill",
+        "createDiagram": "Create Diagram",
+        "updateDiagram": "Update Diagram",
+        "apply": "Apply to Session"
+      },
+      "breakLabel": "Break",
+      "breakTitle": "Water break",
+      "minutes": "{count} min",
+      "create": {
+        "summary": "{minutes} minutes for {players} players: {count, plural, one {# drill} other {# drills}} from the CoachOS library.",
+        "warnings": "{count, plural, one {# point} other {# points}} worth a look once it is created."
+      },
+      "add": {
+        "body": "Add “{title}” ({minutes} min) to the session."
+      },
+      "replace": {
+        "body": "Replace “{from}” with “{to}”."
+      },
+      "remove": {
+        "body": "Remove “{title}” from the session."
+      },
+      "update": {
+        "body": "Change “{title}”:"
+      },
+      "reorder": {
+        "body": "Move “{title}” to position {position}."
+      },
+      "durationChange": "{from} → {to} min",
+      "plan": {
+        "players": "Plan the session for {count, plural, one {# player} other {# players}}.",
+        "objective": "Make the main objective: {objective}."
+      },
+      "playersIssue": {
+        "players": "“{title}” needs more players than that.",
+        "equipment": "“{title}” needs more equipment than you have."
+      },
+      "custom": {
+        "label": "Written by the AI — not a CoachOS drill. Review it before you use it."
+      },
+      "addBreak": {
+        "body": "Add a {minutes} minute break."
+      },
+      "diagram": {
+        "create": "Draw this diagram for “{title}”.",
+        "replace": "Change the diagram of “{title}” to this.",
+        "alt": "Suggested diagram"
+      },
+      "fields": {
+        "title": "Title",
+        "phase": "Phase",
+        "durationMin": "Minutes",
+        "players": "Players",
+        "repetitions": "Repetitions",
+        "notes": "Notes"
+      },
+      "confirm": {
+        "title": "Apply this change?",
+        "body": "This replaces or removes something in your session. Check it, then confirm.",
+        "action": "Yes, apply it"
+      },
+      "failures": {
+        "CONFLICT": "The session has changed since this was suggested. Ask again for an up-to-date suggestion.",
+        "FORBIDDEN": "This can’t be applied: the activity is locked, or you can’t change this session.",
+        "NOT_FOUND": "The session or activity is no longer there.",
+        "VALIDATION": "This can’t be applied as it stands. Ask again.",
+        "INTERNAL": "Something went wrong. Nothing was changed."
+      }
     }
   }
 }

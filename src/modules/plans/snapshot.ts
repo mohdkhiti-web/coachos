@@ -93,6 +93,11 @@ export type DrillSnapshot = z.output<typeof drillSnapshotSchema>;
 export const customSnapshotSchema = z.strictObject({
   schemaVersion: z.literal(SNAPSHOT_SCHEMA_VERSION),
   ...customContentShape,
+  /** Diagrams the coach (or the assistant, on their behalf) drew for this activity. Older snapshots have none. */
+  diagrams: z
+    .array(z.strictObject({ title: z.string().max(60), diagram: diagramSchema }))
+    .max(5)
+    .default([]),
 });
 
 export type CustomSnapshot = z.output<typeof customSnapshotSchema>;

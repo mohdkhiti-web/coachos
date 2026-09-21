@@ -1,0 +1,134 @@
+{
+  "seedKey": "finishing-through-contact",
+  "title": "Finishing Through Contact",
+  "description": "Attack the basket against a defender using body control, a strong two-foot finish and the off-hand shoulder to protect the ball against light contact.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["footwork", "ball_control"],
+  "subSkills": ["finishing_with_contact"],
+  "level": "intermediate",
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 15,
+  "space": "half_court",
+  "format": "1v1",
+  "intensity": "medium",
+  "phases": ["skill"],
+  "tags": ["contact", "layups", "strong finish"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 3
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Finish at the rim after contact by staying balanced, protecting the ball with the body and going up strong with two hands.",
+    "setup": "Attackers in a line at the wing with a ball each. A defender stands one step inside the three-point line with hands up and gives light contact only.",
+    "instructions": [
+      "The attacker takes two hard dribbles toward the basket, attacking the defender's outside shoulder.",
+      "The defender gives light contact with a forearm on the attacker's body; no reaching or pushing.",
+      "The attacker stays balanced, lowers the shoulder, protects the ball on the far side and jumps off two feet.",
+      "Finish off the backboard or straight up; the attacker keeps the ball high through contact.",
+      "Rotate: attacker to the defender's spot, defender to the back of the line."
+    ],
+    "coachingPoints": [
+      "Two hard dribbles, then a strong last step: get low, then go up.",
+      "Ball on the far side from the defender, both hands on the ball.",
+      "Finish through the contact; do not float away from it.",
+      "Land balanced and ready to rebound."
+    ],
+    "commonMistakes": [
+      "Fading away from contact instead of finishing.",
+      "Carrying the ball low where the defender can strip it.",
+      "One-foot takeoff with the ball on the wrong side."
+    ],
+    "safety": "Defenders may only give light contact with the forearm; no charging, hitting the arms or pushing. Use a coach's whistle to stop unsafe play.",
+    "progressions": ["Add a second defender helping from the weak side."],
+    "regressions": [
+      "Defender holds a pad or stands with arms folded and provides only body pressure."
+    ],
+    "variations": ["Finish after a jump stop instead of a stride stop."]
+  },
+  "diagrams": [
+    {
+      "title": "Attack the outside shoulder",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "x": 3.6,
+              "y": 3.7
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "x": 2.9,
+                "y": 3.2
+              },
+              {
+                "x": 1.5,
+                "y": 1.6
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": -3.4,
+              "y": 9
+            },
+            "text": "Light contact only"
+          }
+        ]
+      }
+    }
+  ]
+}

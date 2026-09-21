@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { diagramSchema } from "@/engines/diagram";
 import { DRILL_PHASES, LEVELS, PLAN_LIMITS, PLAN_STATUSES, PLAN_VISIBILITIES } from "@/db/enums";
 import { documentDesignSchema, PRESET_IDS, reflectionSchema } from "@/modules/documents";
 import { planDetailsSchema } from "./details";
@@ -159,6 +160,18 @@ export const updateActivitySchema = z.strictObject({
   players: int(1, 60).nullable().optional(),
   notes: z.string().trim().max(2000, { error: "too_long" }).optional(),
   content: z.record(z.string(), z.unknown()).optional(),
+  /** The activity's diagrams, replaced as a whole (each is checked against its court by the command). */
+  diagrams: z
+    .array(
+      z.strictObject({
+        title: z.string().trim().max(60, { error: "too_long" }).default(""),
+        diagram: diagramSchema,
+      }),
+    )
+    .max(5, { error: "too_many" })
+    .optional(),
+  /** Lock the activity: neither the generator nor the AI assistant may change, replace, move or remove it. */
+  locked: z.boolean().optional(),
   changeReason: z.string().trim().max(300, { error: "too_long" }).optional(),
   version,
 });

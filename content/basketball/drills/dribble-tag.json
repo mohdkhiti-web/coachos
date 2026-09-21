@@ -1,0 +1,219 @@
+{
+  "seedKey": "dribble-tag",
+  "title": "Dribble Tag",
+  "description": "A fun, high-energy tag game where every player dribbles a ball inside a boundary, building control, head-up dribbling and change of direction.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["ball_control", "speed_agility"],
+  "subSkills": ["protect_the_ball", "change_of_pace"],
+  "level": "beginner",
+  "ageMin": 8,
+  "ageMax": 14,
+  "playersMin": 6,
+  "playersMax": 20,
+  "durationMin": 5,
+  "durationMax": 10,
+  "space": "half_court",
+  "format": "group",
+  "intensity": "medium",
+  "phases": ["warm_up", "skill"],
+  "tags": ["tag", "dribbling", "game"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 4
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 3
+    }
+  ],
+  "content": {
+    "objective": "Keep the ball under control with the head up while changing direction and speed to avoid being tagged.",
+    "setup": "Mark a boundary with four cones on half of the court. Every player has a ball. Two or three taggers wear bibs and also dribble.",
+    "instructions": [
+      "On the whistle, all players dribble inside the boundary; taggers try to tag others below the shoulder while keeping their own dribble.",
+      "A player who is tagged or loses control of the ball does five dribble pivots on the spot, then rejoins.",
+      "Change the taggers every ninety seconds so everyone tries both roles.",
+      "Stop the game and ask players to use only their left hand, then only the right, then only crossovers.",
+      "Finish with a slow control dribble around the boundary to cool down."
+    ],
+    "coachingPoints": [
+      "Eyes up, not on the ball: see the tagger and the open space.",
+      "Change of pace and direction beat a chase.",
+      "Protect the ball with the off-arm and the body.",
+      "Use both hands."
+    ],
+    "commonMistakes": [
+      "Running without the ball and losing the dribble.",
+      "Watching the ball and colliding with others.",
+      "Only using the strong hand."
+    ],
+    "safety": "Keep the boundary large enough for the group and stop the game if players collide frequently.",
+    "progressions": ["Reduce the boundary size or add a second tagger without a ball."],
+    "regressions": ["Taggers walk quickly rather than run, or give players a larger boundary."],
+    "variations": ["Players must use the weak hand only for the whole round."]
+  },
+  "diagrams": [
+    {
+      "title": "Dribble inside the boundary",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "x": -6,
+              "y": 0.5
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "x": 6,
+              "y": 0.5
+            }
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "x": 6,
+              "y": 10.5
+            }
+          },
+          {
+            "id": "c4",
+            "type": "cone",
+            "at": {
+              "x": -6,
+              "y": 10.5
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "x": -3,
+              "y": 4
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "x": 3,
+              "y": 3.5
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "x": 0,
+              "y": 8.5
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "x": -3.5,
+              "y": 8
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b3",
+            "type": "ball",
+            "heldBy": "o3"
+          },
+          {
+            "id": "b4",
+            "type": "ball",
+            "heldBy": "x1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "x": -1.5,
+                "y": 3
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "dribble",
+            "entity": "x1",
+            "path": [
+              {
+                "x": -2.6,
+                "y": 6
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o3",
+            "path": [
+              {
+                "x": 1.5,
+                "y": 9
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 6
+            },
+            "text": "Tagger X1 dribbles too"
+          }
+        ]
+      }
+    }
+  ]
+}

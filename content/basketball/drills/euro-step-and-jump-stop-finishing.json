@@ -1,0 +1,157 @@
+{
+  "seedKey": "euro-step-and-jump-stop-finishing",
+  "title": "Euro Step and Jump-Stop Finishing",
+  "description": "Learn two footwork finishes around a defender's spot: the jump stop to stay under control and the euro step to change direction and finish over a defender.",
+  "category": "finishing",
+  "primarySkill": "footwork",
+  "secondarySkills": ["finishing", "pivoting"],
+  "subSkills": ["both_hands_finishing"],
+  "level": "advanced",
+  "ageMin": 13,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 15,
+  "space": "half_court",
+  "format": "individual",
+  "intensity": "medium",
+  "phases": ["skill"],
+  "tags": ["euro step", "footwork", "finishing"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Change direction with the feet at the rim without travelling, finishing with either hand around a defender's space.",
+    "setup": "A cone marks a defender on each side of the lane, two steps from the rim. Players line up at the top of the key, each with a ball or sharing two balls.",
+    "instructions": [
+      "Dribble at the cone on the right, take the last dribble and step wide with the right foot.",
+      "Step across with the left foot in the opposite direction of the first step and finish with the left hand.",
+      "Repeat from the other side using the left foot first, finishing with the right hand.",
+      "Add a jump stop instead of the euro step on the third attempt: land on two feet, pivot and finish.",
+      "Change sides every attempt and count makes over one minute."
+    ],
+    "coachingPoints": [
+      "Long first step to the side, then a long second step back the other way.",
+      "Take the last dribble at the top of the first step; do not carry the ball.",
+      "Keep the ball protected on the side away from the cone.",
+      "Land balanced and finish softly with a high release."
+    ],
+    "commonMistakes": [
+      "Travelling by taking three steps after gathering the ball.",
+      "Making the first step too short so there is no change of direction.",
+      "Losing the ball control on the gather."
+    ],
+    "safety": "Keep cones away from the landing area; wait behind the baseline while another player finishes.",
+    "progressions": ["Replace the cones with a live defender offering light contact."],
+    "regressions": [
+      "Walk through the footwork without the ball, then with the ball at half speed."
+    ],
+    "variations": ["Finish with a reverse layup on the second attempt."]
+  },
+  "diagrams": [
+    {
+      "title": "Step wide, step back, finish",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "x": 1.6,
+              "y": 2.7
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "x": -1.6,
+              "y": 2.7
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "x": 1.9,
+                "y": 5
+              },
+              {
+                "x": 1.3,
+                "y": 3.6
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "x": -0.3,
+                "y": 1.5
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 9.6
+            },
+            "text": "Wide step, then back"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -131,6 +131,75 @@ for (const scheme of ["light", "dark"] as const) {
       await audit(page, `sessions, archived view (${scheme})`);
     });
 
+    test("Step 8: generator, AI Coach (conversation, suggestions, confirmation) and the diagram editor", async ({
+      page,
+    }) => {
+      test.setTimeout(300_000);
+      await signUpAndVerify(page, newUser());
+      await completeOnboarding(page);
+
+      // the generator: form, then its result
+      await page.goto(`${SESSIONS}/generate`);
+      await expect(
+        page.getByRole("heading", { level: 1, name: "Generate a session" }),
+      ).toBeVisible();
+      await audit(page, `generator form (${scheme})`);
+      await field(page, "Session title").fill("Generated for axe");
+      await field(page, "Age group").selectOption({ label: "U14 (13–14)" });
+      await field(page, "Level").selectOption({ label: "Beginner" });
+      await field(page, "Number of players").fill("12");
+      await field(page, "Main objective").selectOption({ label: "Shooting" });
+      await page.getByRole("button", { name: "Generate session" }).click();
+      await expect(page.getByRole("region", { name: "Your generated session" })).toBeVisible();
+      await audit(page, `generator result (${scheme})`);
+
+      // the AI Coach: empty, with a conversation and suggestions, and the confirmation dialog
+      await page.goto("/assistant/basketball");
+      await expect(page.getByTestId("chat-empty")).toBeVisible();
+      await audit(page, `AI Coach, empty (${scheme})`);
+      const input = page.getByLabel("Message the AI Coach");
+      await input.fill("Create a 45 minute passing session for 10 players U12");
+      await page.getByRole("button", { name: "Send", exact: true }).click();
+      await expect(page.getByTestId("proposal-card").first()).toBeVisible({ timeout: 20_000 });
+      await audit(page, `AI Coach, conversation with a suggestion (${scheme})`);
+      await page
+        .getByTestId("proposal-card")
+        .first()
+        .getByRole("button", { name: "Create Session" })
+        .click();
+      await expect(page).toHaveURL(/\/sessions\/basketball\/[0-9a-f-]{36}$/, { timeout: 30_000 });
+      const builder = page.url();
+      await page.getByTestId("improve-with-ai").click();
+      await page.getByRole("button", { name: "Make it harder" }).click();
+      const replace = page.getByTestId("proposal-card").first();
+      await expect(replace).toHaveAttribute("data-kind", "replace_drill", { timeout: 20_000 });
+      await replace.getByRole("button", { name: "Replace Drill" }).click();
+      await expect(page.getByRole("dialog")).toBeVisible();
+      await audit(page, `AI Coach, confirmation dialog (${scheme})`);
+      await page.keyboard.press("Escape");
+
+      // the diagram editor, with content, in its dialog
+      await page.goto(builder);
+      await addCustom(page, "Axe drill", 6);
+      await page.getByRole("button", { name: "More actions for Axe drill" }).click();
+      await page.getByRole("menuitem", { name: /diagram/i }).click();
+      await expect(page.getByTestId("diagram-editor")).toBeVisible();
+      await audit(page, `diagram editor, empty (${scheme})`);
+      await page
+        .getByTestId("diagram-editor")
+        .getByRole("button", { name: "Attacker", exact: true })
+        .click();
+      const box = (await page.getByTestId("editor-canvas").boundingBox())!;
+      await page.mouse.click(box.x + box.width * 0.5, box.y + box.height * 0.6);
+      await page.mouse.click(box.x + box.width * 0.3, box.y + box.height * 0.5);
+      await page
+        .getByTestId("diagram-editor")
+        .getByRole("button", { name: "Select and move", exact: true })
+        .click();
+      await page.locator('[data-entity="o1"]').click();
+      await audit(page, `diagram editor, with a selection (${scheme})`);
+    });
+
     test("session design and preview: controls, every preset's paper colours, the leave dialog", async ({
       page,
     }) => {

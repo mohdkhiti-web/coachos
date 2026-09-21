@@ -1,0 +1,189 @@
+{
+  "seedKey": "three-on-one-keep-away",
+  "title": "3-on-1 Keep-Away",
+  "description": "Three passers keep the ball away from one defender inside a small area, building quick, accurate passing, spacing and communication under pressure.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["decision_making", "communication"],
+  "subSkills": ["passing_under_pressure", "reading_the_defense"],
+  "level": "beginner",
+  "ageMin": 8,
+  "ageMax": 15,
+  "playersMin": 4,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 12,
+  "space": "any_space",
+  "format": "group",
+  "intensity": "medium",
+  "phases": ["warm_up", "skill"],
+  "tags": ["keep away", "passing", "rondo"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Complete accurate passes under defensive pressure, moving without the ball to create passing angles and using fakes to open the lane.",
+    "setup": "Mark a square about five metres wide with four cones. Three passers stand inside it in a triangle and one defender stands in the middle. Additional groups work in other squares.",
+    "instructions": [
+      "The passers pass the ball to each other while the defender tries to deflect or intercept it.",
+      "Passers may not dribble and must keep one foot on the ground (pivot) when holding the ball.",
+      "When the defender touches the ball or the ball leaves the square, the passer who made the pass becomes the defender.",
+      "Count how many consecutive passes the passers can make before losing the ball.",
+      "Play rounds of 90 seconds, then rotate the defender."
+    ],
+    "coachingPoints": [
+      "Move to open space and show a target hand for the pass.",
+      "Use ball fakes and pivots to open the passing lane.",
+      "Pass away from the defender's hands and step into the pass.",
+      "Communicate: call for the ball and name the passer."
+    ],
+    "commonMistakes": [
+      "Standing still in a line so the defender covers everyone.",
+      "Telegraphing the pass with the eyes.",
+      "Throwing lazy passes across the defender's reach."
+    ],
+    "safety": "Keep the squares apart to avoid collisions between groups and pick up loose balls quickly.",
+    "progressions": ["Make it 4-on-2 and require five passes before a shot on the basket."],
+    "regressions": ["Enlarge the square or allow the passers to dribble once."],
+    "variations": ["Award a point to the passers for every ten consecutive passes."]
+  },
+  "diagrams": [
+    {
+      "title": "Pass to the open corner",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "x": -2.6,
+              "y": 4.4
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "x": 2.6,
+              "y": 4.4
+            }
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "x": 2.6,
+              "y": 9.6
+            }
+          },
+          {
+            "id": "c4",
+            "type": "cone",
+            "at": {
+              "x": -2.6,
+              "y": 9.6
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "x": -2,
+              "y": 8.6
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "x": 2,
+              "y": 8.6
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "x": 0,
+              "y": 5.2
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "x": 0,
+              "y": 7.4
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o3"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o3",
+            "to": "o2"
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "move",
+            "entity": "x1",
+            "path": [
+              {
+                "x": 0.8,
+                "y": 6.8
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 10.8
+            },
+            "text": "Move to create the angle"
+          }
+        ]
+      }
+    }
+  ]
+}

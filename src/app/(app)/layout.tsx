@@ -1,5 +1,6 @@
 import { AppShell } from "@/components/layout/app-shell";
 import { getViewer } from "@/modules/identity";
+import { assistantAvailability } from "@/modules/assistant";
 import { listActiveSports } from "@/modules/sports";
 
 /**
@@ -10,7 +11,11 @@ import { listActiveSports } from "@/modules/sports";
 export default async function AppLayout({ children }: LayoutProps<"/">) {
   const [viewer, sports] = await Promise.all([getViewer(), listActiveSports()]);
   return (
-    <AppShell viewer={viewer} sports={sports.map((s) => ({ key: s.key, name: s.name }))}>
+    <AppShell
+      viewer={viewer}
+      sports={sports.map((s) => ({ key: s.key, name: s.name }))}
+      assistant={assistantAvailability().available}
+    >
       {children}
     </AppShell>
   );

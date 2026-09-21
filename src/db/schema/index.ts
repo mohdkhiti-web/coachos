@@ -7,3 +7,4 @@ export * from "./plans";
 export * from "./templates";
 export * from "./media";
 export * from "./sharing";
+export * from "./assistant";

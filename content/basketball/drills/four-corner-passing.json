@@ -1,0 +1,196 @@
+{
+  "seedKey": "four-corner-passing",
+  "title": "Four-Corner Passing",
+  "description": "A simple continuous passing pattern in a square that warms the group up while building accurate passes, pass-and-move habits and communication.",
+  "category": "warm_up",
+  "primarySkill": "passing",
+  "secondarySkills": ["catching", "communication"],
+  "subSkills": ["passing_on_the_move"],
+  "level": "beginner",
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 10,
+  "space": "any_space",
+  "format": "group",
+  "intensity": "low",
+  "phases": ["warm_up"],
+  "tags": ["passing", "warm up", "pass and move"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Pass accurately and move immediately after the pass, keeping the ball moving around the square at a steady rhythm.",
+    "setup": "Four cones mark a square about six metres wide. A line of players stands at each corner. The first player in one corner starts with a ball.",
+    "instructions": [
+      "The first player passes to the player at the next corner and follows their pass to that corner.",
+      "The receiver catches with hands ready, steps into the pass and passes to the next corner.",
+      "Continue clockwise for one minute, then change direction and pass counter-clockwise.",
+      "Add a second ball starting from the opposite corner once the pattern is smooth.",
+      "Finish with bounce passes and overhead passes for variety."
+    ],
+    "coachingPoints": [
+      "Show a target with the hands and step into the pass.",
+      "Pass and then move: do not stand and watch the pass.",
+      "Communicate: call the name of the receiver before passing.",
+      "Snap the wrists and finish the pass with the thumbs pointing down."
+    ],
+    "commonMistakes": [
+      "Standing still after the pass.",
+      "Passing at the feet or too high.",
+      "Watching the ball rather than the receiver."
+    ],
+    "safety": "Keep the passing lanes clear of stray balls and other groups.",
+    "progressions": ["Use a second ball, then add a required fake before each pass."],
+    "regressions": ["Use a single ball and pass only chest passes at a slower pace."],
+    "variations": ["Pass with the left hand only for a round."]
+  },
+  "diagrams": [
+    {
+      "title": "Pass and follow around the square",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "x": -3,
+              "y": 4
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "x": 3,
+              "y": 4
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "x": 3,
+              "y": 10
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "x": -3,
+              "y": 10
+            }
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "x": -3.4,
+              "y": 3.6
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "x": 3.4,
+              "y": 3.6
+            }
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "x": 3.4,
+              "y": 10.4
+            }
+          },
+          {
+            "id": "c4",
+            "type": "cone",
+            "at": {
+              "x": -3.4,
+              "y": 10.4
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "x": 3,
+                "y": 4.6
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 7
+            },
+            "text": "Pass and follow"
+          }
+        ]
+      }
+    }
+  ]
+}

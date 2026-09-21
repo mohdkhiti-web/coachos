@@ -115,11 +115,11 @@ describe("catalog (reference data)", () => {
 });
 
 describe("library seed", () => {
-  it("published 15–25 curated drills, all in the platform organization, public, with no human creator", async () => {
+  it("published 15–60 curated drills, all in the platform organization, public, with no human creator", async () => {
     const lib = await db.select().from(drills).where(eq(drills.visibility, "public"));
     expect(lib.length).toBe(SEED_DRILLS.length);
     expect(lib.length).toBeGreaterThanOrEqual(15);
-    expect(lib.length).toBeLessThanOrEqual(25);
+    expect(lib.length).toBeLessThanOrEqual(60);
     const [platform] = await db
       .select()
       .from(organization)

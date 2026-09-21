@@ -113,7 +113,7 @@ test("the Phase 2 journey: sports → basketball → drills → filter → open 
 
     await filters(page).getByLabel("Category").selectOption("shooting");
     await expect(page).toHaveURL(/category=shooting/);
-    await expect(results(page)).toHaveText("2 drills");
+    await expect(results(page)).toHaveText("4 drills");
     await expect(page.getByRole("link", { name: "Five-Spot Shooting" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Mikan Drill" })).toHaveCount(0);
 
@@ -161,7 +161,7 @@ test("the Phase 2 journey: sports → basketball → drills → filter → open 
     const chip3v3 = chips.getByRole("link", { name: "3v3", exact: true });
     await chip3v3.click();
     await expect(page).toHaveURL(/format=3v3/);
-    await expect(results(page)).toHaveText("1 drill");
+    await expect(results(page)).toHaveText("4 drills");
     await expect(page.getByRole("link", { name: "3v3 Half-Court Game to Seven" })).toBeVisible();
     await expect(chip3v3).toHaveAttribute("aria-current", "true");
     await chip3v3.click(); // pressing the active chip clears it
@@ -182,7 +182,7 @@ test("the Phase 2 journey: sports → basketball → drills → filter → open 
 
     // a sub-skill finds its drills, and its parent skill finds them too
     await filters(page).getByLabel("Skill", { exact: true }).selectOption("weak_hand");
-    await expect(results(page)).toHaveText("1 drill");
+    await expect(results(page)).toHaveText("2 drills");
     await expect(page.getByRole("link", { name: "Stationary Ball-Handling Series" })).toBeVisible();
     await filters(page).getByLabel("Skill", { exact: true }).selectOption("dribbling");
     await expect(page.getByRole("link", { name: "Stationary Ball-Handling Series" })).toBeVisible();
@@ -233,7 +233,9 @@ test("the Phase 2 journey: sports → basketball → drills → filter → open 
       await expect(page.getByRole("heading", { name: h })).toBeVisible();
     }
     await expect(page.getByRole("img", { name: /Five spots around the arc/ })).toBeVisible(); // the structured diagram
-    await expect(page.getByText("Flat markers / spots")).toBeVisible();
+    await expect(
+      page.getByRole("complementary", { name: "Drill details" }).getByText("Flat markers / spots"),
+    ).toBeVisible();
     await expect(page.getByText("CoachOS library").first()).toBeVisible();
     await expect(page.getByText("Original CoachOS content")).toBeVisible();
     // library drills are read-only, but can be copied
@@ -291,7 +293,7 @@ test("the Phase 2 journey: sports → basketball → drills → filter → open 
     await page.goto(drillUrl);
     await page.getByRole("link", { name: "Edit" }).click();
     await expect(page.getByRole("textbox", { name: "Title", exact: true })).toHaveValue(title);
-    await expect(page.getByLabel("Objective")).toHaveValue(
+    await expect(page.getByRole("textbox", { name: "Objective" })).toHaveValue(
       "Move the ball quickly and accurately to a teammate.",
     );
     await expect(page.getByRole("checkbox", { name: "Basketballs" })).toBeChecked();

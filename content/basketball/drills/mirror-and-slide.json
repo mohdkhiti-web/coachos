@@ -1,0 +1,188 @@
+{
+  "seedKey": "mirror-and-slide",
+  "title": "Mirror and Slide",
+  "description": "Pairs practise staying in a low defensive stance while the defender mirrors an offensive partner's movements inside a small box.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": ["footwork", "speed_agility"],
+  "subSkills": ["stance_and_slides", "containing_the_dribble"],
+  "level": "beginner",
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 5,
+  "durationMax": 10,
+  "space": "partial_court",
+  "format": "1v1",
+  "intensity": "medium",
+  "phases": ["warm_up", "skill"],
+  "tags": ["mirror", "stance", "slides"],
+  "equipment": [
+    {
+      "type": "cones",
+      "rule": "per_pair",
+      "quantity": 4
+    },
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Stay in a low, balanced defensive stance and slide the feet without crossing them to stay in front of an attacker.",
+    "setup": "Each pair works inside a box marked by four cones, about three metres square. One player is the offensive player without a ball, the other is the defender directly in front of them.",
+    "instructions": [
+      "The offensive player moves left, right, forward or back inside the box at a controlled pace.",
+      "The defender mirrors each movement using slide steps without crossing the feet, staying an arm's length away.",
+      "After twenty seconds, switch roles for a second set of twenty seconds.",
+      "Increase the speed of the offensive player for the second round and add sudden changes of direction.",
+      "Finish with a one-minute race in which each defender tries to stay ahead of the attacker."
+    ],
+    "coachingPoints": [
+      "Low stance: knees bent, hips low, back straight, chest up.",
+      "Slide without crossing the feet; push off the trailing leg.",
+      "Eyes on the chest of the attacker, not on the feet.",
+      "Hands active, one in the passing lane and one near the ball."
+    ],
+    "commonMistakes": [
+      "Standing up while sliding.",
+      "Crossing the feet and losing balance.",
+      "Watching the attacker's feet and being beaten by a fake."
+    ],
+    "safety": "Pairs stay in their own box and keep others clear; the attacker never moves faster than the defender can handle at the start.",
+    "progressions": ["Give the attacker a ball and allow a dribble inside the box."],
+    "regressions": ["Attacker moves slowly on a line with no direction changes."],
+    "variations": [
+      "Play a mirror game in which the attacker tries to break away and the defender tries to hold them."
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "Mirror inside the box",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "x": -2.4,
+              "y": 3.6
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "x": 2.4,
+              "y": 3.6
+            }
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "x": 2.4,
+              "y": 8
+            }
+          },
+          {
+            "id": "c4",
+            "type": "cone",
+            "at": {
+              "x": -2.4,
+              "y": 8
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "x": 0,
+              "y": 6.9
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "x": 0,
+              "y": 5.5
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "x": 1.6,
+                "y": 6.9
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "move",
+            "entity": "x1",
+            "path": [
+              {
+                "x": 1.6,
+                "y": 5.5
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "x": -1.4,
+                "y": 6
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "move",
+            "entity": "x1",
+            "path": [
+              {
+                "x": -1.4,
+                "y": 4.7
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 9.6
+            },
+            "text": "Slide, do not cross the feet"
+          }
+        ]
+      }
+    }
+  ]
+}

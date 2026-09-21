@@ -899,12 +899,72 @@ link shows and never shows, and confirms regenerate and stop-sharing.
   RLS, design references, share permissions/lifecycle/expiry/regeneration, the visitor's exact reach and inability to write,
   guard triggers, erased creators), and end to end in a real browser (upload refusals, logo in document/PDF/PNG, every PNG
   option and its exact size, sharing with a stranger's browser, tampering, revoke/regenerate/delete, mobile, axe).
-- **Not built yet (by design):** the session generator and the AI assistant (Step 8); per-logo replacement in place (upload a
-  new one), organisation-wide default logo.
+- **Not built yet (by design):** per-logo replacement in place (upload a new one), organisation-wide default logo.
+
+### 13.10 As built in Step 8 (generator, AI Coach, diagram editor)
+
+Step 8 adds three things that share one rule: **whatever proposes a change (a rule, a model, a click) produces DATA that is
+validated and applied by the ordinary commands.** Nothing gets a private route to the database.
+
+**Deterministic session generator** (`src/modules/generator`). Pure rules (`rules.ts`, `generate.ts`, `validate.ts`) over a small
+`DrillCandidate` projection of the drills the actor can read (`queries.ts` — RLS decides). Filter what cannot run (players,
+equipment groups, space, age, level) → rank (objective, phase, level, age, intensity, format, variety, duration fit; a
+reproducible tie-break, `variant` for another take) → fill a balanced timeline (`planSlots`) → exact minutes → validate
+(`validateSession`: duration, players, equipment, space, objective coverage, warm-up/cool-down, intensity runs, duplicates).
+Every item carries its reasons and the best alternatives. `previewGeneration` writes nothing; `reviseGeneration` re-checks a
+timeline the coach has arranged (a hand-picked drill is `locked` for regeneration); `createGeneratedSession` refuses an unsound
+timeline and calls the normal `createPlan` **with the activities in the same transaction** (all or nothing, `origin: generator` in
+the audit metadata). UI: `/sessions/[sport]/generate`. No AI, no cost, works without any key.
+
+**AI Coaching Assistant** (`src/modules/assistant`).
+- *Port and adapters.* `AiProvider.complete(system, messages, tools)` (`provider.ts`) with one real adapter (`anthropic.ts`, the
+  official SDK, streamed under the hood, model from `AI_MODEL`, default `claude-opus-5`) and a **test-only scripted provider**
+  (`scripted.ts`, `AI_PROVIDER=scripted`; production refuses it without `ALLOW_DEV_AI`). No provider or key → the assistant reports
+  **unavailable** (nav entry hidden, page says so, the route answers 503-class) and everything else works.
+- *Tools* (`tools.ts`): the 21 tools of the specification, each with a strict zod input schema (also the JSON Schema sent to the
+  model), running as the person (RLS). **Read tools** answer at once (`search_drills`, `get_drill`, `find_matching_drills`,
+  `get_objectives`, `get_age_groups`, `get_session`, `validate_session`, `generate_session`). **Write tools never write**: they check
+  against the real session/drills and record a **proposal**. Every drill id is looked up (an invented id is "not found"); a locked
+  activity is refused; a custom activity is only proposed when the coach's message asks for one; a diagram is only structured data
+  (`create_diagram`) or diagram operations (`update_diagram`, §13.10 below), validated against the court.
+- *Proposals* (`proposals.ts`): a zod discriminated union stored inside the assistant's message (`assistant_messages.content`,
+  versioned). `applyProposalInMessage` **claims** it (pending → applying under a row lock: a double click applies once), re-reads
+  the session as it is now, refuses what no longer fits (gone, or locked since), and calls the same commands as the Session Builder
+  (`apply.ts`; `setActivityDurations` is one transaction). Destructive proposals (replace, remove, change length, replace a diagram)
+  need `confirmed`. Audit: `assistant.proposal_applied`.
+- *The turn* (`engine.ts`): authorize (`plan:create`) → per-minute window and daily quota (`assistant_usage`) → read-check the
+  session in context → **minimal context** (system prompt with a version, a five-field session summary, the last ten messages as
+  plain text; never the drill database, never earlier tool output) → at most six model↔tool rounds, six tools per round → store
+  the reply as plain text. Tool output is data; the system prompt says so. A failing, refusing, looping or cancelled provider
+  produces an assistant message with a `problem` code and no proposals.
+- *Transport.* `POST /api/assistant/message` streams NDJSON (progress, then the answer) so **Cancel really aborts the model call**
+  (same-origin check, 8 KB body, strict schema). Token-by-token streaming is not implemented (progress events are).
+- *Data* (migration 0012): `assistant_conversations`, `assistant_messages`, `assistant_usage`; forced RLS, **private to the person**
+  (not even an owner or admin reads them); guard triggers freeze owner/workspace/sport and everything of a message but its content.
+- *Locked activities.* `plan_activities.locked` (builder menu: Lock/Unlock). It protects an activity from the assistant (and is
+  shown as a badge); the coach can still edit it by hand.
+
+**Diagrams.** `src/engines/diagram/ops.ts`: one vocabulary of operations (add player/coach/cone/ball, move, remove, label, role,
+give ball, add/remove action, step, path, text, zone, duplicate, clear, court) applied by pure code to a diagram and **checked as a
+whole** (schema + court + possession); an invalid batch changes nothing. The **diagram editor**
+(`components/features/diagram-editor`) is a click/drag/keyboard UI whose every edit is such a batch, with undo, redo, reset (itself
+undoable) and a bounded history (`editor-model.ts`); the assistant's `update_diagram` uses the same operations. Activities keep
+their own diagrams in the session's snapshot (drill copies and custom activities; `updateActivity({diagrams})` validates each against
+its court, marks a drill copy customized, never touches the library). The document pipeline prints them.
+
+**Tests.** ~50 generator unit/app tests; 17 diagram-operation and 8 editor-history tests; 33 assistant integration tests (tools,
+privacy, apply/claim/confirm, locks, hallucination, malformed and hostile model output, provider failure/refusal/loop/cancel,
+custom-activity guard, diagrams, limits) plus 5 adapter tests against a fake network; Playwright: generator, diagram editor, AI
+Coach (open, create, modify, confirm, diagram create/modify, cancel, retry, explain, entry points, phone), axe on the new screens.
+- **Known limits:** no token streaming; one provider adapter; a coach's manual edits ignore locks (locks bind the assistant);
+  generated sessions are only as varied as the library (44 basketball drills); the assistant is basketball-deep only because the
+  library is — the tools and the generator are sport-neutral.
 
 ---
 
 ## 14. AI architecture
+
+> **As built (Step 8):** see §13.10. The provider port is *tool-shaped* (`complete(system, messages, tools)`), not domain-shaped as sketched below: the assistant is a planner whose only effects are validated PROPOSALS that the coach applies through the ordinary commands. The deterministic generator (§13.10) never needs a model. The sections below remain the design for later AI work (drill/lesson generation with structured outputs).
 
 ### 14.1 Principles
 

@@ -1,0 +1,157 @@
+{
+  "seedKey": "two-ball-dribbling-ladder",
+  "title": "Two-Ball Dribbling Ladder",
+  "description": "Dribble two balls together through a cone ladder, moving from stationary work to forward movement to build both hands, rhythm and coordination.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["ball_control", "speed_agility"],
+  "subSkills": ["weak_hand", "change_of_pace"],
+  "level": "intermediate",
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 12,
+  "space": "half_court",
+  "format": "individual",
+  "intensity": "medium",
+  "phases": ["warm_up", "skill"],
+  "tags": ["two ball", "ladder", "coordination"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 2
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Build strong, controlled two-handed dribbling with the head up, moving through a cone ladder at increasing speed.",
+    "setup": "Four cones in a line about two metres apart on the court. Players line up at one end with two balls, one behind another and start at intervals.",
+    "instructions": [
+      "Stationary: dribble both balls at the same time at waist height for 20 seconds.",
+      "Alternate the balls: one high, one low, then swap.",
+      "Walk forward through the cone ladder while dribbling both balls, the lead ball on the outside of each cone.",
+      "Jog through the ladder, then finish with both balls dribbled behind the back once at every cone.",
+      "Rest, then repeat with the opposite ball leading."
+    ],
+    "coachingPoints": [
+      "Eyes up: look at the coach or a target at the end of the line.",
+      "Pound the ball with fingertips, not the palm.",
+      "Keep the dribble low when moving and high when stationary.",
+      "Relax the shoulders and keep a steady rhythm."
+    ],
+    "commonMistakes": [
+      "Looking at the balls the whole time.",
+      "Dribbling with the palm instead of fingertips.",
+      "Going too fast and losing control."
+    ],
+    "safety": "Keep the line clear of other players and pick up loose balls immediately to avoid slipping.",
+    "progressions": ["Add a variation such as crossover or between-the-legs at every cone."],
+    "regressions": ["Use one ball in the strong hand and one in the weak hand alternately."],
+    "variations": ["Two players race in adjoining lanes without losing control."]
+  },
+  "diagrams": [
+    {
+      "title": "Two balls through the cone ladder",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "x": 0,
+              "y": 2.2
+            }
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "x": 0,
+              "y": 4
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "x": 0,
+              "y": 6
+            }
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "x": 0,
+              "y": 8
+            }
+          },
+          {
+            "id": "c4",
+            "type": "cone",
+            "at": {
+              "x": 0,
+              "y": 10
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "x": 0.8,
+                "y": 4.9
+              },
+              {
+                "x": -0.8,
+                "y": 6.9
+              },
+              {
+                "x": 0.8,
+                "y": 8.9
+              },
+              {
+                "x": -0.8,
+                "y": 11
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 3.6,
+              "y": 3
+            },
+            "text": "Two balls, head up"
+          }
+        ]
+      }
+    }
+  ]
+}

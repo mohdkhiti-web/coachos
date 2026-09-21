@@ -2,6 +2,7 @@ import {
   ClipboardList,
   LayoutDashboard,
   LayoutTemplate,
+  Sparkles,
   Settings,
   Trophy,
   type LucideIcon,
@@ -15,13 +16,14 @@ import {
  */
 export type NavItem = {
   href: string;
-  labelKey: "dashboard" | "sessions" | "templates" | "sports" | "settings";
+  labelKey: "dashboard" | "sessions" | "assistant" | "templates" | "sports" | "settings";
   icon: LucideIcon;
 };
 
 export const NAV_ITEMS: readonly NavItem[] = [
   { href: "/dashboard", labelKey: "dashboard", icon: LayoutDashboard },
   { href: "/sessions", labelKey: "sessions", icon: ClipboardList },
+  { href: "/assistant", labelKey: "assistant", icon: Sparkles },
   { href: "/templates", labelKey: "templates", icon: LayoutTemplate },
   { href: "/sports", labelKey: "sports", icon: Trophy },
   { href: "/settings", labelKey: "settings", icon: Settings },

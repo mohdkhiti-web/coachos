@@ -3,6 +3,8 @@ export * from "./pack";
 export { resolveDiagram, isCarrier, PLAYER_RADIUS, BALL_OFFSET } from "./resolve";
 export type { Issue, Resolved, ResolvedAction, ResolvedEntity } from "./resolve";
 export { validateDiagram } from "./validate";
+export { applyOps, diagramOpSchema, diagramOpsSchema, MAX_OPS, nextId, removeEntity } from "./ops";
+export type { DiagramOp, OpsResult } from "./ops";
 export { describeDiagram } from "./describe";
 export { migrateDiagram, parseDiagram } from "./migrate";
 export type { ParsedDiagram } from "./migrate";

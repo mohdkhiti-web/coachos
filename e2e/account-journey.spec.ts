@@ -57,6 +57,7 @@ test("full account lifecycle", async ({ page, browser }) => {
     await expect(nav.getByRole("link")).toHaveText([
       "Dashboard",
       "Sessions",
+      "AI Coach",
       "Templates",
       "Sports",
       "Basketball",

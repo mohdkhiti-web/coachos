@@ -84,6 +84,7 @@ export async function buildSampleDocumentInput(
         description: labels.customDescription,
         instructions: [],
         coachingPoints: [],
+        diagrams: [],
       }),
     },
   ];

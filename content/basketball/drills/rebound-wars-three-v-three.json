@@ -1,0 +1,207 @@
+{
+  "seedKey": "rebound-wars-three-v-three",
+  "title": "Rebound Wars 3-on-3",
+  "description": "A competitive, contact-controlled rebounding game where three defenders box out three attackers and score points for every rebound they secure.",
+  "category": "rebounding",
+  "primarySkill": "boxing_out",
+  "secondarySkills": ["rebounding", "competitiveness"],
+  "subSkills": ["defensive_rebounding", "offensive_rebounding"],
+  "level": "intermediate",
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 6,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 15,
+  "space": "half_court",
+  "format": "3v3",
+  "intensity": "high",
+  "phases": ["small_sided", "game"],
+  "tags": ["boxing out", "rebounding", "competition"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 3
+    }
+  ],
+  "content": {
+    "objective": "Find a player, make contact and box out, then pursue the ball with two hands and finish the rebound strongly.",
+    "setup": "Three offensive rebounders start around the lane and three defenders are matched to them. A coach or a shooter takes a shot from the wing or top of the key.",
+    "instructions": [
+      "The shooter shoots and immediately joins the defenders.",
+      "Defenders must first find a player, make contact and box out before pursuing the ball.",
+      "Offensive rebounders try to fight for position and score after a rebound.",
+      "Defensive rebounds score one point; offensive rebounds followed by a make score two.",
+      "Play to seven points, then swap the offence and defence."
+    ],
+    "coachingPoints": [
+      "See the shooter, find your player, make contact, then go to the ball.",
+      "Use a wide base and keep arms bent when boxing out.",
+      "Hold contact until the ball is in the air, then release and get it.",
+      "Land with the ball tucked under the chin."
+    ],
+    "commonMistakes": [
+      "Watching the ball instead of finding the player first.",
+      "Boxing out with straight arms and getting a foul.",
+      "Jumping too early and getting boxed out."
+    ],
+    "safety": "Only body contact; no pushing, holding or hooking. Keep elbows below the shoulders.",
+    "progressions": ["Add a fourth rebounder and require a defensive outlet after every rebound."],
+    "regressions": ["Coach tosses the ball instead of a live shot."],
+    "variations": ["Make the game a first-to-five with 2-on-2 in the lane."]
+  },
+  "diagrams": [
+    {
+      "title": "Find, contact, box out",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "x": -1.6,
+              "y": 1.3
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "x": 1.6,
+              "y": 1.3
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "x": 0,
+              "y": 5.9
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o3"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o3"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "x1",
+            "path": [
+              {
+                "x": -1.5,
+                "y": 2.1
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "move",
+            "entity": "x2",
+            "path": [
+              {
+                "x": 1.5,
+                "y": 2.1
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "x": -1,
+                "y": 0.9
+              }
+            ]
+          },
+          {
+            "id": "a5",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "x": 1,
+                "y": 0.9
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 9
+            },
+            "text": "Box out first"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "seedKey": "court-shuttle-relay",
+  "title": "Court Shuttle Relay",
+  "description": "A team relay of full-court shuttle sprints that trains change of direction, speed and recovery with a competitive edge, finishing a training session with energy.",
+  "category": "conditioning",
+  "primarySkill": "speed_agility",
+  "secondarySkills": ["conditioning", "competitiveness"],
+  "subSkills": ["change_of_direction"],
+  "level": "intermediate",
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 6,
+  "playersMax": 20,
+  "durationMin": 8,
+  "durationMax": 15,
+  "space": "full_court",
+  "format": "team",
+  "intensity": "high",
+  "phases": ["conditioning", "game"],
+  "tags": ["shuttle", "relay", "sprints"],
+  "equipment": [
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 6
+    },
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Improve speed and change of direction over short distances while teams compete against each other and against their own best time.",
+    "setup": "Two teams line up at the baseline behind cones. Cones mark the free-throw line, half-court line and far free-throw line on each side of the court.",
+    "instructions": [
+      "The first player sprints to the near free-throw line, touches the floor and sprints back to tag the next player.",
+      "The next player runs to the half-court line and back, the third to the far free-throw line and back.",
+      "Each player then repeats the sequence in the opposite direction to complete the shuttle.",
+      "The first team to have every player complete the shuttle wins the round.",
+      "Rest for 60 seconds between rounds and repeat three to four times, recording the times."
+    ],
+    "coachingPoints": [
+      "Plant the outside foot and push off hard at every turn.",
+      "Stay low on the turn and drive with the arms.",
+      "Tag the teammate cleanly before the next player goes.",
+      "Encourage teammates and beat your own best time."
+    ],
+    "commonMistakes": [
+      "Rounding the turn instead of planting and pushing.",
+      "Starting before the tag.",
+      "Pacing the first sprint and having nothing left at the end."
+    ],
+    "safety": "Run in separate lanes, keep the run-off area clear behind the cones and stop if any player shows signs of fatigue or dizziness.",
+    "progressions": ["Add a second lap or shorten the rest between rounds."],
+    "regressions": ["Reduce the distance to the half-court line or lengthen the rest."],
+    "variations": ["Each player dribbles a ball for the last round."]
+  },
+  "diagrams": [
+    {
+      "title": "Sprint, touch and return",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "x": -5,
+              "y": -0.6
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "x": -3.2,
+              "y": -0.6
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "x": 3.2,
+              "y": -0.6
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "x": 5,
+              "y": -0.6
+            }
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "x": -6.4,
+              "y": 4.2
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "x": -6.4,
+              "y": 12.4
+            }
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "x": -6.4,
+              "y": 20.6
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "x": -5,
+                "y": 4.2
+              },
+              {
+                "x": -5,
+                "y": -0.6
+              },
+              {
+                "x": -5,
+                "y": 12.4
+              },
+              {
+                "x": -5,
+                "y": -0.6
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o4",
+            "path": [
+              {
+                "x": 5,
+                "y": 4.2
+              },
+              {
+                "x": 5,
+                "y": -0.6
+              },
+              {
+                "x": 5,
+                "y": 12.4
+              },
+              {
+                "x": 5,
+                "y": -0.6
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 8
+            },
+            "text": "Touch each line and return"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -396,3 +396,52 @@ test("logos, images and sharing work on a phone: the shared page fits, the image
   expect(await noHorizontalScroll(shared), "unavailable page overflows").toBe(true);
   await visitor.close();
 });
+
+test("Step 8: the generator, the AI Coach and the diagram editor fit a phone and stay usable", async ({
+  page,
+}) => {
+  test.setTimeout(240_000);
+  await signUpAndVerify(page, newUser());
+  await completeOnboarding(page);
+
+  await page.goto(`${SESSIONS}/generate`);
+  await expect(page.getByRole("heading", { level: 1, name: "Generate a session" })).toBeVisible();
+  expect(await noHorizontalScroll(page), "generator overflows").toBe(true);
+
+  await page.goto("/assistant/basketball");
+  await expect(page.getByTestId("chat-empty")).toBeVisible();
+  expect(await noHorizontalScroll(page), "AI Coach overflows").toBe(true);
+  const bar = page.getByRole("navigation", { name: "Main navigation" }).last();
+  const box = await bar.getByRole("link", { name: "AI Coach" }).boundingBox();
+  expect(box?.height ?? 0).toBeGreaterThanOrEqual(44);
+  await page
+    .getByLabel("Message the AI Coach")
+    .fill("Create a 45 minute passing session for 10 players U12");
+  await page.getByRole("button", { name: "Send", exact: true }).click();
+  const card = page.getByTestId("proposal-card").first();
+  await expect(card).toBeVisible({ timeout: 20_000 });
+  expect(await noHorizontalScroll(page), "AI Coach with a suggestion overflows").toBe(true);
+  await card.getByRole("button", { name: "Create Session" }).click();
+  await expect(page).toHaveURL(/\/sessions\/basketball\/[0-9a-f-]{36}$/, { timeout: 30_000 });
+
+  await addCustom(page, "Phone drill", 6);
+  await page.getByRole("button", { name: "More actions for Phone drill" }).click();
+  await page.getByRole("menuitem", { name: /diagram/i }).click();
+  await expect(page.getByTestId("diagram-editor")).toBeVisible();
+  expect(await noHorizontalScroll(page), "diagram editor overflows").toBe(true);
+  // tools are big enough to tap
+  for (const name of ["Attacker", "Pass", "Undo"]) {
+    const b = await page
+      .getByTestId("diagram-editor")
+      .getByRole("button", { name, exact: true })
+      .boundingBox();
+    expect(b?.height ?? 0, name).toBeGreaterThanOrEqual(36);
+  }
+  await page
+    .getByTestId("diagram-editor")
+    .getByRole("button", { name: "Attacker", exact: true })
+    .click();
+  const canvas = (await page.getByTestId("editor-canvas").boundingBox())!;
+  await page.touchscreen.tap(canvas.x + canvas.width * 0.5, canvas.y + canvas.height * 0.6);
+  await expect(page.locator("[data-entity]")).toHaveCount(1);
+});

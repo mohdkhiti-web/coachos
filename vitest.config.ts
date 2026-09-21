@@ -29,6 +29,8 @@ export default defineConfig({
       APP_URL: "http://localhost:3000",
       MAIL_TRANSPORT: "console",
       AUTH_BREACH_CHECK: "false",
+      AI_PROVIDER: "scripted", // a deterministic stand-in for a model: the assistant is tested end to end without one
+      AI_RATE_PER_MINUTE: "600",
     },
   },
 });

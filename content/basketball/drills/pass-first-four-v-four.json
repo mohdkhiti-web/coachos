@@ -1,0 +1,205 @@
+{
+  "seedKey": "pass-first-four-v-four",
+  "title": "Pass-First 4-on-4 Scrimmage",
+  "description": "A half-court 4-on-4 game with simple rules that reward passing, movement and spacing, giving beginners a first taste of team offence.",
+  "category": "small_sided_games",
+  "primarySkill": "passing",
+  "secondarySkills": ["spacing", "decision_making"],
+  "subSkills": ["passing_on_the_move", "reading_the_defense"],
+  "level": "beginner",
+  "ageMin": 9,
+  "ageMax": 16,
+  "playersMin": 8,
+  "playersMax": 16,
+  "durationMin": 10,
+  "durationMax": 20,
+  "space": "half_court",
+  "format": "4v4",
+  "intensity": "medium",
+  "phases": ["small_sided", "game"],
+  "tags": ["4v4", "scrimmage", "passing rules"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Play a controlled small-sided game where the ball moves quickly, players spread out and every player gets touches.",
+    "setup": "Two teams of four on half a court, one team in bibs. Extra players wait on the sideline and rotate in after each score.",
+    "organization": "The team that scores stays on offence; the defence is replaced by the next team from the sideline.",
+    "instructions": [
+      "Offence must complete at least three passes before the first shot.",
+      "A player who passes may cut to the basket or move to an open space; standing still after a pass is not allowed.",
+      "A basket scores two points; a basket after five or more passes scores three.",
+      "The defence plays man-to-man and does not press until the ball crosses the free-throw line.",
+      "Play games to eleven points, then rotate teams."
+    ],
+    "coachingPoints": [
+      "Pass and move: never stand still after a pass.",
+      "Spread out so the defence has to cover the whole half court.",
+      "Look to make the extra pass to a teammate with a better shot.",
+      "Defence: stay between your player and the basket and talk."
+    ],
+    "commonMistakes": [
+      "Holding the ball while the offence stands still.",
+      "Bunching in the middle of the court.",
+      "Forcing a shot before the pass count is met."
+    ],
+    "safety": "Play under control and stop the game if players bump into the sideline group.",
+    "progressions": ["Remove the pass rule but keep a bonus point for assists."],
+    "regressions": ["Play 3-on-3 with a two-pass rule."],
+    "variations": ["Require a cut through the key after every pass."]
+  },
+  "diagrams": [
+    {
+      "title": "Pass, cut, spread out",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_short_corner"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "x": 0,
+              "y": 6.2
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "x": -4.1,
+              "y": 4.5
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "x": 4.1,
+              "y": 4.5
+            }
+          },
+          {
+            "id": "x4",
+            "type": "player",
+            "side": "defense",
+            "label": "X4",
+            "at": {
+              "x": 3.6,
+              "y": 0.9
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "x": -2.2,
+                "y": 3
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          },
+          {
+            "id": "a4",
+            "step": 4,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 10
+            },
+            "text": "Three passes before the first shot"
+          }
+        ]
+      }
+    }
+  ]
+}

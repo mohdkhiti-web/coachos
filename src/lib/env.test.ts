@@ -35,6 +35,42 @@ describe("parseEnv", () => {
     );
   });
 
+  it("has AI off by default, validates its settings and refuses the test stand-in in production", () => {
+    const env = parseEnv({ ...base, NODE_ENV: "development" });
+    expect(env).toMatchObject({
+      AI_MODEL: "claude-opus-5",
+      AI_RATE_PER_MINUTE: 12,
+      AI_DAILY_MESSAGES: 150,
+      GENERATOR_RATE_PER_MINUTE: 40,
+      ALLOW_DEV_AI: false,
+    });
+    expect(env.AI_PROVIDER).toBeUndefined();
+    expect(() => parseEnv({ ...base, NODE_ENV: "development", AI_PROVIDER: "anthropic" })).toThrow(
+      /ANTHROPIC_API_KEY/,
+    );
+    expect(
+      parseEnv({
+        ...base,
+        NODE_ENV: "development",
+        AI_PROVIDER: "anthropic",
+        ANTHROPIC_API_KEY: "sk-ant-test-key",
+      }).AI_PROVIDER,
+    ).toBe("anthropic");
+    expect(() => parseEnv({ ...base, NODE_ENV: "development", AI_PROVIDER: "openai" })).toThrow(
+      /AI_PROVIDER/,
+    );
+    const prod = {
+      ...base,
+      NODE_ENV: "production",
+      MAIL_TRANSPORT: "resend",
+      RESEND_API_KEY: "re_1",
+    };
+    expect(() => parseEnv({ ...prod, AI_PROVIDER: "scripted" })).toThrow(/scripted/);
+    expect(parseEnv({ ...prod, AI_PROVIDER: "scripted", ALLOW_DEV_AI: "true" }).AI_PROVIDER).toBe(
+      "scripted",
+    );
+  });
+
   it("fails fast with a readable message when required values are missing", () => {
     expect(() => parseEnv({ NODE_ENV: "development" })).toThrow(/DATABASE_URL/);
     expect(() => parseEnv({ NODE_ENV: "development" })).toThrow(/BETTER_AUTH_SECRET/);

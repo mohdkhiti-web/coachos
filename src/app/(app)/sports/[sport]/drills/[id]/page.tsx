@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, Bot, ExternalLink } from "lucide-react";
 import { getFormatter, getTranslations } from "next-intl/server";
 import { DrillActions } from "@/components/features/drills/drill-actions";
 import { DrillDiagram } from "@/components/features/drills/drill-diagram";
@@ -13,8 +13,10 @@ import {
   Stat,
 } from "@/components/features/drills/drill-badges";
 import { FavoriteButton } from "@/components/features/drills/favorite-button";
+import { Button } from "@/components/ui/button";
 import { SectionMarker } from "@/components/ui/section-marker";
 import { cn } from "@/lib/cn";
+import { assistantAvailability } from "@/modules/assistant";
 import { getDrill } from "@/modules/drills";
 import { requireViewer } from "@/modules/identity";
 
@@ -99,6 +101,16 @@ export default async function DrillDetailPage({
               initial={drill.isFavorite}
               variant="detail"
             />
+            {assistantAvailability().available ? (
+              <Button asChild variant="secondary">
+                <Link
+                  href={`/assistant/${drill.sportKey}?prompt=${encodeURIComponent(t("detail.explainWithAiPrompt", { title: drill.title }))}`}
+                >
+                  <Bot className="size-4" aria-hidden />
+                  {t("detail.explainWithAi")}
+                </Link>
+              </Button>
+            ) : null}
           </div>
         </header>
 

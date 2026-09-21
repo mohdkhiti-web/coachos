@@ -6,8 +6,8 @@ Basketball first, built multi-sport from day one.
 - Architecture and roadmap: [ARCHITECTURE.md](ARCHITECTURE.md) (read §0 first)
 - **Status: Phase 2 (Sports foundation · Basketball workspace · Drill library) is merged locally; the Session
   Creator is in progress on branch `phase-3`** — drill library facets, session data model, the session builder,
-  (Step 4) design + live preview + browser print, (Step 5) saved templates, (Step 6) PDF export and (Step 7) logos, PNG export and secure sharing are built. Nothing here has been
-  pushed. the generators, teams, players, lesson plans, AI, billing and analytics are later steps.
+  (Step 4) design + live preview + browser print, (Step 5) saved templates, (Step 6) PDF export, (Step 7) logos, PNG export and secure sharing and (Step 8) the deterministic session generator, the AI Coach
+  and the diagram editor are built. Nothing here has been pushed. Teams, players, lesson plans, billing and analytics are later steps.
 
 ## Quick start (Windows/macOS/Linux, Node 24)
 
@@ -35,7 +35,7 @@ are printed in the terminal running `npm run dev`. Copy the link into your brows
 3. Explore **Settings** → Profile / Security / Preferences / Danger zone.
 4. **Sports → Basketball → Drills**: search (typos tolerated), filter by category / skill / level / age /
    players / duration / equipment, open a drill, **Create a drill** (with a court diagram), edit it, copy a
-   library drill into your own drills, archive it. The library is 19 original drills, seeded by
+   library drill into your own drills, archive it. The library is 44 original drills, seeded by
    `npm run db:dev` (or `npm run db:seed` against any migrated database — idempotent).
 
 ### Adding drills to the library

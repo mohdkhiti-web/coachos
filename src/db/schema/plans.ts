@@ -256,6 +256,8 @@ export const planActivities = pgTable(
     snapshot: jsonb("snapshot"),
     /** True once the coach changed the copied content: an update from the library must then be a deliberate choice. */
     customized: boolean("customized").notNull().default(false),
+    /** The coach has locked this activity: neither the generator nor the assistant may change, replace, move or remove it. */
+    locked: boolean("locked").notNull().default(false),
     /** Why the coach replaced or changed this activity, in their own words (optional). */
     changeReason: text("change_reason"),
 

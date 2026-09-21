@@ -68,6 +68,8 @@ export interface PlanActivityDto {
   startMin: number;
   endMin: number;
   customized: boolean;
+  /** Locked by the coach: the generator and the AI assistant leave it alone. */
+  locked: boolean;
   changeReason: string | null;
   source: {
     drillId: string | null;

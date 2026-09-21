@@ -1,0 +1,199 @@
+{
+  "seedKey": "shooting-relay-race",
+  "title": "Shooting Relay Race",
+  "description": "Two teams race to score a set number of baskets in a relay, adding fun competition and pressure to shooting practice and rewarding smart, controlled shots.",
+  "category": "competition",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["competitiveness", "ball_control"],
+  "subSkills": ["catch_and_shoot"],
+  "level": "beginner",
+  "ageMin": 8,
+  "ageMax": 15,
+  "playersMin": 6,
+  "playersMax": 20,
+  "durationMin": 8,
+  "durationMax": 15,
+  "space": "half_court",
+  "format": "team",
+  "intensity": "high",
+  "phases": ["game", "small_sided"],
+  "tags": ["relay", "competition", "shooting"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Shoot with good technique under light time pressure, work as a team and cheer each other on without rushing.",
+    "setup": "Two teams line up on either side of half court. Each team has a ball. A cone marks the shooting spot on each side of the free-throw line.",
+    "instructions": [
+      "The first player on each team dribbles to the shooting cone, shoots once and rebounds their own shot.",
+      "If the shot is missed, keep shooting until it is made, then dribble back and pass the ball to the next player.",
+      "The first team to score a set number of baskets (e.g. 10) wins the round.",
+      "Change the shooting spot for every round: free-throw line, wing, block, then short corner.",
+      "Losing teams do a simple team task, such as ten line-jumps, and rejoin."
+    ],
+    "coachingPoints": [
+      "Shoot with balanced feet and a full follow-through even under pressure.",
+      "Speed comes from quick footwork, not from rushing the shot.",
+      "Rebound your own shot and pass with a bounce to the next player.",
+      "Encourage teammates."
+    ],
+    "commonMistakes": [
+      "Rushing the shot with poor balance.",
+      "Forgetting the follow-through.",
+      "Long, high-arc passes that slow the relay."
+    ],
+    "safety": "Teams stand on opposite sides of the key to avoid collisions and wait clear of the rebound area.",
+    "progressions": ["Require a pass and catch-and-shoot on the move for every attempt."],
+    "regressions": ["Reduce the distance and use a lower target such as five baskets."],
+    "variations": ["Alternate right-hand and left-hand layups before the shot."]
+  },
+  "diagrams": [
+    {
+      "title": "Team relay at the free-throw line",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_half_court"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "x": -5.6,
+              "y": 11.4
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "right_half_court"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "x": 5.6,
+              "y": 11.4
+            }
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "x": -1.4,
+              "y": 5.8
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "x": 1.4,
+              "y": 5.8
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "x1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "x": -2.9,
+                "y": 7.6
+              },
+              {
+                "x": -1.4,
+                "y": 5.8
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "dribble",
+            "entity": "x1",
+            "path": [
+              {
+                "x": 2.9,
+                "y": 7.6
+              },
+              {
+                "x": 1.4,
+                "y": 5.8
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "shot",
+            "entity": "x1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 10.2
+            },
+            "text": "First team to 10 makes"
+          }
+        ]
+      }
+    }
+  ]
+}

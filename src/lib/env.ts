@@ -48,6 +48,21 @@ const schema = z
     // Share links (Step 7) are signed with a key derived from this (default: the auth secret). Changing it revokes every link.
     SHARE_SECRET: z.string().min(32, "SHARE_SECRET must be at least 32 characters").optional(),
 
+    // Session generator (Step 8): how many generations one person may ask for per minute (rules only — no AI, no cost).
+    GENERATOR_RATE_PER_MINUTE: z.coerce.number().int().min(1).max(600).default(40),
+
+    // AI Coaching Assistant (Step 8). Provider-neutral: AI_PROVIDER names the adapter; with none, or without its key, the
+    // assistant says it is unavailable and everything else keeps working. "scripted" is a deterministic stand-in for tests
+    // (never for a real deployment: production refuses it unless ALLOW_DEV_AI is set, like ALLOW_DEV_MAIL).
+    AI_PROVIDER: z.enum(["anthropic", "scripted"]).optional(),
+    ANTHROPIC_API_KEY: z.string().min(10).optional(),
+    AI_MODEL: z.string().min(3).max(80).default("claude-opus-5"),
+    AI_MAX_OUTPUT_TOKENS: z.coerce.number().int().min(256).max(16_000).default(4_000),
+    AI_TIMEOUT_MS: z.coerce.number().int().min(5_000).max(180_000).default(60_000),
+    AI_RATE_PER_MINUTE: z.coerce.number().int().min(1).max(600).default(12),
+    AI_DAILY_MESSAGES: z.coerce.number().int().min(1).max(10_000).default(150),
+    ALLOW_DEV_AI: bool(false),
+
     LOG_LEVEL: z.enum(["fatal", "error", "warn", "info", "debug", "trace"]).default("info"),
   })
   .superRefine((v, ctx) => {
@@ -57,6 +72,21 @@ const schema = z
         code: "custom",
         path: ["RESEND_API_KEY"],
         message: "RESEND_API_KEY is required when MAIL_TRANSPORT=resend",
+      });
+    }
+    if (v.AI_PROVIDER === "anthropic" && !v.ANTHROPIC_API_KEY) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["ANTHROPIC_API_KEY"],
+        message: "ANTHROPIC_API_KEY is required when AI_PROVIDER=anthropic",
+      });
+    }
+    if (v.NODE_ENV === "production" && v.AI_PROVIDER === "scripted" && !v.ALLOW_DEV_AI) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["AI_PROVIDER"],
+        message:
+          "AI_PROVIDER=scripted is a test stand-in: production refuses it (set ALLOW_DEV_AI=true only for local prod-build testing)",
       });
     }
     // Emails that only go to a console/file never reach real users. Refuse that in

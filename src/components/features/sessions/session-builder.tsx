@@ -17,6 +17,7 @@ import {
   Plus,
   RotateCcw,
   SlidersHorizontal,
+  Sparkles,
   Trash2,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
@@ -45,6 +46,7 @@ import {
 import { formatDateOnly, formatClockTime } from "@/modules/plans/format";
 import { WorkspaceTabs, type WorkspaceView } from "@/components/features/document/workspace-tabs";
 import { ActivityDialog, type ActivityDialogMode } from "./activity-dialog";
+import { ActivityDiagramDialog } from "./activity-diagram-dialog";
 import type { CardActions } from "./activity-card";
 import { StatusBadge } from "./badges";
 import {
@@ -86,6 +88,7 @@ export function SessionBuilder({
   catalog,
   showVisibility,
   backLabel,
+  assistantHref = null,
 }: {
   sportKey: string;
   plan: BuilderPlan;
@@ -94,6 +97,8 @@ export function SessionBuilder({
   showVisibility: boolean;
   /** The back link's text ("My Sessions"). */
   backLabel: string;
+  /** Where "Improve with AI" goes (this session in the assistant); null when the assistant is not set up. */
+  assistantHref?: string | null;
 }) {
   const t = useTranslations("sessions.builder");
   const ts = useTranslations("sessions");
@@ -126,6 +131,7 @@ export function SessionBuilder({
     opener.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setDialog(mode);
   };
+  const [diagramFor, setDiagramFor] = React.useState<BuilderActivity | null>(null);
   const [announcement, setAnnouncement] = React.useState("");
   const focusTarget = React.useRef<string | null>(null);
 
@@ -225,6 +231,27 @@ export function SessionBuilder({
         (v) => removeActivityAction(sportKey, plan.id, id, v),
         () => setAnnouncement(t("announce.removed", { title })),
       );
+    },
+    ...(assistantHref && canEdit
+      ? {
+          onAskAi: (activity: BuilderActivity) =>
+            router.push(
+              `${assistantHref}&prompt=${encodeURIComponent(t("askAiPrompt", { title: activity.title }))}`,
+            ),
+        }
+      : {}),
+    onToggleLock: (id, locked) => {
+      const title = view.find((a) => a.id === id)?.title ?? "";
+      void run(
+        null,
+        (v) => updateActivityAction(sportKey, plan.id, id, { locked, version: v }),
+        () => setAnnouncement(t(locked ? "announce.locked" : "announce.unlocked", { title })),
+      );
+    },
+    onEditDiagram: (activity) => {
+      opener.current =
+        document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      setDiagramFor(activity);
     },
     onUpdateFromSource: (id) => {
       void run(
@@ -489,6 +516,14 @@ export function SessionBuilder({
                 onReload={() => window.location.reload()}
               />
             ) : null}
+            {assistantHref && canEdit ? (
+              <Button asChild variant="secondary">
+                <Link href={assistantHref} data-testid="improve-with-ai">
+                  <Sparkles className="size-4" aria-hidden />
+                  {t("improveWithAi")}
+                </Link>
+              </Button>
+            ) : null}
             <Button type="button" variant="secondary" onClick={() => void openDocument("design")}>
               <Eye className="size-4" aria-hidden />
               {t("document.open")}
@@ -663,6 +698,31 @@ export function SessionBuilder({
       <div role="status" aria-live="polite" className="sr-only">
         {announcement}
       </div>
+
+      {diagramFor ? (
+        <ActivityDiagramDialog
+          key={diagramFor.id}
+          sportKey={sportKey}
+          activity={diagramFor}
+          saving={pendingUi}
+          onClose={() => {
+            setDiagramFor(null);
+            opener.current?.focus();
+          }}
+          onSave={(diagrams) => {
+            const id = diagramFor.id;
+            void run(
+              null,
+              (v) => updateActivityAction(sportKey, plan.id, id, { diagrams, version: v }),
+              () => {
+                setDiagramFor(null);
+                toast(t("toast.diagramSaved"), "success");
+                setAnnouncement(t("toast.diagramSaved"));
+              },
+            );
+          }}
+        />
+      ) : null}
 
       {dialog ? (
         <ActivityDialog

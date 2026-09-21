@@ -17,14 +17,24 @@ export {
   replaceActivityDrill,
   restorePlan,
   savePlanDocument,
+  setActivityDurations,
   setPlanStatus,
   updateActivity,
   updatePlan,
 } from "./commands";
 export { getPlan, getSharedPlan, listPlans, listPlanTeams } from "./queries";
 export type { ListPlansOptions } from "./queries";
+export type { SeedActivity } from "./commands";
 export { toDocumentInput } from "./document-input";
 export { buildSampleDocumentInput } from "./sample";
 export type { SampleLabels } from "./sample";
 export * from "./dto";
 export * from "./filters";
+export {
+  addBreakSchema,
+  addCustomActivitySchema,
+  addDrillActivitySchema,
+  planInputSchema,
+  updateActivitySchema,
+} from "./validators";
+export type { PlanInput } from "./validators";

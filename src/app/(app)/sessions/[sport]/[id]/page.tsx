@@ -5,6 +5,7 @@ import { toBuilderPlan } from "@/components/features/sessions/builder-model";
 import { SessionBuilder } from "@/components/features/sessions/session-builder";
 import { valuesFromPlan } from "@/components/features/sessions/session-model";
 import { listTimezones } from "@/lib/timezones";
+import { assistantAvailability } from "@/modules/assistant";
 import { requireViewer } from "@/modules/identity";
 import { getPlan } from "@/modules/plans";
 import { getAgeGroups, getObjectives, getSport } from "@/modules/sports";
@@ -43,6 +44,9 @@ export default async function SessionBuilderPage({ params }: PageProps<"/session
       }}
       showVisibility={organization.type !== "personal"}
       backLabel={t("title")}
+      assistantHref={
+        assistantAvailability().available ? `/assistant/${sport.key}?plan=${plan.id}` : null
+      }
     />
   );
 }
