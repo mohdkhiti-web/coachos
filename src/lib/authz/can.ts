@@ -39,10 +39,11 @@ const AUTHORS: readonly MembershipRole[] = ["owner", "admin", "coach", "teacher"
  *  - "drill": drill-specific rules (visibility, creator, library) — see `drillAllows`
  *  - "plan":  session-specific rules (visibility, creator, workspace managers) — see `planAllows`
  *  - "template": saved-template rules (visibility, creator, workspace managers) — see `templateAllows`
+ *  - "media": stored images (logos): workspace-wide to read and use, deleted by their uploader or a manager — see `mediaAllows`
  */
 type Rule = {
   roles: readonly MembershipRole[];
-  scope: "self" | "org" | "drill" | "plan" | "template";
+  scope: "self" | "org" | "drill" | "plan" | "template" | "media";
 };
 
 export const POLICY = {
@@ -71,6 +72,8 @@ export const POLICY = {
   "plan:delete": { roles: AUTHORS, scope: "plan" },
   /** Copy a session you can read into your own workspace (as a private draft). */
   "plan:duplicate": { roles: AUTHORS, scope: "plan" },
+  /** Make, regenerate and revoke the secure read-only link of a live session (Step 7). */
+  "plan:share": { roles: AUTHORS, scope: "plan" },
 
   // Saved templates (Step 5). Everyone in the workspace may READ (and use) what is shared with it; only authors create.
   "template:read": { roles: ALL, scope: "template" },
@@ -80,6 +83,11 @@ export const POLICY = {
   "template:delete": { roles: AUTHORS, scope: "template" },
   /** Copy a template you can read into your own workspace (as a private one). */
   "template:duplicate": { roles: AUTHORS, scope: "template" },
+
+  // Logos (Step 7): every member may use the workspace's logos; authors upload; the uploader or a manager deletes.
+  "logo:read": { roles: ALL, scope: "media" },
+  "logo:create": { roles: AUTHORS, scope: "org" },
+  "logo:delete": { roles: AUTHORS, scope: "media" },
 } as const satisfies Record<string, Rule>;
 
 export type Action = keyof typeof POLICY;
@@ -108,11 +116,25 @@ export type TemplateResource = {
   status?: string;
 };
 
+/** A stored image (logo) as loaded from the database. Always workspace-wide: `visibility` is fixed so it fits the shared shape. */
+export type MediaResource = {
+  organizationId: string;
+  createdBy: string | null;
+  visibility: "organization";
+};
+
 export type Resource =
-  { userId: string } | { organizationId: string } | DrillResource | PlanResource | TemplateResource;
+  | { userId: string }
+  | { organizationId: string }
+  | DrillResource
+  | PlanResource
+  | TemplateResource
+  | MediaResource;
 
 /** Drills and plans both carry a workspace, a creator and a visibility; the rule (by scope) says what that means. */
-const isOwnedResource = (r: Resource): r is DrillResource | PlanResource | TemplateResource =>
+const isOwnedResource = (
+  r: Resource,
+): r is DrillResource | PlanResource | TemplateResource | MediaResource =>
   "organizationId" in r && "visibility" in r && "createdBy" in r;
 
 /**
@@ -160,6 +182,7 @@ function planAllows(action: Action, actor: Actor, p: PlanResource): boolean {
       return canRead;
     case "plan:update":
     case "plan:delete":
+    case "plan:share":
       return canRead && (p.createdBy === actor.userId || MANAGERS.includes(actor.role));
     default:
       return false;
@@ -188,6 +211,19 @@ function templateAllows(action: Action, actor: Actor, t: TemplateResource): bool
   }
 }
 
+/** Logo rules, mirrored by row-level security (drizzle/0011_*.sql): use = my workspace; delete = its uploader or an owner/admin. */
+function mediaAllows(action: Action, actor: Actor, m: MediaResource): boolean {
+  const inMyOrg = m.organizationId === actor.organizationId;
+  switch (action) {
+    case "logo:read":
+      return inMyOrg;
+    case "logo:delete":
+      return inMyOrg && (m.createdBy === actor.userId || MANAGERS.includes(actor.role));
+    default:
+      return false;
+  }
+}
+
 export function can(actor: Actor, action: Action, resource: Resource): boolean {
   const rule: Rule = POLICY[action];
   if (!rule.roles.includes(actor.role)) return false;
@@ -197,5 +233,6 @@ export function can(actor: Actor, action: Action, resource: Resource): boolean {
   if (!isOwnedResource(resource)) return false;
   if (rule.scope === "plan") return planAllows(action, actor, resource as PlanResource);
   if (rule.scope === "template") return templateAllows(action, actor, resource as TemplateResource);
+  if (rule.scope === "media") return mediaAllows(action, actor, resource as MediaResource);
   return drillAllows(action, actor, resource as DrillResource);
 }

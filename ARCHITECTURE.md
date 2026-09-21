@@ -853,8 +853,54 @@ count and paper of the downloaded file against the preview.
   email in its text. Sample PDFs were also rendered to images and looked at (mupdf, outside the repo: it is AGPL).
 - **Diagram text** in print/mono themes now inherits the document's typeface (it used `Arial`, which PDFs embedded as a
   system font on some machines). A title too long for the running header is also written out in full in the overview.
-- **Not built yet (by design):** PNG/Word export, share links, logo upload (Step 7); generators and the AI assistant
-  (Step 8).
+- **Not built yet (by design):** Word export; generators and the AI assistant (Step 8). (Logos, PNG and sharing: §13.9.)
+
+### 13.9 As built in Step 7 (logos, PNG export, secure sharing)
+
+**Logos.** `media_assets` (workspace-scoped, RLS) holds small validated images in Postgres; a design carries only
+`logo: { assetId }`, and every command that stores a design checks that the id is one of the caller's own workspace's live
+logos (`logoIsUsable`), so a design can never reference another workspace's picture. Upload is the one place a stranger's
+bytes enter the system, so `modules/media` treats them as hostile:
+
+- the **signature** decides the type (never the file name or the declared MIME); PNG chunks (with CRCs) and JPEG segments
+  are walked, sizes are bounded (≤ 1 MiB, 16–4096 px), and what is stored is **rewritten without metadata** (EXIF/GPS, text
+  chunks, comments, animation);
+- **SVG is parsed, not sanitised**: an allow-list of plain drawing elements and attributes, strict value grammars, no
+  scripts/`foreignObject`/`image`/`use`/text/styles/filters/handlers/`href`/entities/DOCTYPE/CDATA, a bounded size and
+  depth; anything else **rejects** the file, and the stored SVG is written out again from the parsed tree;
+- per-person rate limit, per-workspace limit (20), duplicate pictures are one logo, soft delete (a design that still
+  points at a deleted logo prints without one).
+
+Logos are served by `/logos/[id]` (signed-in members of the workspace, RLS) with the type we decided, `nosniff`, and a
+response CSP of `sandbox; default-src 'none'` (the proxy leaves that policy alone for image routes). No storage path exists.
+The same `logoSrc` seam draws them in the preview, the print, the PDF and the PNG.
+
+**PNG export.** `GET …/document/png?page=N | all[&layout=zip|stack][&resolution=standard|high]`. The renderer captures the
+real `.doc-page` elements at **print media** (not the viewport), each restored to the full paper height (print trims 0.6 mm
+so rounding cannot spill a blank sheet). The pages and their sizes are known *before* rendering because the command builds
+the same pure `DocumentModel`; every image is then checked against the size the model says (±2 px of pixel rounding) and
+refused if it does not match. Files carry `pHYs` (true physical size) and `Title`/`Software` chunks and nothing internal. All
+pages are a ZIP of PNGs (a small store-only writer) or one stacked image while it fits a browser's maximum texture height.
+Standard ≈ 190 dpi, high ≈ 290 dpi.
+
+**Secure sharing.** `plan_shares` (RLS + guard trigger): one live link per session, revocable once and for good. A link is
+`<share id><HMAC-SHA-256(id) under an HKDF-derived key>` (75 chars, 256-bit secret part); the database holds no token, so a
+leaked backup opens nothing, the owner can still copy the same link again, and a regenerated link is a new row so the old one
+simply stops resolving. The signature is verified in constant time before any database work. A public visitor has **no user
+and no workspace**: `shareTx` sets only `app.share_id`, and policies (`plans_select_shared`, `share_is_live`) open exactly
+the one live session — not deleted, not archived, not revoked, not expired — plus that workspace's live logos, and nothing
+else; there is no write policy for them. Every unusable link is the same "not available" page. The shared page
+(`/s/[token]`) is the same document pipeline with the coach's private notes and the reflection **always removed**, no
+workspace or member information, `noindex`, `no-store` and `no-referrer`; it offers Print and a PDF (its own renderer job,
+no cookies, strictly rate-limited per address). Authors and owners/admins share (`plan:share`); the dialog states what a
+link shows and never shows, and confirms regenerate and stop-sharing.
+
+- **Tests:** unit (image and SVG parsers incl. ~30 hostile SVGs, ZIP, PNG properties, tokens), database (logo permissions and
+  RLS, design references, share permissions/lifecycle/expiry/regeneration, the visitor's exact reach and inability to write,
+  guard triggers, erased creators), and end to end in a real browser (upload refusals, logo in document/PDF/PNG, every PNG
+  option and its exact size, sharing with a stranger's browser, tampering, revoke/regenerate/delete, mobile, axe).
+- **Not built yet (by design):** the session generator and the AI assistant (Step 8); per-logo replacement in place (upload a
+  new one), organisation-wide default logo.
 
 ---
 

@@ -27,7 +27,9 @@ import {
   type Reflection,
   type SectionId,
 } from "@/modules/documents";
+import type { LogoDto } from "@/modules/media/dto";
 import { ColorField, ContrastRow, Segmented } from "./controls";
+import { LogoPicker } from "./logo-picker";
 
 /**
  * Every control of the document design. The panel only edits a DocumentDesign value and reports it upward;
@@ -95,6 +97,8 @@ export function DesignPanel({
   showAnswers = true,
   baseLook,
   onResetLook,
+  logos = [],
+  canUploadLogo = false,
 }: {
   design: DocumentDesign;
   preset: PresetId;
@@ -109,6 +113,9 @@ export function DesignPanel({
   /** What "still as designed" means: the preset, plus the template's layer when there is one. */
   baseLook?: DocumentDesign;
   onResetLook?: () => void;
+  /** The workspace's logos, and whether this person may upload one (assistants may only use them). */
+  logos?: LogoDto[];
+  canUploadLogo?: boolean;
 }) {
   const t = useTranslations("sessions.design");
   const presetGroup = React.useId();
@@ -431,7 +438,12 @@ export function DesignPanel({
           />
         </label>
         <p className="text-xs text-ink-muted">{t("footer.hint")}</p>
-        <p className="text-xs text-ink-muted">{t("logo.soon")}</p>
+        <LogoPicker
+          value={design.logo}
+          onChange={(logo) => onDesign({ ...design, logo })}
+          logos={logos}
+          canUpload={canUploadLogo}
+        />
       </Group>
 
       <Group id="reflection" title={t("groups.reflection")} open={false}>

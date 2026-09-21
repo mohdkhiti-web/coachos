@@ -15,7 +15,11 @@ const nextConfig: NextConfig = {
 
   experimental: {
     // Server Actions accept only same-origin requests by default (CSRF); list real domains explicitly.
-    serverActions: { allowedOrigins: [appHost] },
+    serverActions: {
+      allowedOrigins: [appHost],
+      // a logo upload is a Server Action carrying one file: the parsers cap it at 1 MiB, this is the transport's margin
+      bodySizeLimit: "2mb",
+    },
   },
 
   // Static hardening headers. The nonce-based CSP is set per request in src/proxy.ts.
@@ -32,6 +36,15 @@ const nextConfig: NextConfig = {
           },
           { key: "X-Frame-Options", value: "DENY" },
           { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+        ],
+      },
+      {
+        // a shared session's address is its secret: never indexed, never cached, never sent on as a referrer
+        source: "/s/:path*",
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+          { key: "Cache-Control", value: "private, no-store" },
+          { key: "Referrer-Policy", value: "no-referrer" },
         ],
       },
     ];

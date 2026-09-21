@@ -313,3 +313,86 @@ test("templates work on a phone: list, card actions, editor with Design/Preview 
   await expect(page.getByRole("menuitem", { name: "Duplicate" })).toBeVisible();
   await page.keyboard.press("Escape");
 });
+
+test("logos, images and sharing work on a phone: the shared page fits, the image menu and share dialog are touch friendly", async ({
+  page,
+  browser,
+}) => {
+  test.setTimeout(300_000);
+  await signUpAndVerify(page, newUser());
+  await completeOnboarding(page);
+  const builder = await createSession(page, {
+    title: "Phone share",
+    team: "Wolves",
+    date: "2030-06-11",
+    start: "18:00",
+  });
+  await pickDrill(page, builder, "five-spot", "Five-Spot Shooting");
+  await page.getByRole("button", { name: "Add to session" }).click();
+  await expect(page.getByRole("article", { name: "Five-Spot Shooting" })).toBeVisible();
+  await page.goto(`${builder}/document?view=preview`);
+  await expect(page.getByRole("toolbar", { name: "Preview controls" })).toBeVisible();
+
+  // the toolbar's new buttons are real touch targets and the page does not scroll sideways
+  const toolbar = page.getByRole("toolbar", { name: "Preview controls" });
+  for (const name of ["Share", "Download PDF", "Download images"]) {
+    const box = await toolbar.getByRole("button", { name }).boundingBox();
+    expect(box?.height ?? 0, name).toBeGreaterThanOrEqual(44);
+  }
+  expect(await noHorizontalScroll(page), "preview toolbar overflows").toBe(true);
+  await toolbar.getByRole("button", { name: "Download images" }).click();
+  const items = page.getByRole("menuitem");
+  await expect(items.first()).toBeVisible();
+  for (let i = 0; i < (await items.count()); i++) {
+    const box = await items.nth(i).boundingBox();
+    expect(box?.height ?? 0, `menu item ${i}`).toBeGreaterThanOrEqual(36);
+    expect((box?.x ?? 0) + (box?.width ?? 0), `menu item ${i} stays on screen`).toBeLessThanOrEqual(
+      page.viewportSize()!.width,
+    );
+  }
+  await page.keyboard.press("Escape");
+
+  // the share dialog fits the phone, and its buttons are touch targets
+  await toolbar.getByRole("button", { name: "Share", exact: true }).click();
+  const dialog = page.getByRole("dialog", { name: "Share this session" });
+  await expect(dialog).toBeVisible();
+  const create = dialog.getByRole("button", { name: "Create link" });
+  expect((await create.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
+  await create.click();
+  const link = await dialog.getByLabel("Link to share").inputValue();
+  const box = await dialog.boundingBox();
+  expect((box?.x ?? 0) + (box?.width ?? 0)).toBeLessThanOrEqual(page.viewportSize()!.width + 1);
+  expect(await noHorizontalScroll(page), "share dialog overflows").toBe(true);
+  for (const name of ["Copy link", "Make a new link", "Stop sharing"]) {
+    const b = await dialog.getByRole("button", { name }).boundingBox();
+    expect(b?.height ?? 0, name).toBeGreaterThanOrEqual(40);
+  }
+
+  // a stranger's phone: the shared page fits the screen, the document is fitted to it, the controls are usable
+  const visitor = await browser.newContext({
+    viewport: page.viewportSize()!,
+    isMobile: true,
+    hasTouch: true,
+    deviceScaleFactor: 2.625,
+    userAgent: await page.evaluate(() => navigator.userAgent),
+  });
+  const shared = await visitor.newPage();
+  await shared.goto(link);
+  await expect(shared.getByRole("heading", { level: 1, name: "Phone share" })).toBeVisible();
+  await expect(shared.locator(".doc-page").first()).toBeVisible();
+  expect(await noHorizontalScroll(shared), "shared page overflows").toBe(true);
+  const stage = shared.getByRole("region", { name: "Document preview" });
+  const [s, p] = await Promise.all([
+    stage.boundingBox(),
+    shared.locator(".doc-page").first().boundingBox(),
+  ]);
+  expect((p?.width ?? 0) <= (s?.width ?? 0) + 1, "the page is fitted to the phone").toBe(true);
+  for (const name of ["Download PDF", "Print"]) {
+    const b = await shared.getByRole("button", { name }).boundingBox();
+    expect(b?.height ?? 0, name).toBeGreaterThanOrEqual(44);
+  }
+  await shared.goto(link.slice(0, -3) + "zzz");
+  await expect(shared.getByRole("heading", { name: "This link isn't available" })).toBeVisible();
+  expect(await noHorizontalScroll(shared), "unavailable page overflows").toBe(true);
+  await visitor.close();
+});

@@ -43,8 +43,15 @@ function buildCsp(nonce: string): string {
   return directives.join("; ");
 }
 
+/**
+ * Stored images (logos) are served by routes that set their OWN, stricter policy (`sandbox`, no scripts, no styles, no
+ * network): the page policy below is for HTML documents and must not replace it.
+ */
+const IMAGE_ROUTE = /^\/(?:logos\/[^/]+|s\/[^/]+\/logo\/[^/]+)$/;
+
 export function proxy(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
+  if (IMAGE_ROUTE.test(pathname)) return NextResponse.next();
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const csp = buildCsp(nonce);
 

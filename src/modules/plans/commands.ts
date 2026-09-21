@@ -29,6 +29,7 @@ import {
   presetDesign,
   type SessionTemplate,
 } from "@/modules/documents";
+import { logoIsUsable } from "@/modules/media";
 import { getOrganizationById } from "@/modules/organizations";
 import { getAgeGroups, getObjectives, getSport, type SportDto } from "@/modules/sports";
 import {
@@ -554,6 +555,9 @@ export async function savePlanDocument(
     if (!row || row.deletedAt) return fail("NOT_FOUND");
     if (!can(actor, "plan:update", resourceOf(row)) || row.status === "archived")
       return fail("FORBIDDEN");
+    // a logo must be one of THIS workspace's live images (never another workspace's, never a guessed id)
+    if (input.design.logo && !(await logoIsUsable(tx, input.design.logo.assetId)))
+      return fail("VALIDATION", { fields: { "design.logo": ["logo_unknown"] } });
     // The template layer is the one the session ALREADY holds (frozen when it was applied) — never something the
     // browser sends. What is stored on top of Preset → Template is only what this design changes.
     const current = migrateDocumentSettings(row.documentSettings) ?? defaultDocumentSettings();

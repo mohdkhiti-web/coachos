@@ -109,3 +109,11 @@ export type TemplateStatus = (typeof TEMPLATE_STATUSES)[number];
 /** private = its creator only · organization = every member of the workspace can use it. */
 export const TEMPLATE_VISIBILITIES = ["private", "organization"] as const;
 export type TemplateVisibility = (typeof TEMPLATE_VISIBILITIES)[number];
+
+/** What a stored media asset is for. Only logos exist today. */
+export const MEDIA_KINDS = ["logo"] as const;
+export type MediaKind = (typeof MEDIA_KINDS)[number];
+
+/** The image types a logo may be. Anything else is refused at upload. */
+export const LOGO_MIMES = ["image/png", "image/jpeg", "image/svg+xml"] as const;
+export type LogoMime = (typeof LOGO_MIMES)[number];

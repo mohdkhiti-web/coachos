@@ -50,6 +50,7 @@ import {
   setTemplateStatusAction,
   updateTemplateAction,
 } from "@/modules/templates/actions";
+import { logoUrl, type LogoDto } from "@/modules/media/dto";
 import type { TemplateDto } from "@/modules/templates/dto";
 
 type Look = { preset: PresetId; design: DocumentDesign };
@@ -70,6 +71,8 @@ export function TemplateEditor({
   personal,
   readOnly,
   initialView,
+  logos,
+  canUploadLogo,
 }: {
   mode: "create" | "edit";
   sportKey: string;
@@ -79,6 +82,8 @@ export function TemplateEditor({
   personal: boolean;
   readOnly: "archived" | "readOnly" | null;
   initialView: "design" | "preview";
+  logos: LogoDto[];
+  canUploadLogo: boolean;
 }) {
   const t = useTranslations("templates.editor");
   const tt = useTranslations("templates");
@@ -494,6 +499,8 @@ export function TemplateEditor({
             }
             onReflection={() => {}}
             showAnswers={false}
+            logos={logos}
+            canUploadLogo={canUploadLogo && editable}
             header={details}
           />
         </div>
@@ -506,7 +513,7 @@ export function TemplateEditor({
           <p className="doc-screen-only rounded-md bg-surface-sunken px-3 py-2 text-sm text-ink-muted">
             {t("sampleNote", { sport: sportName })}
           </p>
-          <DocumentPreview model={model} onPrint={() => window.print()} />
+          <DocumentPreview model={model} onPrint={() => window.print()} logoSrc={logoUrl} />
         </div>
       </div>
 

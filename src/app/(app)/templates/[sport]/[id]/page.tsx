@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { can } from "@/lib/authz/can";
 import { notFound } from "next/navigation";
 import { loadSampleInput } from "@/components/features/templates/sample-input";
 import { TemplateEditor } from "@/components/features/templates/template-editor";
 import { requireViewer } from "@/modules/identity";
+import { listLogos } from "@/modules/media";
 import { getSport } from "@/modules/sports";
 import { getTemplate } from "@/modules/templates";
 
@@ -35,6 +37,8 @@ export default async function TemplatePage({
             ? "archived"
             : "readOnly"
       }
+      logos={await listLogos(actor)}
+      canUploadLogo={can(actor, "logo:create", { organizationId: actor.organizationId })}
       initialView={view === "preview" ? "preview" : "design"}
     />
   );

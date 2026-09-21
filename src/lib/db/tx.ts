@@ -32,6 +32,18 @@ export async function userTx<T>(userId: string, fn: (tx: Tx) => Promise<T>): Pro
   });
 }
 
+/**
+ * A PUBLIC visitor to a share link: no user, no workspace, only the id of the share their link named. The policies in
+ * drizzle/0011_*.sql open exactly that one live session to this context (`app_share_id()`) and nothing else.
+ */
+export async function shareTx<T>(shareId: string, fn: (tx: Tx) => Promise<T>): Promise<T> {
+  assertUuid(shareId, "shareId");
+  return db.transaction(async (tx) => {
+    await tx.execute(sql`select set_config('app.share_id', ${shareId}, true)`);
+    return fn(tx);
+  });
+}
+
 /** No identity context: for rows that legitimately have none (e.g. a failed sign-in for an unknown email). */
 export async function anonymousTx<T>(fn: (tx: Tx) => Promise<T>): Promise<T> {
   return db.transaction(fn);

@@ -5,6 +5,7 @@ import { can } from "@/lib/authz/can";
 import { resolveSessionDesign } from "@/modules/documents";
 import { isPdfExportAvailable } from "@/modules/exports";
 import { requireViewer } from "@/modules/identity";
+import { listLogos } from "@/modules/media";
 import { getPlan, toDocumentInput } from "@/modules/plans";
 import { getSport } from "@/modules/sports";
 import { listTemplateChoices } from "@/modules/templates";
@@ -29,6 +30,7 @@ export default async function SessionDocumentPage({
   // Preset → the template this session was based on (frozen when applied) → this session's own changes
   const design = resolveSessionDesign(settings);
   const templates = await listTemplateChoices(actor, sport.key);
+  const logos = await listLogos(actor);
 
   return (
     <DocumentWorkspace
@@ -49,6 +51,8 @@ export default async function SessionDocumentPage({
       canCreateTemplate={can(actor, "template:create", { organizationId: actor.organizationId })}
       personalWorkspace={organization.type === "personal"}
       pdfAvailable={isPdfExportAvailable()}
+      logos={logos}
+      canUploadLogo={can(actor, "logo:create", { organizationId: actor.organizationId })}
     />
   );
 }

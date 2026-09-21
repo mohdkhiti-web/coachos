@@ -1,5 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
+import { makePng } from "../src/modules/media/test-support";
 import { completeOnboarding, newUser, signUpAndVerify } from "./support/helpers";
 import { addBreak, addCustom, createSession, field, pickDrill, SESSIONS } from "./support/sessions";
 
@@ -293,6 +294,62 @@ for (const scheme of ["light", "dark"] as const) {
       await expect(page.getByRole("heading", { level: 1, name: "New template" })).toBeVisible();
       await expect(page.locator(".doc-page").first()).toBeVisible();
       await audit(page, `new template (${scheme})`);
+    });
+
+    test("logos, image export and sharing: the logo picker, both menus, the share dialog in each state, the shared page and the unavailable page", async ({
+      page,
+      browser,
+    }) => {
+      test.setTimeout(300_000);
+      await signUpAndVerify(page, newUser());
+      await completeOnboarding(page);
+      const builder = await createSession(page, { title: "Accessible sharing", team: "Wolves" });
+      await pickDrill(page, builder, "five-spot", "Five-Spot Shooting");
+      await page.getByRole("button", { name: "Add to session" }).click();
+      await expect(page.getByRole("article", { name: "Five-Spot Shooting" })).toBeVisible();
+
+      await page.goto(`${builder}/document?view=design`);
+      await expect(page.locator(".doc-page").first()).toBeVisible();
+      await page.getByTestId("design-panel").getByText("Footer and logo").click();
+      await page.getByTestId("logo-file").setInputFiles({
+        name: "crest.png",
+        mimeType: "image/png",
+        buffer: makePng({ width: 200, height: 100 }),
+      });
+      await expect(page.getByRole("button", { name: "Use crest" })).toBeVisible();
+      await audit(page, `design with the logo picker (${scheme})`);
+
+      await page.getByRole("button", { name: "Download images" }).click();
+      await expect(page.getByRole("menuitem").first()).toBeVisible();
+      await audit(page, `image export menu (${scheme})`);
+      await page.keyboard.press("Escape");
+
+      await page.getByRole("button", { name: "Share", exact: true }).click();
+      const dialog = page.getByRole("dialog", { name: "Share this session" });
+      await expect(dialog.getByText("This session isn't shared.")).toBeVisible();
+      await audit(page, `share dialog, not shared (${scheme})`);
+      await dialog.getByRole("button", { name: "Create link" }).click();
+      const link = await dialog.getByLabel("Link to share").inputValue();
+      await audit(page, `share dialog, shared (${scheme})`);
+      await dialog.getByRole("button", { name: "Make a new link" }).click();
+      await expect(page.getByRole("group", { name: "Make a new link?" })).toBeVisible();
+      await audit(page, `share dialog, confirming (${scheme})`);
+      await page.keyboard.press("Escape");
+
+      const visitor = await browser.newContext({ colorScheme: scheme, reducedMotion: "reduce" });
+      const shared = await visitor.newPage();
+      await shared.goto(link);
+      await expect(
+        shared.getByRole("heading", { level: 1, name: "Accessible sharing" }),
+      ).toBeVisible();
+      await expect(shared.locator(".doc-page").first()).toBeVisible();
+      await audit(shared, `shared page (${scheme})`);
+      await shared.goto(link.slice(0, -3) + "zzz");
+      await expect(
+        shared.getByRole("heading", { name: "This link isn't available" }),
+      ).toBeVisible();
+      await audit(shared, `shared link unavailable (${scheme})`);
+      await visitor.close();
     });
 
     test("sports workspace, drill library, drill detail, and the drill form with its diagram builder", async ({

@@ -6,6 +6,7 @@ import {
   type Action,
   type Actor,
   type DrillResource,
+  type MediaResource,
   type MembershipRole,
   type PlanResource,
   type TemplateResource,
@@ -29,7 +30,10 @@ const ACTIONS = Object.keys(POLICY) as Action[];
 /** Actions decided by ownership scope only; drill and plan actions have their own rules, tested below. */
 const GENERIC = ACTIONS.filter(
   (a) =>
-    POLICY[a].scope !== "drill" && POLICY[a].scope !== "plan" && POLICY[a].scope !== "template",
+    POLICY[a].scope !== "drill" &&
+    POLICY[a].scope !== "plan" &&
+    POLICY[a].scope !== "template" &&
+    POLICY[a].scope !== "media",
 );
 const own = { userId: USER, organizationId: ORG };
 const foreign = { userId: OTHER_USER, organizationId: OTHER_ORG };
@@ -57,11 +61,15 @@ describe("can(): role × action matrix (own resources)", () => {
     "plan:update": AUTHORS,
     "plan:delete": AUTHORS,
     "plan:duplicate": AUTHORS,
+    "plan:share": AUTHORS,
     "template:read": MEMBERSHIP_ROLES,
     "template:create": AUTHORS,
     "template:update": AUTHORS,
     "template:delete": AUTHORS,
     "template:duplicate": AUTHORS,
+    "logo:read": MEMBERSHIP_ROLES,
+    "logo:create": AUTHORS,
+    "logo:delete": AUTHORS,
   };
 
   for (const action of GENERIC) {
@@ -79,7 +87,11 @@ describe("can(): role × action matrix (own resources)", () => {
 
   it("the role sets of every drill and plan action match the expectation", () => {
     for (const action of ACTIONS.filter(
-      (a) => a.startsWith("drill:") || a.startsWith("plan:") || a.startsWith("template:"),
+      (a) =>
+        a.startsWith("drill:") ||
+        a.startsWith("plan:") ||
+        a.startsWith("template:") ||
+        a.startsWith("logo:"),
     )) {
       expect([...POLICY[action].roles].sort()).toEqual([...expected[action]].sort());
     }
@@ -384,5 +396,50 @@ describe("can(): saved template rules (ownership × visibility × role)", () => 
     expect(can(actor("coach"), "template:create", { organizationId: ORG })).toBe(true);
     expect(can(actor("coach"), "template:create", { organizationId: OTHER_ORG })).toBe(false);
     expect(can(actor("assistant"), "template:create", { organizationId: ORG })).toBe(false);
+  });
+});
+
+describe("sharing and logos (Step 7)", () => {
+  const plan = (over: Partial<PlanResource> = {}): PlanResource => ({
+    organizationId: ORG,
+    createdBy: USER,
+    visibility: "private",
+    ...over,
+  });
+  const logo = (over: Partial<MediaResource> = {}): MediaResource => ({
+    organizationId: ORG,
+    createdBy: USER,
+    visibility: "organization",
+    ...over,
+  });
+
+  it("sharing a session is changing it: its author or an owner/admin, never an assistant or another workspace", () => {
+    const shared = plan({ visibility: "organization", createdBy: "someone-else" });
+    expect(can(actor("owner"), "plan:share", shared)).toBe(true);
+    expect(can(actor("admin"), "plan:share", shared)).toBe(true);
+    expect(can(actor("coach"), "plan:share", shared)).toBe(false); // a colleague's session
+    expect(can(actor("coach"), "plan:share", plan())).toBe(true); // their own (USER is the actor's id)
+    expect(can(actor("assistant"), "plan:share", plan())).toBe(false);
+    expect(can(actor("owner"), "plan:share", plan({ organizationId: OTHER_ORG }))).toBe(false);
+    // somebody else's private session is not there for a manager either
+    expect(can(actor("owner"), "plan:share", plan({ createdBy: "someone-else" }))).toBe(false);
+  });
+
+  it("every member may use the workspace's logos; authors upload; the uploader or a manager deletes", () => {
+    for (const role of MEMBERSHIP_ROLES) {
+      expect(can(actor(role), "logo:read", logo()), role).toBe(true);
+      expect(can(actor(role), "logo:read", logo({ organizationId: OTHER_ORG })), role).toBe(false);
+    }
+    expect(can(actor("coach"), "logo:create", { organizationId: ORG })).toBe(true);
+    expect(can(actor("teacher"), "logo:create", { organizationId: ORG })).toBe(true);
+    expect(can(actor("assistant"), "logo:create", { organizationId: ORG })).toBe(false);
+    expect(can(actor("coach"), "logo:create", { organizationId: OTHER_ORG })).toBe(false);
+
+    expect(can(actor("coach"), "logo:delete", logo())).toBe(true); // their own
+    expect(can(actor("coach"), "logo:delete", logo({ createdBy: "someone-else" }))).toBe(false);
+    expect(can(actor("admin"), "logo:delete", logo({ createdBy: "someone-else" }))).toBe(true);
+    expect(can(actor("owner"), "logo:delete", logo({ createdBy: null }))).toBe(true);
+    expect(can(actor("assistant"), "logo:delete", logo())).toBe(false);
+    expect(can(actor("owner"), "logo:delete", logo({ organizationId: OTHER_ORG }))).toBe(false);
   });
 });

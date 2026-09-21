@@ -21,7 +21,7 @@ export {
   updateActivity,
   updatePlan,
 } from "./commands";
-export { getPlan, listPlans, listPlanTeams } from "./queries";
+export { getPlan, getSharedPlan, listPlans, listPlanTeams } from "./queries";
 export type { ListPlansOptions } from "./queries";
 export { toDocumentInput } from "./document-input";
 export { buildSampleDocumentInput } from "./sample";

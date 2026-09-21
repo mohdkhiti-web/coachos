@@ -29,7 +29,10 @@ import {
 } from "@/modules/documents";
 import { detachTemplateAction, savePlanDocumentAction } from "@/modules/plans/actions";
 import type { AppliedDesignDto, PlanTemplateDto } from "@/modules/plans/dto";
+import { logoUrl, type LogoDto } from "@/modules/media/dto";
 import type { TemplateChoice } from "@/modules/templates/dto";
+import { ShareDialog } from "@/components/features/sharing/share-dialog";
+import { fetchFile, saveBlob } from "./download-file";
 import { Segmented } from "./controls";
 import { DesignPanel } from "./design-panel";
 import { DocumentPreview } from "./document-preview";
@@ -67,6 +70,8 @@ export function DocumentWorkspace({
   canCreateTemplate,
   personalWorkspace,
   pdfAvailable,
+  logos,
+  canUploadLogo,
 }: {
   sportKey: string;
   planId: string;
@@ -85,6 +90,9 @@ export function DocumentWorkspace({
   personalWorkspace: boolean;
   /** Can this server make PDFs? (No browser installed, or switched off: the button is not offered.) */
   pdfAvailable: boolean;
+  /** The workspace's logos (for the picker), and whether this person may upload one. */
+  logos: LogoDto[];
+  canUploadLogo: boolean;
 }) {
   const t = useTranslations("sessions.design");
   const tt = useTranslations("templates");
@@ -199,42 +207,56 @@ export function DocumentWorkspace({
     window.print();
   };
 
-  const [pdfBusy, setPdfBusy] = React.useState(false);
+  const [sharing, setSharing] = React.useState(false);
+  const [exporting, setExporting] = React.useState<"pdf" | "png" | null>(null);
   /**
-   * Download the session as a PDF. The file is made on the server from the SAVED design, so unsaved changes are saved
-   * first (an author) — what is downloaded is what is on screen. A reader who cannot save is told it is the saved one.
+   * Download the session as a PDF or as PNG images. The file is made on the server from the SAVED design, so unsaved
+   * changes are saved first (an author) — what is downloaded is what is on screen. A reader who cannot save is told it
+   * is the saved one.
    */
-  const downloadPdf = async () => {
-    if (pdfBusy) return;
-    setPdfBusy(true);
+  const runExport = async (kind: "pdf" | "png", path: string, fallbackName: string) => {
+    if (exporting) return; // one at a time: a second click while one is being made does nothing
+    setExporting(kind);
     try {
       if (dirty && canSave && !(await save())) return; // could not save: do not hand out an out-of-date file
-      const res = await fetch(`/sessions/${sportKey}/${planId}/document/pdf`, {
-        credentials: "same-origin",
-      });
-      if (!res.ok) {
-        const code = ((await res.json().catch(() => null)) as { error?: { code?: string } } | null)
-          ?.error?.code;
-        toast(code && te.has(code) ? te(code) : te("generic"), "error");
+      const file = await fetchFile(
+        `/sessions/${sportKey}/${planId}/document/${path}`,
+        fallbackName,
+      );
+      if (!file.ok) {
+        toast(
+          file.fields?.layout?.includes("too_many_pages")
+            ? t("png.tooMany")
+            : te.has(file.code)
+              ? te(file.code)
+              : te("generic"),
+          "error",
+        );
         return;
       }
-      const named = /filename\*=UTF-8''([^;]+)/i.exec(res.headers.get("content-disposition") ?? "");
-      const fileName = named?.[1] ? decodeURIComponent(named[1]) : "session.pdf";
-      const url = URL.createObjectURL(await res.blob());
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = fileName;
-      document.body.append(link);
-      link.click();
-      link.remove();
-      window.setTimeout(() => URL.revokeObjectURL(url), 10_000);
-      toast(t(dirty && !canSave ? "pdf.readySaved" : "pdf.ready"), "success");
+      saveBlob(file.blob, file.fileName);
+      toast(t(dirty && !canSave ? `${kind}.readySaved` : `${kind}.ready`), "success");
     } catch {
       toast(te("network"), "error");
     } finally {
-      setPdfBusy(false);
+      setExporting(null);
     }
   };
+  const downloadPdf = () => runExport("pdf", "pdf", "session.pdf");
+  const downloadPng = (
+    what: "page" | "zip" | "stack",
+    resolution: "standard" | "high",
+    page: number,
+  ) =>
+    runExport(
+      "png",
+      `png?${new URLSearchParams(
+        what === "page"
+          ? { page: String(page), resolution }
+          : { page: "all", layout: what, resolution },
+      ).toString()}`,
+      what === "zip" ? "session.zip" : "session.png",
+    );
 
   const detach = async () => {
     setBusy(true);
@@ -364,6 +386,8 @@ export function DocumentWorkspace({
             onDesign={setDesign}
             onPreset={setPreset}
             onReflection={setReflection}
+            logos={logos}
+            canUploadLogo={canUploadLogo && canSave}
             baseLook={baseLook}
             onResetLook={() => setDesign(applyLook(look.design, baseLook))}
             header={
@@ -416,11 +440,38 @@ export function DocumentWorkspace({
           <DocumentPreview
             model={model}
             onPrint={() => void print()}
-            pdf={pdfAvailable ? { busy: pdfBusy, onDownload: () => void downloadPdf() } : undefined}
+            logoSrc={logoUrl}
+            share={canSave ? { onOpen: () => setSharing(true) } : undefined}
+            pdf={
+              pdfAvailable
+                ? {
+                    busy: exporting === "pdf",
+                    disabled: exporting !== null,
+                    onDownload: () => void downloadPdf(),
+                  }
+                : undefined
+            }
+            png={
+              pdfAvailable
+                ? {
+                    busy: exporting === "png",
+                    disabled: exporting !== null,
+                    onDownload: (what, resolution, page) =>
+                      void downloadPng(what, resolution, page),
+                  }
+                : undefined
+            }
           />
         </div>
       </div>
 
+      <ShareDialog
+        open={sharing}
+        onClose={() => setSharing(false)}
+        sportKey={sportKey}
+        planId={planId}
+        unsavedChanges={dirty}
+      />
       <ApplyTemplateDialog
         open={dialog === "apply"}
         onClose={() => setDialog(null)}

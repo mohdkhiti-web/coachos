@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { browserCandidates, findBrowser } from "./browser";
 import { asciiName, contentDisposition, pdfFileName, safeBaseName } from "./filename";
+import { inspectLogo } from "@/modules/media";
+import { makePng } from "../media/test-support";
 import { Gate, GateFull, RateWindow } from "./limits";
+import { stampPng } from "./png-meta";
+import { pngSize } from "./renderer";
+import { createZip, readZip, zipName } from "./zip";
 
 describe("file names", () => {
   it("makes a plain .pdf name from a title", () => {
@@ -145,5 +150,60 @@ describe("the rate window", () => {
     expect(rate.allow("bob", 0)).toBe(true); // someone else is not affected
     expect(rate.allow("ann", 999)).toBe(false);
     expect(rate.allow("ann", 1000)).toBe(true); // the window has slid past the first hits
+  });
+});
+
+describe("the ZIP of pages", () => {
+  const entry = (name: string, text: string) => ({ name, data: Buffer.from(text) });
+
+  it("round-trips names and bytes, with checksums", () => {
+    const zip = createZip([entry("a - page 1.png", "one"), entry("a - page 2.png", "two two")]);
+    expect(zip.subarray(0, 4).toString("latin1")).toBe("PK\u0003\u0004");
+    const back = readZip(zip);
+    expect(back.map((e) => e.name)).toEqual(["a - page 1.png", "a - page 2.png"]);
+    expect(back.map((e) => e.data.toString())).toEqual(["one", "two two"]);
+  });
+
+  it("keeps UTF-8 names and makes every name safe: no paths, no traversal", () => {
+    const back = readZip(
+      createZip([
+        entry("Séance – U16.png", "x"),
+        entry("../../evil.sh", "y"),
+        entry(String.raw`a/b\c.png`, "z"),
+      ]),
+    );
+    expect(back.map((e) => e.name)).toEqual(["Séance – U16.png", "__.._evil.sh", "a_b_c.png"]);
+    for (const e of back) expect(e.name).not.toMatch(/[\/]/);
+    expect(zipName("")).toBe("file");
+  });
+
+  it("refuses an empty zip and duplicate names; detects corruption", () => {
+    expect(() => createZip([])).toThrow();
+    expect(() => createZip([entry("a", "1"), entry("a", "2")])).toThrow(/duplicate/);
+    const zip = createZip([entry("a", "payload")]);
+    const bad = Buffer.from(zip);
+    bad[zip.indexOf("payload")] = 0x58;
+    expect(() => readZip(bad)).toThrow(/checksum/);
+  });
+});
+
+describe("PNG properties", () => {
+  it("adds the physical size and a title, keeping the image intact", () => {
+    const png = makePng({ width: 32, height: 32 });
+    const out = stampPng(png, { title: "Session – été", dpi: 192 });
+    const text = out.toString("latin1");
+    expect(text).toContain("pHYs");
+    expect(text).toContain("Title\u0000Session ");
+    expect(text).toContain("Software\u0000CoachOS");
+    expect(out.readUInt32BE(8 + 12 + 13 + 8)).toBe(Math.round(192 / 0.0254)); // pixels per metre
+    expect(inspectLogo(out)).toMatchObject({ ok: true, width: 32, height: 32 }); // still a valid PNG (and metadata is stripped by a logo upload)
+    expect(pngSize(out)).toEqual({ width: 32, height: 32 });
+  });
+
+  it("refuses something that is not a PNG", () => {
+    expect(() =>
+      stampPng(Buffer.from("nope nope nope nope nope nope nope nope"), { title: "x", dpi: 96 }),
+    ).toThrow();
+    expect(() => pngSize(Buffer.from("nope"))).toThrow();
   });
 });

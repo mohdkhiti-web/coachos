@@ -6,13 +6,24 @@ import {
   ChevronRight,
   Maximize2,
   MoveHorizontal,
+  ChevronDown,
   FileDown,
+  ImageDown,
+  Share2,
   Printer,
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import {
+  Menu,
+  MenuContent,
+  MenuItem,
+  MenuLabel,
+  MenuSeparator,
+  MenuTrigger,
+} from "@/components/ui/menu";
 import { cn } from "@/lib/cn";
 import type { DocumentModel } from "@/modules/documents";
 import { DocumentPages, type LogoSrc } from "./document-pages";
@@ -25,6 +36,8 @@ import { DocumentPages, type LogoSrc } from "./document-pages";
 
 const MM_TO_PX = 96 / 25.4;
 const STAGE_PADDING_PX = 32;
+/** One tall image is offered up to this many pages (the browser cannot make a taller picture). */
+const STACK_MAX_PAGES = 8;
 const ZOOM_STEPS = [0.25, 0.35, 0.5, 0.65, 0.8, 1, 1.25, 1.5, 2] as const;
 
 type ZoomMode = { kind: "fit-width" } | { kind: "fit-page" } | { kind: "custom"; value: number };
@@ -34,13 +47,27 @@ export function DocumentPreview({
   logoSrc,
   onPrint,
   pdf,
+  png,
+  share,
   className,
 }: {
   model: DocumentModel;
   logoSrc?: LogoSrc;
   onPrint: () => void;
   /** Present only when this server can make PDFs: a real download of the saved design (never a stand-in). */
-  pdf?: { busy: boolean; onDownload: () => void };
+  pdf?: { busy: boolean; disabled: boolean; onDownload: () => void };
+  /** PNG images of the pages (this page, all as a ZIP, all as one image), at two resolutions. Same availability as the PDF. */
+  png?: {
+    busy: boolean;
+    disabled: boolean;
+    onDownload: (
+      what: "page" | "zip" | "stack",
+      resolution: "standard" | "high",
+      page: number,
+    ) => void;
+  };
+  /** Present for someone who may share the session: opens the share dialog. */
+  share?: { onOpen: () => void };
   className?: string;
 }) {
   const t = useTranslations("sessions.design.preview");
@@ -228,17 +255,60 @@ export function DocumentPreview({
         </div>
 
         <div className="ml-auto flex flex-wrap items-center gap-2">
+          {share ? (
+            <Button type="button" variant="secondary" onClick={share.onOpen}>
+              <Share2 className="size-4" aria-hidden />
+              {t("share")}
+            </Button>
+          ) : null}
           {pdf ? (
             <Button
               type="button"
               variant="secondary"
-              disabled={pageCount === 0}
+              disabled={pageCount === 0 || pdf.disabled}
               loading={pdf.busy}
               onClick={pdf.onDownload}
             >
               {pdf.busy ? null : <FileDown className="size-4" aria-hidden />}
               {pdf.busy ? t("downloadingPdf") : t("downloadPdf")}
             </Button>
+          ) : null}
+          {png ? (
+            <Menu>
+              <MenuTrigger asChild>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  disabled={pageCount === 0 || png.disabled}
+                  loading={png.busy}
+                >
+                  {png.busy ? null : <ImageDown className="size-4" aria-hidden />}
+                  {png.busy ? t("downloadingPng") : t("downloadPng")}
+                  {png.busy ? null : <ChevronDown className="size-4" aria-hidden />}
+                </Button>
+              </MenuTrigger>
+              <MenuContent>
+                {(["standard", "high"] as const).map((resolution, i) => (
+                  <React.Fragment key={resolution}>
+                    {i > 0 ? <MenuSeparator /> : null}
+                    <MenuLabel>{t(`png.${resolution}`)}</MenuLabel>
+                    <MenuItem onSelect={() => png.onDownload("page", resolution, current)}>
+                      {t("png.page", { page: current })}
+                    </MenuItem>
+                    {pageCount > 1 ? (
+                      <MenuItem onSelect={() => png.onDownload("zip", resolution, current)}>
+                        {t("png.zip", { count: pageCount })}
+                      </MenuItem>
+                    ) : null}
+                    {pageCount > 1 && pageCount <= STACK_MAX_PAGES ? (
+                      <MenuItem onSelect={() => png.onDownload("stack", resolution, current)}>
+                        {t("png.stack")}
+                      </MenuItem>
+                    ) : null}
+                  </React.Fragment>
+                ))}
+              </MenuContent>
+            </Menu>
           ) : null}
           <Button type="button" variant="secondary" disabled={pageCount === 0} onClick={onPrint}>
             <Printer className="size-4" aria-hidden />

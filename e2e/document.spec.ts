@@ -241,9 +241,9 @@ test("build → customize → preview: presets, colours, sections, layout, save,
   await panel(page).getByLabel("Footer text", { exact: true }).fill("Riverside BC · Staff copy");
   await expect(pages(page).first().locator(".doc-foot")).toContainText("Riverside BC · Staff copy");
   await expect(pages(page).first().locator(".doc-foot")).toContainText("Page 1 of");
-  await expect(
-    panel(page).getByText(/logo will be added here once logo upload is available/),
-  ).toBeVisible();
+  // the logo controls are real now (uploading is exercised in logos-png-share.spec.ts)
+  await expect(panel(page).getByTestId("logo-picker")).toContainText("No logo in this design.");
+  await expect(panel(page).getByRole("button", { name: "Upload a logo" })).toBeVisible();
 
   // ---- reflection: prompts with the coach's own words -----------------------------------------------------
   await section(page, "Session reflection").check();

@@ -62,6 +62,7 @@ export async function buildSession(
     ["give-and-go", "Give-and-Go (Pass and Cut)"],
     ["3-on-2", "3-on-2 Fast Break"],
   ],
+  extra: Partial<Parameters<typeof createSession>[1]> = {},
 ): Promise<string> {
   const builder = await createSession(page, {
     title,
@@ -76,6 +77,7 @@ export async function buildSession(
     sessionNumber: "12",
     objective: "Shooting",
     also: ["Passing", "Transition"],
+    ...extra,
   });
   for (const [i, [search, name]] of drills.entries()) {
     await pickDrill(page, builder, search, name);

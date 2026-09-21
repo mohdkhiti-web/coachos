@@ -45,6 +45,9 @@ const schema = z
     PDF_RATE_PER_MINUTE: z.coerce.number().int().min(1).max(600).default(12),
     PDF_TIMEOUT_MS: z.coerce.number().int().min(5_000).max(120_000).default(45_000),
 
+    // Share links (Step 7) are signed with a key derived from this (default: the auth secret). Changing it revokes every link.
+    SHARE_SECRET: z.string().min(32, "SHARE_SECRET must be at least 32 characters").optional(),
+
     LOG_LEVEL: z.enum(["fatal", "error", "warn", "info", "debug", "trace"]).default("info"),
   })
   .superRefine((v, ctx) => {

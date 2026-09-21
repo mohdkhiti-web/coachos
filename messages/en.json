@@ -75,7 +75,17 @@
     "diagram_ball_holder_shared": "Two balls are held by the same player.",
     "diagram_action_requires_ball": "A pass, dribble or shot happens without the ball.",
     "diagram_court_unknown": "This diagram's court isn't available for this sport.",
-    "hex_invalid": "Enter a colour like #1f3a5f."
+    "hex_invalid": "Enter a colour like #1f3a5f.",
+    "logo_empty": "Choose an image file.",
+    "logo_too_large": "That file is too large. Logos can be up to 1 MB.",
+    "logo_type": "Use a PNG, JPEG or SVG image.",
+    "logo_corrupt": "That file could not be read as an image.",
+    "logo_dimensions": "The image must be between 16 and 4096 pixels on each side.",
+    "logo_svg_unsafe": "That SVG contains something a logo can't have (scripts, links, text or effects). Export it as a plain outlined SVG, or use a PNG.",
+    "logo_svg_complex": "That SVG is too detailed. Simplify it or use a PNG.",
+    "logo_svg_size": "That SVG has no size. Add a width and height or a viewBox.",
+    "logo_limit": "This workspace has reached its limit of 20 logos. Delete one first.",
+    "logo_unknown": "That logo isn't available in this workspace."
   },
   "errors": {
     "generic": "Something went wrong. Please try again.",
@@ -307,6 +317,11 @@
       "plan_template_applied": "Template applied to a session",
       "plan_template_detached": "Session detached from its template",
       "plan_exported": "Session exported",
+      "media_logo_uploaded": "Logo uploaded",
+      "media_logo_deleted": "Logo deleted",
+      "share_created": "Session link created",
+      "share_regenerated": "Session link regenerated",
+      "share_revoked": "Session link revoked",
       "template_created": "Template created",
       "template_updated": "Template updated",
       "template_status_changed": "Template archived or restored",
@@ -1393,7 +1408,23 @@
         "hint": "Printed in the middle of every page footer, next to the coach, the date and the page number."
       },
       "logo": {
-        "soon": "Your club or school logo will be added here once logo upload is available."
+        "heading": "Logo",
+        "none": "No logo in this design.",
+        "current": "Current logo: {name}",
+        "unavailable": "This logo is no longer available",
+        "file": "Choose a logo file",
+        "upload": "Upload a logo",
+        "replace": "Upload another",
+        "remove": "Remove from design",
+        "hint": "PNG, JPEG or SVG, up to 1 MB. Shown in the header and on the cover page.",
+        "library": "Your workspace's logos",
+        "use": "Use {name}",
+        "uploaded": "Logo uploaded",
+        "deleted": "Logo deleted",
+        "deleteHeading": "Delete this logo?",
+        "deleteTitle": "Delete {name}",
+        "deleteBody": "“{name}” will be removed from your workspace. Designs that use it will print without a logo.",
+        "deleteConfirm": "Delete logo"
       },
       "reflection": {
         "off": "Turn on Session reflection under Sections to add text here.",
@@ -1422,7 +1453,17 @@
         "print": "Print",
         "empty": "There is nothing to preview. Switch a section on to add it to the document.",
         "downloadPdf": "Download PDF",
-        "downloadingPdf": "Preparing PDF…"
+        "downloadingPdf": "Preparing PDF…",
+        "downloadPng": "Download images",
+        "downloadingPng": "Preparing images…",
+        "png": {
+          "standard": "Standard resolution (about 190 dpi)",
+          "high": "High resolution (about 290 dpi)",
+          "page": "This page (page {page}) as PNG",
+          "zip": "All {count} pages (ZIP of PNGs)",
+          "stack": "All pages as one image"
+        },
+        "share": "Share"
       },
       "branding": {
         "clubName": "Club, school or academy name",
@@ -1432,6 +1473,11 @@
       "pdf": {
         "ready": "PDF downloaded",
         "readySaved": "PDF downloaded. It shows the saved design, not your unsaved changes."
+      },
+      "png": {
+        "ready": "Images downloaded",
+        "readySaved": "Images downloaded. They show the saved design, not your unsaved changes.",
+        "tooMany": "That is too many pages for one image. Download the ZIP of pages instead."
       }
     }
   },
@@ -1640,6 +1686,53 @@
       "label": "Start from a template",
       "hint": "The session gets the template’s design. You can change it afterwards.",
       "none": "No template (standard design)"
+    }
+  },
+  "share": {
+    "public": {
+      "readOnly": "Read-only",
+      "intro": "This session was shared with you. You can read it, print it and download it, but not change it.",
+      "expires": "The link works until {date}.",
+      "footer": "Shared with CoachOS. Coach notes and the coach's own reflection are never part of a shared session.",
+      "pdfReady": "PDF downloaded",
+      "unavailableTitle": "This link isn't available",
+      "unavailableBody": "The link may have been turned off, replaced by a new one, or expired, or the session may no longer be shared. Ask the coach for a new link.",
+      "home": "Go to CoachOS"
+    },
+    "dialog": {
+      "title": "Share this session",
+      "body": "Anyone with the link can read the session as a document. They don't need an account.",
+      "shows": "Shows: the session information, objectives, timeline, activities and diagrams, as designed.",
+      "hides": "Never shows: your coach notes, the reflection, your workspace or who else is in it.",
+      "readOnly": "Read-only: nobody can change the session through the link. You can turn it off at any time.",
+      "unsaved": "You have design changes that aren't saved. The link shows the saved design.",
+      "loading": "Checking the link…",
+      "notShared": "This session isn't shared.",
+      "expiry": "The link works for",
+      "expiryNever": "Until I turn it off",
+      "expiryDays": "{count} days",
+      "create": "Create link",
+      "created": "Link created",
+      "link": "Link to share",
+      "copy": "Copy link",
+      "copiedShort": "Copied",
+      "copied": "Link copied",
+      "copyFailed": "Couldn't copy automatically. Select the link and copy it.",
+      "neverExpires": "Works until you turn it off.",
+      "expiresOn": "Works until {date}.",
+      "open": "Open the shared page",
+      "regenerate": "Make a new link",
+      "regenerateTitle": "Make a new link?",
+      "regenerateBody": "The current link will stop working at once, for everyone who has it. You'll get a new link to share.",
+      "regenerateConfirm": "Replace the link",
+      "regenerated": "New link created. The old one no longer works.",
+      "revoke": "Stop sharing",
+      "revokeTitle": "Stop sharing?",
+      "revokeBody": "The link will stop working at once, for everyone who has it. You can create a new one later.",
+      "revokeConfirm": "Stop sharing",
+      "revoked": "Sharing turned off",
+      "forbidden": "Only the session's author or a workspace admin can share it, and only while it isn't archived.",
+      "done": "Done"
     }
   }
 }

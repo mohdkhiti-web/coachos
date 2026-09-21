@@ -8,6 +8,7 @@ import { inTx } from "@/lib/db/in-tx";
 import { isUuid, newId } from "@/lib/ids";
 import { fail, ok, type Result } from "@/lib/result";
 import { recordAuditInTx } from "@/modules/audit";
+import { logoIsUsable } from "@/modules/media";
 import { checkDesign, hasBlockingIssue } from "@/modules/documents";
 import { getOrganizationById } from "@/modules/organizations";
 import { getSport } from "@/modules/sports";
@@ -68,6 +69,8 @@ export async function createTemplate(
   const id = newId();
 
   return inTx(actor, async (tx) => {
+    if (input.design.logo && !(await logoIsUsable(tx, input.design.logo.assetId)))
+      return fail("VALIDATION", { fields: { "design.logo": ["logo_unknown"] } });
     await tx.insert(documentTemplates).values({
       id,
       organizationId: actor.organizationId,
@@ -111,6 +114,8 @@ export async function updateTemplate(
     if (!row || row.deletedAt) return fail("NOT_FOUND");
     if (!can(actor, "template:update", resourceOf(row)) || row.status === "archived")
       return fail("FORBIDDEN");
+    if (input.design.logo && !(await logoIsUsable(tx, input.design.logo.assetId)))
+      return fail("VALIDATION", { fields: { "design.logo": ["logo_unknown"] } });
     const designChanged = canonicalJson(config) !== canonicalJson(readConfig(row.id, row.config));
 
     const [updated] = await tx

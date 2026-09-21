@@ -42,6 +42,9 @@ function fake(bytes?: Buffer | Error) {
       if (out instanceof Error) throw out;
       return out;
     },
+    async renderPng() {
+      throw new RenderError("crashed", "not used in these tests");
+    },
   };
   return { jobs, renderer };
 }
@@ -215,7 +218,10 @@ describe("exporting a session", () => {
 
     let release!: () => void;
     const held = new Promise<void>((r) => (release = r));
-    const slow: PdfRenderer = { render: async () => (await held, PDF) };
+    const slow: PdfRenderer = {
+      render: async () => (await held, PDF),
+      renderPng: async () => [],
+    };
     const crowded = deps(slow, { gate: new Gate(1, 0) });
     const first = exportIt(coach, id, crowded);
     await new Promise((r) => setTimeout(r, 20));

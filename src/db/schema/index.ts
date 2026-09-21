@@ -5,3 +5,5 @@ export * from "./sports";
 export * from "./drills";
 export * from "./plans";
 export * from "./templates";
+export * from "./media";
+export * from "./sharing";

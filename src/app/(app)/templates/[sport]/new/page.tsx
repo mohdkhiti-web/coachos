@@ -4,6 +4,7 @@ import { loadSampleInput } from "@/components/features/templates/sample-input";
 import { TemplateEditor } from "@/components/features/templates/template-editor";
 import { can } from "@/lib/authz/can";
 import { requireViewer } from "@/modules/identity";
+import { listLogos } from "@/modules/media";
 import { getSport } from "@/modules/sports";
 
 export const metadata: Metadata = { title: "New template" };
@@ -26,6 +27,8 @@ export default async function NewTemplatePage({ params }: PageProps<"/templates/
       sample={await loadSampleInput(actor, sport.key, user.name)}
       personal={organization.type === "personal"}
       readOnly={null}
+      logos={await listLogos(actor)}
+      canUploadLogo={can(actor, "logo:create", { organizationId: actor.organizationId })}
       initialView="design"
     />
   );

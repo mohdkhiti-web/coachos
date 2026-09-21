@@ -6,8 +6,8 @@ Basketball first, built multi-sport from day one.
 - Architecture and roadmap: [ARCHITECTURE.md](ARCHITECTURE.md) (read §0 first)
 - **Status: Phase 2 (Sports foundation · Basketball workspace · Drill library) is merged locally; the Session
   Creator is in progress on branch `phase-3`** — drill library facets, session data model, the session builder,
-  (Step 4) design + live preview + browser print, (Step 5) saved templates and (Step 6) PDF export are built. Nothing here has been
-  pushed. PNG export, share links, logo upload, the generators, teams, players, lesson plans, AI, billing and analytics are later steps.
+  (Step 4) design + live preview + browser print, (Step 5) saved templates, (Step 6) PDF export and (Step 7) logos, PNG export and secure sharing are built. Nothing here has been
+  pushed. the generators, teams, players, lesson plans, AI, billing and analytics are later steps.
 
 ## Quick start (Windows/macOS/Linux, Node 24)
 
@@ -71,6 +71,7 @@ builder later. Write original content only. Seeding is idempotent, and a file re
 | `/sessions/[sport]/[id]/document?view=design\|preview`    | Design and live preview of the printed session: presets, colours, sections, page setup, print |
 | `/templates` and `/templates/[sport]`                     | Saved templates: search, category, personal / shared, archived; preview, edit, apply, copy    |
 | `/templates/[sport]/new` and `/[id]`                      | The template editor: the same design controls and live preview, on an example session         |
+| `/s/[token]`                                              | A session shared read-only: the document, no account needed; also `/s/[token]/pdf`            |
 
 ### The printed session (Design and Preview)
 
@@ -79,7 +80,7 @@ A session becomes a professional document in three steps that share one screen: 
 colour pickers with a readability check, section toggles, Compact/Detailed, A4/Letter, portrait/landscape,
 margins, one or two columns and spacing, typeface, header/border/divider styles, footer text and a reflection page.
 **Print** uses the browser's own print (`Ctrl/Cmd+P`); the pages you preview are the pages that print. A design is
-saved with the session (**Save design**). **Download PDF** (preview toolbar) makes a PDF of the saved design with a headless Chromium — the same pages that Print produces (ARCHITECTURE.md §13.8). It needs a Chromium-family browser on the server (found automatically, or set `PDF_BROWSER_PATH`); without one the button is not offered and Print → Save as PDF still works. Logo upload is a later step.
+saved with the session (**Save design**). **Download images** makes PNGs of the pages (one page, every page as a ZIP, or one tall image), **Share** makes a secure read-only link (never showing your coach notes or reflection), and a logo can be uploaded under _Footer and logo_. **Download PDF** (preview toolbar) makes a PDF of the saved design with a headless Chromium — the same pages that Print produces (ARCHITECTURE.md §13.8). It needs a Chromium-family browser on the server (found automatically, or set `PDF_BROWSER_PATH`); without one the button is not offered and Print → Save as PDF still works.
 
 ### Saved templates
 

@@ -31,6 +31,7 @@ export type SessionFill = {
   sessionNumber?: string;
   objective?: string; // the main objective's name
   also?: string[]; // secondary objectives
+  notes?: string; // the coach's private notes
 };
 
 /** Fill the "Create session" form (everything is optional but the title and the main objective). */
@@ -45,6 +46,7 @@ export async function fillSession(page: Page, s: SessionFill) {
   if (s.location) await field(page, "Location / court").fill(s.location);
   if (s.season) await field(page, "Season").fill(s.season);
   if (s.sessionNumber) await field(page, "Session number").fill(s.sessionNumber);
+  if (s.notes) await field(page, "Coach notes").fill(s.notes);
   await field(page, "Main objective").selectOption({ label: s.objective ?? "Shooting" });
   for (const name of s.also ?? []) await page.getByRole("button", { name, exact: true }).click();
 }

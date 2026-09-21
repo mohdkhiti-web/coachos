@@ -10,9 +10,11 @@ import {
   planObjectives,
   plans,
   planTotals,
+  sports,
 } from "@/db/schema";
 import { can, type Actor, type PlanResource } from "@/lib/authz/can";
-import { tenantTx } from "@/lib/db/tx";
+import type { Tx } from "@/lib/db/client";
+import { shareTx, tenantTx } from "@/lib/db/tx";
 import { isUuid } from "@/lib/ids";
 import { logger } from "@/lib/logger";
 import { defaultDocumentSettings, migrateDocumentSettings } from "@/modules/documents";
@@ -61,17 +63,40 @@ export async function getPlan(
   if (!isUuid(id)) return null;
   const sport = await getSport(sportKey);
   if (!sport) return null;
+  return tenantTx(actor, (tx) => loadPlanDetail(tx, id, { sportId: sport.id, actor, ...opts }));
+}
 
-  return tenantTx(actor, async (tx) => {
+/**
+ * The session a PUBLIC visitor's share link names, and nothing else: read inside `shareTx`, where the database opens exactly
+ * that one live session (row-level security, drizzle/0011_*.sql). No viewer: nothing is "mine", nothing is editable.
+ * `template` is always null (a template relationship is the workspace's business, not the visitor's).
+ */
+export async function getSharedPlan(
+  shareId: string,
+  planId: string,
+): Promise<PlanDetailDto | null> {
+  if (!isUuid(shareId) || !isUuid(planId)) return null;
+  return shareTx(shareId, (tx) => loadPlanDetail(tx, planId, { sportId: null, actor: null }));
+}
+
+async function loadPlanDetail(
+  tx: Tx,
+  id: string,
+  opts: { sportId: string | null; actor: Actor | null; includeDeleted?: boolean },
+): Promise<PlanDetailDto | null> {
+  const { actor } = opts;
+  {
     const [row] = await tx
       .select({
         plan: plans,
+        sportKey: sports.key,
         ageGroupKey: ageGroups.key,
         ageGroupName: ageGroups.name,
       })
       .from(plans)
+      .innerJoin(sports, eq(sports.id, plans.sportId))
       .leftJoin(ageGroups, eq(ageGroups.id, plans.ageGroupId))
-      .where(and(eq(plans.id, id), eq(plans.sportId, sport.id)))
+      .where(and(eq(plans.id, id), opts.sportId ? eq(plans.sportId, opts.sportId) : undefined))
       .limit(1);
     if (!row) return null;
     const p = row.plan;
@@ -195,7 +220,7 @@ export async function getPlan(
     const editable = !p.deletedAt && p.status !== "archived";
     return {
       id: p.id,
-      sportKey: sport.key as SportKey,
+      sportKey: row.sportKey as SportKey,
       type: "training_session",
       title: p.title,
       status: p.status as PlanStatus,
@@ -229,16 +254,16 @@ export async function getPlan(
       }),
       version: p.version,
       forkedFromId: p.forkedFromId,
-      isMine: p.createdBy === actor.userId,
+      isMine: actor ? p.createdBy === actor.userId : false,
       deletedAt: p.deletedAt,
       createdAt: p.createdAt,
       updatedAt: p.updatedAt,
       permissions: {
-        canEdit: editable && can(actor, "plan:update", resource),
-        canDelete: can(actor, "plan:delete", resource),
+        canEdit: actor !== null && editable && can(actor, "plan:update", resource),
+        canDelete: actor !== null && can(actor, "plan:delete", resource),
       },
     };
-  });
+  }
 }
 
 export type ListPlansOptions = {
