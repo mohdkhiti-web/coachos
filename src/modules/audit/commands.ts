@@ -35,6 +35,7 @@ export type AuditAction =
   | "plan.duplicated"
   | "plan.template_applied"
   | "plan.template_detached"
+  | "plan.exported"
   | "template.created"
   | "template.updated"
   | "template.status_changed"

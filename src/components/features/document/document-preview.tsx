@@ -6,6 +6,7 @@ import {
   ChevronRight,
   Maximize2,
   MoveHorizontal,
+  FileDown,
   Printer,
   ZoomIn,
   ZoomOut,
@@ -32,11 +33,14 @@ export function DocumentPreview({
   model,
   logoSrc,
   onPrint,
+  pdf,
   className,
 }: {
   model: DocumentModel;
   logoSrc?: LogoSrc;
   onPrint: () => void;
+  /** Present only when this server can make PDFs: a real download of the saved design (never a stand-in). */
+  pdf?: { busy: boolean; onDownload: () => void };
   className?: string;
 }) {
   const t = useTranslations("sessions.design.preview");
@@ -223,16 +227,24 @@ export function DocumentPreview({
           </Button>
         </div>
 
-        <Button
-          type="button"
-          variant="secondary"
-          className="ml-auto"
-          disabled={pageCount === 0}
-          onClick={onPrint}
-        >
-          <Printer className="size-4" aria-hidden />
-          {t("print")}
-        </Button>
+        <div className="ml-auto flex flex-wrap items-center gap-2">
+          {pdf ? (
+            <Button
+              type="button"
+              variant="secondary"
+              disabled={pageCount === 0}
+              loading={pdf.busy}
+              onClick={pdf.onDownload}
+            >
+              {pdf.busy ? null : <FileDown className="size-4" aria-hidden />}
+              {pdf.busy ? t("downloadingPdf") : t("downloadPdf")}
+            </Button>
+          ) : null}
+          <Button type="button" variant="secondary" disabled={pageCount === 0} onClick={onPrint}>
+            <Printer className="size-4" aria-hidden />
+            {t("print")}
+          </Button>
+        </div>
       </div>
 
       <div

@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
 
+  // PDF export drives a headless browser from the server (src/modules/exports): keep that package out of the bundle.
+  serverExternalPackages: ["playwright-core"],
+
   experimental: {
     // Server Actions accept only same-origin requests by default (CSRF); list real domains explicitly.
     serverActions: { allowedOrigins: [appHost] },

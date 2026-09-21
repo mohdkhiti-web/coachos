@@ -15,6 +15,26 @@ describe("parseEnv", () => {
     expect(env.AUTH_RATE_LIMIT).toBe(true);
   });
 
+  it("has safe PDF export defaults and bounds", () => {
+    const env = parseEnv({ ...base, NODE_ENV: "development" });
+    expect(env).toMatchObject({
+      PDF_EXPORT: true,
+      PDF_MAX_CONCURRENT: 2,
+      PDF_TIMEOUT_MS: 45_000,
+      PDF_RATE_PER_MINUTE: 12,
+    });
+    expect(env.PDF_BROWSER_PATH).toBeUndefined();
+    expect(parseEnv({ ...base, NODE_ENV: "development", PDF_EXPORT: "false" }).PDF_EXPORT).toBe(
+      false,
+    );
+    expect(() => parseEnv({ ...base, NODE_ENV: "development", PDF_MAX_CONCURRENT: "50" })).toThrow(
+      /PDF_MAX_CONCURRENT/,
+    );
+    expect(() => parseEnv({ ...base, NODE_ENV: "development", PDF_TIMEOUT_MS: "10" })).toThrow(
+      /PDF_TIMEOUT_MS/,
+    );
+  });
+
   it("fails fast with a readable message when required values are missing", () => {
     expect(() => parseEnv({ NODE_ENV: "development" })).toThrow(/DATABASE_URL/);
     expect(() => parseEnv({ NODE_ENV: "development" })).toThrow(/BETTER_AUTH_SECRET/);

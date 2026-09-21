@@ -37,6 +37,14 @@ const schema = z
     RESEND_API_KEY: z.string().optional(),
     ALLOW_DEV_MAIL: bool(false),
 
+    // PDF export (ARCHITECTURE.md §13.8): a headless Chromium prints the app's own print route. The browser is found
+    // automatically (system Chrome/Edge/Chromium); set PDF_BROWSER_PATH to name one. PDF_EXPORT=false switches it off.
+    PDF_EXPORT: bool(true),
+    PDF_BROWSER_PATH: z.string().optional(),
+    PDF_MAX_CONCURRENT: z.coerce.number().int().min(1).max(8).default(2),
+    PDF_RATE_PER_MINUTE: z.coerce.number().int().min(1).max(600).default(12),
+    PDF_TIMEOUT_MS: z.coerce.number().int().min(5_000).max(120_000).default(45_000),
+
     LOG_LEVEL: z.enum(["fatal", "error", "warn", "info", "debug", "trace"]).default("info"),
   })
   .superRefine((v, ctx) => {

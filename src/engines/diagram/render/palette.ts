@@ -61,7 +61,7 @@ export const PALETTES: Record<DiagramTheme, Palette> = {
     text: "#17150f",
     badge: "#17150f",
     badgeInk: "#ffffff",
-    font: "'Arial Narrow', Arial, sans-serif",
+    font: "inherit", // the document's own typeface: embedded in a PDF, identical on every machine (no system-font stand-in)
   },
   mono: {
     surface: "#ffffff",
@@ -80,6 +80,6 @@ export const PALETTES: Record<DiagramTheme, Palette> = {
     text: "#000000",
     badge: "#000000",
     badgeInk: "#ffffff",
-    font: "'Arial Narrow', Arial, sans-serif",
+    font: "inherit", // the document's own typeface: embedded in a PDF, identical on every machine (no system-font stand-in)
   },
 };

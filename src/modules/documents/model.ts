@@ -59,7 +59,14 @@ const BESIDE_MIN_MM = 120;
 /** A meta item ("Small-sided", "8–12 players", "Intensity: Medium") is roughly this many characters. */
 const META_ITEM_CHARS = 20;
 
+/**
+ * The running header shows the title on one line and clips it (with an ellipsis) when it does not fit. A title longer
+ * than this is therefore also written out in full in the overview, so no title is ever only half on paper.
+ */
+const TITLE_FACT_CHARS = 44;
+
 const OVERVIEW_ORDER: readonly FactKey[] = [
+  "title",
   "team",
   "ageGroup",
   "level",
@@ -99,6 +106,9 @@ export function buildFacts(input: SessionDocumentInput, keys: readonly FactKey[]
       out.push({ key, value: { t: "text", text: value.trim() } });
   };
   const byKey: Record<FactKey, () => void> = {
+    title: () => {
+      if (input.title.trim().length > TITLE_FACT_CHARS) text("title", input.title);
+    },
     team: () => text("team", input.teamName),
     ageGroup: () =>
       text(
@@ -832,7 +842,8 @@ export function buildDocumentModel(
   const cover = on.cover;
   const overviewKeys = cover
     ? OVERVIEW_ORDER.filter(
-        (k) => !COVER_FACTS.includes(k) && !(k === "club" && input.clubName.trim()),
+        (k) =>
+          !COVER_FACTS.includes(k) && k !== "title" && !(k === "club" && input.clubName.trim()),
       )
     : OVERVIEW_ORDER;
 

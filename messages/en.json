@@ -91,6 +91,8 @@
     "CONFLICT": "That can't be done right now.",
     "VALIDATION": "Please check the highlighted fields.",
     "UNAUTHENTICATED": "Please sign in again.",
+    "RATE_LIMITED": "Too many requests. Please wait a moment and try again.",
+    "UNAVAILABLE": "That isn’t available on this server right now.",
     "INTERNAL": "Something went wrong on our side. Please try again."
   },
   "landing": {
@@ -304,6 +306,7 @@
       "plan_duplicated": "Session duplicated",
       "plan_template_applied": "Template applied to a session",
       "plan_template_detached": "Session detached from its template",
+      "plan_exported": "Session exported",
       "template_created": "Template created",
       "template_updated": "Template updated",
       "template_status_changed": "Template archived or restored",
@@ -1135,6 +1138,7 @@
         "reflection": "Session reflection"
       },
       "facts": {
+        "title": "Session title",
         "team": "Team",
         "ageGroup": "Age group",
         "level": "Level",
@@ -1416,12 +1420,18 @@
         "fitPage": "Fit page",
         "fitWidth": "Fit width",
         "print": "Print",
-        "empty": "There is nothing to preview. Switch a section on to add it to the document."
+        "empty": "There is nothing to preview. Switch a section on to add it to the document.",
+        "downloadPdf": "Download PDF",
+        "downloadingPdf": "Preparing PDF…"
       },
       "branding": {
         "clubName": "Club, school or academy name",
         "coachName": "Coach name",
         "hint": "Shown in the header when a session has none of its own."
+      },
+      "pdf": {
+        "ready": "PDF downloaded",
+        "readySaved": "PDF downloaded. It shows the saved design, not your unsaved changes."
       }
     }
   },

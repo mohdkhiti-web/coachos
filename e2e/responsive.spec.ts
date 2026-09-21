@@ -238,6 +238,10 @@ test("the design workspace works on a phone: preview first, quick controls, no s
       .boundingBox();
     expect(box?.height ?? 0, name).toBeGreaterThanOrEqual(44);
   }
+  // Download PDF is offered where the server can make one, and is a real touch target
+  const download = page.getByRole("button", { name: "Download PDF" });
+  await expect(download).toBeVisible();
+  expect((await download.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
   // basic editing without leaving the preview
   const compact = page.getByRole("group", { name: "Level of detail" }).getByLabel("Compact");
   await compact.check({ force: true });

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { DocumentWorkspace } from "@/components/features/document/document-workspace";
 import { can } from "@/lib/authz/can";
 import { resolveSessionDesign } from "@/modules/documents";
+import { isPdfExportAvailable } from "@/modules/exports";
 import { requireViewer } from "@/modules/identity";
 import { getPlan, toDocumentInput } from "@/modules/plans";
 import { getSport } from "@/modules/sports";
@@ -47,6 +48,7 @@ export default async function SessionDocumentPage({
       templates={templates}
       canCreateTemplate={can(actor, "template:create", { organizationId: actor.organizationId })}
       personalWorkspace={organization.type === "personal"}
+      pdfAvailable={isPdfExportAvailable()}
     />
   );
 }

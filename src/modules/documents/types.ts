@@ -88,6 +88,7 @@ export interface SessionDocumentInput {
 // ---- output: facts, figures, rows ---------------------------------------------------------------
 
 export type FactKey =
+  | "title"
   | "team"
   | "ageGroup"
   | "level"

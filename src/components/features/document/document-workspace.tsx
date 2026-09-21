@@ -66,6 +66,7 @@ export function DocumentWorkspace({
   templates,
   canCreateTemplate,
   personalWorkspace,
+  pdfAvailable,
 }: {
   sportKey: string;
   planId: string;
@@ -82,6 +83,8 @@ export function DocumentWorkspace({
   templates: TemplateChoice[];
   canCreateTemplate: boolean;
   personalWorkspace: boolean;
+  /** Can this server make PDFs? (No browser installed, or switched off: the button is not offered.) */
+  pdfAvailable: boolean;
 }) {
   const t = useTranslations("sessions.design");
   const tt = useTranslations("templates");
@@ -194,6 +197,43 @@ export function DocumentWorkspace({
       /* printing without waiting is still better than not printing */
     }
     window.print();
+  };
+
+  const [pdfBusy, setPdfBusy] = React.useState(false);
+  /**
+   * Download the session as a PDF. The file is made on the server from the SAVED design, so unsaved changes are saved
+   * first (an author) — what is downloaded is what is on screen. A reader who cannot save is told it is the saved one.
+   */
+  const downloadPdf = async () => {
+    if (pdfBusy) return;
+    setPdfBusy(true);
+    try {
+      if (dirty && canSave && !(await save())) return; // could not save: do not hand out an out-of-date file
+      const res = await fetch(`/sessions/${sportKey}/${planId}/document/pdf`, {
+        credentials: "same-origin",
+      });
+      if (!res.ok) {
+        const code = ((await res.json().catch(() => null)) as { error?: { code?: string } } | null)
+          ?.error?.code;
+        toast(code && te.has(code) ? te(code) : te("generic"), "error");
+        return;
+      }
+      const named = /filename\*=UTF-8''([^;]+)/i.exec(res.headers.get("content-disposition") ?? "");
+      const fileName = named?.[1] ? decodeURIComponent(named[1]) : "session.pdf";
+      const url = URL.createObjectURL(await res.blob());
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = fileName;
+      document.body.append(link);
+      link.click();
+      link.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 10_000);
+      toast(t(dirty && !canSave ? "pdf.readySaved" : "pdf.ready"), "success");
+    } catch {
+      toast(te("network"), "error");
+    } finally {
+      setPdfBusy(false);
+    }
   };
 
   const detach = async () => {
@@ -373,7 +413,11 @@ export function DocumentWorkspace({
               />
             </div>
           ) : null}
-          <DocumentPreview model={model} onPrint={() => void print()} />
+          <DocumentPreview
+            model={model}
+            onPrint={() => void print()}
+            pdf={pdfAvailable ? { busy: pdfBusy, onDownload: () => void downloadPdf() } : undefined}
+          />
         </div>
       </div>
 

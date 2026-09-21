@@ -812,6 +812,50 @@ resolveSessionDesign(settings)  =  preset  →  settings.template.design (frozen
 - **Not built yet (by design):** PDF/PNG/Word export, share links, logo upload, rule-based and AI generators,
   organisation-wide default templates.
 
+### 13.8 As built in Step 6 (PDF export)
+
+**The PDF is the browser's own print, run by a headless Chromium as the requester.** No second renderer, no HTML sent
+anywhere: `GET /sessions/[sport]/[id]/document/pdf` checks who is asking, then a renderer opens the app's *own*
+design route (`…/document?view=preview`) with the requester's session cookies and prints it with the same stylesheet,
+named `@page` and `preferCSSPageSize` that Print uses. So the PDF has the pages that were previewed, on the paper the
+design chose (A4/Letter, portrait/landscape), with live-SVG diagrams as vectors. `e2e/export.spec.ts` checks page
+count and paper of the downloaded file against the preview.
+
+- **Port and adapter** (`src/modules/exports`): `PdfRenderer.render({ url, cookies }) → Buffer` is the seam
+  (§13.4's `PdfRenderer` port). The one adapter (`renderer.ts`) keeps a shared headless browser (restarted if it dies),
+  gives each document an isolated context, blocks every request to another origin, waits for the fonts and the
+  document, and fails cleanly on timeout, lost session or an empty document.
+- **Permissions are the existing ones.** The renderer acts *as the requester*, so row-level security decides what the
+  document may contain. A session the requester cannot read is "not found" (404), a missing session is 401, and only
+  the app's own auth cookies are forwarded. The URL is built from the validated sport key, a UUID and the configured
+  `APP_URL` — nothing the requester typed is a URL (no SSRF surface).
+- **Guards.** A `Gate` bounds concurrent renders (`PDF_MAX_CONCURRENT`, default 2) and the wait queue; a `RateWindow`
+  limits one person to 12 exports a minute; a render has a timeout (`PDF_TIMEOUT_MS`). A result that does not start
+  with `%PDF-` is never returned. The audit trail records `plan.exported` (format, size) for every file produced.
+- **Saved design.** The file is made from the *saved* design, so the design screen saves first (an author) and says so
+  to a reader who cannot save. File names come from the title through `safeBaseName`/`contentDisposition`
+  (control, bidi and path characters removed; ASCII fallback plus RFC 5987 `filename*`).
+- **Availability is honest.** Chromium is found automatically (Edge/Chrome/Chromium; `PDF_BROWSER_PATH` names one;
+  `PDF_EXPORT=false` switches it off). With no browser the **Download PDF** button is simply not offered — print
+  (→ *Save as PDF*) keeps working, and so does everything else. A deployment that wants PDF must give the app a
+  Chromium (a container image with Chromium, or a separate render service behind the same port); serverless hosts
+  without one run PDF-less until then. This is the decision §13.4 deferred: for now the renderer runs in the app's own
+  Node process.
+- **Document properties.** Chromium's output is re-stamped (`pdf-lib`): title, the session's coach as author, a subject
+  built from what is printed, objectives as keywords, creator/producer `CoachOS` — and nothing internal (no ids,
+  addresses or workspace names; asserted in tests).
+- **Verification.** `e2e/export-matrix.spec.ts` takes real PDFs from the endpoint apart with pdf.js: A4/Letter ×
+  portrait/landscape, compact/detailed, one/two columns, margins and spacing, cover, reflection, a switched-off
+  section, all eight presets, the four typefaces (the embedded fonts must be the chosen family, never a system
+  stand-in), a short session, long text (a 118-character title, a 2 000-character note), a 25-drill session (every
+  drill's text present, ≥15 vector diagrams) and a saved template with a session override. Every file must have the
+  preview's page count, the design's paper, selectable text, numbered footers, no raster images, and no UUID or
+  email in its text. Sample PDFs were also rendered to images and looked at (mupdf, outside the repo: it is AGPL).
+- **Diagram text** in print/mono themes now inherits the document's typeface (it used `Arial`, which PDFs embedded as a
+  system font on some machines). A title too long for the running header is also written out in full in the overview.
+- **Not built yet (by design):** PNG/Word export, share links, logo upload (Step 7); generators and the AI assistant
+  (Step 8).
+
 ---
 
 ## 14. AI architecture

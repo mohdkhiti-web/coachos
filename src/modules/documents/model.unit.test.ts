@@ -768,3 +768,31 @@ describe("template branding and reflection wording", () => {
     );
   });
 });
+
+describe("a long title", () => {
+  const long =
+    "Transition defence and finishing under pressure with quick decisions in tight spaces";
+
+  it("is also written out in full in the overview, because the running header clips it", () => {
+    const m = buildDocumentModel(typicalSession({ title: long }), design());
+    const overview = fragments(m).find((f) => f.kind === "overview")!;
+    const facts = overview.units.flatMap((u) => (u.row.t === "facts" ? u.row.facts : []));
+    expect(facts.find((f) => f.key === "title")).toMatchObject({
+      value: { t: "text", text: long },
+    });
+    expect(m.header.title).toBe(long);
+  });
+
+  it("is not repeated when it is short, or when a cover page already carries it", () => {
+    const keys = (m: DocumentModel) =>
+      fragments(m)
+        .filter((f) => f.kind === "overview")
+        .flatMap((f) =>
+          f.units.flatMap((u) => (u.row.t === "facts" ? u.row.facts.map((x) => x.key) : [])),
+        );
+    expect(keys(buildDocumentModel(typicalSession(), design()))).not.toContain("title");
+    expect(
+      keys(buildDocumentModel(typicalSession({ title: long }), withSections({ cover: true }))),
+    ).not.toContain("title");
+  });
+});

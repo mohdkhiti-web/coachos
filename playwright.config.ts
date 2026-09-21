@@ -66,6 +66,7 @@ export default defineConfig({
         ALLOW_DEV_MAIL: "true",
         AUTH_BREACH_CHECK: "false", // no network dependency in tests (the check itself is verified manually)
         AUTH_RATE_LIMIT: "false",
+        PDF_RATE_PER_MINUTE: "600", // the export matrix takes dozens of PDFs in a minute
         LOG_LEVEL: "warn",
       },
     },

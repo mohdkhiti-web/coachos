@@ -6,8 +6,8 @@ Basketball first, built multi-sport from day one.
 - Architecture and roadmap: [ARCHITECTURE.md](ARCHITECTURE.md) (read §0 first)
 - **Status: Phase 2 (Sports foundation · Basketball workspace · Drill library) is merged locally; the Session
   Creator is in progress on branch `phase-3`** — drill library facets, session data model, the session builder,
-  (Step 4) design + live preview + browser print, and (Step 5) saved templates are built. Nothing here has been
-  pushed. PDF export, logo upload, the generators, teams, players, lesson plans, AI, billing and analytics are later steps.
+  (Step 4) design + live preview + browser print, (Step 5) saved templates and (Step 6) PDF export are built. Nothing here has been
+  pushed. PNG export, share links, logo upload, the generators, teams, players, lesson plans, AI, billing and analytics are later steps.
 
 ## Quick start (Windows/macOS/Linux, Node 24)
 
@@ -79,7 +79,7 @@ A session becomes a professional document in three steps that share one screen: 
 colour pickers with a readability check, section toggles, Compact/Detailed, A4/Letter, portrait/landscape,
 margins, one or two columns and spacing, typeface, header/border/divider styles, footer text and a reflection page.
 **Print** uses the browser's own print (`Ctrl/Cmd+P`); the pages you preview are the pages that print. A design is
-saved with the session (**Save design**). PDF export and logo upload are later steps (ARCHITECTURE.md §13.6).
+saved with the session (**Save design**). **Download PDF** (preview toolbar) makes a PDF of the saved design with a headless Chromium — the same pages that Print produces (ARCHITECTURE.md §13.8). It needs a Chromium-family browser on the server (found automatically, or set `PDF_BROWSER_PATH`); without one the button is not offered and Print → Save as PDF still works. Logo upload is a later step.
 
 ### Saved templates
 
