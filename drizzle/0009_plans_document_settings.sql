@@ -1,0 +1,2 @@
+ALTER TABLE "plans" ADD COLUMN "document_settings" jsonb DEFAULT '{}'::jsonb NOT NULL;--> statement-breakpoint
+ALTER TABLE "plans" ADD CONSTRAINT "plans_document_settings_chk" CHECK (jsonb_typeof("plans"."document_settings") = 'object' AND octet_length("plans"."document_settings"::text) <= 16000);

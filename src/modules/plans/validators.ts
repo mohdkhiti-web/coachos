@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { DRILL_PHASES, LEVELS, PLAN_LIMITS, PLAN_STATUSES, PLAN_VISIBILITIES } from "@/db/enums";
+import { documentDesignSchema, PRESET_IDS, reflectionSchema } from "@/modules/documents";
 import { planDetailsSchema } from "./details";
 import { customContentSchema } from "./custom-content";
 import { isClockTime, isIsoDate, isValidTimeZone } from "./schedule";
@@ -167,3 +168,20 @@ export const reorderActivitiesSchema = z.strictObject({
   version,
 });
 export type ReorderActivitiesInput = z.output<typeof reorderActivitiesSchema>;
+
+// ---------------------------------------------------------------------------------------------------
+// the printed document
+// ---------------------------------------------------------------------------------------------------
+
+/**
+ * Save how the session prints: the whole resolved design (validated field by field), the preset it started
+ * from, and the reflection text. The command stores only the difference from the preset.
+ */
+export const planDocumentSchema = z.strictObject({
+  version: int(1, 1_000_000),
+  preset: z.enum(PRESET_IDS),
+  design: documentDesignSchema,
+  reflection: reflectionSchema,
+});
+
+export type PlanDocumentInput = z.output<typeof planDocumentSchema>;

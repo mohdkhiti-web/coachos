@@ -702,6 +702,59 @@ Chromium is heavy. **Decision deferred to a Phase 5 spike** behind a `PdfRendere
 
 `documents` catalogs generated exports (`kind`, `source_entity`, `file_id`, `content_hash`, `template_id`, `generated_at`) and uploaded documents; the center is a searchable view over `documents` ∪ plans ∪ lesson plans. `content_hash` makes regeneration idempotent and cacheable.
 
+
+### 13.6 As built in Step 4 (design, live preview and browser print)
+
+**The pipeline is exactly the one drawn in §13.1, minus the renderers that come later.**
+
+```
+plans row ──▶ toDocumentInput()      (modules/plans, pure)      session → SessionDocumentInput
+plans.document_settings ──▶ resolveDesign(preset → template → override)   (modules/documents, pure)
+                     │
+                     ▼
+        buildDocumentModel(input, design, reflection)   pure, deterministic: facts, equipment, timeline,
+                     │                                    activity blocks, THEN paginate() → pages
+                     ▼
+              DocumentModel  ──▶  <DocumentPages>  (one React component tree, one stylesheet)
+                                       ├─ on-screen preview   (zoom, page navigation)
+                                       ├─ browser print       (@media print, named @page sizes)
+                                       └─ later: the PDF worker prints the same route
+```
+
+- **`src/modules/documents/` is pure** (no I/O, no React, no server-only import): `color` (HEX, WCAG contrast, derived
+  colours), `design` (the versioned Zod schema, the readability check, stored-settings migration), `presets`
+  (eight looks + the precedence merge + the minimal-override diff), `layout` (page geometry and every part's
+  measurement in one place), `estimate` (text height without a browser), `model`, `paginate`. The plans module maps a
+  session onto it (`document-input.ts`); the documents module knows nothing about how a session is stored.
+- **Design is data, never HTML.** `DocumentDesign` (colours, typeface, page, mode, 15 section switches, header,
+  border/divider, footer text, logo reference) is validated field by field. Layers: **Preset → Template → Session
+  override**; today only the session layer is stored (`plans.document_settings`, migration 0009: `jsonb`, `{}` =
+  never customised, versioned, size-checked). What is stored is the preset plus **only what differs from it**. The
+  reflection text sits beside the design, so a preset or a future template can never carry one session's notes.
+  Saving needs `plan:update` and the session's current version (optimistic concurrency); an archived session is
+  frozen like everything else about it; body text that cannot be read on its background (< 3:1) is refused by the
+  server, weaker contrast (< 4.5:1) is a warning in the form.
+- **Deterministic pagination.** Every piece of a page has a height ESTIMATED from its text, the column width and the
+  type size (the same constants that reach the stylesheet as CSS custom properties, so model and browser cannot
+  drift). Rules: a group that fits a page stays whole (activities, overview, objectives, equipment, timeline); it
+  moves to the next page/column rather than split; only a group taller than a page is split — between pieces,
+  never inside one, with its heading and first pieces together, "(continued)" on the next page, lists keep counting;
+  text longer than half a page is cut at sentence/item boundaries first; no page is ever empty. An activity's body is
+  laid out as two balanced columns (diagram pinned top right) or one column when the page is narrow, and oversized
+  activities are laid out again in finer pieces. Estimates are deliberately a little generous: `e2e/document.spec.ts`
+  measures every piece in the browser (`data-est` against the real height) for four typefaces × five page setups and
+  fails if any piece is taller than the model believed.
+- **Preview = print.** One component tree, one stylesheet (`src/styles/document.css`). Zoom is a CSS scale of the stage
+  that print resets. Paper size and orientation travel with the document through **named pages** (`@page
+  doc-a4-portrait { size: A4 portrait }` … chosen on `body`), because the print viewport is the paper and no inline
+  `<style>` (CSP) is needed. The e2e suite prints the page with headless Chromium and checks the PDF: page count equals
+  the preview's, and the paper size is the design's. Diagrams are the live SVG, never a picture.
+- **Fonts** are self-hosted via `next/font` in the document route's layout (Inter, Source Sans 3, Merriweather, or the
+  system font), not preloaded; the tests assert every font file comes from the app's own origin.
+- **Logo.** The design and the model carry `logo: { assetId }` — a reference to a stored, validated image (Postgres,
+  one small PNG/JPEG per template, as decided). Upload/storage is Step 7; until then no UI can set one, the pages
+  render one only when given a `logoSrc` resolver, and the form says so.
+- **Not built yet (by design):** saved templates (Step 5), PDF/PNG (Steps 6–7), share links, logo upload, generators.
 ---
 
 ## 14. AI architecture

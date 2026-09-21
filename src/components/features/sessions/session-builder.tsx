@@ -9,6 +9,7 @@ import {
   ChevronDown,
   Coffee,
   Copy,
+  Eye,
   FileCheck2,
   ListPlus,
   MoreHorizontal,
@@ -42,6 +43,7 @@ import {
   updatePlanAction,
 } from "@/modules/plans/actions";
 import { formatDateOnly, formatClockTime } from "@/modules/plans/format";
+import { WorkspaceTabs, type WorkspaceView } from "@/components/features/document/workspace-tabs";
 import { ActivityDialog, type ActivityDialogMode } from "./activity-dialog";
 import type { CardActions } from "./activity-card";
 import { StatusBadge } from "./badges";
@@ -315,6 +317,23 @@ export function SessionBuilder({
     };
   }, [canEdit, dirty, invalid, queue.failure, queue.pending, saveDetails]);
 
+  // Builder → Design / Preview: whatever is still on its way to the server goes first, so the design page
+  // (which reads the session fresh) never shows a session that is missing the coach's last edit.
+  const openDocument = async (view: WorkspaceView) => {
+    if (view === "builder") return;
+    if (canEdit && invalid) {
+      toast(t("document.fixFirst"), "error");
+      return;
+    }
+    if (canEdit && dirty) saveDetails();
+    const failure = await queue.whenIdle();
+    if (failure) {
+      toast(t("document.saveFirst"), "error");
+      return;
+    }
+    router.push(`/sessions/${sportKey}/${plan.id}/document?view=${view}`);
+  };
+
   const saveState: SaveState =
     queue.failure === "CONFLICT"
       ? "conflict"
@@ -423,6 +442,13 @@ export function SessionBuilder({
           {backLabel}
         </Link>
 
+        <WorkspaceTabs
+          current="builder"
+          sportKey={sportKey}
+          planId={plan.id}
+          onSelect={(view) => void openDocument(view)}
+        />
+
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="min-w-0 space-y-2">
             <div className="flex flex-wrap items-center gap-3">
@@ -463,6 +489,10 @@ export function SessionBuilder({
                 onReload={() => window.location.reload()}
               />
             ) : null}
+            <Button type="button" variant="secondary" onClick={() => void openDocument("design")}>
+              <Eye className="size-4" aria-hidden />
+              {t("document.open")}
+            </Button>
             {(canEdit || plan.canDelete) && (
               <Menu>
                 <MenuTrigger asChild>

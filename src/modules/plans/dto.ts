@@ -6,6 +6,7 @@ import type {
   PlanType,
   PlanVisibility,
 } from "@/db/enums";
+import type { DocumentSettings } from "@/modules/documents";
 import type { SportKey } from "@/sports/registry";
 import type { PlanDetails } from "./details";
 import type { Schedule } from "./schedule";
@@ -87,6 +88,8 @@ export interface PlanDetailDto {
   startTime: string | null;
   timezone: string | null;
   details: PlanDetails;
+  /** How the printed session looks (preset + the coach's changes) and the reflection text. Never customised = defaults. */
+  documentSettings: DocumentSettings;
   objectives: PlanObjectivesDto;
   activities: PlanActivityDto[];
   totals: PlanTotalsDto;

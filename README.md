@@ -4,9 +4,10 @@ The operating system for coaches and PE teachers — plan, deliver, document and
 Basketball first, built multi-sport from day one.
 
 - Architecture and roadmap: [ARCHITECTURE.md](ARCHITECTURE.md) (read §0 first)
-- **Status: Phase 2 (Sports foundation · Basketball workspace · Drill library) implemented** on branch
-  `phase-2`, on top of the completed Phase 1 (accounts, workspace, app shell, dashboard, settings).
-  Not yet merged or pushed. Sessions, teams, players, lesson plans, AI, billing and exports are later phases.
+- **Status: Phase 2 (Sports foundation · Basketball workspace · Drill library) is merged locally; the Session
+  Creator is in progress on branch `phase-3`** — drill library facets, session data model, the session builder,
+  and (Step 4) design + live preview + browser print are built. Nothing here has been pushed. Saved templates,
+  PDF export, logo upload, the generators, teams, players, lesson plans, AI, billing and analytics are later steps.
 
 ## Quick start (Windows/macOS/Linux, Node 24)
 
@@ -59,14 +60,25 @@ builder later. Write original content only. Seeding is idempotent, and a file re
 
 ### Session routes (the session builder)
 
-| Route                                                     | What it is                                                                             |
-| --------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `/sessions`                                               | "Sessions" in the main navigation: goes to the sport's sessions                        |
-| `/sessions/[sport]`                                       | My Sessions: search, status / age group / team / date filters, actions, all in the URL |
-| `/sessions/[sport]/new`                                   | Create a session: information, schedule, objectives                                    |
-| `/sessions/[sport]/[id]`                                  | The builder: timeline, totals and end time, details panel, autosave                    |
-| `/sessions/[sport]/[id]/drills` and `/drills/[drillId]`   | Add a drill: the library's own search, then a preview with the add form                |
-| `/sessions/[sport]/[id]/replace/[activityId]` and `/[id]` | Replace one drill in the timeline with another                                         |
+| Route                                                     | What it is                                                                                    |
+| --------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `/sessions`                                               | "Sessions" in the main navigation: goes to the sport's sessions                               |
+| `/sessions/[sport]`                                       | My Sessions: search, status / age group / team / date filters, actions, all in the URL        |
+| `/sessions/[sport]/new`                                   | Create a session: information, schedule, objectives                                           |
+| `/sessions/[sport]/[id]`                                  | The builder: timeline, totals and end time, details panel, autosave                           |
+| `/sessions/[sport]/[id]/drills` and `/drills/[drillId]`   | Add a drill: the library's own search, then a preview with the add form                       |
+| `/sessions/[sport]/[id]/replace/[activityId]` and `/[id]` | Replace one drill in the timeline with another                                                |
+| `/sessions/[sport]/[id]/document?view=design\|preview`    | Design and live preview of the printed session: presets, colours, sections, page setup, print |
+
+### The printed session (Design and Preview)
+
+A session becomes a professional document in three steps that share one screen: **Builder → Design → Preview**
+(the tabs at the top; **Customize & Preview** opens them from the builder). The Design view has eight presets,
+colour pickers with a readability check, section toggles, Compact/Detailed, A4/Letter, portrait/landscape,
+margins, one or two columns and spacing, typeface, header/border/divider styles, footer text and a reflection page.
+**Print** uses the browser's own print (`Ctrl/Cmd+P`); the pages you preview are the pages that print. A design is
+saved with the session (**Save design**). PDF export, saved templates and logo upload are later steps
+(ARCHITECTURE.md §13.6).
 
 Adding another sport is data plus one module: rows in `sports` / `categories` / `skills` /
 `equipment_types`, and a `SportModule` (court packs, vocabulary) in `src/sports/<sport>/` registered in

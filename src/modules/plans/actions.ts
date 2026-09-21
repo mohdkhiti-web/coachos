@@ -22,6 +22,7 @@ import {
   reorderActivities,
   replaceActivityDrill,
   restorePlan,
+  savePlanDocument,
   setPlanStatus,
   updateActivity,
   updatePlan,
@@ -30,6 +31,7 @@ import {
   addBreakSchema,
   addCustomActivitySchema,
   addDrillActivitySchema,
+  planDocumentSchema,
   planInputSchema,
   reorderActivitiesSchema,
   updateActivitySchema,
@@ -100,6 +102,16 @@ export async function updatePlanAction(
   const input = parse(planInputSchema, raw);
   if (!input.ok) return input.error;
   return run("plan.update", sportKey, [id], (a) => updatePlan(a, sportKey, id, input.data));
+}
+
+export async function savePlanDocumentAction(
+  sportKey: string,
+  id: string,
+  raw: unknown,
+): Promise<Created> {
+  const input = parse(planDocumentSchema, raw);
+  if (!input.ok) return input.error;
+  return run("plan.document", sportKey, [id], (a) => savePlanDocument(a, sportKey, id, input.data));
 }
 
 export async function setPlanStatusAction(

@@ -9,6 +9,15 @@ import { isUuid, newId } from "@/lib/ids";
 import { fail, ok, type FieldErrors, type Result } from "@/lib/result";
 import { recordAuditInTx } from "@/modules/audit";
 import { drillContentSchema, getDrill } from "@/modules/drills";
+import {
+  checkDesign,
+  documentSettingsSchema,
+  diffDesign,
+  emptyReflection,
+  hasBlockingIssue,
+  migrateDocumentSettings,
+  presetDesign,
+} from "@/modules/documents";
 import { getOrganizationById } from "@/modules/organizations";
 import { getAgeGroups, getObjectives, getSport, type SportDto } from "@/modules/sports";
 import { getSportModule } from "@/sports/registry";
@@ -24,6 +33,7 @@ import type {
   AddBreakInput,
   AddCustomActivityInput,
   AddDrillActivityInput,
+  PlanDocumentInput,
   PlanInput,
   ReorderActivitiesInput,
   UpdateActivityInput,
@@ -349,6 +359,49 @@ export async function updatePlan(
       entityId: id,
       metadata: { sport: sport.key },
     });
+    return ok({ id, version: updated.version });
+  });
+}
+
+/**
+ * Save how the session prints. What is stored is the preset and only what the coach changed on top of it (never
+ * the whole design), plus the reflection text. A design whose text cannot be read on its background is refused —
+ * the design form says so first, this is the rule itself. Not audited: it is a cosmetic edit of the same
+ * session, like moving an activity (which is not audited either).
+ */
+export async function savePlanDocument(
+  actor: Actor,
+  sportKey: string,
+  id: string,
+  input: PlanDocumentInput,
+): Promise<Result<{ id: string; version: number }>> {
+  const issues = checkDesign(input.design);
+  if (hasBlockingIssue(issues)) {
+    return fail("VALIDATION", { fields: { "design.colors.text": ["text_unreadable"] } });
+  }
+  const sport = await getSport(sportKey);
+  if (!sport) return fail("NOT_FOUND");
+  const settings = documentSettingsSchema.parse({
+    preset: input.preset,
+    overrides: diffDesign(presetDesign(input.preset), input.design),
+    reflection: input.reflection,
+  });
+
+  return inTx(actor, async (tx) => {
+    const row = await loadPlanRow(tx, sport.id, id);
+    if (!row || row.deletedAt) return fail("NOT_FOUND");
+    if (!can(actor, "plan:update", resourceOf(row)) || row.status === "archived")
+      return fail("FORBIDDEN");
+    const [updated] = await tx
+      .update(plans)
+      .set({
+        documentSettings: settings,
+        version: sql`${plans.version} + 1`,
+        updatedAt: new Date(),
+      })
+      .where(and(eq(plans.id, id), eq(plans.version, input.version)))
+      .returning({ version: plans.version });
+    if (!updated) return fail("CONFLICT");
     return ok({ id, version: updated.version });
   });
 }
@@ -849,6 +902,14 @@ async function readableDrillIds(tx: Tx, ids: string[]): Promise<Set<string>> {
  * The copy is "Copy of …", unscheduled (a duplicate is normally for another day: date, start time and session
  * number are cleared; the zone is kept) and remembers where it came from (`forked_from_id`).
  */
+function copiedDocumentSettings(raw: unknown) {
+  // never customised stays never customised (the column's default), not a frozen copy of today's defaults
+  if (typeof raw === "object" && raw !== null && Object.keys(raw).length === 0) return {};
+  const settings = migrateDocumentSettings(raw);
+  if (!settings) return {};
+  return { ...settings, reflection: emptyReflection() };
+}
+
 export async function duplicatePlan(
   actor: Actor,
   sportKey: string,
@@ -891,6 +952,8 @@ export async function duplicatePlan(
       startTime: null,
       timezone: source.timezone,
       details: { ...details, sessionNumber: null },
+      // the copy prints the way the original does; the reflection belongs to the session that was run, so it starts empty
+      documentSettings: copiedDocumentSettings(source.documentSettings),
       forkedFromId: source.id,
     });
 

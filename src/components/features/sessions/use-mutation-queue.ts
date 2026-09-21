@@ -19,6 +19,8 @@ export function useMutationQueue(initialVersion: number) {
   const chain = React.useRef<Promise<unknown>>(Promise.resolve());
   const [pending, setPending] = React.useState(0);
   const [failure, setFailure] = React.useState<QueueFailure>(null);
+  // the same failure, readable from an event handler that runs after an await (state would be stale there)
+  const failureRef = React.useRef<QueueFailure>(null);
 
   /** Tell the queue about a version the server has shown us (a page refresh): it never goes backwards. */
   const observe = React.useCallback((v: number) => {
@@ -35,10 +37,15 @@ export function useMutationQueue(initialVersion: number) {
           const result = await run(version.current);
           if (result.ok) {
             version.current = result.data.version;
+            if (failureRef.current === "ERROR") failureRef.current = null;
             setFailure((f) => (f === "ERROR" ? null : f)); // a later success clears a transient failure
-          } else if (result.error.code === "CONFLICT") setFailure("CONFLICT");
+          } else if (result.error.code === "CONFLICT") {
+            failureRef.current = "CONFLICT";
+            setFailure("CONFLICT");
+          }
           return result;
         } catch {
+          failureRef.current = "ERROR";
           setFailure("ERROR"); // the request never got an answer (offline, server down)
           return fail("INTERNAL");
         } finally {
@@ -51,7 +58,16 @@ export function useMutationQueue(initialVersion: number) {
     [],
   );
 
-  const clearFailure = React.useCallback(() => setFailure(null), []);
+  const clearFailure = React.useCallback(() => {
+    failureRef.current = null;
+    setFailure(null);
+  }, []);
 
-  return { pending, failure, enqueue, observe, clearFailure };
+  /** Resolves once everything queued so far has finished, with the failure (if any) it ended in. */
+  const whenIdle = React.useCallback(async (): Promise<QueueFailure> => {
+    await chain.current;
+    return failureRef.current;
+  }, []);
+
+  return { pending, failure, enqueue, observe, clearFailure, whenIdle };
 }

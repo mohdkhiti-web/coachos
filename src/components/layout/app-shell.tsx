@@ -32,16 +32,16 @@ export async function AppShell({
   const theme = parseTheme(cookieStore.get(THEME_COOKIE)?.value);
 
   return (
-    <div className="min-h-dvh md:grid md:grid-cols-[16rem_minmax(0,1fr)]">
+    <div className="min-h-dvh md:grid md:grid-cols-[16rem_minmax(0,1fr)] print:block">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink print:hidden"
       >
         {tc("skipToContent")}
       </a>
 
       {/* Desktop rail */}
-      <aside className="sticky top-0 hidden h-dvh flex-col border-r border-line bg-surface-raised md:flex">
+      <aside className="sticky top-0 hidden h-dvh flex-col border-r border-line bg-surface-raised md:flex print:hidden">
         <div className="flex h-16 items-center px-5">
           <Wordmark />
         </div>
@@ -61,7 +61,7 @@ export async function AppShell({
       </aside>
 
       <div className="flex min-h-dvh min-w-0 flex-col">
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-3 border-b border-line bg-surface/90 px-4 backdrop-blur md:justify-end md:px-8">
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-3 border-b border-line bg-surface/90 px-4 backdrop-blur md:justify-end md:px-8 print:hidden">
           {/* Mobile has no side rail, so the workspace name lives here; on desktop the rail already shows it. */}
           <div className="flex min-w-0 items-center gap-3 md:hidden">
             <BrandMark className="size-8" />
@@ -80,15 +80,18 @@ export async function AppShell({
           </div>
         </header>
 
-        <main id="main" className="flex-1 px-4 py-6 pb-28 md:px-8 md:py-10 md:pb-10">
-          <div className="mx-auto w-full max-w-5xl">{children}</div>
+        <main id="main" className="flex-1 px-4 py-6 pb-28 md:px-8 md:py-10 md:pb-10 print:p-0">
+          {/* a page may ask for more room (the design workspace) with a data-page-wide element inside it */}
+          <div className="mx-auto w-full max-w-5xl has-[[data-page-wide]]:max-w-[92rem] print:max-w-none">
+            {children}
+          </div>
         </main>
       </div>
 
       {/* Mobile tab bar */}
       <nav
         aria-label={t("mainNav")}
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-surface-raised pb-[env(safe-area-inset-bottom)] md:hidden"
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-surface-raised pb-[env(safe-area-inset-bottom)] md:hidden print:hidden"
       >
         <NavLinks variant="bar" sports={sports} />
       </nav>

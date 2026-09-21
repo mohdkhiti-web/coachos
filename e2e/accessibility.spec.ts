@@ -7,8 +7,10 @@ import { addBreak, addCustom, createSession, field, pickDrill, SESSIONS } from "
  * WCAG 2.2 AA target (ARCHITECTURE.md §2.5): axe on every key screen, in BOTH themes.
  * Serious/critical violations fail the run (which also validates the Playbook colour contrast).
  */
-async function audit(page: Page, label: string) {
-  const results = await new AxeBuilder({ page })
+async function audit(page: Page, label: string, include?: string) {
+  const builder = new AxeBuilder({ page });
+  if (include) builder.include(include);
+  const results = await builder
     .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
     .analyze();
   const blocking = results.violations.filter(
@@ -126,6 +128,103 @@ for (const scheme of ["light", "dark"] as const) {
       await audit(page, `sessions, populated list (${scheme})`);
       await page.goto(`${SESSIONS}?status=archived`);
       await audit(page, `sessions, archived view (${scheme})`);
+    });
+
+    test("session design and preview: controls, every preset's paper colours, the leave dialog", async ({
+      page,
+    }) => {
+      test.setTimeout(240_000);
+      await signUpAndVerify(page, newUser());
+      await completeOnboarding(page);
+      const builder = await createSession(page, {
+        title: "Accessible design",
+        team: "Wolves",
+        objective: "Shooting",
+        date: "2030-06-11",
+        start: "18:00",
+      });
+      await pickDrill(page, builder, "five-spot", "Five-Spot Shooting");
+      await page.getByRole("button", { name: "Add to session" }).click();
+      await expect(page.getByRole("article", { name: "Five-Spot Shooting" })).toBeVisible();
+      await addBreak(page, "Water break", 2);
+
+      await page.goto(`${builder}/document?view=design`);
+      await expect(
+        page.getByRole("heading", { level: 1, name: "Design and preview" }),
+      ).toBeVisible();
+      await expect(page.locator(".doc-page").first()).toBeVisible();
+      await audit(page, `design and preview, classic (${scheme})`);
+
+      // the paper is paper in either app theme: every preset must be readable (this is where a bad colour pair shows up)
+      for (const preset of [
+        "Modern Basketball",
+        "Minimal",
+        "Professional",
+        "Dark",
+        "School",
+        "Academy",
+        "Youth",
+      ]) {
+        await page
+          .getByTestId("design-panel")
+          .getByLabel(preset, { exact: true })
+          .check({ force: true });
+        await expect(page.locator(".doc-page").first()).toBeVisible();
+        await page.waitForTimeout(150);
+        await audit(page, `design and preview, ${preset} (${scheme})`);
+      }
+      // both densities and a cover + reflection, the pages with the most parts
+      await page
+        .getByTestId("design-panel")
+        .getByRole("group", { name: "Level of detail" })
+        .getByLabel("Compact")
+        .check({ force: true });
+      await page
+        .getByTestId("design-panel")
+        .locator('[data-group="sections"]')
+        .getByRole("checkbox", { name: /^Cover page/ })
+        .check();
+      await page
+        .getByTestId("design-panel")
+        .locator('[data-group="sections"]')
+        .getByRole("checkbox", { name: /^Session reflection/ })
+        .check();
+      await audit(page, `design and preview, compact with cover and reflection (${scheme})`);
+
+      // a bad colour: the readability list and the error message
+      await page.getByLabel("Text colour code", { exact: true }).fill("#f5f5f5");
+      await expect(page.locator('[data-verdict="bad"]')).toBeVisible();
+      await audit(
+        page,
+        `design panel, unreadable colours flagged (${scheme})`,
+        '[data-testid="design-panel"]',
+      ); // the paper itself is unreadable on purpose here
+      await page.getByLabel("Primary colour code", { exact: true }).fill("zz");
+      await audit(
+        page,
+        `design panel, invalid colour code (${scheme})`,
+        '[data-testid="design-panel"]',
+      );
+      await page.getByLabel("Primary colour code", { exact: true }).fill("#1f3a5f");
+      await page.getByLabel("Text colour code", { exact: true }).fill("#111827");
+
+      await page
+        .getByRole("navigation", { name: "Session workspace" })
+        .getByRole("link", { name: "Preview" })
+        .click();
+      await expect(page).toHaveURL(/view=preview$/);
+      await expect(page.getByRole("toolbar", { name: "Preview controls" })).toBeVisible();
+      await audit(page, `preview view (${scheme})`);
+
+      await page
+        .getByRole("navigation", { name: "Session workspace" })
+        .getByRole("link", { name: "Builder" })
+        .click();
+      const dialog = page.getByRole("dialog", { name: "Unsaved design changes" });
+      await expect(dialog).toBeVisible();
+      await audit(page, `unsaved changes dialog (${scheme})`);
+      await page.keyboard.press("Escape");
+      await expect(dialog).toBeHidden();
     });
 
     test("sports workspace, drill library, drill detail, and the drill form with its diagram builder", async ({

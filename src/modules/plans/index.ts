@@ -14,11 +14,13 @@ export {
   reorderActivities,
   replaceActivityDrill,
   restorePlan,
+  savePlanDocument,
   setPlanStatus,
   updateActivity,
   updatePlan,
 } from "./commands";
 export { getPlan, listPlans, listPlanTeams } from "./queries";
 export type { ListPlansOptions } from "./queries";
+export { toDocumentInput } from "./document-input";
 export * from "./dto";
 export * from "./filters";

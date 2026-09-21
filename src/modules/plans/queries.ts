@@ -14,6 +14,7 @@ import { can, type Actor, type PlanResource } from "@/lib/authz/can";
 import { tenantTx } from "@/lib/db/tx";
 import { isUuid } from "@/lib/ids";
 import { logger } from "@/lib/logger";
+import { defaultDocumentSettings, migrateDocumentSettings } from "@/modules/documents";
 import { getSport } from "@/modules/sports";
 import type { SportKey } from "@/sports/registry";
 import { migratePlanDetails } from "./details";
@@ -78,6 +79,13 @@ export async function getPlan(
     if (!details) {
       logger.error({ planId: id }, "plans.stored_details_invalid");
       return null;
+    }
+
+    // A design this code cannot read (written by a newer deploy) must not make the session unreadable: print with the defaults.
+    let documentSettings = migrateDocumentSettings(p.documentSettings);
+    if (!documentSettings) {
+      logger.error({ planId: id }, "plans.stored_document_settings_invalid");
+      documentSettings = defaultDocumentSettings();
     }
 
     // sequential on purpose: a transaction is a single connection (concurrent queries on it queue anyway)
@@ -169,6 +177,7 @@ export async function getPlan(
       startTime: p.startTime,
       timezone: p.timezone,
       details,
+      documentSettings,
       objectives: planObjectiveSummary,
       activities,
       totals: {

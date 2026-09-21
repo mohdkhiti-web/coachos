@@ -81,6 +81,15 @@ export const plans = pgTable(
       .notNull()
       .default(sql`'{"schemaVersion":1}'::jsonb`),
 
+    /**
+     * How the printed session looks and the coach's reflection text: validated, versioned JSON (the documents
+     * module's `documentSettingsSchema`). `{}` = never customised. Design only ever lives here as the session's
+     * OVERRIDE of a preset; the presets themselves are code.
+     */
+    documentSettings: jsonb("document_settings")
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+
     createdBy: uuid("created_by").references(() => user.id, { onDelete: "set null" }),
     /** Lineage when a session was duplicated (a future action; the column keeps the door open). */
     forkedFromId: uuid("forked_from_id"),
@@ -155,6 +164,10 @@ export const plans = pgTable(
     check(
       "plans_details_chk",
       sql`jsonb_typeof(${t.details}) = 'object' AND octet_length(${t.details}::text) <= 16000`,
+    ),
+    check(
+      "plans_document_settings_chk",
+      sql`jsonb_typeof(${t.documentSettings}) = 'object' AND octet_length(${t.documentSettings}::text) <= 16000`,
     ),
     check("plans_version_chk", sql`${t.version} >= 1`),
   ],

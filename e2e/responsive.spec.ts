@@ -178,3 +178,75 @@ test("the session builder is usable on a phone: nothing overflows, controls are 
   await expect(page.getByRole("article", { name: "Phone session" })).toBeVisible();
   expect(await noHorizontalScroll(page), "populated list overflows").toBe(true);
 });
+
+test("the design workspace works on a phone: preview first, quick controls, no sideways scrolling, 44px targets", async ({
+  page,
+}) => {
+  test.setTimeout(240_000);
+  await signUpAndVerify(page, newUser());
+  await completeOnboarding(page);
+  const builder = await createSession(page, {
+    title: "Phone design",
+    team: "Wolves",
+    objective: "Shooting",
+    date: "2030-06-11",
+    start: "18:00",
+  });
+  await pickDrill(page, builder, "five-spot", "Five-Spot Shooting");
+  await page.getByRole("button", { name: "Add to session" }).click();
+  await expect(page.getByRole("article", { name: "Five-Spot Shooting" })).toBeVisible();
+
+  // the builder's entry point is a real touch target
+  await page.goto(builder);
+  const open = page.getByRole("button", { name: "Customize & Preview" });
+  expect((await open.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
+  await open.click();
+  await expect(page).toHaveURL(/\/document\?view=design$/);
+  await expect(page.getByRole("heading", { level: 1, name: "Design and preview" })).toBeVisible();
+  expect(await noHorizontalScroll(page), "design view overflows").toBe(true);
+
+  // on a phone the design view is the controls alone; the tabs are touch targets
+  const tabs = page.getByRole("navigation", { name: "Session workspace" });
+  for (const name of ["Builder", "Design", "Preview"]) {
+    const box = await tabs.getByRole("link", { name }).boundingBox();
+    expect(box?.height ?? 0, name).toBeGreaterThanOrEqual(40);
+  }
+  await expect(page.getByTestId("design-panel")).toBeVisible();
+  await expect(page.getByRole("toolbar", { name: "Preview controls" })).toBeHidden();
+  await page
+    .getByTestId("design-panel")
+    .getByLabel("Modern Basketball", { exact: true })
+    .check({ force: true });
+
+  // the preview comes first: whole pages, sized to the screen, with the quick controls above
+  await tabs.getByRole("link", { name: "Preview" }).click();
+  await expect(page.getByRole("toolbar", { name: "Preview controls" })).toBeVisible();
+  await expect(page.getByTestId("design-panel")).toBeHidden();
+  expect(await noHorizontalScroll(page), "preview view overflows").toBe(true);
+  const stage = page.getByRole("region", { name: "Document preview" });
+  const sheet = page.locator(".doc-page").first();
+  await expect(sheet).toBeVisible();
+  const [s, p] = await Promise.all([stage.boundingBox(), sheet.boundingBox()]);
+  expect((p?.width ?? 0) <= (s?.width ?? 0) + 1, "the page is fitted to the phone's width").toBe(
+    true,
+  );
+  expect(Number(await stage.getAttribute("data-zoom"))).toBeLessThan(0.6);
+  for (const name of ["Previous page", "Next page", "Zoom out", "Zoom in"]) {
+    const box = await page
+      .getByRole("toolbar", { name: "Preview controls" })
+      .getByRole("button", { name })
+      .boundingBox();
+    expect(box?.height ?? 0, name).toBeGreaterThanOrEqual(44);
+  }
+  // basic editing without leaving the preview
+  const compact = page.getByRole("group", { name: "Level of detail" }).getByLabel("Compact");
+  await compact.check({ force: true });
+  await page.getByRole("combobox", { name: /^Look/ }).selectOption({ label: "School" });
+  await expect(page.locator(".doc-page").first()).toHaveAttribute("data-divider", "dotted");
+  await page.getByRole("button", { name: "Next page" }).click();
+  await expect(page.getByRole("spinbutton", { name: "Page number" })).toHaveValue("2");
+  // the printed page is always A4 or Letter, whatever the screen
+  expect(
+    await page.evaluate(() => getComputedStyle(document.querySelector(".doc-page")!).width),
+  ).toMatch(/^793\.\d+px$/);
+});

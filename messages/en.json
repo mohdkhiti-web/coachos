@@ -73,7 +73,8 @@
     "diagram_ball_needs_holder_or_position": "Each ball needs either a player holding it or a position.",
     "diagram_ball_holder_shared": "Two balls are held by the same player.",
     "diagram_action_requires_ball": "A pass, dribble or shot happens without the ball.",
-    "diagram_court_unknown": "This diagram's court isn't available for this sport."
+    "diagram_court_unknown": "This diagram's court isn't available for this sport.",
+    "hex_invalid": "Enter a colour like #1f3a5f."
   },
   "errors": {
     "generic": "Something went wrong. Please try again.",
@@ -1008,6 +1009,11 @@
         "over": "{title} is over position {position} of {count}.",
         "end": "Dropped {title} at position {position} of {count}.",
         "cancel": "Reordering {title} cancelled."
+      },
+      "document": {
+        "open": "Customize & Preview",
+        "fixFirst": "Fix the highlighted fields first, then open the design.",
+        "saveFirst": "Your latest changes couldn’t be saved yet, so the design wasn’t opened."
       }
     },
     "activity": {
@@ -1097,6 +1103,309 @@
       "replaceSubmit": "Replace drill",
       "fullDrill": "Open the full drill",
       "newTab": "(opens in a new tab)"
+    },
+    "document": {
+      "brand": "CoachOS",
+      "pageLabel": "Page {page} of {total}",
+      "continued": "(continued)",
+      "minutes": "{count} min",
+      "nextDay": "(next day)",
+      "break": "Break",
+      "footer": {
+        "page": "Page {page} of {total}"
+      },
+      "cover": {
+        "preparedWith": "Prepared with CoachOS"
+      },
+      "sections": {
+        "overview": "Session overview",
+        "objectives": "Objectives",
+        "equipment": "Equipment",
+        "timeline": "Timeline",
+        "notes": "Coach notes",
+        "reflection": "Session reflection"
+      },
+      "facts": {
+        "team": "Team",
+        "ageGroup": "Age group",
+        "level": "Level",
+        "players": "Players",
+        "coach": "Coach",
+        "club": "Club / school",
+        "season": "Season",
+        "sessionNumber": "Session",
+        "date": "Date",
+        "startTime": "Start",
+        "endTime": "End",
+        "duration": "Duration",
+        "location": "Location"
+      },
+      "objectives": {
+        "main": "Main objective",
+        "also": "Also working on",
+        "goal": "Session goal"
+      },
+      "timeline": {
+        "time": "Time",
+        "activity": "Activity",
+        "phase": "Phase",
+        "duration": "Duration"
+      },
+      "labels": {
+        "objective": "Objective",
+        "description": "Description",
+        "equipment": "Equipment",
+        "setup": "Setup",
+        "organization": "Organization"
+      },
+      "cells": {
+        "instructions": "Instructions",
+        "coachingPoints": "Coaching points",
+        "commonMistakes": "Common mistakes",
+        "safety": "Safety",
+        "progressions": "Progressions",
+        "regressions": "Regressions",
+        "variations": "Variations",
+        "notes": "Coach notes"
+      },
+      "meta": {
+        "playersOne": "{count, plural, one {# player} other {# players}}",
+        "playersRange": "{min}–{max} players",
+        "format": "Format: {value}",
+        "intensity": "{level} intensity",
+        "reps": "{count, plural, one {# rep} other {# reps}}"
+      },
+      "equipment": {
+        "count": "×{count}",
+        "perPlayer": "×{count} per player",
+        "perPair": "×{count} per pair"
+      },
+      "reflection": {
+        "wentWell": "What went well?",
+        "needsImprovement": "What needs improvement?",
+        "nextFocus": "Next session focus",
+        "notes": "Coach notes"
+      }
+    },
+    "design": {
+      "heading": "Design and preview",
+      "workspaceNav": "Session workspace",
+      "tabs": {
+        "builder": "Builder",
+        "design": "Design",
+        "preview": "Preview"
+      },
+      "save": {
+        "button": "Save design",
+        "saved": "Design saved",
+        "unsaved": "Unsaved design changes",
+        "saving": "Saving…",
+        "error": "Couldn’t save the design",
+        "conflict": "Changed elsewhere",
+        "unreadable": "Text can’t be read on this background",
+        "savedToast": "Design saved",
+        "conflictBanner": "This session was changed somewhere else. Reload to see the latest version before saving your design.",
+        "reload": "Reload"
+      },
+      "readOnly": {
+        "archived": "This session is archived, so its design can’t be saved. You can still preview and print it.",
+        "readOnly": "You can preview and print this session. Only its author can save a design."
+      },
+      "leave": {
+        "title": "Unsaved design changes",
+        "body": "You changed the design but haven’t saved it. What would you like to do?",
+        "stay": "Keep editing",
+        "discard": "Leave without saving",
+        "saveAndLeave": "Save and leave"
+      },
+      "quick": {
+        "preset": "Look"
+      },
+      "groups": {
+        "presets": "Presets",
+        "mode": "Detail",
+        "page": "Page",
+        "sections": "Sections",
+        "colors": "Colors",
+        "style": "Type and style",
+        "footer": "Footer and logo",
+        "reflection": "Session reflection text"
+      },
+      "presets": {
+        "legend": "Choose a preset",
+        "customised": "Customised from {name}",
+        "reset": "Reset look",
+        "classic": {
+          "name": "Classic Coach",
+          "description": "Navy and slate on white with a clean sans-serif. The everyday coaching sheet."
+        },
+        "modern": {
+          "name": "Modern Basketball",
+          "description": "Court orange with a solid header band. Confident and current."
+        },
+        "minimal": {
+          "name": "Minimal",
+          "description": "Black and grey, airy spacing and almost no decoration."
+        },
+        "professional": {
+          "name": "Professional",
+          "description": "Teal and slate with a thin page border. Ready for a staff meeting."
+        },
+        "dark": {
+          "name": "Dark",
+          "description": "Light text on a dark page, for screens and dark-room review. Uses more ink to print."
+        },
+        "school": {
+          "name": "School",
+          "description": "Maroon on warm paper with a serif face. Suits a PE department."
+        },
+        "academy": {
+          "name": "Academy",
+          "description": "Navy and gold with a framed page. A formal academy programme."
+        },
+        "youth": {
+          "name": "Youth",
+          "description": "Bright blue and orange with generous spacing and clear headings."
+        }
+      },
+      "mode": {
+        "legend": "Level of detail",
+        "compact": "Compact",
+        "detailed": "Detailed",
+        "compactHint": "Title, timing, players, equipment, a short setup, the diagram and the key coaching points. Fewer pages.",
+        "detailedHint": "Setup, instructions, coaching points, common mistakes, safety, progressions, regressions and variations."
+      },
+      "page": {
+        "paper": "Paper",
+        "papers": {
+          "a4": "A4",
+          "letter": "Letter"
+        },
+        "orientation": "Orientation",
+        "orientations": {
+          "portrait": "Portrait",
+          "landscape": "Landscape"
+        },
+        "margins": "Margins",
+        "marginSizes": {
+          "narrow": "Narrow",
+          "normal": "Normal",
+          "wide": "Wide"
+        },
+        "columns": "Columns",
+        "columnCount": "{count, plural, one {# column} other {# columns}}",
+        "columnsHint": "Columns apply to the activity pages; the overview and timeline stay full width.",
+        "spacing": "Spacing",
+        "spacings": {
+          "compact": "Compact",
+          "normal": "Normal",
+          "spacious": "Spacious"
+        }
+      },
+      "sectionGroups": {
+        "pages": "Pages",
+        "activities": "Inside each activity",
+        "notes": "Notes"
+      },
+      "sections": {
+        "cover": "Cover page",
+        "overview": "Session overview",
+        "objectives": "Objectives",
+        "equipment": "Equipment",
+        "timeline": "Timeline",
+        "diagrams": "Diagrams",
+        "instructions": "Instructions",
+        "coachingPoints": "Coaching points",
+        "commonMistakes": "Common mistakes",
+        "safety": "Safety",
+        "progressions": "Progressions",
+        "regressions": "Regressions",
+        "variations": "Variations",
+        "coachNotes": "Coach notes",
+        "reflection": "Session reflection",
+        "detailedOnly": "Detailed only"
+      },
+      "colors": {
+        "primary": "Primary",
+        "secondary": "Secondary",
+        "accent": "Accent",
+        "text": "Text",
+        "background": "Background",
+        "pick": "{name} colour picker",
+        "hex": "{name} colour code",
+        "invalid": "Enter a colour like #1f3a5f."
+      },
+      "contrast": {
+        "title": "Readability",
+        "text": "Text on background",
+        "primary": "Primary on background",
+        "accent": "Accent on background",
+        "good": "Good",
+        "low": "Low",
+        "bad": "Too low",
+        "textNote": "Body text should reach 4.5:1 to stay easy to read on paper.",
+        "graphicNote": "Headings adjust automatically; bars and rules will look faint."
+      },
+      "style": {
+        "font": "Typeface",
+        "header": "Header",
+        "border": "Page border",
+        "divider": "Section divider"
+      },
+      "fonts": {
+        "inter": "Inter",
+        "source-sans": "Source Sans",
+        "merriweather": "Merriweather (serif)",
+        "system": "System default"
+      },
+      "headerStyles": {
+        "none": "None",
+        "minimal": "Minimal",
+        "line": "Line",
+        "band": "Solid band"
+      },
+      "borders": {
+        "none": "None",
+        "thin": "Thin",
+        "frame": "Framed"
+      },
+      "dividers": {
+        "none": "None",
+        "thin": "Thin line",
+        "accent": "Accent line",
+        "dotted": "Dotted"
+      },
+      "footer": {
+        "text": "Footer text",
+        "hint": "Printed in the middle of every page footer, next to the coach, the date and the page number."
+      },
+      "logo": {
+        "soon": "Your club or school logo will be added here once logo upload is available."
+      },
+      "reflection": {
+        "off": "Turn on Session reflection under Sections to add text here.",
+        "hint": "Leave a prompt empty to print ruled space for handwriting after the session.",
+        "wentWell": "What went well?",
+        "needsImprovement": "What needs improvement?",
+        "nextFocus": "Next session focus",
+        "notes": "Coach notes"
+      },
+      "preview": {
+        "toolbar": "Preview controls",
+        "stage": "Document preview",
+        "previousPage": "Previous page",
+        "nextPage": "Next page",
+        "pageNumber": "Page number",
+        "of": "of {total}",
+        "currentPage": "Page {page} of {total}",
+        "zoomOut": "Zoom out",
+        "zoomIn": "Zoom in",
+        "zoomLevel": "Zoom level",
+        "fitPage": "Fit page",
+        "fitWidth": "Fit width",
+        "print": "Print",
+        "empty": "There is nothing to preview. Switch a section on to add it to the document."
+      }
     }
   }
 }

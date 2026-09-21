@@ -1,4 +1,4 @@
-import { DiagramView, type Diagram } from "@/engines/diagram";
+import { DiagramView, type Diagram, type DiagramTheme } from "@/engines/diagram";
 import { getCourtPack } from "@/sports/registry";
 
 /**
@@ -11,11 +11,14 @@ export function DrillDiagram({
   title,
   decorative = false,
   className,
+  theme,
 }: {
   diagram: Diagram;
   title?: string;
   decorative?: boolean;
   className?: string;
+  /** `print` = fixed colours (a page of paper never follows the app's light/dark theme). Default: the app's own. */
+  theme?: DiagramTheme;
 }) {
   const pack = getCourtPack(diagram.sport, diagram.court);
   if (!pack) return null;
@@ -26,6 +29,7 @@ export function DrillDiagram({
       title={title}
       decorative={decorative}
       className={className}
+      theme={theme}
     />
   );
 }
