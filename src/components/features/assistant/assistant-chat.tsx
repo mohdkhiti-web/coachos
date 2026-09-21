@@ -77,6 +77,18 @@ export function AssistantChat({
   const [failure, setFailure] = React.useState<{ code: string; retry: string } | null>(null);
   const [applying, setApplying] = React.useState<string | null>(null);
   const [announce, setAnnounce] = React.useState("");
+  // Navigating to another conversation (a link in the history) replaces what is shown. A refresh of the SAME conversation - the
+  // one this screen just created, or one whose list was refreshed - must not: it would close an open confirmation and lose typing.
+  const [shownFromServer, setShownFromServer] = React.useState(initialConversationId);
+  if (initialConversationId !== shownFromServer) {
+    setShownFromServer(initialConversationId);
+    if (initialConversationId !== conversationId) {
+      setMessages(initialMessages);
+      setConversationId(initialConversationId);
+      setText(initialPrompt);
+      setFailure(null);
+    }
+  }
   const controller = React.useRef<AbortController | null>(null);
   const endRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLTextAreaElement>(null);

@@ -292,6 +292,7 @@ test("the Phase 2 journey: sports → basketball → drills → filter → open 
   await test.step("edit: the form loads the saved values, changes save, and a stale editor is refused", async () => {
     await page.goto(drillUrl);
     await page.getByRole("link", { name: "Edit" }).click();
+    await expect(page).toHaveURL(/\/edit$/); // the form has replaced the detail page: nothing of the old page is left to match
     await expect(page.getByRole("textbox", { name: "Title", exact: true })).toHaveValue(title);
     await expect(page.getByRole("textbox", { name: "Objective" })).toHaveValue(
       "Move the ball quickly and accurately to a teammate.",
@@ -301,7 +302,7 @@ test("the Phase 2 journey: sports → basketball → drills → filter → open 
     await expect(page.getByLabel("Format", { exact: true })).toHaveValue("3v3");
     await expect(page.getByRole("checkbox", { name: "Small-sided game" })).toBeChecked();
     await expect(page.getByRole("checkbox", { name: "Passing on the move" })).toBeChecked();
-    await expect(page.getByLabel("Organization")).toHaveValue(
+    await expect(page.getByRole("textbox", { name: "Organization" })).toHaveValue(
       "Two groups of five rotate every three minutes.",
     );
     await expect(page.getByText("This diagram is valid.")).toBeVisible(); // the saved diagram was loaded into the builder

@@ -88,7 +88,7 @@ export default async function AssistantPage({
     <div className="mx-auto max-w-6xl space-y-6">
       {header}
       <AssistantChat
-        key={conversation?.id ?? `new-${planId ?? "none"}`}
+        key={`${sport.key}-${planId ?? "none"}`}
         sportKey={sport.key}
         conversationId={conversation?.id ?? null}
         initialMessages={messages.map(toMessageDto)}
