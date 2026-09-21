@@ -18,6 +18,7 @@ import {
   MODES,
   ORIENTATIONS,
   PAPERS,
+  PROMPT_MAX,
   PRESET_IDS,
   PRESETS,
   SPACINGS,
@@ -90,6 +91,10 @@ export function DesignPanel({
   onDesign,
   onPreset,
   onReflection,
+  header,
+  showAnswers = true,
+  baseLook,
+  onResetLook,
 }: {
   design: DocumentDesign;
   preset: PresetId;
@@ -97,11 +102,18 @@ export function DesignPanel({
   onDesign: (design: DocumentDesign) => void;
   onPreset: (preset: PresetId) => void;
   onReflection: (reflection: Reflection) => void;
+  /** Shown first, above the presets (the session workspace puts the saved-template controls here). */
+  header?: React.ReactNode;
+  /** A template has no reflection ANSWERS (they belong to one session); it still has the prompts' wording. */
+  showAnswers?: boolean;
+  /** What "still as designed" means: the preset, plus the template's layer when there is one. */
+  baseLook?: DocumentDesign;
+  onResetLook?: () => void;
 }) {
   const t = useTranslations("sessions.design");
   const presetGroup = React.useId();
   const compact = design.mode === "compact";
-  const customised = lookOf(design) !== lookOf(applyPreset(design, preset));
+  const customised = lookOf(design) !== lookOf(baseLook ?? applyPreset(design, preset));
 
   const setColors = (patch: Partial<DocumentDesign["colors"]>) =>
     onDesign({ ...design, colors: { ...design.colors, ...patch } });
@@ -112,6 +124,7 @@ export function DesignPanel({
 
   return (
     <div className="rounded-lg border border-line bg-surface-raised px-4">
+      {header}
       <Group id="presets" title={t("groups.presets")}>
         <fieldset>
           <legend className="sr-only">{t("presets.legend")}</legend>
@@ -160,7 +173,12 @@ export function DesignPanel({
             <span className="text-ink-muted">
               {t("presets.customised", { name: t(`presets.${preset}.name`) })}
             </span>
-            <Button type="button" variant="ghost" size="sm" onClick={() => onPreset(preset)}>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => (onResetLook ? onResetLook() : onPreset(preset))}
+            >
               <RotateCcw className="size-4" aria-hidden />
               {t("presets.reset")}
             </Button>
@@ -381,6 +399,29 @@ export function DesignPanel({
 
       <Group id="footer" title={t("groups.footer")} open={false}>
         <label className="block text-sm font-medium text-ink">
+          {t("branding.clubName")}
+          <Input
+            className="mt-1"
+            value={design.branding.clubName}
+            maxLength={120}
+            onChange={(e) =>
+              onDesign({ ...design, branding: { ...design.branding, clubName: e.target.value } })
+            }
+          />
+        </label>
+        <label className="block text-sm font-medium text-ink">
+          {t("branding.coachName")}
+          <Input
+            className="mt-1"
+            value={design.branding.coachName}
+            maxLength={80}
+            onChange={(e) =>
+              onDesign({ ...design, branding: { ...design.branding, coachName: e.target.value } })
+            }
+          />
+        </label>
+        <p className="text-xs text-ink-muted">{t("branding.hint")}</p>
+        <label className="block text-sm font-medium text-ink">
           {t("footer.text")}
           <Input
             className="mt-1"
@@ -394,22 +435,41 @@ export function DesignPanel({
       </Group>
 
       <Group id="reflection" title={t("groups.reflection")} open={false}>
-        {design.sections.reflection ? (
-          (["wentWell", "needsImprovement", "nextFocus", "notes"] as const).map((key) => (
-            <label key={key} className="block text-sm font-medium text-ink">
-              {t(`reflection.${key}`)}
-              <Textarea
-                className="mt-1 min-h-20"
-                value={reflection[key]}
-                maxLength={1500}
-                onChange={(e) => onReflection({ ...reflection, [key]: e.target.value })}
-              />
-            </label>
-          ))
+        {(["wentWell", "needsImprovement", "nextFocus", "notes"] as const).map((key) => (
+          <label key={key} className="block text-sm font-medium text-ink">
+            {t("reflection.wording", { prompt: t(`reflection.${key}`) })}
+            <Input
+              className="mt-1"
+              value={design.prompts[key]}
+              maxLength={PROMPT_MAX}
+              placeholder={t(`reflection.${key}`)}
+              onChange={(e) =>
+                onDesign({ ...design, prompts: { ...design.prompts, [key]: e.target.value } })
+              }
+            />
+          </label>
+        ))}
+        <p className="text-xs text-ink-muted">{t("reflection.wordingHint")}</p>
+        {showAnswers ? (
+          design.sections.reflection ? (
+            (["wentWell", "needsImprovement", "nextFocus", "notes"] as const).map((key) => (
+              <label key={key} className="block text-sm font-medium text-ink">
+                {t(`reflection.${key}`)}
+                <Textarea
+                  className="mt-1 min-h-20"
+                  value={reflection[key]}
+                  maxLength={1500}
+                  onChange={(e) => onReflection({ ...reflection, [key]: e.target.value })}
+                />
+              </label>
+            ))
+          ) : (
+            <p className="text-sm text-ink-muted">{t("reflection.off")}</p>
+          )
         ) : (
-          <p className="text-sm text-ink-muted">{t("reflection.off")}</p>
+          <p className="text-xs text-ink-muted">{t("reflection.templateNote")}</p>
         )}
-        <p className="text-xs text-ink-muted">{t("reflection.hint")}</p>
+        {showAnswers ? <p className="text-xs text-ink-muted">{t("reflection.hint")}</p> : null}
       </Group>
     </div>
   );

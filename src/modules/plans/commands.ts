@@ -1,9 +1,17 @@
 import "server-only";
 import { and, asc, eq, inArray, sql } from "drizzle-orm";
 import { PLAN_LIMITS, type ActivityKind, type PlanStatus, type PlanVisibility } from "@/db/enums";
-import { drills, planActivities, planObjectives, plans, profiles } from "@/db/schema";
+import {
+  documentTemplates,
+  drills,
+  planActivities,
+  planObjectives,
+  plans,
+  profiles,
+} from "@/db/schema";
 import { can, type Actor, type PlanResource } from "@/lib/authz/can";
 import type { Tx } from "@/lib/db/client";
+import { inTx } from "@/lib/db/in-tx";
 import { tenantTx } from "@/lib/db/tx";
 import { isUuid, newId } from "@/lib/ids";
 import { fail, ok, type FieldErrors, type Result } from "@/lib/result";
@@ -14,12 +22,19 @@ import {
   documentSettingsSchema,
   diffDesign,
   emptyReflection,
+  resolveSessionDesign,
+  defaultDocumentSettings,
   hasBlockingIssue,
   migrateDocumentSettings,
   presetDesign,
+  type SessionTemplate,
 } from "@/modules/documents";
 import { getOrganizationById } from "@/modules/organizations";
 import { getAgeGroups, getObjectives, getSport, type SportDto } from "@/modules/sports";
+import {
+  readConfig as readTemplateConfig,
+  resourceOf as templateResourceOf,
+} from "@/modules/templates";
 import { getSportModule } from "@/sports/registry";
 import { migratePlanDetails } from "./details";
 import { totalMinutes } from "./schedule";
@@ -33,6 +48,7 @@ import type {
   AddBreakInput,
   AddCustomActivityInput,
   AddDrillActivityInput,
+  ApplyTemplateInput,
   PlanDocumentInput,
   PlanInput,
   ReorderActivitiesInput,
@@ -58,27 +74,6 @@ import type {
 // plumbing
 // ---------------------------------------------------------------------------------------------------
 
-/** Thrown inside a transaction to roll it back with an expected failure (a returned Result does not roll back). */
-class Abort extends Error {
-  constructor(readonly failure: Result<never>) {
-    super("aborted");
-  }
-}
-
-/** A transaction whose failed Result rolls everything back. */
-async function inTx<T>(actor: Actor, fn: (tx: Tx) => Promise<Result<T>>): Promise<Result<T>> {
-  try {
-    return await tenantTx(actor, async (tx) => {
-      const result = await fn(tx);
-      if (!result.ok) throw new Abort(result);
-      return result;
-    });
-  } catch (err) {
-    if (err instanceof Abort) return err.failure;
-    throw err;
-  }
-}
-
 type PlanRow = {
   id: string;
   organizationId: string;
@@ -92,6 +87,7 @@ type PlanRow = {
   ageGroupId: string | null;
   ageMin: number | null;
   ageMax: number | null;
+  documentSettings: unknown;
 };
 
 const resourceOf = (row: PlanRow): PlanResource => ({
@@ -118,6 +114,7 @@ async function loadPlanRow(tx: Tx, sportId: string, id: string): Promise<PlanRow
       ageGroupId: plans.ageGroupId,
       ageMin: plans.ageMin,
       ageMax: plans.ageMax,
+      documentSettings: plans.documentSettings,
     })
     .from(plans)
     .where(and(eq(plans.id, id), eq(plans.sportId, sportId)))
@@ -269,6 +266,12 @@ export async function createPlan(
       null,
       Boolean(input.scheduledDate),
     );
+    let template: LoadedTemplate | null = null;
+    if (input.templateId) {
+      const loaded = await loadUsableTemplate(tx, actor, sport.id, input.templateId);
+      if (!loaded.ok) return loaded;
+      template = loaded.data;
+    }
     await tx.insert(plans).values({
       id,
       organizationId: actor.organizationId,
@@ -287,6 +290,13 @@ export async function createPlan(
       targetMinutes: input.targetMinutes ?? mod.defaults.sessionMinutes,
       objective: input.objective,
       details: input.details,
+      ...(template
+        ? {
+            documentSettings: settingsWithTemplate(defaultDocumentSettings(), template, "replace"),
+            templateId: template.snapshot.id,
+            templateRevision: template.snapshot.revision,
+          }
+        : {}),
       ...scheduleColumns(input, timezone),
     });
     await writeObjectives(tx, id, sport.id, r);
@@ -294,7 +304,7 @@ export async function createPlan(
       action: "plan.created",
       entityType: "plan",
       entityId: id,
-      metadata: { sport: sport.key },
+      metadata: { sport: sport.key, ...(template ? { template: template.snapshot.id } : {}) },
     });
     return ok({ id, version: 1 });
   });
@@ -363,6 +373,163 @@ export async function updatePlan(
   });
 }
 
+// ---- saved templates ------------------------------------------------------------------------------
+
+type LoadedTemplate = { snapshot: SessionTemplate };
+
+/** A template this actor can read, in this sport, that is live and not archived: the only kind that can be applied. */
+async function loadUsableTemplate(
+  tx: Tx,
+  actor: Actor,
+  sportId: string,
+  templateId: string,
+): Promise<Result<LoadedTemplate>> {
+  if (!isUuid(templateId)) return fail("NOT_FOUND");
+  const [row] = await tx
+    .select()
+    .from(documentTemplates)
+    .where(and(eq(documentTemplates.id, templateId), eq(documentTemplates.sportId, sportId)))
+    .limit(1);
+  if (!row || row.deletedAt) return fail("NOT_FOUND");
+  if (!can(actor, "template:read", templateResourceOf(row))) return fail("NOT_FOUND");
+  if (row.status !== "active")
+    return fail("VALIDATION", { fields: { templateId: ["template_archived"] } });
+  const config = readTemplateConfig(row.id, row.config);
+  return ok({
+    snapshot: {
+      id: row.id,
+      revision: row.revision,
+      name: row.name,
+      preset: config.preset,
+      design: config.design,
+    },
+  });
+}
+
+/**
+ * The session's settings after a template is applied: the template's preset becomes the base, its layer is frozen in,
+ * and the session's own changes are either cleared ("replace") or kept on top ("keep" — they win, as overrides do).
+ * The reflection text, which is session content, is never touched.
+ */
+function settingsWithTemplate(
+  current: ReturnType<typeof defaultDocumentSettings>,
+  template: LoadedTemplate,
+  mode: "replace" | "keep",
+) {
+  return documentSettingsSchema.parse({
+    preset: template.snapshot.preset,
+    template: template.snapshot,
+    overrides: mode === "keep" ? current.overrides : {},
+    reflection: current.reflection,
+  });
+}
+
+/** Does the session already have a design of its own that applying a template could replace? */
+const hasOwnDesign = (s: ReturnType<typeof defaultDocumentSettings>) =>
+  s.template !== null || Object.keys(s.overrides).length > 0 || s.preset !== "classic";
+
+/**
+ * Apply a saved template to a session: its design becomes the session's (frozen, with the template's id and revision
+ * recorded), and NOTHING else changes — not the activities, date, times, number, notes or the reflection text. When
+ * the session already has a design of its own the command insists on confirmation (`confirmed`); "keep" mode
+ * applies the template but keeps the session's own changes on top.
+ */
+export async function applyTemplateToPlan(
+  actor: Actor,
+  sportKey: string,
+  id: string,
+  input: ApplyTemplateInput,
+): Promise<Result<{ id: string; version: number }>> {
+  const sport = await getSport(sportKey);
+  if (!sport) return fail("NOT_FOUND");
+  return inTx(actor, async (tx) => {
+    const row = await loadPlanRow(tx, sport.id, id);
+    if (!row || row.deletedAt) return fail("NOT_FOUND");
+    if (!can(actor, "plan:update", resourceOf(row)) || row.status === "archived")
+      return fail("FORBIDDEN");
+    if (row.version !== input.version) return fail("CONFLICT");
+    const template = await loadUsableTemplate(tx, actor, sport.id, input.templateId);
+    if (!template.ok) return template;
+
+    const current = migrateDocumentSettings(row.documentSettings) ?? defaultDocumentSettings();
+    if (hasOwnDesign(current) && !input.confirmed)
+      return fail("VALIDATION", { fields: { confirmed: ["confirmation_required"] } });
+
+    const [updated] = await tx
+      .update(plans)
+      .set({
+        documentSettings: settingsWithTemplate(current, template.data, input.mode),
+        templateId: template.data.snapshot.id,
+        templateRevision: template.data.snapshot.revision,
+        version: sql`${plans.version} + 1`,
+        updatedAt: new Date(),
+      })
+      .where(and(eq(plans.id, id), eq(plans.version, input.version)))
+      .returning({ version: plans.version });
+    if (!updated) return fail("CONFLICT");
+    await recordAuditInTx(tx, actor, {
+      action: "plan.template_applied",
+      entityType: "plan",
+      entityId: id,
+      metadata: {
+        sport: sport.key,
+        template: template.data.snapshot.id,
+        revision: template.data.snapshot.revision,
+        mode: input.mode,
+      },
+    });
+    return ok({ id, version: updated.version });
+  });
+}
+
+/**
+ * Stop basing a session on its template. The session looks exactly as it did: the template's layer is folded into the
+ * session's own changes, and only the link (and the "update available" nudge) goes away.
+ */
+export async function detachTemplateFromPlan(
+  actor: Actor,
+  sportKey: string,
+  id: string,
+  version: number,
+): Promise<Result<{ id: string; version: number }>> {
+  const sport = await getSport(sportKey);
+  if (!sport) return fail("NOT_FOUND");
+  return inTx(actor, async (tx) => {
+    const row = await loadPlanRow(tx, sport.id, id);
+    if (!row || row.deletedAt) return fail("NOT_FOUND");
+    if (!can(actor, "plan:update", resourceOf(row)) || row.status === "archived")
+      return fail("FORBIDDEN");
+    if (row.version !== version) return fail("CONFLICT");
+    const current = migrateDocumentSettings(row.documentSettings) ?? defaultDocumentSettings();
+    if (!current.template) return ok({ id, version: row.version });
+
+    const settings = documentSettingsSchema.parse({
+      ...current,
+      template: null,
+      overrides: diffDesign(presetDesign(current.preset), resolveSessionDesign(current)),
+    });
+    const [updated] = await tx
+      .update(plans)
+      .set({
+        documentSettings: settings,
+        templateId: null,
+        templateRevision: null,
+        version: sql`${plans.version} + 1`,
+        updatedAt: new Date(),
+      })
+      .where(and(eq(plans.id, id), eq(plans.version, version)))
+      .returning({ version: plans.version });
+    if (!updated) return fail("CONFLICT");
+    await recordAuditInTx(tx, actor, {
+      action: "plan.template_detached",
+      entityType: "plan",
+      entityId: id,
+      metadata: { sport: sport.key, template: current.template.id },
+    });
+    return ok({ id, version: updated.version });
+  });
+}
+
 /**
  * Save how the session prints. What is stored is the preset and only what the coach changed on top of it (never
  * the whole design), plus the reflection text. A design whose text cannot be read on its background is refused —
@@ -381,17 +548,28 @@ export async function savePlanDocument(
   }
   const sport = await getSport(sportKey);
   if (!sport) return fail("NOT_FOUND");
-  const settings = documentSettingsSchema.parse({
-    preset: input.preset,
-    overrides: diffDesign(presetDesign(input.preset), input.design),
-    reflection: input.reflection,
-  });
 
   return inTx(actor, async (tx) => {
     const row = await loadPlanRow(tx, sport.id, id);
     if (!row || row.deletedAt) return fail("NOT_FOUND");
     if (!can(actor, "plan:update", resourceOf(row)) || row.status === "archived")
       return fail("FORBIDDEN");
+    // The template layer is the one the session ALREADY holds (frozen when it was applied) — never something the
+    // browser sends. What is stored on top of Preset → Template is only what this design changes.
+    const current = migrateDocumentSettings(row.documentSettings) ?? defaultDocumentSettings();
+    const settings = documentSettingsSchema.parse({
+      preset: input.preset,
+      template: current.template,
+      overrides: diffDesign(
+        resolveSessionDesign({
+          preset: input.preset,
+          template: current.template,
+          overrides: {},
+        }),
+        input.design,
+      ),
+      reflection: input.reflection,
+    });
     const [updated] = await tx
       .update(plans)
       .set({
@@ -902,12 +1080,41 @@ async function readableDrillIds(tx: Tx, ids: string[]): Promise<Set<string>> {
  * The copy is "Copy of …", unscheduled (a duplicate is normally for another day: date, start time and session
  * number are cleared; the zone is kept) and remembers where it came from (`forked_from_id`).
  */
-function copiedDocumentSettings(raw: unknown) {
+/**
+ * The design a copy of a session starts with: the same look, a clean reflection. If the session was based on a saved
+ * template the copy keeps the link when the copier can read that template; otherwise the template's layer is BAKED
+ * INTO the copy's own overrides, so it looks the same and simply has no template.
+ */
+async function copiedDocumentSettings(
+  tx: Tx,
+  raw: unknown,
+  templateId: string | null,
+  templateRevision: number | null,
+) {
+  const none = { settings: {}, templateId: null, templateRevision: null };
   // never customised stays never customised (the column's default), not a frozen copy of today's defaults
-  if (typeof raw === "object" && raw !== null && Object.keys(raw).length === 0) return {};
-  const settings = migrateDocumentSettings(raw);
-  if (!settings) return {};
-  return { ...settings, reflection: emptyReflection() };
+  if (typeof raw === "object" && raw !== null && Object.keys(raw).length === 0) return none;
+  const source = migrateDocumentSettings(raw);
+  if (!source) return none;
+  const settings = { ...source, reflection: emptyReflection() };
+  if (!source.template) return { settings, templateId: null, templateRevision: null };
+  if (templateId) {
+    const [visible] = await tx
+      .select({ id: documentTemplates.id })
+      .from(documentTemplates)
+      .where(eq(documentTemplates.id, templateId))
+      .limit(1);
+    if (visible) return { settings, templateId, templateRevision };
+  }
+  return {
+    settings: {
+      ...settings,
+      template: null,
+      overrides: diffDesign(presetDesign(source.preset), resolveSessionDesign(source)),
+    },
+    templateId: null,
+    templateRevision: null,
+  };
 }
 
 export async function duplicatePlan(
@@ -931,6 +1138,12 @@ export async function duplicatePlan(
     const details = migratePlanDetails(source.details);
     if (!details) return fail("NOT_FOUND");
 
+    const copy = await copiedDocumentSettings(
+      tx,
+      source.documentSettings,
+      source.templateId,
+      source.templateRevision,
+    );
     await tx.insert(plans).values({
       id: newPlanId,
       organizationId: actor.organizationId,
@@ -953,7 +1166,9 @@ export async function duplicatePlan(
       timezone: source.timezone,
       details: { ...details, sessionNumber: null },
       // the copy prints the way the original does; the reflection belongs to the session that was run, so it starts empty
-      documentSettings: copiedDocumentSettings(source.documentSettings),
+      documentSettings: copy.settings,
+      templateId: copy.templateId,
+      templateRevision: copy.templateRevision,
       forkedFromId: source.id,
     });
 

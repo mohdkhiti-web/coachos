@@ -7,8 +7,10 @@ import { useTranslations } from "next-intl";
 import { FormError } from "@/components/features/auth/shared";
 import { Button } from "@/components/ui/button";
 import { Card, CardBody, CardFooter } from "@/components/ui/card";
+import { Field, Select } from "@/components/ui/field";
 import { useToast } from "@/components/ui/toast";
 import { createPlanAction } from "@/modules/plans/actions";
+import type { TemplateChoice } from "@/modules/templates/dto";
 import { SessionFields, type SessionCatalog } from "./session-fields";
 import {
   fieldsFromServer,
@@ -28,12 +30,17 @@ export function SessionCreateForm({
   catalog,
   showVisibility,
   cancelHref,
+  templates = [],
+  initialTemplateId = "",
 }: {
   sportKey: string;
   initial: SessionFormValues;
   catalog: SessionCatalog;
   showVisibility: boolean;
   cancelHref: string;
+  /** Saved templates the coach may base the new session's document design on. */
+  templates?: TemplateChoice[];
+  initialTemplateId?: string;
 }) {
   const t = useTranslations("sessions.new");
   const te = useTranslations("errors");
@@ -44,7 +51,9 @@ export function SessionCreateForm({
   const [errors, setErrors] = React.useState<FieldErrors>({});
   const [failure, setFailure] = React.useState<string | null>(null);
   const [focusTick, setFocusTick] = React.useState(0);
+  const [templateId, setTemplateId] = React.useState(initialTemplateId);
   const [pending, startTransition] = React.useTransition();
+  const tt = useTranslations("templates.startFrom");
 
   // after a failed submit, move focus to the first invalid control so keyboard and screen-reader users land on it
   React.useEffect(() => {
@@ -66,7 +75,7 @@ export function SessionCreateForm({
     }
     setErrors({});
     startTransition(async () => {
-      const result = await createPlanAction(sportKey, toPayload(values));
+      const result = await createPlanAction(sportKey, { ...toPayload(values), templateId });
       if (result?.ok) {
         toast(t("created"), "success");
         router.push(`/sessions/${sportKey}/${result.data.id}`);
@@ -100,6 +109,33 @@ export function SessionCreateForm({
             showVisibility={showVisibility}
             disabled={pending}
           />
+          {templates.length > 0 ? (
+            <section
+              aria-labelledby="new-template-heading"
+              className="space-y-3 border-t border-line pt-6"
+            >
+              <h2 id="new-template-heading" className="text-lg font-semibold text-ink">
+                {tt("heading")}
+              </h2>
+              <Field label={tt("label")} hint={tt("hint")}>
+                {(c) => (
+                  <Select
+                    {...c}
+                    value={templateId}
+                    disabled={pending}
+                    onChange={(e) => setTemplateId(e.target.value)}
+                  >
+                    <option value="">{tt("none")}</option>
+                    {templates.map((x) => (
+                      <option key={x.id} value={x.id}>
+                        {x.name}
+                      </option>
+                    ))}
+                  </Select>
+                )}
+              </Field>
+            </section>
+          ) : null}
         </CardBody>
         <CardFooter className="justify-between">
           <div className="min-w-0 flex-1">

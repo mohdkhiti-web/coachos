@@ -754,7 +754,64 @@ plans.document_settings ──▶ resolveDesign(preset → template → override
 - **Logo.** The design and the model carry `logo: { assetId }` — a reference to a stored, validated image (Postgres,
   one small PNG/JPEG per template, as decided). Upload/storage is Step 7; until then no UI can set one, the pages
   render one only when given a `logoSrc` resolver, and the form says so.
-- **Not built yet (by design):** saved templates (Step 5), PDF/PNG (Steps 6–7), share links, logo upload, generators.
+- **Not built yet (by design):** PDF/PNG (Steps 6–7), share links, logo upload, generators. (Saved templates: §13.7.)
+
+### 13.7 As built in Step 5 (saved templates)
+
+**A template is a preset plus a design layer, and nothing else.** `document_templates.config` is strict, versioned JSON
+(`templateConfigSchema`: `schemaVersion`, `preset`, and a `design` override — the same `designOverrideSchema` a session
+uses). The schema cannot express a date, start time, session number, timeline, attendance, notes or reflection
+**answers**, so none can be stored, not even by a forged request; the command schema is strict too and refuses such a
+field instead of ignoring it. What a template *can* carry: colours, typeface, page setup (paper, orientation, margins,
+columns, spacing), compact/detailed mode, section visibility, header/footer, border and divider, default **branding**
+(club/school/academy and coach name) and the **wording** of the four reflection prompts. Branding is a fallback for
+the document only: a session's own club and coach always win, and nothing is written back into the session
+(`withBranding`).
+
+```
+resolveSessionDesign(settings)  =  preset  →  settings.template.design (frozen)  →  settings.overrides   (last wins)
+```
+
+- **Frozen copy, not a live link.** Applying a template copies its layer into the session
+  (`plans.document_settings.template = { id, revision, name, preset, design }`). Editing the saved template later changes
+  no session; `plans.template_id` / `template_revision` are the queryable relationship (FK `ON DELETE SET NULL`; a
+  trigger requires a readable template of the session's own workspace and a recorded revision).
+- **Two counters, on purpose.** `version` is the concurrency token (every write bumps it: rename, archive, delete).
+  `revision` is bumped only when the **design** changes; it is what a session records. So archiving or renaming a
+  template never tells its sessions "an update is available", and a real design change does. The session screen shows
+  "Based on X · Revision n", "Revision m available" and "Template unavailable" (deleted, archived, or no longer shared);
+  updating is always the coach's choice.
+- **Applying is safe and predictable.** `applyTemplateToPlan` changes the session's *design* only — never activities,
+  date, times, number, notes or the reflection text. If the session already has a design of its own (a template, a
+  non-default preset, or overrides) the **server** refuses without `confirmed: true`, whatever the browser did; the
+  dialog then offers *Replace my changes* or *Keep my changes* (the template underneath, the session's overrides on top —
+  a session override always wins). `detachTemplateFromPlan` folds the template layer into the session's overrides, so the
+  session looks exactly the same and only the link goes.
+- **Creating a session** may start from a template (`templateId` in the create payload; `?template=` on the page). A
+  duplicated session keeps the design and the link (if the copier can read the template) with an empty reflection.
+- **Permissions** (`can.ts`, `template:*`, and again in row-level security): every member reads workspace-shared
+  templates and their own personal ones; owners, admins, coaches and teachers author; an assistant reads only. The
+  creator edits, archives, deletes and restores their own; owners and admins manage *shared* templates too. Nobody but
+  the creator sees a personal template — not even an owner (as for sessions and drills). Personal workspaces have no one
+  to share with, so everything there is stored as personal. Archived templates cannot be edited or applied until
+  restored; deletion is a soft delete (no `DELETE` grant), reversible, and sessions that used the template keep their
+  copy. If the creator's account is erased the template stays (`created_by` cleared) and owners/admins manage the
+  orphan; an orphaned *personal* template has no reader and is left untouched.
+- **Row-level security** (`drizzle/0010_document_templates.sql`): `select` = my workspace and (shared or mine);
+  `insert` = as myself, in my workspace, not born deleted, `org_authors`; `update` = creator or `org_manages`, and
+  `org_authors`. A guard trigger keeps creator, workspace and sport immutable (except Postgres itself clearing
+  `created_by` on erasure) and freezes a deleted or archived template until it is restored. `plans_guard` was refined
+  only so that clearing `template_id` (the FK action) is not refused on an archived session.
+- **Preview reuses Step 4.** The template editor is `DesignPanel` + `DocumentPreview` (+ a details form as the panel's
+  header). It renders the real document model on a **sample session** built from real library drills under invented,
+  translated details (`buildSampleDocumentInput`): built per request, stored nowhere, never one of the viewer's
+  sessions, and labelled as an example on screen. No second rendering system exists.
+- **Routes:** `/templates` (every sport) and `/templates/[sport]` (list: search, category, personal/shared, archived and
+  deleted views, cards with preview / edit / new session / apply / duplicate / archive / restore / delete),
+  `/templates/[sport]/new`, `/templates/[sport]/[id]` (`?view=preview`). Filters live in the URL.
+- **Not built yet (by design):** PDF/PNG/Word export, share links, logo upload, rule-based and AI generators,
+  organisation-wide default templates.
+
 ---
 
 ## 14. AI architecture

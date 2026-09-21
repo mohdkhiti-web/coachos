@@ -212,7 +212,14 @@ export type Row =
   | { t: "band"; leftMm: number; rightMm: number; left: BandBlock[]; right: BandBlock[] }
   | { t: "break"; row: TimelineRow }
   | { t: "text"; text: string }
-  | { t: "reflection"; prompt: keyof Reflection; text: string; boxMm: number };
+  | {
+      t: "reflection";
+      prompt: keyof Reflection;
+      /** The design's own wording for this prompt; "" = the built-in one. */
+      label: string;
+      text: string;
+      boxMm: number;
+    };
 
 export interface Unit {
   row: Row;

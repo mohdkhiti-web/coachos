@@ -649,6 +649,9 @@
 /* ---- reflection ----------------------------------------------------------------------------------- */
 
 .doc-reflect__label {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   height: var(--d-reflection-label-h);
   font-size: var(--d-fs-label);
   font-weight: 700;

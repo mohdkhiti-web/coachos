@@ -6,8 +6,10 @@ export {
   addBreak,
   addCustomActivity,
   addDrillActivity,
+  applyTemplateToPlan,
   createPlan,
   deletePlan,
+  detachTemplateFromPlan,
   duplicateActivity,
   duplicatePlan,
   removeActivity,
@@ -22,5 +24,7 @@ export {
 export { getPlan, listPlans, listPlanTeams } from "./queries";
 export type { ListPlansOptions } from "./queries";
 export { toDocumentInput } from "./document-input";
+export { buildSampleDocumentInput } from "./sample";
+export type { SampleLabels } from "./sample";
 export * from "./dto";
 export * from "./filters";

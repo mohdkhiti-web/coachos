@@ -58,6 +58,8 @@ export const planInputSchema = z
       .max(PLAN_LIMITS.maxSecondaryObjectives, { error: "too_many" })
       .default([]),
     details: planDetailsSchema.default(() => planDetailsSchema.parse({})),
+    /** Creating only: base the new session's design on this saved template ("" = none). */
+    templateId: z.union([z.literal(""), z.uuid()]).default(""),
     /** Present on updates: the version the editor loaded (optimistic concurrency). */
     version: z.int().min(1).optional(),
   })
@@ -185,3 +187,17 @@ export const planDocumentSchema = z.strictObject({
 });
 
 export type PlanDocumentInput = z.output<typeof planDocumentSchema>;
+
+/**
+ * Apply a saved template to a session. `mode`: "replace" clears the session's own design changes so it looks exactly
+ * like the template; "keep" applies the template but keeps the session's own changes ON TOP (a session override always
+ * wins over a template). `confirmed` must be true when the session already has a design of its own: the server asks
+ * the question again, whatever the browser did.
+ */
+export const applyTemplateSchema = z.strictObject({
+  version: int(1, 1_000_000),
+  templateId: z.uuid(),
+  mode: z.enum(["replace", "keep"]).default("replace"),
+  confirmed: z.boolean().default(false),
+});
+export type ApplyTemplateInput = z.output<typeof applyTemplateSchema>;

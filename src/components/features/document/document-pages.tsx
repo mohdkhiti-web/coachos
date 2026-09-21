@@ -628,7 +628,7 @@ function RowView({ unit }: { unit: Unit }) {
     case "reflection":
       return (
         <div data-est={est}>
-          <div className="doc-reflect__label">{t(`reflection.${row.prompt}`)}</div>
+          <div className="doc-reflect__label">{row.label || t(`reflection.${row.prompt}`)}</div>
           <div
             className="doc-reflect__box"
             data-blank={row.text ? "false" : "true"}

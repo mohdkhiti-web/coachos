@@ -3,6 +3,7 @@ import { and, asc, desc, eq, inArray, isNotNull, isNull, sql, type SQL } from "d
 import type { ActivityKind, DrillPhase, Level, PlanStatus, PlanVisibility } from "@/db/enums";
 import {
   ageGroups,
+  documentTemplates,
   drills,
   objectives,
   planActivities,
@@ -24,6 +25,7 @@ import type {
   PlanListItemDto,
   PlanObjectivesDto,
   PlanPage,
+  PlanTemplateDto,
   SourceStatus,
 } from "./dto";
 import { buildTimeline, computeSchedule, remainingMinutes, totalMinutes } from "./schedule";
@@ -86,6 +88,38 @@ export async function getPlan(
     if (!documentSettings) {
       logger.error({ planId: id }, "plans.stored_document_settings_invalid");
       documentSettings = defaultDocumentSettings();
+    }
+
+    // The template the design was based on, compared with the template as it is now. Read through RLS: a template
+    // the viewer cannot read (or that is gone) simply is not returned → "unavailable"; the session keeps its copy.
+    let template: PlanTemplateDto | null = null;
+    const applied = documentSettings.template;
+    if (applied) {
+      const [latest] = p.templateId
+        ? await tx
+            .select({
+              name: documentTemplates.name,
+              revision: documentTemplates.revision,
+              status: documentTemplates.status,
+              deletedAt: documentTemplates.deletedAt,
+            })
+            .from(documentTemplates)
+            .where(eq(documentTemplates.id, p.templateId))
+            .limit(1)
+        : [];
+      const usable = latest && !latest.deletedAt && latest.status === "active";
+      template = {
+        id: applied.id,
+        name: applied.name,
+        revision: applied.revision,
+        status: !usable
+          ? "unavailable"
+          : latest.revision > applied.revision
+            ? "update_available"
+            : "current",
+        latestRevision: usable ? latest.revision : null,
+        latestName: usable ? latest.name : null,
+      };
     }
 
     // sequential on purpose: a transaction is a single connection (concurrent queries on it queue anyway)
@@ -178,6 +212,7 @@ export async function getPlan(
       timezone: p.timezone,
       details,
       documentSettings,
+      template,
       objectives: planObjectiveSummary,
       activities,
       totals: {

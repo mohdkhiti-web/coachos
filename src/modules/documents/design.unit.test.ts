@@ -12,18 +12,23 @@ import {
   FONT_FAMILIES,
   hasBlockingIssue,
   migrateDocumentSettings,
+  migrateTemplateConfig,
   PRESET_IDS,
+  PROMPT_MAX,
   SECTION_IDS,
+  templateConfigSchema,
   type DocumentDesign,
 } from "./design";
 import { designCssVars, pageGeometry, PAPER_MM } from "./layout";
 import {
+  applyLook,
   applyPreset,
   DEFAULT_PRESET,
   diffDesign,
   PRESETS,
   presetDesign,
   resolveDesign,
+  resolveSessionDesign,
 } from "./presets";
 
 const withPage = (patch: Partial<DocumentDesign["page"]>, base = presetDesign("classic")) => ({
@@ -384,5 +389,174 @@ describe("page geometry", () => {
       expect(k.startsWith("--d-"), k).toBe(true);
       expect(v, k).not.toContain("undefined");
     }
+  });
+});
+
+describe("saved templates: what they may hold", () => {
+  const layer = { colors: { accent: "#0a7d4b" }, page: { paper: "letter" as const } };
+
+  it("is a preset plus a design layer, and round-trips through its stored form", () => {
+    const config = templateConfigSchema.parse({
+      schemaVersion: 1,
+      preset: "school",
+      design: layer,
+    });
+    expect(config).toEqual({ schemaVersion: 1, preset: "school", design: layer });
+    expect(migrateTemplateConfig(JSON.parse(JSON.stringify(config)))).toEqual(config);
+    expect(templateConfigSchema.parse({}).preset).toBe("classic");
+  });
+
+  it("cannot hold anything that belongs to one session, not even when forged", () => {
+    const session = [
+      "scheduledDate",
+      "startTime",
+      "sessionNumber",
+      "activities",
+      "timeline",
+      "attendance",
+      "coachNotes",
+      "notes",
+      "reflection",
+      "title",
+    ];
+    for (const key of session) {
+      expect(
+        templateConfigSchema.safeParse({ preset: "classic", design: {}, [key]: "x" }).success,
+        key,
+      ).toBe(false);
+      expect(designOverrideSchema.safeParse({ [key]: "x" }).success, `design.${key}`).toBe(false);
+    }
+    // reflection ANSWERS have no place in the design either; only the prompts' wording does
+    expect(
+      designOverrideSchema.safeParse({ prompts: { wentWell: "Effort", answer: "We pressed well" } })
+        .success,
+    ).toBe(false);
+    expect(designOverrideSchema.safeParse({ prompts: { wentWell: "Effort" } }).success).toBe(true);
+  });
+
+  it("refuses a version it does not know or a shape it cannot validate", () => {
+    expect(migrateTemplateConfig({ schemaVersion: 2, preset: "classic", design: {} })).toBeNull();
+    expect(migrateTemplateConfig({ schemaVersion: 1, preset: "nope", design: {} })).toBeNull();
+    expect(migrateTemplateConfig(null)).toBeNull();
+    expect(migrateTemplateConfig([])).toBeNull();
+    expect(migrateTemplateConfig("x")).toBeNull();
+  });
+
+  it("limits branding and prompt wording", () => {
+    expect(
+      designOverrideSchema.safeParse({ branding: { clubName: "x".repeat(121) } }).success,
+    ).toBe(false);
+    expect(
+      designOverrideSchema.safeParse({ branding: { coachName: "x".repeat(81) } }).success,
+    ).toBe(false);
+    expect(
+      designOverrideSchema.safeParse({ prompts: { notes: "x".repeat(PROMPT_MAX + 1) } }).success,
+    ).toBe(false);
+    expect(designOverrideSchema.safeParse({ branding: { clubName: "Riverside BC" } }).success).toBe(
+      true,
+    );
+  });
+});
+
+describe("resolveSessionDesign: Preset → Saved Template → Session override", () => {
+  const frozen = {
+    id: "0b6f6f4e-6c0f-4b39-8f6e-0d5d7b1c2a10",
+    revision: 3,
+    name: "Friday sheet",
+    preset: "modern" as const,
+    design: {
+      colors: { accent: "#123456" },
+      page: { paper: "letter" as const },
+      mode: "compact" as const,
+    },
+  };
+
+  it("uses the session's own preset when there is no template", () => {
+    expect(resolveSessionDesign({ preset: "minimal", template: null, overrides: {} })).toEqual(
+      presetDesign("minimal"),
+    );
+  });
+
+  it("puts the template between the preset and the session's own changes", () => {
+    const d = resolveSessionDesign({
+      preset: "modern",
+      template: frozen,
+      overrides: { colors: { accent: "#654321" } },
+    });
+    expect(d.colors.accent).toBe("#654321"); // the session wins
+    expect(d.page.paper).toBe("letter"); // the template beats the preset
+    expect(d.mode).toBe("compact");
+    expect(d.colors.primary).toBe(presetDesign("modern").colors.primary);
+  });
+
+  it("a session override always wins, on every field the template also sets", () => {
+    const base = presetDesign("modern");
+    const mine: DocumentDesign = {
+      ...base,
+      colors: { ...base.colors, accent: "#0a7d4b" },
+      page: { ...base.page, paper: "a4" },
+      mode: "detailed",
+    };
+    const overrides = diffDesign(
+      resolveSessionDesign({ preset: "modern", template: frozen, overrides: {} }),
+      mine,
+    );
+    const d = resolveSessionDesign({ preset: "modern", template: frozen, overrides });
+    expect(d).toEqual(mine);
+  });
+
+  it("branding and prompt wording travel with the template layer like any other design value", () => {
+    const d = resolveSessionDesign({
+      preset: "classic",
+      template: {
+        design: { branding: { clubName: "Riverside BC" }, prompts: { wentWell: "What worked?" } },
+      },
+      overrides: { branding: { coachName: "Sam" } },
+    });
+    expect(d.branding).toEqual({ clubName: "Riverside BC", coachName: "Sam" });
+    expect(d.prompts.wentWell).toBe("What worked?");
+    expect(d.prompts.notes).toBe("");
+  });
+
+  it("switching look keeps the coach's content choices (applyLook/applyPreset are style only)", () => {
+    const base = presetDesign("classic");
+    const mine: DocumentDesign = {
+      ...base,
+      mode: "compact",
+      branding: { clubName: "Mine", coachName: "" },
+    };
+    const next = applyLook(mine, presetDesign("dark"));
+    expect(next.colors).toEqual(presetDesign("dark").colors);
+    expect(next.mode).toBe("compact");
+    expect(next.branding.clubName).toBe("Mine");
+  });
+});
+
+describe("the frozen template inside a session", () => {
+  const frozen = {
+    id: "0b6f6f4e-6c0f-4b39-8f6e-0d5d7b1c2a10",
+    revision: 1,
+    name: "Friday sheet",
+    preset: "classic" as const,
+    design: {},
+  };
+
+  it("is optional (older sessions read as having none) and validated when there", () => {
+    expect(documentSettingsSchema.parse({}).template).toBeNull();
+    expect(documentSettingsSchema.parse({ template: frozen }).template).toEqual(frozen);
+    for (const bad of [
+      { ...frozen, revision: 0 },
+      { ...frozen, id: "nope" },
+      { ...frozen, name: "" },
+      { ...frozen, extra: 1 },
+    ])
+      expect(documentSettingsSchema.safeParse({ template: bad }).success).toBe(false);
+  });
+
+  it("stores the reflection beside the template, never inside it", () => {
+    expect(
+      documentSettingsSchema.safeParse({ template: { ...frozen, reflection: { notes: "x" } } })
+        .success,
+    ).toBe(false);
   });
 });

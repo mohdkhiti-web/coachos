@@ -47,6 +47,7 @@ export const TENANT_TABLES = [
   "plans",
   "plan_objectives",
   "plan_activities",
+  "document_templates",
 ] as const;
 
 /** Drizzle's own bookkeeping table. */

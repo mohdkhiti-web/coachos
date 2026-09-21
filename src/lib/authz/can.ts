@@ -38,8 +38,12 @@ const AUTHORS: readonly MembershipRole[] = ["owner", "admin", "coach", "teacher"
  *  - "org":   the resource must belong to the actor's active organization
  *  - "drill": drill-specific rules (visibility, creator, library) — see `drillAllows`
  *  - "plan":  session-specific rules (visibility, creator, workspace managers) — see `planAllows`
+ *  - "template": saved-template rules (visibility, creator, workspace managers) — see `templateAllows`
  */
-type Rule = { roles: readonly MembershipRole[]; scope: "self" | "org" | "drill" | "plan" };
+type Rule = {
+  roles: readonly MembershipRole[];
+  scope: "self" | "org" | "drill" | "plan" | "template";
+};
 
 export const POLICY = {
   "profile:read": { roles: ALL, scope: "self" },
@@ -67,6 +71,15 @@ export const POLICY = {
   "plan:delete": { roles: AUTHORS, scope: "plan" },
   /** Copy a session you can read into your own workspace (as a private draft). */
   "plan:duplicate": { roles: AUTHORS, scope: "plan" },
+
+  // Saved templates (Step 5). Everyone in the workspace may READ (and use) what is shared with it; only authors create.
+  "template:read": { roles: ALL, scope: "template" },
+  "template:create": { roles: AUTHORS, scope: "org" },
+  /** Edit, archive and restore. */
+  "template:update": { roles: AUTHORS, scope: "template" },
+  "template:delete": { roles: AUTHORS, scope: "template" },
+  /** Copy a template you can read into your own workspace (as a private one). */
+  "template:duplicate": { roles: AUTHORS, scope: "template" },
 } as const satisfies Record<string, Rule>;
 
 export type Action = keyof typeof POLICY;
@@ -87,11 +100,19 @@ export type PlanResource = {
   status?: string;
 };
 
+/** A saved template as loaded from the database — the only shape template rules accept. */
+export type TemplateResource = {
+  organizationId: string;
+  createdBy: string | null;
+  visibility: "private" | "organization";
+  status?: string;
+};
+
 export type Resource =
-  { userId: string } | { organizationId: string } | DrillResource | PlanResource;
+  { userId: string } | { organizationId: string } | DrillResource | PlanResource | TemplateResource;
 
 /** Drills and plans both carry a workspace, a creator and a visibility; the rule (by scope) says what that means. */
-const isOwnedResource = (r: Resource): r is DrillResource | PlanResource =>
+const isOwnedResource = (r: Resource): r is DrillResource | PlanResource | TemplateResource =>
   "organizationId" in r && "visibility" in r && "createdBy" in r;
 
 /**
@@ -145,6 +166,28 @@ function planAllows(action: Action, actor: Actor, p: PlanResource): boolean {
   }
 }
 
+/**
+ * Template rules, mirrored by row-level security (drizzle/0010_*.sql):
+ *  - read:   my workspace's templates, except other people's private ones (as for sessions and drills).
+ *  - change: only what I can read, by its creator or an owner/admin. Assistants never author.
+ *  - duplicate: anything I can read, as an author (the copy is mine and private).
+ * (Archived and deleted are matters for the command, not for ownership.)
+ */
+function templateAllows(action: Action, actor: Actor, t: TemplateResource): boolean {
+  const inMyOrg = t.organizationId === actor.organizationId;
+  const canRead = inMyOrg && (t.visibility === "organization" || t.createdBy === actor.userId);
+  switch (action) {
+    case "template:read":
+    case "template:duplicate":
+      return canRead;
+    case "template:update":
+    case "template:delete":
+      return canRead && (t.createdBy === actor.userId || MANAGERS.includes(actor.role));
+    default:
+      return false;
+  }
+}
+
 export function can(actor: Actor, action: Action, resource: Resource): boolean {
   const rule: Rule = POLICY[action];
   if (!rule.roles.includes(actor.role)) return false;
@@ -152,7 +195,7 @@ export function can(actor: Actor, action: Action, resource: Resource): boolean {
   if (rule.scope === "org")
     return "organizationId" in resource && resource.organizationId === actor.organizationId;
   if (!isOwnedResource(resource)) return false;
-  return rule.scope === "plan"
-    ? planAllows(action, actor, resource as PlanResource)
-    : drillAllows(action, actor, resource as DrillResource);
+  if (rule.scope === "plan") return planAllows(action, actor, resource as PlanResource);
+  if (rule.scope === "template") return templateAllows(action, actor, resource as TemplateResource);
+  return drillAllows(action, actor, resource as DrillResource);
 }

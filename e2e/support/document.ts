@@ -20,7 +20,9 @@ export const section = (page: Page, label: string): Locator =>
 
 /** A colour's HEX field. */
 export const hex = (page: Page, name: string): Locator =>
-  panel(page).getByLabel(name + " colour code", { exact: true });
+  panel(page)
+    .getByLabel(name + " colour code", { exact: true })
+    .filter({ visible: true }); // React streams a hidden copy ahead of the real one
 
 export const preview = (page: Page): Locator =>
   page.getByRole("region", { name: "Document preview" });

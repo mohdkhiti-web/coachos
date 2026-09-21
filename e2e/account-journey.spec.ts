@@ -53,10 +53,11 @@ test("full account lifecycle", async ({ page, browser }) => {
 
   await test.step("navigation only offers modules that exist", async () => {
     const nav = page.getByRole("navigation", { name: "Main navigation" }).first();
-    // Sessions (the session builder) and Sports (with each real sport workspace nested under it). Nothing for features that don't exist yet.
+    // Sessions (the session builder), Templates (saved designs) and Sports (with each real sport workspace nested under it). Nothing for features that don't exist yet.
     await expect(nav.getByRole("link")).toHaveText([
       "Dashboard",
       "Sessions",
+      "Templates",
       "Sports",
       "Basketball",
       "Settings",

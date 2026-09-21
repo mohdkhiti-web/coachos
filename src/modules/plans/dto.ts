@@ -27,6 +27,33 @@ import type { ActivitySnapshot } from "./snapshot";
  */
 export type SourceStatus = "none" | "current" | "update_available" | "unavailable";
 
+/**
+ * The saved template a session's design is based on, as the viewer sees it:
+ *  current           the session has the template's latest design
+ *  update_available  the template's design has changed since (the session keeps what it had; updating is the coach's call)
+ *  unavailable       the template is gone, archived, or not readable by this viewer — the session's copy stays valid
+ */
+export type TemplateLinkStatus = "current" | "update_available" | "unavailable";
+
+export interface PlanTemplateDto {
+  id: string;
+  /** The name as it was when the template was applied. */
+  name: string;
+  /** The revision of the template's design that this session holds. */
+  revision: number;
+  status: TemplateLinkStatus;
+  latestRevision: number | null;
+  latestName: string | null;
+}
+
+/** What a browser needs after a template was applied (or detached), to show the session's new design at once. */
+export interface AppliedDesignDto {
+  id: string;
+  version: number;
+  settings: DocumentSettings;
+  template: PlanTemplateDto | null;
+}
+
 export interface PlanActivityDto {
   id: string;
   position: number;
@@ -90,6 +117,8 @@ export interface PlanDetailDto {
   details: PlanDetails;
   /** How the printed session looks (preset + the coach's changes) and the reflection text. Never customised = defaults. */
   documentSettings: DocumentSettings;
+  /** The saved template the design is based on (its frozen copy is in `documentSettings.template`). */
+  template: PlanTemplateDto | null;
   objectives: PlanObjectivesDto;
   activities: PlanActivityDto[];
   totals: PlanTotalsDto;

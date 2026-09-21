@@ -185,7 +185,7 @@ test.describe("signed-in rules", () => {
     await expect(pageB.getByText("Alice Only")).toHaveCount(0);
     await expect(pageB.getByText("Profile updated")).toHaveCount(0);
     await pageB.goto("/settings/security");
-    await expect(pageB.getByText("This device")).toBeVisible();
+    await expect(pageB.getByText("This device").first()).toBeVisible();
     await expect(pageB.getByRole("button", { name: /^Revoke/ })).toHaveCount(0);
     await expect(pageB.getByText("Profile updated")).toHaveCount(0);
 

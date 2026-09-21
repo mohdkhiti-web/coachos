@@ -1,4 +1,11 @@
-import { ClipboardList, LayoutDashboard, Settings, Trophy, type LucideIcon } from "lucide-react";
+import {
+  ClipboardList,
+  LayoutDashboard,
+  LayoutTemplate,
+  Settings,
+  Trophy,
+  type LucideIcon,
+} from "lucide-react";
 
 /**
  * Navigation renders ONLY modules that actually work (ARCHITECTURE.md §23.1 "real or absent").
@@ -8,13 +15,14 @@ import { ClipboardList, LayoutDashboard, Settings, Trophy, type LucideIcon } fro
  */
 export type NavItem = {
   href: string;
-  labelKey: "dashboard" | "sessions" | "sports" | "settings";
+  labelKey: "dashboard" | "sessions" | "templates" | "sports" | "settings";
   icon: LucideIcon;
 };
 
 export const NAV_ITEMS: readonly NavItem[] = [
   { href: "/dashboard", labelKey: "dashboard", icon: LayoutDashboard },
   { href: "/sessions", labelKey: "sessions", icon: ClipboardList },
+  { href: "/templates", labelKey: "templates", icon: LayoutTemplate },
   { href: "/sports", labelKey: "sports", icon: Trophy },
   { href: "/settings", labelKey: "settings", icon: Settings },
 ];

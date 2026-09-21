@@ -25,7 +25,7 @@ test("the app shell collapses to a bottom tab bar with 44px touch targets", asyn
   await expect(bar).toBeVisible();
   await expect(page.locator("aside")).toBeHidden(); // desktop rail is gone
 
-  for (const name of ["Dashboard", "Sessions", "Sports", "Settings"]) {
+  for (const name of ["Dashboard", "Sessions", "Templates", "Sports", "Settings"]) {
     const box = await bar.getByRole("link", { name }).boundingBox();
     expect(box?.height ?? 0).toBeGreaterThanOrEqual(44);
     expect(box?.width ?? 0).toBeGreaterThanOrEqual(44);
@@ -249,4 +249,63 @@ test("the design workspace works on a phone: preview first, quick controls, no s
   expect(
     await page.evaluate(() => getComputedStyle(document.querySelector(".doc-page")!).width),
   ).toMatch(/^793\.\d+px$/);
+});
+
+test("templates work on a phone: list, card actions, editor with Design/Preview tabs, no sideways scrolling, 44px targets", async ({
+  page,
+}) => {
+  test.setTimeout(240_000);
+  await signUpAndVerify(page, newUser());
+  await completeOnboarding(page);
+
+  await page.goto("/templates/basketball");
+  await expect(page.getByText("No templates yet")).toBeVisible();
+  expect(await noHorizontalScroll(page), "empty templates page overflows").toBe(true);
+  const create = page.getByRole("link", { name: "New template" }).first();
+  expect((await create.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
+
+  // the editor: controls first, the preview one tap away, and never wider than the screen
+  await create.click();
+  await expect(page.getByRole("heading", { level: 1, name: "New template" })).toBeVisible();
+  expect(await noHorizontalScroll(page), "template editor overflows").toBe(true);
+  const panel = page.getByTestId("design-panel");
+  await expect(panel).toBeVisible();
+  await page.getByLabel("Name", { exact: true }).filter({ visible: true }).fill("Phone sheet");
+  // a real tap on the preset's card (its radio is visually hidden), not a forced click on the hidden input
+  await panel.locator("label", { hasText: "Modern Basketball" }).first().click();
+  await expect(panel.getByLabel("Modern Basketball", { exact: true })).toBeChecked();
+  const views = page.getByRole("navigation", { name: "Template views" });
+  for (const name of ["Design", "Preview"]) {
+    const box = await views.getByRole("button", { name }).boundingBox();
+    expect(box?.height ?? 0, name).toBeGreaterThanOrEqual(40);
+  }
+  await views.getByRole("button", { name: "Preview" }).click();
+  await expect(panel).toBeHidden();
+  const sheet = page.locator(".doc-page").first();
+  await expect(sheet).toBeVisible();
+  const stage = page.getByRole("region", { name: "Document preview" });
+  const [s, p] = await Promise.all([stage.boundingBox(), sheet.boundingBox()]);
+  expect((p?.width ?? 0) <= (s?.width ?? 0) + 1, "the page is fitted to the phone").toBe(true);
+  expect(await noHorizontalScroll(page), "template preview overflows").toBe(true);
+  await views.getByRole("button", { name: "Design" }).click();
+  await page.getByRole("button", { name: "Create template" }).click();
+  await expect(page).toHaveURL(/\/templates\/basketball\/[0-9a-f-]{36}$/);
+
+  // the list with a card: every action is a touch target and the page does not scroll sideways
+  await page.goto("/templates/basketball");
+  const card = page.getByRole("article", { name: "Phone sheet", exact: true });
+  await expect(card).toBeVisible();
+  expect(await noHorizontalScroll(page), "template list overflows").toBe(true);
+  for (const name of ["Preview Phone sheet", "Edit Phone sheet"]) {
+    const box = await card.getByRole("link", { name }).boundingBox();
+    expect(box?.height ?? 0, name).toBeGreaterThanOrEqual(40);
+  }
+  const more = await card
+    .getByRole("button", { name: "More actions for Phone sheet" })
+    .boundingBox();
+  expect(more?.height ?? 0).toBeGreaterThanOrEqual(40);
+  expect(more?.width ?? 0).toBeGreaterThanOrEqual(40);
+  await card.getByRole("button", { name: "More actions for Phone sheet" }).click();
+  await expect(page.getByRole("menuitem", { name: "Duplicate" })).toBeVisible();
+  await page.keyboard.press("Escape");
 });

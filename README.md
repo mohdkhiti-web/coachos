@@ -6,8 +6,8 @@ Basketball first, built multi-sport from day one.
 - Architecture and roadmap: [ARCHITECTURE.md](ARCHITECTURE.md) (read §0 first)
 - **Status: Phase 2 (Sports foundation · Basketball workspace · Drill library) is merged locally; the Session
   Creator is in progress on branch `phase-3`** — drill library facets, session data model, the session builder,
-  and (Step 4) design + live preview + browser print are built. Nothing here has been pushed. Saved templates,
-  PDF export, logo upload, the generators, teams, players, lesson plans, AI, billing and analytics are later steps.
+  (Step 4) design + live preview + browser print, and (Step 5) saved templates are built. Nothing here has been
+  pushed. PDF export, logo upload, the generators, teams, players, lesson plans, AI, billing and analytics are later steps.
 
 ## Quick start (Windows/macOS/Linux, Node 24)
 
@@ -69,6 +69,8 @@ builder later. Write original content only. Seeding is idempotent, and a file re
 | `/sessions/[sport]/[id]/drills` and `/drills/[drillId]`   | Add a drill: the library's own search, then a preview with the add form                       |
 | `/sessions/[sport]/[id]/replace/[activityId]` and `/[id]` | Replace one drill in the timeline with another                                                |
 | `/sessions/[sport]/[id]/document?view=design\|preview`    | Design and live preview of the printed session: presets, colours, sections, page setup, print |
+| `/templates` and `/templates/[sport]`                     | Saved templates: search, category, personal / shared, archived; preview, edit, apply, copy    |
+| `/templates/[sport]/new` and `/[id]`                      | The template editor: the same design controls and live preview, on an example session         |
 
 ### The printed session (Design and Preview)
 
@@ -77,8 +79,16 @@ A session becomes a professional document in three steps that share one screen: 
 colour pickers with a readability check, section toggles, Compact/Detailed, A4/Letter, portrait/landscape,
 margins, one or two columns and spacing, typeface, header/border/divider styles, footer text and a reflection page.
 **Print** uses the browser's own print (`Ctrl/Cmd+P`); the pages you preview are the pages that print. A design is
-saved with the session (**Save design**). PDF export, saved templates and logo upload are later steps
-(ARCHITECTURE.md §13.6).
+saved with the session (**Save design**). PDF export and logo upload are later steps (ARCHITECTURE.md §13.6).
+
+### Saved templates
+
+**Save as template** (on the Design screen) keeps a session's _design_ — look, page setup, sections, header/footer, default
+club and coach names, reflection wording — as a reusable template, personal or shared with the workspace. A template never
+contains a session's date, time, activities, players, notes or reflection answers. Choose one when you create a session, or
+apply it to an existing one (you are asked first if the session already has its own design). Precedence is **Preset →
+Template → Session**: what you change in a session always wins. A session keeps its own copy, so editing a template never
+changes sessions that used it; they show "Revision n available" and you decide when to update (ARCHITECTURE.md §13.7).
 
 Adding another sport is data plus one module: rows in `sports` / `categories` / `skills` /
 `equipment_types`, and a `SportModule` (court packs, vocabulary) in `src/sports/<sport>/` registered in

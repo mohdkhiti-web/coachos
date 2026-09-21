@@ -4,3 +4,4 @@ export * from "./audit";
 export * from "./sports";
 export * from "./drills";
 export * from "./plans";
+export * from "./templates";

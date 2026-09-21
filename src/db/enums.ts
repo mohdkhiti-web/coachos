@@ -90,3 +90,22 @@ export const PLAN_LIMITS = {
   /** One primary objective plus this many secondary ones. */
   maxSecondaryObjectives: 4,
 } as const;
+
+/** What a saved template is for (a filter and a label, nothing more). */
+export const TEMPLATE_CATEGORIES = [
+  "general",
+  "practice",
+  "game_day",
+  "school",
+  "academy",
+  "youth",
+] as const;
+export type TemplateCategory = (typeof TEMPLATE_CATEGORIES)[number];
+
+/** active ⇄ archived; deleting is separate (`deleted_at`), exactly as for sessions. */
+export const TEMPLATE_STATUSES = ["active", "archived"] as const;
+export type TemplateStatus = (typeof TEMPLATE_STATUSES)[number];
+
+/** private = its creator only · organization = every member of the workspace can use it. */
+export const TEMPLATE_VISIBILITIES = ["private", "organization"] as const;
+export type TemplateVisibility = (typeof TEMPLATE_VISIBILITIES)[number];

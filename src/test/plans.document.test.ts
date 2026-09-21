@@ -166,6 +166,7 @@ describe("saving a design", () => {
     expect(await stored(coach, id)).toEqual({
       schemaVersion: 1,
       preset: "school",
+      template: null,
       overrides: {
         colors: { accent: "#0a7d4b" },
         page: { paper: "letter", orientation: "landscape", margins: "narrow" },

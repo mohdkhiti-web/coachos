@@ -779,7 +779,7 @@ function reflectionGroup(reflection: Reflection, ctx: Ctx): Group {
         )
       : blank;
     return {
-      row: { t: "reflection", prompt, text, boxMm: round(box) },
+      row: { t: "reflection", prompt, label: ctx.design.prompts[prompt], text, boxMm: round(box) },
       heightMm: METRICS.reflectionLabel + box,
     };
   });
@@ -803,11 +803,27 @@ const CELL_SECTION: Record<CellKey, SectionId> = {
   notes: "coachNotes",
 };
 
-export function buildDocumentModel(
+/**
+ * The session's own club and coach win; the design's branding (from a template, say) only fills what the session
+ * leaves empty. Nothing is ever written back into the session.
+ */
+export function withBranding(
   input: SessionDocumentInput,
+  design: DocumentDesign,
+): SessionDocumentInput {
+  const clubName = input.clubName.trim() || design.branding.clubName.trim();
+  const coachName = input.coachName.trim() || design.branding.coachName.trim();
+  return clubName === input.clubName && coachName === input.coachName
+    ? input
+    : { ...input, clubName, coachName };
+}
+
+export function buildDocumentModel(
+  rawInput: SessionDocumentInput,
   design: DocumentDesign,
   reflection: Reflection = emptyReflection(),
 ): DocumentModel {
+  const input = withBranding(rawInput, design);
   const geo = pageGeometry(design);
   const ctx = makeCtx(design, geo);
   const on = design.sections;

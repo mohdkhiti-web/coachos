@@ -5,17 +5,21 @@ import { PLAN_STATUSES, type PlanStatus } from "@/db/enums";
 import { AppError } from "@/lib/errors";
 import { isUuid } from "@/lib/ids";
 import { logger } from "@/lib/logger";
-import { fail, type Result } from "@/lib/result";
+import { fail, ok, type Result } from "@/lib/result";
 import { requireViewer } from "@/modules/identity";
+import type { AppliedDesignDto } from "./dto";
+import { getPlan } from "./queries";
 import { isSportKey } from "@/sports/registry";
 import type { Actor } from "@/lib/authz/can";
 import type { ZodType } from "zod";
 import {
+  applyTemplateToPlan,
   addBreak,
   addCustomActivity,
   addDrillActivity,
   createPlan,
   deletePlan,
+  detachTemplateFromPlan,
   duplicateActivity,
   duplicatePlan,
   removeActivity,
@@ -31,6 +35,7 @@ import {
   addBreakSchema,
   addCustomActivitySchema,
   addDrillActivitySchema,
+  applyTemplateSchema,
   planDocumentSchema,
   planInputSchema,
   reorderActivitiesSchema,
@@ -112,6 +117,47 @@ export async function savePlanDocumentAction(
   const input = parse(planDocumentSchema, raw);
   if (!input.ok) return input.error;
   return run("plan.document", sportKey, [id], (a) => savePlanDocument(a, sportKey, id, input.data));
+}
+
+/** After a template change, what the browser needs to show the session's new design without a reload. */
+async function appliedDesign(
+  actor: Actor,
+  sportKey: string,
+  done: Result<{ id: string; version: number }>,
+): Promise<Result<AppliedDesignDto>> {
+  if (!done.ok) return done;
+  const plan = await getPlan(actor, sportKey, done.data.id);
+  if (!plan) return fail("NOT_FOUND");
+  return ok({
+    id: plan.id,
+    version: plan.version,
+    settings: plan.documentSettings,
+    template: plan.template,
+  });
+}
+
+/** Apply a saved template to a session (design only). Confirmation is enforced here, not just in the dialog. */
+export async function applyTemplateToPlanAction(
+  sportKey: string,
+  id: string,
+  raw: unknown,
+): Promise<Result<AppliedDesignDto>> {
+  const input = parse(applyTemplateSchema, raw);
+  if (!input.ok) return input.error;
+  return run("plan.template_apply", sportKey, [id, input.data.templateId], async (a) =>
+    appliedDesign(a, sportKey, await applyTemplateToPlan(a, sportKey, id, input.data)),
+  );
+}
+
+export async function detachTemplateAction(
+  sportKey: string,
+  id: string,
+  version: number,
+): Promise<Result<AppliedDesignDto>> {
+  if (!Number.isInteger(version)) return fail("VALIDATION");
+  return run("plan.template_detach", sportKey, [id], async (a) =>
+    appliedDesign(a, sportKey, await detachTemplateFromPlan(a, sportKey, id, version)),
+  );
 }
 
 export async function setPlanStatusAction(

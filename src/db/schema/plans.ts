@@ -21,6 +21,7 @@ import {
 import { organization, user } from "./auth";
 import { drills } from "./drills";
 import { ageGroups, objectives, sports } from "./sports";
+import { documentTemplates } from "./templates";
 
 /**
  * Plans (ARCHITECTURE.md §11, D8): the one model behind a training session (and, later, a lesson plan).
@@ -89,6 +90,16 @@ export const plans = pgTable(
     documentSettings: jsonb("document_settings")
       .notNull()
       .default(sql`'{}'::jsonb`),
+
+    /**
+     * The saved template this session's design was based on, and the revision of it that was applied. The frozen copy of
+     * the template's layer lives in `document_settings`; these two columns are the queryable relationship. The
+     * template must belong to the session's workspace (a trigger, drizzle/0010_*.sql).
+     */
+    templateId: uuid("template_id").references(() => documentTemplates.id, {
+      onDelete: "set null",
+    }),
+    templateRevision: integer("template_revision"),
 
     createdBy: uuid("created_by").references(() => user.id, { onDelete: "set null" }),
     /** Lineage when a session was duplicated (a future action; the column keeps the door open). */
@@ -169,6 +180,13 @@ export const plans = pgTable(
       "plans_document_settings_chk",
       sql`jsonb_typeof(${t.documentSettings}) = 'object' AND octet_length(${t.documentSettings}::text) <= 16000`,
     ),
+    check(
+      "plans_template_revision_chk",
+      sql`${t.templateRevision} IS NULL OR ${t.templateRevision} >= 1`,
+    ),
+    index("plans_template_idx")
+      .on(t.templateId)
+      .where(sql`${t.templateId} IS NOT NULL`),
     check("plans_version_chk", sql`${t.version} >= 1`),
   ],
 );

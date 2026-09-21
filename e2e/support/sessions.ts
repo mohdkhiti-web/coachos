@@ -45,9 +45,7 @@ export async function fillSession(page: Page, s: SessionFill) {
   if (s.location) await field(page, "Location / court").fill(s.location);
   if (s.season) await field(page, "Season").fill(s.season);
   if (s.sessionNumber) await field(page, "Session number").fill(s.sessionNumber);
-  await page
-    .getByLabel("Main objective", { exact: true })
-    .selectOption({ label: s.objective ?? "Shooting" });
+  await field(page, "Main objective").selectOption({ label: s.objective ?? "Shooting" });
   for (const name of s.also ?? []) await page.getByRole("button", { name, exact: true }).click();
 }
 
@@ -87,8 +85,9 @@ export async function pickDrill(page: Page, builderPath: string, search: string,
   await page.goto(`${builderPath}/drills`);
   // on a phone the filters fold away behind a "Filters" button
   const toggle = page.getByRole("button", { name: /^Filters/ });
-  if (await toggle.isVisible()) await toggle.click();
   const filters = page.getByRole("search", { name: "Filters" });
+  await expect(toggle.or(filters).first()).toBeVisible(); // either is there once the page has rendered
+  if (await toggle.isVisible()) await toggle.click();
   await filters.getByLabel("Search").fill(search);
   await expect(page).toHaveURL(/q=/);
   await page.getByRole("link", { name: `Add to session: ${title}` }).click();

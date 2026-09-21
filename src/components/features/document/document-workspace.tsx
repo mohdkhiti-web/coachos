@@ -1,31 +1,39 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
 import { CheckCircle2, CircleAlert, Loader2, PencilLine } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { ApplyTemplateDialog } from "@/components/features/templates/apply-template-dialog";
+import { SaveTemplateDialog } from "@/components/features/templates/save-template-dialog";
+import { TemplatePanel } from "@/components/features/templates/template-panel";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogClose, DialogContent } from "@/components/ui/dialog";
 import { Select } from "@/components/ui/field";
 import { useToast } from "@/components/ui/toast";
 import { cn } from "@/lib/cn";
 import type { Result } from "@/lib/result";
 import {
+  applyLook,
   applyPreset,
   buildDocumentModel,
   checkDesign,
   hasBlockingIssue,
   MODES,
   PRESET_IDS,
+  resolveDesign,
+  resolveSessionDesign,
+  type DesignOverride,
   type DocumentDesign,
   type PresetId,
   type Reflection,
   type SessionDocumentInput,
 } from "@/modules/documents";
-import { savePlanDocumentAction } from "@/modules/plans/actions";
+import { detachTemplateAction, savePlanDocumentAction } from "@/modules/plans/actions";
+import type { AppliedDesignDto, PlanTemplateDto } from "@/modules/plans/dto";
+import type { TemplateChoice } from "@/modules/templates/dto";
 import { Segmented } from "./controls";
 import { DesignPanel } from "./design-panel";
 import { DocumentPreview } from "./document-preview";
+import { LeaveDialog, useLeaveGuard } from "./leave-guard";
 import { WorkspaceTabs, type WorkspaceView } from "./workspace-tabs";
 
 type Look = { preset: PresetId; design: DocumentDesign; reflection: Reflection };
@@ -38,6 +46,10 @@ const keyOf = (l: Look) => JSON.stringify(l);
  * (deferred, so typing or dragging a colour stays instant on a long session) and drawn by the shared page
  * components. Nothing else can change what the pages show. Unsaved changes are never lost by accident: leaving
  * (tab, link, reload) asks first.
+ *
+ * Saved templates: the session may be based on one (Preset → Template → the session's own changes). Choosing,
+ * updating or detaching a template goes through the server, which returns the session's new stored design; this
+ * screen then shows exactly that.
  */
 export function DocumentWorkspace({
   sportKey,
@@ -49,6 +61,11 @@ export function DocumentWorkspace({
   canSave,
   readOnlyReason,
   initialView,
+  templateLink,
+  templateLayer,
+  templates,
+  canCreateTemplate,
+  personalWorkspace,
 }: {
   sportKey: string;
   planId: string;
@@ -59,11 +76,16 @@ export function DocumentWorkspace({
   canSave: boolean;
   readOnlyReason: "archived" | "readOnly" | null;
   initialView: Exclude<WorkspaceView, "builder">;
+  templateLink: PlanTemplateDto | null;
+  /** The frozen layer of that template (for what "still as designed" means). */
+  templateLayer: DesignOverride | null;
+  templates: TemplateChoice[];
+  canCreateTemplate: boolean;
+  personalWorkspace: boolean;
 }) {
   const t = useTranslations("sessions.design");
+  const tt = useTranslations("templates");
   const te = useTranslations("errors");
-  const tc = useTranslations("common");
-  const router = useRouter();
   const { toast } = useToast();
 
   const [look, setLook] = React.useState<Look>(initial);
@@ -72,11 +94,21 @@ export function DocumentWorkspace({
   const [saveState, setSaveState] = React.useState<"idle" | "saving" | "error" | "conflict">(
     "idle",
   );
+  const [link, setLink] = React.useState(templateLink);
+  const [layer, setLayer] = React.useState(templateLayer);
+  const [dialog, setDialog] = React.useState<"apply" | "save" | null>(null);
+  const [applyTemplateId, setApplyTemplateId] = React.useState<string | undefined>();
+  const [busy, setBusy] = React.useState(false);
+  // the version lives in a ref for the async handlers (always the latest) and in state for what the dialogs render
   const versionRef = React.useRef(version);
-  const leaveAllowed = React.useRef(false);
-  const [leaveTo, setLeaveTo] = React.useState<string | null>(null);
+  const [sessionVersion, setSessionVersion] = React.useState(version);
+  const setVersion = React.useCallback((next: number) => {
+    versionRef.current = next;
+    setSessionVersion(next);
+  }, []);
 
   const dirty = keyOf(look) !== savedKey;
+  const guard = useLeaveGuard(dirty);
   const issues = React.useMemo(() => checkDesign(look.design), [look.design]);
   const unreadable = hasBlockingIssue(issues);
 
@@ -85,6 +117,12 @@ export function DocumentWorkspace({
   const model = React.useMemo(
     () => buildDocumentModel(input, deferred.design, deferred.reflection),
     [input, deferred.design, deferred.reflection],
+  );
+
+  // "As designed" = the preset, then the template's layer: what Reset look returns to
+  const baseLook = React.useMemo(
+    () => resolveDesign({ preset: look.preset, template: layer }),
+    [look.preset, layer],
   );
 
   const setView = (next: Exclude<WorkspaceView, "builder">) => {
@@ -96,6 +134,22 @@ export function DocumentWorkspace({
   const setPreset = (preset: PresetId) =>
     setLook((l) => ({ ...l, preset, design: applyPreset(l.design, preset) }));
   const setReflection = (reflection: Reflection) => setLook((l) => ({ ...l, reflection }));
+
+  /** Show what the server now holds for this session (after a template was applied or detached). */
+  const adopt = (applied: AppliedDesignDto, opts: { keepReflection?: boolean } = {}) => {
+    const stored: Look = {
+      preset: applied.settings.preset,
+      design: resolveSessionDesign(applied.settings),
+      reflection: applied.settings.reflection,
+    };
+    // reflection text typed but not yet saved is the coach's own words: saving a template must not eat it
+    setLook(opts.keepReflection ? { ...stored, reflection: look.reflection } : stored);
+    setSavedKey(keyOf(stored));
+    setSaveState("idle");
+    setVersion(applied.version);
+    setLink(applied.template);
+    setLayer(applied.settings.template?.design ?? null);
+  };
 
   const save = React.useCallback(async (): Promise<boolean> => {
     if (!canSave || unreadable) return false;
@@ -114,7 +168,7 @@ export function DocumentWorkspace({
       return false;
     }
     if (result.ok) {
-      versionRef.current = result.data.version;
+      setVersion(result.data.version);
       setSavedKey(keyOf(snapshot));
       setSaveState("idle");
       toast(t("save.savedToast"), "success");
@@ -125,45 +179,11 @@ export function DocumentWorkspace({
       toast(te.has(result.error.code) ? te(result.error.code) : te("generic"), "error");
     }
     return false;
-  }, [canSave, unreadable, look, sportKey, planId, toast, t, te]);
+  }, [canSave, unreadable, look, sportKey, planId, toast, t, te, setVersion]);
 
-  // ---- never lose changes by accident -----------------------------------------------------------
-  React.useEffect(() => {
-    if (!dirty) return;
-    const onBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (!leaveAllowed.current) e.preventDefault();
-    };
-    // in-app links (the side navigation, the account menu…): ask first
-    const onClick = (e: MouseEvent) => {
-      if (leaveAllowed.current || e.defaultPrevented || e.button !== 0) return;
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      const anchor = (e.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
-      if (!anchor || anchor.target === "_blank" || anchor.hasAttribute("download")) return;
-      const url = new URL(anchor.href, window.location.href);
-      if (url.origin !== window.location.origin) return;
-      if (url.pathname === window.location.pathname) return; // the view tabs of this very page
-      e.preventDefault();
-      e.stopPropagation();
-      setLeaveTo(url.pathname + url.search + url.hash);
-    };
-    window.addEventListener("beforeunload", onBeforeUnload);
-    document.addEventListener("click", onClick, true);
-    return () => {
-      window.removeEventListener("beforeunload", onBeforeUnload);
-      document.removeEventListener("click", onClick, true);
-    };
-  }, [dirty]);
-
-  const goTo = (href: string) => {
-    leaveAllowed.current = true;
-    router.push(href);
-  };
   const selectView = (next: WorkspaceView) => {
-    if (next === "builder") {
-      const href = `/sessions/${sportKey}/${planId}`;
-      if (dirty) setLeaveTo(href);
-      else goTo(href);
-    } else setView(next);
+    if (next === "builder") guard.request(`/sessions/${sportKey}/${planId}`);
+    else setView(next);
   };
 
   const print = async () => {
@@ -175,6 +195,30 @@ export function DocumentWorkspace({
     }
     window.print();
   };
+
+  const detach = async () => {
+    setBusy(true);
+    try {
+      const result = await detachTemplateAction(sportKey, planId, versionRef.current);
+      if (result.ok) {
+        adopt(result.data);
+        toast(tt("toast.detached"), "success");
+      } else toast(te.has(result.error.code) ? te(result.error.code) : te("generic"), "error");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const openApply = (templateId?: string) => {
+    setApplyTemplateId(templateId);
+    setDialog("apply");
+  };
+
+  const ownDesign =
+    link !== null ||
+    dirty ||
+    look.preset !== "classic" ||
+    JSON.stringify(look.design) !== JSON.stringify(baseLook);
 
   const status: SaveState = unreadable
     ? "unreadable"
@@ -280,6 +324,22 @@ export function DocumentWorkspace({
             onDesign={setDesign}
             onPreset={setPreset}
             onReflection={setReflection}
+            baseLook={baseLook}
+            onResetLook={() => setDesign(applyLook(look.design, baseLook))}
+            header={
+              <TemplatePanel
+                sportKey={sportKey}
+                link={link}
+                canSave={canSave}
+                canCreate={canCreateTemplate}
+                hasTemplates={templates.length > 0}
+                busy={busy}
+                onChoose={() => openApply()}
+                onUpdate={() => openApply(link?.id)}
+                onDetach={() => void detach()}
+                onSaveAs={() => setDialog("save")}
+              />
+            }
           />
         </div>
 
@@ -317,47 +377,43 @@ export function DocumentWorkspace({
         </div>
       </div>
 
-      <Dialog open={leaveTo !== null} onOpenChange={(open) => !open && setLeaveTo(null)}>
-        <DialogContent
-          title={t("leave.title")}
-          description={t("leave.body")}
-          closeLabel={tc("close")}
-        >
-          <div className="flex flex-wrap justify-end gap-3">
-            <DialogClose asChild>
-              <Button type="button" variant="secondary">
-                {t("leave.stay")}
-              </Button>
-            </DialogClose>
-            <Button
-              type="button"
-              variant="secondary"
-              onClick={() => {
-                const href = leaveTo;
-                setLeaveTo(null);
-                if (href) goTo(href);
-              }}
-            >
-              {t("leave.discard")}
-            </Button>
-            {canSave ? (
-              <Button
-                type="button"
-                disabled={unreadable}
-                onClick={async () => {
-                  const href = leaveTo;
-                  if (href && (await save())) {
-                    setLeaveTo(null);
-                    goTo(href);
-                  }
-                }}
-              >
-                {t("leave.saveAndLeave")}
-              </Button>
-            ) : null}
-          </div>
-        </DialogContent>
-      </Dialog>
+      <ApplyTemplateDialog
+        open={dialog === "apply"}
+        onClose={() => setDialog(null)}
+        sportKey={sportKey}
+        templates={templates}
+        sessions={[{ id: planId, title, version: sessionVersion, hasOwnDesign: ownDesign }]}
+        initialTemplateId={applyTemplateId ?? templates.find((x) => x.id !== link?.id)?.id}
+        initialSessionId={planId}
+        lockSession
+        discardNote={dirty}
+        onApplied={(applied) => {
+          adopt(applied);
+          toast(tt("toast.applied", { name: applied.template?.name ?? "" }), "success");
+        }}
+      />
+      <SaveTemplateDialog
+        open={dialog === "save"}
+        onClose={() => setDialog(null)}
+        sportKey={sportKey}
+        personal={personalWorkspace}
+        preset={look.preset}
+        design={look.design}
+        session={canSave ? { id: planId, version: sessionVersion } : null}
+        onSaved={({ applied }) => {
+          toast(tt("toast.saved"), "success");
+          if (applied) adopt(applied, { keepReflection: true });
+        }}
+      />
+
+      <LeaveDialog
+        href={guard.leaveTo}
+        canSave={canSave}
+        saveDisabled={unreadable}
+        onClose={() => guard.setLeaveTo(null)}
+        onLeave={guard.go}
+        onSaveAndLeave={save}
+      />
     </div>
   );
 }

@@ -171,6 +171,8 @@ const BASE: Omit<DocumentDesign, "colors" | "typography" | "header" | "frame"> =
     reflection: false,
   },
   footer: { text: "" },
+  branding: { clubName: "", coachName: "" },
+  prompts: { wentWell: "", needsImprovement: "", nextFocus: "", notes: "" },
   logo: null,
 };
 
@@ -207,13 +209,15 @@ function applyOverride(base: DocumentDesign, o: DesignOverride | null | undefine
     header: { ...base.header, ...defined(o.header) },
     frame: { ...base.frame, ...defined(o.frame) },
     footer: { ...base.footer, ...defined(o.footer) },
+    branding: { ...base.branding, ...defined(o.branding) },
+    prompts: { ...base.prompts, ...defined(o.prompts) },
     logo: o.logo === undefined ? base.logo : o.logo,
   };
 }
 
 /**
- * Precedence: Preset → Template → Session override; each layer changes only what it names. `template` has no
- * source yet (saved templates are a later step) but the order is fixed now so nothing changes when it appears.
+ * Precedence: Preset → Template → Session override; each layer changes only what it names. The template layer is a
+ * saved template as frozen into the session when it was applied (see `resolveSessionDesign`).
  */
 export function resolveDesign(layers: {
   preset: PresetId;
@@ -226,17 +230,37 @@ export function resolveDesign(layers: {
   );
 }
 
-/** Switch look: the preset's style replaces colours, type, header, frame and spacing; content and page choices stay. */
-export function applyPreset(design: DocumentDesign, id: PresetId): DocumentDesign {
-  const p = presetDesign(id);
+/**
+ * The design a stored session prints with: its preset, then the template it was based on (as frozen when applied),
+ * then the coach's own changes. The ONE place that order is written down.
+ */
+export function resolveSessionDesign(settings: {
+  preset: PresetId;
+  template: { design: DesignOverride } | null;
+  overrides: DesignOverride;
+}): DocumentDesign {
+  return resolveDesign({
+    preset: settings.preset,
+    template: settings.template?.design,
+    override: settings.overrides,
+  });
+}
+
+/** Take the LOOK (colours, type, header, frame, spacing) from another design; content and page choices stay. */
+export function applyLook(design: DocumentDesign, from: DocumentDesign): DocumentDesign {
   return {
     ...design,
-    colors: p.colors,
-    typography: p.typography,
-    header: p.header,
-    frame: p.frame,
-    page: { ...design.page, spacing: p.page.spacing },
+    colors: from.colors,
+    typography: from.typography,
+    header: from.header,
+    frame: from.frame,
+    page: { ...design.page, spacing: from.page.spacing },
   };
+}
+
+/** Switch look: the preset's style replaces colours, type, header, frame and spacing; content and page choices stay. */
+export function applyPreset(design: DocumentDesign, id: PresetId): DocumentDesign {
+  return applyLook(design, presetDesign(id));
 }
 
 const differs = (a: unknown, b: unknown) => JSON.stringify(a) !== JSON.stringify(b);
@@ -270,6 +294,10 @@ export function diffDesign(base: DocumentDesign, design: DocumentDesign): Design
   if (frame) out.frame = frame;
   const footer = diffGroup(base.footer, design.footer);
   if (footer) out.footer = footer;
+  const branding = diffGroup(base.branding, design.branding);
+  if (branding) out.branding = branding;
+  const prompts = diffGroup(base.prompts, design.prompts);
+  if (prompts) out.prompts = prompts;
   if (differs(base.logo, design.logo)) out.logo = design.logo;
   return out;
 }

@@ -21,7 +21,8 @@
     "dashboard": "Dashboard",
     "settings": "Settings",
     "sports": "Sports",
-    "sessions": "Sessions"
+    "sessions": "Sessions",
+    "templates": "Templates"
   },
   "theme": {
     "toggle": "Theme: {mode}. Click to change.",
@@ -300,7 +301,15 @@
       "plan_status_changed": "Session status changed",
       "plan_deleted": "Session deleted",
       "plan_restored": "Session restored",
-      "plan_duplicated": "Session duplicated"
+      "plan_duplicated": "Session duplicated",
+      "plan_template_applied": "Template applied to a session",
+      "plan_template_detached": "Session detached from its template",
+      "template_created": "Template created",
+      "template_updated": "Template updated",
+      "template_status_changed": "Template archived or restored",
+      "template_deleted": "Template deleted",
+      "template_restored": "Template restored",
+      "template_duplicated": "Template duplicated"
     }
   },
   "settings": {
@@ -1388,7 +1397,10 @@
         "wentWell": "What went well?",
         "needsImprovement": "What needs improvement?",
         "nextFocus": "Next session focus",
-        "notes": "Coach notes"
+        "notes": "Coach notes",
+        "wording": "Wording for “{prompt}”",
+        "wordingHint": "Change how the reflection prompts read on the printed sheet.",
+        "templateNote": "Only the wording is saved in a template. Answers stay with each session."
       },
       "preview": {
         "toolbar": "Preview controls",
@@ -1405,7 +1417,219 @@
         "fitWidth": "Fit width",
         "print": "Print",
         "empty": "There is nothing to preview. Switch a section on to add it to the document."
+      },
+      "branding": {
+        "clubName": "Club, school or academy name",
+        "coachName": "Coach name",
+        "hint": "Shown in the header when a session has none of its own."
       }
+    }
+  },
+  "templates": {
+    "title": "Templates",
+    "subtitle": "Save a look you like once and reuse it for every session. A template holds the design only — never a session's date, activities or notes.",
+    "allSports": "All sports",
+    "sportFilter": "Sport",
+    "listHeading": "Saved templates",
+    "create": "New template",
+    "results": {
+      "none": "No templates match.",
+      "all": "{total, plural, one {# template} other {# templates}}",
+      "of": "of {total, plural, one {# template} other {# templates}}"
+    },
+    "empty": {
+      "noneTitle": "No templates yet",
+      "noneBody": "Open a session, customise its design, and choose Save as template. Or start from scratch with New template.",
+      "filteredTitle": "No templates match these filters",
+      "filteredBody": "Try a different search or clear the filters.",
+      "archivedTitle": "No archived templates",
+      "archivedBody": "Templates you archive are kept here, and can be restored at any time.",
+      "deletedTitle": "No deleted templates",
+      "deletedBody": "Deleted templates can be restored from here."
+    },
+    "filters": {
+      "region": "Filter templates",
+      "search": "Search",
+      "searchPlaceholder": "Name or description",
+      "category": "Category",
+      "categoryAny": "Any category",
+      "scope": "Whose",
+      "scopeAny": "Mine and shared",
+      "status": "Show",
+      "statusActive": "Active templates",
+      "clear": "Clear filters"
+    },
+    "categories": {
+      "general": "General",
+      "practice": "Practice",
+      "game_day": "Game day",
+      "school": "School",
+      "academy": "Academy",
+      "youth": "Youth"
+    },
+    "visibility": {
+      "private": "Personal",
+      "organization": "Shared with workspace"
+    },
+    "scope": {
+      "mine": "Personal (mine)",
+      "organization": "Shared with workspace"
+    },
+    "status": {
+      "archived": "Archived",
+      "deleted": "Deleted"
+    },
+    "card": {
+      "byYou": "By you",
+      "by": "By {name}",
+      "unknown": "a former member",
+      "revision": "Revision {revision}",
+      "updated": "Updated {date}"
+    },
+    "actions": {
+      "preview": "Preview",
+      "previewTitle": "Preview {name}",
+      "edit": "Edit",
+      "editTitle": "Edit {name}",
+      "useNew": "New session",
+      "useNewTitle": "Create a new session from {name}",
+      "moreTitle": "More actions for {name}",
+      "apply": "Apply to a session",
+      "duplicate": "Duplicate",
+      "archive": "Archive",
+      "restore": "Restore",
+      "restoreDeletedTitle": "Restore {name}",
+      "delete": "Delete",
+      "deleteTitle": "Delete this template?",
+      "deleteBody": "“{name}” will be removed from your templates. Sessions that already use it keep their design, and you can restore it later.",
+      "deleteConfirm": "Delete template"
+    },
+    "toast": {
+      "saved": "Template saved",
+      "applied": "Applied “{name}” to the session",
+      "duplicated": "Template duplicated",
+      "archived": "Template archived",
+      "restored": "Template restored",
+      "deleted": "Template deleted",
+      "detached": "Session no longer follows the template",
+      "changed": "This template was changed elsewhere. Reload and try again."
+    },
+    "apply": {
+      "title": "Apply a template",
+      "body": "Choose a template and a session. Only the session’s design changes.",
+      "session": "Session",
+      "forSession": "Session:",
+      "noSessions": "You have no draft or published sessions to apply a template to yet.",
+      "template": "Template",
+      "theTemplate": "Template:",
+      "scope": "Applying a template changes the session’s design only. Its activities, date, time, players and notes are never touched.",
+      "confirmTitle": "This session already has its own design",
+      "confirmBody": "You changed the design of this session. Choose what should happen to those changes.",
+      "mode": {
+        "replace": "Replace my changes",
+        "replaceHint": "The session looks exactly like the template.",
+        "keep": "Keep my changes",
+        "keepHint": "Apply the template, then keep the changes I made to this session on top of it."
+      },
+      "discard": "Design changes you haven’t saved on this screen will be discarded.",
+      "archived": "That template is archived. Restore it first to apply it.",
+      "conflict": "This session was changed elsewhere. Reload and try again.",
+      "gone": "That template or session is no longer available.",
+      "cancel": "Cancel",
+      "apply": "Apply template",
+      "confirm": "Yes, apply template"
+    },
+    "save": {
+      "title": "Save as template",
+      "body": "Save this session’s design so you can reuse it. Only the design is saved.",
+      "name": "Template name",
+      "description": "Description (optional)",
+      "descriptionHint": "Say when you’d use it, for example “Friday scrimmage sheet”.",
+      "category": "Category",
+      "visibility": "Who can use it",
+      "visibilityHint": {
+        "private": "Only you can see and use this template.",
+        "organization": "Everyone in the workspace can use it. Only you and admins can change it."
+      },
+      "useForSession": "Base this session on the new template",
+      "useForSessionHint": "This session will show which template it came from.",
+      "scope": "A template never includes this session’s date, time, activities, attendance, notes or reflection answers.",
+      "unreadable": "Text can’t be read on this background. Fix the colours before saving.",
+      "cancel": "Cancel",
+      "submit": "Save template"
+    },
+    "panel": {
+      "heading": "Saved template",
+      "basedOn": "Based on",
+      "revision": "Revision {revision}",
+      "updateAvailable": "Revision {revision} available",
+      "update": "Update to latest",
+      "updateHint": "The template has changed since you applied it. Your session keeps the older design until you update.",
+      "unavailable": "Template unavailable",
+      "unavailableHint": "The template was deleted or is no longer shared with you. This session keeps the design it had.",
+      "none": "This session is not based on a template.",
+      "choose": "Choose a template",
+      "change": "Change template",
+      "detach": "Stop following",
+      "noTemplates": "There are no templates for this sport yet.",
+      "saveAs": "Save as template",
+      "manage": "Manage templates",
+      "scope": "Templates change the design only, never the session’s activities or notes."
+    },
+    "editor": {
+      "details": "Template details",
+      "name": "Name",
+      "description": "Description (optional)",
+      "descriptionHint": "Say when you’d use it.",
+      "category": "Category",
+      "visibility": "Who can use it",
+      "editNote": "Sessions that already use this template keep the design they have until you update them.",
+      "newTitle": "New template",
+      "untitled": "Untitled template",
+      "meta": "Revision {revision} · version {version}",
+      "save": {
+        "create": "Create template",
+        "button": "Save template",
+        "saved": "Template saved",
+        "unsaved": "Unsaved changes",
+        "saving": "Saving…",
+        "error": "Couldn’t save the template",
+        "conflict": "Changed elsewhere",
+        "unreadable": "Text can’t be read on this background"
+      },
+      "actions": "Template actions",
+      "actionsShort": "Actions",
+      "conflictBanner": "This template was changed somewhere else. Reload to see the latest version before saving.",
+      "views": "Template views",
+      "tabs": {
+        "design": "Design",
+        "preview": "Preview"
+      },
+      "readOnly": {
+        "archived": "This template is archived. Restore it to edit it.",
+        "readOnly": "You can preview this template. Only its author or a workspace admin can edit it."
+      },
+      "sampleNote": "Previewed on an example {sport} session. It is not one of your sessions, and nothing here is saved to one."
+    },
+    "sample": {
+      "title": "Example session",
+      "team": "Example team",
+      "goal": "A sample session used only to preview this template.",
+      "location": "Main gym",
+      "season": "Season",
+      "club": "Example club",
+      "objectiveMain": "Ball handling",
+      "objectiveAlso1": "Passing",
+      "objectiveAlso2": "Team play",
+      "breakTitle": "Water break",
+      "customTitle": "Team talk",
+      "customDescription": "Sample text for a custom block."
+    },
+    "startFrom": {
+      "heading": "Design",
+      "label": "Start from a template",
+      "hint": "The session gets the template’s design. You can change it afterwards.",
+      "none": "No template (standard design)"
     }
   }
 }

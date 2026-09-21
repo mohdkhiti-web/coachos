@@ -2,6 +2,7 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import en from "../../messages/en.json";
+import { TEMPLATE_CATEGORIES, TEMPLATE_VISIBILITIES } from "../db/enums";
 
 /**
  * i18n guard: every STATIC translation key used in the source must exist in messages/en.json.
@@ -58,7 +59,9 @@ describe("messages/en.json", () => {
       for (const m of src.matchAll(new RegExp(`\\b${name}(?:\\.has)?\\(\\s*"([\\w.]+)"`, "g"))) {
         if (m[1]!.endsWith(".")) continue; // dynamic key built by concatenation — covered by the enum-family test
         checked++;
-        if (lookup(`${ns}.${m[1]}`) === undefined)
+        // a translated key is a text: a key that names a GROUP (an object) would render as an error, so it counts as missing
+        const value = lookup(`${ns}.${m[1]}`);
+        if (value === undefined || typeof value === "object")
           missing.push(`${path.relative(ROOT, file)}: ${ns}.${m[1]}`);
       }
     }
@@ -89,7 +92,16 @@ describe("messages/en.json", () => {
       ["diagram.builder.markerKinds", ["start", "end", "spot"]],
       ["diagram.builder.courts", ["half", "full"]],
       ["workspace.tabs", ["overview", "drills"]],
-      ["nav", ["dashboard", "sports", "settings"]],
+      ["nav", ["dashboard", "sessions", "templates", "sports", "settings"]],
+      ["templates.categories", TEMPLATE_CATEGORIES],
+      ["templates.visibility", TEMPLATE_VISIBILITIES],
+      ["templates.scope", ["mine", "organization"]],
+      ["templates.status", ["archived", "deleted"]],
+      ["templates.apply.mode", ["replace", "replaceHint", "keep", "keepHint"]],
+      ["templates.save.visibilityHint", TEMPLATE_VISIBILITIES],
+      ["templates.editor.tabs", ["design", "preview"]],
+      ["templates.editor.readOnly", ["archived", "readOnly"]],
+      ["templates.editor.save", ["saved", "unsaved", "saving", "error", "conflict", "unreadable"]],
     ];
     const gaps = need.flatMap(([ns, keys]) =>
       keys.filter((k) => lookup(`${ns}.${k}`) === undefined).map((k) => `${ns}.${k}`),

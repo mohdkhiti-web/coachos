@@ -8,6 +8,7 @@ import {
   type DrillResource,
   type MembershipRole,
   type PlanResource,
+  type TemplateResource,
 } from "./can";
 
 const ORG = "0192a000-0000-7000-8000-00000000000a";
@@ -26,7 +27,10 @@ const actor = (role: MembershipRole, platformRole: Actor["platformRole"] = "user
 
 const ACTIONS = Object.keys(POLICY) as Action[];
 /** Actions decided by ownership scope only; drill and plan actions have their own rules, tested below. */
-const GENERIC = ACTIONS.filter((a) => POLICY[a].scope !== "drill" && POLICY[a].scope !== "plan");
+const GENERIC = ACTIONS.filter(
+  (a) =>
+    POLICY[a].scope !== "drill" && POLICY[a].scope !== "plan" && POLICY[a].scope !== "template",
+);
 const own = { userId: USER, organizationId: ORG };
 const foreign = { userId: OTHER_USER, organizationId: OTHER_ORG };
 
@@ -53,6 +57,11 @@ describe("can(): role × action matrix (own resources)", () => {
     "plan:update": AUTHORS,
     "plan:delete": AUTHORS,
     "plan:duplicate": AUTHORS,
+    "template:read": MEMBERSHIP_ROLES,
+    "template:create": AUTHORS,
+    "template:update": AUTHORS,
+    "template:delete": AUTHORS,
+    "template:duplicate": AUTHORS,
   };
 
   for (const action of GENERIC) {
@@ -69,7 +78,9 @@ describe("can(): role × action matrix (own resources)", () => {
   });
 
   it("the role sets of every drill and plan action match the expectation", () => {
-    for (const action of ACTIONS.filter((a) => a.startsWith("drill:") || a.startsWith("plan:"))) {
+    for (const action of ACTIONS.filter(
+      (a) => a.startsWith("drill:") || a.startsWith("plan:") || a.startsWith("template:"),
+    )) {
       expect([...POLICY[action].roles].sort()).toEqual([...expected[action]].sort());
     }
   });
@@ -286,5 +297,92 @@ describe("can(): session (plan) rules (ownership × visibility × role)", () => 
     expect(can(actor("coach"), "plan:create", { organizationId: ORG })).toBe(true);
     expect(can(actor("coach"), "plan:create", { organizationId: OTHER_ORG })).toBe(false);
     expect(can(actor("assistant"), "plan:create", { organizationId: ORG })).toBe(false);
+  });
+});
+
+describe("can(): saved template rules (ownership × visibility × role)", () => {
+  const template = (over: Partial<TemplateResource> = {}): TemplateResource => ({
+    organizationId: ORG,
+    createdBy: USER,
+    visibility: "private",
+    status: "active",
+    ...over,
+  });
+  const othersPrivate = template({ createdBy: OTHER_USER, visibility: "private" });
+  const othersShared = template({ createdBy: OTHER_USER, visibility: "organization" });
+  const foreignShared = template({
+    organizationId: OTHER_ORG,
+    createdBy: OTHER_USER,
+    visibility: "organization",
+  });
+  const foreignPrivate = template({ organizationId: OTHER_ORG, createdBy: OTHER_USER });
+
+  it("reads its own private templates and colleagues' shared ones, in every role (assistants included)", () => {
+    for (const role of MEMBERSHIP_ROLES) {
+      expect(can(actor(role), "template:read", template())).toBe(true);
+      expect(can(actor(role), "template:read", othersShared)).toBe(true);
+    }
+  });
+
+  it("never reads a colleague's PRIVATE template, not even as owner/admin", () => {
+    for (const role of MEMBERSHIP_ROLES)
+      expect(can(actor(role), "template:read", othersPrivate)).toBe(false);
+  });
+
+  it("never reads another workspace's templates, shared or private, not even as a platform admin", () => {
+    for (const role of MEMBERSHIP_ROLES) {
+      expect(can(actor(role, "super_admin"), "template:read", foreignShared)).toBe(false);
+      expect(can(actor(role, "super_admin"), "template:read", foreignPrivate)).toBe(false);
+    }
+  });
+
+  for (const action of ["template:update", "template:delete"] as const) {
+    describe(action, () => {
+      it("authors change their own templates; assistants never", () => {
+        for (const role of ["owner", "admin", "coach", "teacher"] as const)
+          expect(can(actor(role), action, template())).toBe(true);
+        expect(can(actor("assistant"), action, template())).toBe(false);
+      });
+      it("only owner/admin may change a colleague's shared template", () => {
+        expect(can(actor("owner"), action, othersShared)).toBe(true);
+        expect(can(actor("admin"), action, othersShared)).toBe(true);
+        expect(can(actor("coach"), action, othersShared)).toBe(false);
+        expect(can(actor("teacher"), action, othersShared)).toBe(false);
+      });
+      it("nobody changes a colleague's PRIVATE template, or another workspace's", () => {
+        for (const role of MEMBERSHIP_ROLES) {
+          expect(can(actor(role), action, othersPrivate)).toBe(false);
+          expect(can(actor(role, "super_admin"), action, foreignShared)).toBe(false);
+          expect(can(actor(role, "super_admin"), action, foreignPrivate)).toBe(false);
+        }
+      });
+    });
+  }
+
+  it("duplicating copies anything you can read, as an author only", () => {
+    for (const role of ["owner", "admin", "coach", "teacher"] as const) {
+      expect(can(actor(role), "template:duplicate", template())).toBe(true);
+      expect(can(actor(role), "template:duplicate", othersShared)).toBe(true);
+    }
+    expect(can(actor("assistant"), "template:duplicate", othersShared)).toBe(false);
+    expect(can(actor("owner"), "template:duplicate", othersPrivate)).toBe(false);
+    expect(can(actor("owner"), "template:duplicate", foreignShared)).toBe(false);
+  });
+
+  it("a shared template whose creator's account is gone is managed by owner/admin; a private one is unreadable", () => {
+    const orphan = template({ createdBy: null, visibility: "organization" });
+    expect(can(actor("owner"), "template:update", orphan)).toBe(true);
+    expect(can(actor("coach"), "template:update", orphan)).toBe(false);
+    expect(can(actor("coach"), "template:read", orphan)).toBe(true);
+    const privateOrphan = template({ createdBy: null, visibility: "private" });
+    for (const role of MEMBERSHIP_ROLES)
+      expect(can(actor(role), "template:read", privateOrphan)).toBe(false);
+  });
+
+  it("template actions reject other resources; creating is only possible in your own workspace", () => {
+    expect(can(actor("owner"), "template:update", own)).toBe(false);
+    expect(can(actor("coach"), "template:create", { organizationId: ORG })).toBe(true);
+    expect(can(actor("coach"), "template:create", { organizationId: OTHER_ORG })).toBe(false);
+    expect(can(actor("assistant"), "template:create", { organizationId: ORG })).toBe(false);
   });
 });

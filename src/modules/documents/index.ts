@@ -7,7 +7,7 @@
 export * from "./color";
 export * from "./design";
 export * from "./layout";
-export { buildDocumentModel, buildFacts, collectEquipment } from "./model";
+export { buildDocumentModel, buildFacts, collectEquipment, withBranding } from "./model";
 export { paginate, fragmentHeight } from "./paginate";
 export type { BodyPage, Segment } from "./paginate";
 export * from "./presets";

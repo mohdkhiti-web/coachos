@@ -7,12 +7,16 @@ import { can } from "@/lib/authz/can";
 import { listTimezones } from "@/lib/timezones";
 import { requireViewer } from "@/modules/identity";
 import { getAgeGroups, getObjectives, getSport } from "@/modules/sports";
+import { listTemplateChoices } from "@/modules/templates";
 import { getSportModule } from "@/sports/registry";
 
 export const metadata: Metadata = { title: "Create session" };
 
-export default async function NewSessionPage({ params }: PageProps<"/sessions/[sport]/new">) {
-  const { sport: key } = await params;
+export default async function NewSessionPage({
+  params,
+  searchParams,
+}: PageProps<"/sessions/[sport]/new">) {
+  const [{ sport: key }, sp] = await Promise.all([params, searchParams]);
   const viewer = await requireViewer();
   const sport = await getSport(key);
   const mod = sport ? getSportModule(sport.key) : undefined;
@@ -22,11 +26,15 @@ export default async function NewSessionPage({ params }: PageProps<"/sessions/[s
   if (!can(viewer.actor, "plan:create", { organizationId: viewer.actor.organizationId }))
     redirect(base);
 
-  const [t, ageGroups, objectives] = await Promise.all([
+  const [t, ageGroups, objectives, templates] = await Promise.all([
     getTranslations("sessions.new"),
     getAgeGroups(sport.id),
     getObjectives(sport.id),
+    listTemplateChoices(viewer.actor, sport.key),
   ]);
+  // a link from the Templates page (?template=…) preselects it — but only a template this viewer can actually use
+  const wanted = typeof sp.template === "string" ? sp.template : "";
+  const initialTemplateId = templates.some((x) => x.id === wanted) ? wanted : "";
   const personal = viewer.organization.type === "personal";
 
   return (
@@ -56,6 +64,8 @@ export default async function NewSessionPage({ params }: PageProps<"/sessions/[s
         }}
         showVisibility={!personal}
         cancelHref={base}
+        templates={templates}
+        initialTemplateId={initialTemplateId}
       />
     </div>
   );

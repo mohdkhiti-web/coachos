@@ -118,6 +118,24 @@ const sectionsSchema = z.strictObject({
 });
 
 export const FOOTER_TEXT_MAX = 120;
+export const PROMPT_MAX = 60;
+
+/**
+ * Reusable branding: the club / school / academy and the coach a document falls back to when the SESSION does not
+ * name its own. A template can carry these; applying it never writes into the session (session values always win).
+ */
+const brandingSchema = z.strictObject({
+  clubName: z.string().trim().max(120, { error: "too_long" }),
+  coachName: z.string().trim().max(80, { error: "too_long" }),
+});
+
+/** The wording of the four reflection prompts ("" = the built-in wording). Wording is structure; answers are not. */
+const promptsSchema = z.strictObject({
+  wentWell: z.string().trim().max(PROMPT_MAX, { error: "too_long" }),
+  needsImprovement: z.string().trim().max(PROMPT_MAX, { error: "too_long" }),
+  nextFocus: z.string().trim().max(PROMPT_MAX, { error: "too_long" }),
+  notes: z.string().trim().max(PROMPT_MAX, { error: "too_long" }),
+});
 
 export const documentDesignSchema = z.strictObject({
   schemaVersion: z.literal(DESIGN_VERSION),
@@ -129,6 +147,8 @@ export const documentDesignSchema = z.strictObject({
   header: z.strictObject({ style: z.enum(HEADER_STYLES) }),
   frame: z.strictObject({ border: z.enum(BORDER_STYLES), divider: z.enum(DIVIDER_STYLES) }),
   footer: z.strictObject({ text: z.string().trim().max(FOOTER_TEXT_MAX, { error: "too_long" }) }),
+  branding: brandingSchema,
+  prompts: promptsSchema,
   /**
    * A reference to a stored club/school logo. Uploading and storing one is a later step (small, validated
    * images in Postgres); the design and the document model already know how to carry the reference.
@@ -161,6 +181,8 @@ export const designOverrideSchema = z.strictObject({
     .strictObject({ text: z.string().trim().max(FOOTER_TEXT_MAX, { error: "too_long" }) })
     .partial()
     .optional(),
+  branding: brandingSchema.partial().optional(),
+  prompts: promptsSchema.partial().optional(),
   logo: z.strictObject({ assetId: z.uuid() }).nullable().optional(),
 });
 
@@ -186,6 +208,22 @@ export const emptyReflection = (): Reflection => ({
 // ---- what is stored with a session (`plans.document_settings`) -----------------------------------
 
 /**
+ * The template a session was based on, FROZEN as it was when it was applied: its id and design revision (so the session can
+ * say "based on X, revision 3" and notice that revision 4 exists), its name, and the layer itself. Editing the saved template later
+ * changes nothing here until the coach chooses to update. Deleting it changes nothing either.
+ */
+export const sessionTemplateSchema = z.strictObject({
+  id: z.uuid(),
+  /** The template's design revision (see `document_templates.revision`), not its concurrency version. */
+  revision: z.int().min(1),
+  name: z.string().trim().min(1).max(80),
+  /** The preset the template's layer was written against. */
+  preset: z.enum(PRESET_IDS),
+  design: designOverrideSchema,
+});
+export type SessionTemplate = z.output<typeof sessionTemplateSchema>;
+
+/**
  * The session-level layer: which preset it started from, only what the coach changed on top of it, and the
  * reflection text. Session CONTENT (the reflection) sits beside the design, never inside it, so a preset or a
  * future template can never carry one session's notes.
@@ -193,6 +231,8 @@ export const emptyReflection = (): Reflection => ({
 export const documentSettingsSchema = z.strictObject({
   schemaVersion: z.literal(DESIGN_VERSION).default(DESIGN_VERSION),
   preset: z.enum(PRESET_IDS).default("classic"),
+  /** Preset → TEMPLATE → session override. Null = no template. */
+  template: sessionTemplateSchema.nullable().default(null),
   overrides: designOverrideSchema.default({}),
   reflection: reflectionSchema.default(emptyReflection),
 });
@@ -211,6 +251,28 @@ export function migrateDocumentSettings(raw: unknown): DocumentSettings | null {
   if (Object.keys(raw).length === 0) return defaultDocumentSettings();
   if ((raw as { schemaVersion?: unknown }).schemaVersion !== DESIGN_VERSION) return null;
   const parsed = documentSettingsSchema.safeParse(raw);
+  return parsed.success ? parsed.data : null;
+}
+
+// ---- a saved template's configuration (`document_templates.config`) -----------------------------
+
+/**
+ * WHAT A TEMPLATE IS: a preset plus a design layer on top of it — nothing else. The schema is strict, so a session's
+ * date, start time, number, timeline, attendance, notes or reflection ANSWERS cannot be stored in one, not even by
+ * a forged request. (Reflection prompt WORDING and default branding are part of the design, by intent.)
+ */
+export const templateConfigSchema = z.strictObject({
+  schemaVersion: z.literal(DESIGN_VERSION).default(DESIGN_VERSION),
+  preset: z.enum(PRESET_IDS).default("classic"),
+  design: designOverrideSchema.default({}),
+});
+export type TemplateConfig = z.output<typeof templateConfigSchema>;
+
+/** Every read of a stored template passes through this; null = a version or shape this code cannot read. */
+export function migrateTemplateConfig(raw: unknown): TemplateConfig | null {
+  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) return null;
+  if ((raw as { schemaVersion?: unknown }).schemaVersion !== DESIGN_VERSION) return null;
+  const parsed = templateConfigSchema.safeParse(raw);
   return parsed.success ? parsed.data : null;
 }
 

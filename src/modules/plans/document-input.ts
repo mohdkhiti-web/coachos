@@ -3,9 +3,9 @@ import type {
   DocumentActivityInput,
   SessionDocumentInput,
 } from "@/modules/documents";
-import type { PlanActivityDto, PlanDetailDto } from "./dto";
+import type { PlanDetailDto } from "./dto";
 import { buildTimeline } from "./schedule";
-import type { DrillSnapshot } from "./snapshot";
+import type { ActivitySnapshot, DrillSnapshot } from "./snapshot";
 
 /**
  * A session → the documents module's input. Pure: it decides nothing about layout, only which of the session's
@@ -13,11 +13,10 @@ import type { DrillSnapshot } from "./snapshot";
  * times on paper are the times on the screen the coach built the session on.
  */
 
-const isDrillSnapshot = (s: NonNullable<PlanActivityDto["snapshot"]>): s is DrillSnapshot =>
-  "content" in s;
+const isDrillSnapshot = (s: ActivitySnapshot): s is DrillSnapshot => "content" in s;
 
-function contentOf(a: PlanActivityDto): DocumentActivityContent | null {
-  const s = a.snapshot;
+/** What an activity's frozen snapshot says, in the shape the document model reads. */
+export function snapshotContent(s: ActivitySnapshot | null): DocumentActivityContent | null {
   if (!s) return null;
   if (isDrillSnapshot(s)) {
     const c = s.content;
@@ -78,7 +77,7 @@ export function toDocumentInput(plan: PlanDetailDto): SessionDocumentInput {
     players: a.players,
     repetitions: a.repetitions,
     notes: a.notes,
-    content: contentOf(a),
+    content: snapshotContent(a.snapshot),
   }));
   return {
     title: plan.title,

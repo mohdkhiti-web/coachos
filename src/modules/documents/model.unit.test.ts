@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { SECTION_IDS, type DocumentDesign, type SectionId } from "./design";
-import { buildDocumentModel, buildFacts, collectEquipment } from "./model";
+import { buildDocumentModel, buildFacts, collectEquipment, withBranding } from "./model";
 import { presetDesign } from "./presets";
 import { METRICS } from "./layout";
 import { activities, drillContent, drillKeys, session, typicalSession } from "./test-support";
@@ -704,5 +704,67 @@ describe("purity and determinism", () => {
       expect(m.pageCount, key).toBeGreaterThan(0);
       expect(drillContent(key).title.length).toBeGreaterThan(0);
     }
+  });
+});
+
+describe("template branding and reflection wording", () => {
+  const branded = (b: Partial<DocumentDesign["branding"]>, base = design()): DocumentDesign => ({
+    ...base,
+    branding: { clubName: "", coachName: "", ...b },
+  });
+
+  it("fills the club and the coach from the design only where the session names none", () => {
+    const blank = typicalSession({ clubName: "", coachName: "" });
+    const m = buildDocumentModel(
+      blank,
+      branded({ clubName: "Template FC", coachName: "Coach Tee" }),
+    );
+    expect(m.header.clubName).toBe("Template FC");
+    expect(m.footer.coachName).toBe("Coach Tee");
+  });
+
+  it("the session's own club and coach always win over the template's", () => {
+    const m = buildDocumentModel(
+      typicalSession({ clubName: "Riverside BC", coachName: "Sam Rivera" }),
+      branded({ clubName: "Template FC", coachName: "Coach Tee" }),
+    );
+    expect(m.header.clubName).toBe("Riverside BC");
+    expect(m.footer.coachName).toBe("Sam Rivera");
+  });
+
+  it("never writes branding back into the input (only the document changes)", () => {
+    const input = typicalSession({ clubName: "", coachName: "" });
+    const before = JSON.stringify(input);
+    buildDocumentModel(input, branded({ clubName: "Template FC" }));
+    expect(JSON.stringify(input)).toBe(before);
+  });
+
+  it("withBranding hands back the same object when there is nothing to fill", () => {
+    const input = typicalSession();
+    expect(withBranding(input, branded({}))).toBe(input);
+    expect(withBranding(input, branded({ clubName: "Template FC" }))).toBe(input); // the session has its own
+  });
+
+  it("prints the template's wording for a reflection prompt, and only for that prompt", () => {
+    const d = withSections(
+      { reflection: true },
+      {
+        ...design(),
+        prompts: { wentWell: "What worked today?", needsImprovement: "", nextFocus: "", notes: "" },
+      },
+    );
+    const m = buildDocumentModel(typicalSession(), d);
+    const r = rows(m).flatMap((row) => (row.t === "reflection" ? [row] : []));
+    expect(r.map((x) => x.label)).toEqual(["What worked today?", "", "", ""]);
+    // the ANSWER is still the session's own, whatever the wording
+    const answered = buildDocumentModel(typicalSession(), d, {
+      wentWell: "Sharp press release.",
+      needsImprovement: "",
+      nextFocus: "",
+      notes: "",
+    });
+    expect(rows(answered).flatMap((row) => (row.t === "reflection" ? [row.text] : []))[0]).toBe(
+      "Sharp press release.",
+    );
   });
 });

@@ -227,6 +227,74 @@ for (const scheme of ["light", "dark"] as const) {
       await expect(dialog).toBeHidden();
     });
 
+    test("saved templates: list, cards and menus, editor, save and apply dialogs", async ({
+      page,
+    }) => {
+      test.setTimeout(240_000);
+      await signUpAndVerify(page, newUser());
+      await completeOnboarding(page);
+
+      await page.goto("/templates/basketball");
+      await expect(page.getByText("No templates yet")).toBeVisible();
+      await audit(page, `templates, empty (${scheme})`);
+
+      const builder = await createSession(page, { title: "Accessible templates", team: "Wolves" });
+      await page.goto(`${builder}/document?view=design`);
+      await expect(page.getByTestId("template-panel")).toBeVisible();
+      await page
+        .getByTestId("design-panel")
+        .getByLabel("Modern Basketball", { exact: true })
+        .check({ force: true });
+      await audit(page, `session design with the template panel (${scheme})`);
+
+      await page
+        .getByTestId("template-panel")
+        .getByRole("button", { name: "Save as template" })
+        .click();
+      const save = page.getByRole("dialog", { name: "Save as template" });
+      await expect(save).toBeVisible();
+      await audit(page, `save as template dialog (${scheme})`);
+      await save.getByLabel("Template name", { exact: true }).fill("Accessible sheet");
+      await save.getByRole("button", { name: "Save template" }).click();
+      await expect(save).toBeHidden();
+
+      await page.goto("/templates/basketball");
+      const card = page.getByRole("article", { name: "Accessible sheet", exact: true });
+      await expect(card).toBeVisible();
+      await audit(page, `templates, one card (${scheme})`);
+      await page.goto("/templates");
+      await expect(card).toBeVisible();
+      await audit(page, `templates, all sports (${scheme})`);
+      await page.goto("/templates/basketball?status=archived");
+      await audit(page, `templates, archived view (${scheme})`);
+
+      await page.goto("/templates/basketball");
+      await card.getByRole("button", { name: "More actions for Accessible sheet" }).click();
+      await audit(page, `template card menu (${scheme})`);
+      await page.getByRole("menuitem", { name: "Apply to a session" }).click();
+      const apply = page.getByRole("dialog", { name: "Apply a template" });
+      await expect(apply).toBeVisible();
+      await audit(page, `apply template dialog (${scheme})`);
+      await page.keyboard.press("Escape");
+      await expect(apply).toBeHidden();
+
+      await card.getByRole("link", { name: "Edit Accessible sheet" }).click();
+      await expect(page.getByRole("heading", { level: 1, name: "Accessible sheet" })).toBeVisible();
+      await expect(page.locator(".doc-page").first()).toBeVisible();
+      await audit(page, `template editor (${scheme})`);
+      await page.getByRole("button", { name: "Template actions" }).click();
+      await page.getByRole("menuitem", { name: "Delete" }).click();
+      const del = page.getByRole("dialog", { name: "Delete this template?" });
+      await expect(del).toBeVisible();
+      await audit(page, `delete template dialog (${scheme})`);
+      await page.keyboard.press("Escape");
+
+      await page.goto("/templates/basketball/new");
+      await expect(page.getByRole("heading", { level: 1, name: "New template" })).toBeVisible();
+      await expect(page.locator(".doc-page").first()).toBeVisible();
+      await audit(page, `new template (${scheme})`);
+    });
+
     test("sports workspace, drill library, drill detail, and the drill form with its diagram builder", async ({
       page,
     }) => {
