@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
-import { expect, type Page } from "@playwright/test";
+import { expect, type Locator, type Page } from "@playwright/test";
 
 const MAIL_DIR = path.resolve(process.cwd(), ".data/mail-e2e");
 
@@ -83,6 +83,16 @@ export async function signIn(page: Page, user: Pick<TestUser, "email" | "passwor
   await page.getByLabel("Email").fill(user.email);
   await page.getByLabel("Password", { exact: true }).fill(user.password);
   await page.getByRole("button", { name: "Sign in" }).click();
+}
+
+/**
+ * Wait for an element's own CSS animations (the CoachOS motion system's entrance/exit transitions — a
+ * dialog's `animate-modal-in`, for instance) to finish, so a bounding box or a forced click afterwards reads
+ * the settled layout rather than a mid-transition frame. A no-op once nothing is animating, and near-instant
+ * under `prefers-reduced-motion` (motion.css shortens every animation to ~0 there).
+ */
+export async function animationSettled(locator: Locator) {
+  await locator.evaluate((el) => Promise.all(el.getAnimations().map((a) => a.finished)));
 }
 
 export async function signOut(page: Page) {

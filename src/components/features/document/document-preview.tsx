@@ -338,10 +338,7 @@ export function DocumentPreview({
           </p>
         ) : (
           <div
-            // A real document editor's zoom glides rather than snaps; print resets `zoom` to 1 regardless
-            // (see globals.css), and the global `@media print` rule in motion.css also turns the transition
-            // itself off, so PDF/PNG/print capture is never mid-tween.
-            className="doc-zoom mx-auto w-fit transition-[zoom] duration-200 ease-out"
+            className="doc-zoom mx-auto w-fit"
             style={{ zoom, padding: `${STAGE_PADDING_PX / zoom}px` }}
           >
             <DocumentPages model={model} logoSrc={logoSrc} />

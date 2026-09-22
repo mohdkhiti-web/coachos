@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { completeOnboarding, newUser, signUpAndVerify } from "./support/helpers";
+import { completeOnboarding, newUser, animationSettled, signUpAndVerify } from "./support/helpers";
 import { addBreak, addCustom, createSession, pickDrill, SESSIONS } from "./support/sessions";
 
 // Runs in the "mobile" project (Pixel 7 viewport): the rail becomes a bottom tab bar (§2.3).
@@ -169,6 +169,7 @@ test("the session builder is usable on a phone: nothing overflows, controls are 
   await drill.getByRole("button", { name: "Edit Five-Spot Shooting" }).click();
   const dialog = page.getByRole("dialog");
   await expect(dialog).toBeVisible();
+  await animationSettled(dialog); // let the entrance animation finish before measuring its final position
   const box = await dialog.boundingBox();
   expect((box?.x ?? -1) + 1).toBeGreaterThanOrEqual(0);
   expect((box?.x ?? 0) + (box?.width ?? 0)).toBeLessThanOrEqual(page.viewportSize()!.width + 1);
@@ -356,6 +357,7 @@ test("logos, images and sharing work on a phone: the shared page fits, the image
   await toolbar.getByRole("button", { name: "Share", exact: true }).click();
   const dialog = page.getByRole("dialog", { name: "Share this session" });
   await expect(dialog).toBeVisible();
+  await animationSettled(dialog); // let the entrance animation finish before measuring touch targets
   const create = dialog.getByRole("button", { name: "Create link" });
   expect((await create.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
   await create.click();
@@ -428,6 +430,7 @@ test("Step 8: the generator, the AI Coach and the diagram editor fit a phone and
   await page.getByRole("button", { name: "More actions for Phone drill" }).click();
   await page.getByRole("menuitem", { name: /diagram/i }).click();
   await expect(page.getByTestId("diagram-editor")).toBeVisible();
+  await animationSettled(page.getByRole("dialog")); // the editor opens in a dialog; let its entrance animation finish
   expect(await noHorizontalScroll(page), "diagram editor overflows").toBe(true);
   // tools are big enough to tap
   for (const name of ["Attacker", "Pass", "Undo"]) {

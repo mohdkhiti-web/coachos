@@ -2,6 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 import {
   completeOnboarding,
   newUser,
+  animationSettled,
   signIn,
   signOut,
   signUpAndVerify,
@@ -230,6 +231,8 @@ test("applying a template to a session that already has its own design asks firs
 
   // keep my changes: the template applies, but the session's own accent still wins
   await templatePanel(page).getByRole("button", { name: "Choose a template" }).click();
+  await expect(dialog).toBeVisible();
+  await animationSettled(dialog); // let the re-opened dialog's entrance animation finish before the forced click
   await dialog.getByLabel("Keep my changes").check({ force: true });
   await dialog.getByRole("button", { name: "Yes, apply template", exact: true }).click();
   await expect(dialog).toBeHidden();
