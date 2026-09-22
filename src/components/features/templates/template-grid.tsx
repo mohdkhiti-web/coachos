@@ -67,7 +67,7 @@ export function TemplateGrid({
     <>
       <ul className="grid gap-4 sm:grid-cols-2 2xl:grid-cols-3">
         {items.map((x) => (
-          <li key={x.id}>
+          <li key={x.id} className="animate-fade-up">
             <TemplateCard template={x} canCreate={canCreate} onApply={() => setApplying(x)} />
           </li>
         ))}
@@ -138,7 +138,7 @@ function TemplateCard({
   const updated = new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(x.updatedAt);
 
   return (
-    <Card>
+    <Card interactive>
       <article aria-label={x.name} data-testid="template-card">
         <CardBody className="space-y-3">
           <Swatches design={design} />

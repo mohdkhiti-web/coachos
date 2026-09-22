@@ -375,7 +375,7 @@ const PreviewPanel = React.forwardRef<
       ref={ref}
       tabIndex={-1}
       aria-labelledby="gen-preview-heading"
-      className="space-y-5 rounded-lg outline-none"
+      className="animate-fade-up space-y-5 rounded-lg outline-none"
     >
       <header className="space-y-1">
         <h2 id="gen-preview-heading" className="display text-3xl text-ink md:text-4xl">
@@ -399,7 +399,13 @@ const PreviewPanel = React.forwardRef<
 
       <Card>
         <CardBody className="p-0">
-          <ol aria-label={t("preview.timeline")} className="divide-y divide-line">
+          {/* Keyed on the drill list itself, so "Another" (a fresh set from the same request) crossfades the
+              whole timeline in rather than the cards silently swapping their content underneath the coach. */}
+          <ol
+            key={preview.items.map((i) => i.drillId ?? "break").join("-")}
+            aria-label={t("preview.timeline")}
+            className="animate-fade-in divide-y divide-line"
+          >
             {preview.items.map((item, index) => {
               const start = starts[index] ?? 0;
               const drill = item.drillId ? preview.drills[item.drillId] : undefined;

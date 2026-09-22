@@ -16,7 +16,7 @@ export async function RecentActivity({ viewer }: WidgetProps) {
   const timeZone = viewer.profile.timezone ?? "UTC";
 
   return (
-    <Card>
+    <Card interactive>
       <CardBody className="space-y-4">
         <SectionMarker n={3}>{t("eyebrow")}</SectionMarker>
         <h2 className="text-lg font-semibold tracking-tight text-ink">{t("title")}</h2>
@@ -51,7 +51,7 @@ export async function RecentActivity({ viewer }: WidgetProps) {
         )}
         <Link
           href="/settings/security"
-          className="inline-block text-sm font-medium text-accent underline-offset-4 hover:underline"
+          className="inline-block text-sm font-medium text-accent underline-offset-4 smooth-colors hover:underline"
         >
           {t("viewAll")}
         </Link>

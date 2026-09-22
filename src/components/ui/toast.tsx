@@ -48,7 +48,7 @@ export function ToastProvider({
               if (!open) setItems((prev) => prev.filter((i) => i.id !== item.id));
             }}
             className={cn(
-              "flex items-start gap-3 rounded-lg border bg-surface-raised p-4 shadow-paper data-[state=closed]:animate-out data-[state=open]:animate-in",
+              "flex items-start gap-3 rounded-lg border bg-surface-raised p-4 shadow-paper transition-[transform,opacity] duration-200 ease-out data-[state=closed]:animate-out data-[state=open]:animate-in data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=end]:animate-out data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)]",
               item.tone === "success" ? "border-success" : "border-danger",
             )}
           >
@@ -62,7 +62,7 @@ export function ToastProvider({
             </T.Description>
             <T.Close
               aria-label={dismissLabel}
-              className="-m-1 rounded-md p-1 text-ink-muted hover:text-ink"
+              className="-m-1 press rounded-md p-1 text-ink-muted smooth-colors hover:text-ink"
             >
               <X className="size-4" aria-hidden />
             </T.Close>

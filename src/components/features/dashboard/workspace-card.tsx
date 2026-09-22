@@ -26,7 +26,7 @@ export async function WorkspaceCard({ viewer }: WidgetProps) {
   ];
 
   return (
-    <Card>
+    <Card interactive>
       <CardBody className="space-y-4">
         <SectionMarker n={2}>{t("eyebrow")}</SectionMarker>
         <dl className="divide-y divide-line">
@@ -43,7 +43,7 @@ export async function WorkspaceCard({ viewer }: WidgetProps) {
         {canEdit ? (
           <Link
             href="/settings/profile"
-            className="inline-block text-sm font-medium text-accent underline-offset-4 hover:underline"
+            className="inline-block text-sm font-medium text-accent underline-offset-4 smooth-colors hover:underline"
           >
             {t("manage")}
           </Link>

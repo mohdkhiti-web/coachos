@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { getTranslations } from "next-intl/server";
 import { BrandMark, Wordmark } from "@/components/ui/brand";
 import { CourtMark } from "@/components/ui/court-mark";
+import { RouteTransition } from "@/components/motion";
 import { parseTheme, THEME_COOKIE } from "@/lib/theme";
 import type { Viewer } from "@/modules/identity";
 import type { NavSport } from "./nav";
@@ -86,7 +87,7 @@ export async function AppShell({
         <main id="main" className="flex-1 px-4 py-6 pb-28 md:px-8 md:py-10 md:pb-10 print:p-0">
           {/* a page may ask for more room (the design workspace) with a data-page-wide element inside it */}
           <div className="mx-auto w-full max-w-5xl has-[[data-page-wide]]:max-w-[92rem] print:max-w-none">
-            {children}
+            <RouteTransition>{children}</RouteTransition>
           </div>
         </main>
       </div>

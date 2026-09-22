@@ -39,13 +39,17 @@ export async function DrillCard({
   return (
     <article
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-lg border border-line bg-surface-raised shadow-paper transition-colors hover:border-line-strong",
+        "group relative flex interactive-surface flex-col overflow-hidden rounded-lg border border-line bg-surface-raised shadow-paper",
         className,
       )}
     >
-      <div className="flex h-44 items-center justify-center border-b border-line bg-surface-sunken">
+      <div className="flex h-44 items-center justify-center overflow-hidden border-b border-line bg-surface-sunken">
         {drill.diagram ? (
-          <DrillDiagram diagram={drill.diagram} decorative className="h-full w-full p-1" />
+          <DrillDiagram
+            diagram={drill.diagram}
+            decorative
+            className="h-full w-full p-1 transition-transform duration-300 ease-out group-hover:scale-[1.04]"
+          />
         ) : (
           <CourtMark className="h-28 w-auto opacity-60" />
         )}

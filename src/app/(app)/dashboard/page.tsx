@@ -37,8 +37,12 @@ export default async function DashboardPage() {
       </header>
 
       <div className="grid gap-5 lg:grid-cols-2">
-        {widgets.map(({ id, span, Component }) => (
-          <div key={id} className={cn(span === "full" && "lg:col-span-2")}>
+        {widgets.map(({ id, span, Component }, i) => (
+          <div
+            key={id}
+            className={cn("animate-fade-up", span === "full" && "lg:col-span-2")}
+            style={{ animationDelay: `${Math.min(i, 4) * 40}ms` }}
+          >
             <Component viewer={viewer} />
           </div>
         ))}

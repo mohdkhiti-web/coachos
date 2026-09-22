@@ -45,15 +45,19 @@ export function SaveStatus({
         className,
       )}
     >
-      <Icon
-        aria-hidden
-        className={cn(
-          "size-4 shrink-0",
-          state === "saving" && "animate-spin",
-          state === "saved" && "text-success",
-        )}
-      />
-      <span>{t(state)}</span>
+      {/* Keyed on the state itself, so each status change (Saved → Saving… → …) crossfades in rather than
+          snapping — a quiet, honest reflection of real save progress, never a decorative loop. */}
+      <span key={state} className="inline-flex animate-fade-in items-center gap-2">
+        <Icon
+          aria-hidden
+          className={cn(
+            "size-4 shrink-0",
+            state === "saving" && "animate-spin",
+            state === "saved" && "text-success",
+          )}
+        />
+        <span>{t(state)}</span>
+      </span>
       {state === "error" && onRetry ? (
         <Button type="button" variant="link" size="sm" onClick={onRetry}>
           {t("retry")}

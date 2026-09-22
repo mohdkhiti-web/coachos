@@ -14,7 +14,7 @@ export async function SetupChecklist({ viewer }: WidgetProps) {
   const allDone = done === items.length;
 
   return (
-    <Card>
+    <Card interactive>
       <CardBody className="space-y-5">
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-2">
@@ -63,7 +63,7 @@ export async function SetupChecklist({ viewer }: WidgetProps) {
               {!item.done && item.href ? (
                 <Link
                   href={item.href}
-                  className="shrink-0 self-center text-sm font-medium text-accent underline-offset-4 hover:underline"
+                  className="shrink-0 self-center text-sm font-medium text-accent underline-offset-4 smooth-colors hover:underline"
                 >
                   {t(`items.${item.id}.action` as "items.preferences.action")}
                 </Link>

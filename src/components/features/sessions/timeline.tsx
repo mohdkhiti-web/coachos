@@ -19,6 +19,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { useTranslations } from "next-intl";
+import { useExitTransition } from "@/components/motion";
 import type { OnTimeline } from "@/modules/plans/schedule";
 import type { BuilderActivity } from "./builder-model";
 import { ActivityCard, type CardActions } from "./activity-card";
@@ -48,6 +49,10 @@ export function Timeline({
   const ids = items.map((a) => a.id);
   const titleOf = (id: string | number) => items.find((a) => a.id === id)?.title ?? "";
   const indexOf = (id: string | number) => ids.indexOf(String(id)) + 1;
+  // Removed blocks fade out instead of vanishing; the list below stays mounted for `wait` ms after removal so
+  // the exit animation (motion.css `animate-out`) can play. Added blocks are simply new keys, which the card's
+  // own `animate-fade-up` mount animation already covers.
+  const transitioned = useExitTransition(items, (a) => a.id);
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
@@ -82,7 +87,7 @@ export function Timeline({
     onReorder(arrayMove(ids, from, to), String(active.id));
   }
 
-  if (items.length === 0) return <>{empty}</>;
+  if (transitioned.length === 0) return <>{empty}</>;
 
   return (
     <DndContext
@@ -97,17 +102,18 @@ export function Timeline({
     >
       <SortableContext items={ids} strategy={verticalListSortingStrategy}>
         <ol aria-label={t("timelineLabel")} className="space-y-3">
-          {items.map((a, i) => (
+          {transitioned.map(({ key, item: a, leaving }, i) => (
             <ActivityCard
-              key={a.id}
+              key={key}
               activity={a}
               startMin={a.startMin}
               endMin={a.endMin}
               index={i}
               count={items.length}
               replaceHref={replaceHrefFor(a.id)}
-              canEdit={canEdit}
+              canEdit={canEdit && !leaving}
               actions={actions}
+              leaving={leaving}
             />
           ))}
         </ol>

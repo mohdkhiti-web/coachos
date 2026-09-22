@@ -14,6 +14,7 @@ import {
   Square,
   Trash2,
 } from "lucide-react";
+import { TypingDots } from "@/components/motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardBody } from "@/components/ui/card";
 import { Select } from "@/components/ui/field";
@@ -318,12 +319,16 @@ export function AssistantChat({
               ))}
               {sending ? (
                 <div
-                  className="flex items-center gap-3 text-sm text-ink-muted"
+                  className="flex animate-fade-up items-center gap-3 text-sm text-ink-muted"
                   role="status"
                   data-testid="chat-working"
                 >
-                  <span className="size-2 animate-pulse rounded-full bg-accent" aria-hidden />
-                  <span>{toolLabel}</span>
+                  <TypingDots />
+                  {/* Keyed on the label, so each phase change (thinking → a named tool → thinking again)
+                      crossfades instead of snapping — the wording always reflects real stream events. */}
+                  <span key={toolLabel} className="animate-fade-in">
+                    {toolLabel}
+                  </span>
                 </div>
               ) : null}
               <div ref={endRef} />
@@ -332,7 +337,7 @@ export function AssistantChat({
             {failure ? (
               <div
                 role="alert"
-                className="flex flex-wrap items-center gap-3 rounded-md border border-danger bg-danger-soft p-3 text-sm text-ink"
+                className="flex animate-fade-up flex-wrap items-center gap-3 rounded-md border border-danger bg-danger-soft p-3 text-sm text-ink"
                 data-testid="chat-error"
               >
                 <CircleAlert className="size-4 shrink-0 text-danger" aria-hidden />
@@ -362,7 +367,7 @@ export function AssistantChat({
                     type="button"
                     disabled={sending}
                     onClick={() => void send(p.text)}
-                    className="rounded-full border border-line-strong bg-surface-raised px-3 py-1.5 text-sm text-ink hover:bg-surface-sunken disabled:opacity-55"
+                    className="press rounded-full border border-line-strong bg-surface-raised px-3 py-1.5 text-sm text-ink smooth-colors hover:bg-surface-sunken disabled:opacity-55"
                   >
                     {t(`prompts.${p.key}.label`)}
                   </button>
@@ -448,7 +453,7 @@ export function AssistantChat({
                   href={`/assistant/${sportKey}?c=${c.id}${c.planId ? `&plan=${c.planId}` : ""}`}
                   aria-current={c.id === conversationId ? "page" : undefined}
                   className={cn(
-                    "min-w-0 flex-1 truncate rounded-md px-3 py-2 text-sm hover:bg-surface-sunken",
+                    "min-w-0 flex-1 truncate rounded-md px-3 py-2 text-sm smooth-colors hover:bg-surface-sunken",
                     c.id === conversationId
                       ? "bg-accent-soft font-semibold text-ink"
                       : "text-ink-muted",
@@ -555,7 +560,10 @@ function MessageView({
   const mine = message.role === "user";
   const { text, proposals, sources } = message.content;
   return (
-    <div className={cn("flex", mine ? "justify-end" : "justify-start")} data-role={message.role}>
+    <div
+      className={cn("flex animate-fade-up", mine ? "justify-end" : "justify-start")}
+      data-role={message.role}
+    >
       <div
         className={cn(
           "max-w-[92%] space-y-3 rounded-lg px-4 py-3 sm:max-w-[85%]",

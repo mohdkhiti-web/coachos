@@ -1,11 +1,23 @@
 import * as React from "react";
 import { cn } from "@/lib/cn";
 
-/** A sheet of paper: raised surface, hairline border, soft paper shadow. */
-export function Card({ className, ...props }: React.ComponentProps<"section">) {
+/**
+ * A sheet of paper: raised surface, hairline border, soft paper shadow. `interactive` is for a card that is
+ * itself a control (a drill card, a template tile, a clickable dashboard stat) — a touch of elevation on hover
+ * and a small settle on press; a card that just holds content stays still.
+ */
+export function Card({
+  className,
+  interactive,
+  ...props
+}: React.ComponentProps<"section"> & { interactive?: boolean }) {
   return (
     <section
-      className={cn("rounded-lg border border-line bg-surface-raised shadow-paper", className)}
+      className={cn(
+        "rounded-lg border border-line bg-surface-raised shadow-paper",
+        interactive && "interactive-surface",
+        className,
+      )}
       {...props}
     />
   );

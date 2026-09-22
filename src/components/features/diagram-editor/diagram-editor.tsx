@@ -421,6 +421,7 @@ export function DiagramEditor({
             diagram={shown}
             pack={pack}
             title={t("canvasTitle")}
+            animated
             className="block h-auto w-full"
           />
           <svg

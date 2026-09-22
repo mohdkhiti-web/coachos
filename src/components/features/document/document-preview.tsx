@@ -15,6 +15,7 @@ import {
   ZoomOut,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useFlash } from "@/components/motion";
 import { Button } from "@/components/ui/button";
 import {
   Menu,
@@ -151,6 +152,7 @@ export function DocumentPreview({
   }, [zoom, pageCount, updateCurrent]);
 
   const zoomLabel = `${Math.round(zoom * 100)}%`;
+  const zoomFlash = useFlash(zoomLabel);
 
   return (
     <div className={cn("flex min-w-0 flex-col gap-3", className)}>
@@ -216,7 +218,11 @@ export function DocumentPreview({
             <ZoomOut className="size-5" aria-hidden />
           </Button>
           <span
-            className="w-14 text-center numeral text-sm text-ink"
+            key={zoomFlash.flashKey}
+            className={cn(
+              "w-14 text-center numeral text-sm text-ink",
+              zoomFlash.changed && "animate-fade-in",
+            )}
             aria-label={t("zoomLevel")}
             data-testid="zoom-level"
           >
@@ -327,10 +333,15 @@ export function DocumentPreview({
         className="doc-stage focus-visible:outline-focus h-[70dvh] min-h-96 overflow-auto rounded-lg border border-line bg-surface-sunken focus-visible:outline-2 lg:h-[calc(100dvh-13rem)]"
       >
         {pageCount === 0 ? (
-          <p className="doc-screen-only p-8 text-center text-ink-muted">{t("empty")}</p>
+          <p className="doc-screen-only animate-fade-in p-8 text-center text-ink-muted">
+            {t("empty")}
+          </p>
         ) : (
           <div
-            className="doc-zoom mx-auto w-fit"
+            // A real document editor's zoom glides rather than snaps; print resets `zoom` to 1 regardless
+            // (see globals.css), and the global `@media print` rule in motion.css also turns the transition
+            // itself off, so PDF/PNG/print capture is never mid-tween.
+            className="doc-zoom mx-auto w-fit transition-[zoom] duration-200 ease-out"
             style={{ zoom, padding: `${STAGE_PADDING_PX / zoom}px` }}
           >
             <DocumentPages model={model} logoSrc={logoSrc} />

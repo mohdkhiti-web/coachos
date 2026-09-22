@@ -41,7 +41,7 @@ export function NavLinks({
               href={href}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "group relative flex items-center transition-colors",
+                "group relative flex items-center smooth-colors",
                 variant === "rail"
                   ? "min-h-11 gap-3 rounded-md px-3 text-sm font-medium"
                   : "min-h-16 flex-col justify-center gap-1 text-xs font-medium",
@@ -57,16 +57,19 @@ export function NavLinks({
               {active && variant === "rail" ? (
                 <span
                   aria-hidden
-                  className="absolute inset-y-2 left-0 w-0.5 rounded-full bg-accent"
+                  className="absolute inset-y-2 left-0 w-0.5 animate-fade-in rounded-full bg-accent"
                 />
               ) : null}
               {(active || (isSports && pathname.startsWith("/sports/"))) && variant === "bar" ? (
                 <span
                   aria-hidden
-                  className="absolute inset-x-6 top-0 h-0.5 rounded-full bg-accent"
+                  className="absolute inset-x-6 top-0 h-0.5 animate-fade-in rounded-full bg-accent"
                 />
               ) : null}
-              <Icon className="size-5 shrink-0" aria-hidden />
+              <Icon
+                className="size-5 shrink-0 transition-transform duration-200 ease-out group-hover:scale-110 group-active:scale-95"
+                aria-hidden
+              />
               <span>{t(labelKey)}</span>
             </Link>
 
@@ -82,7 +85,7 @@ export function NavLinks({
                         href={sportHref}
                         aria-current={inside ? "page" : undefined}
                         className={cn(
-                          "relative flex min-h-10 items-center rounded-md px-3 text-sm transition-colors",
+                          "relative flex min-h-10 items-center rounded-md px-3 text-sm smooth-colors",
                           inside
                             ? "bg-accent-soft font-semibold text-ink"
                             : "text-ink-muted hover:bg-surface-sunken hover:text-ink",
@@ -91,7 +94,7 @@ export function NavLinks({
                         {inside ? (
                           <span
                             aria-hidden
-                            className="absolute inset-y-2 -left-[13px] w-0.5 rounded-full bg-accent"
+                            className="absolute inset-y-2 -left-[13px] w-0.5 animate-fade-in rounded-full bg-accent"
                           />
                         ) : null}
                         {s.name}

@@ -5,7 +5,7 @@ import { Label } from "radix-ui";
 import { cn } from "@/lib/cn";
 
 const controlBase =
-  "block w-full rounded-md border border-line-strong bg-surface-raised px-3 text-base text-ink placeholder:text-ink-faint transition-colors focus-visible:border-accent focus-visible:outline-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:opacity-60 aria-[invalid=true]:border-danger";
+  "block w-full rounded-md border border-line-strong bg-surface-raised px-3 text-base text-ink placeholder:text-ink-faint smooth-colors focus-visible:border-accent focus-visible:outline-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:opacity-60 aria-[invalid=true]:border-danger";
 
 export function Input({ className, ...props }: React.ComponentProps<"input">) {
   return <input className={cn(controlBase, "h-11", className)} {...props} />;
@@ -42,7 +42,7 @@ export function Checkbox({ className, ...props }: Omit<React.ComponentProps<"inp
     <input
       type="checkbox"
       className={cn(
-        "size-5 shrink-0 cursor-pointer rounded-xs border-line-strong accent-accent",
+        "size-5 shrink-0 cursor-pointer rounded-xs border-line-strong accent-accent smooth-colors",
         className,
       )}
       {...props}
@@ -86,7 +86,7 @@ export function Field({ label, errors, hint, className, children }: FieldProps) 
         </p>
       ) : null}
       {errorId ? (
-        <p id={errorId} role="alert" className="text-sm font-medium text-danger">
+        <p id={errorId} role="alert" className="animate-fade-up text-sm font-medium text-danger">
           {errors!.join(" ")}
         </p>
       ) : null}

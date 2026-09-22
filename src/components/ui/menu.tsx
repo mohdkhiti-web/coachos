@@ -21,7 +21,7 @@ export function MenuContent({ className, ...props }: React.ComponentProps<typeof
         sideOffset={8}
         align="end"
         className={cn(
-          "z-50 min-w-56 rounded-lg border border-line bg-surface-raised p-1.5 shadow-paper data-[state=open]:animate-in",
+          "z-50 min-w-56 origin-[var(--radix-dropdown-menu-content-transform-origin)] rounded-lg border border-line bg-surface-raised p-1.5 shadow-paper data-[state=closed]:animate-out data-[state=open]:animate-in",
           className,
         )}
         {...props}
@@ -31,7 +31,7 @@ export function MenuContent({ className, ...props }: React.ComponentProps<typeof
 }
 
 const itemBase =
-  "flex min-h-10 cursor-pointer select-none items-center gap-2.5 rounded-md px-2.5 py-2 text-sm text-ink outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[highlighted]:bg-surface-sunken";
+  "flex min-h-10 cursor-pointer select-none items-center gap-2.5 rounded-md px-2.5 py-2 text-sm text-ink outline-none smooth-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[highlighted]:bg-surface-sunken";
 
 export function MenuItem({ className, ...props }: React.ComponentProps<typeof M.Item>) {
   return <M.Item className={cn(itemBase, className)} {...props} />;

@@ -60,6 +60,7 @@ export function ActivityCard({
   replaceHref,
   canEdit,
   actions,
+  leaving = false,
 }: {
   activity: BuilderActivity;
   startMin: number;
@@ -70,6 +71,8 @@ export function ActivityCard({
   replaceHref: string;
   canEdit: boolean;
   actions: CardActions;
+  /** True while this card is playing its exit animation after being removed (see `useExitTransition`). */
+  leaving?: boolean;
 }) {
   const t = useTranslations("sessions.activity");
   const td = useTranslations("drills");
@@ -132,17 +135,23 @@ export function ActivityCard({
       ref={sortable.setNodeRef}
       style={style}
       id={`activity-${activity.id}`}
-      className={cn("scroll-mt-28", sortable.isDragging && "relative z-20 opacity-90")}
+      aria-hidden={leaving || undefined}
+      className={cn(
+        "scroll-mt-28",
+        sortable.isDragging && "relative z-20 opacity-90",
+        leaving ? "pointer-events-none animate-out" : "animate-fade-up",
+      )}
     >
       <article
         aria-labelledby={headingId}
         data-kind={activity.kind}
         className={cn(
-          "flex overflow-hidden rounded-lg border shadow-paper",
+          "flex overflow-hidden rounded-lg border shadow-paper transition-shadow duration-200 ease-out",
           isBreak
             ? "border-dashed border-line-strong bg-surface-sunken"
             : "border-line bg-surface-raised",
           sortable.isDragging && "ring-2 ring-accent",
+          !leaving && "hover:shadow-lift",
         )}
       >
         <span aria-hidden className={cn("w-1.5 shrink-0", bar)} />
@@ -155,7 +164,7 @@ export function ActivityCard({
               {...sortable.attributes}
               {...sortable.listeners}
               aria-label={t("drag", { title: activity.title })}
-              className="flex h-11 w-9 shrink-0 cursor-grab touch-none items-center justify-center rounded-md text-ink-muted hover:bg-surface-sunken hover:text-ink focus-visible:outline-2 active:cursor-grabbing"
+              className="flex h-11 w-9 shrink-0 press cursor-grab touch-none items-center justify-center rounded-md text-ink-muted smooth-colors hover:bg-surface-sunken hover:text-ink focus-visible:outline-2 active:cursor-grabbing"
             >
               <GripVertical className="size-5" aria-hidden />
             </button>

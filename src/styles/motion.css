@@ -1,0 +1,257 @@
+/*
+ * CoachOS motion system ("Playbook", motion layer).
+ *
+ * A small, fixed vocabulary of durations, easings and keyframes — reused everywhere instead of one-off
+ * animations, so the app moves with one consistent rhythm. Fast and understated: this software is used
+ * courtside by working coaches, not a marketing site. Every animation here:
+ *   - only ever changes `opacity` and `transform` (plus `grid-template-rows` for collapse, and `zoom` for
+ *     the document stage) — cheap for the compositor, nothing that forces layout on every frame;
+ *   - is switched off under `prefers-reduced-motion: reduce` (globals.css) and under print (below);
+ *   - is short: nothing here runs longer than 260ms except the skeleton shimmer, which is a loading state,
+ *     not a reaction to something the coach did.
+ *
+ * Radix components (Dialog, DropdownMenu, Toast, Tooltip, Popover) expose `data-state="open"|"closed"`; the
+ * `animate-in`/`animate-out` utilities below hook into that. Everything else is applied directly.
+ */
+
+@theme inline {
+  --motion-fast: 120ms;
+  --motion-base: 180ms;
+  --motion-slow: 260ms;
+  --motion-shimmer: 1.6s;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------------------------------------------------------------------------------------------------------------
+ * Enter/exit keyframes
+ * ------------------------------------------------------------------------------------------------------------- */
+
+@keyframes cos-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.985);
+  }
+}
+@keyframes cos-out {
+  to {
+    opacity: 0;
+    transform: translateY(4px) scale(0.985);
+  }
+}
+/* A dialog/modal pops from its own centre rather than drifting up — reads as "opening", not "arriving". */
+@keyframes cos-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+@keyframes cos-scale-out {
+  to {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+/* Dialog.Content is centred with `translate(-50%, -50%)` (see dialog.tsx) — the keyframe folds that into its own
+   `from` state so scaling in/out never loses the centring for a frame. */
+@keyframes cos-modal-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+}
+@keyframes cos-modal-out {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.97);
+  }
+}
+@keyframes cos-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+/* A block of content (a card, a new list row, a chat message) settling into place. */
+@keyframes cos-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@keyframes cos-fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+/* One small, restrained "acknowledged" pulse — favorites, a completed toggle. Never repeats, never bounces past 1. */
+@keyframes cos-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* A value just changed (totals, a duration) — a single brief tint, not a shake. */
+@keyframes cos-flash {
+  0%,
+  100% {
+    background-color: transparent;
+  }
+  30% {
+    background-color: var(--color-accent-soft);
+  }
+}
+@keyframes cos-shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes cos-spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* The AI Coach "thinking" indicator: three dots, staggered — a heartbeat, not a bounce. */
+@keyframes cos-typing {
+  0%,
+  60%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-1.5px);
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------------------------
+ * Utilities
+ * ------------------------------------------------------------------------------------------------------------- */
+
+@utility animate-in {
+  animation: cos-in var(--motion-base) var(--ease-out);
+}
+@utility animate-out {
+  animation: cos-out var(--motion-fast) var(--ease-in-out) forwards;
+}
+@utility animate-scale-in {
+  animation: cos-scale-in var(--motion-base) var(--ease-out);
+}
+@utility animate-scale-out {
+  animation: cos-scale-out var(--motion-fast) var(--ease-in-out) forwards;
+}
+@utility animate-modal-in {
+  animation: cos-modal-in var(--motion-base) var(--ease-out);
+}
+@utility animate-modal-out {
+  animation: cos-modal-out var(--motion-fast) var(--ease-in-out) forwards;
+}
+@utility animate-fade-in {
+  animation: cos-fade-in var(--motion-base) var(--ease-out);
+}
+@utility animate-fade-up {
+  animation: cos-fade-up var(--motion-slow) var(--ease-out) backwards;
+}
+@utility animate-fade-down {
+  animation: cos-fade-down var(--motion-slow) var(--ease-out) backwards;
+}
+@utility animate-pop {
+  animation: cos-pop var(--motion-slow) var(--ease-out);
+}
+@utility animate-flash {
+  animation: cos-flash 900ms var(--ease-in-out);
+}
+
+/* A shimmering highlight sweeping over a skeleton block — an overlay pseudo-element, so the block itself never
+   repaints (only the compositor-cheap `transform: translateX` on `::after` runs). */
+@utility skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, var(--color-surface-raised), transparent);
+    animation: cos-shimmer var(--motion-shimmer) var(--ease-in-out) infinite;
+    opacity: 0.6;
+  }
+}
+
+/* A card, row or tile that responds to hover/press as one unit — elevate a touch, never grow loud. Opt-in
+   (`.press` alone, without hover, suits mobile: no hover state to rely on, still a press acknowledgement). */
+@utility interactive-surface {
+  transition:
+    transform var(--motion-base) var(--ease-out),
+    box-shadow var(--motion-base) var(--ease-out),
+    border-color var(--motion-base) var(--ease-out);
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-2px);
+      border-color: var(--color-line-strong);
+      box-shadow: var(--shadow-lift);
+    }
+  }
+  &:active {
+    transform: translateY(0) scale(0.99);
+  }
+}
+
+/* Any control that presses: a small, immediate scale-down. Buttons, chips, icon buttons. */
+@utility press {
+  transition: transform var(--motion-fast) var(--ease-out);
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+@utility smooth-colors {
+  transition:
+    color var(--motion-base) var(--ease-out),
+    background-color var(--motion-base) var(--ease-out),
+    border-color var(--motion-base) var(--ease-out);
+}
+
+/* Smooth expand/collapse with no JS height measurement: the grid row itself tweens between 0fr and 1fr. The
+   child needs `overflow: hidden` and `min-height: 0` (the min-width/min-height reset a grid track otherwise
+   needs to lay its content out at) — both supplied by the wrapper markup, not by callers. */
+@utility collapse-grid {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--motion-base) var(--ease-in-out);
+  &[data-open="true"] {
+    grid-template-rows: 1fr;
+  }
+}
+
+/* The diagram editor only (`DiagramView animated`, never the print/PDF/PNG/golden-test render): lets a player or
+   coach glide to its new spot instead of jumping. `cx`/`cy` (circle) and `x`/`y` (rect) are the only SVG position
+   attributes browsers tween smoothly — `points` (polygon) is not, so cones, markers and action arrows rely on the
+   mount fade below instead of a move transition. */
+@utility diagram-move {
+  transition:
+    cx var(--motion-base) var(--ease-out),
+    cy var(--motion-base) var(--ease-out),
+    x var(--motion-base) var(--ease-out),
+    y var(--motion-base) var(--ease-out);
+}
+
+/* Never let an animation leave the printed page in a half-transitioned state, and never cost a frame preparing
+   a transition PDF/PNG export (headless Chromium) will never see interactively. */
+@media print {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

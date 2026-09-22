@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./motion.css";
 
 /*
  * CoachOS — "Playbook" design tokens (ARCHITECTURE.md §2.2).
@@ -41,6 +42,7 @@
   --focus: #c2410c;
   --overlay: rgb(23 21 15 / 0.45);
   --shadow-paper: 0 1px 0 rgb(23 21 15 / 0.04), 0 10px 28px -14px rgb(23 21 15 / 0.22);
+  --shadow-lift: 0 1px 0 rgb(23 21 15 / 0.04), 0 16px 32px -16px rgb(23 21 15 / 0.28);
 
   /* Session-timeline phase colours: a thin accent only — the phase is always ALSO written out, never colour alone. */
   --phase-warm-up: #b45309;
@@ -79,6 +81,7 @@
   --focus: #fb923c;
   --overlay: rgb(0 0 0 / 0.6);
   --shadow-paper: 0 1px 0 rgb(255 255 255 / 0.03), 0 12px 32px -14px rgb(0 0 0 / 0.7);
+  --shadow-lift: 0 1px 0 rgb(255 255 255 / 0.03), 0 18px 36px -16px rgb(0 0 0 / 0.75);
 
   --phase-warm-up: #f59e0b;
   --phase-skill: #60a5fa;
@@ -117,6 +120,7 @@
     --focus: #fb923c;
     --overlay: rgb(0 0 0 / 0.6);
     --shadow-paper: 0 1px 0 rgb(255 255 255 / 0.03), 0 12px 32px -14px rgb(0 0 0 / 0.7);
+    --shadow-lift: 0 1px 0 rgb(255 255 255 / 0.03), 0 18px 36px -16px rgb(0 0 0 / 0.75);
 
     --phase-warm-up: #f59e0b;
     --phase-skill: #60a5fa;
@@ -167,6 +171,7 @@
   --radius-lg: 12px;
 
   --shadow-paper: var(--shadow-paper);
+  --shadow-lift: var(--shadow-lift);
 }
 
 @layer base {
@@ -239,25 +244,8 @@
   );
 }
 
-/* Enter/exit animation for Radix overlays (state via data-[state=open|closed]). */
-@keyframes cos-in {
-  from {
-    opacity: 0;
-    transform: translateY(4px) scale(0.985);
-  }
-}
-@keyframes cos-out {
-  to {
-    opacity: 0;
-    transform: translateY(4px) scale(0.985);
-  }
-}
-@utility animate-in {
-  animation: cos-in 0.16s ease-out;
-}
-@utility animate-out {
-  animation: cos-out 0.12s ease-in forwards;
-}
+/* The full motion vocabulary — durations, easings, keyframes, animate-in/out and friends — lives in motion.css
+   (imported at the top of this file), so there is exactly one definition of "how CoachOS moves". */
 
 @media (prefers-reduced-motion: reduce) {
   *,

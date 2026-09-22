@@ -199,9 +199,9 @@ function ShareBody({
               />
               <Button type="button" variant="secondary" onClick={() => void copy(status.url)}>
                 {copied ? (
-                  <Check className="size-4" aria-hidden />
+                  <Check key="copied" className="size-4 animate-pop" aria-hidden />
                 ) : (
-                  <Copy className="size-4" aria-hidden />
+                  <Copy key="copy" className="size-4" aria-hidden />
                 )}
                 {copied ? t("copiedShort") : t("copy")}
               </Button>
@@ -226,7 +226,7 @@ function ShareBody({
             <div
               role="group"
               aria-label={t("regenerateTitle")}
-              className="space-y-3 rounded-md border border-warning bg-warning-soft p-3"
+              className="animate-fade-up space-y-3 rounded-md border border-warning bg-warning-soft p-3"
             >
               <p className="text-sm text-ink">{t("regenerateBody")}</p>
               <div className="flex flex-wrap gap-2">
@@ -248,7 +248,7 @@ function ShareBody({
             <div
               role="group"
               aria-label={t("revokeTitle")}
-              className="space-y-3 rounded-md border border-danger bg-danger-soft p-3"
+              className="animate-fade-up space-y-3 rounded-md border border-danger bg-danger-soft p-3"
             >
               <p className="text-sm text-ink">{t("revokeBody")}</p>
               <div className="flex flex-wrap gap-2">
@@ -281,7 +281,7 @@ function ShareBody({
       ) : null}
 
       {error ? (
-        <p role="alert" className="text-sm font-medium text-danger">
+        <p role="alert" className="animate-fade-up text-sm font-medium text-danger">
           {error}
         </p>
       ) : null}

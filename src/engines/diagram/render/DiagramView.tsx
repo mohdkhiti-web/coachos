@@ -19,6 +19,13 @@ export interface DiagramViewProps {
   title?: string;
   /** Purely decorative (e.g. a card thumbnail beside a text link): hidden from assistive tech. */
   decorative?: boolean;
+  /**
+   * Opt-in transitions for the interactive diagram editor only — never the default. A moved player glides
+   * (SVG `cx`/`cy`/`x`/`y` are the only position attributes that tween smoothly); a newly added player,
+   * cone, marker or action arrow fades in. Off by default so print/PDF/PNG export and golden-image tests,
+   * which reuse this same renderer, stay exactly as deterministic as before.
+   */
+  animated?: boolean;
   className?: string;
 }
 
@@ -41,6 +48,7 @@ export function DiagramView({
   theme = "screen",
   title,
   decorative = false,
+  animated = false,
   className,
 }: DiagramViewProps) {
   const uid = useId();
@@ -142,11 +150,11 @@ export function DiagramView({
 
       {/* actions under players */}
       {resolved.actions.map((ra) => (
-        <ActionShape key={ra.action.id} ra={ra} p={p} badge={multiStep} />
+        <ActionShape key={ra.action.id} ra={ra} p={p} badge={multiStep} animated={animated} />
       ))}
 
       {resolved.entities.map((re) => (
-        <EntityShape key={re.entity.id} re={re} p={p} />
+        <EntityShape key={re.entity.id} re={re} p={p} animated={animated} />
       ))}
 
       {resolved.annotations.map(({ annotation: a, a: pa }, i) =>
@@ -188,14 +196,20 @@ function Label({
   );
 }
 
-function EntityShape({ re, p }: { re: ResolvedEntity; p: Palette }) {
+function EntityShape({ re, p, animated }: { re: ResolvedEntity; p: Palette; animated: boolean }) {
   const { entity: e, at } = re;
   const r = PLAYER_RADIUS;
+  // `points` (polygon) does not tween smoothly across browsers, so only circle/rect entities — whose position
+  // is `cx`/`cy` or `x`/`y` — get the glide-to-new-spot transition; every entity still gets the mount fade
+  // (on the wrapping `<g>`, so it is never stacked with the move transition on the same element).
+  const move = animated ? "diagram-move" : undefined;
+  const fadeIn = animated ? "animate-fade-in" : undefined;
   switch (e.type) {
     case "player":
       return e.side === "offense" ? (
-        <g>
+        <g className={fadeIn}>
           <circle
+            className={move}
             cx={n(at.x)}
             cy={n(at.y)}
             r={r}
@@ -207,8 +221,9 @@ function EntityShape({ re, p }: { re: ResolvedEntity; p: Palette }) {
         </g>
       ) : (
         // defenders are squares: distinguishable from offence without relying on colour
-        <g>
+        <g className={fadeIn}>
           <rect
+            className={move}
             x={n(at.x - r * 0.9)}
             y={n(at.y - r * 0.9)}
             width={n(r * 1.8)}
@@ -223,14 +238,16 @@ function EntityShape({ re, p }: { re: ResolvedEntity; p: Palette }) {
       );
     case "coach":
       return (
-        <g>
-          <circle cx={n(at.x)} cy={n(at.y)} r={r} fill={p.coach} />
+        <g className={fadeIn}>
+          <circle className={move} cx={n(at.x)} cy={n(at.y)} r={r} fill={p.coach} />
           <Label at={at} p={p} text={e.label ?? "C"} size={0.5} fill={p.coachInk} />
         </g>
       );
     case "ball":
+      // the crosshair `path` cannot tween with the circle, so the ball only fades in on mount; it does not
+      // glide (a rare movement in practice — the ball normally travels as a pass/dribble action, not a move).
       return (
-        <g>
+        <g className={fadeIn}>
           <circle
             cx={n(at.x)}
             cy={n(at.y)}
@@ -250,6 +267,7 @@ function EntityShape({ re, p }: { re: ResolvedEntity; p: Palette }) {
     case "cone":
       return (
         <polygon
+          className={fadeIn}
           points={pointsAttr([
             { x: at.x, y: at.y - 0.32 },
             { x: at.x + 0.28, y: at.y + 0.22 },
@@ -263,7 +281,7 @@ function EntityShape({ re, p }: { re: ResolvedEntity; p: Palette }) {
       );
     case "marker":
       return (
-        <g>
+        <g className={fadeIn}>
           <polygon
             points={pointsAttr([
               { x: at.x, y: at.y - 0.42 },
@@ -287,7 +305,17 @@ function EntityShape({ re, p }: { re: ResolvedEntity; p: Palette }) {
   }
 }
 
-function ActionShape({ ra, p, badge }: { ra: ResolvedAction; p: Palette; badge: boolean }) {
+function ActionShape({
+  ra,
+  p,
+  badge,
+  animated,
+}: {
+  ra: ResolvedAction;
+  p: Palette;
+  badge: boolean;
+  animated: boolean;
+}) {
   const { action: a } = ra;
   const line = trim(ra.points, ra.startCut, ra.endCut);
   if (line.length < 2) return null;
@@ -411,7 +439,9 @@ function ActionShape({ ra, p, badge }: { ra: ResolvedAction; p: Palette; badge: 
   };
 
   return (
-    <g>
+    // A new pass/dribble/screen/cut/shot arrow fades in; `points` isn't smoothly tweenable, so an edited
+    // arrow's path just redraws — it does not glide the way a moved player does.
+    <g className={animated ? "animate-fade-in" : undefined}>
       {body}
       {badge ? (
         <g>

@@ -26,7 +26,7 @@ export async function DrillsWidget({ viewer }: WidgetProps) {
   const base = `/sports/${sport.key}`;
 
   return (
-    <Card className="h-full">
+    <Card interactive className="h-full">
       <CardBody className="flex h-full flex-col gap-4">
         <SectionMarker n={4}>{t("eyebrow", { sport: sport.name })}</SectionMarker>
         <h2 className="text-lg font-semibold tracking-tight text-ink">{t("title")}</h2>
@@ -50,7 +50,7 @@ export async function DrillsWidget({ viewer }: WidgetProps) {
               <li key={d.id}>
                 <Link
                   href={`${base}/drills/${d.id}`}
-                  className="block py-2.5 text-sm font-medium text-ink hover:text-accent"
+                  className="block py-2.5 text-sm font-medium text-ink smooth-colors hover:text-accent"
                 >
                   {d.title}
                 </Link>
@@ -62,7 +62,7 @@ export async function DrillsWidget({ viewer }: WidgetProps) {
         )}
         <Link
           href={`${base}/drills`}
-          className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-accent underline-offset-4 hover:underline"
+          className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-accent underline-offset-4 smooth-colors hover:underline"
         >
           {t("open")}
           <ArrowRight className="size-4" aria-hidden />

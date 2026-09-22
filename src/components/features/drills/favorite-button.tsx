@@ -47,9 +47,12 @@ export function FavoriteButton({
     });
   }
 
+  // `key={favorite}` restarts the CSS pop on every toggle (on or off) — a small, satisfying acknowledgement,
+  // never a repeating or bouncing loop, and automatically stilled by prefers-reduced-motion (motion.css).
   const icon = (
     <Star
-      className={cn("size-5", favorite ? "fill-accent text-accent" : "text-ink-muted")}
+      key={String(favorite)}
+      className={cn("size-5 animate-pop", favorite ? "fill-accent text-accent" : "text-ink-muted")}
       aria-hidden
     />
   );
@@ -61,7 +64,7 @@ export function FavoriteButton({
         onClick={toggle}
         aria-pressed={favorite}
         aria-busy={pending}
-        className="focus-visible:outline-focus inline-flex min-h-11 items-center gap-2 rounded-md border border-line-strong bg-surface-raised px-4 text-base font-medium text-ink transition-colors hover:border-accent focus-visible:outline-2"
+        className="focus-visible:outline-focus inline-flex min-h-11 press items-center gap-2 rounded-md border border-line-strong bg-surface-raised px-4 text-base font-medium text-ink smooth-colors hover:border-accent focus-visible:outline-2"
       >
         {icon}
         {t("detailLabel")}
@@ -77,7 +80,7 @@ export function FavoriteButton({
       aria-busy={pending}
       aria-label={t("label", { title })}
       // above the card's stretched link (z-10), and a 44 px touch target
-      className="focus-visible:outline-focus absolute top-2 right-2 z-10 inline-flex size-11 items-center justify-center rounded-full border border-line bg-surface-raised/90 shadow-paper transition-colors hover:border-accent focus-visible:outline-2"
+      className="focus-visible:outline-focus absolute top-2 right-2 z-10 inline-flex size-11 press items-center justify-center rounded-full border border-line bg-surface-raised/90 shadow-paper smooth-colors hover:border-accent focus-visible:outline-2"
     >
       {icon}
     </button>

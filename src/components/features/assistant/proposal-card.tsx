@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { Check, CircleAlert, Sparkles } from "lucide-react";
+import { Check, CircleAlert, Loader2, Sparkles } from "lucide-react";
 import { DrillDiagram } from "@/components/features/drills/drill-diagram";
 import { PhaseBadge } from "@/components/features/sessions/badges";
 import { Button } from "@/components/ui/button";
@@ -209,7 +209,7 @@ export function ProposalCard({
       data-testid="proposal-card"
       data-kind={proposal.kind}
       data-status={proposal.status}
-      className="space-y-3 rounded-lg border border-line-strong bg-surface p-4"
+      className="animate-fade-up space-y-3 rounded-lg border border-line-strong bg-surface p-4"
     >
       <header className="flex flex-wrap items-center gap-2">
         <span className="inline-flex items-center gap-1.5 rounded-full border border-line-strong bg-surface-raised px-2.5 py-0.5 text-xs font-medium text-ink">
@@ -221,59 +221,64 @@ export function ProposalCard({
 
       {details}
 
-      {pending ? (
-        <div className="flex flex-wrap items-center gap-2 pt-1">
-          <Button
-            type="button"
-            disabled={busy}
-            onClick={() => (destructive ? setConfirming(true) : onApply(false))}
+      {/* Keyed on the status, so each real transition (pending → applying → applied/failed, or dismissed)
+          crossfades in as its own block rather than the buttons silently swapping for text. */}
+      <div key={proposal.status} className="animate-fade-in">
+        {pending ? (
+          <div className="flex flex-wrap items-center gap-2 pt-1">
+            <Button
+              type="button"
+              disabled={busy}
+              onClick={() => (destructive ? setConfirming(true) : onApply(false))}
+            >
+              {t(
+                `buttons.${proposal.kind === "set_diagram" && proposal.replacing ? "updateDiagram" : BUTTON[proposal.kind]}`,
+              )}
+            </Button>
+            <Button type="button" variant="ghost" disabled={busy} onClick={onDismiss}>
+              {t("dismiss")}
+            </Button>
+            <p className="text-xs text-ink-muted">{t("nothingChanged")}</p>
+          </div>
+        ) : proposal.status === "applying" ? (
+          <p role="status" className="flex items-center gap-2 text-sm text-ink-muted">
+            <Loader2 className="size-4 animate-spin" aria-hidden />
+            {t("applying")}
+          </p>
+        ) : proposal.status === "applied" ? (
+          <p
+            className="flex flex-wrap items-center gap-3 text-sm text-ink"
+            data-testid="proposal-applied"
           >
-            {t(
-              `buttons.${proposal.kind === "set_diagram" && proposal.replacing ? "updateDiagram" : BUTTON[proposal.kind]}`,
-            )}
-          </Button>
-          <Button type="button" variant="ghost" disabled={busy} onClick={onDismiss}>
-            {t("dismiss")}
-          </Button>
-          <p className="text-xs text-ink-muted">{t("nothingChanged")}</p>
-        </div>
-      ) : proposal.status === "applying" ? (
-        <p role="status" className="text-sm text-ink-muted">
-          {t("applying")}
-        </p>
-      ) : proposal.status === "applied" ? (
-        <p
-          className="flex flex-wrap items-center gap-3 text-sm text-ink"
-          data-testid="proposal-applied"
-        >
-          <span className="inline-flex items-center gap-1.5 font-medium">
-            <Check className="size-4 text-success" aria-hidden />
-            {t("applied")}
-          </span>
-          {createdId ? (
-            <Button asChild size="sm" variant="secondary">
-              <Link href={sessionHref(createdId)}>{t("openBuilder")}</Link>
-            </Button>
-          ) : planId ? (
-            <Button asChild size="sm" variant="secondary">
-              <Link href={sessionHref(planId)}>{t("openSession")}</Link>
-            </Button>
-          ) : null}
-        </p>
-      ) : proposal.status === "dismissed" ? (
-        <p className="text-sm text-ink-muted">{t("dismissed")}</p>
-      ) : (
-        <p
-          role="alert"
-          className="flex items-center gap-2 text-sm text-ink"
-          data-testid="proposal-failed"
-        >
-          <CircleAlert className="size-4 text-danger" aria-hidden />
-          {t.has(`failures.${proposal.error ?? "INTERNAL"}`)
-            ? t(`failures.${proposal.error ?? "INTERNAL"}`)
-            : t("failures.INTERNAL")}
-        </p>
-      )}
+            <span className="inline-flex items-center gap-1.5 font-medium">
+              <Check className="size-4 animate-pop text-success" aria-hidden />
+              {t("applied")}
+            </span>
+            {createdId ? (
+              <Button asChild size="sm" variant="secondary">
+                <Link href={sessionHref(createdId)}>{t("openBuilder")}</Link>
+              </Button>
+            ) : planId ? (
+              <Button asChild size="sm" variant="secondary">
+                <Link href={sessionHref(planId)}>{t("openSession")}</Link>
+              </Button>
+            ) : null}
+          </p>
+        ) : proposal.status === "dismissed" ? (
+          <p className="text-sm text-ink-muted">{t("dismissed")}</p>
+        ) : (
+          <p
+            role="alert"
+            className="flex items-center gap-2 text-sm text-ink"
+            data-testid="proposal-failed"
+          >
+            <CircleAlert className="size-4 text-danger" aria-hidden />
+            {t.has(`failures.${proposal.error ?? "INTERNAL"}`)
+              ? t(`failures.${proposal.error ?? "INTERNAL"}`)
+              : t("failures.INTERNAL")}
+          </p>
+        )}
+      </div>
 
       <Dialog open={confirming} onOpenChange={setConfirming}>
         <DialogContent

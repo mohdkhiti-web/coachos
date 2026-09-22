@@ -19,7 +19,7 @@ export async function TemplatePagination({
   if (pageCount <= 1) return null;
   const t = await getTranslations("drills.pagination");
   const link =
-    "inline-flex min-h-11 items-center gap-1.5 rounded-md border px-4 text-sm font-medium transition-colors";
+    "inline-flex min-h-11 items-center gap-1.5 rounded-md border px-4 text-sm font-medium smooth-colors";
   const active = "border-line-strong bg-surface-raised text-ink hover:bg-surface-sunken";
   const ghost = "border-transparent text-transparent select-none";
   return (

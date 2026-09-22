@@ -23,10 +23,10 @@ export function DialogContent({
 }) {
   return (
     <D.Portal>
-      <D.Overlay className="fixed inset-0 z-50 bg-overlay data-[state=open]:animate-in" />
+      <D.Overlay className="fixed inset-0 z-50 bg-overlay data-[state=closed]:animate-out data-[state=open]:animate-in" />
       <D.Content
         className={cn(
-          "fixed top-1/2 left-1/2 z-50 max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg border border-line bg-surface-raised p-6 shadow-paper",
+          "fixed top-1/2 left-1/2 z-50 max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg border border-line bg-surface-raised p-6 shadow-paper data-[state=closed]:animate-modal-out data-[state=open]:animate-modal-in",
           className,
         )}
         {...props}
@@ -40,7 +40,7 @@ export function DialogContent({
         <div className="mt-5">{children}</div>
         <D.Close
           aria-label={closeLabel}
-          className="absolute top-3 right-3 inline-flex size-9 items-center justify-center rounded-md text-ink-muted hover:bg-surface-sunken hover:text-ink"
+          className="absolute top-3 right-3 inline-flex size-9 press items-center justify-center rounded-md text-ink-muted smooth-colors hover:bg-surface-sunken hover:text-ink"
         >
           <X className="size-4" aria-hidden />
         </D.Close>
