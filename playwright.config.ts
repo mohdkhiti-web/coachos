@@ -1,3 +1,4 @@
+import { generateKeyPairSync } from "node:crypto";
 import { defineConfig, devices } from "@playwright/test";
 import { E2E_CLUSTER, localUrls } from "./scripts/lib/local-db";
 
@@ -11,6 +12,12 @@ import { E2E_CLUSTER, localUrls } from "./scripts/lib/local-db";
 const PORT = 3100;
 const READY_PORT = 54332;
 const urls = localUrls(E2E_CLUSTER);
+
+// FAKE social-sign-in credentials (and a throw-away Apple signing key): enough for the app to offer both buttons and start
+// the redirect to each provider, which e2e/oauth-and-motion.spec.ts asserts. No real login is possible or claimed.
+const FAKE_APPLE_KEY = generateKeyPairSync("ec", { namedCurve: "P-256" })
+  .privateKey.export({ type: "pkcs8", format: "pem" })
+  .toString();
 
 export const MAIL_DIR = ".data/mail-e2e";
 
@@ -69,6 +76,12 @@ export default defineConfig({
         ALLOW_DEV_MAIL: "true",
         AUTH_BREACH_CHECK: "false", // no network dependency in tests (the check itself is verified manually)
         AUTH_RATE_LIMIT: "false",
+        GOOGLE_CLIENT_ID: "e2e-google-client-id.apps.googleusercontent.com",
+        GOOGLE_CLIENT_SECRET: "e2e-google-client-secret-value",
+        APPLE_CLIENT_ID: "com.example.coachos.e2e",
+        APPLE_TEAM_ID: "E2ETEAM123",
+        APPLE_KEY_ID: "E2EKEYID12",
+        APPLE_PRIVATE_KEY: FAKE_APPLE_KEY,
         PDF_RATE_PER_MINUTE: "600", // the export matrix takes dozens of PDFs in a minute
         GENERATOR_RATE_PER_MINUTE: "600",
         AI_PROVIDER: "scripted", // a deterministic stand-in for a model, so the assistant is tested end to end without one

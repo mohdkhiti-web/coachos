@@ -14,7 +14,7 @@ import {
   Square,
   Trash2,
 } from "lucide-react";
-import { AITrainingAnimation } from "@/components/basketball";
+import { AITrainingAnimation, CoachScene } from "@/components/basketball";
 import { Button } from "@/components/ui/button";
 import { Card, CardBody } from "@/components/ui/card";
 import { Select } from "@/components/ui/field";
@@ -302,7 +302,7 @@ export function AssistantChat({
             >
               {messages.length === 0 ? (
                 <div className="space-y-3 py-6 text-center" data-testid="chat-empty">
-                  <Sparkles className="mx-auto size-8 text-accent" aria-hidden />
+                  <CoachScene scene="planning" className="mx-auto max-w-52" />
                   <p className="text-base font-medium text-ink">{t("empty.title")}</p>
                   <p className="mx-auto max-w-md text-sm text-ink-muted">{t("empty.body")}</p>
                 </div>

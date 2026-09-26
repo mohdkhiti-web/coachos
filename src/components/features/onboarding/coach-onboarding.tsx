@@ -128,7 +128,7 @@ export function CoachOnboarding({ needsName }: { needsName: boolean }) {
       <div className="mb-8 flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <p
-            className="numeral text-lg text-accent"
+            className="numeral text-lg whitespace-nowrap text-accent"
             aria-label={t("progressLabel", { step: step + 1 })}
           >
             {t("progress", { step: number })}
@@ -138,7 +138,7 @@ export function CoachOnboarding({ needsName }: { needsName: boolean }) {
               <span
                 key={s}
                 className={cn(
-                  "h-1 w-6 rounded-full smooth-colors sm:w-9",
+                  "h-1 w-3.5 rounded-full smooth-colors min-[420px]:w-6 sm:w-9",
                   s <= question ? "bg-accent" : "bg-line-strong",
                 )}
               />

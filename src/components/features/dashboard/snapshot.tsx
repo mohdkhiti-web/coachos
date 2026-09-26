@@ -70,7 +70,7 @@ export async function Snapshot({
       <h2 id="snapshot-h" className="eyebrow">
         {t("title")}
       </h2>
-      <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatCard
           index={0}
           label={t("next")}

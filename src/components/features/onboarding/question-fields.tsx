@@ -162,7 +162,7 @@ export function Question({
       return <TeamSize answers={answers} set={set} labelledBy={labelledBy} />;
     case 4:
       return (
-        <div role="group" aria-labelledby={labelledBy} className="grid gap-3 sm:grid-cols-2">
+        <div role="group" aria-labelledby={labelledBy} className="grid grid-cols-2 gap-3">
           {COACH_PRIORITIES.map((k) => (
             <ChoiceCard
               key={k}
@@ -177,7 +177,7 @@ export function Question({
       );
     case 5:
       return (
-        <div role="group" aria-labelledby={labelledBy} className="grid gap-3 sm:grid-cols-2">
+        <div role="group" aria-labelledby={labelledBy} className="grid grid-cols-2 gap-3">
           {COACH_NEEDS.map((k) => (
             <ChoiceCard
               key={k}
@@ -193,7 +193,7 @@ export function Question({
       );
     case 6:
       return (
-        <div role="group" aria-labelledby={labelledBy} className="grid gap-3 sm:grid-cols-2">
+        <div role="group" aria-labelledby={labelledBy} className="grid grid-cols-2 gap-3">
           {COACHING_STYLES.map((k) => (
             <ChoiceCard
               key={k}

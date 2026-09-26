@@ -41,7 +41,7 @@ export async function QuickActions({
       <h2 id="quick-actions" className="sr-only">
         {t("title")}
       </h2>
-      <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      <ul className="grid grid-cols-2 gap-3 lg:grid-cols-5">
         {actions.map(({ key, href, icon: Icon, primary }, i) => (
           <li
             key={key}
