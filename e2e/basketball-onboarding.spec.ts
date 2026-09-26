@@ -74,7 +74,7 @@ test("new coach: landing → sign up → six questions → ready → a personali
       "Explore Drills",
       "Session Templates",
     ])
-      await expect(page.getByRole("link", { name })).toBeVisible();
+      await expect(page.getByRole("link", { name }).first()).toBeVisible();
     // the squad size they gave, and honest empty states for what does not exist yet
     await expect(page.getByText("Squad size").locator("..")).toContainText("13");
     await expect(page.getByText("No practice planned yet.")).toBeVisible();
@@ -104,7 +104,7 @@ test("new coach: landing → sign up → six questions → ready → a personali
 
   await test.step("a new session starts from the squad size, age group and first priority", async () => {
     await page.goto("/sessions/basketball/new");
-    await expect(field(page, "Players")).toHaveValue("13");
+    await expect(field(page, "Number of players")).toHaveValue("13");
     await expect(field(page, "Age group")).toHaveValue("u14");
     await expect(field(page, "Main objective")).toHaveValue("shooting");
   });
@@ -132,7 +132,7 @@ test("skipping onboarding is allowed, keeps the coach in, and the profile stays 
     );
     // a new session form has no guessed defaults
     await page.goto("/sessions/basketball/new");
-    await expect(field(page, "Players")).toHaveValue("");
+    await expect(field(page, "Number of players")).toHaveValue("");
     await expect(field(page, "Age group")).toHaveValue("");
     await page.goto("/dashboard");
   });
