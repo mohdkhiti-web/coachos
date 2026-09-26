@@ -551,11 +551,11 @@
   "dashboard": {
     "title": "Dashboard",
     "greeting": {
-      "morning": "Good morning, {name}",
-      "afternoon": "Good afternoon, {name}",
-      "evening": "Good evening, {name}"
+      "morning": "Good morning, Coach {name}.",
+      "afternoon": "Good afternoon, Coach {name}.",
+      "evening": "Good evening, Coach {name}."
     },
-    "subtitle": "Here's where your workspace stands.",
+    "subtitle": "Ready to build today's practice?",
     "clock": {
       "label": "Your local time",
       "zone": "{zone}"
@@ -604,6 +604,75 @@
       "mine": "Your drills",
       "noneYet": "You haven't created a drill yet.",
       "open": "Open the drill library"
+    },
+    "cc": {
+      "eyebrow": "Coaching Command Center",
+      "quick": {
+        "title": "Quick actions",
+        "build": {
+          "title": "Build a Session",
+          "body": "Start a practice from scratch."
+        },
+        "generate": {
+          "title": "Generate a Session",
+          "body": "A balanced plan from your drill library."
+        },
+        "ai": {
+          "title": "Build with AI",
+          "body": "Ask the AI Coach for a proposal."
+        },
+        "drills": {
+          "title": "Explore Drills",
+          "body": "Browse the basketball drill library."
+        },
+        "templates": {
+          "title": "Session Templates",
+          "body": "Reuse your best-looking plans."
+        }
+      },
+      "snapshot": {
+        "title": "Today's coaching snapshot",
+        "next": "Next session",
+        "nextNone": "Nothing scheduled",
+        "nextNoneBody": "Give a session a date and it appears here.",
+        "sessions": "Sessions planned",
+        "sessionsUnit": "{count, plural, one {session} other {sessions}}",
+        "favorites": "Favorite drills",
+        "favoritesUnit": "{count, plural, one {drill} other {drills}}",
+        "favoritesNone": "Build your drill collection.",
+        "squad": "Squad size",
+        "squadUnit": "{count, plural, one {player} other {players}}",
+        "squadNone": "Not set yet",
+        "squadAdd": "Add your squad size"
+      },
+      "recent": {
+        "title": "Recent sessions",
+        "viewAll": "All sessions",
+        "emptyTitle": "No practice planned yet.",
+        "emptyBody": "Build your first basketball session and it will appear here.",
+        "emptyAction": "Build a Session",
+        "minutes": "{count} min",
+        "unscheduled": "Not scheduled"
+      },
+      "recommended": {
+        "title": "Recommended for you",
+        "basedOn": "Based on your coaching profile: {details}.",
+        "forPriority": "For {priority}",
+        "none": "Tell CoachOS how you coach and it will recommend drills from the library.",
+        "noneAction": "Set up your coaching profile",
+        "empty": "No library drills match your profile yet. Explore the whole library.",
+        "browse": "Explore all drills"
+      },
+      "profile": {
+        "incompleteTitle": "Complete your coaching profile",
+        "incompleteBody": "Six quick questions unlock drill recommendations and a smarter AI Coach.",
+        "incompleteAction": "Finish my profile",
+        "title": "Your coaching profile",
+        "edit": "Edit coaching profile"
+      },
+      "account": {
+        "title": "Account and workspace"
+      }
     }
   },
   "audit": {
@@ -658,7 +727,8 @@
       "profile": "Profile",
       "security": "Security",
       "preferences": "Preferences",
-      "danger": "Danger zone"
+      "danger": "Danger zone",
+      "coachingProfile": "Coaching profile"
     },
     "saved": "Changes saved.",
     "profile": {

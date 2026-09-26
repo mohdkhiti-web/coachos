@@ -11,6 +11,13 @@ import type { CourtPack, CourtRef } from "@/engines/diagram";
 export const SPORT_KEYS = ["basketball"] as const;
 export type SportKey = (typeof SPORT_KEYS)[number];
 
+/**
+ * The sport the product presents. CoachOS is a basketball coaching product for now: the UI links straight into this
+ * sport's workspace instead of asking "which sport?". The catalog, the registry and every URL still carry the sport key,
+ * so nothing structural changes if a second sport is ever switched on — only this line and the picker would.
+ */
+export const PRIMARY_SPORT_KEY: SportKey = SPORT_KEYS[0];
+
 export interface SportModule {
   key: SportKey;
   /** Court/pitch packs keyed by `courtKey()`. */
