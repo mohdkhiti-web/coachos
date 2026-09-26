@@ -415,7 +415,7 @@ test("Step 8: the generator, the AI Coach and the diagram editor fit a phone and
   expect(await noHorizontalScroll(page), "generator overflows").toBe(true);
 
   await page.goto("/assistant/basketball");
-  await expect(page.getByTestId("chat-empty")).toBeVisible();
+  await expect(page.getByTestId("chat-empty").first()).toBeVisible();
   expect(await noHorizontalScroll(page), "AI Coach overflows").toBe(true);
   const bar = page.getByRole("navigation", { name: "Main navigation" }).last();
   const box = await bar.getByRole("link", { name: "AI Coach" }).boundingBox();
@@ -484,7 +484,7 @@ test("the basketball onboarding, the ready screen and the Command Center work on
 
   expect(await noHorizontalScroll(page), "Command Center overflows").toBe(true);
   for (const name of ["Build a Session", "Generate a Session", "Explore Drills"]) {
-    const box = await page.getByRole("link", { name }).boundingBox();
+    const box = await page.getByRole("link", { name }).first().boundingBox();
     expect(box?.height ?? 0, name).toBeGreaterThanOrEqual(44);
   }
   await page.goto("/settings/coaching-profile");

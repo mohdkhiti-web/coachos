@@ -136,7 +136,11 @@ export async function completeOnboarding(
 ) {
   await expect(page).toHaveURL(/\/onboarding/);
   if ((opts.mode ?? "skip") === "skip") {
-    await page.getByRole("button", { name: "Skip for now" }).click();
+    // a click before the page has hydrated is a no-op: keep clicking until the app has really moved on
+    await expect(async () => {
+      await page.getByRole("button", { name: "Skip for now" }).click();
+      await expect(page).toHaveURL(/\/dashboard/, { timeout: 4_000 });
+    }).toPass({ timeout: 30_000 });
   } else {
     await answerOnboarding(page, opts.answers);
     await page.getByRole("button", { name: "Finish" }).click();

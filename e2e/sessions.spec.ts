@@ -81,7 +81,7 @@ test("the whole session journey: create, describe, choose objectives, build, reo
   await expect(page.getByRole("heading", { level: 1, name: "U14 Tuesday Shooting" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Your court is waiting." })).toBeVisible();
   await expect(
-    page.getByText("Add a drill, custom activity or break to start building your session."),
+    page.getByText("Add a drill, a custom activity or a break to start building today's practice."),
   ).toBeVisible();
   await expect(total(page)).toHaveText("0");
   await expect(endTime(page)).toHaveText("6:30 PM");

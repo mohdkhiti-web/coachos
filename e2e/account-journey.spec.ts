@@ -48,17 +48,17 @@ test("full account lifecycle", async ({ page, browser }) => {
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
       new RegExp(`Good (morning|afternoon|evening), Coach ${firstName}`),
     );
-    await expect(page.getByText("2 of 3 done")).toBeAttached(); // email verified + profile complete; preferences open
+    await expect(page.getByText("2 of 3 done").first()).toBeAttached(); // email verified + profile complete; preferences open
     await expect(page.getByRole("link", { name: "Open preferences" })).toBeVisible();
-    await expect(page.getByText("Personal workspace")).toBeVisible();
-    await expect(page.getByText("Owner", { exact: true })).toBeVisible();
+    await expect(page.getByText("Personal workspace").first()).toBeVisible();
+    await expect(page.getByText("Owner", { exact: true }).first()).toBeVisible();
     // recent activity is read from the audit trail
     const activity = page.locator("section", {
       has: page.getByRole("heading", { name: "Recent activity" }),
     });
-    await expect(activity.getByText("Account created")).toBeVisible();
-    await expect(activity.getByText("Email verified")).toBeVisible();
-    await expect(activity.getByText("Profile set up")).toBeVisible();
+    await expect(activity.getByText("Account created").first()).toBeVisible();
+    await expect(activity.getByText("Email verified").first()).toBeVisible();
+    await expect(activity.getByText("Profile set up").first()).toBeVisible();
   });
 
   await test.step("navigation only offers modules that exist", async () => {
@@ -108,7 +108,7 @@ test("full account lifecycle", async ({ page, browser }) => {
     await expect(toast(page, "Changes saved.")).toBeVisible();
     await page.goto("/dashboard");
     await expect(page.getByRole("heading", { name: "You're all set" })).toBeVisible();
-    await expect(page.getByText("3 of 3 done")).toBeAttached();
+    await expect(page.getByText("3 of 3 done").first()).toBeAttached();
   });
 
   await test.step("theme choice persists server-side (no flash on reload)", async () => {

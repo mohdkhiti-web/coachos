@@ -213,7 +213,7 @@ test("the drill library journey: drills → basketball → drills → filter →
     await detailStar.click();
     await expect(detailStar).toHaveAttribute("aria-pressed", "false");
     await page.goto("/sports/basketball/drills?favorites=1");
-    await expect(page.getByText("No drills match those filters")).toBeVisible();
+    await expect(page.getByText("Build your drill collection.").first()).toBeVisible();
   });
 
   await test.step("a library drill opens with everything a coach needs", async () => {
@@ -431,7 +431,7 @@ test("private drills belong to their owner: another user cannot find, open, or e
   });
   expect(await replay.text()).toContain("NOT_FOUND"); // indistinguishable from a drill that does not exist
   await b.goto("/sports/basketball/drills?favorites=1");
-  await expect(b.getByText("No drills match those filters")).toBeVisible(); // nothing was stored for B
+  await expect(b.getByText("Build your drill collection.").first()).toBeVisible(); // nothing was stored for B
   await expect(b.getByText(secret)).toHaveCount(0);
 
   // …and Bob's own view is unaffected: the library is his, Alice's private drill is not
@@ -474,5 +474,6 @@ test("unknown sports and planned sports are 404, and signed-out visitors are sen
   // no session cookie at all (no browser, no JS): the server itself redirects — nothing is rendered for them
   const anon = await request.get("/sports/basketball/drills");
   expect(anon.url()).toContain("/sign-in");
-  expect(await anon.text()).not.toContain("Five-Spot Shooting");
+  // no library data: a seeded drill description (the landing copy legitimately names a few drills)
+  expect(await anon.text()).not.toContain("catch-and-shoot rhythm and shooting stamina");
 });

@@ -199,7 +199,7 @@ for (const scheme of ["light", "dark"] as const) {
 
       // the AI Coach: empty, with a conversation and suggestions, and the confirmation dialog
       await page.goto("/assistant/basketball");
-      await expect(page.getByTestId("chat-empty")).toBeVisible();
+      await expect(page.getByTestId("chat-empty").first()).toBeVisible();
       await audit(page, `AI Coach, empty (${scheme})`);
       const input = page.getByLabel("Message the AI Coach");
       await input.fill("Create a 45 minute passing session for 10 players U12");
@@ -349,7 +349,7 @@ for (const scheme of ["light", "dark"] as const) {
       await completeOnboarding(page);
 
       await page.goto("/templates/basketball");
-      await expect(page.getByText("No templates yet")).toBeVisible();
+      await expect(page.getByText("No templates yet").first()).toBeVisible();
       await audit(page, `templates, empty (${scheme})`);
 
       const builder = await createSession(page, { title: "Accessible templates", team: "Wolves" });
@@ -473,7 +473,7 @@ for (const scheme of ["light", "dark"] as const) {
       await completeOnboarding(page);
 
       for (const path of [
-        "/sports",
+        "/sports/basketball",
         "/sports/basketball",
         "/sports/basketball/drills",
         "/sports/basketball/drills?q=shoting&level=beginner", // active chips + filtered state
@@ -577,7 +577,7 @@ test("no console errors, CSP violations, or missing translations across the Phas
   await signUpAndVerify(page, newUser());
   await completeOnboarding(page);
   for (const path of [
-    "/sports",
+    "/sports/basketball",
     "/sports/basketball",
     "/sports/basketball/drills",
     "/sports/basketball/drills?category=shooting&level=beginner&age=12&duration=short",

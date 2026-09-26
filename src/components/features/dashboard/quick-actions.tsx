@@ -72,7 +72,7 @@ export async function QuickActions({
                 <span
                   className={cn(
                     "mt-0.5 block text-sm",
-                    primary ? "text-accent-ink/80" : "text-ink-muted",
+                    primary ? "text-accent-ink" : "text-ink-muted",
                   )}
                 >
                   {t(`${key}.body`)}
