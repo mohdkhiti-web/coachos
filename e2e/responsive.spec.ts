@@ -17,7 +17,9 @@ test("public pages fit a phone screen", async ({ page }) => {
 
 test("the app shell collapses to a bottom tab bar with 44px touch targets", async ({ page }) => {
   await signUpAndVerify(page, newUser());
-  await expect(page.getByLabel("Your timezone")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Let's build your basketball coaching profile." }),
+  ).toBeVisible();
   expect(await noHorizontalScroll(page)).toBe(true);
   await completeOnboarding(page);
 
@@ -25,7 +27,7 @@ test("the app shell collapses to a bottom tab bar with 44px touch targets", asyn
   await expect(bar).toBeVisible();
   await expect(page.locator("aside")).toBeHidden(); // desktop rail is gone
 
-  for (const name of ["Dashboard", "Sessions", "Templates", "Sports", "Settings"]) {
+  for (const name of ["Dashboard", "Sessions", "Templates", "Drills", "Settings"]) {
     const box = await bar.getByRole("link", { name }).boundingBox();
     expect(box?.height ?? 0).toBeGreaterThanOrEqual(44);
     expect(box?.width ?? 0).toBeGreaterThanOrEqual(44);
@@ -51,13 +53,9 @@ test("Phase 2: sports, library, drill detail and the drill form fit a phone and 
   await signUpAndVerify(page, newUser());
   await completeOnboarding(page);
 
-  // Sports is reachable from the bottom bar, with a 44px target like the other tabs
+  // Drills is reachable from the bottom bar (a 44px target like the other tabs) and opens the basketball library
   const bar = page.getByRole("navigation", { name: "Main navigation" }).last();
-  await bar.getByRole("link", { name: "Sports" }).click();
-  await expect(page).toHaveURL(/\/sports$/);
-  expect(await noHorizontalScroll(page), "/sports overflows horizontally").toBe(true);
-
-  await page.getByRole("main").getByRole("link", { name: "Basketball" }).click();
+  await bar.getByRole("link", { name: "Drills" }).click();
   await expect(page).toHaveURL(/\/sports\/basketball$/);
   expect(await noHorizontalScroll(page), "overview overflows horizontally").toBe(true);
 

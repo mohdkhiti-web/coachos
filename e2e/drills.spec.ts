@@ -77,26 +77,24 @@ async function drawDiagram(page: Page) {
   await expect(page.getByText("This diagram is valid.")).toBeVisible();
 }
 
-test("the Phase 2 journey: sports → basketball → drills → filter → open → create → edit → persist", async ({
+test("the drill library journey: drills → basketball → drills → filter → open → create → edit → persist", async ({
   page,
 }) => {
   test.setTimeout(240_000);
   await signedIn(page, "Alex");
 
-  await test.step("Sports is in the navigation and lists only what exists", async () => {
-    await nav(page).getByRole("link", { name: "Sports", exact: true }).click();
-    await expect(page).toHaveURL(/\/sports$/);
-    await expect(page.getByRole("heading", { level: 1, name: "Sports" })).toBeVisible();
-    await expect(page.getByRole("main").getByRole("link", { name: "Basketball" })).toBeVisible();
-    // reserved sports are shown as plain text, clearly marked as not available — never as links
-    await expect(page.getByText("Planned — not available yet")).toBeVisible();
-    await expect(page.getByRole("link", { name: "Football" })).toHaveCount(0);
-    await expect(page.getByText("Football", { exact: true })).toBeVisible();
+  await test.step("Drills is in the navigation and opens the basketball library (there is no list of sports)", async () => {
+    await nav(page).getByRole("link", { name: "Drills", exact: true }).click();
+    await expect(page).toHaveURL(/\/sports\/basketball$/);
+    await expect(page.getByRole("heading", { level: 1, name: "Basketball" })).toBeVisible();
+    await expect(page.getByText("Football")).toHaveCount(0);
+    await expect(page.getByText("Planned — not available yet")).toHaveCount(0);
+    // the old "choose a sport" address simply opens the basketball workspace
+    await page.goto("/sports");
+    await expect(page).toHaveURL(/\/sports\/basketball$/);
   });
 
   await test.step("the Basketball workspace shows real counts and only the tabs that exist", async () => {
-    await page.getByRole("main").getByRole("link", { name: "Basketball" }).click();
-    await expect(page).toHaveURL(/\/sports\/basketball$/);
     await expect(page.getByRole("heading", { level: 1, name: "Basketball" })).toBeVisible();
     await expect(page.getByText(String(LIBRARY), { exact: true }).first()).toBeVisible();
     const tabs = page.getByRole("navigation", { name: "Workspace sections" });

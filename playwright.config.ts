@@ -24,6 +24,9 @@ export default defineConfig({
   reporter: [["list"]],
   use: {
     baseURL: `http://localhost:${PORT}`,
+    // onboarding detects the coach's timezone from the browser: pin it so every run (and every machine) agrees
+    timezoneId: "Europe/Paris",
+    locale: "en-GB",
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
   },

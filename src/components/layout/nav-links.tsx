@@ -4,18 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/cn";
-import { NAV_ITEMS, type NavSport } from "./nav";
+import { NAV_ITEMS } from "./nav";
 
 /** One nav definition, two presentations: a labelled side rail (desktop) and a bottom tab bar (mobile). */
-export function NavLinks({
-  variant,
-  sports,
-  assistant,
-}: {
-  variant: "rail" | "bar";
-  sports: NavSport[];
-  assistant: boolean;
-}) {
+export function NavLinks({ variant, assistant }: { variant: "rail" | "bar"; assistant: boolean }) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const items = NAV_ITEMS.filter((i) => i.href !== "/assistant" || assistant);
@@ -30,11 +22,8 @@ export function NavLinks({
       }
     >
       {items.map(({ href, labelKey, icon: Icon }) => {
-        const isSports = href === "/sports";
-        // "Sports" is only "current" on its own index; its child sports light up when inside them
-        const active = isSports
-          ? pathname === href
-          : pathname === href || pathname.startsWith(`${href}/`);
+        // a section stays lit on every page inside it (the Drills section is /sports/basketball and everything below it)
+        const active = pathname === href || pathname.startsWith(`${href}/`);
         return (
           <li key={href}>
             <Link
@@ -45,7 +34,7 @@ export function NavLinks({
                 variant === "rail"
                   ? "min-h-11 gap-3 rounded-md px-3 text-sm font-medium"
                   : "min-h-16 flex-col justify-center gap-1 text-xs font-medium",
-                active || (isSports && pathname.startsWith("/sports/") && variant === "bar")
+                active
                   ? variant === "rail"
                     ? "bg-accent-soft text-ink"
                     : "text-accent"
@@ -60,7 +49,7 @@ export function NavLinks({
                   className="absolute inset-y-2 left-0 w-0.5 animate-fade-in rounded-full bg-accent"
                 />
               ) : null}
-              {(active || (isSports && pathname.startsWith("/sports/"))) && variant === "bar" ? (
+              {active && variant === "bar" ? (
                 <span
                   aria-hidden
                   className="absolute inset-x-6 top-0 h-0.5 animate-fade-in rounded-full bg-accent"
@@ -72,38 +61,6 @@ export function NavLinks({
               />
               <span>{t(labelKey)}</span>
             </Link>
-
-            {/* Sport workspaces, nested under Sports in the rail (real sports only) */}
-            {isSports && variant === "rail" && sports.length > 0 ? (
-              <ul className="mt-1 mb-1 ml-5 flex flex-col gap-0.5 border-l border-line pl-3">
-                {sports.map((s) => {
-                  const sportHref = `/sports/${s.key}`;
-                  const inside = pathname === sportHref || pathname.startsWith(`${sportHref}/`);
-                  return (
-                    <li key={s.key}>
-                      <Link
-                        href={sportHref}
-                        aria-current={inside ? "page" : undefined}
-                        className={cn(
-                          "relative flex min-h-10 items-center rounded-md px-3 text-sm smooth-colors",
-                          inside
-                            ? "bg-accent-soft font-semibold text-ink"
-                            : "text-ink-muted hover:bg-surface-sunken hover:text-ink",
-                        )}
-                      >
-                        {inside ? (
-                          <span
-                            aria-hidden
-                            className="absolute inset-y-2 -left-[13px] w-0.5 animate-fade-in rounded-full bg-accent"
-                          />
-                        ) : null}
-                        {s.name}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : null}
           </li>
         );
       })}

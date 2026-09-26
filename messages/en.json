@@ -20,10 +20,10 @@
     "primary": "Primary",
     "dashboard": "Dashboard",
     "settings": "Settings",
-    "sports": "Sports",
     "sessions": "Sessions",
     "templates": "Templates",
-    "assistant": "AI Coach"
+    "assistant": "AI Coach",
+    "drills": "Drills"
   },
   "theme": {
     "toggle": "Theme: {mode}. Click to change.",
@@ -819,21 +819,10 @@
     "title": "Page not found",
     "body": "That page doesn't exist, or you don't have access to it.",
     "home": "Go home",
-    "toSports": "Back to sports"
-  },
-  "sports": {
-    "title": "Sports",
-    "subtitle": "Each sport has its own workspace with its own drills, court diagrams and vocabulary.",
-    "activeHeading": "Available sports",
-    "workspace": "Sport workspace",
-    "libraryDrills": "Library drills",
-    "yourDrills": "Your drills",
-    "open": "Open workspace",
-    "plannedTitle": "Planned — not available yet",
-    "plannedBody": "These sports are reserved in the data model but have no workspace yet. Each one appears here only once it fully works."
+    "toSports": "Back to the drill library"
   },
   "workspace": {
-    "eyebrow": "Sport workspace",
+    "eyebrow": "Basketball coaching",
     "tabsLabel": "Workspace sections",
     "tabs": {
       "overview": "Overview",
@@ -1258,7 +1247,6 @@
   },
   "sessions": {
     "title": "My Sessions",
-    "chooseSport": "Choose a sport to plan sessions for.",
     "create": "Create session",
     "listHeading": "Your training sessions",
     "results": {
@@ -1918,8 +1906,6 @@
   "templates": {
     "title": "Templates",
     "subtitle": "Save a look you like once and reuse it for every session. A template holds the design only — never a session's date, activities or notes.",
-    "allSports": "All sports",
-    "sportFilter": "Sport",
     "listHeading": "Saved templates",
     "create": "New template",
     "results": {
@@ -2377,7 +2363,6 @@
   "assistant": {
     "title": "AI Coach",
     "subtitle": "Ask for a session, change one you have, explain a drill or draw a diagram. The assistant only uses real CoachOS drills, and it only suggests: nothing changes until you apply it.",
-    "chooseSport": "Choose a sport to coach with.",
     "unavailable": {
       "title": "The AI Coach is not set up",
       "body": "An AI provider has not been configured for this CoachOS, so the assistant is unavailable. Everything else works: you can still generate a complete session from the drill library without AI, and change it in the Session Builder.",

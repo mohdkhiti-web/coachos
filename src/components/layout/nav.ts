@@ -1,22 +1,21 @@
 import {
+  BookOpen,
   ClipboardList,
   LayoutDashboard,
   LayoutTemplate,
   Sparkles,
   Settings,
-  Trophy,
   type LucideIcon,
 } from "lucide-react";
+import { PRIMARY_SPORT_KEY } from "@/sports/registry";
 
 /**
- * Navigation renders ONLY modules that actually work (ARCHITECTURE.md §23.1 "real or absent").
- * Each later phase appends its entry here when its feature ships — Teams, Sessions, Calendar,
- * Documents… — so there are never dead links. Individual sports are listed under "Sports" from the
- * database (only sports that are implemented in code AND switched on in the catalog).
+ * Navigation renders ONLY modules that actually work (ARCHITECTURE.md §23.1 "real or absent"). CoachOS is a basketball
+ * product, so "Drills" opens the basketball drill library directly — there is no list of sports.
  */
 export type NavItem = {
   href: string;
-  labelKey: "dashboard" | "sessions" | "assistant" | "templates" | "sports" | "settings";
+  labelKey: "dashboard" | "sessions" | "assistant" | "templates" | "drills" | "settings";
   icon: LucideIcon;
 };
 
@@ -25,8 +24,6 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { href: "/sessions", labelKey: "sessions", icon: ClipboardList },
   { href: "/assistant", labelKey: "assistant", icon: Sparkles },
   { href: "/templates", labelKey: "templates", icon: LayoutTemplate },
-  { href: "/sports", labelKey: "sports", icon: Trophy },
+  { href: `/sports/${PRIMARY_SPORT_KEY}`, labelKey: "drills", icon: BookOpen },
   { href: "/settings", labelKey: "settings", icon: Settings },
 ];
-
-export type NavSport = { key: string; name: string };

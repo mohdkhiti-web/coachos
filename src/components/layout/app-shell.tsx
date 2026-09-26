@@ -5,7 +5,6 @@ import { CourtMark } from "@/components/ui/court-mark";
 import { RouteTransition } from "@/components/motion";
 import { parseTheme, THEME_COOKIE } from "@/lib/theme";
 import type { Viewer } from "@/modules/identity";
-import type { NavSport } from "./nav";
 import { NavLinks } from "./nav-links";
 import { ThemeToggle } from "./theme-toggle";
 import { UserMenu } from "./user-menu";
@@ -18,12 +17,10 @@ import { UserMenu } from "./user-menu";
  */
 export async function AppShell({
   viewer,
-  sports,
   assistant = false,
   children,
 }: {
   viewer: Viewer | null;
-  sports: NavSport[];
   /** Is the AI assistant set up? Its nav entry only exists when it is (nothing dead in the navigation). */
   assistant?: boolean;
   children: React.ReactNode;
@@ -51,7 +48,7 @@ export async function AppShell({
         </div>
         <div className="court-rule" />
         <nav aria-label={t("mainNav")} className="flex-1 px-3 py-4">
-          <NavLinks variant="rail" sports={sports} assistant={assistant} />
+          <NavLinks variant="rail" assistant={assistant} />
         </nav>
         {viewer ? (
           <div className="relative overflow-hidden border-t border-line px-5 py-4">
@@ -97,7 +94,7 @@ export async function AppShell({
         aria-label={t("mainNav")}
         className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-surface-raised pb-[env(safe-area-inset-bottom)] md:hidden print:hidden"
       >
-        <NavLinks variant="bar" sports={sports} assistant={assistant} />
+        <NavLinks variant="bar" assistant={assistant} />
       </nav>
     </div>
   );

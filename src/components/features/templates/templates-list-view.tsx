@@ -3,7 +3,6 @@ import { Plus } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
-import { cn } from "@/lib/cn";
 import { can } from "@/lib/authz/can";
 import { requireViewer } from "@/modules/identity";
 import { listPlans } from "@/modules/plans";
@@ -13,7 +12,6 @@ import {
   activeTemplateFilterCount,
   parseTemplateFilters,
   TEMPLATE_PAGE_SIZE,
-  templateHrefFor,
   type RawParams,
 } from "@/modules/templates/filters";
 import type { ApplyTarget } from "./apply-template-dialog";
@@ -85,14 +83,11 @@ export async function TemplatesListView({
     }
   }
 
-  const chip =
-    "inline-flex min-h-10 items-center rounded-full border px-4 text-sm font-medium transition-colors";
-
   return (
     <div className="space-y-8">
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div className="space-y-1">
-          <p className="eyebrow text-accent">{sport?.name ?? t("allSports")}</p>
+          <p className="eyebrow text-accent">{sport?.name}</p>
           <h1 className="display text-5xl text-ink md:text-6xl">{t("title")}</h1>
           <p className="max-w-2xl text-base text-ink-muted">{t("subtitle")}</p>
         </div>
@@ -105,41 +100,6 @@ export async function TemplatesListView({
           </Button>
         ) : null}
       </header>
-
-      <nav aria-label={t("sportFilter")}>
-        <ul className="flex flex-wrap gap-2">
-          <li>
-            <Link
-              href={templateHrefFor("/templates", { ...filters, page: 1 })}
-              aria-current={!sportKey ? "page" : undefined}
-              className={cn(
-                chip,
-                !sportKey
-                  ? "border-accent bg-accent-soft text-ink"
-                  : "border-line-strong text-ink-muted hover:text-ink",
-              )}
-            >
-              {t("allSports")}
-            </Link>
-          </li>
-          {sports.map((s) => (
-            <li key={s.key}>
-              <Link
-                href={templateHrefFor(`/templates/${s.key}`, { ...filters, page: 1 })}
-                aria-current={sportKey === s.key ? "page" : undefined}
-                className={cn(
-                  chip,
-                  sportKey === s.key
-                    ? "border-accent bg-accent-soft text-ink"
-                    : "border-line-strong text-ink-muted hover:text-ink",
-                )}
-              >
-                {s.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
 
       <div className="grid gap-8 md:grid-cols-[17rem_minmax(0,1fr)] lg:gap-10">
         <aside aria-label={t("filters.region")} className="md:sticky md:top-24 md:self-start">
