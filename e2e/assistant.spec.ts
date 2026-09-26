@@ -64,7 +64,7 @@ test("AI Coach: open it, create a session with AI, and it opens in the Session B
 
   // nothing exists yet
   await page.goto(SESSIONS);
-  await expect(page.getByRole("heading", { name: "No sessions yet" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "No practice planned yet." })).toBeVisible();
   await page.goBack();
 
   // apply: an ordinary session opens in the builder with the suggested drills and the exact minutes

@@ -1,18 +1,8 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import { getTranslations } from "next-intl/server";
+import { BasketballLoading } from "@/components/basketball";
 
-export default function Loading() {
-  return (
-    <div className="space-y-8" role="status" aria-busy="true">
-      <span className="sr-only">Loading…</span>
-      <div className="space-y-3">
-        <Skeleton className="h-12 w-3/4 max-w-md" />
-        <Skeleton className="h-5 w-64" />
-      </div>
-      <div className="grid gap-5 lg:grid-cols-2">
-        <Skeleton className="h-52 lg:col-span-2" />
-        <Skeleton className="h-48" />
-        <Skeleton className="h-48" />
-      </div>
-    </div>
-  );
+/** The fallback for any signed-in page that is still loading: a ball dribbling on a court line, and nothing artificial in the way. */
+export default async function Loading() {
+  const t = await getTranslations("common");
+  return <BasketballLoading label={t("preparingCourt")} />;
 }

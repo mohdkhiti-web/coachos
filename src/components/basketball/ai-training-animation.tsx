@@ -2,12 +2,12 @@ import { cn } from "@/lib/cn";
 import { CourtLines } from "./court";
 
 /**
- * The picture of the AI Coach working: a half court where a play is being drawn up — dashed movement paths flowing to
- * the basket. It is mounted ONLY while a request is really in flight (the chat's `sending` state, the generator's
- * `pending` state) and disappears the moment the answer arrives, so it never suggests work that is not happening.
+ * The picture of a session being drawn up: a half court where dashed movement paths flow to the basket. It is mounted ONLY
+ * while a request is really in flight (the AI Coach's `sending` state, the generator's `pending` state) and disappears the
+ * moment the answer arrives, so it never suggests work that is not happening.
  * Decorative: the caller shows the real status text ("Searching the drill library…") beside it.
  */
-export function AITrainingAnimation({ className }: { className?: string }) {
+export function PlayDrawingAnimation({ className }: { className?: string }) {
   return (
     <svg
       viewBox="-4 -4 508 478"
@@ -35,3 +35,6 @@ export function AITrainingAnimation({ className }: { className?: string }) {
     </svg>
   );
 }
+
+/** The AI Coach's name for the same picture (it is drawing up a play for the coach). */
+export const AITrainingAnimation = PlayDrawingAnimation;

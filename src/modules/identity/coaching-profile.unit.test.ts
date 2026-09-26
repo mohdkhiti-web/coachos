@@ -9,17 +9,20 @@ import {
 } from "@/db/enums";
 import {
   EMPTY_COACHING_PROFILE,
+  PRIORITY_OBJECTIVE,
   PRIORITY_QUERY,
   coachingContext,
   hasCoachingProfile,
   recommendationAge,
   recommendationQueries,
+  sessionDefaults,
   type CoachingProfileDto,
 } from "./coaching-profile";
 import { coachOnboardingSchema, coachingProfileSchema } from "./validators";
 
 const category = new Set(taxonomy.categories.map((c) => c.key));
 const skill = new Set(taxonomy.skills.map((s) => s.key));
+const objective = new Set(taxonomy.objectives.map((o) => o.key));
 
 describe("coaching profile ↔ the real basketball catalog", () => {
   it("every priority is found in the drill library by a category or skill that really exists", () => {
@@ -29,6 +32,14 @@ describe("coaching profile ↔ the real basketball catalog", () => {
       if (q.category) expect(category.has(q.category), `${p} → category ${q.category}`).toBe(true);
       if (q.skill) expect(skill.has(q.skill), `${p} → skill ${q.skill}`).toBe(true);
     }
+  });
+
+  it("every priority maps to a session objective that really exists", () => {
+    for (const p of COACH_PRIORITIES)
+      expect(
+        objective.has(PRIORITY_OBJECTIVE[p]),
+        `${p} → objective ${PRIORITY_OBJECTIVE[p]}`,
+      ).toBe(true);
   });
 
   it("the age groups are exactly the catalog's age groups", () => {
@@ -136,5 +147,37 @@ describe("coachOnboardingSchema", () => {
     expect(coachOnboardingSchema.parse({ coaching: good, timezone: "Asia/Dubai" }).timezone).toBe(
       "Asia/Dubai",
     );
+  });
+});
+
+describe("session defaults from the profile", () => {
+  it("are empty for a coach who told us nothing", () => {
+    expect(sessionDefaults(EMPTY_COACHING_PROFILE)).toEqual({
+      players: "",
+      ageGroup: "",
+      primaryObjective: "",
+    });
+    expect(sessionDefaults(null)).toEqual({ players: "", ageGroup: "", primaryObjective: "" });
+  });
+
+  it("use the squad size, the one age group, and the first priority as the objective", () => {
+    const p: CoachingProfileDto = {
+      ...EMPTY_COACHING_PROFILE,
+      ageGroups: ["u14"],
+      typicalPlayers: 12,
+      priorities: ["basketball_iq", "shooting"],
+    };
+    expect(sessionDefaults(p)).toEqual({
+      players: "12",
+      ageGroup: "u14",
+      primaryObjective: "decision_making",
+    });
+  });
+
+  it("do not pick an age group when the coach has several", () => {
+    expect(
+      sessionDefaults({ ...EMPTY_COACHING_PROFILE, ageGroups: ["u12", "u14"], typicalPlayers: 10 })
+        .ageGroup,
+    ).toBe("");
   });
 });

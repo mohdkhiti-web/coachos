@@ -66,6 +66,42 @@ export const PRIORITY_QUERY: Record<CoachPriority, { category?: string; skill?: 
   game_preparation: { category: "special_situations" },
 };
 
+/** The session objective (a real catalog objective key) that each coaching priority corresponds to. */
+export const PRIORITY_OBJECTIVE: Record<CoachPriority, string> = {
+  shooting: "shooting",
+  ball_handling: "ball_handling",
+  passing: "passing",
+  finishing: "finishing",
+  footwork: "footwork",
+  defense: "defense",
+  rebounding: "rebounding",
+  basketball_iq: "decision_making",
+  decision_making: "decision_making",
+  team_offense: "team_offense",
+  team_defense: "team_defense",
+  transition: "transition",
+  conditioning: "conditioning",
+  game_preparation: "special_situations",
+};
+
+/**
+ * Starting values for a NEW session, from the coach's own answers: their squad size, their age group when they coach exactly
+ * one, and their first priority as the main objective. They are defaults the coach can change on the form — an empty profile
+ * (a skipped onboarding) gives empty defaults, never a guess.
+ */
+export function sessionDefaults(p: CoachingProfileDto | null | undefined): {
+  players: string;
+  ageGroup: string;
+  primaryObjective: string;
+} {
+  if (!hasCoachingProfile(p)) return { players: "", ageGroup: "", primaryObjective: "" };
+  return {
+    players: p.typicalPlayers ? String(p.typicalPlayers) : "",
+    ageGroup: p.ageGroups.length === 1 ? p.ageGroups[0]! : "",
+    primaryObjective: p.priorities[0] ? PRIORITY_OBJECTIVE[p.priorities[0]] : "",
+  };
+}
+
 /** A typical age for each age group (the drill library filters by a single age). */
 const AGE_OF_GROUP: Record<CoachAgeGroup, number> = {
   u8: 7,

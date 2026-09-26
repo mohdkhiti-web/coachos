@@ -14,7 +14,7 @@ import {
   Square,
   Trash2,
 } from "lucide-react";
-import { TypingDots } from "@/components/motion";
+import { AITrainingAnimation } from "@/components/basketball";
 import { Button } from "@/components/ui/button";
 import { Card, CardBody } from "@/components/ui/card";
 import { Select } from "@/components/ui/field";
@@ -323,7 +323,7 @@ export function AssistantChat({
                   role="status"
                   data-testid="chat-working"
                 >
-                  <TypingDots />
+                  <AITrainingAnimation className="h-14" />
                   {/* Keyed on the label, so each phase change (thinking → a named tool → thinking again)
                       crossfades instead of snapping — the wording always reflects real stream events. */}
                   <span key={toolLabel} className="animate-fade-in">

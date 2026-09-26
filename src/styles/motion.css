@@ -119,20 +119,6 @@
     transform: rotate(360deg);
   }
 }
-/* The AI Coach "thinking" indicator: three dots, staggered — a heartbeat, not a bounce. */
-@keyframes cos-typing {
-  0%,
-  60%,
-  100% {
-    opacity: 0.35;
-    transform: translateY(0);
-  }
-  30% {
-    opacity: 1;
-    transform: translateY(-1.5px);
-  }
-}
-
 /* ---------------------------------------------------------------------------------------------------------------
  * Utilities
  * ------------------------------------------------------------------------------------------------------------- */

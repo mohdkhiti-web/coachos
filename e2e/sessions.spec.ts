@@ -36,8 +36,10 @@ test("the whole session journey: create, describe, choose objectives, build, reo
   await nav(page).getByRole("link", { name: "Sessions" }).click();
   await expect(page).toHaveURL(/\/sessions\/basketball$/);
   await expect(page.getByRole("heading", { level: 1, name: "My Sessions" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "No sessions yet" })).toBeVisible();
-  await expect(page.getByText("Create your first basketball training session.")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "No practice planned yet." })).toBeVisible();
+  await expect(
+    page.getByText("Build your first basketball session and it will show up here."),
+  ).toBeVisible();
 
   // ---- 1-3: create a session: information and objectives ----------------------------------------
   await page.getByRole("link", { name: "Create session" }).first().click();
@@ -77,7 +79,7 @@ test("the whole session journey: create, describe, choose objectives, build, reo
   await expect(page).toHaveURL(/\/sessions\/basketball\/[0-9a-f-]{36}$/);
   const builder = new URL(page.url()).pathname;
   await expect(page.getByRole("heading", { level: 1, name: "U14 Tuesday Shooting" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Your session is empty" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Your court is waiting." })).toBeVisible();
   await expect(
     page.getByText("Add a drill, custom activity or break to start building your session."),
   ).toBeVisible();
@@ -203,7 +205,7 @@ test("the whole session journey: create, describe, choose objectives, build, reo
     await expect(stranger.getByText("U14 Tuesday Shooting")).toHaveCount(0);
   }
   await stranger.goto(SESSIONS);
-  await expect(stranger.getByRole("heading", { name: "No sessions yet" })).toBeVisible();
+  await expect(stranger.getByRole("heading", { name: "No practice planned yet." })).toBeVisible();
   await other.close();
 });
 

@@ -106,7 +106,7 @@ test("the session builder is usable on a phone: nothing overflows, controls are 
   await completeOnboarding(page);
 
   await page.goto(SESSIONS);
-  await expect(page.getByRole("heading", { name: "No sessions yet" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "No practice planned yet." })).toBeVisible();
   expect(await noHorizontalScroll(page), "empty list overflows").toBe(true);
   await page.goto(`${SESSIONS}/new`);
   expect(await noHorizontalScroll(page), "create form overflows").toBe(true);

@@ -1,4 +1,4 @@
-export { AITrainingAnimation } from "./ai-training-animation";
+export { AITrainingAnimation, PlayDrawingAnimation } from "./ai-training-animation";
 export { BasketballEmptyState } from "./basketball-empty-state";
 export { BasketballLoading } from "./loading";
 export { CoachImage } from "./coach-image";

@@ -5,7 +5,7 @@ import { GeneratorWorkspace } from "@/components/features/generator/generator-wo
 import { emptySessionValues } from "@/components/features/sessions/session-model";
 import { can } from "@/lib/authz/can";
 import { listTimezones } from "@/lib/timezones";
-import { requireViewer } from "@/modules/identity";
+import { requireViewer, sessionDefaults } from "@/modules/identity";
 import { getAgeGroups, getObjectives, getSport } from "@/modules/sports";
 import { getSportModule } from "@/sports/registry";
 
@@ -45,6 +45,7 @@ export default async function GenerateSessionPage({
           coachName: viewer.user.name,
           clubName: personal ? "" : viewer.organization.name,
           targetMinutes: mod.defaults.sessionMinutes,
+          coaching: sessionDefaults(viewer.profile.coaching),
         })}
         catalog={{
           ageGroups: ageGroups.map((g) => ({

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Lock, LockOpen, RefreshCw, Sparkles, TriangleAlert, CircleX } from "lucide-react";
+import { PlayDrawingAnimation } from "@/components/basketball";
 import { FormError } from "@/components/features/auth/shared";
 import { PhaseBadge } from "@/components/features/sessions/badges";
 import { SessionFields, type SessionCatalog } from "@/components/features/sessions/session-fields";
@@ -219,6 +220,17 @@ export function GeneratorWorkspace({
       <p role="status" aria-live="polite" className="sr-only">
         {announce}
       </p>
+
+      {/* mounted only while the request really runs */}
+      {pending ? (
+        <div
+          className="flex items-center gap-4 rounded-lg border border-line bg-surface-raised px-5 py-4"
+          data-testid="generator-building"
+        >
+          <PlayDrawingAnimation className="h-14" />
+          <p className="text-sm font-medium text-ink">{t("building")}</p>
+        </div>
+      ) : null}
 
       {preview ? (
         <PreviewPanel

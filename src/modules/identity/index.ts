@@ -14,7 +14,9 @@ export type { OAuthProviders } from "./oauth";
 export type { CoachingProfileDto } from "./coaching-profile";
 export {
   coachingContext,
+  EMPTY_COACHING_PROFILE,
   hasCoachingProfile,
   recommendationAge,
   recommendationQueries,
+  sessionDefaults,
 } from "./coaching-profile";

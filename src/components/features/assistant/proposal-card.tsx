@@ -3,7 +3,8 @@
 import * as React from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { Check, CircleAlert, Loader2, Sparkles } from "lucide-react";
+import { CircleAlert, Loader2, Sparkles } from "lucide-react";
+import { BasketballIcon } from "@/components/basketball";
 import { DrillDiagram } from "@/components/features/drills/drill-diagram";
 import { PhaseBadge } from "@/components/features/sessions/badges";
 import { Button } from "@/components/ui/button";
@@ -251,7 +252,7 @@ export function ProposalCard({
             data-testid="proposal-applied"
           >
             <span className="inline-flex items-center gap-1.5 font-medium">
-              <Check className="size-4 animate-pop text-success" aria-hidden />
+              <BasketballIcon className="size-5 animate-pop" />
               {t("applied")}
             </span>
             {createdId ? (

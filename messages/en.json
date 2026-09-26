@@ -14,7 +14,8 @@
     "loading": "Loading…",
     "tryAgain": "Try again",
     "you": "You",
-    "current": "This device"
+    "current": "This device",
+    "preparingCourt": "Preparing your court…"
   },
   "nav": {
     "primary": "Primary",
@@ -951,8 +952,11 @@
     "empty": {
       "filteredTitle": "No drills match those filters",
       "filteredBody": "Try removing a filter or searching for something broader.",
-      "noneTitle": "No drills yet",
-      "noneBody": "Drills you create and library drills will appear here."
+      "noneTitle": "No drills here yet",
+      "noneBody": "Drills you create and library drills will appear here.",
+      "favoritesTitle": "Build your drill collection.",
+      "favoritesBody": "Tap the star on any drill to keep it here, ready for your next practice.",
+      "favoritesAction": "Explore drills"
     },
     "pagination": {
       "label": "Pages",
@@ -965,7 +969,8 @@
       "players": "players",
       "ages": "age",
       "equipment": "Equipment",
-      "more": "+{count} more"
+      "more": "+{count} more",
+      "view": "View drill"
     },
     "detail": {
       "back": "All drills",
@@ -1312,8 +1317,8 @@
       "deleted": "Session deleted"
     },
     "empty": {
-      "noneTitle": "No sessions yet",
-      "noneBody": "Create your first basketball training session.",
+      "noneTitle": "No practice planned yet.",
+      "noneBody": "Build your first basketball session and it will show up here.",
       "filteredTitle": "No sessions match",
       "filteredBody": "Try clearing a filter or searching for something else.",
       "archivedTitle": "Nothing archived",
@@ -1392,8 +1397,8 @@
       "addDrill": "Add drill",
       "addCustom": "Custom activity",
       "addBreak": "Break",
-      "emptyTitle": "Your session is empty",
-      "emptyBody": "Add a drill, custom activity or break to start building your session.",
+      "emptyTitle": "Your court is waiting.",
+      "emptyBody": "Add a drill, a custom activity or a break to start building today's practice.",
       "emptyReadOnly": "Nothing has been added to this session yet.",
       "updatedFromLibrary": "Updated from the library",
       "save": {
@@ -1415,7 +1420,9 @@
         "noEnd": "Add a date and start time to see the end time",
         "onTarget": "On target ({target} min)",
         "over": "{minutes} min over your {target} min target",
-        "toFill": "{minutes} min left of your {target} min target"
+        "toFill": "{minutes} min left of your {target} min target",
+        "progress": "Practice time planned",
+        "progressText": "{total} of {target} minutes planned"
       },
       "errors": {
         "tooLong": "A session can run for at most 12 hours in total.",
@@ -2258,7 +2265,8 @@
       "toast": "Session created",
       "break": "Water break",
       "title": "{objective} · {minutes} min"
-    }
+    },
+    "building": "Building your session from the drill library…"
   },
   "diagramEditor": {
     "cannotEdit": "This diagram can't be edited here because it isn't valid.",

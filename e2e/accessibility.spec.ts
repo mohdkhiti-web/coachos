@@ -76,7 +76,7 @@ for (const scheme of ["light", "dark"] as const) {
       await completeOnboarding(page);
 
       await page.goto(SESSIONS);
-      await expect(page.getByRole("heading", { name: "No sessions yet" })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "No practice planned yet." })).toBeVisible();
       await audit(page, `sessions, empty list (${scheme})`);
 
       await page.goto(`${SESSIONS}/new`);
@@ -94,7 +94,7 @@ for (const scheme of ["light", "dark"] as const) {
         date: "2030-06-11",
         start: "18:00",
       });
-      await expect(page.getByRole("heading", { name: "Your session is empty" })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "Your court is waiting." })).toBeVisible();
       await audit(page, `builder, empty session (${scheme})`);
 
       await addBreak(page, "Water break", 2);
