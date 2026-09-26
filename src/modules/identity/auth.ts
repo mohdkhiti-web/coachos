@@ -19,6 +19,7 @@ import {
 } from "@/lib/mail/templates";
 import { recordAudit } from "@/modules/audit";
 import { deletePersonalWorkspacesOf, ensureAccountFoundation } from "@/modules/organizations";
+import { createAppleClientSecret } from "./apple-secret";
 import { PASSWORD_MAX, PASSWORD_MIN } from "./validators";
 
 /**
@@ -53,7 +54,9 @@ export const auth = betterAuth({
   appName: "CoachOS",
   baseURL: env.APP_URL,
   secret: env.BETTER_AUTH_SECRET,
-  trustedOrigins: [env.APP_URL],
+  // Apple posts its result back from its own origin (response_mode=form_post), so that origin must be trusted — but only
+  // when Apple sign-in is actually configured.
+  trustedOrigins: [env.APP_URL, ...(env.oauth.apple ? ["https://appleid.apple.com"] : [])],
   database: drizzleAdapter(db, { provider: "pg", schema: AUTH_SCHEMA }),
 
   advanced: {
@@ -61,6 +64,44 @@ export const auth = betterAuth({
     database: { generateId: () => newId() },
     cookiePrefix: "coachos",
     useSecureCookies: env.isProduction,
+  },
+
+  // Social sign-in: a provider exists ONLY when its credentials do (see src/lib/env.ts). Callback URLs to register:
+  //   Google  {APP_URL}/api/auth/callback/google      Apple  {APP_URL}/api/auth/callback/apple   (docs/oauth-setup.md)
+  socialProviders: {
+    ...(env.oauth.google
+      ? {
+          google: {
+            clientId: env.GOOGLE_CLIENT_ID!,
+            clientSecret: env.GOOGLE_CLIENT_SECRET!,
+            prompt: "select_account" as const,
+          },
+        }
+      : {}),
+    ...(env.oauth.apple
+      ? {
+          apple: {
+            clientId: env.APPLE_CLIENT_ID!,
+            clientSecret: createAppleClientSecret({
+              teamId: env.APPLE_TEAM_ID!,
+              keyId: env.APPLE_KEY_ID!,
+              clientId: env.APPLE_CLIENT_ID!,
+              privateKey: env.APPLE_PRIVATE_KEY!,
+            }),
+          },
+        }
+      : {}),
+  },
+  account: {
+    // Someone who signs in with Google/Apple using the address of an existing (verified) CoachOS account lands in THAT
+    // account. Only these two are trusted for that: they verify the address themselves.
+    accountLinking: {
+      enabled: true,
+      trustedProviders: [
+        ...(env.oauth.google ? ["google" as const] : []),
+        ...(env.oauth.apple ? ["apple" as const] : []),
+      ],
+    },
   },
 
   emailAndPassword: {

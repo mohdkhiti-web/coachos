@@ -223,25 +223,30 @@
   },
   "auth": {
     "panel": {
-      "eyebrow": "Built for the sideline",
-      "title": "Your whole season, on one clipboard.",
-      "body": "Secure by design: your data stays in your workspace, and only you decide who sees it."
+      "eyebrow": "The Operating System for Basketball Coaches",
+      "title": "Your court is waiting.",
+      "body": "Plan the practice, run the session, build the program. Your data stays in your workspace, and only you decide who sees it.",
+      "points": {
+        "plan": "Practice plans built from real basketball drills",
+        "ai": "An AI Coach that proposes — you decide",
+        "share": "Print, export and share with your staff"
+      }
     },
     "signIn": {
-      "title": "Welcome back",
-      "subtitle": "Sign in to your CoachOS workspace.",
+      "title": "Welcome back, Coach",
+      "subtitle": "Sign in to your CoachOS command center.",
       "email": "Email",
       "password": "Password",
       "submit": "Sign in",
       "forgot": "Forgot password?",
       "noAccount": "New to CoachOS?",
-      "signUp": "Create an account",
+      "signUp": "Start coaching",
       "resetDone": "Password updated. Sign in with your new password.",
       "deleted": "Your account and workspace have been deleted."
     },
     "signUp": {
-      "title": "Create your account",
-      "subtitle": "Start with a free personal workspace. No card needed.",
+      "title": "Start coaching",
+      "subtitle": "Create your account, then build your basketball coaching profile in about a minute.",
       "name": "Full name",
       "email": "Email",
       "password": "Password",
@@ -284,6 +289,18 @@
       "invalidTitle": "This reset link is invalid",
       "invalidBody": "It may have expired or already been used.",
       "requestNew": "Request a new link"
+    },
+    "oauth": {
+      "divider": "or continue with email",
+      "google": "Continue with Google",
+      "apple": "Continue with Apple",
+      "redirecting": "Taking you to {provider}…",
+      "errors": {
+        "cancelled": "Sign-in was cancelled. You can try again whenever you're ready.",
+        "linked": "That email already has a CoachOS account. Sign in with your password first, or use the method you signed up with.",
+        "unavailable": "We couldn't finish signing you in with that provider. Please try again, or use your email and password.",
+        "generic": "Something went wrong while signing in. Please try again."
+      }
     }
   },
   "onboarding": {

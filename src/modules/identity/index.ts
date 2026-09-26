@@ -9,3 +9,5 @@ export type { Viewer, ProfileDto } from "./viewer";
 export { listOwnSessions } from "./queries";
 export type { SessionDto } from "./queries";
 export * as validators from "./validators";
+export { oauthProviders } from "./oauth";
+export type { OAuthProviders } from "./oauth";

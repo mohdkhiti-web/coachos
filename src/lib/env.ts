@@ -31,6 +31,21 @@ const schema = z
     AUTH_BREACH_CHECK: bool(true),
     AUTH_RATE_LIMIT: bool(true),
 
+    // Social sign-in (optional). A provider is switched on ONLY when every one of its variables is set — a half-configured
+    // provider is a boot error, and a provider with no credentials is simply not offered (never a button that cannot work).
+    GOOGLE_CLIENT_ID: z.string().min(10).optional(),
+    GOOGLE_CLIENT_SECRET: z.string().min(10).optional(),
+    APPLE_CLIENT_ID: z.string().min(3).optional(), // the Services ID (e.g. com.example.coachos.web)
+    APPLE_TEAM_ID: z
+      .string()
+      .regex(/^[A-Z0-9]{10}$/, "APPLE_TEAM_ID is the 10-character Team ID")
+      .optional(),
+    APPLE_KEY_ID: z
+      .string()
+      .regex(/^[A-Z0-9]{10}$/, "APPLE_KEY_ID is the 10-character Key ID")
+      .optional(),
+    APPLE_PRIVATE_KEY: z.string().min(50).optional(), // the .p8 contents (PEM); backslash-n escapes are accepted
+
     MAIL_TRANSPORT: z.enum(["console", "file", "resend"]).optional(),
     MAIL_FROM: z.string().min(3).default("CoachOS <no-reply@localhost>"),
     MAIL_FILE_DIR: z.string().default(".data/mail"),
@@ -66,6 +81,17 @@ const schema = z
     LOG_LEVEL: z.enum(["fatal", "error", "warn", "info", "debug", "trace"]).default("info"),
   })
   .superRefine((v, ctx) => {
+    const partial = (names: Array<keyof typeof v>, provider: string) => {
+      const set = names.filter((n) => v[n] !== undefined);
+      if (set.length > 0 && set.length < names.length)
+        ctx.addIssue({
+          code: "custom",
+          path: [names.find((n) => v[n] === undefined) as string],
+          message: `${provider} sign-in needs all of: ${names.join(", ")}`,
+        });
+    };
+    partial(["GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET"], "Google");
+    partial(["APPLE_CLIENT_ID", "APPLE_TEAM_ID", "APPLE_KEY_ID", "APPLE_PRIVATE_KEY"], "Apple");
     const transport = v.MAIL_TRANSPORT ?? (v.RESEND_API_KEY ? "resend" : "console");
     if (transport === "resend" && !v.RESEND_API_KEY) {
       ctx.addIssue({
@@ -105,6 +131,15 @@ const schema = z
     MAIL_TRANSPORT:
       v.MAIL_TRANSPORT ?? (v.RESEND_API_KEY ? ("resend" as const) : ("console" as const)),
     isProduction: v.NODE_ENV === "production",
+    /** Which social providers are fully configured (no secrets here — safe to hand to a page). */
+    oauth: {
+      google: v.GOOGLE_CLIENT_ID !== undefined && v.GOOGLE_CLIENT_SECRET !== undefined,
+      apple:
+        v.APPLE_CLIENT_ID !== undefined &&
+        v.APPLE_TEAM_ID !== undefined &&
+        v.APPLE_KEY_ID !== undefined &&
+        v.APPLE_PRIVATE_KEY !== undefined,
+    },
   }));
 
 export type Env = z.infer<typeof schema>;
