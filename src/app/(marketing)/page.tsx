@@ -26,11 +26,11 @@ import type { ImageSlot } from "@/components/basketball/imagery";
 import { getViewer } from "@/modules/identity";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("landing.meta");
+  const t = await getTranslations("landing");
   return {
-    title: { absolute: t("title") },
-    description: t("description"),
-    openGraph: { title: t("title"), description: t("description"), type: "website" },
+    title: { absolute: t("meta.title") },
+    description: t("meta.description"),
+    openGraph: { title: t("meta.title"), description: t("meta.description"), type: "website" },
   };
 }
 

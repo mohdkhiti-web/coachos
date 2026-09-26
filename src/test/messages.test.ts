@@ -2,7 +2,16 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import en from "../../messages/en.json";
-import { TEMPLATE_CATEGORIES, TEMPLATE_VISIBILITIES } from "../db/enums";
+import {
+  COACH_AGE_GROUPS,
+  COACH_NEEDS,
+  COACH_PRIORITIES,
+  COACHING_EXPERIENCES,
+  COACHING_STYLES,
+  TEAM_SIZE_BANDS,
+  TEMPLATE_CATEGORIES,
+  TEMPLATE_VISIBILITIES,
+} from "../db/enums";
 
 /**
  * i18n guard: every STATIC translation key used in the source must exist in messages/en.json.
@@ -92,7 +101,13 @@ describe("messages/en.json", () => {
       ["diagram.builder.markerKinds", ["start", "end", "spot"]],
       ["diagram.builder.courts", ["half", "full"]],
       ["workspace.tabs", ["overview", "drills"]],
-      ["nav", ["dashboard", "sessions", "templates", "sports", "settings"]],
+      ["nav", ["dashboard", "sessions", "templates", "drills", "settings"]],
+      ["onboarding.flow.q1.options", COACHING_EXPERIENCES],
+      ["onboarding.flow.q2.options", COACH_AGE_GROUPS],
+      ["onboarding.flow.q3.bands", TEAM_SIZE_BANDS.map((b) => b.key)],
+      ["onboarding.flow.q4.options", COACH_PRIORITIES],
+      ["onboarding.flow.q5.options", COACH_NEEDS],
+      ["onboarding.flow.q6.options", COACHING_STYLES],
       ["templates.categories", TEMPLATE_CATEGORIES],
       ["templates.visibility", TEMPLATE_VISIBILITIES],
       ["templates.scope", ["mine", "organization"]],

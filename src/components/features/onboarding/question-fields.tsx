@@ -218,7 +218,7 @@ function TeamSize({
   set: (patch: Partial<Answers>) => void;
   labelledBy: string;
 }) {
-  const t = useTranslations("onboarding.flow.q3");
+  const t = useTranslations("onboarding.flow");
   const tv = useTranslations("validation");
   // The exact-number box holds what the coach typed; a band button clears it. A typed number that matches a band's own
   // number still counts as "custom" (the box is showing), so the band is only lit when nothing was typed.
@@ -252,13 +252,13 @@ function TeamSize({
               setTyped("");
               set({ typicalPlayers: b.players });
             }}
-            label={t(`bands.${b.key}`)}
+            label={t(`q3.bands.${b.key}`)}
           />
         ))}
       </div>
       <Field
-        label={t("customLabel")}
-        hint={t("customHint")}
+        label={t("q3.customLabel")}
+        hint={t("q3.customHint")}
         errors={typedInvalid ? [tv("range_invalid")] : undefined}
         className="max-w-xs"
       >
@@ -267,7 +267,7 @@ function TeamSize({
             {...c}
             inputMode="numeric"
             autoComplete="off"
-            placeholder={t("custom")}
+            placeholder={t("q3.custom")}
             value={typed}
             maxLength={2}
             onChange={(e) => {
