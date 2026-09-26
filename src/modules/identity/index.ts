@@ -11,3 +11,10 @@ export type { SessionDto } from "./queries";
 export * as validators from "./validators";
 export { oauthProviders } from "./oauth";
 export type { OAuthProviders } from "./oauth";
+export type { CoachingProfileDto } from "./coaching-profile";
+export {
+  coachingContext,
+  hasCoachingProfile,
+  recommendationAge,
+  recommendationQueries,
+} from "./coaching-profile";

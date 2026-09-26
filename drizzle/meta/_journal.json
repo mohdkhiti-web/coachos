@@ -92,6 +92,13 @@
       "when": 1790027830153,
       "tag": "0012_assistant_and_locks",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1790415084412,
+      "tag": "0013_coaching_profile",
+      "breakpoints": true
     }
   ]
 }

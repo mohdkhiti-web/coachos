@@ -1,5 +1,14 @@
 import { z } from "zod";
-import { PROFESSIONS, UNITS } from "@/db/enums";
+import {
+  COACH_AGE_GROUPS,
+  COACH_LIMITS,
+  COACH_NEEDS,
+  COACH_PRIORITIES,
+  COACHING_EXPERIENCES,
+  COACHING_STYLES,
+  PROFESSIONS,
+  UNITS,
+} from "@/db/enums";
 
 /**
  * Zod schemas shared by client forms and server actions (one validation source, §2.4).
@@ -89,6 +98,46 @@ export const onboardingSchema = z.object({
 });
 
 export const profileSchema = onboardingSchema;
+
+/** One or more of a fixed set of keys, in the set's own order, without repeats. */
+const pickMany = <T extends readonly [string, ...string[]]>(values: T) =>
+  z
+    .array(z.enum(values, { error: "invalid" }), { error: "required" })
+    .min(1, { error: "required" })
+    .transform((picked) => values.filter((v) => picked.includes(v)) as unknown as T[number][]);
+
+/**
+ * The six basketball onboarding answers (also edited in Settings → Coaching profile). "All of the above" replaces the
+ * other needs, so the stored list is either just `all` or a specific set — never both.
+ */
+export const coachingProfileSchema = z.object({
+  coachingExperience: z.enum(COACHING_EXPERIENCES, { error: "required" }),
+  ageGroups: pickMany(COACH_AGE_GROUPS),
+  typicalPlayers: z
+    .int({ error: "number_invalid" })
+    .min(COACH_LIMITS.minPlayers, { error: "range_invalid" })
+    .max(COACH_LIMITS.maxPlayers, { error: "range_invalid" }),
+  priorities: pickMany(COACH_PRIORITIES),
+  needs: pickMany(COACH_NEEDS).transform((n) => (n.includes("all") ? (["all"] as typeof n) : n)),
+  coachingStyles: pickMany(COACHING_STYLES),
+});
+export type CoachingProfileInput = z.output<typeof coachingProfileSchema>;
+
+/** Finishing onboarding: the six answers, the coach's timezone (detected in the browser; an unknown zone falls back to UTC) and a name only when we have none. */
+export const coachOnboardingSchema = z.object({
+  coaching: coachingProfileSchema,
+  timezone: z
+    .string()
+    .trim()
+    .max(64)
+    .transform((tz) => (isValidTimezone(tz) ? tz : "UTC")),
+  name: z.string().trim().max(80, { error: "too_long" }).optional(),
+});
+
+export const skipOnboardingSchema = z.object({
+  timezone: coachOnboardingSchema.shape.timezone,
+  name: z.string().trim().max(80, { error: "too_long" }).optional(),
+});
 
 export const preferencesSchema = z.object({ units: unitsSchema });
 

@@ -117,3 +117,73 @@ export type MediaKind = (typeof MEDIA_KINDS)[number];
 /** The image types a logo may be. Anything else is refused at upload. */
 export const LOGO_MIMES = ["image/png", "image/jpeg", "image/svg+xml"] as const;
 export type LogoMime = (typeof LOGO_MIMES)[number];
+
+// --- Basketball coaching profile (collected in onboarding, editable in settings) -----------------
+// Pure constants shared by the schema, the validators and the UI. The age-group and priority keys line up with the
+// basketball catalog (content/basketball/taxonomy.json) so a profile can drive real drill recommendations.
+
+export const COACHING_EXPERIENCES = [
+  "new",
+  "developing",
+  "experienced",
+  "advanced",
+  "elite",
+] as const;
+export type CoachingExperience = (typeof COACHING_EXPERIENCES)[number];
+
+/** Same keys as the catalog's age groups ("senior" is shown as "Adults"). */
+export const COACH_AGE_GROUPS = ["u8", "u10", "u12", "u14", "u16", "u18", "senior"] as const;
+export type CoachAgeGroup = (typeof COACH_AGE_GROUPS)[number];
+
+export const COACH_PRIORITIES = [
+  "shooting",
+  "ball_handling",
+  "passing",
+  "finishing",
+  "footwork",
+  "defense",
+  "rebounding",
+  "basketball_iq",
+  "decision_making",
+  "team_offense",
+  "team_defense",
+  "transition",
+  "conditioning",
+  "game_preparation",
+] as const;
+export type CoachPriority = (typeof COACH_PRIORITIES)[number];
+
+export const COACH_NEEDS = [
+  "practice_planning",
+  "session_generation",
+  "drill_discovery",
+  "player_development",
+  "team_management",
+  "attendance",
+  "game_preparation",
+  "ai_coaching",
+  "all",
+] as const;
+export type CoachNeed = (typeof COACH_NEEDS)[number];
+
+export const COACHING_STYLES = [
+  "skill_development",
+  "player_development",
+  "team_tactical",
+  "high_intensity",
+  "fundamentals_first",
+  "game_preparation",
+  "balanced",
+] as const;
+export type CoachingStyle = (typeof COACHING_STYLES)[number];
+
+/** The squad-size choices offered in onboarding; `players` is the number stored when a band is picked (a custom count is also allowed). */
+export const TEAM_SIZE_BANDS = [
+  { key: "5_7", players: 6 },
+  { key: "8_10", players: 9 },
+  { key: "11_12", players: 12 },
+  { key: "13_15", players: 14 },
+  { key: "16_plus", players: 16 },
+] as const;
+
+export const COACH_LIMITS = { minPlayers: 1, maxPlayers: 60 } as const;

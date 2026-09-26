@@ -320,7 +320,207 @@
     },
     "timezone": "Your timezone",
     "timezoneHint": "Used for greetings, schedules and reminders.",
-    "submit": "Go to my dashboard"
+    "submit": "Go to my dashboard",
+    "flow": {
+      "title": "Let's build your basketball coaching profile.",
+      "intro": "Six quick questions so CoachOS fits the way you coach.",
+      "progress": "{step} / 06",
+      "progressLabel": "Question {step} of 6",
+      "back": "Back",
+      "next": "Continue",
+      "finish": "Finish",
+      "skip": "Skip for now",
+      "skipNote": "You can complete your coaching profile any time from your Command Center.",
+      "saving": "Building your CoachOS…",
+      "saveError": "We couldn't save your coaching profile. Please try again.",
+      "nameLabel": "Your name",
+      "nameHint": "Shown to you in the app. Players never see it.",
+      "comingSoon": "Coming soon",
+      "q1": {
+        "title": "How would you describe your coaching experience?",
+        "options": {
+          "new": {
+            "label": "New Coach",
+            "hint": "Just getting started on the sideline."
+          },
+          "developing": {
+            "label": "Developing Coach",
+            "hint": "Building experience season by season."
+          },
+          "experienced": {
+            "label": "Experienced Coach",
+            "hint": "Several seasons and a system of my own."
+          },
+          "advanced": {
+            "label": "Advanced Coach",
+            "hint": "Running a serious, structured program."
+          },
+          "elite": {
+            "label": "Elite / High Performance",
+            "hint": "Coaching at the highest level."
+          }
+        }
+      },
+      "q2": {
+        "title": "Who do you coach?",
+        "hint": "Choose every age group you work with.",
+        "options": {
+          "u8": {
+            "label": "U8"
+          },
+          "u10": {
+            "label": "U10"
+          },
+          "u12": {
+            "label": "U12"
+          },
+          "u14": {
+            "label": "U14"
+          },
+          "u16": {
+            "label": "U16"
+          },
+          "u18": {
+            "label": "U18"
+          },
+          "senior": {
+            "label": "Adults"
+          }
+        }
+      },
+      "q3": {
+        "title": "How many players do you normally coach?",
+        "hint": "Pick the closest range, or enter your own number.",
+        "bands": {
+          "5_7": "5–7",
+          "8_10": "8–10",
+          "11_12": "11–12",
+          "13_15": "13–15",
+          "16_plus": "16+"
+        },
+        "custom": "Or enter an exact number",
+        "customLabel": "Exact number of players",
+        "customHint": "Between 1 and 60."
+      },
+      "q4": {
+        "title": "What do you want to develop most?",
+        "hint": "Choose as many as you like.",
+        "options": {
+          "shooting": {
+            "label": "Shooting"
+          },
+          "ball_handling": {
+            "label": "Ball Handling"
+          },
+          "passing": {
+            "label": "Passing"
+          },
+          "finishing": {
+            "label": "Finishing"
+          },
+          "footwork": {
+            "label": "Footwork"
+          },
+          "defense": {
+            "label": "Defense"
+          },
+          "rebounding": {
+            "label": "Rebounding"
+          },
+          "basketball_iq": {
+            "label": "Basketball IQ"
+          },
+          "decision_making": {
+            "label": "Decision Making"
+          },
+          "team_offense": {
+            "label": "Team Offense"
+          },
+          "team_defense": {
+            "label": "Team Defense"
+          },
+          "transition": {
+            "label": "Transition"
+          },
+          "conditioning": {
+            "label": "Conditioning"
+          },
+          "game_preparation": {
+            "label": "Game Preparation"
+          }
+        }
+      },
+      "q5": {
+        "title": "What do you need most from CoachOS?",
+        "hint": "Choose what matters to you — or everything.",
+        "options": {
+          "practice_planning": {
+            "label": "Practice Planning"
+          },
+          "session_generation": {
+            "label": "Session Generation"
+          },
+          "drill_discovery": {
+            "label": "Drill Discovery"
+          },
+          "player_development": {
+            "label": "Player Development"
+          },
+          "team_management": {
+            "label": "Team Management"
+          },
+          "attendance": {
+            "label": "Attendance"
+          },
+          "game_preparation": {
+            "label": "Game Preparation"
+          },
+          "ai_coaching": {
+            "label": "AI Coaching"
+          },
+          "all": {
+            "label": "All of the above"
+          }
+        }
+      },
+      "q6": {
+        "title": "What best describes your coaching approach?",
+        "hint": "Choose all that apply.",
+        "options": {
+          "skill_development": {
+            "label": "Skill Development"
+          },
+          "player_development": {
+            "label": "Player Development"
+          },
+          "team_tactical": {
+            "label": "Team Tactical"
+          },
+          "high_intensity": {
+            "label": "High Intensity"
+          },
+          "fundamentals_first": {
+            "label": "Fundamentals First"
+          },
+          "game_preparation": {
+            "label": "Game Preparation"
+          },
+          "balanced": {
+            "label": "Balanced"
+          }
+        }
+      },
+      "ready": {
+        "eyebrow": "All set",
+        "title": "Your CoachOS is ready.",
+        "subtitle": "Here is the coaching profile we'll build around.",
+        "enter": "Enter CoachOS",
+        "sport": "Basketball",
+        "players": "{count, plural, one {# player} other {# players}}",
+        "coach": "{experience}",
+        "ages": "Age groups"
+      }
+    }
   },
   "shell": {
     "workspace": "Workspace",
@@ -445,7 +645,9 @@
       "template_status_changed": "Template archived or restored",
       "template_deleted": "Template deleted",
       "template_restored": "Template restored",
-      "template_duplicated": "Template duplicated"
+      "template_duplicated": "Template duplicated",
+      "account_onboarding_skipped": "Onboarding skipped",
+      "account_coaching_profile_updated": "Coaching profile updated"
     }
   },
   "settings": {
@@ -517,6 +719,24 @@
       "password": "Your password",
       "confirm": "Type DELETE to confirm",
       "confirmAction": "Delete permanently"
+    },
+    "coachingProfile": {
+      "navLabel": "Coaching profile",
+      "title": "Coaching profile",
+      "subtitle": "What CoachOS knows about how you coach. It shapes your recommendations and what the AI Coach suggests.",
+      "save": "Save coaching profile",
+      "saved": "Coaching profile saved.",
+      "incompleteTitle": "Complete your coaching profile",
+      "sections": {
+        "experience": "Coaching experience",
+        "ageGroups": "Age groups",
+        "typicalPlayers": "Players you normally coach",
+        "priorities": "What you want to develop",
+        "needs": "What you need from CoachOS",
+        "styles": "Your coaching approach"
+      },
+      "aiNote": "The AI Coach and your drill recommendations use these answers. Nothing here is shared with anyone.",
+      "selectOne": "Choose at least one."
     }
   },
   "errorPage": {

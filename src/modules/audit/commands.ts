@@ -19,6 +19,8 @@ export type AuditAction =
   | "auth.password_reset"
   | "auth.email_change_requested"
   | "account.onboarded"
+  | "account.onboarding_skipped"
+  | "account.coaching_profile_updated"
   | "account.profile_updated"
   | "account.preferences_updated"
   | "account.deleted"
