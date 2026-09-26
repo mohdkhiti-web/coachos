@@ -1,0 +1,223 @@
+/*
+ * CoachOS — basketball visual language (the motion + surface layer on top of the Playbook tokens).
+ *
+ * Everything here is compositor-cheap (opacity, transform, stroke-dashoffset) and CSS-only, so it works in Server
+ * Components with no client JS. Every animation ends in its finished state (`forwards`), so under
+ * `prefers-reduced-motion` (globals.css shortens all durations to ~0) and in print the artwork is simply complete.
+ *
+ * SVG artwork convention used by src/components/basketball: paths that should "draw themselves" carry pathLength="1"
+ * (so dash lengths are unit-less and identical everywhere).
+ */
+
+/* ---------------------------------------------------------------------------------------------------------------
+ * The arena: a dark court-at-night surface (uses the dark tokens via `.arena`, see globals.css)
+ * ------------------------------------------------------------------------------------------------------------- */
+
+@utility arena-surface {
+  background:
+    radial-gradient(120% 90% at 78% 8%, rgb(249 115 22 / 0.13), transparent 55%),
+    radial-gradient(90% 70% at 0% 100%, rgb(249 115 22 / 0.06), transparent 60%), var(--surface);
+}
+
+/* Brushed-metal / glass panel: a hairline, a faint top highlight, a soft shadow. Used sparingly. */
+@utility glass-panel {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0.015)),
+    var(--surface-raised);
+  border: 1px solid var(--line);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.06),
+    var(--shadow-paper);
+}
+
+/* Hardwood-orange text gradient for one or two words of a headline — never body copy. */
+@utility text-ember {
+  background: linear-gradient(100deg, #fdba74 0%, #f97316 55%, #ea580c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------------------------------------------------------------------------------------------------------------
+ * Court lines that draw themselves
+ * ------------------------------------------------------------------------------------------------------------- */
+
+@keyframes cos-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@utility court-draw {
+  & :is(path, circle, line, rect, ellipse) {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: cos-draw 1.3s var(--ease-out) forwards;
+  }
+  & > :nth-child(2) {
+    animation-delay: 80ms;
+  }
+  & > :nth-child(3) {
+    animation-delay: 160ms;
+  }
+  & > :nth-child(4) {
+    animation-delay: 240ms;
+  }
+  & > :nth-child(5) {
+    animation-delay: 320ms;
+  }
+  & > :nth-child(6) {
+    animation-delay: 400ms;
+  }
+  & > :nth-child(7) {
+    animation-delay: 480ms;
+  }
+  & > :nth-child(8) {
+    animation-delay: 560ms;
+  }
+  & > :nth-child(n + 9) {
+    animation-delay: 640ms;
+  }
+}
+
+/* A dashed path that is ALWAYS visible but flows (an AI play being drawn up). Only mounted while real work runs. */
+@keyframes cos-dash-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+@utility play-flow {
+  stroke-dasharray: 6 6;
+  animation: cos-dash-flow 1.4s linear infinite;
+}
+
+/* A soft settle for elements that appear as the court is drawn (text, CTAs, cards). Backwards fill = hidden until due. */
+@keyframes cos-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+@utility rise {
+  animation: cos-rise 700ms var(--ease-out) backwards;
+  animation-delay: var(--rise-delay, 0ms);
+}
+
+/* The loading ball: bounces along a short floor line (only mounted while something is genuinely loading). */
+@keyframes cos-dribble {
+  0%,
+  100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.8, 0.6);
+  }
+  50% {
+    transform: translateY(-16px);
+    animation-timing-function: cubic-bezier(0.2, 0.4, 0.7, 1);
+  }
+}
+@utility dribble {
+  animation: cos-dribble 900ms infinite;
+}
+
+/* ---------------------------------------------------------------------------------------------------------------
+ * Interaction: court lines revealed on a card (hover, keyboard focus — and always faintly visible on touch)
+ * ------------------------------------------------------------------------------------------------------------- */
+
+@utility court-reveal {
+  opacity: 0.16;
+  transition: opacity var(--motion-slow) var(--ease-out);
+  @media (hover: hover) {
+    opacity: 0;
+    :is(.group:hover, .group:focus-within) & {
+      opacity: 0.55;
+    }
+  }
+}
+
+/* An orange underline that grows from the left (nav/active indicator, links on the arena). */
+@utility grow-underline {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--motion-base) var(--ease-out);
+  }
+  &:hover::after,
+  &:focus-visible::after,
+  &[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+}
+
+/* Onboarding steps: each new step slides in from the direction the coach is travelling. */
+@keyframes cos-step-forward {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+}
+@keyframes cos-step-back {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+}
+@utility step-forward {
+  animation: cos-step-forward 420ms var(--ease-out) backwards;
+}
+@utility step-back {
+  animation: cos-step-back 420ms var(--ease-out) backwards;
+}
+
+/* A choice card the coach just selected settles with one small press-in, then rests. */
+@keyframes cos-select {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(0.975);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@utility selected-pop {
+  animation: cos-select 260ms var(--ease-out);
+}
+
+/* SMIL (the hero's travelling ball) ignores CSS durations, so reduced motion and print get a static twin instead. */
+@media (prefers-reduced-motion: reduce), print {
+  .motion-safe-only {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .motion-reduce-only {
+    display: none;
+  }
+}
+/* Print: never leave artwork half-drawn on paper. */
+@media print {
+  .motion-reduce-only {
+    display: inline !important;
+  }
+  .court-draw :is(path, circle, line, rect, ellipse) {
+    stroke-dashoffset: 0 !important;
+  }
+  .rise {
+    opacity: 1 !important;
+  }
+}
+
+/* Overscroll and short pages must not flash the app's paper colour behind an arena page. */
+html:has(.arena) {
+  background: #0d0f12;
+  color-scheme: dark;
+}

@@ -107,20 +107,119 @@
     "INTERNAL": "Something went wrong on our side. Please try again."
   },
   "landing": {
-    "nav": {
-      "signIn": "Sign in",
-      "signUp": "Create account",
-      "dashboard": "Go to dashboard"
+    "meta": {
+      "title": "CoachOS — Basketball coaching software and practice planner",
+      "description": "CoachOS is the operating system for basketball coaches: a basketball practice planner, session builder, drill library with court diagrams, and an AI basketball coach that proposes sessions from real drills."
     },
-    "eyebrow": "Early access",
-    "title": "Plan the session. Run the practice. Keep the record.",
-    "subtitle": "CoachOS is the operating system for coaches and PE teachers — one calm place to plan, deliver and document your training.",
-    "ctaPrimary": "Create your account",
-    "ctaSecondary": "Sign in",
-    "ctaDashboard": "Open your dashboard",
-    "statusTitle": "Where we are",
-    "statusBody": "Accounts, your personal workspace and the basketball drill library — with structured court diagrams — are live. Session planning, lesson plans and teams are being built next; each appears here only when it actually works.",
-    "footer": "© {year} CoachOS"
+    "nav": {
+      "platform": "Platform",
+      "aiCoach": "AI Coach",
+      "howItWorks": "How it works",
+      "signIn": "Sign in",
+      "signUp": "Start Coaching",
+      "dashboard": "Command Center",
+      "primary": "Primary"
+    },
+    "eyebrow": "Basketball coaching software",
+    "brand": "CoachOS",
+    "title": "The Operating System for Basketball Coaches",
+    "subtitle": "Plan practices, build sessions, develop skills and coach with an AI assistant that works from real basketball drills — in one calm, professional workspace.",
+    "ctaPrimary": "Start Coaching",
+    "ctaSecondary": "Explore CoachOS",
+    "ctaDashboard": "Open your Command Center",
+    "proof": {
+      "label": "What you get",
+      "diagrams": "Structured court diagrams",
+      "timeline": "Practice timelines with live totals",
+      "documents": "Print-ready session documents",
+      "ai": "AI proposals you review first"
+    },
+    "platform": {
+      "eyebrow": "The platform",
+      "title": "Everything a basketball coach runs, in one place.",
+      "intro": "From the first drill you pick to the practice plan on the clipboard, CoachOS keeps the whole session in one workspace.",
+      "features": {
+        "planner": {
+          "title": "Practice planner",
+          "body": "Build a timeline of drills, breaks and minutes. Drag to reorder, and watch the total and the end time update as you go."
+        },
+        "library": {
+          "title": "Basketball drill library",
+          "body": "Curated drills with court diagrams. Filter by skill, age group, level, players and duration — then make them your own."
+        },
+        "ai": {
+          "title": "Build with AI",
+          "body": "Describe the practice you need. The AI Coach proposes a session from real CoachOS drills, and you decide what to apply."
+        },
+        "diagrams": {
+          "title": "Court diagrams",
+          "body": "Draw players, cuts, passes, screens and shots on a structured court that stays crisp on screen, on paper and in PDF."
+        },
+        "documents": {
+          "title": "Templates and documents",
+          "body": "Turn a session into a clean, print-ready plan in your colours and layout, and save the design as a template."
+        },
+        "share": {
+          "title": "Share and export",
+          "body": "Export a PDF or PNG, or send a private read-only link to your staff. Revoke it any time."
+        }
+      }
+    },
+    "ai": {
+      "eyebrow": "AI Coach",
+      "title": "AI proposes. You decide.",
+      "body": "The AI Coach works from your coaching profile and the drills in your library. It never edits a session on its own: every suggestion is a proposal you review and apply.",
+      "steps": {
+        "ask": "Describe the practice",
+        "propose": "Review the proposal",
+        "apply": "Apply what you like"
+      },
+      "exampleTag": "Example",
+      "exampleRequest": "Build a 60-minute shooting session for 12 U14 players.",
+      "exampleTitle": "Proposed session · 60 min",
+      "exampleNote": "Illustrative. Your proposal is built from the drills in your own library.",
+      "example": {
+        "warmup": "Dynamic Court Warm-Up",
+        "form": "Form Shooting (Close Range)",
+        "spots": "Five-Spot Shooting",
+        "game": "Knockout Shooting Game",
+        "cool": "Relaxed Free Throws"
+      }
+    },
+    "how": {
+      "eyebrow": "How it works",
+      "title": "From sign-up to the first whistle.",
+      "steps": {
+        "profile": {
+          "title": "Tell us about your team",
+          "body": "A short basketball onboarding — experience, age group, squad size and what you want to develop — shapes everything that follows."
+        },
+        "build": {
+          "title": "Build today's practice",
+          "body": "Start from your priorities, pick drills, or ask the AI Coach for a proposal. Reorder, edit and lock what you love."
+        },
+        "coach": {
+          "title": "Coach with confidence",
+          "body": "Print the plan, share it with your staff, and keep every session, template and favourite drill in one place."
+        }
+      }
+    },
+    "diagrams": {
+      "eyebrow": "Built for the court",
+      "title": "Diagrams a coach can read at a glance.",
+      "body": "Offence as circles, defence as squares, cuts, passes and shots as clear lines — drawn from structured data, so every drill looks the same on the screen and on the page.",
+      "caption": "Pass, cut, return pass"
+    },
+    "cta": {
+      "title": "Your court is waiting.",
+      "body": "Create your account and build your coaching profile in about a minute.",
+      "button": "Start Coaching"
+    },
+    "status": {
+      "title": "Where we are",
+      "body": "Accounts, your coaching profile, the basketball drill library with court diagrams, the practice planner, printable documents, sharing and the AI Coach are live. Team rosters and attendance are next — they appear here when they work."
+    },
+    "footer": "© {year} CoachOS · Basketball coaching software"
   },
   "auth": {
     "panel": {
