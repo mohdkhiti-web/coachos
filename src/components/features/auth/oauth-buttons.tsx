@@ -8,7 +8,7 @@ import { authClient } from "@/modules/identity/client";
 import { FormError } from "./shared";
 
 /**
- * "Continue with Google / Apple". It renders ONLY for providers this deployment has credentials for (the server passes
+ * "Sign in with Google / Apple". It renders ONLY for providers this deployment has credentials for (the server passes
  * `providers`), so there is never a button that cannot work. Each click starts Better Auth's real OAuth redirect; the
  * provider sends the coach back to /api/auth/callback/<provider>, which signs them in and lands on `next`.
  */

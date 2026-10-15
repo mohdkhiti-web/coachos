@@ -11,14 +11,14 @@ import { expect, test } from "@playwright/test";
 
 const PROVIDERS = [
   {
-    button: "Continue with Google",
+    button: "Sign in with Google",
     host: "accounts.google.com",
     path: "/o/oauth2/v2/auth",
     clientId: "e2e-google-client-id.apps.googleusercontent.com",
     callback: "/api/auth/callback/google",
   },
   {
-    button: "Continue with Apple",
+    button: "Sign in with Apple",
     host: "appleid.apple.com",
     path: "/auth/authorize",
     clientId: "com.example.coachos.e2e",
