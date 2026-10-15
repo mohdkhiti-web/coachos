@@ -16,6 +16,7 @@ import {
   BasketballCourtBackground,
   BasketballHeroScene,
   CoachImage,
+  HeroVideoBackground,
 } from "@/components/basketball";
 import { DrillDiagram } from "@/components/features/drills/drill-diagram";
 import { LANDING_DIAGRAM } from "@/components/features/marketing/landing-diagram";
@@ -115,8 +116,8 @@ export default async function LandingPage() {
       <main id="main" className="relative flex-1">
         {/* ---------------------------------------------------------------- hero */}
         <section className="relative isolate">
-          <BasketballCourtBackground className="md:hidden" />
-          <div className="mx-auto grid w-full max-w-6xl items-center gap-6 px-4 pt-14 pb-16 sm:px-8 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:pt-20 md:pb-24 lg:gap-12">
+          <HeroVideoBackground pauseLabel={t("hero.videoPause")} playLabel={t("hero.videoPlay")} />
+          <div className="relative mx-auto grid w-full max-w-6xl items-center gap-6 px-4 pt-14 pb-16 sm:px-8 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:pt-20 md:pb-24 lg:gap-12">
             <div className="relative">
               <p className="mb-5 rise eyebrow text-accent">{t("eyebrow")}</p>
               <h1>
@@ -157,7 +158,7 @@ export default async function LandingPage() {
             </div>
           </div>
 
-          <div className="mx-auto w-full max-w-6xl px-4 pb-14 sm:px-8">
+          <div className="relative mx-auto w-full max-w-6xl px-4 pb-14 sm:px-8">
             <div className="mb-6 court-rule" />
             <p className="sr-only">{t("proof.label")}</p>
             <ul className="grid gap-x-8 gap-y-3 text-sm text-ink-muted sm:grid-cols-2 lg:grid-cols-4">

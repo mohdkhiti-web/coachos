@@ -6,6 +6,7 @@ export { BasketballCourtBackground, CourtLines, HalfCourt, RIM } from "./court";
 export { BasketballIcon, PlayerFigure } from "./figures";
 export type { Pose } from "./figures";
 export { BasketballHeroScene } from "./hero-scene";
+export { HeroVideoBackground } from "./hero-video";
 export { CoachScene } from "./scenes";
 export type { SceneKey } from "./scenes";
 export { IMAGERY } from "./imagery";
