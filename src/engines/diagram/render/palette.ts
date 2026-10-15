@@ -1,4 +1,9 @@
+import type { DiagramColor } from "../schema";
+
 export type DiagramTheme = "screen" | "print" | "mono";
+
+/** A named colour: what fills a shape, and the ink that reads on top of it. */
+export type NamedColor = { fill: string; ink: string };
 
 export interface Palette {
   surface: string;
@@ -18,6 +23,11 @@ export interface Palette {
   badge: string;
   badgeInk: string;
   font: string;
+  /** Outline and fill of training equipment that has no colour of its own. */
+  equip: string;
+  equipFill: string;
+  /** The colours a coach can pick, by name: fixed values that read on any court, printed or on screen. */
+  named: Record<DiagramColor, NamedColor>;
 }
 
 /**
@@ -43,6 +53,18 @@ export const PALETTES: Record<DiagramTheme, Palette> = {
     badge: "var(--ink)",
     badgeInk: "var(--surface)",
     font: "var(--font-barlow), 'Arial Narrow', Arial, sans-serif",
+    equip: "var(--ink-muted)",
+    equipFill: "var(--surface-sunken)",
+    named: {
+      orange: { fill: "#ea580c", ink: "#ffffff" },
+      blue: { fill: "#2563eb", ink: "#ffffff" },
+      green: { fill: "#15803d", ink: "#ffffff" },
+      red: { fill: "#dc2626", ink: "#ffffff" },
+      yellow: { fill: "#facc15", ink: "#17150f" },
+      purple: { fill: "#7c3aed", ink: "#ffffff" },
+      black: { fill: "#111827", ink: "#ffffff" },
+      white: { fill: "#f9fafb", ink: "#17150f" },
+    },
   },
   print: {
     surface: "#ffffff",
@@ -62,6 +84,18 @@ export const PALETTES: Record<DiagramTheme, Palette> = {
     badge: "#17150f",
     badgeInk: "#ffffff",
     font: "inherit", // the document's own typeface: embedded in a PDF, identical on every machine (no system-font stand-in)
+    equip: "#6b6659",
+    equipFill: "#f1ece0",
+    named: {
+      orange: { fill: "#ea580c", ink: "#ffffff" },
+      blue: { fill: "#2563eb", ink: "#ffffff" },
+      green: { fill: "#15803d", ink: "#ffffff" },
+      red: { fill: "#dc2626", ink: "#ffffff" },
+      yellow: { fill: "#facc15", ink: "#17150f" },
+      purple: { fill: "#7c3aed", ink: "#ffffff" },
+      black: { fill: "#111827", ink: "#ffffff" },
+      white: { fill: "#f9fafb", ink: "#17150f" },
+    },
   },
   mono: {
     surface: "#ffffff",
@@ -81,5 +115,17 @@ export const PALETTES: Record<DiagramTheme, Palette> = {
     badge: "#000000",
     badgeInk: "#ffffff",
     font: "inherit", // the document's own typeface: embedded in a PDF, identical on every machine (no system-font stand-in)
+    equip: "#555555",
+    equipFill: "#eeeeee",
+    named: {
+      orange: { fill: "#555555", ink: "#ffffff" },
+      blue: { fill: "#333333", ink: "#ffffff" },
+      green: { fill: "#666666", ink: "#ffffff" },
+      red: { fill: "#444444", ink: "#ffffff" },
+      yellow: { fill: "#bbbbbb", ink: "#000000" },
+      purple: { fill: "#777777", ink: "#ffffff" },
+      black: { fill: "#000000", ink: "#ffffff" },
+      white: { fill: "#ffffff", ink: "#000000" },
+    },
   },
 };

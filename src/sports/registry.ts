@@ -1,6 +1,6 @@
 import type { CourtPack, CourtRef } from "@/engines/diagram";
 import { basketball } from "./basketball";
-import { courtKey, SPORT_KEYS, type SportKey, type SportModule } from "./types";
+import { courtKey, PRIMARY_SPORT_KEY, SPORT_KEYS, type SportKey, type SportModule } from "./types";
 
 /**
  * The single map from a sport key to its code module. The URL segment `[sport]` is validated against
@@ -20,5 +20,5 @@ export function getCourtPack(sport: string, court: CourtRef): CourtPack | undefi
   return getSportModule(sport)?.courts[courtKey(court)];
 }
 
-export { SPORT_KEYS, courtKey };
+export { PRIMARY_SPORT_KEY, SPORT_KEYS, courtKey };
 export type { SportKey, SportModule };

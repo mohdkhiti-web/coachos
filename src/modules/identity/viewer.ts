@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { eq } from "drizzle-orm";
 import { profiles } from "@/db/schema";
 import type { Profession, Units } from "@/db/enums";
+import type { CoachingProfileDto } from "./coaching-profile";
 import { userTx } from "@/lib/db/tx";
 import type { Actor, MembershipRole, PlatformRole } from "@/lib/authz/can";
 import { MEMBERSHIP_ROLES, PLATFORM_ROLES } from "@/lib/authz/can";
@@ -22,8 +23,13 @@ export type ProfileDto = {
   timezone: string | null;
   locale: string;
   units: Units;
+  /** Interaction sounds: on/off and the volume in percent. */
+  soundsEnabled: boolean;
+  soundVolume: number;
   onboardingCompleted: boolean;
   preferencesReviewed: boolean;
+  /** The basketball coaching profile (empty until onboarding is answered). */
+  coaching: CoachingProfileDto;
 };
 
 export type Viewer = {
@@ -43,8 +49,19 @@ async function loadProfile(userId: string): Promise<ProfileDto | null> {
     timezone: row.timezone,
     locale: row.locale,
     units: row.units,
+    soundsEnabled: row.soundsEnabled,
+    soundVolume: row.soundVolume,
     onboardingCompleted: row.onboardingCompletedAt !== null,
     preferencesReviewed: row.preferencesReviewedAt !== null,
+    coaching: {
+      experience: row.coachingExperience,
+      ageGroups: row.ageGroups as CoachingProfileDto["ageGroups"],
+      typicalPlayers: row.typicalPlayers,
+      priorities: row.priorities as CoachingProfileDto["priorities"],
+      needs: row.needs as CoachingProfileDto["needs"],
+      styles: row.coachingStyles as CoachingProfileDto["styles"],
+      completed: row.coachingProfileCompletedAt !== null,
+    },
   };
 }
 

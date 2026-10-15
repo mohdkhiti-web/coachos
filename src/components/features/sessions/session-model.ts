@@ -42,18 +42,20 @@ export function emptySessionValues(defaults: {
   coachName: string;
   clubName: string;
   targetMinutes: number;
+  /** Starting values from the coach's profile (players, age group, main objective); all optional. */
+  coaching?: { players: string; ageGroup: string; primaryObjective: string };
 }): SessionFormValues {
   return {
     title: "",
     teamName: "",
-    ageGroup: "",
+    ageGroup: defaults.coaching?.ageGroup ?? "",
     level: "",
-    players: "",
+    players: defaults.coaching?.players ?? "",
     targetMinutes: String(defaults.targetMinutes),
     scheduledDate: "",
     startTime: "",
     timezone: defaults.timezone,
-    primaryObjective: "",
+    primaryObjective: defaults.coaching?.primaryObjective ?? "",
     secondaryObjectives: [],
     objective: "",
     location: "",

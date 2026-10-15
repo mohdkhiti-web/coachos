@@ -107,4 +107,37 @@ describe("parseEnv", () => {
       /RESEND_API_KEY/,
     );
   });
+
+  it("offers a social provider only when ALL of its variables are set", () => {
+    const dev = { ...base, NODE_ENV: "development" };
+    expect(parseEnv(dev).oauth).toEqual({ google: false, apple: false });
+
+    const google = { GOOGLE_CLIENT_ID: "g".repeat(20), GOOGLE_CLIENT_SECRET: "s".repeat(20) };
+    expect(parseEnv({ ...dev, ...google }).oauth).toEqual({ google: true, apple: false });
+    expect(() => parseEnv({ ...dev, GOOGLE_CLIENT_ID: google.GOOGLE_CLIENT_ID })).toThrow(
+      /Google sign-in needs all of/,
+    );
+
+    const apple = {
+      APPLE_CLIENT_ID: "com.example.coachos.web",
+      APPLE_TEAM_ID: "ABCDE12345",
+      APPLE_KEY_ID: "KEYID12345",
+      APPLE_PRIVATE_KEY: "-----BEGIN PRIVATE KEY-----".padEnd(80, "x"),
+    };
+    expect(parseEnv({ ...dev, ...apple }).oauth).toEqual({ google: false, apple: true });
+    expect(() => parseEnv({ ...dev, ...apple, APPLE_KEY_ID: undefined })).toThrow(
+      /Apple sign-in needs all of/,
+    );
+    expect(() => parseEnv({ ...dev, ...apple, APPLE_TEAM_ID: "short" })).toThrow(/APPLE_TEAM_ID/);
+  });
+
+  it("treats empty social variables like unset ones (a blank line in .env)", () => {
+    const env = parseEnv({
+      ...base,
+      NODE_ENV: "development",
+      GOOGLE_CLIENT_ID: "",
+      GOOGLE_CLIENT_SECRET: "",
+    });
+    expect(env.oauth.google).toBe(false);
+  });
 });

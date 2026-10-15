@@ -112,7 +112,19 @@ export default async function DrillLibraryPage({
           </>
         ) : (
           <div className="rounded-lg border border-dashed border-line-strong">
-            {filtered ? (
+            {filters.favorites && activeFilterCount(filters) === 1 ? (
+              // the coach has starred nothing yet: an invitation, not an error
+              <EmptyState
+                scene="planning"
+                title={t("empty.favoritesTitle")}
+                description={t("empty.favoritesBody")}
+                action={
+                  <Button asChild>
+                    <Link href={hrefFor(basePath, {})}>{t("empty.favoritesAction")}</Link>
+                  </Button>
+                }
+              />
+            ) : filtered ? (
               <EmptyState
                 title={t("empty.filteredTitle")}
                 description={t("empty.filteredBody")}

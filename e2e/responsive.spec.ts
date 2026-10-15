@@ -1,5 +1,11 @@
 import { expect, test } from "@playwright/test";
-import { completeOnboarding, newUser, animationSettled, signUpAndVerify } from "./support/helpers";
+import {
+  answerOnboarding,
+  animationSettled,
+  completeOnboarding,
+  newUser,
+  signUpAndVerify,
+} from "./support/helpers";
 import { addBreak, addCustom, createSession, pickDrill, SESSIONS } from "./support/sessions";
 
 // Runs in the "mobile" project (Pixel 7 viewport): the rail becomes a bottom tab bar (§2.3).
@@ -17,7 +23,9 @@ test("public pages fit a phone screen", async ({ page }) => {
 
 test("the app shell collapses to a bottom tab bar with 44px touch targets", async ({ page }) => {
   await signUpAndVerify(page, newUser());
-  await expect(page.getByLabel("Your timezone")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Let's build your basketball coaching profile." }),
+  ).toBeVisible();
   expect(await noHorizontalScroll(page)).toBe(true);
   await completeOnboarding(page);
 
@@ -25,7 +33,7 @@ test("the app shell collapses to a bottom tab bar with 44px touch targets", asyn
   await expect(bar).toBeVisible();
   await expect(page.locator("aside")).toBeHidden(); // desktop rail is gone
 
-  for (const name of ["Dashboard", "Sessions", "Templates", "Sports", "Settings"]) {
+  for (const name of ["Dashboard", "Sessions", "Templates", "Drills", "Settings"]) {
     const box = await bar.getByRole("link", { name }).boundingBox();
     expect(box?.height ?? 0).toBeGreaterThanOrEqual(44);
     expect(box?.width ?? 0).toBeGreaterThanOrEqual(44);
@@ -51,13 +59,9 @@ test("Phase 2: sports, library, drill detail and the drill form fit a phone and 
   await signUpAndVerify(page, newUser());
   await completeOnboarding(page);
 
-  // Sports is reachable from the bottom bar, with a 44px target like the other tabs
+  // Drills is reachable from the bottom bar (a 44px target like the other tabs) and opens the basketball library
   const bar = page.getByRole("navigation", { name: "Main navigation" }).last();
-  await bar.getByRole("link", { name: "Sports" }).click();
-  await expect(page).toHaveURL(/\/sports$/);
-  expect(await noHorizontalScroll(page), "/sports overflows horizontally").toBe(true);
-
-  await page.getByRole("main").getByRole("link", { name: "Basketball" }).click();
+  await bar.getByRole("link", { name: "Drills" }).click();
   await expect(page).toHaveURL(/\/sports\/basketball$/);
   expect(await noHorizontalScroll(page), "overview overflows horizontally").toBe(true);
 
@@ -108,7 +112,7 @@ test("the session builder is usable on a phone: nothing overflows, controls are 
   await completeOnboarding(page);
 
   await page.goto(SESSIONS);
-  await expect(page.getByRole("heading", { name: "No sessions yet" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "No practice planned yet." })).toBeVisible();
   expect(await noHorizontalScroll(page), "empty list overflows").toBe(true);
   await page.goto(`${SESSIONS}/new`);
   expect(await noHorizontalScroll(page), "create form overflows").toBe(true);
@@ -411,7 +415,7 @@ test("Step 8: the generator, the AI Coach and the diagram editor fit a phone and
   expect(await noHorizontalScroll(page), "generator overflows").toBe(true);
 
   await page.goto("/assistant/basketball");
-  await expect(page.getByTestId("chat-empty")).toBeVisible();
+  await expect(page.getByTestId("chat-empty").first()).toBeVisible();
   expect(await noHorizontalScroll(page), "AI Coach overflows").toBe(true);
   const bar = page.getByRole("navigation", { name: "Main navigation" }).last();
   const box = await bar.getByRole("link", { name: "AI Coach" }).boundingBox();
@@ -447,4 +451,44 @@ test("Step 8: the generator, the AI Coach and the diagram editor fit a phone and
   const canvas = (await page.getByTestId("editor-canvas").boundingBox())!;
   await page.touchscreen.tap(canvas.x + canvas.width * 0.5, canvas.y + canvas.height * 0.6);
   await expect(page.locator("[data-entity]")).toHaveCount(1);
+});
+
+test("the basketball onboarding, the ready screen and the Command Center work on a phone: nothing overflows, every choice is a real touch target", async ({
+  page,
+}) => {
+  test.setTimeout(180_000);
+  await signUpAndVerify(page, newUser());
+  await expect(page.getByText("01 / 06")).toBeVisible();
+  expect(await noHorizontalScroll(page), "onboarding overflows").toBe(true);
+  // the counter stays on one line (it once wrapped into three on a narrow screen)
+  const counter = await page.getByText("01 / 06").boundingBox();
+  expect(counter?.height ?? 0).toBeLessThan(40);
+
+  // choices and buttons are at least 44px tall
+  for (const name of ["New Coach", "Developing Coach", "Elite / High Performance"]) {
+    const box = await page.getByRole("radio", { name }).boundingBox();
+    expect(box?.height ?? 0, name).toBeGreaterThanOrEqual(44);
+  }
+  const skip = await page.getByRole("button", { name: "Skip for now" }).boundingBox();
+  expect(skip?.height ?? 0).toBeGreaterThanOrEqual(36);
+
+  await answerOnboarding(page);
+  expect(await noHorizontalScroll(page), "last question overflows").toBe(true);
+  const finish = await page.getByRole("button", { name: "Finish" }).boundingBox();
+  expect(finish?.height ?? 0).toBeGreaterThanOrEqual(44);
+  await page.getByRole("button", { name: "Finish" }).click();
+  await expect(page.getByRole("heading", { name: "Your CoachOS is ready." })).toBeVisible();
+  expect(await noHorizontalScroll(page), "ready screen overflows").toBe(true);
+  await page.getByRole("button", { name: "Enter CoachOS" }).click();
+  await expect(page).toHaveURL(/\/dashboard/);
+
+  expect(await noHorizontalScroll(page), "Command Center overflows").toBe(true);
+  for (const name of ["Build a Session", "Generate a Session", "Explore Drills"]) {
+    const box = await page.getByRole("link", { name }).first().boundingBox();
+    expect(box?.height ?? 0, name).toBeGreaterThanOrEqual(44);
+  }
+  await page.goto("/settings/coaching-profile");
+  expect(await noHorizontalScroll(page), "coaching profile settings overflow").toBe(true);
+  await page.goto("/");
+  expect(await noHorizontalScroll(page), "landing overflows").toBe(true);
 });

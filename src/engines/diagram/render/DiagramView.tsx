@@ -1,14 +1,28 @@
-import { useId } from "react";
+import { memo, useId, type ReactNode, type SVGProps } from "react";
 import { describeDiagram } from "../describe";
+import { EQUIPMENT } from "../equipment";
 import type { CourtPack, Pt } from "../pack";
+import { holdersAtStep } from "../steps";
 import {
+  BALL_OFFSET,
   PLAYER_RADIUS,
   resolveDiagram,
   type ResolvedAction,
   type ResolvedEntity,
 } from "../resolve";
-import type { Diagram } from "../schema";
-import { arrowHead, endDirection, n, pointsAttr, tBar, trim, wavy } from "./geometry";
+import type { Diagram, DiagramColor } from "../schema";
+import { EquipmentGlyph } from "./glyphs";
+import {
+  arrowHead,
+  endDirection,
+  n,
+  pointAlong,
+  pointsAttr,
+  sampleCurve,
+  tBar,
+  trim,
+  wavy,
+} from "./geometry";
 import { PALETTES, type DiagramTheme, type Palette } from "./palette";
 
 export interface DiagramViewProps {
@@ -27,6 +41,25 @@ export interface DiagramViewProps {
    */
   animated?: boolean;
   className?: string;
+  /**
+   * Show ONE step of a multi-step drill: everyone stands where that step starts (and the ball is with whoever holds it
+   * then), that step's actions are drawn in full, earlier steps' actions faintly, later steps' not at all.
+   */
+  step?: number;
+  /** Where things stand right now, by id — used by playback to slide players and balls along their paths. */
+  positions?: ReadonlyMap<string, Pt>;
+  /** Draw only these actions (by id). Absent = the step rule above (or all of them). */
+  visibleActions?: ReadonlySet<string>;
+  /** Draw no action lines at all (playback shows movement itself). */
+  hideActions?: boolean;
+  /** Replace the viewBox (zoom and pan). */
+  viewBox?: string;
+  /** Attributes for the `<svg>` itself: a ref, pointer handlers, a test id — for the editor's interactive court. */
+  svgProps?: Omit<SVGProps<SVGSVGElement>, "viewBox" | "className" | "xmlns"> & {
+    [attribute: `data-${string}`]: string | undefined;
+  };
+  /** Drawn on top of everything, in court metres: selection, snap guides, the drop target, a marquee. */
+  overlay?: ReactNode;
 }
 
 const STROKE = { court: 0.06, arrow: 0.13, thin: 0.085 } as const;
@@ -35,7 +68,10 @@ const DASH = {
   pass: "0.42 0.28",
   faint: "0.12 0.18",
   shot: "0.03 0.24",
+  skip: "0.9 0.3",
+  overhead: "0.04 0.22",
 } as const;
+const WEIGHT = { thin: 0.65, normal: 1, thick: 1.6 } as const;
 
 /**
  * Pure SVG renderer (ARCHITECTURE.md §10.1–10.2): vector-crisp at any size, server-renderable, and
@@ -50,6 +86,13 @@ export function DiagramView({
   decorative = false,
   animated = false,
   className,
+  step,
+  positions,
+  visibleActions,
+  hideActions = false,
+  viewBox,
+  svgProps,
+  overlay,
 }: DiagramViewProps) {
   const uid = useId();
   const { resolved } = resolveDiagram(diagram, pack);
@@ -59,18 +102,44 @@ export function DiagramView({
   const view = { x: minX - m, y: minY - m, w: maxX - minX + 2 * m, h: maxY - minY + 2 * m };
   const multiStep = resolved.steps.length > 1;
 
+  // Where everything stands: the resolved start, moved to where the shown step begins, then to any playback position.
+  const stepStart = step !== undefined ? resolved.stepStarts.get(step) : undefined;
+  const holders = step !== undefined ? holdersAtStep(diagram, step) : undefined;
+  const placed = new Map<string, Pt>();
+  for (const re of resolved.entities) placed.set(re.entity.id, re.at);
+  if (stepStart) for (const [id, at] of stepStart) placed.set(id, at);
+  if (holders)
+    for (const [ball, holder] of holders) {
+      const at = placed.get(holder);
+      if (at) placed.set(ball, { x: at.x + BALL_OFFSET.x, y: at.y + BALL_OFFSET.y });
+    }
+  if (positions) for (const [id, at] of positions) placed.set(id, at);
+  const entities = resolved.entities.map((re) => ({
+    ...re,
+    at: placed.get(re.entity.id) ?? re.at,
+  }));
+
   const a11y = decorative
     ? ({ "aria-hidden": true } as const)
     : ({ role: "img", "aria-labelledby": `${uid}-t ${uid}-d` } as const);
 
+  const actionOpacity = (ra: ResolvedAction): number | null => {
+    if (hideActions) return null;
+    if (visibleActions) return visibleActions.has(ra.action.id) ? 1 : null;
+    if (step === undefined) return 1;
+    if (ra.step > step) return null;
+    return ra.step === step ? 1 : 0.28;
+  };
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox={`${n(view.x)} ${n(view.y)} ${n(view.w)} ${n(view.h)}`}
+      viewBox={viewBox ?? `${n(view.x)} ${n(view.y)} ${n(view.w)} ${n(view.h)}`}
       preserveAspectRatio="xMidYMid meet"
       className={className}
       focusable="false"
       {...a11y}
+      {...svgProps}
     >
       {decorative ? null : (
         <>
@@ -83,6 +152,7 @@ export function DiagramView({
 
       {/* zones sit under everything */}
       {resolved.annotations.map(({ annotation: a, a: pa, b: pb }, i) => {
+        const zone = "color" in a && a.color ? p.named[a.color].fill : p.zone;
         if (a.type === "zone_rect" && pb) {
           const x = Math.min(pa.x, pb.x);
           const y = Math.min(pa.y, pb.y);
@@ -93,9 +163,9 @@ export function DiagramView({
                 y={n(y)}
                 width={n(Math.abs(pb.x - pa.x))}
                 height={n(Math.abs(pb.y - pa.y))}
-                fill={p.zone}
+                fill={zone}
                 fillOpacity={0.12}
-                stroke={p.zone}
+                stroke={zone}
                 strokeWidth={0.06}
                 strokeDasharray={DASH.dashed}
               />
@@ -118,9 +188,9 @@ export function DiagramView({
                 cx={n(pa.x)}
                 cy={n(pa.y)}
                 r={n(a.radius)}
-                fill={p.zone}
+                fill={zone}
                 fillOpacity={0.12}
-                stroke={p.zone}
+                stroke={zone}
                 strokeWidth={0.06}
                 strokeDasharray={DASH.dashed}
               />
@@ -133,33 +203,75 @@ export function DiagramView({
         return null;
       })}
 
-      {/* court markings */}
-      <g fill="none" strokeLinecap="round" strokeLinejoin="round">
-        {pack.primitives.map((c, i) => (
-          <path
-            key={i}
-            d={c.d}
-            transform={c.transform}
-            fill={c.fill === "surface" ? p.surface : "none"}
-            stroke={c.stroke === "faint" ? p.courtFaint : p.court}
-            strokeWidth={STROKE.court}
-            strokeDasharray={c.stroke === "dashed" ? DASH.dashed : undefined}
-          />
+      {/* court markings: they never change while a drill is edited, so they are drawn once */}
+      <CourtMarkings pack={pack} p={p} />
+
+      {/* equipment lies on the floor: under players and lines */}
+      {entities
+        .filter((re) => re.entity.type === "equipment")
+        .map((re) => (
+          <EntityShape key={re.entity.id} re={re} p={p} animated={animated} />
         ))}
-      </g>
 
       {/* actions under players */}
-      {resolved.actions.map((ra) => (
-        <ActionShape key={ra.action.id} ra={ra} p={p} badge={multiStep} animated={animated} />
-      ))}
+      {resolved.actions.map((ra) => {
+        const opacity = actionOpacity(ra);
+        if (opacity === null) return null;
+        const shape = (
+          <ActionShape
+            key={ra.action.id}
+            ra={ra}
+            p={p}
+            badge={multiStep && step === undefined}
+            animated={animated}
+          />
+        );
+        return opacity === 1 ? (
+          shape
+        ) : (
+          <g key={ra.action.id} opacity={opacity}>
+            {shape}
+          </g>
+        );
+      })}
 
-      {resolved.entities.map((re) => (
-        <EntityShape key={re.entity.id} re={re} p={p} animated={animated} />
-      ))}
+      {entities
+        .filter((re) => re.entity.type !== "equipment")
+        .map((re) => (
+          <EntityShape key={re.entity.id} re={re} p={p} animated={animated} />
+        ))}
 
-      {resolved.annotations.map(({ annotation: a, a: pa }, i) =>
-        a.type === "text" ? <Label key={`t${i}`} at={pa} p={p} text={a.text} size={0.55} /> : null,
-      )}
+      {resolved.annotations.map(({ annotation: a, a: pa, points }, i) => {
+        if (a.type === "text")
+          return (
+            <Label
+              key={`t${i}`}
+              at={pa}
+              p={p}
+              text={a.text}
+              size={0.55}
+              fill={a.color ? p.named[a.color].fill : undefined}
+              halo={p.surface}
+            />
+          );
+        if (a.type === "mark")
+          return <Mark key={`m${i}`} at={pa} kind={a.kind} color={a.color} p={p} />;
+        if (a.type === "freehand" && points)
+          return (
+            <polyline
+              key={`f${i}`}
+              points={pointsAttr(points)}
+              fill="none"
+              stroke={a.color ? p.named[a.color].fill : p.arrow}
+              strokeWidth={0.1}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          );
+        return null;
+      })}
+
+      {overlay}
     </svg>
   );
 }
@@ -171,6 +283,7 @@ function Label({
   size,
   fill,
   anchor = "middle",
+  halo,
 }: {
   at: Pt;
   p: Palette;
@@ -178,6 +291,8 @@ function Label({
   size: number;
   fill?: string;
   anchor?: "start" | "middle";
+  /** A surface-coloured outline behind the letters, so a note stays readable over lines. */
+  halo?: string;
 }) {
   return (
     <text
@@ -189,10 +304,72 @@ function Label({
       textAnchor={anchor}
       dominantBaseline="central"
       fill={fill ?? p.text}
+      stroke={halo}
+      strokeWidth={halo ? size * 0.22 : undefined}
+      paintOrder={halo ? "stroke" : undefined}
       style={{ userSelect: "none" }}
     >
       {text}
     </text>
+  );
+}
+
+function Mark({
+  at,
+  kind,
+  color,
+  p,
+}: {
+  at: Pt;
+  kind: "x" | "check";
+  color?: DiagramColor;
+  p: Palette;
+}) {
+  const c = color ? p.named[color].fill : kind === "x" ? "#dc2626" : "#15803d";
+  const r = 0.38;
+  return kind === "x" ? (
+    <path
+      d={`M ${n(at.x - r)} ${n(at.y - r)} L ${n(at.x + r)} ${n(at.y + r)} M ${n(at.x + r)} ${n(at.y - r)} L ${n(at.x - r)} ${n(at.y + r)}`}
+      stroke={c}
+      strokeWidth={0.14}
+      strokeLinecap="round"
+      fill="none"
+    />
+  ) : (
+    <path
+      d={`M ${n(at.x - r)} ${n(at.y)} L ${n(at.x - r * 0.25)} ${n(at.y + r * 0.7)} L ${n(at.x + r)} ${n(at.y - r * 0.7)}`}
+      stroke={c}
+      strokeWidth={0.14}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+  );
+}
+
+/** A group turned and scaled about the entity's own centre; no wrapper at all when it has neither (legacy output is untouched). */
+function Placed({
+  at,
+  rotation,
+  scale,
+  className,
+  children,
+}: {
+  at: Pt;
+  rotation?: number;
+  scale?: number;
+  className?: string;
+  children: ReactNode;
+}) {
+  if (!rotation && (!scale || scale === 1)) return <g className={className}>{children}</g>;
+  const parts = [`translate(${n(at.x)} ${n(at.y)})`];
+  if (rotation) parts.push(`rotate(${rotation})`);
+  if (scale && scale !== 1) parts.push(`scale(${scale})`);
+  parts.push(`translate(${n(-at.x)} ${n(-at.y)})`);
+  return (
+    <g className={className} transform={parts.join(" ")}>
+      {children}
+    </g>
   );
 }
 
@@ -204,24 +381,41 @@ function EntityShape({ re, p, animated }: { re: ResolvedEntity; p: Palette; anim
   // (on the wrapping `<g>`, so it is never stacked with the move transition on the same element).
   const move = animated ? "diagram-move" : undefined;
   const fadeIn = animated ? "animate-fade-in" : undefined;
+  const named = "color" in e && e.color ? p.named[e.color] : undefined;
+  const scale = "scale" in e ? e.scale : undefined;
+  const rotation = "rotation" in e ? e.rotation : undefined;
   switch (e.type) {
-    case "player":
+    case "player": {
+      const facing = rotation ? (
+        <polygon
+          points={pointsAttr([
+            { x: at.x, y: at.y - r - 0.2 },
+            { x: at.x + 0.15, y: at.y - r + 0.02 },
+            { x: at.x - 0.15, y: at.y - r + 0.02 },
+          ])}
+          fill={p.arrow}
+          transform={`rotate(${rotation} ${n(at.x)} ${n(at.y)})`}
+        />
+      ) : null;
       return e.side === "offense" ? (
-        <g className={fadeIn}>
+        <Placed at={at} scale={scale} className={fadeIn}>
           <circle
             className={move}
             cx={n(at.x)}
             cy={n(at.y)}
             r={r}
-            fill={p.offense}
+            fill={named?.fill ?? p.offense}
             stroke={p.arrow}
             strokeWidth={0.05}
           />
-          {e.label ? <Label at={at} p={p} text={e.label} size={0.5} fill={p.offenseInk} /> : null}
-        </g>
+          {e.label ? (
+            <Label at={at} p={p} text={e.label} size={0.5} fill={named?.ink ?? p.offenseInk} />
+          ) : null}
+          {facing}
+        </Placed>
       ) : (
         // defenders are squares: distinguishable from offence without relying on colour
-        <g className={fadeIn}>
+        <Placed at={at} scale={scale} className={fadeIn}>
           <rect
             className={move}
             x={n(at.x - r * 0.9)}
@@ -229,25 +423,27 @@ function EntityShape({ re, p, animated }: { re: ResolvedEntity; p: Palette; anim
             width={n(r * 1.8)}
             height={n(r * 1.8)}
             rx={0.08}
-            fill={p.defenseFill}
-            stroke={p.defense}
+            fill={named ? named.fill : p.defenseFill}
+            stroke={named ? p.arrow : p.defense}
             strokeWidth={0.09}
           />
-          {e.label ? <Label at={at} p={p} text={e.label} size={0.5} /> : null}
-        </g>
+          {e.label ? <Label at={at} p={p} text={e.label} size={0.5} fill={named?.ink} /> : null}
+          {facing}
+        </Placed>
       );
+    }
     case "coach":
       return (
-        <g className={fadeIn}>
-          <circle className={move} cx={n(at.x)} cy={n(at.y)} r={r} fill={p.coach} />
-          <Label at={at} p={p} text={e.label ?? "C"} size={0.5} fill={p.coachInk} />
-        </g>
+        <Placed at={at} scale={scale} className={fadeIn}>
+          <circle className={move} cx={n(at.x)} cy={n(at.y)} r={r} fill={named?.fill ?? p.coach} />
+          <Label at={at} p={p} text={e.label ?? "C"} size={0.5} fill={named?.ink ?? p.coachInk} />
+        </Placed>
       );
-    case "ball":
+    case "ball": {
       // the crosshair `path` cannot tween with the circle, so the ball only fades in on mount; it does not
       // glide (a rare movement in practice — the ball normally travels as a pass/dribble action, not a move).
       return (
-        <g className={fadeIn}>
+        <Placed at={at} scale={scale} className={fadeIn}>
           <circle
             cx={n(at.x)}
             cy={n(at.y)}
@@ -262,26 +458,74 @@ function EntityShape({ re, p, animated }: { re: ResolvedEntity; p: Palette; anim
             strokeWidth={0.035}
             fill="none"
           />
-        </g>
+        </Placed>
       );
-    case "cone":
+    }
+    case "cone": {
+      const fill = named?.fill ?? p.cone;
+      const variant = e.variant ?? "standard";
+      const body =
+        variant === "disc" ? (
+          <circle
+            cx={n(at.x)}
+            cy={n(at.y)}
+            r={0.24}
+            fill={fill}
+            stroke={p.arrow}
+            strokeWidth={0.04}
+          />
+        ) : variant === "flat" ? (
+          <rect
+            x={n(at.x - 0.22)}
+            y={n(at.y - 0.22)}
+            width={0.44}
+            height={0.44}
+            rx={0.05}
+            fill={fill}
+            stroke={p.arrow}
+            strokeWidth={0.04}
+          />
+        ) : (
+          <polygon
+            points={pointsAttr(
+              variant === "tall"
+                ? [
+                    { x: at.x, y: at.y - 0.5 },
+                    { x: at.x + 0.22, y: at.y + 0.26 },
+                    { x: at.x - 0.22, y: at.y + 0.26 },
+                  ]
+                : [
+                    { x: at.x, y: at.y - 0.32 },
+                    { x: at.x + 0.28, y: at.y + 0.22 },
+                    { x: at.x - 0.28, y: at.y + 0.22 },
+                  ],
+            )}
+            fill={fill}
+            stroke={p.arrow}
+            strokeWidth={0.04}
+            strokeLinejoin="round"
+          />
+        );
+      if (!e.label && !rotation && (!scale || scale === 1) && !e.variant && !named)
+        return <g className={fadeIn}>{body}</g>;
       return (
-        <polygon
-          className={fadeIn}
-          points={pointsAttr([
-            { x: at.x, y: at.y - 0.32 },
-            { x: at.x + 0.28, y: at.y + 0.22 },
-            { x: at.x - 0.28, y: at.y + 0.22 },
-          ])}
-          fill={p.cone}
-          stroke={p.arrow}
-          strokeWidth={0.04}
-          strokeLinejoin="round"
-        />
+        <Placed at={at} rotation={rotation} scale={scale} className={fadeIn}>
+          {body}
+          {e.label ? (
+            <Label
+              at={{ x: at.x, y: at.y + (variant === "disc" || variant === "flat" ? 0 : 0.06) }}
+              p={p}
+              text={e.label}
+              size={0.3}
+              fill={named?.ink ?? p.offenseInk}
+            />
+          ) : null}
+        </Placed>
       );
+    }
     case "marker":
       return (
-        <g className={fadeIn}>
+        <Placed at={at} rotation={rotation} scale={scale} className={fadeIn}>
           <polygon
             points={pointsAttr([
               { x: at.x, y: at.y - 0.42 },
@@ -289,8 +533,8 @@ function EntityShape({ re, p, animated }: { re: ResolvedEntity; p: Palette; anim
               { x: at.x, y: at.y + 0.42 },
               { x: at.x - 0.42, y: at.y },
             ])}
-            fill={e.kind === "end" ? p.badge : p.surface}
-            stroke={p.badge}
+            fill={e.kind === "end" ? (named?.fill ?? p.badge) : p.surface}
+            stroke={named?.fill ?? p.badge}
             strokeWidth={0.07}
           />
           <Label
@@ -298,10 +542,36 @@ function EntityShape({ re, p, animated }: { re: ResolvedEntity; p: Palette; anim
             p={p}
             text={e.label ?? (e.kind === "start" ? "S" : e.kind === "end" ? "E" : "")}
             size={0.4}
-            fill={e.kind === "end" ? p.badgeInk : p.text}
+            fill={e.kind === "end" ? (named?.ink ?? p.badgeInk) : p.text}
           />
+        </Placed>
+      );
+    case "equipment": {
+      const spec = EQUIPMENT[e.kind];
+      return (
+        <g className={fadeIn}>
+          <g
+            transform={`translate(${n(at.x)} ${n(at.y)})${rotation ? ` rotate(${rotation})` : ""}${scale && scale !== 1 ? ` scale(${scale})` : ""}`}
+          >
+            <EquipmentGlyph
+              kind={e.kind}
+              p={p}
+              fill={named?.fill}
+              ink={named ? p.arrow : undefined}
+            />
+          </g>
+          {e.label ? (
+            <Label
+              at={{ x: at.x, y: at.y + (spec.h * (scale ?? 1)) / 2 + 0.32 }}
+              p={p}
+              text={e.label}
+              size={0.34}
+              halo={p.surface}
+            />
+          ) : null}
         </g>
       );
+    }
   }
 }
 
@@ -317,40 +587,61 @@ function ActionShape({
   animated: boolean;
 }) {
   const { action: a } = ra;
-  const line = trim(ra.points, ra.startCut, ra.endCut);
-  if (line.length < 2) return null;
+  const curve = "curve" in a ? (a.curve ?? 0) : 0;
+  const weight = "weight" in a && a.weight ? WEIGHT[a.weight] : 1;
+  const ink = "color" in a && a.color ? p.named[a.color].fill : p.arrow;
+  const straight = trim(ra.points, ra.startCut, ra.endCut);
+  if (straight.length < 2) return null;
+  const line = curve ? trim(sampleCurve(ra.points, curve), ra.startCut, ra.endCut) : straight;
   const tip = line[line.length - 1]!;
   const dir = endDirection(line);
+  const w = (v: number) => n(v * weight);
 
   let body: React.ReactNode;
   switch (a.type) {
-    case "pass":
+    case "pass": {
+      const kind = a.kind ?? "standard";
+      const mid = pointAlong(line, 0.5);
       body = (
         <>
           <polyline
             points={pointsAttr(line)}
             fill="none"
-            stroke={p.arrow}
-            strokeWidth={STROKE.arrow}
-            strokeDasharray={DASH.pass}
-            strokeLinecap="butt"
+            stroke={ink}
+            strokeWidth={w(STROKE.arrow)}
+            strokeDasharray={
+              kind === "skip" ? DASH.skip : kind === "overhead" ? DASH.overhead : DASH.pass
+            }
+            strokeLinecap={kind === "overhead" ? "round" : "butt"}
           />
-          <polygon points={arrowHead(tip, dir)} fill={p.arrow} />
+          {kind === "bounce" ? (
+            <circle
+              cx={n(mid.x)}
+              cy={n(mid.y)}
+              r={0.2}
+              fill={p.surface}
+              stroke={ink}
+              strokeWidth={0.07}
+            />
+          ) : null}
+          <polygon points={arrowHead(tip, dir)} fill={ink} />
+          {kind === "skip" ? <polygon points={arrowHead(mid, dir, 0.4, 0.22)} fill={ink} /> : null}
         </>
       );
       break;
+    }
     case "shot":
       body = (
         <>
           <polyline
             points={pointsAttr(line)}
             fill="none"
-            stroke={p.arrow}
-            strokeWidth={0.1}
+            stroke={ink}
+            strokeWidth={w(0.1)}
             strokeDasharray={DASH.shot}
             strokeLinecap="round"
           />
-          <polygon points={arrowHead(tip, dir, 0.44, 0.24)} fill={p.arrow} />
+          <polygon points={arrowHead(tip, dir, 0.44, 0.24)} fill={ink} />
         </>
       );
       break;
@@ -361,14 +652,14 @@ function ActionShape({
           <polyline
             points={pointsAttr(wave)}
             fill="none"
-            stroke={p.arrow}
-            strokeWidth={STROKE.thin}
+            stroke={ink}
+            strokeWidth={w(STROKE.thin)}
             strokeLinejoin="round"
             strokeLinecap="round"
           />
           <polygon
             points={arrowHead(tip, endDirection(wave.length > 1 ? wave : line))}
-            fill={p.arrow}
+            fill={ink}
           />
         </>
       );
@@ -381,8 +672,8 @@ function ActionShape({
           <polyline
             points={pointsAttr(line)}
             fill="none"
-            stroke={p.arrow}
-            strokeWidth={STROKE.arrow}
+            stroke={ink}
+            strokeWidth={w(STROKE.arrow)}
             strokeLinecap="round"
           />
           <line
@@ -390,10 +681,19 @@ function ActionShape({
             y1={n(b1.y)}
             x2={n(b2.x)}
             y2={n(b2.y)}
-            stroke={p.arrow}
-            strokeWidth={0.2}
+            stroke={ink}
+            strokeWidth={w(0.2)}
             strokeLinecap="round"
           />
+          {a.kind ? (
+            <Label
+              at={{ x: tip.x + dir.x * 0.75, y: tip.y + dir.y * 0.75 }}
+              p={p}
+              text={a.kind}
+              size={0.34}
+              halo={p.surface}
+            />
+          ) : null}
         </>
       );
       break;
@@ -404,27 +704,72 @@ function ActionShape({
           <polyline
             points={pointsAttr(line)}
             fill="none"
-            stroke={p.arrow}
-            strokeWidth={STROKE.thin}
+            stroke={ink}
+            strokeWidth={w(STROKE.thin)}
             strokeLinejoin="round"
             strokeLinecap="round"
           />
-          <polygon points={arrowHead(tip, dir, 0.44, 0.24)} fill={p.arrow} />
+          <polygon points={arrowHead(tip, dir, 0.44, 0.24)} fill={ink} />
         </>
       );
       break;
+    case "sprint": {
+      // a sprint is a cut with a second arrowhead: "faster than a cut"
+      const back = { x: tip.x - dir.x * 0.42, y: tip.y - dir.y * 0.42 };
+      body = (
+        <>
+          <polyline
+            points={pointsAttr(line)}
+            fill="none"
+            stroke={ink}
+            strokeWidth={w(0.17)}
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          />
+          <polygon points={arrowHead(tip, dir, 0.5, 0.29)} fill={ink} />
+          <polygon points={arrowHead(back, dir, 0.5, 0.29)} fill={ink} />
+        </>
+      );
+      break;
+    }
+    case "defend": {
+      const mid = pointAlong(line, 0.5);
+      const off = { x: -dir.y * 0.5, y: dir.x * 0.5 };
+      body = (
+        <>
+          <polyline
+            points={pointsAttr(line)}
+            fill="none"
+            stroke={ink}
+            strokeWidth={w(STROKE.thin + 0.02)}
+            strokeDasharray={DASH.dashed}
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          />
+          <polygon points={arrowHead(tip, dir, 0.44, 0.24)} fill={ink} />
+          <Label
+            at={{ x: mid.x + off.x, y: mid.y + off.y }}
+            p={p}
+            text={a.kind}
+            size={0.34}
+            halo={p.surface}
+          />
+        </>
+      );
+      break;
+    }
     default: // cut: the boldest movement line
       body = (
         <>
           <polyline
             points={pointsAttr(line)}
             fill="none"
-            stroke={p.arrow}
-            strokeWidth={0.17}
+            stroke={ink}
+            strokeWidth={w(0.17)}
             strokeLinejoin="round"
             strokeLinecap="round"
           />
-          <polygon points={arrowHead(tip, dir, 0.56, 0.31)} fill={p.arrow} />
+          <polygon points={arrowHead(tip, dir, 0.56, 0.31)} fill={ink} />
         </>
       );
   }
@@ -441,7 +786,7 @@ function ActionShape({
   return (
     // A new pass/dribble/screen/cut/shot arrow fades in; `points` isn't smoothly tweenable, so an edited
     // arrow's path just redraws — it does not glide the way a moved player does.
-    <g className={animated ? "animate-fade-in" : undefined}>
+    <g className={animated ? "animate-fade-in" : undefined} data-action={ra.action.id}>
       {body}
       {badge ? (
         <g>
@@ -452,3 +797,22 @@ function ActionShape({
     </g>
   );
 }
+
+/** The lines of the court. Memoised: dragging an object re-renders the diagram on every frame, but the court does not change. */
+const CourtMarkings = memo(function CourtMarkings({ pack, p }: { pack: CourtPack; p: Palette }) {
+  return (
+    <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+      {pack.primitives.map((c, i) => (
+        <path
+          key={i}
+          d={c.d}
+          transform={c.transform}
+          fill={c.fill === "surface" ? p.surface : "none"}
+          stroke={c.stroke === "faint" ? p.courtFaint : p.court}
+          strokeWidth={STROKE.court}
+          strokeDasharray={c.stroke === "dashed" ? DASH.dashed : undefined}
+        />
+      ))}
+    </g>
+  );
+});

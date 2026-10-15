@@ -71,6 +71,7 @@ export async function POST(request: Request) {
         const result = await runTurn(viewer.actor, body.data, {
           signal: request.signal,
           onEvent: (e) => send(e),
+          coach: viewer.profile.coaching,
         });
         if (result.ok)
           send({

@@ -89,6 +89,24 @@ export function TotalsBar({
             ? t("over", { target, minutes: -remaining })
             : t("toFill", { target, minutes: remaining })}
       </p>
+      {/* minutes planned against the target: real numbers, drawn with a compositor-only scale */}
+      <div
+        role="progressbar"
+        aria-label={t("progress")}
+        aria-valuemin={0}
+        aria-valuemax={target}
+        aria-valuenow={Math.min(total, target)}
+        aria-valuetext={t("progressText", { total, target })}
+        className="h-1.5 w-full overflow-hidden rounded-full bg-line"
+      >
+        <div
+          className={cn(
+            "h-full origin-left rounded-full transition-transform duration-500 ease-out",
+            over ? "bg-warning" : "bg-accent",
+          )}
+          style={{ transform: `scaleX(${target > 0 ? Math.min(1, total / target) : 0})` }}
+        />
+      </div>
     </section>
   );
 }

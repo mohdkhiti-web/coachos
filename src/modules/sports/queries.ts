@@ -70,16 +70,6 @@ export const listActiveSports = cache(async (): Promise<SportDto[]> => {
     }));
 });
 
-/** Names of reserved sports, for an honest "planned" note — never linkable. */
-export const listPlannedSportNames = cache(async (): Promise<string[]> => {
-  const rows = await db
-    .select({ name: sports.name })
-    .from(sports)
-    .where(eq(sports.status, "planned"))
-    .orderBy(asc(sports.sortOrder));
-  return rows.map((r) => r.name);
-});
-
 /** A sport by URL segment; null (→ 404) unless it exists in code and is active. */
 export const getSport = cache(async (key: string): Promise<SportDto | null> => {
   if (!isSportKey(key)) return null;

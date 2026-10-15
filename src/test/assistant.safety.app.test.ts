@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { eq } from "drizzle-orm";
-import { diagramOpsSchema } from "@/engines/diagram";
+import { diagramOpsSchema, LIMITS } from "@/engines/diagram";
 import { PLAN_LIMITS } from "@/db/enums";
 import { plans } from "@/db/schema";
 import type { Actor } from "@/lib/authz/can";
@@ -66,6 +66,21 @@ const minimalDiagram = () => ({
   actions: [],
   annotations: [],
 });
+/** A valid diagram holding exactly LIMITS.entities entities. */
+const fullDiagram = () => {
+  const d = minimalDiagram();
+  return {
+    ...d,
+    entities: [
+      ...d.entities,
+      ...Array.from({ length: LIMITS.entities - 1 }, (_, i) => ({
+        id: `k${i + 1}`,
+        type: "cone" as const,
+        at: { x: -6 + (i % 13), y: 1 + Math.floor(i / 13) * 1.5 },
+      })),
+    ],
+  };
+};
 /** A proposal stored in a real message, the way it would be applied from the chat screen. */
 async function stored(actor: Actor, planId: string, proposal: Proposal): Promise<StoredMessage> {
   const conversation = await createConversation(actor, {
@@ -362,15 +377,16 @@ describe("7. limits hold even when the assistant is the one asking", () => {
         planId,
         custom.id,
         updateActivitySchema.parse({
-          diagrams: [{ title: "", diagram: minimalDiagram() }],
+          // a diagram that is exactly as full as the schema allows: the player it starts with, and cones up to the ceiling
+          diagrams: [{ title: "", diagram: fullDiagram() }],
           version: custom.version,
         }),
       ),
     );
 
     const ctx = ctxFor(mine, planId);
-    // 30 more add_player ops on top of the 1 already there exceeds the schema's 30-entity ceiling
-    const ops = Array.from({ length: 30 }, () => ({
+    // one more player on top of a diagram at the schema's entity ceiling exceeds it
+    const ops = Array.from({ length: 1 }, () => ({
       op: "add_player" as const,
       side: "offense" as const,
       at: { anchor: "top_key" },

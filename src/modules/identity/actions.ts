@@ -8,12 +8,20 @@ import { AppError } from "@/lib/errors";
 import { logger } from "@/lib/logger";
 import { can } from "@/lib/authz/can";
 import { renameWorkspace } from "@/modules/organizations";
-import { completeOnboarding, updatePreferences, updateProfile } from "./commands";
+import {
+  completeCoachOnboarding,
+  saveCoachingProfile,
+  skipOnboarding,
+  updatePreferences,
+  updateProfile,
+} from "./commands";
 import { revokeOwnSession } from "./queries";
 import { requireViewer } from "./viewer";
 import {
+  coachOnboardingSchema,
+  coachingProfileSchema,
   fieldErrors,
-  onboardingSchema,
+  skipOnboardingSchema,
   preferencesSchema,
   profileSchema,
   workspaceSchema,
@@ -41,26 +49,55 @@ function unexpected(scope: string, err: unknown): Result {
 }
 type Result = ReturnType<typeof fail>;
 
-export async function completeOnboardingAction(
-  _prev: FormState,
-  formData: FormData,
-): Promise<FormState> {
-  const { actor } = await requireViewer({ onboarding: "skip" });
-  const raw = {
-    name: str(formData, "name"),
-    profession: str(formData, "profession"),
-    timezone: str(formData, "timezone"),
-  };
-  const parsed = onboardingSchema.safeParse(raw);
-  if (!parsed.success)
-    return fail("VALIDATION", { fields: fieldErrors(parsed.error), values: raw });
+/**
+ * Finish the basketball onboarding: save the six answers + timezone, then hand back `ok` so the client can show the
+ * "Your CoachOS is ready" screen (it navigates to the dashboard itself). Called with structured data, not a form post.
+ */
+export async function completeOnboardingAction(input: unknown): Promise<FormState> {
+  const { actor, user } = await requireViewer({ onboarding: "skip" });
+  const parsed = coachOnboardingSchema.safeParse(input);
+  if (!parsed.success) return fail("VALIDATION", { fields: fieldErrors(parsed.error) });
+  // a name is only asked for when the sign-in method gave us none (Apple can withhold it)
+  const name = user.name.trim() ? undefined : parsed.data.name || undefined;
+  if (!user.name.trim() && !name) return fail("VALIDATION", { fields: { name: ["required"] } });
   try {
-    await completeOnboarding(actor, parsed.data);
+    await completeCoachOnboarding(actor, { ...parsed.data, name });
   } catch (err) {
     return unexpected("onboarding", err);
   }
+  // No revalidatePath here: it would re-render /onboarding, whose "already onboarded" guard would redirect away from the
+  // "Your CoachOS is ready" screen. The Enter button navigates (fresh) to the dashboard instead.
+  return ok();
+}
+
+/** "Skip for now": a minimal profile, straight to the dashboard (which keeps offering the coaching profile). */
+export async function skipOnboardingAction(input: unknown): Promise<FormState> {
+  const { actor, user } = await requireViewer({ onboarding: "skip" });
+  const parsed = skipOnboardingSchema.safeParse(input);
+  if (!parsed.success) return fail("VALIDATION", { fields: fieldErrors(parsed.error) });
+  const name = user.name.trim() ? undefined : parsed.data.name || undefined;
+  if (!user.name.trim() && !name) return fail("VALIDATION", { fields: { name: ["required"] } });
+  try {
+    await skipOnboarding(actor, { timezone: parsed.data.timezone, name });
+  } catch (err) {
+    return unexpected("onboarding-skip", err);
+  }
   revalidatePath("/", "layout");
   redirect("/dashboard");
+}
+
+/** Settings → Coaching profile. */
+export async function saveCoachingProfileAction(input: unknown): Promise<FormState> {
+  const { actor } = await requireViewer();
+  const parsed = coachingProfileSchema.safeParse(input);
+  if (!parsed.success) return fail("VALIDATION", { fields: fieldErrors(parsed.error) });
+  try {
+    await saveCoachingProfile(actor, parsed.data);
+  } catch (err) {
+    return unexpected("coaching-profile", err);
+  }
+  revalidatePath("/", "layout");
+  return ok();
 }
 
 export async function updateProfileAction(
@@ -90,7 +127,11 @@ export async function updatePreferencesAction(
   formData: FormData,
 ): Promise<FormState> {
   const { actor } = await requireViewer();
-  const raw = { units: str(formData, "units") };
+  const raw = {
+    units: str(formData, "units"),
+    soundsEnabled: str(formData, "soundsEnabled"),
+    soundVolume: str(formData, "soundVolume"),
+  };
   const parsed = preferencesSchema.safeParse(raw);
   if (!parsed.success)
     return fail("VALIDATION", { fields: fieldErrors(parsed.error), values: raw });

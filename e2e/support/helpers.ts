@@ -68,13 +68,85 @@ export async function signUpAndVerify(page: Page, user: TestUser) {
   await expect(page).toHaveURL(/\/onboarding/);
 }
 
+/** The six basketball onboarding answers, by the visible label of each choice. */
+export type OnboardingAnswers = {
+  experience?: string;
+  ageGroups?: string[];
+  /** A band label ("11–12") or an exact number as text ("13"). */
+  players?: string;
+  priorities?: string[];
+  needs?: string[];
+  styles?: string[];
+};
+
+export const DEFAULT_ANSWERS: Required<OnboardingAnswers> = {
+  experience: "Developing Coach",
+  ageGroups: ["U14"],
+  players: "11–12",
+  priorities: ["Shooting", "Ball Handling", "Defense"],
+  needs: ["Practice Planning", "AI Coaching"],
+  styles: ["Skill Development"],
+};
+
+/**
+ * Answer the six onboarding questions (the page must be on /onboarding) and stop just before "Finish", so a test can look
+ * at the last question or press Finish itself.
+ */
+export async function answerOnboarding(page: Page, answers: OnboardingAnswers = {}) {
+  const a = { ...DEFAULT_ANSWERS, ...answers };
+  const next = () => page.getByRole("button", { name: "Continue" }).click();
+  await expect(
+    page.getByRole("heading", { name: "How would you describe your coaching experience?" }),
+  ).toBeVisible();
+  await page.getByRole("radio", { name: a.experience }).click();
+  await next();
+  await expect(page.getByRole("heading", { name: "Who do you coach?" })).toBeVisible();
+  for (const g of a.ageGroups) await page.getByRole("checkbox", { name: g, exact: true }).click();
+  await next();
+  await expect(
+    page.getByRole("heading", { name: "How many players do you normally coach?" }),
+  ).toBeVisible();
+  if (/^\d+$/.test(a.players)) await page.getByLabel("Exact number of players").fill(a.players);
+  else await page.getByRole("radio", { name: a.players }).click();
+  await next();
+  await expect(
+    page.getByRole("heading", { name: "What do you want to develop most?" }),
+  ).toBeVisible();
+  for (const p of a.priorities) await page.getByRole("checkbox", { name: p, exact: true }).click();
+  await next();
+  await expect(
+    page.getByRole("heading", { name: "What do you need most from CoachOS?" }),
+  ).toBeVisible();
+  for (const n of a.needs) await page.getByRole("checkbox", { name: n }).click();
+  await next();
+  await expect(
+    page.getByRole("heading", { name: "What best describes your coaching approach?" }),
+  ).toBeVisible();
+  for (const s of a.styles) await page.getByRole("checkbox", { name: s, exact: true }).click();
+}
+
+/**
+ * Get past onboarding and land on the dashboard. `mode: "skip"` (the default) uses "Skip for now" — a minimal profile, fast,
+ * for the many specs that only need an onboarded coach. `mode: "full"` answers all six questions, presses Finish and Enter
+ * CoachOS, so the dashboard is the fully personalised one.
+ */
 export async function completeOnboarding(
   page: Page,
-  opts: { profession?: "Coach" | "PE teacher" | "Both"; timezone?: string } = {},
+  opts: { mode?: "skip" | "full"; answers?: OnboardingAnswers } = {},
 ) {
-  await page.getByText(opts.profession ?? "Coach", { exact: true }).click();
-  await page.getByLabel("Your timezone").selectOption(opts.timezone ?? "Europe/Paris");
-  await page.getByRole("button", { name: "Go to my dashboard" }).click();
+  await expect(page).toHaveURL(/\/onboarding/);
+  if ((opts.mode ?? "skip") === "skip") {
+    // a click before the page has hydrated is a no-op: keep clicking until the app has really moved on
+    await expect(async () => {
+      await page.getByRole("button", { name: "Skip for now" }).click();
+      await expect(page).toHaveURL(/\/dashboard/, { timeout: 4_000 });
+    }).toPass({ timeout: 30_000 });
+  } else {
+    await answerOnboarding(page, opts.answers);
+    await page.getByRole("button", { name: "Finish" }).click();
+    await expect(page.getByRole("heading", { name: "Your CoachOS is ready." })).toBeVisible();
+    await page.getByRole("button", { name: "Enter CoachOS" }).click();
+  }
   await expect(page).toHaveURL(/\/dashboard/);
 }
 

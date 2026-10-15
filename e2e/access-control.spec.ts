@@ -30,8 +30,9 @@ test.describe("signed-out visitors", () => {
 
   test("the landing page offers sign-in and sign-up, not the dashboard", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("link", { name: "Create your account" })).toBeVisible();
-    await expect(page.getByRole("link", { name: "Open your dashboard" })).toHaveCount(0);
+    await expect(page.getByRole("link", { name: "Start Coaching" }).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: "Sign in" }).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: "Open your Command Center" })).toHaveCount(0);
   });
 
   test("unknown routes show the branded 404", async ({ page }) => {

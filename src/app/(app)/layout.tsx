@@ -1,7 +1,7 @@
 import { AppShell } from "@/components/layout/app-shell";
+import { SoundProvider } from "@/components/sound";
 import { getViewer } from "@/modules/identity";
 import { assistantAvailability } from "@/modules/assistant";
-import { listActiveSports } from "@/modules/sports";
 
 /**
  * Authenticated shell. This layout makes NO auth decision (layouts don't re-render on client
@@ -9,14 +9,15 @@ import { listActiveSports } from "@/modules/sports";
  * Server Action underneath calls `requireViewer()` itself.
  */
 export default async function AppLayout({ children }: LayoutProps<"/">) {
-  const [viewer, sports] = await Promise.all([getViewer(), listActiveSports()]);
+  const viewer = await getViewer();
   return (
-    <AppShell
-      viewer={viewer}
-      sports={sports.map((s) => ({ key: s.key, name: s.name }))}
-      assistant={assistantAvailability().available}
+    <SoundProvider
+      enabled={viewer?.profile.soundsEnabled ?? true}
+      volume={viewer?.profile.soundVolume ?? 50}
     >
-      {children}
-    </AppShell>
+      <AppShell viewer={viewer} assistant={assistantAvailability().available}>
+        {children}
+      </AppShell>
+    </SoundProvider>
   );
 }

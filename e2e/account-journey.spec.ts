@@ -22,45 +22,55 @@ test("full account lifecycle", async ({ page, browser }) => {
 
   await test.step("register, verify by email, land on onboarding", async () => {
     await signUpAndVerify(page, user);
-    await expect(page.getByRole("heading", { name: "Let's set up your workspace" })).toBeVisible();
-    // the name is prefilled from sign-up
-    await expect(page.getByLabel("Your name")).toHaveValue(user.name);
+    await expect(
+      page.getByRole("heading", { name: "Let's build your basketball coaching profile." }),
+    ).toBeVisible();
+    await expect(page.getByText("01 / 06")).toBeVisible();
   });
 
-  await test.step("onboarding validates, then saves and opens the dashboard", async () => {
-    await page.getByRole("button", { name: "Go to my dashboard" }).click(); // no profession chosen
-    await expect(page.getByText("This field is required.").first()).toBeVisible();
-    await expect(page).toHaveURL(/\/onboarding/);
-    await completeOnboarding(page, { profession: "Coach", timezone: "Europe/Paris" });
+  await test.step("onboarding needs an answer to move on, then saves and opens the dashboard", async () => {
+    const next = page.getByRole("button", { name: "Continue" });
+    await expect(next).toBeDisabled(); // nothing chosen yet
+    await page.getByRole("radio", { name: "Developing Coach" }).click();
+    await expect(next).toBeEnabled();
+    await completeOnboarding(page, { mode: "full" });
+  });
+
+  await test.step("the saved coaching profile is real: it comes back in Settings", async () => {
+    await page.goto("/settings/coaching-profile");
+    await expect(page.getByRole("radio", { name: "Developing Coach" })).toBeChecked();
+    await expect(page.getByRole("checkbox", { name: "U14", exact: true })).toBeChecked();
+    await expect(page.getByRole("checkbox", { name: "Shooting", exact: true })).toBeChecked();
+    await page.goto("/dashboard");
   });
 
   await test.step("dashboard shows real, derived state", async () => {
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      new RegExp(`Good (morning|afternoon|evening), ${firstName}`),
+      new RegExp(`Good (morning|afternoon|evening), Coach ${firstName}`),
     );
-    await expect(page.getByText("2 of 3 done")).toBeAttached(); // email verified + profile complete; preferences open
+    await expect(page.getByText("2 of 3 done").first()).toBeAttached(); // email verified + profile complete; preferences open
     await expect(page.getByRole("link", { name: "Open preferences" })).toBeVisible();
-    await expect(page.getByText("Personal workspace")).toBeVisible();
-    await expect(page.getByText("Owner", { exact: true })).toBeVisible();
+    await expect(page.getByText("Personal workspace").first()).toBeVisible();
+    await expect(page.getByText("Owner", { exact: true }).first()).toBeVisible();
     // recent activity is read from the audit trail
     const activity = page.locator("section", {
       has: page.getByRole("heading", { name: "Recent activity" }),
     });
-    await expect(activity.getByText("Account created")).toBeVisible();
-    await expect(activity.getByText("Email verified")).toBeVisible();
-    await expect(activity.getByText("Profile set up")).toBeVisible();
+    await expect(activity.getByText("Account created").first()).toBeVisible();
+    await expect(activity.getByText("Email verified").first()).toBeVisible();
+    await expect(activity.getByText("Profile set up").first()).toBeVisible();
   });
 
   await test.step("navigation only offers modules that exist", async () => {
     const nav = page.getByRole("navigation", { name: "Main navigation" }).first();
-    // Sessions (the session builder), Templates (saved designs) and Sports (with each real sport workspace nested under it). Nothing for features that don't exist yet.
+    // Sessions (the session builder), Templates (saved designs) and Drills (the basketball library). No list of sports, and
+    // nothing for features that don't exist yet.
     await expect(nav.getByRole("link")).toHaveText([
       "Dashboard",
       "Sessions",
       "AI Coach",
       "Templates",
-      "Sports",
-      "Basketball",
+      "Drills",
       "Settings",
     ]);
   });
@@ -98,7 +108,7 @@ test("full account lifecycle", async ({ page, browser }) => {
     await expect(toast(page, "Changes saved.")).toBeVisible();
     await page.goto("/dashboard");
     await expect(page.getByRole("heading", { name: "You're all set" })).toBeVisible();
-    await expect(page.getByText("3 of 3 done")).toBeAttached();
+    await expect(page.getByText("3 of 3 done").first()).toBeAttached();
   });
 
   await test.step("theme choice persists server-side (no flash on reload)", async () => {

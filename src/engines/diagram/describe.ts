@@ -12,6 +12,7 @@ export function describeDiagram(d: Diagram): string {
   const coaches = count((e) => e.type === "coach");
   const balls = count((e) => e.type === "ball");
   const cones = count((e) => e.type === "cone");
+  const equipment = count((e) => e.type === "equipment");
 
   const byId = new Map(d.entities.map((e) => [e.id, e] as const));
   const name = (id: string): string => {
@@ -41,21 +42,33 @@ export function describeDiagram(d: Diagram): string {
     coaches ? plural(coaches, "coach", "coaches") : "",
     balls ? plural(balls, "ball", "balls") : "",
     cones ? plural(cones, "cone", "cones") : "",
+    equipment ? plural(equipment, "piece of equipment", "pieces of equipment") : "",
   ].filter(Boolean);
   if (cast.length) parts.push(`${cast.join(", ")}.`);
 
   const sentence = (a: Action): string => {
     switch (a.type) {
       case "pass":
-        return `${name(a.from)} passes to ${name(a.to)}`;
+        return `${name(a.from)} ${a.kind && a.kind !== "standard" ? `makes a ${a.kind} pass` : "passes"} to ${name(a.to)}`;
       case "shot":
         return `${name(a.entity)} shoots${a.to ? ` at ${where(a.to)}` : ""}`;
       case "screen":
-        return `${name(a.entity)} sets a screen on ${where(a.target)}`;
+        return `${name(a.entity)} sets a ${a.kind ? `${a.kind} ` : ""}screen on ${where(a.target)}`;
       case "cut":
       case "move":
+      case "sprint":
+      case "defend":
       case "dribble": {
-        const verb = a.type === "cut" ? "cuts" : a.type === "dribble" ? "dribbles" : "moves";
+        const verb =
+          a.type === "cut"
+            ? "cuts"
+            : a.type === "dribble"
+              ? "dribbles"
+              : a.type === "sprint"
+                ? "sprints"
+                : a.type === "defend"
+                  ? `does a ${a.kind}`
+                  : "moves";
         const last = a.path[a.path.length - 1];
         return `${name(a.entity)} ${verb}${last ? ` to ${where(last)}` : ""}`;
       }

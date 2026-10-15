@@ -1,11 +1,4 @@
-export {
-  getAgeGroups,
-  getObjectives,
-  getSport,
-  getTaxonomy,
-  listActiveSports,
-  listPlannedSportNames,
-} from "./queries";
+export { getAgeGroups, getObjectives, getSport, getTaxonomy, listActiveSports } from "./queries";
 export type {
   AgeGroupItem,
   ObjectiveItem,

@@ -1,4 +1,4 @@
-import type { CourtPack, CourtRef } from "@/engines/diagram";
+import type { CourtPack, CourtRef, DiagramInput } from "@/engines/diagram";
 
 /**
  * A sport is CODE (geometry, diagram vocabulary, facets) plus DATA (taxonomy in the database).
@@ -10,6 +10,13 @@ import type { CourtPack, CourtRef } from "@/engines/diagram";
  */
 export const SPORT_KEYS = ["basketball"] as const;
 export type SportKey = (typeof SPORT_KEYS)[number];
+
+/**
+ * The sport the product presents. CoachOS is a basketball coaching product for now: the UI links straight into this
+ * sport's workspace instead of asking "which sport?". The catalog, the registry and every URL still carry the sport key,
+ * so nothing structural changes if a second sport is ever switched on — only this line and the picker would.
+ */
+export const PRIMARY_SPORT_KEY: SportKey = SPORT_KEYS[0];
 
 export interface SportModule {
   key: SportKey;
@@ -25,6 +32,11 @@ export interface SportModule {
    */
   formats: readonly string[];
   defaults: { sessionMinutes: number };
+  /**
+   * Starting layouts for the drill diagram workspace (where the players and cones usually stand for a shooting drill, a 3v2…).
+   * Diagrams only — never drill content. `key` names it in the messages (`diagramWorkspace.templates`).
+   */
+  diagramTemplates?: ReadonlyArray<{ key: string; diagram: DiagramInput }>;
 }
 
 export const courtKey = (c: CourtRef) => `${c.type}:${c.variant}`;

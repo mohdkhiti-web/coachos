@@ -19,7 +19,8 @@ const barlow = Barlow_Condensed({
 
 export const metadata: Metadata = {
   title: { default: "CoachOS", template: "%s · CoachOS" },
-  description: "The operating system for coaches and PE teachers.",
+  description:
+    "CoachOS is the operating system for basketball coaches: plan practices, build sessions, and coach with an AI assistant.",
   robots: { index: true, follow: true },
 };
 

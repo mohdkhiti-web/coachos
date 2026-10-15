@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { CourtMark } from "@/components/ui/court-mark";
 import { cn } from "@/lib/cn";
@@ -43,6 +44,11 @@ export async function DrillCard({
         className,
       )}
     >
+      {/* a court-line accent that draws in from the left when the card is hovered or focused */}
+      <span
+        aria-hidden
+        className="absolute inset-x-0 top-0 z-10 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 ease-out group-focus-within:scale-x-100 group-hover:scale-x-100"
+      />
       <div className="flex h-44 items-center justify-center overflow-hidden border-b border-line bg-surface-sunken">
         {drill.diagram ? (
           <DrillDiagram
@@ -90,7 +96,13 @@ export async function DrillCard({
           {drill.format ? <FormatPill label={t(`formats.${drill.format}`)} /> : null}
         </div>
         {drill.primarySkill ? (
-          <p className="-mt-1 text-sm text-ink-muted">{drill.primarySkill.name}</p>
+          <p className="-mt-1 inline-flex items-center gap-2 text-sm text-ink-muted">
+            <span
+              aria-hidden
+              className="size-1.5 rounded-full bg-accent transition-transform duration-200 group-hover:scale-150"
+            />
+            {drill.primarySkill.name}
+          </p>
         ) : null}
 
         {shownEquipment.length > 0 ? (
@@ -110,6 +122,13 @@ export async function DrillCard({
             ) : null}
           </ul>
         ) : null}
+        <p
+          aria-hidden
+          className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-[opacity,transform] duration-200 [@media(hover:hover)]:translate-y-1 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-focus-within:translate-y-0 [@media(hover:hover)]:group-focus-within:opacity-100 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100"
+        >
+          {t("card.view")}
+          <ArrowRight className="size-4" />
+        </p>
         {footer ? <div className="relative z-10 pt-1">{footer}</div> : null}
       </div>
     </article>

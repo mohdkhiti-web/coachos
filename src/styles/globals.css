@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./motion.css";
+@import "./basketball.css";
 
 /*
  * CoachOS — "Playbook" design tokens (ARCHITECTURE.md §2.2).
@@ -54,7 +55,9 @@
   --phase-break: #6b6659;
 }
 
-:root[data-theme="dark"] {
+:root[data-theme="dark"],
+/* .arena: a dark "night game" scope for the landing page, sign-in and onboarding, whatever theme the app is in */
+.arena {
   color-scheme: dark;
 
   --surface: #0d0f12; /* arena */

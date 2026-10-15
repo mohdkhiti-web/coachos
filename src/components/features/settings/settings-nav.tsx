@@ -7,6 +7,7 @@ import { cn } from "@/lib/cn";
 
 const SECTIONS = [
   { href: "/settings/profile", key: "profile" },
+  { href: "/settings/coaching-profile", key: "coachingProfile" },
   { href: "/settings/security", key: "security" },
   { href: "/settings/preferences", key: "preferences" },
   { href: "/settings/danger-zone", key: "danger" },
@@ -27,7 +28,7 @@ export function SettingsNav() {
                 href={href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "relative flex min-h-11 items-center px-4 text-sm font-medium transition-colors",
+                  "relative flex min-h-11 items-center px-4 text-sm font-medium smooth-colors",
                   active ? "text-ink" : "text-ink-muted hover:text-ink",
                   key === "danger" && !active && "hover:text-danger",
                 )}

@@ -1,7 +1,9 @@
 # CoachOS
 
-The operating system for coaches and PE teachers — plan, deliver, document and improve training.
-Basketball first, built multi-sport from day one.
+The operating system for basketball coaches — plan practices, build sessions, develop skills and coach with an
+AI assistant that works from real drills. The product is basketball-only; the data model and code are still
+sport-aware underneath (the sport key stays in URLs and the catalog), so nothing structural stands in the way of
+another sport later.
 
 - Architecture and roadmap: [ARCHITECTURE.md](ARCHITECTURE.md) (read §0 first)
 - **Status: Phase 2 (Sports foundation · Basketball workspace · Drill library) is merged locally; the Session
@@ -30,10 +32,12 @@ are printed in the terminal running `npm run dev`. Copy the link into your brows
 
 ### Try it
 
-1. Open http://localhost:3000 → **Create your account** (password ≥ 12 characters).
-2. Copy the verification link from the `npm run dev` terminal → onboarding → dashboard.
+1. Open http://localhost:3000 → **Start Coaching** → create your account (password ≥ 12 characters).
+2. Copy the verification link from the `npm run dev` terminal → the six-question basketball onboarding → your
+   personalised **Command Center** (or **Skip for now**: the profile can be finished any time in Settings →
+   Coaching profile).
 3. Explore **Settings** → Profile / Security / Preferences / Danger zone.
-4. **Sports → Basketball → Drills**: search (typos tolerated), filter by category / skill / level / age /
+4. **Drills** (the basketball library): search (typos tolerated), filter by category / skill / level / age /
    players / duration / equipment, open a drill, **Create a drill** (with a court diagram), edit it, copy a
    library drill into your own drills, archive it. The library is 44 original drills, seeded by
    `npm run db:dev` (or `npm run db:seed` against any migrated database — idempotent).
@@ -141,6 +145,18 @@ scripts/          db-dev, migrate, bootstrap-roles, setup-env
   row-level security** (`ENABLE` + `FORCE`, runtime role `coachos_app` is `NOBYPASSRLS`, no DDL,
   `audit_events` is append-only). A test fails CI if any table is unclassified or lacks RLS.
 - **HTTP**: strict nonce CSP, `frame-ancestors 'none'`, HSTS, nosniff, referrer/permissions policy.
+
+### Google and Apple sign-in (optional)
+
+"Continue with Google / Apple" appears only when its credentials are set — see [docs/oauth-setup.md](docs/oauth-setup.md)
+for the exact variables, callback URLs and provider-console steps. Nothing is faked: with no credentials there is no
+button, and the e2e suite proves the application side with fake credentials (it never claims a live sign-in).
+
+### Imagery
+
+The artwork is original vector art (court, players, scenes) with no third-party assets. Every picture slot is listed in
+`src/components/basketball/imagery.ts`; to use a real photograph, add a licensed or self-shot file under `/public/images/` and
+set its `src`, `width`, `height` and `alt` there — `CoachImage` serves it through `next/image` and nothing else changes.
 
 ## Deploying (Vercel + Neon) — what you must configure
 

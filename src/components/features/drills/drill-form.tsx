@@ -13,7 +13,7 @@ import { SectionMarker } from "@/components/ui/section-marker";
 import { useToast } from "@/components/ui/toast";
 import { DRILL_PHASES, EQUIPMENT_RULES, INTENSITIES, LEVELS, SOURCE_KINDS } from "@/db/enums";
 import { createDrillAction, updateDrillAction } from "@/modules/drills/actions";
-import { DiagramBuilder } from "./diagram-builder/diagram-builder";
+import { DrillDiagrams } from "./drill-diagrams";
 import { errorsFor, type DrillFormValues } from "./form-model";
 import { toPayload } from "./form-model";
 
@@ -644,11 +644,12 @@ export function DrillForm({
             {t("diagrams")}
           </SectionMarker>
           <p className="text-sm text-ink-muted">{t("diagramsHint")}</p>
-          <DiagramBuilder
+          <DrillDiagrams
             sportKey={sportKey}
             value={v.diagrams}
             onChange={(d) => set("diagrams", d)}
             serverErrors={fields}
+            drillTitle={v.title}
           />
         </CardBody>
       </Card>

@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
+import { OAuthButtons } from "@/components/features/auth/oauth-buttons";
 import { SignUpForm } from "@/components/features/auth/sign-up-form";
-import { getViewer } from "@/modules/identity";
+import { getViewer, oauthProviders } from "@/modules/identity";
 
 export const metadata: Metadata = { title: "Create account" };
 
@@ -17,6 +18,7 @@ export default async function SignUpPage() {
         <h1 className="display text-4xl text-ink">{t("title")}</h1>
         <p className="text-base text-ink-muted">{t("subtitle")}</p>
       </div>
+      <OAuthButtons providers={oauthProviders()} next="/dashboard" />
       <SignUpForm />
       <p className="text-sm text-ink-muted">
         {t("haveAccount")}{" "}

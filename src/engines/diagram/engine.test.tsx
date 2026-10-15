@@ -7,6 +7,7 @@ import {
   resolveDiagram,
   validateDiagram,
   DiagramView,
+  LIMITS,
 } from "./index";
 import type { CourtPack, Diagram, DiagramInput } from "./index";
 
@@ -104,7 +105,7 @@ describe("schema", () => {
   });
 
   it("enforces size limits", () => {
-    const many = Array.from({ length: 31 }, (_, i) => ({
+    const many = Array.from({ length: LIMITS.entities + 1 }, (_, i) => ({
       id: `c${i}`,
       type: "cone",
       at: { x: 1, y: 1 },

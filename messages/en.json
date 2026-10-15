@@ -14,16 +14,17 @@
     "loading": "Loading…",
     "tryAgain": "Try again",
     "you": "You",
-    "current": "This device"
+    "current": "This device",
+    "preparingCourt": "Preparing your court…"
   },
   "nav": {
     "primary": "Primary",
     "dashboard": "Dashboard",
     "settings": "Settings",
-    "sports": "Sports",
     "sessions": "Sessions",
     "templates": "Templates",
-    "assistant": "AI Coach"
+    "assistant": "AI Coach",
+    "drills": "Drills"
   },
   "theme": {
     "toggle": "Theme: {mode}. Click to change.",
@@ -107,42 +108,150 @@
     "INTERNAL": "Something went wrong on our side. Please try again."
   },
   "landing": {
-    "nav": {
-      "signIn": "Sign in",
-      "signUp": "Create account",
-      "dashboard": "Go to dashboard"
+    "meta": {
+      "title": "CoachOS — Basketball coaching software and practice planner",
+      "description": "CoachOS is the operating system for basketball coaches: a basketball practice planner, session builder, drill library with court diagrams, and an AI basketball coach that proposes sessions from real drills."
     },
-    "eyebrow": "Early access",
-    "title": "Plan the session. Run the practice. Keep the record.",
-    "subtitle": "CoachOS is the operating system for coaches and PE teachers — one calm place to plan, deliver and document your training.",
-    "ctaPrimary": "Create your account",
-    "ctaSecondary": "Sign in",
-    "ctaDashboard": "Open your dashboard",
-    "statusTitle": "Where we are",
-    "statusBody": "Accounts, your personal workspace and the basketball drill library — with structured court diagrams — are live. Session planning, lesson plans and teams are being built next; each appears here only when it actually works.",
-    "footer": "© {year} CoachOS"
+    "nav": {
+      "platform": "Platform",
+      "aiCoach": "AI Coach",
+      "howItWorks": "How it works",
+      "signIn": "Sign in",
+      "signUp": "Start Coaching",
+      "dashboard": "Command Center",
+      "primary": "Primary"
+    },
+    "eyebrow": "Basketball coaching software",
+    "brand": "CoachOS",
+    "title": "The Operating System for Basketball Coaches",
+    "subtitle": "Plan practices, build sessions, develop skills and coach with an AI assistant that works from real basketball drills — in one calm, professional workspace.",
+    "ctaPrimary": "Start Coaching",
+    "ctaSecondary": "Explore CoachOS",
+    "ctaDashboard": "Open your Command Center",
+    "proof": {
+      "label": "What you get",
+      "diagrams": "Structured court diagrams",
+      "timeline": "Practice timelines with live totals",
+      "documents": "Print-ready session documents",
+      "ai": "AI proposals you review first"
+    },
+    "platform": {
+      "eyebrow": "The platform",
+      "title": "Everything a basketball coach runs, in one place.",
+      "intro": "From the first drill you pick to the practice plan on the clipboard, CoachOS keeps the whole session in one workspace.",
+      "features": {
+        "planner": {
+          "title": "Practice planner",
+          "body": "Build a timeline of drills, breaks and minutes. Drag to reorder, and watch the total and the end time update as you go."
+        },
+        "library": {
+          "title": "Basketball drill library",
+          "body": "Curated drills with court diagrams. Filter by skill, age group, level, players and duration — then make them your own."
+        },
+        "ai": {
+          "title": "Build with AI",
+          "body": "Describe the practice you need. The AI Coach proposes a session from real CoachOS drills, and you decide what to apply."
+        },
+        "diagrams": {
+          "title": "Court diagrams",
+          "body": "Draw players, cuts, passes, screens and shots on a structured court that stays crisp on screen, on paper and in PDF."
+        },
+        "documents": {
+          "title": "Templates and documents",
+          "body": "Turn a session into a clean, print-ready plan in your colours and layout, and save the design as a template."
+        },
+        "share": {
+          "title": "Share and export",
+          "body": "Export a PDF or PNG, or send a private read-only link to your staff. Revoke it any time."
+        }
+      }
+    },
+    "ai": {
+      "eyebrow": "AI Coach",
+      "title": "AI proposes. You decide.",
+      "body": "The AI Coach works from your coaching profile and the drills in your library. It never edits a session on its own: every suggestion is a proposal you review and apply.",
+      "steps": {
+        "ask": "Describe the practice",
+        "propose": "Review the proposal",
+        "apply": "Apply what you like"
+      },
+      "exampleTag": "Example",
+      "exampleRequest": "Build a 60-minute shooting session for 12 U14 players.",
+      "exampleTitle": "Proposed session · 60 min",
+      "exampleNote": "Illustrative. Your proposal is built from the drills in your own library.",
+      "example": {
+        "warmup": "Dynamic Court Warm-Up",
+        "form": "Form Shooting (Close Range)",
+        "spots": "Five-Spot Shooting",
+        "game": "Knockout Shooting Game",
+        "cool": "Relaxed Free Throws"
+      }
+    },
+    "how": {
+      "eyebrow": "How it works",
+      "title": "From sign-up to the first whistle.",
+      "steps": {
+        "profile": {
+          "title": "Tell us about your team",
+          "body": "A short basketball onboarding — experience, age group, squad size and what you want to develop — shapes everything that follows."
+        },
+        "build": {
+          "title": "Build today's practice",
+          "body": "Start from your priorities, pick drills, or ask the AI Coach for a proposal. Reorder, edit and lock what you love."
+        },
+        "coach": {
+          "title": "Coach with confidence",
+          "body": "Print the plan, share it with your staff, and keep every session, template and favourite drill in one place."
+        }
+      }
+    },
+    "diagrams": {
+      "eyebrow": "Built for the court",
+      "title": "Diagrams a coach can read at a glance.",
+      "body": "Offence as circles, defence as squares, cuts, passes and shots as clear lines — drawn from structured data, so every drill looks the same on the screen and on the page.",
+      "caption": "Pass, cut, return pass"
+    },
+    "cta": {
+      "title": "Your court is waiting.",
+      "body": "Create your account and build your coaching profile in about a minute.",
+      "button": "Start Coaching"
+    },
+    "status": {
+      "title": "Where we are",
+      "body": "Accounts, your coaching profile, the basketball drill library with court diagrams, the practice planner, printable documents, sharing and the AI Coach are live. Team rosters and attendance are next — they appear here when they work."
+    },
+    "footer": "© {year} CoachOS · Basketball coaching software",
+    "hero": {
+      "videoPause": "Pause background video",
+      "videoPlay": "Play background video"
+    }
   },
   "auth": {
     "panel": {
-      "eyebrow": "Built for the sideline",
-      "title": "Your whole season, on one clipboard.",
-      "body": "Secure by design: your data stays in your workspace, and only you decide who sees it."
+      "eyebrow": "The Operating System for Basketball Coaches",
+      "title": "Your court is waiting.",
+      "body": "Plan the practice, run the session, build the program. Your data stays in your workspace, and only you decide who sees it.",
+      "points": {
+        "plan": "Practice plans built from real basketball drills",
+        "ai": "An AI Coach that proposes — you decide",
+        "share": "Print, export and share with your staff"
+      }
     },
     "signIn": {
-      "title": "Welcome back",
-      "subtitle": "Sign in to your CoachOS workspace.",
+      "title": "Welcome back, Coach",
+      "subtitle": "Sign in to your CoachOS command center.",
       "email": "Email",
       "password": "Password",
       "submit": "Sign in",
       "forgot": "Forgot password?",
       "noAccount": "New to CoachOS?",
-      "signUp": "Create an account",
+      "signUp": "Start coaching",
       "resetDone": "Password updated. Sign in with your new password.",
       "deleted": "Your account and workspace have been deleted."
     },
     "signUp": {
-      "title": "Create your account",
-      "subtitle": "Start with a free personal workspace. No card needed.",
+      "title": "Start coaching",
+      "subtitle": "Create your account, then build your basketball coaching profile in about a minute.",
       "name": "Full name",
       "email": "Email",
       "password": "Password",
@@ -185,6 +294,18 @@
       "invalidTitle": "This reset link is invalid",
       "invalidBody": "It may have expired or already been used.",
       "requestNew": "Request a new link"
+    },
+    "oauth": {
+      "divider": "or continue with email",
+      "google": "Sign in with Google",
+      "apple": "Sign in with Apple",
+      "redirecting": "Taking you to {provider}…",
+      "errors": {
+        "cancelled": "Sign-in was cancelled. You can try again whenever you're ready.",
+        "linked": "That email already has a CoachOS account. Sign in with your password first, or use the method you signed up with.",
+        "unavailable": "We couldn't finish signing you in with that provider. Please try again, or use your email and password.",
+        "generic": "Something went wrong while signing in. Please try again."
+      }
     }
   },
   "onboarding": {
@@ -204,7 +325,207 @@
     },
     "timezone": "Your timezone",
     "timezoneHint": "Used for greetings, schedules and reminders.",
-    "submit": "Go to my dashboard"
+    "submit": "Go to my dashboard",
+    "flow": {
+      "title": "Let's build your basketball coaching profile.",
+      "intro": "Six quick questions so CoachOS fits the way you coach.",
+      "progress": "{step} / 06",
+      "progressLabel": "Question {step} of 6",
+      "back": "Back",
+      "next": "Continue",
+      "finish": "Finish",
+      "skip": "Skip for now",
+      "skipNote": "You can complete your coaching profile any time from your Command Center.",
+      "saving": "Building your CoachOS…",
+      "saveError": "We couldn't save your coaching profile. Please try again.",
+      "nameLabel": "Your name",
+      "nameHint": "Shown to you in the app. Players never see it.",
+      "comingSoon": "Coming soon",
+      "q1": {
+        "title": "How would you describe your coaching experience?",
+        "options": {
+          "new": {
+            "label": "New Coach",
+            "hint": "Just getting started on the sideline."
+          },
+          "developing": {
+            "label": "Developing Coach",
+            "hint": "Building experience season by season."
+          },
+          "experienced": {
+            "label": "Experienced Coach",
+            "hint": "Several seasons and a system of my own."
+          },
+          "advanced": {
+            "label": "Advanced Coach",
+            "hint": "Running a serious, structured program."
+          },
+          "elite": {
+            "label": "Elite / High Performance",
+            "hint": "Coaching at the highest level."
+          }
+        }
+      },
+      "q2": {
+        "title": "Who do you coach?",
+        "hint": "Choose every age group you work with.",
+        "options": {
+          "u8": {
+            "label": "U8"
+          },
+          "u10": {
+            "label": "U10"
+          },
+          "u12": {
+            "label": "U12"
+          },
+          "u14": {
+            "label": "U14"
+          },
+          "u16": {
+            "label": "U16"
+          },
+          "u18": {
+            "label": "U18"
+          },
+          "senior": {
+            "label": "Adults"
+          }
+        }
+      },
+      "q3": {
+        "title": "How many players do you normally coach?",
+        "hint": "Pick the closest range, or enter your own number.",
+        "bands": {
+          "5_7": "5–7",
+          "8_10": "8–10",
+          "11_12": "11–12",
+          "13_15": "13–15",
+          "16_plus": "16+"
+        },
+        "custom": "Or enter an exact number",
+        "customLabel": "Exact number of players",
+        "customHint": "Between 1 and 60."
+      },
+      "q4": {
+        "title": "What do you want to develop most?",
+        "hint": "Choose as many as you like.",
+        "options": {
+          "shooting": {
+            "label": "Shooting"
+          },
+          "ball_handling": {
+            "label": "Ball Handling"
+          },
+          "passing": {
+            "label": "Passing"
+          },
+          "finishing": {
+            "label": "Finishing"
+          },
+          "footwork": {
+            "label": "Footwork"
+          },
+          "defense": {
+            "label": "Defense"
+          },
+          "rebounding": {
+            "label": "Rebounding"
+          },
+          "basketball_iq": {
+            "label": "Basketball IQ"
+          },
+          "decision_making": {
+            "label": "Decision Making"
+          },
+          "team_offense": {
+            "label": "Team Offense"
+          },
+          "team_defense": {
+            "label": "Team Defense"
+          },
+          "transition": {
+            "label": "Transition"
+          },
+          "conditioning": {
+            "label": "Conditioning"
+          },
+          "game_preparation": {
+            "label": "Game Preparation"
+          }
+        }
+      },
+      "q5": {
+        "title": "What do you need most from CoachOS?",
+        "hint": "Choose what matters to you — or everything.",
+        "options": {
+          "practice_planning": {
+            "label": "Practice Planning"
+          },
+          "session_generation": {
+            "label": "Session Generation"
+          },
+          "drill_discovery": {
+            "label": "Drill Discovery"
+          },
+          "player_development": {
+            "label": "Player Development"
+          },
+          "team_management": {
+            "label": "Team Management"
+          },
+          "attendance": {
+            "label": "Attendance"
+          },
+          "game_preparation": {
+            "label": "Game Preparation"
+          },
+          "ai_coaching": {
+            "label": "AI Coaching"
+          },
+          "all": {
+            "label": "All of the above"
+          }
+        }
+      },
+      "q6": {
+        "title": "What best describes your coaching approach?",
+        "hint": "Choose all that apply.",
+        "options": {
+          "skill_development": {
+            "label": "Skill Development"
+          },
+          "player_development": {
+            "label": "Player Development"
+          },
+          "team_tactical": {
+            "label": "Team Tactical"
+          },
+          "high_intensity": {
+            "label": "High Intensity"
+          },
+          "fundamentals_first": {
+            "label": "Fundamentals First"
+          },
+          "game_preparation": {
+            "label": "Game Preparation"
+          },
+          "balanced": {
+            "label": "Balanced"
+          }
+        }
+      },
+      "ready": {
+        "eyebrow": "All set",
+        "title": "Your CoachOS is ready.",
+        "subtitle": "Here is the coaching profile we'll build around.",
+        "enter": "Enter CoachOS",
+        "sport": "Basketball",
+        "players": "{count, plural, one {# player} other {# players}}",
+        "coach": "{experience}",
+        "ages": "Age groups"
+      }
+    }
   },
   "shell": {
     "workspace": "Workspace",
@@ -235,11 +556,11 @@
   "dashboard": {
     "title": "Dashboard",
     "greeting": {
-      "morning": "Good morning, {name}",
-      "afternoon": "Good afternoon, {name}",
-      "evening": "Good evening, {name}"
+      "morning": "Good morning, Coach {name}.",
+      "afternoon": "Good afternoon, Coach {name}.",
+      "evening": "Good evening, Coach {name}."
     },
-    "subtitle": "Here's where your workspace stands.",
+    "subtitle": "Ready to build today's practice?",
     "clock": {
       "label": "Your local time",
       "zone": "{zone}"
@@ -288,6 +609,75 @@
       "mine": "Your drills",
       "noneYet": "You haven't created a drill yet.",
       "open": "Open the drill library"
+    },
+    "cc": {
+      "eyebrow": "Coaching Command Center",
+      "quick": {
+        "title": "Quick actions",
+        "build": {
+          "title": "Build a Session",
+          "body": "Start a practice from scratch."
+        },
+        "generate": {
+          "title": "Generate a Session",
+          "body": "A balanced plan from your drill library."
+        },
+        "ai": {
+          "title": "Build with AI",
+          "body": "Ask the AI Coach for a proposal."
+        },
+        "drills": {
+          "title": "Explore Drills",
+          "body": "Browse the basketball drill library."
+        },
+        "templates": {
+          "title": "Session Templates",
+          "body": "Reuse your best-looking plans."
+        }
+      },
+      "snapshot": {
+        "title": "Today's coaching snapshot",
+        "next": "Next session",
+        "nextNone": "Nothing scheduled",
+        "nextNoneBody": "Give a session a date and it appears here.",
+        "sessions": "Sessions planned",
+        "sessionsUnit": "{count, plural, one {session} other {sessions}}",
+        "favorites": "Favorite drills",
+        "favoritesUnit": "{count, plural, one {drill} other {drills}}",
+        "favoritesNone": "Build your drill collection.",
+        "squad": "Squad size",
+        "squadUnit": "{count, plural, one {player} other {players}}",
+        "squadNone": "Not set yet",
+        "squadAdd": "Add your squad size"
+      },
+      "recent": {
+        "title": "Recent sessions",
+        "viewAll": "All sessions",
+        "emptyTitle": "No practice planned yet.",
+        "emptyBody": "Build your first basketball session and it will appear here.",
+        "emptyAction": "Build a Session",
+        "minutes": "{count} min",
+        "unscheduled": "Not scheduled"
+      },
+      "recommended": {
+        "title": "Recommended for you",
+        "basedOn": "Based on your coaching profile: {details}.",
+        "forPriority": "For {priority}",
+        "none": "Tell CoachOS how you coach and it will recommend drills from the library.",
+        "noneAction": "Set up your coaching profile",
+        "empty": "No library drills match your profile yet. Explore the whole library.",
+        "browse": "Explore all drills"
+      },
+      "profile": {
+        "incompleteTitle": "Complete your coaching profile",
+        "incompleteBody": "Six quick questions unlock drill recommendations and a smarter AI Coach.",
+        "incompleteAction": "Finish my profile",
+        "title": "Your coaching profile",
+        "edit": "Edit coaching profile"
+      },
+      "account": {
+        "title": "Account and workspace"
+      }
     }
   },
   "audit": {
@@ -329,7 +719,9 @@
       "template_status_changed": "Template archived or restored",
       "template_deleted": "Template deleted",
       "template_restored": "Template restored",
-      "template_duplicated": "Template duplicated"
+      "template_duplicated": "Template duplicated",
+      "account_onboarding_skipped": "Onboarding skipped",
+      "account_coaching_profile_updated": "Coaching profile updated"
     }
   },
   "settings": {
@@ -340,7 +732,8 @@
       "profile": "Profile",
       "security": "Security",
       "preferences": "Preferences",
-      "danger": "Danger zone"
+      "danger": "Danger zone",
+      "coachingProfile": "Coaching profile"
     },
     "saved": "Changes saved.",
     "profile": {
@@ -390,7 +783,16 @@
       "unitsDescription": "Court and distance sizes will be shown in your units. They're always stored in metres.",
       "units": "Units",
       "metric": "Metric (metres)",
-      "imperial": "Imperial (feet)"
+      "imperial": "Imperial (feet)",
+      "soundsTitle": "Sounds",
+      "soundsDescription": "Short, quiet cues while you build drills: a tap when you place something, a soft chime when you save. Turn them off any time.",
+      "soundsEnabled": "Interaction sounds",
+      "on": "On",
+      "off": "Off",
+      "soundsVolume": "Volume",
+      "volumeOption": "{percent}%",
+      "soundsTest": "Play a test sound",
+      "soundsHint": "You can also mute sounds from the toolbar of the drill editor."
     },
     "danger": {
       "title": "Delete account",
@@ -401,6 +803,24 @@
       "password": "Your password",
       "confirm": "Type DELETE to confirm",
       "confirmAction": "Delete permanently"
+    },
+    "coachingProfile": {
+      "navLabel": "Coaching profile",
+      "title": "Coaching profile",
+      "subtitle": "What CoachOS knows about how you coach. It shapes your recommendations and what the AI Coach suggests.",
+      "save": "Save coaching profile",
+      "saved": "Coaching profile saved.",
+      "incompleteTitle": "Complete your coaching profile",
+      "sections": {
+        "experience": "Coaching experience",
+        "ageGroups": "Age groups",
+        "typicalPlayers": "Players you normally coach",
+        "priorities": "What you want to develop",
+        "needs": "What you need from CoachOS",
+        "styles": "Your coaching approach"
+      },
+      "aiNote": "The AI Coach and your drill recommendations use these answers. Nothing here is shared with anyone.",
+      "selectOne": "Choose at least one."
     }
   },
   "errorPage": {
@@ -413,21 +833,10 @@
     "title": "Page not found",
     "body": "That page doesn't exist, or you don't have access to it.",
     "home": "Go home",
-    "toSports": "Back to sports"
-  },
-  "sports": {
-    "title": "Sports",
-    "subtitle": "Each sport has its own workspace with its own drills, court diagrams and vocabulary.",
-    "activeHeading": "Available sports",
-    "workspace": "Sport workspace",
-    "libraryDrills": "Library drills",
-    "yourDrills": "Your drills",
-    "open": "Open workspace",
-    "plannedTitle": "Planned — not available yet",
-    "plannedBody": "These sports are reserved in the data model but have no workspace yet. Each one appears here only once it fully works."
+    "toSports": "Back to the drill library"
   },
   "workspace": {
-    "eyebrow": "Sport workspace",
+    "eyebrow": "Basketball coaching",
     "tabsLabel": "Workspace sections",
     "tabs": {
       "overview": "Overview",
@@ -556,8 +965,11 @@
     "empty": {
       "filteredTitle": "No drills match those filters",
       "filteredBody": "Try removing a filter or searching for something broader.",
-      "noneTitle": "No drills yet",
-      "noneBody": "Drills you create and library drills will appear here."
+      "noneTitle": "No drills here yet",
+      "noneBody": "Drills you create and library drills will appear here.",
+      "favoritesTitle": "Build your drill collection.",
+      "favoritesBody": "Tap the star on any drill to keep it here, ready for your next practice.",
+      "favoritesAction": "Explore drills"
     },
     "pagination": {
       "label": "Pages",
@@ -570,7 +982,8 @@
       "players": "players",
       "ages": "age",
       "equipment": "Equipment",
-      "more": "+{count} more"
+      "more": "+{count} more",
+      "view": "View drill"
     },
     "detail": {
       "back": "All drills",
@@ -725,105 +1138,18 @@
   },
   "diagram": {
     "builder": {
-      "noneYet": "No diagram yet. Add one to draw the drill on the court.",
       "addDiagram": "Add a diagram",
       "maxDiagrams": "A drill can have up to {max} diagrams.",
       "diagramN": "Diagram {n}",
       "titleLabel": "Diagram title (optional)",
       "titlePlaceholder": "e.g. Setup, Progression 1",
-      "court": "Court",
-      "courts": {
-        "half": "Half court",
-        "full": "Full court"
-      },
-      "courtMissing": "This diagram's court isn't available.",
       "remove": "Remove",
       "removeDiagram": "Remove diagram {n}",
-      "removeItem": "Remove {name}",
-      "removeWaypoint": "Remove point {n}",
-      "entities": "Players and equipment",
-      "entitiesEmpty": "Add players first, then describe what they do.",
-      "addEntity": "Add to the court",
-      "add": {
-        "offense": "Offense",
-        "defense": "Defender",
-        "coach": "Coach",
-        "ball": "Ball",
-        "cone": "Cone",
-        "marker": "Marker"
-      },
-      "kinds": {
-        "offense": "Offense player",
-        "defense": "Defender",
-        "coach": "Coach",
-        "ball": "Ball",
-        "cone": "Cone",
-        "marker": "Marker"
-      },
-      "label": "Label",
-      "markerKind": "Marker type",
-      "markerKinds": {
-        "start": "Start",
-        "end": "End",
-        "spot": "Spot"
-      },
-      "ballState": "Ball",
-      "ballHeld": "Held by a player",
-      "ballLoose": "Loose on the court",
-      "heldBy": "Held by",
-      "actions": "Passes and movement",
-      "actionsHelp": "Actions in the same step happen together. Use later steps for what follows.",
-      "addAction": "Add an action",
-      "actionTypes": {
-        "pass": "Pass",
-        "cut": "Cut",
-        "move": "Move",
-        "dribble": "Dribble",
-        "screen": "Screen",
-        "shot": "Shot"
-      },
-      "step": "Step",
-      "from": "From",
-      "to": "To",
-      "player": "Player",
-      "waypoint": "Point {n}",
-      "addWaypoint": "Add a point",
-      "target": "Target",
-      "aim": "Aim at a specific spot (otherwise the basket)",
-      "notes": "Notes and zones",
-      "addNote": "Add a note or zone",
-      "annotationTypes": {
-        "text": "Note",
-        "zone_rect": "Zone (rectangle)",
-        "zone_circle": "Zone (circle)"
-      },
-      "noteText": "Note text",
-      "zoneLabel": "Zone label (optional)",
-      "radius": "Radius (m)",
-      "where": "Where",
-      "corner1": "First corner",
-      "corner2": "Opposite corner",
-      "center": "Centre",
-      "preview": "Live preview",
-      "previewInvalid": "The preview appears once every field is valid.",
       "valid": "This diagram is valid.",
       "issuesTitle": "Fix these to save",
       "schemaInvalid": "A field in this diagram isn't valid.",
       "description": "Text description for screen readers",
-      "position": {
-        "mode": "Position type",
-        "anchor": "Court spot",
-        "xy": "Coordinates",
-        "entity": "Next to a player",
-        "spot": "Spot",
-        "thisEnd": "This end",
-        "farEnd": "Far end",
-        "offsetX": "Nudge sideways (m)",
-        "offsetY": "Nudge up/down (m)",
-        "x": "X (m)",
-        "y": "Y (m)",
-        "player": "Player"
-      }
+      "diagramsLabel": "Diagrams"
     },
     "issues": {
       "duplicate_id": "Two items share the identifier “{id}”.",
@@ -847,12 +1173,14 @@
       "unknown_annotation": "There is no note number {index}.",
       "no_duplicate_ball": "A ball can't be duplicated.",
       "action_invalid": "That action isn't valid.",
-      "schema": "That change isn't valid: {message}"
+      "schema": "That change isn't valid: {message}",
+      "too_many_steps": "A drill can have up to {max} steps.",
+      "unknown_step": "There is no step {step}.",
+      "last_step": "A drill needs at least one step."
     }
   },
   "sessions": {
     "title": "My Sessions",
-    "chooseSport": "Choose a sport to plan sessions for.",
     "create": "Create session",
     "listHeading": "Your training sessions",
     "results": {
@@ -918,8 +1246,8 @@
       "deleted": "Session deleted"
     },
     "empty": {
-      "noneTitle": "No sessions yet",
-      "noneBody": "Create your first basketball training session.",
+      "noneTitle": "No practice planned yet.",
+      "noneBody": "Build your first basketball session and it will show up here.",
       "filteredTitle": "No sessions match",
       "filteredBody": "Try clearing a filter or searching for something else.",
       "archivedTitle": "Nothing archived",
@@ -998,8 +1326,8 @@
       "addDrill": "Add drill",
       "addCustom": "Custom activity",
       "addBreak": "Break",
-      "emptyTitle": "Your session is empty",
-      "emptyBody": "Add a drill, custom activity or break to start building your session.",
+      "emptyTitle": "Your court is waiting.",
+      "emptyBody": "Add a drill, a custom activity or a break to start building today's practice.",
       "emptyReadOnly": "Nothing has been added to this session yet.",
       "updatedFromLibrary": "Updated from the library",
       "save": {
@@ -1021,7 +1349,9 @@
         "noEnd": "Add a date and start time to see the end time",
         "onTarget": "On target ({target} min)",
         "over": "{minutes} min over your {target} min target",
-        "toFill": "{minutes} min left of your {target} min target"
+        "toFill": "{minutes} min left of your {target} min target",
+        "progress": "Practice time planned",
+        "progressText": "{total} of {target} minutes planned"
       },
       "errors": {
         "tooLong": "A session can run for at most 12 hours in total.",
@@ -1512,8 +1842,6 @@
   "templates": {
     "title": "Templates",
     "subtitle": "Save a look you like once and reuse it for every session. A template holds the design only — never a session's date, activities or notes.",
-    "allSports": "All sports",
-    "sportFilter": "Sport",
     "listHeading": "Saved templates",
     "create": "New template",
     "results": {
@@ -1866,7 +2194,8 @@
       "toast": "Session created",
       "break": "Water break",
       "title": "{objective} · {minutes} min"
-    }
+    },
+    "building": "Building your session from the drill library…"
   },
   "diagramEditor": {
     "cannotEdit": "This diagram can't be edited here because it isn't valid.",
@@ -1915,7 +2244,9 @@
       "move": "Move",
       "screen": "Screen",
       "shot": "Shot",
-      "text": "Note"
+      "text": "Note",
+      "sprint": "Sprint",
+      "defend": "Defend"
     },
     "kinds": {
       "player": "Player",
@@ -1924,7 +2255,8 @@
       "coach": "Coach",
       "ball": "Ball",
       "cone": "Cone",
-      "marker": "Marker"
+      "marker": "Marker",
+      "equipment": "Equipment"
     },
     "hint": {
       "select": "Drag a player to move it, or select it and use the arrow keys.",
@@ -1949,7 +2281,9 @@
       "cut": "{who} cuts",
       "move": "{who} moves",
       "dribble": "{who} dribbles",
-      "screen": "{who} sets a screen"
+      "screen": "{who} sets a screen",
+      "sprint": "{who} sprints",
+      "defend": "{who} defends"
     },
     "announce": {
       "added": "{what} added.",
@@ -1971,7 +2305,6 @@
   "assistant": {
     "title": "AI Coach",
     "subtitle": "Ask for a session, change one you have, explain a drill or draw a diagram. The assistant only uses real CoachOS drills, and it only suggests: nothing changes until you apply it.",
-    "chooseSport": "Choose a sport to coach with.",
     "unavailable": {
       "title": "The AI Coach is not set up",
       "body": "An AI provider has not been configured for this CoachOS, so the assistant is unavailable. Everything else works: you can still generate a complete session from the drill library without AI, and change it in the Session Builder.",
@@ -2186,6 +2519,402 @@
         "VALIDATION": "This can’t be applied as it stands. Ask again.",
         "INTERNAL": "Something went wrong. Nothing was changed."
       }
+    }
+  },
+  "diagramWorkspace": {
+    "cannotEdit": "This diagram can't be edited here because it isn't valid. Ask for a fresh copy, or start a new diagram.",
+    "cancel": "Cancel",
+    "close": "Close",
+    "delete": "Delete",
+    "duplicate": "Duplicate",
+    "rotate": "Rotate 90°",
+    "favorites": "Favorites",
+    "recent": "Recent",
+    "finishPath": "Finish movement",
+    "needCarrier": "Start from a player or coach.",
+    "needReceiver": "Finish on the player who receives the pass.",
+    "noTools": "No tools match “{query}”.",
+    "nothingToPlay": "Draw a movement, pass or shot first, then press Play.",
+    "numberHint": "The number used by the numbered player and numbered cone tools. Leave empty to number automatically.",
+    "numberLabel": "Number",
+    "pathFull": "A movement can have up to 8 points.",
+    "refused": "That change wasn't possible.",
+    "searchLabel": "Search tools",
+    "searchPlaceholder": "Search tools…",
+    "clearSearch": "Clear search",
+    "categoriesLabel": "Tool categories",
+    "textLabel": "Note text",
+    "textPlaceholder": "Type a note…",
+    "libraryHint": "Drag a tool onto the court, or click it to add it.",
+    "addFavorite": "Add {name} to favorites",
+    "removeFavorite": "Remove {name} from favorites",
+    "library": {
+      "label": "Tools"
+    },
+    "context": {
+      "label": "Actions for the selection"
+    },
+    "court": {
+      "empty": "Your court is empty. Drag a player or a cone onto it.",
+      "label": "Court",
+      "full": "Full court",
+      "half": "Half court (near basket)",
+      "halfFar": "Half court (far basket)",
+      "title": "Basketball court drill diagram"
+    },
+    "export": {
+      "failed": "The export didn't work. Please try again.",
+      "label": "Export",
+      "png": "Court image (PNG)",
+      "pdf": "Drill sheet (PDF)",
+      "print": "Print",
+      "players": "{count, plural, one {# player} other {# players}}",
+      "stepNamed": "Step {n} — {title}",
+      "untitled": "Drill diagram"
+    },
+    "names": {
+      "offense": "Player {label}",
+      "defense": "Defender {label}",
+      "coach": "Coach {label}",
+      "ball": "Ball {label}",
+      "cone": "Cone {label}",
+      "marker": "Marker {label}"
+    },
+    "kinds": {
+      "offense": "Offense",
+      "defense": "Defense",
+      "coach": "Coach",
+      "ball": "Ball",
+      "cone": "Cone",
+      "marker": "Marker",
+      "equipment": "Equipment"
+    },
+    "objects": {
+      "title": "On the court",
+      "empty": "Nothing here yet.",
+      "pass": "{from} passes to {to}",
+      "cut": "{who} cuts",
+      "move": "{who} moves",
+      "dribble": "{who} dribbles",
+      "sprint": "{who} sprints",
+      "defend": "{who} defends",
+      "screen": "{who} sets a screen",
+      "shot": "{who} shoots",
+      "stepShort": "Step {step}"
+    },
+    "properties": {
+      "title": "Properties",
+      "label": "Properties",
+      "nothing": "Select something on the court to change it, or use the settings below.",
+      "type": "Type",
+      "number": "Number",
+      "possession": "Possession",
+      "hasBall": "Has the ball",
+      "noBall": "No ball",
+      "heldBy": "Held by",
+      "loose": "Loose on the floor",
+      "variant": "Style",
+      "size": "Size",
+      "rotation": "Rotation (°)",
+      "color": "Color",
+      "actionStep": "Step",
+      "kind": "Kind",
+      "plain": "Plain",
+      "curve": "Bend",
+      "weight": "Line thickness",
+      "text": "Text",
+      "zoneLabel": "Label",
+      "many": "{count} objects selected",
+      "stepTitle": "Name of step {step}",
+      "stepTitlePlaceholder": "e.g. Starting positions",
+      "position": "Position",
+      "x": "Across (m)",
+      "y": "Along (m)",
+      "spot": "Court spot",
+      "spotPlaceholder": "Move to a spot…"
+    },
+    "sizes": {
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large",
+      "xlarge": "Extra large",
+      "custom": "Custom (×{scale})"
+    },
+    "weights": {
+      "thin": "Thin",
+      "normal": "Normal",
+      "thick": "Thick"
+    },
+    "colors": {
+      "default": "Default",
+      "orange": "Orange",
+      "blue": "Blue",
+      "green": "Green",
+      "red": "Red",
+      "yellow": "Yellow",
+      "purple": "Purple",
+      "black": "Black",
+      "white": "White"
+    },
+    "variants": {
+      "standard": "Standard",
+      "tall": "Tall",
+      "disc": "Disc",
+      "flat": "Flat marker"
+    },
+    "notes": {
+      "text": "Text note",
+      "zone_rect": "Rectangle",
+      "zone_circle": "Circle",
+      "mark": "Mark",
+      "freehand": "Freehand line"
+    },
+    "actionKinds": {
+      "pass": {
+        "standard": "Standard pass",
+        "bounce": "Bounce pass",
+        "skip": "Skip pass",
+        "overhead": "Overhead pass"
+      },
+      "screen": {
+        "ball": "Ball screen",
+        "down": "Down screen",
+        "back": "Back screen",
+        "flare": "Flare screen",
+        "cross": "Cross screen",
+        "stagger": "Stagger screen"
+      },
+      "defend": {
+        "slide": "Defensive slide",
+        "closeout": "Closeout",
+        "help": "Help",
+        "recover": "Recover",
+        "switch": "Switch",
+        "trap": "Trap",
+        "hedge": "Hedge",
+        "drop": "Drop"
+      }
+    },
+    "steps": {
+      "label": "Drill steps",
+      "step": "Step {n}",
+      "add": "Add step",
+      "max": "A drill can have up to {max} steps",
+      "menu": "Options for step {n}",
+      "rename": "Rename step",
+      "renameLabel": "Name of step {n}",
+      "duplicate": "Duplicate step",
+      "moveEarlier": "Move earlier",
+      "moveLater": "Move later",
+      "delete": "Delete step",
+      "titlePlaceholder": "Step name"
+    },
+    "toolbar": {
+      "label": "Diagram tools",
+      "tools": "Tools",
+      "properties": "Properties",
+      "select": "Select and move",
+      "undo": "Undo",
+      "redo": "Redo",
+      "snapOn": "Snapping on (click to turn off)",
+      "snapOff": "Snapping off (click to turn on)",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "fit": "Fit the drawing",
+      "resetView": "Reset view",
+      "play": "Play",
+      "pause": "Pause",
+      "restart": "Restart",
+      "speed": "Playback speed",
+      "backToEditing": "Back to editing",
+      "progress": "Playback position",
+      "templates": "Templates",
+      "mute": "Mute sounds",
+      "unmute": "Unmute sounds",
+      "fullscreen": "Full screen",
+      "exitFullscreen": "Exit full screen"
+    },
+    "hint": {
+      "select": "Click to select, drag to move, drag on the empty court to select several. Hold Space and drag to pan.",
+      "path": "Drag from a player to where they go. Or click a player, then each point, then press Enter.",
+      "pass": "Drag from the passer to the receiver, or click one then the other.",
+      "shot": "Click the shooter for a shot at the basket, or drag to a spot.",
+      "screen": "Drag from the screener to the player being screened, or to a spot.",
+      "text": "Click the court, type the note, press Enter.",
+      "mark": "Click the court to place it.",
+      "zone": "Drag to draw a rectangle.",
+      "circle": "Drag outward from the centre.",
+      "freehand": "Draw with your finger or mouse.",
+      "linkPending": "Now click the second player.",
+      "pathPending": "{count, plural, =0 {Click where the player goes, one point at a time.} one {# point added. Keep clicking, then press Enter or Finish.} other {# points added. Keep clicking, then press Enter or Finish.}}",
+      "playing": "Playing the drill. Choose Back to editing to change it."
+    },
+    "announce": {
+      "added": "Added {what}.",
+      "moved": "Moved.",
+      "removed": "Removed.",
+      "duplicated": "Duplicated.",
+      "copied": "Copied {count, plural, one {# object} other {# objects}}.",
+      "pasted": "Pasted.",
+      "undone": "Undone.",
+      "redone": "Redone.",
+      "step": "Step {n}.",
+      "stepAdded": "Step added.",
+      "stepRemoved": "Step deleted.",
+      "stepMoved": "Step moved.",
+      "stepRenamed": "Step renamed.",
+      "court": "Court changed.",
+      "exported": "Exported.",
+      "paused": "Paused.",
+      "playing": "Playing.",
+      "templateApplied": "Template applied.",
+      "toolPicked": "{what} selected. Click or drag on the court."
+    },
+    "inventory": {
+      "label": "What this drill needs",
+      "players": "{count, plural, one {# player} other {# players}}",
+      "item": "{count} × {name}",
+      "names": {
+        "ball": "{count, plural, one {Basketball} other {Basketballs}}",
+        "cone": "{count, plural, one {Cone} other {Cones}}",
+        "ladder": "{count, plural, one {Agility ladder} other {Agility ladders}}",
+        "hurdle": "{count, plural, one {Hurdle} other {Hurdles}}",
+        "pole": "{count, plural, one {Pole} other {Poles}}",
+        "mannequin": "{count, plural, one {Mannequin} other {Mannequins}}",
+        "hoop": "{count, plural, one {Hoop} other {Hoops}}",
+        "rebounder": "{count, plural, one {Rebounder} other {Rebounders}}",
+        "passingNet": "{count, plural, one {Passing net} other {Passing nets}}",
+        "shootingMachine": "{count, plural, one {Shooting machine} other {Shooting machines}}",
+        "chair": "{count, plural, one {Training chair} other {Training chairs}}",
+        "bench": "{count, plural, one {Bench} other {Benches}}",
+        "band": "{count, plural, one {Resistance band} other {Resistance bands}}",
+        "medicineBall": "{count, plural, one {Medicine ball} other {Medicine balls}}",
+        "tennisBall": "{count, plural, one {Tennis ball} other {Tennis balls}}",
+        "mat": "{count, plural, one {Mat} other {Mats}}",
+        "timer": "{count, plural, one {Stopwatch} other {Stopwatches}}"
+      }
+    },
+    "equipment": {
+      "ladder": "Agility ladder",
+      "ladder_short": "Short ladder",
+      "ladder_long": "Long ladder",
+      "hurdle_mini": "Mini hurdle",
+      "hurdle_low": "Low hurdle",
+      "hurdle_high": "High hurdle",
+      "pole": "Training pole",
+      "mannequin": "Defensive mannequin",
+      "dummy": "Blocking dummy",
+      "hoop": "Basketball hoop",
+      "hoop_portable": "Portable hoop",
+      "rebounder": "Rebounder",
+      "passing_net": "Passing net",
+      "shooting_machine": "Shooting machine",
+      "chair": "Training chair",
+      "bench": "Bench",
+      "band": "Resistance band",
+      "medicine_ball": "Medicine ball",
+      "tennis_ball": "Tennis ball",
+      "mat": "Mat",
+      "timer": "Stopwatch"
+    },
+    "categories": {
+      "all": "All",
+      "players": "Players",
+      "balls": "Balls",
+      "cones": "Cones",
+      "ladders": "Ladders",
+      "hurdles": "Hurdles",
+      "poles": "Poles",
+      "hoops": "Hoops",
+      "equipment": "Equipment",
+      "drawing": "Drawing",
+      "movement": "Movement",
+      "passing": "Passing",
+      "shooting": "Shooting",
+      "defense": "Defense"
+    },
+    "tools": {
+      "offense": "Offensive player",
+      "defense": "Defensive player",
+      "coach": "Coach",
+      "offenseBall": "Player with ball",
+      "numbered": "Numbered player",
+      "ball": "Basketball",
+      "tennisBall": "Tennis ball",
+      "medicineBall": "Medicine ball",
+      "cone": "Standard cone",
+      "coneTall": "Tall cone",
+      "coneFlat": "Flat marker",
+      "coneDisc": "Disc cone",
+      "coneColored": "Colored cone",
+      "coneNumbered": "Numbered cone",
+      "ladder": "Agility ladder",
+      "ladderShort": "Short ladder",
+      "ladderLong": "Long ladder",
+      "hurdleMini": "Mini hurdle",
+      "hurdleLow": "Low hurdle",
+      "hurdleHigh": "High hurdle",
+      "pole": "Training pole",
+      "mannequin": "Defensive mannequin",
+      "dummy": "Blocking dummy",
+      "hoop": "Basketball hoop",
+      "hoopPortable": "Portable hoop",
+      "rebounder": "Rebounder",
+      "passingNet": "Passing net",
+      "shootingMachine": "Shooting machine",
+      "chair": "Training chair",
+      "bench": "Bench",
+      "band": "Resistance band",
+      "mat": "Mat",
+      "timer": "Stopwatch / timer",
+      "text": "Text",
+      "circle": "Circle",
+      "rectangle": "Rectangle",
+      "freehand": "Freehand",
+      "markX": "X mark",
+      "markCheck": "Check mark",
+      "highlight": "Highlight",
+      "move": "Movement",
+      "moveCurved": "Curved movement",
+      "sprint": "Sprint",
+      "cut": "Cut",
+      "dribble": "Dribble",
+      "screenBall": "Ball screen",
+      "screenDown": "Down screen",
+      "screenBack": "Back screen",
+      "screenFlare": "Flare screen",
+      "screenCross": "Cross screen",
+      "screenStagger": "Stagger screen",
+      "pass": "Pass",
+      "passBounce": "Bounce pass",
+      "passSkip": "Skip pass",
+      "passOverhead": "Overhead pass",
+      "shot": "Shot",
+      "slide": "Defensive slide",
+      "closeout": "Closeout",
+      "help": "Help",
+      "recover": "Recover",
+      "switch": "Switch",
+      "trap": "Trap",
+      "hedge": "Hedge",
+      "drop": "Drop"
+    },
+    "templates": {
+      "shooting": "Shooting",
+      "passing": "Passing",
+      "ballHandling": "Ball handling",
+      "finishing": "Finishing",
+      "oneOnOne": "1v1",
+      "twoOnOne": "2v1",
+      "threeOnTwo": "3v2",
+      "threeOnThree": "3v3",
+      "closeout": "Closeout",
+      "shell": "Shell defense",
+      "transition": "Transition",
+      "fastBreak": "Fast break",
+      "warmUp": "Warm-up",
+      "cones": "Cone drill",
+      "ladder": "Agility ladder"
     }
   }
 }

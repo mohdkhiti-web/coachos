@@ -35,15 +35,33 @@ export interface ResolvedAnnotation {
   annotation: Annotation;
   a: Pt;
   b?: Pt;
+  /** A freehand line's points. */
+  points?: Pt[];
 }
 
 export interface Resolved {
   entities: ResolvedEntity[];
   actions: ResolvedAction[];
   annotations: ResolvedAnnotation[];
-  /** Distinct step numbers in ascending order. */
+  /**
+   * Step numbers in ascending order: the distinct steps the actions use — or, when the diagram says how many steps it has
+   * (`stepCount`), every step from 1 to that count, so a step with no action of its own is still a step.
+   */
   steps: number[];
+  /**
+   * Where every mover (player, coach) stands at the START of each step, by step number, plus the key `0` for where they stand
+   * once every step is over. This is what makes step 2 show the players where step 1 left them.
+   */
+  stepStarts: ReadonlyMap<number, ReadonlyMap<string, Pt>>;
 }
+
+/** Actions that walk their entity along a path (and so change where it stands for the next step). */
+export const isMover = (a: Action): a is Extract<Action, { path: unknown }> =>
+  a.type === "cut" ||
+  a.type === "move" ||
+  a.type === "dribble" ||
+  a.type === "sprint" ||
+  a.type === "defend";
 
 const add = (p: Pt, o?: readonly [number, number]): Pt => ({
   x: p.x + (o?.[0] ?? 0),
@@ -138,9 +156,14 @@ export function resolveDiagram(
 
   // Actions, step by step. A mover's position for step n is where its earlier movements left it.
   const actions: ResolvedAction[] = [];
-  const steps = [...new Set(d.actions.map((a) => a.step))].sort((a, b) => a - b);
+  const used = [...new Set(d.actions.map((a) => a.step))].sort((a, b) => a - b);
+  const steps = d.stepCount
+    ? Array.from({ length: Math.max(d.stepCount, used[used.length - 1] ?? 1) }, (_, i) => i + 1)
+    : used;
   const current = new Map(start);
+  const stepStarts = new Map<number, ReadonlyMap<string, Pt>>();
   for (const s of steps) {
+    stepStarts.set(s, new Map(current));
     const pending = new Map<string, Pt>();
     d.actions.forEach((a, i) => {
       if (a.step !== s) return;
@@ -184,6 +207,8 @@ export function resolveDiagram(
         }
         case "cut":
         case "move":
+        case "sprint":
+        case "defend":
         case "dribble": {
           const from = need(a.entity, "entity");
           if (!from) break;
@@ -237,6 +262,7 @@ export function resolveDiagram(
     });
     for (const [k, v] of pending) current.set(k, v);
   }
+  stepStarts.set(0, new Map(current));
 
   const annotations: ResolvedAnnotation[] = [];
   d.annotations.forEach((n, i) => {
@@ -249,6 +275,9 @@ export function resolveDiagram(
     } else if (n.type === "zone_circle") {
       const a = resolvePos(n.center, pack, at, `${path}.center`, issues);
       if (a) annotations.push({ annotation: n, a });
+    } else if (n.type === "freehand") {
+      const points = n.points.map((p) => ({ x: p.x, y: p.y }));
+      annotations.push({ annotation: n, a: points[0]!, points });
     } else {
       const a = resolvePos(n.at, pack, at, `${path}.at`, issues);
       if (a) annotations.push({ annotation: n, a });
@@ -261,5 +290,5 @@ export function resolveDiagram(
     if (at) entities.push({ entity: e, at });
   }
 
-  return { resolved: { entities, actions, annotations, steps }, issues };
+  return { resolved: { entities, actions, annotations, steps, stepStarts }, issues };
 }
