@@ -93,3 +93,55 @@ export function wavy(
   out.push(points[points.length - 1]!);
   return out;
 }
+
+/**
+ * Bend a polyline: each segment becomes a quadratic curve whose middle is pushed sideways by `curve` (−1…1) times half the
+ * segment's length (positive = to the right of the direction of travel). Returned as a dense polyline, so every line style
+ * (dashes, waves, arrowheads) keeps working on a curved path. `curve` 0 returns the points untouched.
+ */
+export function sampleCurve(points: readonly Pt[], curve: number, perSegment = 14): Pt[] {
+  if (!curve || points.length < 2) return [...points];
+  const out: Pt[] = [points[0]!];
+  for (let i = 1; i < points.length; i++) {
+    const a = points[i - 1]!;
+    const b = points[i]!;
+    const len = dist(a, b);
+    if (len === 0) {
+      out.push(b);
+      continue;
+    }
+    const nx = -(b.y - a.y) / len;
+    const ny = (b.x - a.x) / len;
+    const push = curve * len * 0.5;
+    const c = { x: (a.x + b.x) / 2 - nx * push, y: (a.y + b.y) / 2 - ny * push };
+    for (let s = 1; s <= perSegment; s++) {
+      const t = s / perSegment;
+      const u = 1 - t;
+      out.push({
+        x: u * u * a.x + 2 * u * t * c.x + t * t * b.x,
+        y: u * u * a.y + 2 * u * t * c.y + t * t * b.y,
+      });
+    }
+  }
+  return out;
+}
+
+/** Point a fraction `t` (0…1) of the way along a polyline, measured by length. */
+export function pointAlong(points: readonly Pt[], t: number): Pt {
+  if (points.length === 0) return { x: 0, y: 0 };
+  if (points.length === 1) return points[0]!;
+  let total = 0;
+  for (let i = 1; i < points.length; i++) total += dist(points[i - 1]!, points[i]!);
+  let want = Math.max(0, Math.min(1, t)) * total;
+  for (let i = 1; i < points.length; i++) {
+    const a = points[i - 1]!;
+    const b = points[i]!;
+    const l = dist(a, b);
+    if (want <= l || i === points.length - 1) {
+      const k = l === 0 ? 0 : Math.min(1, want / l);
+      return { x: a.x + (b.x - a.x) * k, y: a.y + (b.y - a.y) * k };
+    }
+    want -= l;
+  }
+  return points[points.length - 1]!;
+}

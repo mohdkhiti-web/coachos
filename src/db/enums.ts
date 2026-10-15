@@ -6,6 +6,11 @@ export type Profession = (typeof PROFESSIONS)[number];
 export const UNITS = ["metric", "imperial"] as const;
 export type Units = (typeof UNITS)[number];
 
+/** The interaction-sound volumes a person can choose, in percent (Settings → Preferences → Sounds). */
+export const SOUND_VOLUMES = [0, 25, 50, 75, 100] as const;
+export type SoundVolume = (typeof SOUND_VOLUMES)[number];
+export const DEFAULT_SOUND_VOLUME: SoundVolume = 50;
+
 // --- Sports & drills (Phase 2) ------------------------------------------------------------------
 export const SPORT_STATUSES = ["active", "beta", "planned"] as const;
 export type SportStatus = (typeof SPORT_STATUSES)[number];

@@ -1,4 +1,5 @@
 import { AppShell } from "@/components/layout/app-shell";
+import { SoundProvider } from "@/components/sound";
 import { getViewer } from "@/modules/identity";
 import { assistantAvailability } from "@/modules/assistant";
 
@@ -10,8 +11,13 @@ import { assistantAvailability } from "@/modules/assistant";
 export default async function AppLayout({ children }: LayoutProps<"/">) {
   const viewer = await getViewer();
   return (
-    <AppShell viewer={viewer} assistant={assistantAvailability().available}>
-      {children}
-    </AppShell>
+    <SoundProvider
+      enabled={viewer?.profile.soundsEnabled ?? true}
+      volume={viewer?.profile.soundVolume ?? 50}
+    >
+      <AppShell viewer={viewer} assistant={assistantAvailability().available}>
+        {children}
+      </AppShell>
+    </SoundProvider>
   );
 }

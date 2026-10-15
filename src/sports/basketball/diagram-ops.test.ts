@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   applyOps,
   diagramOpsSchema,
+  LIMITS,
   MAX_OPS,
   type Diagram,
   type DiagramInput,
@@ -90,7 +91,11 @@ describe("adding", () => {
     const copy = d.entities.find((e) => e.id === "o3")!;
     expect(copy).toMatchObject({ type: "player", side: "offense", label: "3" });
     expect(d.actions).toHaveLength(1);
-    expect(codes([{ op: "duplicate", id: "b1" }])).toContain("no_duplicate_ball");
+    // a copy of a ball is a loose ball beside the original (a coach needs several balls)
+    const withBall = good([{ op: "duplicate", id: "b1" }]);
+    const loose = withBall.entities.filter((e) => e.type === "ball");
+    expect(loose).toHaveLength(2);
+    expect(loose[1]).toMatchObject({ type: "ball", at: expect.anything() });
   });
 });
 
@@ -268,11 +273,11 @@ describe("safety", () => {
   });
 
   it("enforces the diagram's own limits", () => {
-    const ops: DiagramOp[] = Array.from({ length: 30 }, () => ({
+    const ops: DiagramOp[] = Array.from({ length: LIMITS.entities }, () => ({
       op: "add_player" as const,
       side: "offense" as const,
       at: { anchor: "top_key" },
     }));
-    expect(codes(ops)).not.toEqual([]); // 3 + 30 entities exceeds the schema's maximum
+    expect(codes(ops)).not.toEqual([]); // the starting entities plus one more batch of the maximum exceeds the schema's limit
   });
 });

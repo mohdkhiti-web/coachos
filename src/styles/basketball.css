@@ -221,3 +221,20 @@ html:has(.arena) {
   background: #0d0f12;
   color-scheme: dark;
 }
+
+/* The drill sheet (Export → Print in the diagram workspace) is appended to <body> only while printing. On screen it is
+   never shown; on paper it is the only thing shown — none of the app or the editor. */
+.diagram-print-root {
+  display: none;
+}
+@media print {
+  body[data-print-diagram] > *:not(.diagram-print-root) {
+    display: none !important;
+  }
+  body[data-print-diagram] .diagram-print-root {
+    display: block;
+    padding: 12mm;
+    background: #fff;
+    color: #17150f;
+  }
+}

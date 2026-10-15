@@ -23,6 +23,9 @@ export type ProfileDto = {
   timezone: string | null;
   locale: string;
   units: Units;
+  /** Interaction sounds: on/off and the volume in percent. */
+  soundsEnabled: boolean;
+  soundVolume: number;
   onboardingCompleted: boolean;
   preferencesReviewed: boolean;
   /** The basketball coaching profile (empty until onboarding is answered). */
@@ -46,6 +49,8 @@ async function loadProfile(userId: string): Promise<ProfileDto | null> {
     timezone: row.timezone,
     locale: row.locale,
     units: row.units,
+    soundsEnabled: row.soundsEnabled,
+    soundVolume: row.soundVolume,
     onboardingCompleted: row.onboardingCompletedAt !== null,
     preferencesReviewed: row.preferencesReviewedAt !== null,
     coaching: {

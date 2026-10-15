@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { getTranslations } from "next-intl/server";
 import { AppearancePicker } from "@/components/features/account/appearance-picker";
 import { PreferencesForm } from "@/components/features/account/preferences-form";
+import { SoundsForm } from "@/components/features/account/sounds-form";
 import { Card, CardBody, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { parseTheme, THEME_COOKIE } from "@/lib/theme";
 import { requireViewer } from "@/modules/identity";
@@ -32,6 +33,18 @@ export default async function PreferencesSettingsPage() {
           <CardDescription>{t("unitsDescription")}</CardDescription>
         </CardHeader>
         <PreferencesForm units={profile.units} />
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>{t("soundsTitle")}</CardTitle>
+          <CardDescription>{t("soundsDescription")}</CardDescription>
+        </CardHeader>
+        <SoundsForm
+          units={profile.units}
+          enabled={profile.soundsEnabled}
+          volume={profile.soundVolume}
+        />
       </Card>
     </>
   );

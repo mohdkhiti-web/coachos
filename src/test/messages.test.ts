@@ -12,6 +12,17 @@ import {
   TEMPLATE_CATEGORIES,
   TEMPLATE_VISIBILITIES,
 } from "../db/enums";
+import {
+  CONE_VARIANTS,
+  DEFEND_KINDS,
+  DIAGRAM_COLORS,
+  EQUIPMENT,
+  EQUIPMENT_KINDS,
+  PASS_KINDS,
+  SCREEN_KINDS,
+} from "../engines/diagram";
+import { TOOLS, TOOL_CATEGORIES } from "../components/features/diagram-workspace/tools";
+import { BASKETBALL_DIAGRAM_TEMPLATES } from "../sports/basketball/diagram-templates";
 
 /**
  * i18n guard: every STATIC translation key used in the source must exist in messages/en.json.
@@ -94,12 +105,32 @@ describe("messages/en.json", () => {
       ["drills.detail.resourceKind", ["video", "article"]],
       ["drills.form.rules", ["fixed", "per_player", "per_pair"]],
       ["drills.form.sourceKinds", ["original", "adapted", "external"]],
-      ["diagram.builder.actionTypes", ["pass", "cut", "move", "dribble", "screen", "shot"]],
-      ["diagram.builder.kinds", ["offense", "defense", "coach", "ball", "cone", "marker"]],
-      ["diagram.builder.add", ["offense", "defense", "coach", "ball", "cone", "marker"]],
-      ["diagram.builder.annotationTypes", ["text", "zone_rect", "zone_circle"]],
-      ["diagram.builder.markerKinds", ["start", "end", "spot"]],
-      ["diagram.builder.courts", ["half", "full"]],
+      [
+        "diagramWorkspace.kinds",
+        ["offense", "defense", "coach", "ball", "cone", "marker", "equipment"],
+      ],
+      [
+        "diagramWorkspace.objects",
+        ["pass", "cut", "move", "dribble", "sprint", "defend", "screen", "shot"],
+      ],
+      ["diagramWorkspace.notes", ["text", "zone_rect", "zone_circle", "mark", "freehand"]],
+      ["diagramWorkspace.colors", ["default", ...DIAGRAM_COLORS]],
+      ["diagramWorkspace.variants", CONE_VARIANTS],
+      ["diagramWorkspace.equipment", EQUIPMENT_KINDS],
+      ["diagramWorkspace.actionKinds.pass", PASS_KINDS],
+      ["diagramWorkspace.actionKinds.screen", SCREEN_KINDS],
+      ["diagramWorkspace.actionKinds.defend", DEFEND_KINDS],
+      [
+        "diagramWorkspace.hint",
+        ["select", "path", "pass", "shot", "screen", "text", "mark", "zone", "circle", "freehand"],
+      ],
+      ["diagramWorkspace.tools", TOOLS.map((tool) => tool.id)],
+      ["diagramWorkspace.categories", ["all", ...TOOL_CATEGORIES]],
+      ["diagramWorkspace.templates", BASKETBALL_DIAGRAM_TEMPLATES.map((tpl) => tpl.key)],
+      [
+        "diagramWorkspace.inventory.names",
+        ["ball", "cone", ...new Set(Object.values(EQUIPMENT).map((s) => s.counts))],
+      ],
       ["workspace.tabs", ["overview", "drills"]],
       ["nav", ["dashboard", "sessions", "templates", "drills", "settings"]],
       ["onboarding.flow.q1.options", COACHING_EXPERIENCES],

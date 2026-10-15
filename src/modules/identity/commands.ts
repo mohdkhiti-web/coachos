@@ -132,13 +132,18 @@ export async function updateProfile(
   });
 }
 
-export async function updatePreferences(actor: Actor, input: { units: Units }): Promise<void> {
+export async function updatePreferences(
+  actor: Actor,
+  input: { units: Units; soundsEnabled?: boolean; soundVolume?: number },
+): Promise<void> {
   assertCanUpdateOwnProfile(actor);
   await tenantTx(actor, async (tx) => {
     await tx
       .update(profiles)
       .set({
         units: input.units,
+        ...(input.soundsEnabled === undefined ? {} : { soundsEnabled: input.soundsEnabled }),
+        ...(input.soundVolume === undefined ? {} : { soundVolume: input.soundVolume }),
         preferencesReviewedAt: sql`coalesce(${profiles.preferencesReviewedAt}, now())`,
         updatedAt: new Date(),
         version: sql`${profiles.version} + 1`,
@@ -146,7 +151,11 @@ export async function updatePreferences(actor: Actor, input: { units: Units }): 
       .where(eq(profiles.userId, actor.userId));
     await recordAuditInTx(tx, actor, {
       action: "account.preferences_updated",
-      metadata: { units: input.units },
+      metadata: {
+        units: input.units,
+        ...(input.soundsEnabled === undefined ? {} : { soundsEnabled: input.soundsEnabled }),
+        ...(input.soundVolume === undefined ? {} : { soundVolume: input.soundVolume }),
+      },
     });
   });
 }

@@ -7,6 +7,7 @@ import {
   COACHING_EXPERIENCES,
   COACHING_STYLES,
   PROFESSIONS,
+  SOUND_VOLUMES,
   UNITS,
 } from "@/db/enums";
 
@@ -139,7 +140,19 @@ export const skipOnboardingSchema = z.object({
   name: z.string().trim().max(80, { error: "too_long" }).optional(),
 });
 
-export const preferencesSchema = z.object({ units: unitsSchema });
+/** A form field that may be left out entirely (an older form, a test): empty means "not provided". */
+const optionalField = <T extends z.ZodType>(schema: T) =>
+  z.preprocess((v) => (v === "" || v === null ? undefined : v), schema.optional());
+
+export const preferencesSchema = z.object({
+  units: unitsSchema,
+  soundsEnabled: optionalField(z.enum(["on", "off"]).transform((v) => v === "on")),
+  soundVolume: optionalField(
+    z.coerce
+      .number()
+      .refine((n) => (SOUND_VOLUMES as readonly number[]).includes(n), { error: "range_invalid" }),
+  ),
+});
 
 export const workspaceSchema = z.object({
   workspaceName: z.string().trim().min(1, { error: "required" }).max(80, { error: "too_long" }),

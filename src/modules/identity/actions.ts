@@ -127,7 +127,11 @@ export async function updatePreferencesAction(
   formData: FormData,
 ): Promise<FormState> {
   const { actor } = await requireViewer();
-  const raw = { units: str(formData, "units") };
+  const raw = {
+    units: str(formData, "units"),
+    soundsEnabled: str(formData, "soundsEnabled"),
+    soundVolume: str(formData, "soundVolume"),
+  };
   const parsed = preferencesSchema.safeParse(raw);
   if (!parsed.success)
     return fail("VALIDATION", { fields: fieldErrors(parsed.error), values: raw });

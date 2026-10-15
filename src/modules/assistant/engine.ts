@@ -31,7 +31,7 @@ import { runTool, toolSpecs, type ToolContext } from "./tools";
  */
 
 /** Bump when the system prompt or the tool contract changes (recorded in logs, so a behaviour change can be traced). */
-export const PROMPT_VERSION = "2026-09-26.1";
+export const PROMPT_VERSION = "2026-09-27.1";
 
 const MAX_ROUNDS = 6;
 const MAX_TOOLS_PER_ROUND = 6;

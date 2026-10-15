@@ -127,7 +127,7 @@ const SOURCE = {
   ],
 } as const;
 
-const ACTIONS = ["pass", "cut", "move", "dribble", "screen", "shot"] as const;
+const ACTIONS = ["pass", "cut", "move", "dribble", "screen", "shot", "sprint", "defend"] as const;
 
 export const FIBA_HALF_COURT: CourtPack = {
   id: "basketball.fiba.half",
@@ -148,6 +148,38 @@ export const FIBA_HALF_COURT: CourtPack = {
       stroke: "line",
     },
     ...endMarkings(),
+  ],
+  actions: ACTIONS,
+  source: SOURCE,
+};
+
+/**
+ * The half court around the FAR basket: the full court's other end, on its own. It uses the same anchor names as the near
+ * half ("top_key", "left_wing"…), placed at the far end, so a drill drawn with names reads the same at either basket.
+ */
+const FAR_HALF_ANCHORS: Record<string, Pt> = Object.fromEntries(
+  Object.entries(NEAR_ANCHORS).map(([k, p]) => [k, { x: f(-p.x), y: f(FAR_BASKET_Y - p.y) }]),
+);
+
+export const FIBA_HALF_COURT_FAR: CourtPack = {
+  id: "basketball.fiba.half_far",
+  label: "Half basketball court, far basket (FIBA-style)",
+  bounds: { minX: -HALF_WIDTH, maxX: HALF_WIDTH, minY: HALF_LINE, maxY: HALF_LINE * 2 - BASELINE },
+  margin: 0.9,
+  tolerance: 0.6,
+  anchors: FAR_HALF_ANCHORS,
+  primaryTarget: { x: 0, y: f(FAR_BASKET_Y) },
+  primitives: [
+    {
+      d: `M ${-HALF_WIDTH} ${HALF_LINE} H ${HALF_WIDTH} V ${f(HALF_LINE * 2 - BASELINE)} H ${-HALF_WIDTH} Z`,
+      stroke: "line",
+    },
+    // centre-circle half toward the far basket
+    {
+      d: `M ${-CIRCLE_R} ${HALF_LINE} A ${CIRCLE_R} ${CIRCLE_R} 0 0 0 ${CIRCLE_R} ${HALF_LINE}`,
+      stroke: "line",
+    },
+    ...endMarkings(`translate(0 ${f(FAR_BASKET_Y)}) scale(1 -1)`),
   ],
   actions: ACTIONS,
   source: SOURCE,

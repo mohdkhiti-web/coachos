@@ -1,4 +1,4 @@
-import { check, integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { boolean, check, integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 import {
   COACH_AGE_GROUPS,
@@ -7,7 +7,9 @@ import {
   COACH_PRIORITIES,
   COACHING_EXPERIENCES,
   COACHING_STYLES,
+  DEFAULT_SOUND_VOLUME,
   PROFESSIONS,
+  SOUND_VOLUMES,
   UNITS,
 } from "../enums";
 import { user } from "./auth";
@@ -33,6 +35,9 @@ export const profiles = pgTable(
     timezone: text("timezone"),
     locale: text("locale").notNull().default("en"),
     units: text("units", { enum: UNITS }).notNull().default("metric"),
+    /** Interaction sounds (Settings → Preferences → Sounds): on/off and a volume in percent. On by default, at a subtle level. */
+    soundsEnabled: boolean("sounds_enabled").notNull().default(true),
+    soundVolume: integer("sound_volume").notNull().default(DEFAULT_SOUND_VOLUME),
     onboardingCompletedAt: timestamp("onboarding_completed_at", { withTimezone: true }),
     /** Set the first time the user saves Preferences — drives a real dashboard checklist item. */
     preferencesReviewedAt: timestamp("preferences_reviewed_at", { withTimezone: true }),
@@ -70,6 +75,10 @@ export const profiles = pgTable(
       sql`${t.profession} IS NULL OR ${t.profession} IN ('coach','pe_teacher','both')`,
     ),
     check("profiles_units_chk", sql`${t.units} IN ('metric','imperial')`),
+    check(
+      "profiles_sound_volume_chk",
+      sql`${t.soundVolume} IN (${sql.raw(SOUND_VOLUMES.join(","))})`,
+    ),
     check(
       "profiles_coaching_experience_chk",
       sql`${t.coachingExperience} IS NULL OR ${t.coachingExperience} IN (${sql.raw(list(COACHING_EXPERIENCES))})`,
