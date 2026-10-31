@@ -70,6 +70,10 @@ describe("can(): role × action matrix (own resources)", () => {
     "logo:read": MEMBERSHIP_ROLES,
     "logo:create": AUTHORS,
     "logo:delete": AUTHORS,
+    "roster:read": MEMBERSHIP_ROLES,
+    "roster:create": AUTHORS,
+    "roster:update": AUTHORS,
+    "roster:delete": AUTHORS,
   };
 
   for (const action of GENERIC) {

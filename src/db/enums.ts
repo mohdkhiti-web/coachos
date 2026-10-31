@@ -115,6 +115,10 @@ export type TemplateStatus = (typeof TEMPLATE_STATUSES)[number];
 export const TEMPLATE_VISIBILITIES = ["private", "organization"] as const;
 export type TemplateVisibility = (typeof TEMPLATE_VISIBILITIES)[number];
 
+/** active ⇄ archived; deleting is separate (`deleted_at`), exactly as for sessions and templates. */
+export const ROSTER_STATUSES = ["active", "archived"] as const;
+export type RosterStatus = (typeof ROSTER_STATUSES)[number];
+
 /** What a stored media asset is for. Only logos exist today. */
 export const MEDIA_KINDS = ["logo"] as const;
 export type MediaKind = (typeof MEDIA_KINDS)[number];

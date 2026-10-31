@@ -53,6 +53,8 @@ export const TENANT_TABLES = [
   "assistant_conversations",
   "assistant_messages",
   "assistant_usage",
+  "teams",
+  "players",
 ] as const;
 
 /** Drizzle's own bookkeeping table. */

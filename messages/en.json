@@ -24,7 +24,8 @@
     "sessions": "Sessions",
     "templates": "Templates",
     "assistant": "AI Coach",
-    "drills": "Drills"
+    "drills": "Drills",
+    "roster": "Roster"
   },
   "theme": {
     "toggle": "Theme: {mode}. Click to change.",
@@ -251,7 +252,7 @@
     },
     "signUp": {
       "title": "Start coaching",
-      "subtitle": "Create your account, then build your basketball coaching profile in about a minute.",
+      "subtitle": "Create your account, then build your coaching profile in about a minute.",
       "name": "Full name",
       "email": "Email",
       "password": "Password",
@@ -327,7 +328,7 @@
     "timezoneHint": "Used for greetings, schedules and reminders.",
     "submit": "Go to my dashboard",
     "flow": {
-      "title": "Let's build your basketball coaching profile.",
+      "title": "Let's build your coaching profile.",
       "intro": "Six quick questions so CoachOS fits the way you coach.",
       "progress": "{step} / 06",
       "progressLabel": "Question {step} of 6",
@@ -520,7 +521,6 @@
         "title": "Your CoachOS is ready.",
         "subtitle": "Here is the coaching profile we'll build around.",
         "enter": "Enter CoachOS",
-        "sport": "Basketball",
         "players": "{count, plural, one {# player} other {# players}}",
         "coach": "{experience}",
         "ages": "Age groups"
@@ -536,7 +536,12 @@
     "preferences": "Preferences",
     "signOut": "Sign out",
     "signingOut": "Signing out…",
-    "mainNav": "Main navigation"
+    "mainNav": "Main navigation",
+    "sportSwitcher": "Switch to {sport}",
+    "sports": {
+      "basketball": "Basketball",
+      "wheelchair_basketball": "Wheelchair Basketball"
+    }
   },
   "roles": {
     "owner": "Owner",
@@ -628,7 +633,7 @@
         },
         "drills": {
           "title": "Explore Drills",
-          "body": "Browse the basketball drill library."
+          "body": "Browse the {sport} drill library."
         },
         "templates": {
           "title": "Session Templates",
@@ -654,7 +659,7 @@
         "title": "Recent sessions",
         "viewAll": "All sessions",
         "emptyTitle": "No practice planned yet.",
-        "emptyBody": "Build your first basketball session and it will appear here.",
+        "emptyBody": "Build your first {sport} session and it will appear here.",
         "emptyAction": "Build a Session",
         "minutes": "{count} min",
         "unscheduled": "Not scheduled"
@@ -721,7 +726,15 @@
       "template_restored": "Template restored",
       "template_duplicated": "Template duplicated",
       "account_onboarding_skipped": "Onboarding skipped",
-      "account_coaching_profile_updated": "Coaching profile updated"
+      "account_coaching_profile_updated": "Coaching profile updated",
+      "team_created": "Team created",
+      "team_updated": "Team updated",
+      "team_deleted": "Team deleted",
+      "team_restored": "Team restored",
+      "player_created": "Player added",
+      "player_updated": "Player updated",
+      "player_deleted": "Player removed",
+      "player_restored": "Player restored"
     }
   },
   "settings": {
@@ -836,7 +849,7 @@
     "toSports": "Back to the drill library"
   },
   "workspace": {
-    "eyebrow": "Basketball coaching",
+    "eyebrow": "{sport} coaching",
     "tabsLabel": "Workspace sections",
     "tabs": {
       "overview": "Overview",
@@ -1247,7 +1260,7 @@
     },
     "empty": {
       "noneTitle": "No practice planned yet.",
-      "noneBody": "Build your first basketball session and it will show up here.",
+      "noneBody": "Build your first {sport} session and it will show up here.",
       "filteredTitle": "No sessions match",
       "filteredBody": "Try clearing a filter or searching for something else.",
       "archivedTitle": "Nothing archived",
@@ -1838,6 +1851,55 @@
     "generate": "Generate a session",
     "createWithAi": "Create with AI",
     "createWithAiPrompt": "Create a 60 minute shooting session for 12 players U14 beginner"
+  },
+  "roster": {
+    "eyebrow": "Teams & players",
+    "title": "Roster",
+    "subtitle": "Keep a simple record of your teams and the players on them. Nothing here changes what a drill or AI suggestion shows you — it's reference information only.",
+    "newTeam": "New team",
+    "addPlayer": "Add player",
+    "players": "Players",
+    "noPlayers": "No players on this team yet.",
+    "playerCount": "{count, plural, one {# player} other {# players}}",
+    "archived": "Archived",
+    "classification": "Classification",
+    "edit": "Edit",
+    "remove": "Remove",
+    "cancel": "Cancel",
+    "close": "Close",
+    "backToRoster": "← Back to roster",
+    "backToTeam": "← Back to {name}",
+    "teamSaved": "Team saved",
+    "playerSaved": "Player saved",
+    "teamDeleted": "Team removed",
+    "playerRemoved": "Player removed",
+    "removeFailed": "That didn't work — try again.",
+    "removeTeamTitle": "Remove this team?",
+    "removeTeamBody": "{name} will be removed from your roster. Its players are not deleted — they become unassigned and you can add them to another team any time.",
+    "removePlayerTitle": "Remove this player?",
+    "removePlayerBody": "{name} will be removed from your roster.",
+    "empty": {
+      "title": "No teams yet",
+      "body": "Add a team to start keeping a simple roster of players for a sport."
+    },
+    "unassigned": {
+      "title": "Unassigned players",
+      "description": "Players not currently on a team.",
+      "empty": "No unassigned players."
+    },
+    "form": {
+      "title": "Details",
+      "sport": "Sport",
+      "name": "Name",
+      "notes": "Notes",
+      "notesHint": "Optional. Visible to everyone in your workspace.",
+      "team": "Team",
+      "unassigned": "Unassigned",
+      "dateOfBirth": "Date of birth",
+      "classification": "Classification (optional)",
+      "classificationHint": "A wheelchair-basketball functional classification point value, 1.0–4.5, if you track it. Reference only — never used to limit or suggest drills.",
+      "classificationNone": "Not recorded"
+    }
   },
   "templates": {
     "title": "Templates",

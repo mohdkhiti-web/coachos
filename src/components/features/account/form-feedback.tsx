@@ -8,7 +8,7 @@ import type { ErrorCode, FormState } from "@/lib/result";
 import { FormError } from "@/components/features/auth/shared";
 
 /** Shows a success toast each time a submitted action returns ok. */
-export function useSuccessToast(state: FormState, message: string) {
+export function useSuccessToast<T = void>(state: FormState<T>, message: string) {
   const { toast } = useToast();
   React.useEffect(() => {
     if (state?.ok) toast(message, "success");
@@ -18,7 +18,7 @@ export function useSuccessToast(state: FormState, message: string) {
 }
 
 /** Field-level errors (already-translated) from a failed action result. */
-export function useActionFieldErrors(state: FormState) {
+export function useActionFieldErrors<T = void>(state: FormState<T>) {
   const tv = useTranslations("validation");
   return (field: string): string[] | undefined => {
     if (!state || state.ok) return undefined;
@@ -27,7 +27,7 @@ export function useActionFieldErrors(state: FormState) {
 }
 
 /** Form-level error banner for non-validation failures (FORBIDDEN, INTERNAL, …). */
-export function ActionError({ state }: { state: FormState }) {
+export function ActionError<T = void>({ state }: { state: FormState<T> }) {
   const te = useTranslations("errors");
   if (!state || state.ok || state.error.code === "VALIDATION") return null;
   const code: ErrorCode = state.error.code;
@@ -44,6 +44,6 @@ export function SaveButton({ pending }: { pending: boolean }) {
   );
 }
 
-export function failedValue(state: FormState, field: string): string | undefined {
+export function failedValue<T = void>(state: FormState<T>, field: string): string | undefined {
   return state && !state.ok ? state.values?.[field] : undefined;
 }

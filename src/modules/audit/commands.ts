@@ -49,7 +49,15 @@ export type AuditAction =
   | "template.status_changed"
   | "template.deleted"
   | "template.restored"
-  | "template.duplicated";
+  | "template.duplicated"
+  | "team.created"
+  | "team.updated"
+  | "team.deleted"
+  | "team.restored"
+  | "player.created"
+  | "player.updated"
+  | "player.deleted"
+  | "player.restored";
 
 export type AuditContext = { userId?: string | null; organizationId?: string | null };
 

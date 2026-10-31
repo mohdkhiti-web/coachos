@@ -88,6 +88,13 @@ export const POLICY = {
   "logo:read": { roles: ALL, scope: "media" },
   "logo:create": { roles: AUTHORS, scope: "org" },
   "logo:delete": { roles: AUTHORS, scope: "media" },
+
+  // Roster (teams, players): shared workspace data, not personal — every member reads; any author (not only the
+  // creator) may manage it, since a roster belongs to the team, not to whoever happened to add a row.
+  "roster:read": { roles: ALL, scope: "org" },
+  "roster:create": { roles: AUTHORS, scope: "org" },
+  "roster:update": { roles: AUTHORS, scope: "org" },
+  "roster:delete": { roles: AUTHORS, scope: "org" },
 } as const satisfies Record<string, Rule>;
 
 export type Action = keyof typeof POLICY;
