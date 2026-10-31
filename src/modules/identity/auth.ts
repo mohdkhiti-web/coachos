@@ -54,9 +54,13 @@ export const auth = betterAuth({
   appName: "CoachOS",
   baseURL: env.APP_URL,
   secret: env.BETTER_AUTH_SECRET,
-  // Apple posts its result back from its own origin (response_mode=form_post), so that origin must be trusted — but only
-  // when Apple sign-in is actually configured.
-  trustedOrigins: [env.APP_URL, ...(env.oauth.apple ? ["https://appleid.apple.com"] : [])],
+  // APP_URL plus whatever TRUSTED_ORIGINS adds (see src/lib/env.ts — e.g. an old domain kept trusted during a move to
+  // a new one). Apple also posts its result back from its own origin (response_mode=form_post), so that origin must
+  // be trusted too, but only when Apple sign-in is actually configured.
+  trustedOrigins: [
+    ...env.trustedOrigins,
+    ...(env.oauth.apple ? ["https://appleid.apple.com"] : []),
+  ],
   database: drizzleAdapter(db, { provider: "pg", schema: AUTH_SCHEMA }),
 
   advanced: {

@@ -140,4 +140,46 @@ describe("parseEnv", () => {
     });
     expect(env.oauth.google).toBe(false);
   });
+
+  it("strips a trailing slash from APP_URL, so it can never mismatch a real Origin header", () => {
+    const env = parseEnv({ ...base, NODE_ENV: "development", APP_URL: "https://coachos.example/" });
+    expect(env.APP_URL).toBe("https://coachos.example");
+    expect(env.trustedOrigins).toEqual(["https://coachos.example"]);
+  });
+
+  it("trusts APP_URL plus every origin in TRUSTED_ORIGINS, deduplicated and slash-stripped", () => {
+    const env = parseEnv({
+      ...base,
+      NODE_ENV: "development",
+      APP_URL: "https://new-domain.example",
+      TRUSTED_ORIGINS:
+        "https://old-domain.example/, https://new-domain.example https://preview.example/",
+    });
+    expect(env.trustedOrigins).toEqual([
+      "https://new-domain.example",
+      "https://old-domain.example",
+      "https://preview.example",
+    ]);
+  });
+
+  it("has no extra trusted origins by default", () => {
+    const env = parseEnv({ ...base, NODE_ENV: "development" });
+    expect(env.trustedOrigins).toEqual(["http://localhost:3000"]);
+  });
+
+  it("refuses a TRUSTED_ORIGINS entry that isn't a bare http(s) origin", () => {
+    expect(() =>
+      parseEnv({ ...base, NODE_ENV: "development", TRUSTED_ORIGINS: "not-a-url" }),
+    ).toThrow(/TRUSTED_ORIGINS/);
+    expect(() =>
+      parseEnv({
+        ...base,
+        NODE_ENV: "development",
+        TRUSTED_ORIGINS: "https://example.com/some/path",
+      }),
+    ).toThrow(/TRUSTED_ORIGINS/);
+    expect(() =>
+      parseEnv({ ...base, NODE_ENV: "development", TRUSTED_ORIGINS: "ftp://example.com" }),
+    ).toThrow(/TRUSTED_ORIGINS/);
+  });
 });

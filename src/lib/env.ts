@@ -17,10 +17,26 @@ type RawEnv = Record<string, string | undefined>;
 const emptyToUndefined = (raw: RawEnv) =>
   Object.fromEntries(Object.entries(raw).filter(([, v]) => v !== undefined && v !== ""));
 
+// An Origin header never has a trailing slash; a URL typed into a dashboard sometimes does. Strip it so a trailing
+// slash on APP_URL (or an entry in TRUSTED_ORIGINS) can never cause a real origin to be rejected as untrusted.
+const stripTrailingSlash = (u: string) => u.replace(/\/+$/, "");
+
+/** TRUSTED_ORIGINS split on commas/whitespace into bare origins, trailing slashes stripped, blanks dropped. */
+const splitOrigins = (raw: string | undefined): string[] =>
+  (raw ?? "")
+    .split(/[,\s]+/)
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map(stripTrailingSlash);
+
 const schema = z
   .object({
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
     APP_URL: z.url().default("http://localhost:3000"),
+    // Extra origins Better Auth should trust besides APP_URL — e.g. an old domain kept alive during a migration to a
+    // new one, or a *.vercel.app alias used alongside a custom domain. APP_URL is always trusted on its own; this is
+    // only for additional ones. Comma- or whitespace-separated, each a bare origin (scheme + host, no path).
+    TRUSTED_ORIGINS: z.string().optional(),
 
     DATABASE_URL: z.string().min(1, "DATABASE_URL is required (runtime role: coachos_app)"),
     DB_POOL_MAX: z.coerce.number().int().min(1).max(50).default(10),
@@ -125,22 +141,43 @@ const schema = z
           "Production requires MAIL_TRANSPORT=resend (set ALLOW_DEV_MAIL=true only for local prod-build testing)",
       });
     }
+    for (const origin of splitOrigins(v.TRUSTED_ORIGINS)) {
+      let ok = false;
+      try {
+        const u = new URL(origin);
+        ok = (u.protocol === "http:" || u.protocol === "https:") && u.origin === origin;
+      } catch {
+        ok = false;
+      }
+      if (!ok)
+        ctx.addIssue({
+          code: "custom",
+          path: ["TRUSTED_ORIGINS"],
+          message: `"${origin}" is not a bare http(s) origin (scheme + host, e.g. https://old-domain.example, no path)`,
+        });
+    }
   })
-  .transform((v) => ({
-    ...v,
-    MAIL_TRANSPORT:
-      v.MAIL_TRANSPORT ?? (v.RESEND_API_KEY ? ("resend" as const) : ("console" as const)),
-    isProduction: v.NODE_ENV === "production",
-    /** Which social providers are fully configured (no secrets here — safe to hand to a page). */
-    oauth: {
-      google: v.GOOGLE_CLIENT_ID !== undefined && v.GOOGLE_CLIENT_SECRET !== undefined,
-      apple:
-        v.APPLE_CLIENT_ID !== undefined &&
-        v.APPLE_TEAM_ID !== undefined &&
-        v.APPLE_KEY_ID !== undefined &&
-        v.APPLE_PRIVATE_KEY !== undefined,
-    },
-  }));
+  .transform((v) => {
+    const appUrl = stripTrailingSlash(v.APP_URL);
+    return {
+      ...v,
+      APP_URL: appUrl,
+      MAIL_TRANSPORT:
+        v.MAIL_TRANSPORT ?? (v.RESEND_API_KEY ? ("resend" as const) : ("console" as const)),
+      isProduction: v.NODE_ENV === "production",
+      /** Origins Better Auth accepts a request from: APP_URL plus whatever TRUSTED_ORIGINS adds, deduplicated. */
+      trustedOrigins: [...new Set([appUrl, ...splitOrigins(v.TRUSTED_ORIGINS)])],
+      /** Which social providers are fully configured (no secrets here — safe to hand to a page). */
+      oauth: {
+        google: v.GOOGLE_CLIENT_ID !== undefined && v.GOOGLE_CLIENT_SECRET !== undefined,
+        apple:
+          v.APPLE_CLIENT_ID !== undefined &&
+          v.APPLE_TEAM_ID !== undefined &&
+          v.APPLE_KEY_ID !== undefined &&
+          v.APPLE_PRIVATE_KEY !== undefined,
+      },
+    };
+  });
 
 export type Env = z.infer<typeof schema>;
 
