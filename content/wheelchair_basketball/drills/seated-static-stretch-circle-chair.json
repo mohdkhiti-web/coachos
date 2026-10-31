@@ -1,0 +1,100 @@
+{
+  "seedKey": "seated-static-stretch-circle-chair",
+  "title": "Seated Static Stretch Circle",
+  "description": "The team forms a circle and works through a sequence of seated static stretches together, bringing the heart rate down and closing practice calmly.",
+  "category": "cooldown",
+  "primarySkill": "recovery_mobility",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["cool_down"],
+  "ageMin": 6,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "any_space",
+  "tags": ["cooldown", "stretching"],
+  "equipment": [
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Lower the heart rate gradually and stretch the shoulders, chest and forearms used during practice.",
+    "setup": "The whole group forms a loose circle in their chairs with enough space to stretch freely.",
+    "organization": "",
+    "instructions": [
+      "Hold a cross-body shoulder stretch on each arm for 20 seconds.",
+      "Hold a chest-opening stretch, arms back and shoulders down, for 20 seconds.",
+      "Hold a forearm and wrist stretch on each arm for 20 seconds.",
+      "Finish with a few deep, slow breaths as a group before practice ends."
+    ],
+    "coachingPoints": [
+      "Hold each stretch still, without bouncing.",
+      "Breathe slowly and deeply throughout.",
+      "Keep the mood calm — this is meant to bring the energy down, not up."
+    ],
+    "commonMistakes": [
+      "Bouncing in and out of the stretch instead of holding it still.",
+      "Rushing through stretches to finish practice faster.",
+      "Rushing through it to finish practice sooner."
+    ],
+    "safety": "Never stretch to the point of pain — a gentle pull is enough.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

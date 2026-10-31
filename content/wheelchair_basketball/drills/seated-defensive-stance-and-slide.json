@@ -1,0 +1,132 @@
+{
+  "seedKey": "seated-defensive-stance-and-slide",
+  "title": "Seated Defensive Stance and Slide",
+  "description": "Players hold a square, balanced defensive position and slide laterally to stay in front of a ball handler, the seated equivalent of a defensive stance and slide.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": [],
+  "subSkills": ["seated_stance"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["defense", "stance"],
+  "equipment": [
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Hold a square, balanced position and slide laterally to stay in front of the ball.",
+    "setup": "Players start at the free-throw line, chair square to an imaginary ball handler.",
+    "organization": "",
+    "instructions": [
+      "Push laterally to the left elbow using even strokes on both wheels.",
+      "Push laterally back to the right elbow, staying square the whole way.",
+      "Repeat the pattern three times without turning the chair to face either direction.",
+      "Finish with five seconds of quick, short alternating pushes in place."
+    ],
+    "coachingPoints": [
+      "Keep the chair square to the imaginary ball handler throughout.",
+      "Use short, quick pushes rather than long strokes for lateral movement.",
+      "Stay balanced — don't lean the trunk toward the direction of travel."
+    ],
+    "commonMistakes": [
+      "Turning the chair to face the direction of travel instead of staying square.",
+      "Leaning so far that balance is lost.",
+      "Reaching with the hands instead of using chair position."
+    ],
+    "safety": "Make sure the floor is clear of obstacles along the slide path.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 0]
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "d1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow"
+              },
+              {
+                "anchor": "right_elbow"
+              },
+              {
+                "anchor": "free_throw_line"
+              }
+            ]
+          },
+          {
+            "id": "x2",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "left_elbow"
+              },
+              {
+                "anchor": "right_elbow"
+              },
+              {
+                "anchor": "free_throw_line"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

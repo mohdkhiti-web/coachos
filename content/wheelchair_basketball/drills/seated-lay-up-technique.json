@@ -1,0 +1,90 @@
+{
+  "seedKey": "seated-lay-up-technique",
+  "title": "Seated Lay-Up Technique",
+  "description": "Players practise the seated lay-up — timing the approach, the release point and the backboard touch from a moving chair — the fundamental finish at the rim.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": [],
+  "subSkills": ["lay_up_technique"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["finishing", "lay-up"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Time the approach and release so the ball finishes softly off the backboard.",
+    "setup": "Players push in from the wing toward the basket with a ball.",
+    "organization": "",
+    "instructions": [
+      "Push in at a controlled angle toward the backboard.",
+      "Gather the ball with both hands as the chair nears the basket.",
+      "Release softly off the backboard at the top of the push, not rushed.",
+      "Collect the rebound and reset for the next rep from the other side."
+    ],
+    "coachingPoints": [
+      "Aim for a soft touch off the backboard, not a hard shot.",
+      "Time the release to the peak of the approach, not too early or late.",
+      "Keep the ball high and protected through the whole approach."
+    ],
+    "commonMistakes": [
+      "Releasing too early, well before reaching the basket.",
+      "Bringing the ball down low where it's easy to knock away.",
+      "Rushing the last few strokes instead of gathering under control."
+    ],
+    "safety": "Only one player finishing at the rim at a time.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

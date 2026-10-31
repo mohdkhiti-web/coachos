@@ -1,0 +1,100 @@
+{
+  "seedKey": "two-on-two-king-of-the-court-chair",
+  "title": "Two-on-Two King of the Court",
+  "description": "Winning pairs stay on the court to face a new challenger pair, a simple format that keeps every game competitive and meaningful.",
+  "category": "competition",
+  "primarySkill": "decision_making",
+  "secondarySkills": ["competitiveness"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "2v2",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 6,
+  "playersMax": 16,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["competition", "king of the court"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Compete meaningfully in every game since winners keep playing and losers must earn their way back on.",
+    "setup": "Pairs of two line up to challenge the current pair on the court, playing to a short target score.",
+    "organization": "",
+    "instructions": [
+      "The current pair on the court plays the next challenging pair to a target score, such as five points.",
+      "The winning pair stays on the court; the losing pair rotates to the back of the line.",
+      "Play continues continuously with no long breaks between games.",
+      "Track which pair wins the most consecutive games."
+    ],
+    "coachingPoints": [
+      "Compete at full effort every single game, since winning keeps you on the court.",
+      "Communicate with your partner between possessions.",
+      "Play smart, efficient basketball to win quickly and keep your spot."
+    ],
+    "commonMistakes": [
+      "Playing carelessly in games that feel less important.",
+      "Arguing over calls instead of playing through and resetting quickly.",
+      "Losing composure after a bad result instead of resetting for the next one."
+    ],
+    "safety": "Keep contact controlled; call fouls to maintain a fair and safe pace.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

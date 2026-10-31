@@ -1,0 +1,141 @@
+{
+  "seedKey": "zigzag-cone-maneuvering",
+  "title": "Zig-Zag Cone Maneuvering",
+  "description": "Players weave the chair through a wide zig-zag of cones with no ball, isolating sharp direction changes and tight-turn control at increasing speed.",
+  "category": "chair_mobility",
+  "primarySkill": "chair_maneuvering",
+  "secondarySkills": [],
+  "subSkills": ["tight_turns"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "full_court",
+  "tags": ["chair mobility", "cones"],
+  "equipment": [
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 5
+    }
+  ],
+  "content": {
+    "objective": "Change direction sharply at each cone while keeping the chair under full control.",
+    "setup": "Five cones are set in a wide zig-zag down the length of the court.",
+    "organization": "",
+    "instructions": [
+      "Push toward the first cone at a controlled pace.",
+      "Turn sharply around it and push toward the next cone on the opposite side.",
+      "Continue the full zig-zag pattern to the end.",
+      "Push back to the start at an easy pace and repeat, building speed each round."
+    ],
+    "coachingPoints": [
+      "Lean slightly into each turn for stability.",
+      "Push harder with the outside hand through the turn to carry speed.",
+      "Keep the eyes up and looking ahead, not down at the wheels."
+    ],
+    "commonMistakes": [
+      "Slowing to a near-stop at every cone instead of carrying momentum.",
+      "Clipping the cone instead of turning tightly around it.",
+      "Letting the trunk do the work instead of the arms and shoulders."
+    ],
+    "safety": "Make sure the cone line is clear of other groups before starting.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "c4",
+            "type": "cone",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "c5",
+            "type": "cone",
+            "at": {
+              "anchor": "left_half_court"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "m1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow"
+              },
+              {
+                "anchor": "left_wing"
+              },
+              {
+                "anchor": "right_slot"
+              },
+              {
+                "anchor": "left_half_court"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

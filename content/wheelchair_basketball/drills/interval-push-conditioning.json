@@ -1,0 +1,108 @@
+{
+  "seedKey": "interval-push-conditioning",
+  "title": "Interval Push Conditioning",
+  "description": "Players push the width of the court repeatedly within a time limit, then rest for a fixed interval, a simple and measurable conditioning staple.",
+  "category": "conditioning",
+  "primarySkill": "conditioning",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["conditioning", "intervals"],
+  "equipment": [
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build conditioning through simple, measurable push intervals with controlled rest.",
+    "setup": "Players line up on the sideline with a timer set for repeated intervals.",
+    "organization": "",
+    "instructions": [
+      "On the whistle, push width-to-width across the court, counting each crossing.",
+      "Complete as many crossings as possible within a set time (for example, 45 seconds).",
+      "Rest for a fixed interval, then repeat for the planned number of rounds.",
+      "Track the crossing count each round to measure fatigue across the set."
+    ],
+    "coachingPoints": [
+      "Keep a consistent pace rather than sprinting hard early and fading late.",
+      "Touch each sideline clearly before turning back.",
+      "Use the rest interval fully to recover, not to chat or wander."
+    ],
+    "commonMistakes": [
+      "Cutting the turn short instead of touching the sideline.",
+      "Pacing conservatively instead of pushing at genuine effort.",
+      "Letting technique break down once fatigue sets in."
+    ],
+    "safety": "Build up to this conditioning level gradually; stop if a player shows signs of overheating or distress.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "mk1",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "mk2",
+            "type": "marker",
+            "kind": "end",
+            "at": {
+              "anchor": "right_corner"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "s1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_corner"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

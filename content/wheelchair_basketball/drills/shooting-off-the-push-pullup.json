@@ -1,0 +1,160 @@
+{
+  "seedKey": "shooting-off-the-push-pullup",
+  "title": "Shooting Off the Push Pull-Up",
+  "description": "Shooters push toward the basket for a few strokes, then pull up into a seated jump shot, the push-to-shot transition a catch-and-shoot drill doesn't train.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": [],
+  "subSkills": ["shooting_off_the_push"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "half_court",
+  "tags": ["shooting", "off the push"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Stop smoothly off a live push and shoot with the same mechanics as a catch-and-shoot.",
+    "setup": "Shooter starts at the three-point line with a ball, facing the basket.",
+    "organization": "",
+    "instructions": [
+      "Push hard toward the basket for two or three strokes.",
+      "Brake to a controlled stop without drifting forward.",
+      "Rise into a balanced shot immediately off the stop.",
+      "Collect the rebound and move to the next spot around the arc."
+    ],
+    "coachingPoints": [
+      "Brake fully before releasing — a still-moving chair throws the shot off.",
+      "Gather the ball before the chair even stops, not after.",
+      "Keep the same release point used in catch-and-shoot work."
+    ],
+    "commonMistakes": [
+      "Shooting while the chair is still drifting forward.",
+      "Taking too many pushes and losing rhythm before shooting.",
+      "Dropping the follow-through early instead of holding it."
+    ],
+    "safety": "Make sure the approach lane is clear before pushing at speed.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "anchor": "top_key"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "variant": "flat"
+          }
+        ],
+        "actions": [
+          {
+            "id": "sh1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "top_key"
+              }
+            ]
+          },
+          {
+            "id": "sh3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m4",
+            "step": 3,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_wing"
+              }
+            ]
+          },
+          {
+            "id": "sh5",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

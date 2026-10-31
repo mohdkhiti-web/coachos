@@ -1,0 +1,110 @@
+{
+  "seedKey": "post-double-team-rotation-chair",
+  "title": "Post Double-Team Rotation",
+  "description": "A team practises sending a quick double-team at a strong post player near the rim, then rotating to cover the open perimeter player the double leaves behind.",
+  "category": "team_defense",
+  "primarySkill": "help_defense",
+  "secondarySkills": ["communication"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 5,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["defense", "post double"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Double-team near the rim safely and rotate the rest of the defense to cover the gap.",
+    "setup": "A post player receives the ball on the block against a single defender, with a second defender ready to help.",
+    "organization": "",
+    "instructions": [
+      "The post defender holds position as the help defender pushes in for a quick double.",
+      "The double-team must be brief and active, not a long-held trap.",
+      "The remaining defenders rotate one spot to cover the help defender's original matchup.",
+      "If the post kicks out, the defense recovers to close out on the new ball handler."
+    ],
+    "coachingPoints": [
+      "Keep the double-team short — a long one gives up an easy pass.",
+      "Rotate immediately once the double is sent, not after the pass.",
+      "Communicate who is rotating to cover which open player."
+    ],
+    "commonMistakes": [
+      "Leaving the double on too long and conceding an easy kick-out shot.",
+      "No one rotating to cover the gap the double-team created.",
+      "Talking too little for teammates to react in time."
+    ],
+    "safety": "Double-team with active hands only, no grabbing or pushing the post player's chair.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "right_block"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

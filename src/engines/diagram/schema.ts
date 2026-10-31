@@ -100,6 +100,8 @@ const playerEntity = z.strictObject({
   side: z.enum(["offense", "defense"]),
   label: label.optional(),
   at: positionSchema,
+  /** "chair" draws a wheelchair marker (a wheeled ring around the body shape). Absent = a standing player, as before. */
+  mobility: z.enum(["stand", "chair"]).optional(),
   ...look,
 });
 const coachEntity = z.strictObject({

@@ -1,0 +1,90 @@
+{
+  "seedKey": "one-hand-push-dribble-coordination",
+  "title": "One-Hand Push-Dribble Coordination",
+  "description": "Players dribble the ball with one hand while the other hand works the push rim, the exact coordination needed to advance the ball and the chair together.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": [],
+  "subSkills": ["push_and_dribble"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "full_court",
+  "tags": ["ball handling", "coordination"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Dribble with one hand while the other pushes the chair forward, without losing rhythm in either.",
+    "setup": "Players start at half court with a ball and open space ahead.",
+    "organization": "",
+    "instructions": [
+      "Dribble with the right hand while pushing the right wheel with short strokes of the same hand, alternating with left-hand pushes to keep the chair straight.",
+      "Push a few strokes, dribble a few touches, finding a rhythm that keeps both going.",
+      "Push the length of the court maintaining the dribble the whole way.",
+      "Switch dribbling hands halfway and repeat back the other way."
+    ],
+    "coachingPoints": [
+      "Accept a slower pace at first — rhythm matters more than speed early on.",
+      "Keep the dribble low so it doesn't interfere with the push stroke.",
+      "Use the off-hand for extra push strokes when the dribbling hand is busy."
+    ],
+    "commonMistakes": [
+      "Stopping the dribble completely every time a push stroke is needed.",
+      "Losing the straight line because only one side is pushing.",
+      "Letting the off-hand drop instead of staying ready to protect the ball."
+    ],
+    "safety": "Make sure the full-court lane is clear before pushing at speed.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_half_court"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

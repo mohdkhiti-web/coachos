@@ -143,12 +143,12 @@ describe("objectives catalog (reference data)", () => {
   it("Shooting maps to Shooting form and Free throws; Transition to the Transition category", async () => {
     const shooting = await rows(
       coach,
-      sql`select s.key from objective_skills os join objectives o on o.id = os.objective_id join skills s on s.id = os.skill_id where o.key = 'shooting' order by s.key`,
+      sql`select s.key from objective_skills os join objectives o on o.id = os.objective_id join skills s on s.id = os.skill_id where o.key = 'shooting' and o.sport_id = ${BB} order by s.key`,
     );
     expect(shooting.map((r) => r.key)).toEqual(["free_throws", "shooting_form"]);
     const transition = await rows(
       coach,
-      sql`select c.key from objective_categories oc join objectives o on o.id = oc.objective_id join categories c on c.id = oc.category_id where o.key = 'transition'`,
+      sql`select c.key from objective_categories oc join objectives o on o.id = oc.objective_id join categories c on c.id = oc.category_id where o.key = 'transition' and o.sport_id = ${BB}`,
     );
     expect(transition.map((r) => r.key)).toEqual(["transition"]);
   });

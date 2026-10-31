@@ -8,7 +8,7 @@ import type { CourtPack, CourtRef, DiagramInput } from "@/engines/diagram";
  * Adding a sport = a new folder implementing this interface + seeding its taxonomy + flipping
  * `sports.status` to "active". No `if (sport === "basketball")` may exist outside src/sports/basketball.
  */
-export const SPORT_KEYS = ["basketball"] as const;
+export const SPORT_KEYS = ["basketball", "wheelchair_basketball"] as const;
 export type SportKey = (typeof SPORT_KEYS)[number];
 
 /**

@@ -1,0 +1,90 @@
+{
+  "seedKey": "both-sides-finishing-reps",
+  "title": "Both-Sides Finishing Reps",
+  "description": "Players finish every rep from both the left and right side of the rim in the same set, building the symmetry a defender can't predict which side will be weaker.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["finishing", "both sides"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build an equally reliable finish from both sides of the rim rather than favouring one.",
+    "setup": "Players alternate approaching the rim from the left block and the right block.",
+    "organization": "",
+    "instructions": [
+      "Approach from the left block and finish off the backboard.",
+      "Reset and approach from the right block, finishing the same way.",
+      "Continue alternating sides for ten total finishes.",
+      "Note which side feels weaker and spend the final minute finishing from there only."
+    ],
+    "coachingPoints": [
+      "Use the same soft touch regardless of which side it's coming from.",
+      "Keep the approach angle consistent on both sides.",
+      "Be honest about which side actually needs more work."
+    ],
+    "commonMistakes": [
+      "Only practising the comfortable side out of habit.",
+      "Rushing the weaker side instead of slowing down to build it properly.",
+      "Finishing off the wrong angle for the direction of approach."
+    ],
+    "safety": "Only one player finishing at a time to avoid a collision under the rim.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

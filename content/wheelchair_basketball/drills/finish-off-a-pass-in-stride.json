@@ -1,0 +1,120 @@
+{
+  "seedKey": "finish-off-a-pass-in-stride",
+  "title": "Finish Off a Pass in Stride",
+  "description": "A passer leads a moving teammate toward the rim, and the finisher gathers the pass without breaking stride, the exact skill a fast break depends on.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["passing"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["finishing", "in stride"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Gather a pass in full stride and finish without breaking the push rhythm.",
+    "setup": "A passer stands at the wing; the finisher pushes toward the rim from the top of the key.",
+    "organization": "",
+    "instructions": [
+      "The finisher pushes toward the rim at a steady pace.",
+      "The passer delivers the ball ahead of the finisher's path, not directly at the current position.",
+      "The finisher gathers with both hands without slowing the push.",
+      "Finish softly off the backboard and collect the rebound."
+    ],
+    "coachingPoints": [
+      "Lead the pass to where the finisher is going.",
+      "Keep pushing through the catch rather than pausing to receive it.",
+      "Protect the ball immediately on the catch."
+    ],
+    "commonMistakes": [
+      "Passing directly at the finisher's current spot instead of ahead of it.",
+      "Slowing down awkwardly to gather an imprecise pass.",
+      "Rushing the last few strokes instead of gathering under control."
+    ],
+    "safety": "Keep the finishing lane clear of any other group's drill.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_block"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

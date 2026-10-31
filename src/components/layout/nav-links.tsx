@@ -22,7 +22,7 @@ export function NavLinks({ variant, assistant }: { variant: "rail" | "bar"; assi
       }
     >
       {items.map(({ href, labelKey, icon: Icon }) => {
-        // a section stays lit on every page inside it (the Drills section is /sports/basketball and everything below it)
+        // a section stays lit on every page inside it (the Drills section is /sports and every sport workspace below it)
         const active = pathname === href || pathname.startsWith(`${href}/`);
         return (
           <li key={href}>

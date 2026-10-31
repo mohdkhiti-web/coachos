@@ -1,0 +1,80 @@
+{
+  "seedKey": "two-ball-control-challenge",
+  "title": "Two-Ball Control Challenge",
+  "description": "Players dribble two balls at once from a stationary position, a demanding coordination challenge that builds control well beyond what one ball requires.",
+  "category": "ball_handling",
+  "primarySkill": "ball_control",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["ball handling", "two-ball"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Control two balls bouncing at once without either one escaping.",
+    "setup": "Each player has two balls and sits with open space on both sides.",
+    "organization": "",
+    "instructions": [
+      "Dribble both balls at the same height and the same time for 15 touches.",
+      "Alternate the balls so one is up while the other is down for 15 touches.",
+      "Dribble both low and close to the chair for 15 seconds.",
+      "Rest and repeat for two more sets."
+    ],
+    "coachingPoints": [
+      "Keep both balls at a consistent, controlled height.",
+      "Stay relaxed through the shoulders rather than tensing up.",
+      "Reset calmly if a ball escapes instead of rushing to grab it."
+    ],
+    "commonMistakes": [
+      "Letting one ball drift higher or further out than the other.",
+      "Chasing an escaped ball into another player's space.",
+      "Letting the off-hand drop instead of staying ready to protect the ball."
+    ],
+    "safety": "Leave enough room around each player for a ball that gets away.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

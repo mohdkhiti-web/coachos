@@ -1,5 +1,6 @@
 [
   { "key": "basketball", "name": "Basketball", "status": "active" },
+  { "key": "wheelchair_basketball", "name": "Wheelchair Basketball", "status": "active" },
   { "key": "football", "name": "Football", "status": "planned" },
   { "key": "volleyball", "name": "Volleyball", "status": "planned" },
   { "key": "handball", "name": "Handball", "status": "planned" },

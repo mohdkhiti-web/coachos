@@ -1,0 +1,154 @@
+{
+  "seedKey": "four-v-four-must-touch-post-chair",
+  "title": "4v4 Must-Touch-Post Game",
+  "description": "A half-court 4v4 where the ball must touch a player near the rim before any shot attempt, forcing teams to play inside-out.",
+  "category": "small_sided_games",
+  "primarySkill": "decision_making",
+  "secondarySkills": ["passing", "spacing"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "4v4",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 8,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 9,
+  "space": "half_court",
+  "tags": ["small-sided", "4v4", "constraint game"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 8
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Learn to play inside-out by requiring the ball to touch a player near the rim before shooting.",
+    "setup": "Four offensive players face four defenders in a half-court game with a constraint rule in place.",
+    "organization": "",
+    "instructions": [
+      "Play live 4v4 to a target score.",
+      "Before any shot attempt, the ball must touch a player positioned near the block.",
+      "If the rule is violated, the possession ends in a turnover regardless of the shot's result.",
+      "Rotate teams after every five possessions."
+    ],
+    "coachingPoints": [
+      "Look to touch the post early in the possession, not as an afterthought.",
+      "The post player should look to score or kick back out quickly, not hold the ball.",
+      "Keep good spacing so the post pass is actually available."
+    ],
+    "commonMistakes": [
+      "Forcing a quick shot and forgetting the touch constraint entirely.",
+      "The post player holding the ball too long once they receive it.",
+      "Playing at a walk-through pace instead of real game speed."
+    ],
+    "safety": "Keep contact controlled; call fouls to maintain a fair pace.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_corner"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "p3",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4"
+          },
+          {
+            "id": "p4",
+            "step": 4,
+            "type": "pass",
+            "from": "o4",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

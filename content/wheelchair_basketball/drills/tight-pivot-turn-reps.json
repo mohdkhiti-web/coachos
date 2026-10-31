@@ -1,0 +1,80 @@
+{
+  "seedKey": "tight-pivot-turn-reps",
+  "title": "Tight Pivot-Turn Reps",
+  "description": "Players practise spinning the chair around its own axis in a tight pivot, the turn used constantly to change facing direction without losing court position.",
+  "category": "chair_mobility",
+  "primarySkill": "chair_maneuvering",
+  "secondarySkills": [],
+  "subSkills": ["pivot_turns"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["chair mobility", "pivot"],
+  "equipment": [
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Spin the chair tightly around its own axis without travelling away from the spot.",
+    "setup": "Players space out with a marked spot each, enough room to spin freely.",
+    "organization": "",
+    "instructions": [
+      "Push one wheel forward and pull the other back at the same time to spin on the spot.",
+      "Complete a full 360-degree turn and stop facing the original direction.",
+      "Repeat the turn in the opposite direction.",
+      "Add a quick pivot-and-stop as if reacting to a pass arriving from behind."
+    ],
+    "coachingPoints": [
+      "Keep the turn centred on the spot — drifting away from it means the turn isn't tight enough.",
+      "Use even, opposite pressure on both wheels for a clean spin.",
+      "Stay upright and balanced through the whole turn."
+    ],
+    "commonMistakes": [
+      "Letting the chair drift several feet away from the starting spot.",
+      "Using only one wheel, which turns a pivot into a wide loop.",
+      "Losing balance and needing a hand on the floor to recover."
+    ],
+    "safety": "Make sure neighbouring players have enough space to spin without colliding.",
+    "progressions": ["Add a ball in the lap and keep it secure through the spin."],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

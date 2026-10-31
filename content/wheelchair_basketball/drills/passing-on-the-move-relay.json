@@ -1,0 +1,120 @@
+{
+  "seedKey": "passing-on-the-move-relay",
+  "title": "Passing on the Move Relay",
+  "description": "Partners push down the court together while passing back and forth, the demanding coordination of catching, passing and pushing all at once.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": [],
+  "subSkills": ["passing_on_the_move"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "full_court",
+  "tags": ["passing", "moving"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Pass accurately while both players keep pushing, without either chair slowing down.",
+    "setup": "Partners push side by side down the full length of the court, one ball between them.",
+    "organization": "",
+    "instructions": [
+      "Push together at a steady pace, staying level with each other.",
+      "Pass back and forth every few pushes, never holding the ball for long.",
+      "Lead every pass slightly ahead of the receiver's push direction.",
+      "Finish with a shot at the far basket once close enough."
+    ],
+    "coachingPoints": [
+      "Lead the pass to where the partner is going, not where they are.",
+      "Keep passing on the move rather than stopping to pass.",
+      "Stay level with the partner so the passing lane stays open."
+    ],
+    "commonMistakes": [
+      "Slowing down or stopping just to make the pass easier.",
+      "Passing behind the partner's current position instead of ahead of it.",
+      "Catching with the chair still turning instead of squared up first."
+    ],
+    "safety": "Make sure the full-court lane is clear before pushing at pace.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_half_court"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "far_top_key"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

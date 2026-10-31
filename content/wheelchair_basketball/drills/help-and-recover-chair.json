@@ -1,0 +1,120 @@
+{
+  "seedKey": "help-and-recover-chair",
+  "title": "Help-and-Recover One Pass Away",
+  "description": "A defender one pass away practises pushing into the gap to help, then recovering to their own matchup the instant the ball is passed back out.",
+  "category": "team_defense",
+  "primarySkill": "help_defense",
+  "secondarySkills": [],
+  "subSkills": ["defensive_rotations"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "half_court",
+  "tags": ["defense", "help and recover"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Help in the gap when the ball drives, then recover to the original matchup before the pass arrives.",
+    "setup": "Two offensive players and their defenders set up with one driving lane open.",
+    "organization": "",
+    "instructions": [
+      "The ball handler drives toward the gap near the help defender.",
+      "The help defender pushes into the gap to discourage the drive without fully committing.",
+      "As soon as the ball is passed back out, the helper pushes hard to recover to their own matchup.",
+      "Rotate roles so every defender practises both jobs."
+    ],
+    "coachingPoints": [
+      "Help with a controlled push, not a lunge, keeping balance to recover.",
+      "Time the recovery to arrive before the pass, not after.",
+      "Communicate 'I'm helping' so teammates can adjust."
+    ],
+    "commonMistakes": [
+      "Fully committing to the help and losing the recovery.",
+      "Recovering too late, leaving the shooter wide open.",
+      "Talking too little for teammates to react in time."
+    ],
+    "safety": "Keep the driving lane realistic but not full-speed contact.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "seedKey": "chair-box-out-and-hold",
+  "title": "Chair Box-Out and Hold",
+  "description": "Partners practise the box-out technique from the chair on a shot, using chair position and wingspan to hold the spot rather than leg-based boxing out.",
+  "category": "rebounding",
+  "primarySkill": "boxing_out",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["rebounding", "box out"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Find and hold a legal box-out position from the chair long enough for a shot to come down.",
+    "setup": "Partners sit near the block, one boxing out the other on a simulated shot.",
+    "organization": "",
+    "instructions": [
+      "On the shot, the defender turns the chair to get between the opponent and the basket.",
+      "Hold the position with the chair square and arms up for a two-second count.",
+      "Release and go get the rebound once the two seconds are up.",
+      "Switch roles after five reps each."
+    ],
+    "coachingPoints": [
+      "Use chair position and wingspan, not pushing, to hold the spot.",
+      "Keep the chair square to the basket while holding position.",
+      "Go get the ball once boxed out — don't stop at just holding the spot."
+    ],
+    "commonMistakes": [
+      "Releasing the box-out position too early to chase the ball.",
+      "Using the arms to push the opponent's chair instead of positioning legally.",
+      "Watching the shot instead of immediately finding a body to box out."
+    ],
+    "safety": "Hold position with the body and chair only, no grabbing or pushing an opponent's chair.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "left_block",
+              "offset": [0, -0.9]
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block",
+              "offset": [0, -0.5]
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "at": {
+              "anchor": "basket"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "x1",
+            "step": 1,
+            "type": "defend",
+            "kind": "help",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [0, -0.6]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

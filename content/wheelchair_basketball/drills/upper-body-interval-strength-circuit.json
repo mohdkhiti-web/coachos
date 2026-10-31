@@ -1,0 +1,100 @@
+{
+  "seedKey": "upper-body-interval-strength-circuit",
+  "title": "Upper-Body Interval Strength Circuit",
+  "description": "A short, timed circuit of chair-based upper-body exercises designed to build the pushing power and endurance wheelchair basketball specifically demands.",
+  "category": "conditioning",
+  "primarySkill": "upper_body_power",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 6,
+  "durationMax": 9,
+  "space": "any_space",
+  "tags": ["conditioning", "strength"],
+  "equipment": [
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build the specific pushing power and upper-body endurance wheelchair basketball demands.",
+    "setup": "Players space out with a stopwatch running the intervals; no equipment needed beyond the chair itself.",
+    "organization": "",
+    "instructions": [
+      "Perform 30 seconds of fast shadow-push arm cycles, then 15 seconds rest.",
+      "Perform 30 seconds of seated punches alternating arms, then 15 seconds rest.",
+      "Perform 30 seconds of trunk rotations holding a light medicine ball if available, then 15 seconds rest.",
+      "Repeat the full three-station circuit twice more."
+    ],
+    "coachingPoints": [
+      "Keep the movement quality high even as fatigue builds.",
+      "Use the full available range of motion on every rep.",
+      "Breathe steadily rather than holding the breath through each station."
+    ],
+    "commonMistakes": [
+      "Letting technique collapse for the sake of speed.",
+      "Skipping the short rest interval and risking poor form on the next station.",
+      "Pacing too conservatively instead of working at real effort."
+    ],
+    "safety": "Stop any station immediately that causes sharp pain in the shoulders or wrists.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

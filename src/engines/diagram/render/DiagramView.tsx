@@ -148,7 +148,47 @@ export function DiagramView({
         </>
       )}
 
-      <rect x={n(view.x)} y={n(view.y)} width={n(view.w)} height={n(view.h)} fill={p.surface} />
+      {p.wood ? (
+        <defs>
+          {/* A few irregular grain lines, repeated — a hardwood court on screen only; print/mono never see this. */}
+          <pattern
+            id={`${uid}-wood`}
+            width={2.2}
+            height={0.9}
+            patternUnits="userSpaceOnUse"
+            patternTransform="rotate(90)"
+          >
+            <rect width={2.2} height={0.9} fill={p.wood.base} />
+            <path
+              d="M0 0.2 Q0.6 0.1 1.1 0.25 T2.2 0.2"
+              stroke={p.wood.grain}
+              strokeWidth={0.02}
+              fill="none"
+              opacity={0.5}
+            />
+            <path
+              d="M0 0.6 Q0.5 0.72 1.2 0.58 T2.2 0.65"
+              stroke={p.wood.grain}
+              strokeWidth={0.03}
+              fill="none"
+              opacity={0.35}
+            />
+          </pattern>
+          {/* Soft ambient falloff toward the edges — a gym's court lighting, not a flat screenshot. */}
+          <radialGradient id={`${uid}-vignette`} cx="50%" cy="38%" r="75%">
+            <stop offset="55%" stopColor="black" stopOpacity={0} />
+            <stop offset="100%" stopColor="black" stopOpacity={0.22} />
+          </radialGradient>
+        </defs>
+      ) : null}
+
+      <rect
+        x={n(view.x)}
+        y={n(view.y)}
+        width={n(view.w)}
+        height={n(view.h)}
+        fill={p.wood ? `url(#${uid}-wood)` : p.surface}
+      />
 
       {/* zones sit under everything */}
       {resolved.annotations.map(({ annotation: a, a: pa, b: pb }, i) => {
@@ -205,6 +245,18 @@ export function DiagramView({
 
       {/* court markings: they never change while a drill is edited, so they are drawn once */}
       <CourtMarkings pack={pack} p={p} />
+
+      {/* ambient gym lighting: a soft falloff toward the edges, under everyone on the floor */}
+      {p.wood ? (
+        <rect
+          x={n(view.x)}
+          y={n(view.y)}
+          width={n(view.w)}
+          height={n(view.h)}
+          fill={`url(#${uid}-vignette)`}
+          pointerEvents="none"
+        />
+      ) : null}
 
       {/* equipment lies on the floor: under players and lines */}
       {entities
@@ -373,6 +425,21 @@ function Placed({
   );
 }
 
+/** A flat grounding shadow (no blur — cheap) under an object standing on a hardwood court. Screen theme only. */
+function Shadow({ at, r, p }: { at: Pt; r: number; p: Palette }) {
+  if (!p.wood) return null;
+  return (
+    <ellipse
+      cx={n(at.x)}
+      cy={n(at.y + r * 0.2)}
+      rx={r * 0.92}
+      ry={r * 0.4}
+      fill="black"
+      fillOpacity={0.2}
+    />
+  );
+}
+
 function EntityShape({ re, p, animated }: { re: ResolvedEntity; p: Palette; animated: boolean }) {
   const { entity: e, at } = re;
   const r = PLAYER_RADIUS;
@@ -386,6 +453,29 @@ function EntityShape({ re, p, animated }: { re: ResolvedEntity; p: Palette; anim
   const rotation = "rotation" in e ? e.rotation : undefined;
   switch (e.type) {
     case "player": {
+      // a wheelchair marker: two wheel rings flanking the body shape, tangent to it — reads as "chair" at a
+      // glance without relying on colour, and renders identically in print/mono since it only uses existing strokes
+      const wheels =
+        e.mobility === "chair" ? (
+          <>
+            <circle
+              cx={n(at.x - r * 1.3)}
+              cy={n(at.y)}
+              r={r * 0.3}
+              fill="none"
+              stroke={p.arrow}
+              strokeWidth={0.05}
+            />
+            <circle
+              cx={n(at.x + r * 1.3)}
+              cy={n(at.y)}
+              r={r * 0.3}
+              fill="none"
+              stroke={p.arrow}
+              strokeWidth={0.05}
+            />
+          </>
+        ) : null;
       const facing = rotation ? (
         <polygon
           points={pointsAttr([
@@ -399,6 +489,8 @@ function EntityShape({ re, p, animated }: { re: ResolvedEntity; p: Palette; anim
       ) : null;
       return e.side === "offense" ? (
         <Placed at={at} scale={scale} className={fadeIn}>
+          <Shadow at={at} r={r} p={p} />
+          {wheels}
           <circle
             className={move}
             cx={n(at.x)}
@@ -416,6 +508,8 @@ function EntityShape({ re, p, animated }: { re: ResolvedEntity; p: Palette; anim
       ) : (
         // defenders are squares: distinguishable from offence without relying on colour
         <Placed at={at} scale={scale} className={fadeIn}>
+          <Shadow at={at} r={r} p={p} />
+          {wheels}
           <rect
             className={move}
             x={n(at.x - r * 0.9)}
@@ -435,6 +529,7 @@ function EntityShape({ re, p, animated }: { re: ResolvedEntity; p: Palette; anim
     case "coach":
       return (
         <Placed at={at} scale={scale} className={fadeIn}>
+          <Shadow at={at} r={r} p={p} />
           <circle className={move} cx={n(at.x)} cy={n(at.y)} r={r} fill={named?.fill ?? p.coach} />
           <Label at={at} p={p} text={e.label ?? "C"} size={0.5} fill={named?.ink ?? p.coachInk} />
         </Placed>
@@ -444,6 +539,7 @@ function EntityShape({ re, p, animated }: { re: ResolvedEntity; p: Palette; anim
       // glide (a rare movement in practice — the ball normally travels as a pass/dribble action, not a move).
       return (
         <Placed at={at} scale={scale} className={fadeIn}>
+          <Shadow at={at} r={0.22} p={p} />
           <circle
             cx={n(at.x)}
             cy={n(at.y)}
@@ -507,9 +603,15 @@ function EntityShape({ re, p, animated }: { re: ResolvedEntity; p: Palette; anim
           />
         );
       if (!e.label && !rotation && (!scale || scale === 1) && !e.variant && !named)
-        return <g className={fadeIn}>{body}</g>;
+        return (
+          <g className={fadeIn}>
+            <Shadow at={at} r={0.28} p={p} />
+            {body}
+          </g>
+        );
       return (
         <Placed at={at} rotation={rotation} scale={scale} className={fadeIn}>
+          <Shadow at={at} r={0.28} p={p} />
           {body}
           {e.label ? (
             <Label
@@ -807,7 +909,10 @@ const CourtMarkings = memo(function CourtMarkings({ pack, p }: { pack: CourtPack
           key={i}
           d={c.d}
           transform={c.transform}
-          fill={c.fill === "surface" ? p.surface : "none"}
+          fill={
+            c.fill === "surface" ? p.surface : c.fill === "accent" && p.keyFill ? p.keyFill : "none"
+          }
+          fillOpacity={c.fill === "accent" && p.keyFill ? 0.16 : undefined}
           stroke={c.stroke === "faint" ? p.courtFaint : p.court}
           strokeWidth={STROKE.court}
           strokeDasharray={c.stroke === "dashed" ? DASH.dashed : undefined}

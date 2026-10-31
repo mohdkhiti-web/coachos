@@ -1,0 +1,100 @@
+{
+  "seedKey": "pre-practice-chair-check",
+  "title": "Pre-Practice Chair Check",
+  "description": "Before any movement, players check tyre pressure, camber, strapping and anti-tip wheels as a routine, building the habit that a safe session starts with a safe chair.",
+  "category": "warm_up",
+  "primarySkill": "transfers",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["warm_up"],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "any_space",
+  "tags": ["warm-up", "chair setup"],
+  "equipment": [
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build the habit of checking the chair itself before every session, not just the body.",
+    "setup": "Players sit in their chairs in a loose semicircle facing the coach.",
+    "organization": "",
+    "instructions": [
+      "Check both tyres are firm; a soft tyre slows every push and strains the shoulders more.",
+      "Check the strapping is snug across the lap and, if used, the chest, without restricting breathing.",
+      "Spin each wheel once to check it runs true with no rubbing on the frame.",
+      "Partner up and check each other's anti-tip wheels are set correctly for the session."
+    ],
+    "coachingPoints": [
+      "Make this routine automatic, not optional, every single session.",
+      "Teach players to check a teammate's chair too, not just their own.",
+      "Flag anything uncertain to the coach rather than guessing."
+    ],
+    "commonMistakes": [
+      "Skipping the check because the chair 'felt fine yesterday'.",
+      "Over-tightening the straps, which restricts movement and breathing.",
+      "Not noticing a slow leak until well into practice."
+    ],
+    "safety": "Never let a player push at speed in a chair with a known mechanical issue; swap chairs if needed.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

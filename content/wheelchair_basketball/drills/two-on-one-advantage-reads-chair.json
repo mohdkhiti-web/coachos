@@ -1,0 +1,145 @@
+{
+  "seedKey": "two-on-one-advantage-reads-chair",
+  "title": "Two-on-One Advantage Reads",
+  "description": "Two attackers push a break against a single retreating defender, learning to read whether to pass or finish based on the defender's chair position.",
+  "category": "transition",
+  "primarySkill": "decision_making",
+  "secondarySkills": ["passing"],
+  "subSkills": ["numbers_advantage"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "full_court",
+  "tags": ["transition", "2v1"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Read the single defender's chair position to decide whether to pass or attack the rim directly.",
+    "setup": "Two offensive players push against one retreating defender.",
+    "organization": "",
+    "instructions": [
+      "The ball handler attacks the middle with the second attacker spread wide.",
+      "The defender can only take away one option; the ball handler reads which.",
+      "Pass to the open side if the defender commits to the ball, or finish if the defender commits to the pass.",
+      "Push back to the baseline and run it back the other way."
+    ],
+    "coachingPoints": [
+      "Keep real width between the two attackers so the defender can't cover both.",
+      "Make the read early, not at the last possible second.",
+      "Finish strong once the advantage is actually there."
+    ],
+    "commonMistakes": [
+      "Both attackers pushing the same lane, erasing the advantage.",
+      "Forcing a pass when the lane to the rim was actually open.",
+      "Bunching into the same lane instead of spreading the floor."
+    ],
+    "safety": "Make sure the full-court lane is clear of other groups before pushing at speed.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_half_court"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_half_court"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "far_top_key"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "s1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "far_free_throw_line"
+              }
+            ]
+          },
+          {
+            "id": "s2",
+            "step": 1,
+            "type": "sprint",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "far_top_key",
+                "offset": [-1, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "sh3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

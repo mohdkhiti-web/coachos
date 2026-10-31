@@ -7,11 +7,12 @@ import { FIBA_DIMENSIONS, FIBA_FULL_COURT, FIBA_HALF_COURT } from "./court-fiba"
 describe("sport registry", () => {
   it("knows basketball, rejects everything else (the [sport] URL segment is validated against this)", () => {
     expect(isSportKey("basketball")).toBe(true);
+    expect(isSportKey("wheelchair_basketball")).toBe(true);
     expect(isSportKey("football")).toBe(false); // planned in the database, but no code module yet
     expect(isSportKey("__proto__")).toBe(false);
     expect(getSportModule("basketball")?.key).toBe("basketball");
     expect(getSportModule("football")).toBeUndefined();
-    expect(Object.keys(SPORT_MODULES)).toEqual(["basketball"]);
+    expect(Object.keys(SPORT_MODULES)).toEqual(["basketball", "wheelchair_basketball"]);
   });
 
   it("resolves court packs from a diagram's court reference", () => {

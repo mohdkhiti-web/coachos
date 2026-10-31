@@ -1,0 +1,120 @@
+{
+  "seedKey": "chair-screen-and-pop",
+  "title": "Chair Screen and Pop",
+  "description": "A screener sets a legal, stationary chair screen for a teammate, who reads the defense to decide between curling to the rim and popping out for a shot.",
+  "category": "team_offense",
+  "primarySkill": "screening",
+  "secondarySkills": ["cutting"],
+  "subSkills": ["setting_chair_screens"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "half_court",
+  "tags": ["team offense", "screening"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Set a solid, fully stationary chair screen, then read whether to curl or pop off it.",
+    "setup": "A screener sets up at the elbow; a cutter starts at the block.",
+    "organization": "",
+    "instructions": [
+      "The screener gets the chair fully stopped and set at the elbow before any contact.",
+      "The cutter pushes tight off the screen, brushing close to the screener's chair.",
+      "If the defender trails, the cutter curls directly to the rim.",
+      "If the defender goes under, the cutter pops out to the wing for a catch-and-shoot instead."
+    ],
+    "coachingPoints": [
+      "The screener must be fully stopped before contact — a moving screen is a foul.",
+      "The cutter should read the defender's path, not guess.",
+      "Change pushing rhythm off the screen to create real separation."
+    ],
+    "commonMistakes": [
+      "Screening while the chair is still moving.",
+      "Cutter drifting too far from the screen, giving the defender room to recover.",
+      "Crowding a teammate's space instead of keeping good spacing."
+    ],
+    "safety": "The screener holds a legal, fully stationary position — no moving into contact.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_block"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

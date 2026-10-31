@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { and, eq, sql } from "drizzle-orm";
-import { SEED_DRILLS } from "@/db/seed/drills";
+import { loadContent } from "@/db/seed/load";
 import { seedAll } from "@/db/seed/run";
 import {
   categories,
@@ -114,12 +114,18 @@ describe("catalog (reference data)", () => {
   });
 });
 
+// the platform library now spans every active sport (basketball + wheelchair basketball), not just
+// basketball's own SEED_DRILLS — sum every sport's seeded drills for the whole-library assertions below
+const TOTAL_SEED_DRILLS = Object.values(loadContent().bySport).reduce(
+  (n, s) => n + s.drills.length,
+  0,
+);
+
 describe("library seed", () => {
-  it("published 15–60 curated drills, all in the platform organization, public, with no human creator", async () => {
+  it("published curated drills, all in the platform organization, public, with no human creator", async () => {
     const lib = await db.select().from(drills).where(eq(drills.visibility, "public"));
-    expect(lib.length).toBe(SEED_DRILLS.length);
+    expect(lib.length).toBe(TOTAL_SEED_DRILLS);
     expect(lib.length).toBeGreaterThanOrEqual(15);
-    expect(lib.length).toBeLessThanOrEqual(60);
     const [platform] = await db
       .select()
       .from(organization)
@@ -191,7 +197,7 @@ describe("library seed", () => {
     const before = await db.select({ n: sql<number>`count(*)::int` }).from(drills);
     const eqBefore = await db.select({ n: sql<number>`count(*)::int` }).from(drillEquipment);
     const summary = await seedAll(process.env.DATABASE_OWNER_URL!);
-    expect(summary.drills).toBe(SEED_DRILLS.length);
+    expect(summary.drills).toBe(TOTAL_SEED_DRILLS);
     expect(summary.archived).toBe(0);
     const after = await db.select({ n: sql<number>`count(*)::int` }).from(drills);
     const eqAfter = await db.select({ n: sql<number>`count(*)::int` }).from(drillEquipment);

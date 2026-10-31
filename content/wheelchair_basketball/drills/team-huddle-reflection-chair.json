@@ -1,0 +1,80 @@
+{
+  "seedKey": "team-huddle-reflection-chair",
+  "title": "Team Huddle Reflection",
+  "description": "The team gathers in a close huddle at the very end of practice for a brief, calm reflection on effort and teamwork before heading home.",
+  "category": "cooldown",
+  "primarySkill": "communication",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["cool_down"],
+  "ageMin": 6,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 20,
+  "durationMin": 2,
+  "durationMax": 4,
+  "space": "any_space",
+  "tags": ["cooldown", "team culture"],
+  "equipment": [
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Close practice with a brief, calm moment that reinforces effort and team connection.",
+    "setup": "The whole team gathers in a close circle or huddle.",
+    "organization": "",
+    "instructions": [
+      "Ask one or two players to share something positive they saw from a teammate today.",
+      "The coach shares one specific thing the team did well.",
+      "End with a shared team cheer, phrase, or quiet moment, whatever fits the group's culture.",
+      "Dismiss the team calmly to finish practice."
+    ],
+    "coachingPoints": [
+      "Keep it brief — a minute or two is plenty.",
+      "Make sure the moment feels genuine, not forced.",
+      "Rotate who gets to share so it doesn't become repetitive."
+    ],
+    "commonMistakes": [
+      "Letting the huddle drag on too long after a tiring practice.",
+      "Only ever praising the same one or two players.",
+      "Skipping the breathing and stretching once the group gets talkative."
+    ],
+    "safety": "No specific physical safety concerns; keep the tone positive and inclusive.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

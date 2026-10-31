@@ -1,0 +1,126 @@
+{
+  "seedKey": "overhead-pass-over-a-defender",
+  "title": "Overhead Pass Over a Defender",
+  "description": "Players practise the two-hand overhead pass needed to deliver the ball over a defender's reach, a pass used constantly given how much of the court is contested at chair height.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": [],
+  "subSkills": ["skip_passes"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["passing", "overhead"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 4
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Deliver an accurate overhead pass that clears a defender's reach without floating too high.",
+    "setup": "Two passers face each other with a defender between them, hands up but not jumping.",
+    "organization": "",
+    "instructions": [
+      "Bring the ball overhead with both hands before releasing.",
+      "Step and release in one motion, aiming slightly ahead of the receiver.",
+      "The receiver catches ready to shoot or pass immediately.",
+      "Rotate the defender every six passes."
+    ],
+    "coachingPoints": [
+      "Release from behind the head, not from the chest.",
+      "Keep the pass firm — a lazy, floaty pass gets picked off.",
+      "Catch with the chair already squared to the next target."
+    ],
+    "commonMistakes": [
+      "Winding up too long before releasing, telegraphing the pass.",
+      "Throwing it flat instead of with enough height to clear the defender.",
+      "Telegraphing the pass with the eyes before releasing it."
+    ],
+    "safety": "The defender's hands stay up only — no reaching into the passer's lap.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [-1.2, 0.6]
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "x1",
+            "step": 1,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [0.9, 0]
+              }
+            ]
+          },
+          {
+            "id": "sh2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

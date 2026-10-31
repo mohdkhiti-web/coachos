@@ -1,0 +1,80 @@
+{
+  "seedKey": "stationary-ball-control-series",
+  "title": "Stationary Ball Control Series",
+  "description": "A seated, stationary ball-handling series — pound dribbles, figure-eights around the chair frame and quick taps — building hand control before any pushing is added.",
+  "category": "ball_handling",
+  "primarySkill": "ball_control",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["ball handling", "control"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build pure hand control with the ball before pushing is added to the picture.",
+    "setup": "Each player sits in their chair with a ball and open space around them.",
+    "organization": "",
+    "instructions": [
+      "Pound-dribble the ball low beside the chair for 20 touches with the right hand.",
+      "Switch to the left hand for 20 touches.",
+      "Figure-eight the ball around and under the frame between the wheels for 20 seconds.",
+      "Finish with 15 seconds of quick fingertip taps on top of the ball."
+    ],
+    "coachingPoints": [
+      "Use the fingertips, not the palm, for every touch.",
+      "Keep the ball low and close to the chair, not out in front.",
+      "Build speed only once control is solid."
+    ],
+    "commonMistakes": [
+      "Letting the dribble drift too far from the chair to control safely.",
+      "Using the palm instead of the fingertips, which flattens the bounce.",
+      "Watching the ball instead of keeping the head up."
+    ],
+    "safety": "Leave space between players so a loose ball doesn't roll into a neighbour.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

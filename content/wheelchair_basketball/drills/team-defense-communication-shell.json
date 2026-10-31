@@ -1,0 +1,154 @@
+{
+  "seedKey": "team-defense-communication-shell",
+  "title": "Team Defense Communication Shell",
+  "description": "A shell-defense drill focused purely on verbal communication — every help call and rotation must be spoken out loud, building the habits that make team defense work.",
+  "category": "team_defense",
+  "primarySkill": "communication",
+  "secondarySkills": ["help_defense"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "4v4",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 8,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 9,
+  "space": "half_court",
+  "tags": ["defense", "communication", "shell"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 8
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build the verbal habits that make team defense work — every action called out loud.",
+    "setup": "Four offensive players pass around the perimeter against four live defenders in a shell shape.",
+    "organization": "",
+    "instructions": [
+      "Every defender calls 'ball' when guarding the ball and 'help' or 'deny' otherwise.",
+      "On a drive, the helping defender calls 'help left' or 'help right' loudly.",
+      "On a closeout, the closing defender calls 'shot' or 'ball' as they arrive.",
+      "A defense that stays silent for a possession restarts that possession."
+    ],
+    "coachingPoints": [
+      "Communicate before moving, not after.",
+      "Keep calls short and specific, not vague shouting.",
+      "Make eye contact with teammates during rotations when possible."
+    ],
+    "commonMistakes": [
+      "Rotating correctly but silently, which breaks down under real pressure.",
+      "Calling out too late for the information to actually help anyone.",
+      "Ball-watching instead of tracking both the ball and the assignment."
+    ],
+    "safety": "Keep ball movement controlled enough that communication, not chaos, is the focus.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_corner"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "p3",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4"
+          },
+          {
+            "id": "p4",
+            "step": 4,
+            "type": "pass",
+            "from": "o4",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

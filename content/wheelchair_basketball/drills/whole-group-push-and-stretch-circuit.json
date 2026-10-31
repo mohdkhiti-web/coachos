@@ -1,0 +1,119 @@
+{
+  "seedKey": "whole-group-push-and-stretch-circuit",
+  "title": "Whole-Group Push-and-Stretch Circuit",
+  "description": "The team alternates short pushing bursts with a stretch station, raising the heart rate gradually while keeping the warm-up genuinely dynamic rather than static.",
+  "category": "warm_up",
+  "primarySkill": "chair_propulsion",
+  "secondarySkills": ["recovery_mobility"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["warm_up"],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 20,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "full_court",
+  "tags": ["warm-up", "circuit"],
+  "equipment": [
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Raise the heart rate gradually through alternating push bursts and stretch stations.",
+    "setup": "Players line up on the baseline with the court open ahead.",
+    "organization": "",
+    "instructions": [
+      "Push easily to the free-throw line, then stop for a 10-second shoulder stretch.",
+      "Push on to half court, then stop for a 10-second trunk rotation stretch.",
+      "Push back to the baseline at a slightly higher effort than the way out.",
+      "Repeat the full circuit twice, raising the pace each round."
+    ],
+    "coachingPoints": [
+      "Keep the stretches brief and dynamic, not long static holds.",
+      "Build the pace gradually across the two rounds.",
+      "Keep the group moving together rather than spreading out."
+    ],
+    "commonMistakes": [
+      "Pushing at full speed on the very first round.",
+      "Turning the stretch stops into a long break instead of a brief reset.",
+      "Skipping the easier reps and going straight to full intensity."
+    ],
+    "safety": "Check the court is clear of other equipment before the group starts moving.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "mk1",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "under_basket"
+            }
+          },
+          {
+            "id": "mk2",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "mk3",
+            "type": "marker",
+            "kind": "end",
+            "at": {
+              "anchor": "half_court_center"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "s1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line"
+              },
+              {
+                "anchor": "half_court_center"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

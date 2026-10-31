@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import { getTranslations } from "next-intl/server";
 import { BasketballCourtBackground } from "@/components/basketball";
 import { CoachingProfileCard } from "@/components/features/dashboard/coaching-profile-card";
@@ -9,9 +10,11 @@ import { RecommendedDrills } from "@/components/features/dashboard/recommended-d
 import { Snapshot } from "@/components/features/dashboard/snapshot";
 import { DASHBOARD_WIDGETS } from "@/components/features/dashboard/widgets";
 import { cn } from "@/lib/cn";
+import { parseSportPref, SPORT_COOKIE } from "@/lib/sport-pref";
 import { assistantAvailability } from "@/modules/assistant";
 import { getCommandCenter } from "@/modules/dashboard";
 import { requireViewer } from "@/modules/identity";
+import { getSport } from "@/modules/sports";
 import { PRIMARY_SPORT_KEY } from "@/sports/registry";
 
 export const metadata: Metadata = { title: "Command Center" };
@@ -29,11 +32,15 @@ function greetingPart(timezone: string | null): "morning" | "afternoon" | "eveni
 
 export default async function DashboardPage() {
   const viewer = await requireViewer(); // real, database-backed check (redirects if signed out / not onboarded)
-  const [t, tcc, center] = await Promise.all([
+  const cookieStore = await cookies();
+  const sportKey = parseSportPref(cookieStore.get(SPORT_COOKIE)?.value) ?? PRIMARY_SPORT_KEY;
+  const [t, tcc, center, sport] = await Promise.all([
     getTranslations("dashboard"),
     getTranslations("dashboard.cc"),
-    getCommandCenter(viewer, PRIMARY_SPORT_KEY),
+    getCommandCenter(viewer, sportKey),
+    getSport(sportKey),
   ]);
+  const sportName = sport?.name ?? "";
   const firstName = viewer.user.name.trim().split(/\s+/)[0] ?? viewer.user.name;
   const widgets = [...DASHBOARD_WIDGETS].sort((a, b) => a.order - b.order);
   const assistant = assistantAvailability().available;
@@ -54,22 +61,26 @@ export default async function DashboardPage() {
         </div>
       </header>
 
-      <QuickActions sportKey={PRIMARY_SPORT_KEY} assistant={assistant} />
+      <QuickActions sportKey={sportKey} sportName={sportName} assistant={assistant} />
       <Snapshot
         data={center}
-        sportKey={PRIMARY_SPORT_KEY}
+        sportKey={sportKey}
         squadSize={viewer.profile.coaching.typicalPlayers}
       />
 
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
-        <RecentSessions sessions={center.recentSessions} sportKey={PRIMARY_SPORT_KEY} />
+        <RecentSessions
+          sessions={center.recentSessions}
+          sportKey={sportKey}
+          sportName={sportName}
+        />
         <CoachingProfileCard profile={viewer.profile.coaching} />
       </div>
 
       <RecommendedDrills
         recommendations={center.recommendations}
         profile={viewer.profile.coaching}
-        sportKey={PRIMARY_SPORT_KEY}
+        sportKey={sportKey}
       />
 
       <section aria-labelledby="account-h" className="space-y-5 border-t border-line pt-8">

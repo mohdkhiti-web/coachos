@@ -1,12 +1,16 @@
 import type { CourtPack, CourtRef } from "@/engines/diagram";
 import { basketball } from "./basketball";
 import { courtKey, PRIMARY_SPORT_KEY, SPORT_KEYS, type SportKey, type SportModule } from "./types";
+import { wheelchairBasketball } from "./wheelchair_basketball";
 
 /**
  * The single map from a sport key to its code module. The URL segment `[sport]` is validated against
  * this registry (unknown → 404); nothing else in the app switches on a sport name (ARCHITECTURE.md §8.2).
  */
-export const SPORT_MODULES: Readonly<Record<SportKey, SportModule>> = { basketball };
+export const SPORT_MODULES: Readonly<Record<SportKey, SportModule>> = {
+  basketball,
+  wheelchair_basketball: wheelchairBasketball,
+};
 
 export const isSportKey = (value: string): value is SportKey =>
   (SPORT_KEYS as readonly string[]).includes(value);

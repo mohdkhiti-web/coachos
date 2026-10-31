@@ -1,0 +1,120 @@
+{
+  "seedKey": "seated-chest-pass-accuracy",
+  "title": "Seated Chest Pass Accuracy",
+  "description": "Partners work on a crisp, accurate chest pass delivered from a stationary seated position, the foundation pass every other passing drill in the chair builds on.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["passing", "fundamentals"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 6
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Deliver a flat, accurate seated chest pass that arrives right at the partner's chest.",
+    "setup": "Partners sit four metres apart facing each other, one ball per pair.",
+    "organization": "",
+    "instructions": [
+      "Push the ball with both thumbs from the chest, snapping the wrists on release.",
+      "Aim for the partner's chest, not their lap or their face.",
+      "Catch with both hands and give a target before returning the pass.",
+      "After two minutes, move one metre further apart and repeat."
+    ],
+    "coachingPoints": [
+      "Use the trunk, not just the arms, to add power to the pass.",
+      "Finish with the thumbs pointing down and away after release.",
+      "Keep the chair stable and square to the target through the pass."
+    ],
+    "commonMistakes": [
+      "Passing with the arms alone and leaving the trunk out of it.",
+      "Letting the chair rock or turn during the release.",
+      "Passing from a standstill instead of stepping the chair into it."
+    ],
+    "safety": "Keep pairs spaced well apart so a stray pass doesn't hit a neighbouring group.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

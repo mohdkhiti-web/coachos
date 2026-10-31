@@ -1,0 +1,141 @@
+{
+  "seedKey": "baseline-to-baseline-push-sprints",
+  "title": "Baseline-to-Baseline Push Sprints",
+  "description": "Players push to each line on the court and back, a classic conditioning test building the top-end push endurance the game repeatedly demands.",
+  "category": "conditioning",
+  "primarySkill": "upper_body_power",
+  "secondarySkills": [],
+  "subSkills": ["sprint_pushing"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "full_court",
+  "tags": ["conditioning", "push sprints"],
+  "equipment": [
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build top-end push conditioning through repeated sprints to progressively farther lines and back.",
+    "setup": "Players line up on the baseline with clear sprint lanes down the court.",
+    "organization": "",
+    "instructions": [
+      "Push to the near free-throw line and back to the baseline.",
+      "Push to half court and back to the baseline.",
+      "Push to the far free-throw line and back to the baseline.",
+      "Push the full length of the court and back to finish."
+    ],
+    "coachingPoints": [
+      "Touch each line clearly, not just approximately.",
+      "Push through the whole set rather than slowing in the middle.",
+      "Use quick, controlled turns at each line rather than a lazy curve."
+    ],
+    "commonMistakes": [
+      "Rounding the turn instead of touching the actual line.",
+      "Pacing too conservatively on the shorter early sprints.",
+      "Pacing too conservatively instead of working at real effort."
+    ],
+    "safety": "Make sure the full length of the court is clear and the floor is dry.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "mk1",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "under_basket"
+            }
+          },
+          {
+            "id": "mk2",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "mk3",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "half_court_center"
+            }
+          },
+          {
+            "id": "mk4",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "far_free_throw_line"
+            }
+          },
+          {
+            "id": "mk5",
+            "type": "marker",
+            "kind": "end",
+            "at": {
+              "anchor": "far_under_basket"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "s1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line"
+              },
+              {
+                "anchor": "half_court_center"
+              },
+              {
+                "anchor": "far_free_throw_line"
+              },
+              {
+                "anchor": "far_under_basket"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

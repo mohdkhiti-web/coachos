@@ -1,0 +1,90 @@
+{
+  "seedKey": "finishing-through-contact-with-pad",
+  "title": "Finishing Through Contact With a Pad",
+  "description": "A coach holds a soft pad to create realistic chair-to-chair contact as players finish through it, building confidence finishing when a defender is right there.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": [],
+  "subSkills": ["finishing_through_contact"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["finishing", "contact"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Finish through realistic contact without losing control of the chair or the ball.",
+    "setup": "A coach or teammate holds a soft contact pad near the block; the shooter approaches from the wing.",
+    "organization": "",
+    "instructions": [
+      "Push in from the wing toward the rim at a controlled pace.",
+      "Accept light contact from the pad as the chair arrives at the basket.",
+      "Finish through the contact, keeping the ball protected with the off-arm.",
+      "Rotate so every player gets several reps through the pad."
+    ],
+    "coachingPoints": [
+      "Gather the ball securely before the contact arrives.",
+      "Keep the chair stable through the contact rather than bracing away from it.",
+      "Finish the shot rather than flinching away from the pad."
+    ],
+    "commonMistakes": [
+      "Slowing down before contact instead of finishing through it.",
+      "Losing the ball on contact from loose handling.",
+      "Bringing the ball down low where it can be knocked away."
+    ],
+    "safety": "The pad holder applies only light, controlled pressure, never a hard check.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "seedKey": "four-player-triangle-passing-chair",
+  "title": "Four-Player Triangle Passing",
+  "description": "Four players pass continuously around a wide square with no dribbling allowed, forcing quick, accurate passing and chair repositioning after every touch.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["decision_making"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 16,
+  "playersMin": 4,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["passing", "square"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 4
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Move the ball quickly around the group with no dribble to rely on if a catch is awkward.",
+    "setup": "Four players form a wide square roughly five metres apart, one ball to start.",
+    "organization": "",
+    "instructions": [
+      "Pass the ball around the square in one direction with no dribbling.",
+      "Catch and square the chair to the next receiver before passing.",
+      "After one minute, reverse the direction of the passing.",
+      "Add a defender in the middle for an advanced group once the pattern is smooth."
+    ],
+    "coachingPoints": [
+      "Square the chair to the target before releasing every pass.",
+      "Use a firm pass, not a soft one, to keep the pace moving.",
+      "Reset position quickly after every catch."
+    ],
+    "commonMistakes": [
+      "Letting the square shape drift out of its spacing over time.",
+      "Passing before the chair is actually squared to the target.",
+      "Passing from a standstill instead of stepping the chair into it."
+    ],
+    "safety": "Keep enough room so a second group's passes don't cross this one's space.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_corner"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "p3",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4"
+          },
+          {
+            "id": "p4",
+            "step": 4,
+            "type": "pass",
+            "from": "o4",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

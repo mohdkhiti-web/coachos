@@ -1,0 +1,90 @@
+{
+  "seedKey": "crossover-dribble-in-the-chair",
+  "title": "Crossover Dribble in the Chair",
+  "description": "Players practise a low crossover dribble from one side of the chair to the other, the seated equivalent of changing direction with the ball to beat a defender.",
+  "category": "ball_handling",
+  "primarySkill": "ball_control",
+  "secondarySkills": ["dribbling"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["ball handling", "crossover"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Move the ball low and quickly from one side of the chair to the other without raising it.",
+    "setup": "Players sit with a ball, enough space to dribble on both sides of the chair.",
+    "organization": "",
+    "instructions": [
+      "Dribble low on the right side of the chair for five touches.",
+      "Cross the ball low in front of the chair to the left side.",
+      "Dribble low on the left for five touches, then cross back.",
+      "Repeat continuously for 30 seconds, keeping the ball below chair-seat height throughout."
+    ],
+    "coachingPoints": [
+      "Keep the crossover low — a high crossover is easy to poke away.",
+      "Use the fingertips to push the ball across quickly.",
+      "Keep the eyes up once the pattern is comfortable."
+    ],
+    "commonMistakes": [
+      "Letting the ball rise above seat height during the cross.",
+      "Watching the ball instead of an imaginary defender.",
+      "Watching the ball instead of keeping the head up."
+    ],
+    "safety": "Leave enough space between players for the ball to cross safely.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

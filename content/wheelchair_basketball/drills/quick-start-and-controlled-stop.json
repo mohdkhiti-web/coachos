@@ -1,0 +1,80 @@
+{
+  "seedKey": "quick-start-and-controlled-stop",
+  "title": "Quick Start and Controlled Stop",
+  "description": "Players explode from a dead stop for a short burst, then brake to a fully controlled stop, pairing the two skills that bookend almost every chair movement in a game.",
+  "category": "chair_mobility",
+  "primarySkill": "acceleration_braking",
+  "secondarySkills": [],
+  "subSkills": ["quick_starts", "controlled_stops"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["chair mobility", "acceleration"],
+  "equipment": [
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Explode from a stop and then brake to a fully controlled stop without rocking or tipping.",
+    "setup": "Players line up under the basket with open space ahead.",
+    "organization": "",
+    "instructions": [
+      "From a complete stop, push explosively for three strokes.",
+      "Brake smoothly to a controlled stop using both push rims evenly.",
+      "Hold the stopped position steady for two seconds before starting again.",
+      "Repeat for eight to ten reps, resting briefly between each."
+    ],
+    "coachingPoints": [
+      "Drive hard off the very first stroke rather than easing in.",
+      "Brake with both hands evenly to avoid spinning off-line.",
+      "Stay upright through the brake — don't let the trunk pitch forward."
+    ],
+    "commonMistakes": [
+      "Braking with only one hand, which spins the chair off-line.",
+      "Rocking back and forth after the stop instead of holding it steady.",
+      "Gripping the push rim too tightly, which slows the stroke down."
+    ],
+    "safety": "Leave enough clear space ahead for a genuine quick-start burst.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

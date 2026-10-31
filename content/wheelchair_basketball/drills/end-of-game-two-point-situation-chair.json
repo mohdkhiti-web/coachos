@@ -1,0 +1,130 @@
+{
+  "seedKey": "end-of-game-two-point-situation-chair",
+  "title": "End-of-Game Two-Point Situation",
+  "description": "Down by one or two points with little time left, the team practises getting a clean shot at the rim rather than settling for a contested outside look.",
+  "category": "special_situations",
+  "primarySkill": "late_game_execution",
+  "secondarySkills": ["decision_making"],
+  "subSkills": ["clock_management"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "5v5",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 10,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 9,
+  "space": "half_court",
+  "tags": ["special situations", "end of game"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Get a high-percentage shot at the rim in a late-game, down-by-one-or-two situation rather than forcing a tough outside shot.",
+    "setup": "A live 5v5 possession starts with a simulated scoreboard: down by one or two points with under ten seconds left.",
+    "organization": "",
+    "instructions": [
+      "The offense runs a called set designed to get a shot close to the rim.",
+      "Players read the defense and take the first clean look at the rim rather than passing it up.",
+      "If the rim shot isn't there, the backup option is a good, in-rhythm outside shot.",
+      "Reset with a new simulated time and score each rep."
+    ],
+    "coachingPoints": [
+      "Prioritise the highest-percentage shot available, not just any shot.",
+      "Keep calm decision-making even with the clock running down.",
+      "Know the backup option before the possession even starts."
+    ],
+    "commonMistakes": [
+      "Forcing a contested outside shot when a cleaner rim shot was actually there.",
+      "Panicking and rushing a decision well before the clock actually demands it.",
+      "Losing focus on the details once the simulated pressure is on."
+    ],
+    "safety": "Keep contact controlled during the live possession.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "player",
+            "side": "offense",
+            "label": "C",
+            "at": {
+              "anchor": "top_key"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "c1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_block"
+              }
+            ]
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "c1",
+            "to": "o1"
+          },
+          {
+            "id": "sh3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

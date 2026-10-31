@@ -4,8 +4,11 @@ import { BrandMark, Wordmark } from "@/components/ui/brand";
 import { CourtMark } from "@/components/ui/court-mark";
 import { RouteTransition } from "@/components/motion";
 import { parseTheme, THEME_COOKIE } from "@/lib/theme";
+import { parseSportPref, SPORT_COOKIE } from "@/lib/sport-pref";
 import type { Viewer } from "@/modules/identity";
+import { PRIMARY_SPORT_KEY } from "@/sports/registry";
 import { NavLinks } from "./nav-links";
+import { SportSwitcher } from "./sport-switcher";
 import { ThemeToggle } from "./theme-toggle";
 import { UserMenu } from "./user-menu";
 
@@ -31,6 +34,7 @@ export async function AppShell({
     cookies(),
   ]);
   const theme = parseTheme(cookieStore.get(THEME_COOKIE)?.value);
+  const sport = parseSportPref(cookieStore.get(SPORT_COOKIE)?.value) ?? PRIMARY_SPORT_KEY;
 
   return (
     <div className="min-h-dvh md:grid md:grid-cols-[16rem_minmax(0,1fr)] print:block">
@@ -76,6 +80,7 @@ export async function AppShell({
             ) : null}
           </div>
           <div className="flex items-center gap-1">
+            {viewer ? <SportSwitcher initial={sport} /> : null}
             <ThemeToggle initial={theme} />
             {viewer ? <UserMenu name={viewer.user.name} email={viewer.user.email} /> : null}
           </div>

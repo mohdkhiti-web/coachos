@@ -23,6 +23,7 @@ import {
 } from "../engines/diagram";
 import { TOOLS, TOOL_CATEGORIES } from "../components/features/diagram-workspace/tools";
 import { BASKETBALL_DIAGRAM_TEMPLATES } from "../sports/basketball/diagram-templates";
+import { SPORT_KEYS } from "../sports/registry";
 
 /**
  * i18n guard: every STATIC translation key used in the source must exist in messages/en.json.
@@ -132,7 +133,8 @@ describe("messages/en.json", () => {
         ["ball", "cone", ...new Set(Object.values(EQUIPMENT).map((s) => s.counts))],
       ],
       ["workspace.tabs", ["overview", "drills"]],
-      ["nav", ["dashboard", "sessions", "templates", "drills", "settings"]],
+      ["nav", ["dashboard", "sessions", "templates", "drills", "roster", "settings"]],
+      ["shell.sports", SPORT_KEYS],
       ["onboarding.flow.q1.options", COACHING_EXPERIENCES],
       ["onboarding.flow.q2.options", COACH_AGE_GROUPS],
       ["onboarding.flow.q3.bands", TEAM_SIZE_BANDS.map((b) => b.key)],

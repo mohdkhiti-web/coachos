@@ -1,0 +1,108 @@
+{
+  "seedKey": "straight-line-tracking-drill",
+  "title": "Straight-Line Tracking Drill",
+  "description": "Players push the length of a marked line, correcting drift immediately so the chair tracks dead straight — a foundational skill that makes every other movement more efficient.",
+  "category": "chair_mobility",
+  "primarySkill": "chair_maneuvering",
+  "secondarySkills": [],
+  "subSkills": ["straight_tracking"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "full_court",
+  "tags": ["chair mobility", "tracking"],
+  "equipment": [
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Keep the chair tracking dead straight along a line, correcting any drift immediately.",
+    "setup": "A sideline or a taped line marks the path; players push along it from one end to the other.",
+    "organization": "",
+    "instructions": [
+      "Push along the line using even strokes on both sides.",
+      "The instant the chair drifts off the line, correct with a slightly stronger push on one side.",
+      "Push the full length of the line without stopping.",
+      "Turn around and push back, focusing on the side that drifted most the first time."
+    ],
+    "coachingPoints": [
+      "Make small, early corrections rather than big, late ones.",
+      "Keep the push rhythm even between both hands as the default.",
+      "Look ahead down the line, not down at the wheels."
+    ],
+    "commonMistakes": [
+      "Over-correcting and zig-zagging across the line instead of tracking it smoothly.",
+      "Favouring the stronger side without noticing the drift it causes.",
+      "Losing the line and drifting off the intended path."
+    ],
+    "safety": "Make sure the line's full length is clear of other players.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "mk1",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "mk2",
+            "type": "marker",
+            "kind": "end",
+            "at": {
+              "anchor": "right_corner"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "s1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_corner"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

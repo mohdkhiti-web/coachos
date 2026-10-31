@@ -1,0 +1,126 @@
+{
+  "seedKey": "closeout-and-contain-chair",
+  "title": "Closeout and Contain",
+  "description": "A defender closes out hard on a catch, then must contain whatever the ball handler does next without fouling or giving up an easy middle drive.",
+  "category": "individual_defense",
+  "primarySkill": "closeouts",
+  "secondarySkills": ["on_ball_defense"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["defense", "closeout"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Close out under control and then contain whatever the shooter decides to do next.",
+    "setup": "A defender starts in a help position as a shooter catches on the wing.",
+    "organization": "",
+    "instructions": [
+      "The defender pushes hard to close out, braking to a controlled stop on the last stroke.",
+      "If the shooter attacks, the defender contains by sliding, not lunging.",
+      "If the shooter holds, the defender contests the shot with a high hand, staying square.",
+      "Rotate the shooter's decision randomly across reps."
+    ],
+    "coachingPoints": [
+      "Brake under control on the approach so the closeout lands balanced.",
+      "Stay square on the contest — turning sideways gives up the drive.",
+      "Keep the hands active without fouling."
+    ],
+    "commonMistakes": [
+      "Closing out too fast and losing control of the chair on arrival.",
+      "Squaring up late and letting the shooter attack before the defender is set.",
+      "Turning the chair to face the direction of travel instead of staying square."
+    ],
+    "safety": "Contest with a high hand only; no reaching across the shooter's body.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [-1.5, 0.8]
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "x1",
+            "step": 1,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [0.9, 0]
+              }
+            ]
+          },
+          {
+            "id": "sh2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

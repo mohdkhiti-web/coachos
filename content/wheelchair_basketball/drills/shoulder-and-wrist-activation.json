@@ -1,0 +1,100 @@
+{
+  "seedKey": "shoulder-and-wrist-activation",
+  "title": "Shoulder and Wrist Activation",
+  "description": "A seated dynamic warm-up targeting the shoulders, wrists and forearms that carry almost all the load in wheelchair basketball, done before any pushing begins.",
+  "category": "warm_up",
+  "primarySkill": "recovery_mobility",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["warm_up"],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "any_space",
+  "tags": ["warm-up", "mobility"],
+  "equipment": [
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Prepare the shoulders, wrists and forearms for the repeated loading of pushing and shooting.",
+    "setup": "Players sit in a loose group with enough space to swing their arms freely.",
+    "organization": "",
+    "instructions": [
+      "Circle both shoulders forward for 10 reps, then backward for 10 reps.",
+      "Make loose fists and circle the wrists in both directions for 10 reps each.",
+      "Reach both arms overhead and across the body for a gentle stretch, holding each for 10 seconds.",
+      "Finish with 20 seconds of light, easy shadow pushes to raise the heart rate."
+    ],
+    "coachingPoints": [
+      "Keep the movements controlled, not fast and loose.",
+      "Breathe normally throughout rather than holding the breath.",
+      "Build the range of motion gradually across the set."
+    ],
+    "commonMistakes": [
+      "Rushing through to get to the ball work sooner.",
+      "Skipping the wrist work, which matters as much as the shoulders.",
+      "Rushing through the movements instead of using the full range of motion."
+    ],
+    "safety": "Stop any stretch that causes sharp pain and tell the coach.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "mobility": "chair"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

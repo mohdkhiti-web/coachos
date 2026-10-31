@@ -1,0 +1,110 @@
+{
+  "seedKey": "free-throw-pressure-routine",
+  "title": "Free-Throw Pressure Routine",
+  "description": "Shooters build and repeat a consistent pre-shot routine from the free-throw line, then test it under simulated fatigue and simple scoreboard pressure.",
+  "category": "shooting",
+  "primarySkill": "free_throws",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill", "cool_down"],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["shooting", "free throws"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build one repeatable pre-shot routine and perform it the same way every time, under pressure or not.",
+    "setup": "Shooter sits at the free-throw line with a ball and space to set a routine.",
+    "organization": "",
+    "instructions": [
+      "Choose a simple routine — for example two bounces, a breath, and a spin of the ball.",
+      "Perform the exact same routine before every attempt, make or miss.",
+      "Shoot sets of ten, tracking makes without changing the routine based on results.",
+      "Finish with five free throws right after a short push sprint to test it under fatigue."
+    ],
+    "coachingPoints": [
+      "Keep the routine identical regardless of the previous shot's result.",
+      "Breathe out just before the release to stay relaxed.",
+      "Track progress over time rather than reacting to any single miss."
+    ],
+    "commonMistakes": [
+      "Changing the routine after a miss out of frustration.",
+      "Rushing the routine when tired instead of trusting it.",
+      "Rushing the release instead of trusting the mechanics."
+    ],
+    "safety": "Keep the lane clear for a rebounder standing to the side.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "free_throw_line"
+            },
+            "variant": "flat"
+          }
+        ],
+        "actions": [
+          {
+            "id": "sh1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

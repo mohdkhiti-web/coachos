@@ -1,0 +1,130 @@
+{
+  "seedKey": "baseline-inbounds-chair-screen-play",
+  "title": "Baseline Inbounds Chair-Screen Play",
+  "description": "A baseline inbound uses a chair screen to free a shooter for a clean look, practising the timing and legal screening that make an inbound play actually work.",
+  "category": "special_situations",
+  "primarySkill": "inbounding",
+  "secondarySkills": ["screening"],
+  "subSkills": ["baseline_inbounds"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["special situations", "inbounds", "set play"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Run a clean baseline inbound set using a legal chair screen to free a shooter.",
+    "setup": "A screener and a shooter set up near the lane with the inbounder on the baseline.",
+    "organization": "",
+    "instructions": [
+      "The screener gets the chair fully set at the block before the shooter uses it.",
+      "The shooter pushes tight off the screen toward the corner.",
+      "The inbounder reads the defense and delivers the pass the moment the shooter is open.",
+      "Reset and run the same play again to build repetition and timing."
+    ],
+    "coachingPoints": [
+      "Set the screen with the chair fully stationary before any contact.",
+      "The shooter should push tight to the screen, not wide around it.",
+      "Inbounder needs to be ready to deliver the pass quickly."
+    ],
+    "commonMistakes": [
+      "Screening while the chair is still moving.",
+      "Shooter cutting wide and missing the benefit of the screen.",
+      "Rushing the set instead of trusting the timing of the play."
+    ],
+    "safety": "Screens must be legal and stationary; defenders should avoid unnecessary contact fighting through.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "player",
+            "side": "offense",
+            "label": "C",
+            "at": {
+              "anchor": "under_basket"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "c1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_corner"
+              }
+            ]
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "c1",
+            "to": "o1"
+          },
+          {
+            "id": "sh3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

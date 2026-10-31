@@ -1,0 +1,120 @@
+{
+  "seedKey": "two-v-two-no-dribble-chair",
+  "title": "2v2 No-Dribble Game",
+  "description": "A half-court 2v2 game with no dribbling allowed, forcing constant chair movement, cutting and passing to create any kind of shot.",
+  "category": "small_sided_games",
+  "primarySkill": "decision_making",
+  "secondarySkills": ["cutting", "passing"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "2v2",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 16,
+  "playersMin": 4,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 9,
+  "space": "half_court",
+  "tags": ["small-sided", "2v2", "no dribble"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 4
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Create good shots purely through cutting, passing and spacing with no dribble to rely on.",
+    "setup": "Two offensive players face two defenders in a half-court game with the dribble removed.",
+    "organization": "",
+    "instructions": [
+      "Play live 2v2 to a target score, with no dribbling allowed at any point.",
+      "Players must move without the ball to create passing and cutting angles.",
+      "A travel or an attempted dribble results in a turnover.",
+      "Rotate in two new offensive players after every three possessions."
+    ],
+    "coachingPoints": [
+      "Move constantly without the ball — sitting still gets you denied easily.",
+      "Use pivots and fakes since the dribble isn't available to escape pressure.",
+      "Communicate cuts and screens out loud."
+    ],
+    "commonMistakes": [
+      "Sitting still after passing, expecting to get the ball right back.",
+      "Panicking and dribbling out of habit under pressure.",
+      "Reverting to one-on-one play instead of using the whole group."
+    ],
+    "safety": "Keep contact minimal; call fouls to keep the pace controlled.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

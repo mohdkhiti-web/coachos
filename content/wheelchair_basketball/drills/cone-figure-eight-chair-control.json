@@ -1,0 +1,114 @@
+{
+  "seedKey": "cone-figure-eight-chair-control",
+  "title": "Cone Figure-Eight Chair Control",
+  "description": "Players weave the chair through a tight figure-eight of cones with no ball, isolating pivot turns and tight-turn control before adding the complexity of dribbling.",
+  "category": "chair_mobility",
+  "primarySkill": "chair_maneuvering",
+  "secondarySkills": [],
+  "subSkills": ["tight_turns", "pivot_turns"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["chair mobility", "turning", "cones"],
+  "equipment": [
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "sport_wheelchairs",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Turn the chair tightly around each cone without losing speed or clipping it.",
+    "setup": "Two cones are placed roughly four metres apart at the elbows; the player starts beside one.",
+    "organization": "",
+    "instructions": [
+      "Push toward the far cone and turn tightly around the outside of it.",
+      "Push back toward the first cone and turn tightly around it the other way.",
+      "Repeat the figure-eight continuously for 30 seconds.",
+      "Rest and repeat for three sets, trying to beat the previous lap count each time."
+    ],
+    "coachingPoints": [
+      "Lead the turn with the inside hand pushing and the outside hand braking lightly.",
+      "Keep the turn tight to the cone rather than drifting wide.",
+      "Stay relaxed through the trunk — a stiff upper body makes tight turns harder."
+    ],
+    "commonMistakes": [
+      "Slowing to a near-stop before every turn instead of carrying speed through it.",
+      "Drifting wide around the cone, turning a tight figure-eight into a wide loop.",
+      "Letting the trunk do the work instead of the arms and shoulders."
+    ],
+    "safety": "Make sure the cone area is clear of other players before starting.",
+    "progressions": ["Add a ball held in the lap once the turn itself is clean and confident."],
+    "regressions": [],
+    "variations": ["Reverse the direction of the figure-eight halfway through the set."]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "wheelchair_basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_elbow"
+            },
+            "mobility": "chair"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "m1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow"
+              },
+              {
+                "anchor": "left_elbow"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}
