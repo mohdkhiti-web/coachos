@@ -244,7 +244,6 @@ function Ready({ answers, onEnter }: { answers: Answers; onEnter: () => void }) 
   }, []);
 
   const chips: string[] = [
-    t("ready.sport"),
     ...answers.ageGroups.map((k) => t(`q2.options.${k}.label`)),
     ...(answers.typicalPlayers ? [t("ready.players", { count: answers.typicalPlayers })] : []),
     ...(answers.experience ? [t(`q1.options.${answers.experience}.label`)] : []),

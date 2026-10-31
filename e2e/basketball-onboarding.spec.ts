@@ -55,7 +55,7 @@ test("new coach: landing → sign up → six questions → ready → a personali
     await page.getByRole("button", { name: "Finish" }).click();
     await expect(page.getByRole("heading", { name: "Your CoachOS is ready." })).toBeVisible();
     const chips = page.getByTestId("ready-profile");
-    for (const chip of ["Basketball", "U14", "13 players", "Developing Coach"])
+    for (const chip of ["U14", "13 players", "Developing Coach"])
       await expect(chips).toContainText(chip);
     await expect(page.getByText("Shooting • Ball Handling • Defense")).toBeVisible();
     await page.getByRole("button", { name: "Enter CoachOS" }).click();

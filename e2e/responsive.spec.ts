@@ -24,7 +24,7 @@ test("public pages fit a phone screen", async ({ page }) => {
 test("the app shell collapses to a bottom tab bar with 44px touch targets", async ({ page }) => {
   await signUpAndVerify(page, newUser());
   await expect(
-    page.getByRole("heading", { name: "Let's build your basketball coaching profile." }),
+    page.getByRole("heading", { name: "Let's build your coaching profile." }),
   ).toBeVisible();
   expect(await noHorizontalScroll(page)).toBe(true);
   await completeOnboarding(page);

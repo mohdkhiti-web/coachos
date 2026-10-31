@@ -176,7 +176,7 @@ export default async function MySessionsPage({
               ) : (
                 <EmptyState
                   title={t("empty.noneTitle")}
-                  description={t("empty.noneBody")}
+                  description={t("empty.noneBody", { sport: sport.name })}
                   action={
                     canCreate ? (
                       <Button asChild size="lg">

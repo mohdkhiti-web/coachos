@@ -18,7 +18,7 @@ export default async function SportLayout({ children, params }: LayoutProps<"/sp
     <div data-sport={sport.key} className="space-y-8">
       <header className="space-y-4">
         <div className="space-y-1">
-          <p className="eyebrow text-accent">{t("eyebrow")}</p>
+          <p className="eyebrow text-accent">{t("eyebrow", { sport: sport.name })}</p>
           <h1 className="display text-5xl text-ink md:text-6xl">{sport.name}</h1>
         </div>
         <SportTabs sport={sport.key} />

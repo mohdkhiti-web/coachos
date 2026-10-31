@@ -17,9 +17,11 @@ import { cn } from "@/lib/cn";
  */
 export async function QuickActions({
   sportKey,
+  sportName,
   assistant,
 }: {
   sportKey: string;
+  sportName: string;
   assistant: boolean;
 }) {
   const t = await getTranslations("dashboard.cc.quick");
@@ -75,7 +77,7 @@ export async function QuickActions({
                     primary ? "text-accent-ink" : "text-ink-muted",
                   )}
                 >
-                  {t(`${key}.body`)}
+                  {t(`${key}.body`, { sport: sportName })}
                 </span>
               </span>
               <ArrowUpRight

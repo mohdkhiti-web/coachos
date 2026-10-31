@@ -23,7 +23,7 @@ test("full account lifecycle", async ({ page, browser }) => {
   await test.step("register, verify by email, land on onboarding", async () => {
     await signUpAndVerify(page, user);
     await expect(
-      page.getByRole("heading", { name: "Let's build your basketball coaching profile." }),
+      page.getByRole("heading", { name: "Let's build your coaching profile." }),
     ).toBeVisible();
     await expect(page.getByText("01 / 06")).toBeVisible();
   });

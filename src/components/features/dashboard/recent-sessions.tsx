@@ -10,9 +10,11 @@ import { formatClockTime, formatDateOnly } from "@/modules/plans/format";
 export async function RecentSessions({
   sessions,
   sportKey,
+  sportName,
 }: {
   sessions: PlanListItemDto[];
   sportKey: string;
+  sportName: string;
 }) {
   const [t, locale] = await Promise.all([getTranslations("dashboard.cc.recent"), getLocale()]);
 
@@ -40,7 +42,7 @@ export async function RecentSessions({
         <BasketballEmptyState
           scene="planning"
           title={t("emptyTitle")}
-          description={t("emptyBody")}
+          description={t("emptyBody", { sport: sportName })}
           action={
             <Button asChild>
               <Link href={`/sessions/${sportKey}/new`}>
@@ -52,13 +54,17 @@ export async function RecentSessions({
         />
       ) : (
         <ul className="divide-y divide-line">
-          {sessions.map((s) => (
-            <li key={s.id}>
+          {sessions.map((s, i) => (
+            <li
+              key={s.id}
+              className="animate-fade-up"
+              style={{ "--fade-delay": `${Math.min(i, 8) * 45}ms` } as React.CSSProperties}
+            >
               <Link
                 href={`/sessions/${sportKey}/${s.id}`}
-                className="flex items-center justify-between gap-4 px-5 py-3.5 smooth-colors hover:bg-surface-sunken"
+                className="group flex items-center justify-between gap-4 px-5 py-3.5 smooth-colors hover:bg-surface-sunken"
               >
-                <span className="min-w-0">
+                <span className="min-w-0 transition-transform duration-200 ease-out group-hover:translate-x-0.5">
                   <span className="block truncate font-medium text-ink">{s.title}</span>
                   <span className="mt-0.5 block truncate text-sm text-ink-muted">
                     {[
