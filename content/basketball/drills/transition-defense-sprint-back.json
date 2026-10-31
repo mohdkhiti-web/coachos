@@ -1,0 +1,113 @@
+{
+  "seedKey": "transition-defense-sprint-back",
+  "title": "Transition Defense Sprint Back",
+  "description": "After a shot, defenders sprint back to protect the rim first and match up second, practising the priority order real transition defense demands.",
+  "category": "team_defense",
+  "primarySkill": "communication",
+  "secondarySkills": ["conditioning"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "full_court",
+  "tags": ["team defense", "transition defense"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Sprint back to protect the rim before worrying about matching up to a specific player.",
+    "setup": "A shot goes up at one end; defenders start sprinting back the instant it leaves the shooter's hand.",
+    "organization": "",
+    "instructions": [
+      "On the shot, all defenders sprint back toward their own basket immediately.",
+      "The first defender back protects the rim rather than chasing a specific matchup.",
+      "Remaining defenders match up to open shooters as they arrive.",
+      "Communicate 'ball', 'basket' and player numbers as the picture becomes clear."
+    ],
+    "coachingPoints": [
+      "Sprint on the shot, don't wait to see if it goes in.",
+      "Protect the rim first, find a specific matchup second.",
+      "Talk the whole way back so teammates know who has whom."
+    ],
+    "commonMistakes": [
+      "Jogging back and getting beaten down the floor.",
+      "Chasing a specific matchup instead of protecting the rim first.",
+      "Talking too little for teammates to react in time."
+    ],
+    "safety": "Make sure the sprint lane back is clear of any other group.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "far_top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

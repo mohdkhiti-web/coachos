@@ -1,0 +1,118 @@
+{
+  "seedKey": "lane-slide-activation",
+  "title": "Lane Slide Activation",
+  "description": "Defensive slides across the lane and back wake up the hips and groin and prime the stance coaches want to see for the rest of practice.",
+  "category": "warm_up",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": [],
+  "subSkills": ["stance_and_slides"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["warm-up", "defense"],
+  "equipment": [],
+  "content": {
+    "objective": "Get into a low defensive stance and move the feet before any live defense is asked for.",
+    "setup": "Players space out along the free-throw line, facing the sideline in a defensive stance.",
+    "organization": "",
+    "instructions": [
+      "Slide from the left elbow to the right elbow and back twice without crossing the feet.",
+      "Add two retreat steps backward then two close-out steps forward.",
+      "Repeat the whole sequence at a slightly higher tempo.",
+      "Finish with five seconds of fast feet in the stance."
+    ],
+    "coachingPoints": [
+      "Stay low with the chest up, not the back rounded.",
+      "Push off the trail foot; don't let the feet touch.",
+      "Keep the hands active, not on the knees."
+    ],
+    "commonMistakes": [
+      "Standing up tall between slides.",
+      "Crossing the feet instead of sliding.",
+      "Rushing through the movements instead of using the full range of motion."
+    ],
+    "safety": "Make sure the floor is clear of bags or balls along the slide path.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [1.2, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "d1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow"
+              },
+              {
+                "anchor": "left_elbow"
+              }
+            ]
+          },
+          {
+            "id": "x2",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_elbow"
+              },
+              {
+                "anchor": "left_elbow"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

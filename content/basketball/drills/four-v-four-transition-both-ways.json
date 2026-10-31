@@ -1,0 +1,113 @@
+{
+  "seedKey": "four-v-four-transition-both-ways",
+  "title": "4v4 Transition Both Ways",
+  "description": "A full-court 4v4 where every made basket or defensive stop immediately triggers a fast break the other way, keeping both ends live.",
+  "category": "small_sided_games",
+  "primarySkill": "conditioning",
+  "secondarySkills": ["decision_making", "communication"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "4v4",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 8,
+  "playersMax": 16,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "full_court",
+  "tags": ["small-sided", "4v4", "transition"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 8
+    }
+  ],
+  "content": {
+    "objective": "Play continuous, both-way basketball where every change of possession becomes a transition opportunity.",
+    "setup": "Two teams of four play full-court, with transition offense and defense live at both ends.",
+    "organization": "",
+    "instructions": [
+      "Play live full-court 4v4 to a target score.",
+      "On any change of possession, the new offense should push the ball immediately.",
+      "The new defense sprints back to protect the rim before matching up.",
+      "Play continuous periods of several minutes with brief rest between."
+    ],
+    "coachingPoints": [
+      "Push the pace immediately on every change of possession.",
+      "Sprint back on defense rather than jogging and conceding easy transition points.",
+      "Communicate matchups loudly while sprinting back."
+    ],
+    "commonMistakes": [
+      "Walking the ball up instead of pushing the pace after a stop.",
+      "Jogging back on defense and conceding an easy transition basket.",
+      "Playing at a walk-through pace instead of real game speed."
+    ],
+    "safety": "Make sure the full court is clear and players are conditioned enough for continuous full-court play.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_half_court"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "far_top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

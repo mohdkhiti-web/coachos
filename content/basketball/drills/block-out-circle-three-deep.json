@@ -1,0 +1,116 @@
+{
+  "seedKey": "block-out-circle-three-deep",
+  "title": "Block Out Circle Three Deep",
+  "description": "Three rebounders position around the key on a live shot, each responsible for boxing out the nearest offensive player as the ball goes up.",
+  "category": "rebounding",
+  "primarySkill": "boxing_out",
+  "secondarySkills": ["communication"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 6,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "half_court",
+  "tags": ["rebounding", "team rebounding"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Coordinate three box-outs at once so no offensive player gets a clean look at the rebound.",
+    "setup": "Three offense-defense pairs set up around the key; a shooter takes a shot from the top.",
+    "organization": "",
+    "instructions": [
+      "On the shot, every defender immediately finds and boxes out their own matchup.",
+      "Communicate out loud which side each defender is boxing out on.",
+      "Whoever secures the rebound outlets it immediately to the shooter's spot.",
+      "Rotate matchups after every make or defensive rebound."
+    ],
+    "coachingPoints": [
+      "Find your matchup the instant the shot goes up, don't watch the flight first.",
+      "Call out 'shot' to trigger the whole group's box-out at once.",
+      "Keep arms up and wide to take up as much space as legally possible."
+    ],
+    "commonMistakes": [
+      "Two defenders boxing out the same player and leaving another free.",
+      "Reacting to the shot late because of watching the ball instead of the matchup.",
+      "Watching the shot instead of immediately finding a body to box out."
+    ],
+    "safety": "Box out with the body only; no grabbing or hooking an opponent's arm.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [1.5, 0]
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [-1.5, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "at": {
+              "anchor": "basket"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "x1",
+            "step": 1,
+            "type": "defend",
+            "kind": "help",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [0, -0.6]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

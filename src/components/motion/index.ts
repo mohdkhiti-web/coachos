@@ -9,3 +9,4 @@ export type { ExitItem } from "./use-exit-transition";
 export { useFlash } from "./use-flash";
 export { Collapse } from "./collapse";
 export { RouteTransition } from "./route-transition";
+export { TiltCard } from "./tilt-card";

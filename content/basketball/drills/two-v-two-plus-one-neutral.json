@@ -1,0 +1,129 @@
+{
+  "seedKey": "two-v-two-plus-one-neutral",
+  "title": "2v2 Plus One Neutral Player",
+  "description": "A 2v2 game with a neutral player who always joins whichever team has the ball, creating a constant 3v2 advantage that rewards good spacing.",
+  "category": "small_sided_games",
+  "primarySkill": "spacing",
+  "secondarySkills": ["decision_making"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "2v2",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 5,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 9,
+  "space": "half_court",
+  "tags": ["small-sided", "neutral player", "advantage"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Use a constant numbers advantage well by finding and involving the neutral teammate.",
+    "setup": "Two teams of two play live, with one neutral player always playing offense for whichever team has the ball.",
+    "organization": "",
+    "instructions": [
+      "Play live, with the neutral player joining the attacking team the moment possession changes.",
+      "The attacking team should use the extra player to create an open shot, not ignore them.",
+      "On a turnover or defensive rebound, the neutral player immediately switches to the new attacking team.",
+      "Rotate the neutral player role every few minutes."
+    ],
+    "coachingPoints": [
+      "Involve the extra player early in the possession, don't save them for a last resort.",
+      "Keep good spacing so the three-on-two advantage is actually usable.",
+      "Transition mentally fast when possession changes — know your new role immediately."
+    ],
+    "commonMistakes": [
+      "Ignoring the neutral player and playing a cramped 2v2 anyway.",
+      "Standing around after a turnover instead of reacting to the new matchup.",
+      "Ignoring the game's constraint once the pressure is on."
+    ],
+    "safety": "Keep contact controlled; call fouls to maintain a fair pace.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "p3",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

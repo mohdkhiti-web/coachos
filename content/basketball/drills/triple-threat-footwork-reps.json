@@ -1,0 +1,84 @@
+{
+  "seedKey": "triple-threat-footwork-reps",
+  "title": "Triple-Threat Footwork Reps",
+  "description": "Players rehearse the triple-threat position on every catch — ball ready to shoot, pass or drive — before adding any live decision-making.",
+  "category": "footwork",
+  "primarySkill": "footwork",
+  "secondarySkills": ["pivoting"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 7,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["footwork", "triple threat"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Land in a strong, balanced triple-threat position on every catch, ready for any of the three options.",
+    "setup": "Each player has a ball and simulates a catch facing the basket.",
+    "organization": "",
+    "instructions": [
+      "Toss the ball up slightly, catch it, and land in a low, balanced triple-threat stance.",
+      "Protect the ball on the side nearest an imaginary defender.",
+      "Front pivot once, then reverse pivot once, staying in the stance throughout.",
+      "Finish with a jab step in each direction before resetting."
+    ],
+    "coachingPoints": [
+      "Keep the knees bent and the ball at hip height, ready to move in any direction.",
+      "Keep the head up throughout every pivot.",
+      "Protect the ball with the off-hand and forearm at all times."
+    ],
+    "commonMistakes": [
+      "Standing too tall in the triple-threat stance.",
+      "Exposing the ball on the side a defender would be.",
+      "Letting the feet settle flat instead of staying on the balls of the feet."
+    ],
+    "safety": "Leave enough space between players for free pivoting.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "seedKey": "deflection-and-recover-circuit",
+  "title": "Deflection-and-Recover Circuit",
+  "description": "A defender tips passes in a small passing circle, then immediately recovers to a balanced stance — training active hands without losing position.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": ["closeouts"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 12,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["defense", "deflections"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Get active hands into passing lanes without losing defensive balance afterward.",
+    "setup": "Three passers surround one defender in the middle who tries to deflect passes.",
+    "organization": "",
+    "instructions": [
+      "Passers move the ball quickly around the triangle.",
+      "The defender reaches to deflect any pass while staying balanced enough to recover.",
+      "After any deflection attempt, the defender resets immediately into a defensive stance.",
+      "Rotate the defender every 30 seconds."
+    ],
+    "coachingPoints": [
+      "Reach with one hand only, keeping the base balanced.",
+      "Recover to a stance immediately after every attempt.",
+      "Read the passer's eyes to anticipate the pass, without guessing wildly."
+    ],
+    "commonMistakes": [
+      "Lunging with the whole body and losing balance on every attempt.",
+      "Standing upright after a deflection instead of resetting the stance.",
+      "Watching the ball only and losing track of the opponent."
+    ],
+    "safety": "Reach for the ball only, never for a passer's arms or hands.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

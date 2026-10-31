@@ -1,0 +1,123 @@
+{
+  "seedKey": "give-and-go-wing-pass",
+  "title": "Give-and-Go Wing Pass",
+  "description": "A passer feeds the wing then cuts hard to the basket expecting the return pass — the simplest read-and-react passing pattern in the game.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["cutting"],
+  "subSkills": ["passing_on_the_move"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 3,
+  "playersMax": 18,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["passing", "cutting"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 4
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Pass and immediately cut hard to the rim, expecting the ball right back.",
+    "setup": "A passer starts at the top of the key, a wing player stands at the left wing.",
+    "organization": "",
+    "instructions": [
+      "Pass to the wing player and immediately cut hard toward the basket.",
+      "The wing player catches, pivots, and times the return pass to the cutter's path.",
+      "The cutter finishes a layup off the return pass.",
+      "Rotate: the cutter becomes the next passer at the top."
+    ],
+    "coachingPoints": [
+      "Cut immediately after the pass — don't watch it travel.",
+      "Cut hard and change speed to create separation.",
+      "The wing player should lead the return pass to where the cutter is going."
+    ],
+    "commonMistakes": [
+      "Standing and admiring the first pass instead of cutting.",
+      "Cutting too wide instead of straight toward the rim.",
+      "Catching flat-footed instead of stepping to meet the ball."
+    ],
+    "safety": "Keep the landing area under the rim clear between reps.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "player",
+            "side": "offense",
+            "label": "C",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "c1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_block"
+              }
+            ]
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "c1",
+            "to": "o1"
+          },
+          {
+            "id": "sh3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

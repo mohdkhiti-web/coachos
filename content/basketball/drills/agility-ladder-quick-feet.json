@@ -1,0 +1,100 @@
+{
+  "seedKey": "agility-ladder-quick-feet",
+  "title": "Agility Ladder Quick Feet",
+  "description": "Players run through an agility ladder using several footwork patterns to build quick, precise foot speed with no ball involved.",
+  "category": "footwork",
+  "primarySkill": "footwork",
+  "secondarySkills": ["speed_agility"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "any_space",
+  "tags": ["footwork", "agility ladder"],
+  "equipment": [
+    {
+      "type": "agility_ladder",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build quick, accurate foot placement through a repeatable ladder pattern.",
+    "setup": "An agility ladder is laid flat on the floor; players queue at one end.",
+    "organization": "",
+    "instructions": [
+      "Run through the ladder with one foot in each square for the first pass.",
+      "Run through with two feet in each square for the second pass.",
+      "Run through laterally, facing sideways, for the third pass.",
+      "Rest and repeat the full sequence twice more."
+    ],
+    "coachingPoints": [
+      "Stay on the balls of the feet throughout.",
+      "Pump the arms to match the quick foot rhythm.",
+      "Prioritise accuracy over speed for the first few reps."
+    ],
+    "commonMistakes": [
+      "Looking down at the feet instead of looking ahead.",
+      "Clipping the ladder rungs by rushing the pattern.",
+      "Standing up tall instead of staying low through the movement."
+    ],
+    "safety": "Make sure the ladder is flat and secured so it doesn't slide underfoot.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "eq1",
+            "type": "equipment",
+            "kind": "ladder",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, -1.2]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "m1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "top_key"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

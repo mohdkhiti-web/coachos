@@ -1,0 +1,82 @@
+{
+  "seedKey": "partner-mirror-warm-up",
+  "title": "Partner Mirror Warm-Up",
+  "description": "Partners face each other and mirror simple footwork patterns without a ball, waking up the legs and building early-practice focus.",
+  "category": "warm_up",
+  "primarySkill": "footwork",
+  "secondarySkills": ["speed_agility"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 7,
+  "ageMax": 16,
+  "playersMin": 4,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["warm-up", "footwork"],
+  "equipment": [],
+  "content": {
+    "objective": "Get the feet and eyes working together before practice starts.",
+    "setup": "Partners stand two metres apart facing each other anywhere on the court.",
+    "organization": "",
+    "instructions": [
+      "The leader shuffles, chops their feet, or jumps side to side; the partner mirrors it live.",
+      "Switch leaders every 20 to 30 seconds.",
+      "Add a direction change (leader moves forward/back) once the group is warm.",
+      "Finish with ten seconds of fast feet in place."
+    ],
+    "coachingPoints": [
+      "Stay on the balls of the feet.",
+      "React, don't anticipate — watch the leader's hips.",
+      "Keep a slight knee bend throughout."
+    ],
+    "commonMistakes": [
+      "Standing too far apart to react in time.",
+      "Watching the leader's feet instead of their whole body.",
+      "Skipping the easier reps and going straight to full intensity."
+    ],
+    "safety": "Leave enough space between pairs so nobody collides.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_slot"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "seedKey": "reverse-layup-both-hands",
+  "title": "Reverse Layup Both Hands",
+  "description": "Players practise the reverse layup from both sides of the rim, using the backboard and body control to finish away from help defense.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": [],
+  "subSkills": ["both_hands_finishing"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["finishing", "reverse layup"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Finish a reverse layup under control using either hand depending on the approach side.",
+    "setup": "Players start at the block with a ball, approaching from a 45-degree angle.",
+    "organization": "",
+    "instructions": [
+      "Drive baseline-side under the rim at a controlled speed.",
+      "Spin the body so the back faces the defender's side as you go under the rim.",
+      "Finish off the backboard with the hand away from where a defender would be.",
+      "Repeat from the opposite side using the other hand."
+    ],
+    "coachingPoints": [
+      "Keep the ball high and away from the defender's side throughout.",
+      "Use a soft touch off the glass rather than forcing the ball in.",
+      "Land balanced, ready to box out for a potential rebound."
+    ],
+    "commonMistakes": [
+      "Spinning too early, exposing the ball to the defender.",
+      "Rushing the touch instead of using the backboard softly.",
+      "Rushing the last two steps instead of gathering under control."
+    ],
+    "safety": "Only one player under the basket at a time.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

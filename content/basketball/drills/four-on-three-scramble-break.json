@@ -1,0 +1,197 @@
+{
+  "seedKey": "four-on-three-scramble-break",
+  "title": "Four-on-Three Scramble Break",
+  "description": "Four attackers push against three retreating defenders, a numbers-advantage drill that trains quick decisions when the edge isn't as clean as 2v1 or 3v2.",
+  "category": "transition",
+  "primarySkill": "decision_making",
+  "secondarySkills": [],
+  "subSkills": ["numbers_advantage"],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "group",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 7,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["transition", "4v3"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Make quick, correct reads when the numbers advantage is smaller and closes faster than a clean 2v1.",
+    "setup": "Four attackers push against three retreating defenders down the full court.",
+    "organization": "",
+    "instructions": [
+      "The attackers space to all four lanes, keeping the floor as wide as possible.",
+      "The ball handler reads which defender is late and attacks that side.",
+      "Pass quickly to whichever teammate the defense leaves open.",
+      "Finish or reset quickly; this advantage closes faster than a 2v1 or 3v2."
+    ],
+    "coachingPoints": [
+      "Decide fast — a four-on-three advantage disappears quickly.",
+      "Keep all four lanes spread rather than bunching toward the ball.",
+      "Communicate who is open rather than guessing."
+    ],
+    "commonMistakes": [
+      "Over-dribbling instead of passing to the open teammate immediately.",
+      "Bunching two attackers in the same lane and erasing the numbers edge.",
+      "Jogging back instead of sprinting to get into position."
+    ],
+    "safety": "Keep the full sprint lane clear of other groups training nearby.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_half_court"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_half_court"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "half_court_center"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_sideline_center"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "far_top_key"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "far_left_elbow"
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "anchor": "far_right_elbow"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "s1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "far_free_throw_line"
+              }
+            ]
+          },
+          {
+            "id": "s2",
+            "step": 1,
+            "type": "sprint",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "far_top_key",
+                "offset": [-1, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "s3",
+            "step": 1,
+            "type": "sprint",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "far_top_key",
+                "offset": [1, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "s4",
+            "step": 1,
+            "type": "sprint",
+            "entity": "x3",
+            "path": [
+              {
+                "anchor": "far_top_key",
+                "offset": [1, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "sh5",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

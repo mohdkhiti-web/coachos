@@ -1,0 +1,156 @@
+{
+  "seedKey": "press-break-middle-release",
+  "title": "Press-Break Middle Release",
+  "description": "Against full-court pressure, a guard practises flashing to the middle of the floor to receive the inbound pass and relieve the pressure quickly.",
+  "category": "press_break",
+  "primarySkill": "press_break",
+  "secondarySkills": ["passing"],
+  "subSkills": ["press_release"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 5,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["press break", "inbounding"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Get open quickly in the middle of the floor to relieve pressure on the inbound pass.",
+    "setup": "An inbounder faces full-court pressure with two or three teammates spread to receive the pass.",
+    "organization": "",
+    "instructions": [
+      "One guard flashes hard to the middle of the floor, timing the cut with the inbounder's release.",
+      "The inbounder delivers a quick, accurate pass to the middle before pressure arrives.",
+      "The receiver pivots away from defenders immediately after the catch.",
+      "Reset and vary which guard flashes to the middle each rep."
+    ],
+    "coachingPoints": [
+      "Flash with urgency — a slow cut gets covered easily.",
+      "Inbounder should release the pass quickly, not wait and get trapped.",
+      "Receiver should catch facing up the floor, ready to advance the ball."
+    ],
+    "commonMistakes": [
+      "Flashing too early and getting there before the defense even sets up.",
+      "Inbounder holding the ball too long before finding the release.",
+      "Panicking under pressure instead of looking for the simple, safe pass."
+    ],
+    "safety": "Keep the full-court pressure controlled and game-realistic, not reckless.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "far_left_block"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "far_top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "far_right_block"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "far_left_block",
+              "offset": [0, -1]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "far_top_key",
+              "offset": [0, -1.2]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "anchor": "far_right_block",
+              "offset": [0, -1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "m2",
+            "step": 2,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "left_half_court"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

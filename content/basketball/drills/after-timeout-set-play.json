@@ -1,0 +1,129 @@
+{
+  "seedKey": "after-timeout-set-play",
+  "title": "After-Timeout (ATO) Set Play",
+  "description": "Coming out of a timeout, the team runs a specifically called set play designed to get a clean look for the team's best shooter.",
+  "category": "special_situations",
+  "primarySkill": "late_game_execution",
+  "secondarySkills": ["screening", "spacing"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "team",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 5,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["special situations", "set play", "ATO"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Execute a called set play cleanly right out of a timeout to generate a good shot for the primary target.",
+    "setup": "Five players set up in the called formation as if coming straight out of a timeout.",
+    "organization": "",
+    "instructions": [
+      "Each player sets up in their exact spot for the called play before the inbound or first action.",
+      "Run the designed screening and cutting sequence exactly as called.",
+      "The primary target reads the defense and takes the shot if open, or passes to the backup option.",
+      "Reset and run the same play again to build repetition and timing."
+    ],
+    "coachingPoints": [
+      "Know your exact role and spot before the play begins — there's no time to figure it out live.",
+      "Set screens with real conviction since this is a one-shot opportunity.",
+      "Have a clear backup option if the primary read is covered."
+    ],
+    "commonMistakes": [
+      "Players unsure of their spot or role, breaking the timing of the play.",
+      "Forcing the primary option even when the defense has taken it away.",
+      "Rushing the set instead of trusting the timing of the play."
+    ],
+    "safety": "Screens must be legal and stationary; keep the simulated play at game-realistic intensity.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "p3",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

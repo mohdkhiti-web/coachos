@@ -1,0 +1,84 @@
+{
+  "seedKey": "spider-dribble-drill",
+  "title": "Spider Dribble Drill",
+  "description": "A rapid-fire combo drill cycling through crossover, between-the-legs and behind-the-back dribbles without stopping, building hand speed under fatigue.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["ball_control"],
+  "subSkills": ["crossover"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["ball handling", "combo move"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Keep the ball under control through a fast, continuous combination of dribble moves.",
+    "setup": "Each player stands in an athletic stance with a ball and open space around them.",
+    "organization": "",
+    "instructions": [
+      "Crossover low, then immediately go between the legs without a pause.",
+      "Follow with a behind-the-back move on the next touch.",
+      "Cycle the combination continuously for 30 seconds without stopping the ball.",
+      "Rest 15 seconds and repeat for three more sets."
+    ],
+    "coachingPoints": [
+      "Keep every dribble low even as the combination speeds up.",
+      "Breathe and stay relaxed through the shoulders.",
+      "Keep the eyes up for the last two sets to simulate game vision."
+    ],
+    "commonMistakes": [
+      "Rushing the combination until control breaks down.",
+      "Letting the ball ride higher as fatigue sets in.",
+      "Speeding up until control breaks down, instead of building speed gradually."
+    ],
+    "safety": "Stop the set immediately if control is lost rather than chasing the ball into traffic.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

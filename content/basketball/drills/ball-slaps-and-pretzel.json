@@ -1,0 +1,84 @@
+{
+  "seedKey": "ball-slaps-and-pretzel",
+  "title": "Ball Slaps and Pretzel",
+  "description": "A stationary ball-handling warm-up — slapping the ball around the body, waist, legs and in a figure-eight — to wake up the hands before full-speed dribbling.",
+  "category": "warm_up",
+  "primarySkill": "ball_control",
+  "secondarySkills": ["dribbling"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["warm_up"],
+  "ageMin": 6,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 4,
+  "space": "half_court",
+  "tags": ["warm-up", "ball handling"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Get the fingertips and wrists active with simple continuous ball contact.",
+    "setup": "Each player has a ball and enough personal space to swing their arms freely.",
+    "organization": "",
+    "instructions": [
+      "Slap the ball quickly around the waist for 15 seconds in each direction.",
+      "Lower it and slap it around each ankle for 15 seconds in each direction.",
+      "Figure-eight the ball through the legs for 20 seconds.",
+      "Finish with 15 seconds of rapid tips off the fingers above the head."
+    ],
+    "coachingPoints": [
+      "Use fingertips and pads, not the palm.",
+      "Keep the head up once the pattern feels comfortable.",
+      "Build speed gradually across the set."
+    ],
+    "commonMistakes": [
+      "Slapping flat-handed instead of with the fingers.",
+      "Looking down at the ball the whole time.",
+      "Rushing through the movements instead of using the full range of motion."
+    ],
+    "safety": "Give each player enough room so swinging arms don't collide.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

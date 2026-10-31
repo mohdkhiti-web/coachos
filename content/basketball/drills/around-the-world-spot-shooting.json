@@ -1,0 +1,204 @@
+{
+  "seedKey": "around-the-world-spot-shooting",
+  "title": "Around the World Spot Shooting",
+  "description": "Shooters move around five or seven spots along the arc, needing to make a shot before advancing — a simple, motivating way to log volume reps.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["shooting", "competition"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build consistency by requiring a make before advancing to the next spot.",
+    "setup": "Five or seven spots are marked in a line along the three-point arc.",
+    "organization": "",
+    "instructions": [
+      "Shoot from the first spot; a make advances you to the next spot.",
+      "A miss means you may choose to try again or stay and attempt it next turn.",
+      "Continue until every spot has been cleared with a make.",
+      "In a group, players take turns one shot at a time."
+    ],
+    "coachingPoints": [
+      "Reset the feet fully at every new spot — don't rush the setup.",
+      "Keep the same shooting rhythm regardless of the spot.",
+      "Stay patient; a miss is only a small setback, not a reason to rush."
+    ],
+    "commonMistakes": [
+      "Rushing shots to catch up with a partner.",
+      "Changing shooting mechanics spot to spot instead of staying consistent.",
+      "Rushing the release instead of trusting the mechanics."
+    ],
+    "safety": "Make sure the next shooter waits clear of the current shooter's landing area.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_corner"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "anchor": "top_key"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c4",
+            "type": "cone",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c5",
+            "type": "cone",
+            "at": {
+              "anchor": "right_corner"
+            },
+            "variant": "flat"
+          }
+        ],
+        "actions": [
+          {
+            "id": "sh1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing"
+              }
+            ]
+          },
+          {
+            "id": "sh3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m4",
+            "step": 3,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "top_key"
+              }
+            ]
+          },
+          {
+            "id": "sh5",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m6",
+            "step": 4,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_wing"
+              }
+            ]
+          },
+          {
+            "id": "sh7",
+            "step": 4,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m8",
+            "step": 5,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_corner"
+              }
+            ]
+          },
+          {
+            "id": "sh9",
+            "step": 5,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

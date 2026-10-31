@@ -1,0 +1,91 @@
+{
+  "seedKey": "walk-and-talk-review",
+  "title": "Walk-and-Talk Review",
+  "description": "The team walks a slow lap of the court while the coach reviews the day's key points, combining a physical cooldown with a mental recap.",
+  "category": "cooldown",
+  "primarySkill": "recovery_mobility",
+  "secondarySkills": ["communication"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["cool_down"],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "full_court",
+  "tags": ["cooldown", "review"],
+  "equipment": [],
+  "content": {
+    "objective": "Lower the heart rate gradually while reinforcing the day's main lessons verbally.",
+    "setup": "The team walks together in a loose group around the perimeter of the court.",
+    "organization": "",
+    "instructions": [
+      "Walk at an easy pace as a group for one full lap of the court.",
+      "The coach reviews two or three key points from the day's practice.",
+      "Players are encouraged to ask questions or share what they noticed.",
+      "Finish the lap and gather for a short closing message."
+    ],
+    "coachingPoints": [
+      "Keep the pace genuinely easy — this is recovery, not more conditioning.",
+      "Keep the review focused on two or three points, not an exhaustive list.",
+      "Encourage real participation rather than a one-way lecture."
+    ],
+    "commonMistakes": [
+      "Walking so fast it stops being a true cooldown.",
+      "Covering too many points, losing the players' attention.",
+      "Treating it as optional instead of part of the session."
+    ],
+    "safety": "Make sure the walking path is clear of any remaining equipment.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_corner"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

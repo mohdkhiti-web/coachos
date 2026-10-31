@@ -1,0 +1,113 @@
+{
+  "seedKey": "transition-finish-at-speed",
+  "title": "Transition Finish at Speed",
+  "description": "Players sprint the floor and finish at full speed off a pass, training the composure needed to finish layups when breathing hard in transition.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["conditioning"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "full_court",
+  "tags": ["finishing", "transition"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Stay composed and finish cleanly while breathing hard and moving at full speed.",
+    "setup": "A passer stands near half court; the finisher sprints from the baseline to receive a pass in stride.",
+    "organization": "",
+    "instructions": [
+      "The finisher sprints the length of the floor at game speed.",
+      "The passer leads the ball to where the finisher will be, not where they are now.",
+      "The finisher gathers in stride and finishes without breaking speed.",
+      "Jog back and repeat, alternating which side the finisher sprints down."
+    ],
+    "coachingPoints": [
+      "Gather with both hands even at full speed.",
+      "Take the correct last two steps regardless of fatigue.",
+      "Keep the eyes up to track the pass the whole way."
+    ],
+    "commonMistakes": [
+      "Slowing down awkwardly to gather the pass.",
+      "Rushing the finish and missing an easy look from fatigue.",
+      "Bringing the ball down low where it can be knocked away."
+    ],
+    "safety": "Keep the finishing lane clear of any other group's drill.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_half_court"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "far_left_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

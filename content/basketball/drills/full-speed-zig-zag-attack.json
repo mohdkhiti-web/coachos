@@ -1,0 +1,154 @@
+{
+  "seedKey": "full-speed-zig-zag-attack",
+  "title": "Full-Speed Zig-Zag Attack",
+  "description": "Dribbling full speed in a zig-zag pattern from baseline to half court, changing direction hard at each imaginary cone, to build live-speed control.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["speed_agility"],
+  "subSkills": ["change_of_pace"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "full_court",
+  "tags": ["ball handling", "speed"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Keep full control of the ball while changing direction at game speed.",
+    "setup": "Players start under the basket with a ball and attack in a wide zig-zag toward half court.",
+    "organization": "",
+    "instructions": [
+      "Sprint-dribble at a 45-degree angle toward one sideline.",
+      "Plant the outside foot and crossover hard to change direction.",
+      "Repeat the angle change three or four times on the way to half court.",
+      "Jog back with the ball under control and go again."
+    ],
+    "coachingPoints": [
+      "Lower the hips before the change of direction, not after.",
+      "Keep the ball on the outside hand, away from an imaginary defender.",
+      "Accelerate out of every change of direction."
+    ],
+    "commonMistakes": [
+      "Standing up out of the stance when changing direction.",
+      "Slowing down too much between direction changes.",
+      "Letting the off-hand drop instead of staying ready to protect the ball."
+    ],
+    "safety": "Make sure there is a clear, open lane before sprinting at full speed.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "c4",
+            "type": "cone",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "c5",
+            "type": "cone",
+            "at": {
+              "anchor": "left_half_court"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "d1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow"
+              },
+              {
+                "anchor": "left_wing"
+              },
+              {
+                "anchor": "right_slot"
+              },
+              {
+                "anchor": "left_half_court"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 3.3
+            },
+            "text": "Hard change of direction"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "seedKey": "behind-the-back-escape-dribble",
+  "title": "Behind-the-Back Escape Dribble",
+  "description": "Ball handlers practise the behind-the-back dribble as an escape move when a defender cuts off the crossover lane, with a passive defender for realism.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["decision_making"],
+  "subSkills": ["reading_the_defense"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["ball handling", "1-on-1"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Choose the behind-the-back escape dribble only when the crossover lane is truly cut off.",
+    "setup": "A ball handler faces a defender who overplays one side, cutting off the easy crossover.",
+    "organization": "",
+    "instructions": [
+      "The ball handler attacks the overplayed side at a controlled pace.",
+      "When the defender cuts off that lane, the ball handler goes behind the back to escape to the other side.",
+      "Finish with two hard dribbles toward the rim after the escape.",
+      "Reset with the defender overplaying the opposite side."
+    ],
+    "coachingPoints": [
+      "Only use the move when the direct path is actually blocked.",
+      "Keep the behind-the-back dribble tight to the body.",
+      "Accelerate immediately after completing the move."
+    ],
+    "commonMistakes": [
+      "Using the move as a habit rather than a read.",
+      "Slowing down right after the escape instead of attacking.",
+      "Watching the ball instead of keeping the head up."
+    ],
+    "safety": "Defenders apply token pressure only — no reaching in aggressively.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1.5]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "d1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow"
+              }
+            ]
+          },
+          {
+            "id": "x2",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "left_elbow"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

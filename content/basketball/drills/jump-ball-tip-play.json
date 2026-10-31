@@ -1,0 +1,93 @@
+{
+  "seedKey": "jump-ball-tip-play",
+  "title": "Jump-Ball Tip Play",
+  "description": "A taller player tips a simulated opening jump ball to a specific teammate's spot, practising a coordinated start-of-game or start-of-overtime routine.",
+  "category": "special_situations",
+  "primarySkill": "late_game_execution",
+  "secondarySkills": ["communication"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 10,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["special situations", "jump ball"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Coordinate a tipped jump ball to land with a specific teammate rather than leaving it to chance.",
+    "setup": "A tosser lightly tosses the ball up between two jumpers at the top of the key; a designated receiver waits nearby.",
+    "organization": "",
+    "instructions": [
+      "The jumper tips the ball with control toward the pre-called receiver's spot.",
+      "The receiver times their movement to arrive exactly as the ball does.",
+      "Catch and immediately pivot to protect the ball from any nearby defender.",
+      "Reset and repeat with a different called receiver each time."
+    ],
+    "coachingPoints": [
+      "Tip with control and placement, not just height.",
+      "The receiver should move to the ball, not wait for it to come directly to them.",
+      "Call the intended receiver out loud before the toss so everyone knows the plan."
+    ],
+    "commonMistakes": [
+      "Tipping the ball randomly instead of toward the called spot.",
+      "Receiver standing still and letting the ball bounce away untouched.",
+      "Losing focus on the details once the simulated pressure is on."
+    ],
+    "safety": "Toss the ball with light, controlled height — this is a simulation, not a contested jump.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

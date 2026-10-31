@@ -1,0 +1,124 @@
+{
+  "seedKey": "cone-pivot-and-face",
+  "title": "Cone Pivot and Face",
+  "description": "Players dribble to a cone, pick up the ball, pivot to face an open target, and pass — tying together stopping, pivoting and seeing the floor.",
+  "category": "footwork",
+  "primarySkill": "pivoting",
+  "secondarySkills": ["dribbling", "passing"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 16,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["footwork", "pivoting"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Stop cleanly at the cone, pivot to locate an open target, then deliver an accurate pass.",
+    "setup": "A cone marks a stopping point; a target player waits at a wing.",
+    "organization": "",
+    "instructions": [
+      "Dribble toward the cone and pick up the ball with a jump-stop right at it.",
+      "Pivot to face the target player before passing.",
+      "Deliver an accurate pass once fully squared up.",
+      "The target returns the pass and the ball handler resets to repeat."
+    ],
+    "coachingPoints": [
+      "Stop fully before picking up the dribble, not mid-stride.",
+      "Keep the pivot foot planted throughout the turn.",
+      "Square up fully before releasing the pass."
+    ],
+    "commonMistakes": [
+      "Picking up the dribble while still moving, risking a travel.",
+      "Passing before the pivot is actually complete.",
+      "Rushing the stop before the feet are actually set."
+    ],
+    "safety": "Keep the cone area clear of other groups' paths.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "d1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 3.3
+            },
+            "text": "Stop, pivot, pass"
+          }
+        ]
+      }
+    }
+  ]
+}

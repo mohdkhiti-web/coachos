@@ -1,0 +1,114 @@
+{
+  "seedKey": "sprint-the-floor-no-ball",
+  "title": "Sprint the Floor, No Ball",
+  "description": "Players sprint full-court lanes with no ball at all, purely building the conditioning and lane discipline that transition offense depends on.",
+  "category": "transition",
+  "primarySkill": "conditioning",
+  "secondarySkills": ["spacing"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "full_court",
+  "tags": ["transition", "conditioning"],
+  "equipment": [],
+  "content": {
+    "objective": "Build the conditioning and lane discipline for transition without the ball to worry about yet.",
+    "setup": "Three players line up across the baseline in the left, middle and right lanes.",
+    "organization": "",
+    "instructions": [
+      "Sprint the full length of the floor staying in the assigned lane.",
+      "Touch the far baseline, then jog back staying wide, not cutting through the middle.",
+      "Repeat for a set number of full-court sprints.",
+      "Rotate lanes each trip so every player runs each one."
+    ],
+    "coachingPoints": [
+      "Stay in your lane the whole way — don't drift toward the ball handler's lane out of habit.",
+      "Sprint at genuine game speed, not a jog disguised as a sprint.",
+      "Recover with a real jog, not a walk, to keep the conditioning value."
+    ],
+    "commonMistakes": [
+      "Drifting out of the assigned lane partway down the floor.",
+      "Walking back instead of jogging, losing the conditioning benefit.",
+      "Bunching into the same lane instead of spreading the floor."
+    ],
+    "safety": "Make sure all three lanes are clear of equipment and other groups.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_half_court"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_half_court"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "half_court_center"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "s1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "far_free_throw_line"
+              }
+            ]
+          },
+          {
+            "id": "sh2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

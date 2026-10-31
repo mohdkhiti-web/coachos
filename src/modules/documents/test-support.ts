@@ -189,7 +189,12 @@ export function session(
 
 /** A believable evening: warm-up, skill, small-sided, game, cool-down. */
 export function typicalSession(overrides: Partial<SessionDocumentInput> = {}) {
-  const keys = drillKeys();
+  // Picked from drills that actually carry progressions/regressions/variations, so this fixture keeps
+  // exercising every optional section regardless of which drills happen to sort first in the library.
+  const keys = drillKeys().filter((k) => {
+    const c = drillContent(k).content;
+    return c.progressions.length > 0 && c.regressions.length > 0 && c.variations.length > 0;
+  });
   const at = (i: number) => keys[i % keys.length]!;
   return session(
     [

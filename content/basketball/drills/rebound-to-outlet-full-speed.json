@@ -1,0 +1,113 @@
+{
+  "seedKey": "rebound-to-outlet-full-speed",
+  "title": "Rebound to Outlet Full Speed",
+  "description": "A rebounder secures a shot off the rim, then immediately throws a full-speed outlet pass to start a two-player fast break the other way.",
+  "category": "rebounding",
+  "primarySkill": "rebounding",
+  "secondarySkills": ["passing"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "full_court",
+  "tags": ["rebounding", "transition"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Turn a secured rebound directly into the first pass of a fast break without delay.",
+    "setup": "A rebounder stands under the basket; an outlet target sprints up the sideline on the rebound.",
+    "organization": "",
+    "instructions": [
+      "A shot is taken and missed on purpose near the rim.",
+      "The rebounder secures with two hands and immediately pivots to find the sprinting outlet.",
+      "Deliver a strong, accurate pass ahead of the outlet's path.",
+      "The outlet catches in stride and continues toward the far basket."
+    ],
+    "coachingPoints": [
+      "Outlet within one or two seconds of securing the rebound — speed matters.",
+      "Lead the pass ahead of the sprinting target, not directly at them.",
+      "Keep the first pivot quick and away from any defensive pressure."
+    ],
+    "commonMistakes": [
+      "Holding the ball too long admiring the rebound before outletting.",
+      "Throwing the outlet pass behind the sprinting player.",
+      "Releasing the box-out position too early to chase the ball."
+    ],
+    "safety": "Make sure the outlet's sprint lane is clear of other groups.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_half_court"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

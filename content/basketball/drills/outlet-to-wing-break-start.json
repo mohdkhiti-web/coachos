@@ -1,0 +1,113 @@
+{
+  "seedKey": "outlet-to-wing-break-start",
+  "title": "Outlet to Wing Break Start",
+  "description": "A defensive rebound is outletted to a sprinting wing, practising the very first pass that actually starts a fast break off a miss.",
+  "category": "transition",
+  "primarySkill": "passing",
+  "secondarySkills": ["rebounding"],
+  "subSkills": ["passing_on_the_move"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "full_court",
+  "tags": ["transition", "outlet pass"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Deliver a fast, accurate outlet pass the instant a rebound is secured to start the break quickly.",
+    "setup": "A shot is missed on purpose near the rim; a rebounder and a sprinting wing target set up.",
+    "organization": "",
+    "instructions": [
+      "The rebounder secures the ball with both hands and pivots away from pressure.",
+      "The wing sprints immediately toward the sideline without waiting for the outlet.",
+      "The rebounder delivers a sharp outlet pass ahead of the sprinting wing.",
+      "The wing catches in stride and continues up the floor to finish or find a trailer."
+    ],
+    "coachingPoints": [
+      "Outlet within one or two seconds of securing the rebound.",
+      "Lead the pass ahead of the sprint, not directly at the receiver.",
+      "Wing should be sprinting before the outlet even arrives, not waiting flat-footed."
+    ],
+    "commonMistakes": [
+      "Holding the rebound too long before outletting.",
+      "Wing standing still waiting for the pass instead of already sprinting.",
+      "Forcing a play before the numbers advantage is actually clear."
+    ],
+    "safety": "Make sure the sprint lane is clear of any other drill happening nearby.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_half_court"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

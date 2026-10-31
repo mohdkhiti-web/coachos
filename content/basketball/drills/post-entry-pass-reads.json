@@ -1,0 +1,115 @@
+{
+  "seedKey": "post-entry-pass-reads",
+  "title": "Post Entry Pass Reads",
+  "description": "A wing passer practises reading the post defender's position to choose between a direct bounce entry and a lob over the top.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": [],
+  "subSkills": ["passing_under_pressure"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "half_court",
+  "tags": ["passing", "post play"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 4
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Choose the correct post-entry pass based on where the defender is playing.",
+    "setup": "A wing passer faces a post player at the block, with a defender working for position behind or in front.",
+    "organization": "",
+    "instructions": [
+      "If the defender fronts the post, the wing passer lobs the ball over the top.",
+      "If the defender plays behind, the wing passer delivers a firm bounce pass to the low target hand.",
+      "The post player seals and presents a target before every catch.",
+      "Rotate the defender's starting position every four reps."
+    ],
+    "coachingPoints": [
+      "Read the defender's position before deciding the pass type, not after.",
+      "Throw the lob with enough height to clear the front defender safely.",
+      "Deliver the bounce pass to the low hand target, not the chest."
+    ],
+    "commonMistakes": [
+      "Throwing the same pass regardless of the defender's position.",
+      "Post player not presenting a target hand before the catch.",
+      "Passing from a standstill instead of stepping into it."
+    ],
+    "safety": "Lob passes should be soft enough to control, not a hard overhead throw.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "bounce"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1",
+            "kind": "bounce"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

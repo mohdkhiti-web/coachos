@@ -1,0 +1,107 @@
+{
+  "seedKey": "17s-and-up-down-conditioning",
+  "title": "17s and Up-and-Down Conditioning",
+  "description": "Players sprint the width of the court 17 times within a time limit, then run full-court up-and-downs, a staple basketball conditioning combination.",
+  "category": "conditioning",
+  "primarySkill": "conditioning",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["conditioning", "17s"],
+  "equipment": [
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Complete a demanding width-of-court sprint count within a set time to build game-level conditioning.",
+    "setup": "Players line up on the sideline with the full width of the court open to sprint.",
+    "organization": "",
+    "instructions": [
+      "Sprint width-to-width across the court, counting each crossing as one.",
+      "Complete 17 total crossings within the set time limit (commonly 60 seconds for older groups).",
+      "Rest for the planned interval, then run one or two full-court up-and-down sprints.",
+      "Repeat the full combination for the planned number of sets."
+    ],
+    "coachingPoints": [
+      "Keep a consistent pace rather than sprinting hard early and fading late.",
+      "Touch each sideline clearly before turning back.",
+      "Push through the final few crossings rather than coasting to the buzzer."
+    ],
+    "commonMistakes": [
+      "Cutting the turn short instead of touching the sideline.",
+      "Starting too fast and being unable to maintain the pace.",
+      "Losing count under fatigue and finishing short of the real total."
+    ],
+    "safety": "Build up to this conditioning level gradually; stop if a player shows signs of overheating or distress.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "mk1",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "mk2",
+            "type": "marker",
+            "kind": "end",
+            "at": {
+              "anchor": "right_corner"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "s1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_corner"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

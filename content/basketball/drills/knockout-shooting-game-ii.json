@@ -1,0 +1,84 @@
+{
+  "seedKey": "knockout-shooting-game-ii",
+  "title": "Knockout Shooting Game II",
+  "description": "A fast-paced elimination shooting game from the free-throw line with two balls in play, keeping every player engaged and shooting under pressure.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["competitiveness"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["skill", "game"],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 4,
+  "playersMax": 10,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["shooting", "game", "fun"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Shoot quickly and accurately under the pressure of being chased by the next shooter in line.",
+    "setup": "Players line up behind the free-throw line, two balls at the front of the line.",
+    "organization": "",
+    "instructions": [
+      "The first two players shoot; each may rebound their own miss and shoot again.",
+      "If the second shooter makes a shot before the first, the first player is eliminated.",
+      "The ball is passed back to the next player in line immediately after a make or elimination.",
+      "Play continues until only one player remains."
+    ],
+    "coachingPoints": [
+      "Stay calm under the chase — rushed shots usually miss more.",
+      "Get the rebound and reset quickly rather than chasing a long one.",
+      "Use a consistent shooting motion even when hurried."
+    ],
+    "commonMistakes": [
+      "Panicking and rushing a shot that was actually fine to take calmly.",
+      "Standing still after a miss instead of immediately rebounding.",
+      "Letting the elbow drift out to the side instead of staying under the ball."
+    ],
+    "safety": "Keep the area under the basket clear for quick rebounds and resets.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

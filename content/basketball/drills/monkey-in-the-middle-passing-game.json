@@ -1,0 +1,111 @@
+{
+  "seedKey": "monkey-in-the-middle-passing-game",
+  "title": "Monkey in the Middle Passing Game",
+  "description": "A classic passing game: one defender in the middle tries to intercept or deflect passes between three or four players on the outside.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["decision_making", "catching"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["skill", "game"],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 4,
+  "playersMax": 10,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["passing", "game", "fun"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Move the ball quickly and read passing lanes to avoid a defender in the middle.",
+    "setup": "Three or four passers form a circle around one defender in the middle.",
+    "organization": "",
+    "instructions": [
+      "Passers move the ball around the circle, using fakes to confuse the defender.",
+      "The defender tries to deflect or intercept any pass.",
+      "Whoever threw a pass that gets intercepted becomes the next defender.",
+      "Add a two-pass-maximum hold rule to speed up decisions once the group is comfortable."
+    ],
+    "coachingPoints": [
+      "Use pass fakes to move the defender before the real pass.",
+      "Pass away from the defender's side whenever possible.",
+      "Move slightly after every catch to open new angles."
+    ],
+    "commonMistakes": [
+      "Standing still in the same spot the whole game.",
+      "Holding the ball too long deciding where to pass.",
+      "Passing from a standstill instead of stepping into it."
+    ],
+    "safety": "The defender may only reach for the ball, not grab a passer's arms.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

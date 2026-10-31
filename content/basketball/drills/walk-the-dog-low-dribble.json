@@ -1,0 +1,93 @@
+{
+  "seedKey": "walk-the-dog-low-dribble",
+  "title": "Walk-the-Dog Low Dribble",
+  "description": "An ultra-low, slow-motion dribble pattern that exaggerates ball control at a walking pace, popular for building a true low dribble before adding speed.",
+  "category": "ball_handling",
+  "primarySkill": "ball_control",
+  "secondarySkills": ["dribbling"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 7,
+  "ageMax": 14,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 4,
+  "space": "half_court",
+  "tags": ["ball handling", "low dribble"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build a genuinely low dribble by walking, not running, through the pattern first.",
+    "setup": "Each player has a ball and walks slowly across half court.",
+    "organization": "",
+    "instructions": [
+      "Walk forward dribbling as low as possible with the right hand only.",
+      "Switch to the left hand only for the return trip.",
+      "Add a crossover every third step on the next trip across.",
+      "Finish with a normal walking pace but keep the same low dribble height."
+    ],
+    "coachingPoints": [
+      "Exaggerate how low the dribble is — lower than feels natural.",
+      "Keep the knees bent the whole way across.",
+      "Only speed up once the height stays consistent."
+    ],
+    "commonMistakes": [
+      "Letting the dribble creep up as soon as walking starts.",
+      "Standing upright instead of staying in a stance.",
+      "Watching the ball instead of keeping the head up."
+    ],
+    "safety": "No equipment on the walking path; keep the lane clear.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

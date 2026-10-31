@@ -85,6 +85,9 @@ export function ActivityCard({
   const style: React.CSSProperties = {
     transform: CSS.Transform.toString(sortable.transform),
     transition: sortable.transition,
+    // Only matters for the mount fade-up below: a reorder doesn't replay a CSS animation on an element whose key
+    // didn't change, so this never re-staggers while dragging — only the first paint and genuinely new cards cascade.
+    ["--fade-delay" as string]: `${Math.min(index, 8) * 40}ms`,
   };
   const hasFacts =
     !isBreak &&

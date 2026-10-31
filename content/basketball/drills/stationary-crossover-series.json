@@ -1,0 +1,84 @@
+{
+  "seedKey": "stationary-crossover-series",
+  "title": "Stationary Crossover Series",
+  "description": "A stationary ball-handling series — low crossovers, between-the-legs and behind-the-back — to build control before adding movement.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": [],
+  "subSkills": ["crossover"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["ball handling", "crossover"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build a low, controlled crossover dribble without needing to travel anywhere.",
+    "setup": "Each player has a ball and stands in a wide athletic stance.",
+    "organization": "",
+    "instructions": [
+      "Crossover the ball low from hand to hand for 20 touches.",
+      "Add a between-the-legs crossover for 20 touches.",
+      "Add a behind-the-back crossover for 20 touches.",
+      "Mix all three randomly for a final 30 seconds."
+    ],
+    "coachingPoints": [
+      "Keep the dribble below the knee on every crossover.",
+      "Use the fingertips to push the ball, not a slap.",
+      "Keep the head up and eyes forward throughout."
+    ],
+    "commonMistakes": [
+      "Letting the dribble rise above waist height.",
+      "Watching the ball instead of an imaginary defender.",
+      "Watching the ball instead of keeping the head up."
+    ],
+    "safety": "Leave enough space between players so a stray ball doesn't roll into a neighbour.",
+    "progressions": ["Add a defender waving a hand to add distraction without contact."],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

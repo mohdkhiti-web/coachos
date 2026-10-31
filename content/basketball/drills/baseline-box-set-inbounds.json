@@ -1,0 +1,123 @@
+{
+  "seedKey": "baseline-box-set-inbounds",
+  "title": "Baseline Box-Set Inbounds",
+  "description": "A classic box formation for a baseline inbound, with staggered screens creating a look for either a layup or a corner three.",
+  "category": "special_situations",
+  "primarySkill": "inbounding",
+  "secondarySkills": ["screening"],
+  "subSkills": ["baseline_inbounds"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "team",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 5,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["special situations", "inbounds", "set play"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Run a clean box inbounds set that creates either a rim finish or an open corner three.",
+    "setup": "Four players set up in a box shape near the free-throw line with the inbounder on the baseline.",
+    "organization": "",
+    "instructions": [
+      "Two players screen for each other across the lane as the play begins.",
+      "The first cutter looks for a layup off the first screen.",
+      "If denied, the second cutter pops to the corner for a three off a staggered screen.",
+      "The inbounder reads both options and delivers to whichever is open."
+    ],
+    "coachingPoints": [
+      "Set screens that are legal and stationary before any contact.",
+      "Cutters should read the defense, not run the pattern blindly.",
+      "Inbounder needs to be ready to deliver to either option quickly."
+    ],
+    "commonMistakes": [
+      "Cutters running the pattern even when a defender has clearly taken it away.",
+      "Screens set too late to actually free anyone.",
+      "Losing focus on the details once the simulated pressure is on."
+    ],
+    "safety": "Screens must be legal and stationary; defenders should avoid unnecessary contact when fighting through.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "player",
+            "side": "offense",
+            "label": "C",
+            "at": {
+              "anchor": "under_basket"
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "c1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_corner"
+              }
+            ]
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "c1",
+            "to": "o1"
+          },
+          {
+            "id": "sh3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

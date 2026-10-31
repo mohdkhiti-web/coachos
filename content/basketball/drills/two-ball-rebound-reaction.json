@@ -1,0 +1,84 @@
+{
+  "seedKey": "two-ball-rebound-reaction",
+  "title": "Two-Ball Rebound Reaction",
+  "description": "A coach tosses two balls off the backboard in quick succession, forcing a rebounder to secure the first and immediately react to the second.",
+  "category": "rebounding",
+  "primarySkill": "rebounding",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["rebounding", "reaction"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Secure a rebound and immediately react to a second ball without pausing to reset.",
+    "setup": "A coach stands with two balls, ready to toss them off the backboard one after another.",
+    "organization": "",
+    "instructions": [
+      "The coach tosses the first ball off the backboard for the rebounder to secure.",
+      "Immediately after the first rebound, the coach tosses the second ball.",
+      "The rebounder reacts and secures the second ball without a pause to reset.",
+      "Rotate rebounders every four reps."
+    ],
+    "coachingPoints": [
+      "Stay on the balls of the feet, ready to react instantly.",
+      "Keep the hands up and active between tosses.",
+      "Secure each rebound fully before thinking about the next one."
+    ],
+    "commonMistakes": [
+      "Relaxing after the first rebound instead of staying ready.",
+      "Reaching for the second ball instead of jumping to meet it.",
+      "Reaching for the ball with one hand instead of securing it with two."
+    ],
+    "safety": "Coach tosses the ball with control, not a hard throw that risks injury.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

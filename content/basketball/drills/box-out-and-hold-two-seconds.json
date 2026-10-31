@@ -1,0 +1,116 @@
+{
+  "seedKey": "box-out-and-hold-two-seconds",
+  "title": "Box Out and Hold Two Seconds",
+  "description": "Partners practise the box-out technique on a shot, holding the position for a full two seconds before releasing to go get the ball.",
+  "category": "rebounding",
+  "primarySkill": "boxing_out",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["rebounding", "box out"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Find and hold a legal box-out position long enough for a shot to actually come down.",
+    "setup": "Partners stand near the block, one as the shooter's defender boxing out the other.",
+    "organization": "",
+    "instructions": [
+      "On the shot, the defender pivots and makes contact with a wide base, back to the offensive player.",
+      "Hold the position with arms up for a full two-second count.",
+      "Release and go get the rebound once the two seconds are up.",
+      "Switch roles after five reps each."
+    ],
+    "coachingPoints": [
+      "Make contact with the back and hips, not by reaching with the arms.",
+      "Keep a wide, low base to hold the position.",
+      "Go get the ball — boxing out alone doesn't finish the job."
+    ],
+    "commonMistakes": [
+      "Releasing the box-out too early to chase the ball.",
+      "Reaching with the arms instead of using the lower body for contact.",
+      "Reaching for the ball with one hand instead of securing it with two."
+    ],
+    "safety": "Make contact with the body only, no grabbing or holding the opponent's jersey.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "left_block",
+              "offset": [0, -0.9]
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block",
+              "offset": [0, -0.5]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "at": {
+              "anchor": "basket"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "x1",
+            "step": 1,
+            "type": "defend",
+            "kind": "help",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [0, -0.6]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "seedKey": "stance-and-slide-shuttle",
+  "title": "Stance-and-Slide Shuttle",
+  "description": "Players slide through a shuttle pattern touching lines on the floor, building the lateral quickness and low stance needed for on-ball defense.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": [],
+  "subSkills": ["stance_and_slides"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["defense", "footwork"],
+  "equipment": [],
+  "content": {
+    "objective": "Build quick, low lateral slides between the floor's natural lines.",
+    "setup": "Players start at the free-throw line facing the sideline in a defensive stance.",
+    "organization": "",
+    "instructions": [
+      "Slide to the left elbow, touch the floor, then slide back to the free-throw line.",
+      "Slide to the right elbow, touch the floor, then slide back.",
+      "Repeat the full pattern three times without standing up between slides.",
+      "Finish with five seconds of fast feet in the stance."
+    ],
+    "coachingPoints": [
+      "Stay low through every touch, not just at the start.",
+      "Push off the trail foot rather than crossing the feet.",
+      "Keep the chest up even while touching the floor."
+    ],
+    "commonMistakes": [
+      "Standing up tall to touch the floor instead of staying low.",
+      "Crossing the feet during the slide.",
+      "Standing upright instead of staying in a low stance."
+    ],
+    "safety": "Make sure the floor markings are clearly visible and the space is clear.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "d1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow"
+              },
+              {
+                "anchor": "right_elbow"
+              },
+              {
+                "anchor": "free_throw_line"
+              }
+            ]
+          },
+          {
+            "id": "x2",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "left_elbow"
+              },
+              {
+                "anchor": "right_elbow"
+              },
+              {
+                "anchor": "free_throw_line"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

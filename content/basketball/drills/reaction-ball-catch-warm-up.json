@@ -1,0 +1,113 @@
+{
+  "seedKey": "reaction-ball-catch-warm-up",
+  "title": "Reaction-Ball Catch Warm-Up",
+  "description": "A short partner catching warm-up using quick, low tosses to sharpen hands and reaction time before passing drills begin.",
+  "category": "warm_up",
+  "primarySkill": "catching",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 4,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 4,
+  "space": "half_court",
+  "tags": ["warm-up", "catching"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 10
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Sharpen hand-eye coordination and soft hands before the ball moves at full speed.",
+    "setup": "Partners stand three metres apart, each pair with one ball.",
+    "organization": "",
+    "instructions": [
+      "Toss the ball low and slightly off-target so the partner has to adjust.",
+      "Catch with both hands and immediately give a target before returning the toss.",
+      "After one minute, take one step farther apart and repeat.",
+      "Finish with ten one-handed catches per side."
+    ],
+    "coachingPoints": [
+      "Catch out in front of the body, not against the chest.",
+      "Keep the eyes on the ball all the way into the hands.",
+      "Give a quick, clear target hand after every catch."
+    ],
+    "commonMistakes": [
+      "Tossing too hard, turning this into a throwing drill.",
+      "Catching flat-footed instead of stepping to the ball.",
+      "Letting the group's pace drift apart instead of staying together."
+    ],
+    "safety": "Keep pairs spread out so stray tosses don't hit a neighbouring group.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

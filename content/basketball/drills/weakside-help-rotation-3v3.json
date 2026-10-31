@@ -1,0 +1,113 @@
+{
+  "seedKey": "weakside-help-rotation-3v3",
+  "title": "Weak-Side Help Rotation 3v3",
+  "description": "Three defenders practise rotating as one unit when the ball drives into the lane, each reading the next pass to recover in sequence.",
+  "category": "team_defense",
+  "primarySkill": "help_defense",
+  "secondarySkills": [],
+  "subSkills": ["defensive_rotations"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "3v3",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 6,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["team defense", "rotations"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 6
+    }
+  ],
+  "content": {
+    "objective": "Rotate as a coordinated unit on a drive, with each defender ready to cover the next pass.",
+    "setup": "Three offensive players space around the perimeter against three live defenders.",
+    "organization": "",
+    "instructions": [
+      "The ball handler drives into the lane, drawing help from the nearest defender.",
+      "The helper's original player becomes open; the next defender rotates to cover them.",
+      "If the ball is passed again, the rotation continues one more step.",
+      "Reset after every possession and vary which player initiates the drive."
+    ],
+    "coachingPoints": [
+      "Rotate on the drive, not after the pass has already left.",
+      "Communicate every rotation out loud.",
+      "Close out with balance on the final recovery, not out of control."
+    ],
+    "commonMistakes": [
+      "Rotating late and leaving a shooter open for a clean look.",
+      "Two defenders rotating to the same player and leaving another free.",
+      "Rotating to the wrong player and leaving someone else open."
+    ],
+    "safety": "Keep drives at a controlled, game-realistic pace rather than full-contact speed.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

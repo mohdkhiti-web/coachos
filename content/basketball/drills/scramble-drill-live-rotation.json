@@ -1,0 +1,145 @@
+{
+  "seedKey": "scramble-drill-live-rotation",
+  "title": "Scramble Drill Live Rotation",
+  "description": "The coach deliberately creates a broken defensive possession and the team must scramble to find shooters and rebound position before the shot goes up.",
+  "category": "team_defense",
+  "primarySkill": "communication",
+  "secondarySkills": ["help_defense", "boxing_out"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "group",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 6,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["team defense", "scramble"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 8
+    }
+  ],
+  "content": {
+    "objective": "Recover from a broken defensive possession by scrambling to the open shooters and boxing out.",
+    "setup": "A coach starts a possession already broken down — one defender out of position or late.",
+    "organization": "",
+    "instructions": [
+      "The offense attacks the broken coverage immediately, looking for the open shooter.",
+      "Defenders scramble and communicate to find the most dangerous open player first.",
+      "On any shot attempt, every defender locates a body to box out.",
+      "Reset with a different defender starting out of position each round."
+    ],
+    "coachingPoints": [
+      "Communicate loudly the instant the scramble starts.",
+      "Take away the most dangerous shot first, not just the nearest player.",
+      "Box out even in a scramble — don't skip the rebound just because the possession was chaotic."
+    ],
+    "commonMistakes": [
+      "Panicking and running at the ball instead of covering the most dangerous shooter.",
+      "Forgetting to box out because the possession felt disorganised.",
+      "Ball-watching instead of tracking both the ball and the assignment."
+    ],
+    "safety": "Keep the scramble at a controlled, game-realistic intensity.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "p3",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4"
+          },
+          {
+            "id": "p4",
+            "step": 4,
+            "type": "pass",
+            "from": "o4",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

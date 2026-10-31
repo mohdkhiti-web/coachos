@@ -53,6 +53,10 @@
   --phase-conditioning: #047857;
   --phase-cool-down: #0e7490;
   --phase-break: #6b6659;
+
+  /* The diagram court's hardwood surface (screen theme only — print/mono stay flat and ink-safe). */
+  --court-wood: #e4c495;
+  --court-wood-grain: #c9a066;
 }
 
 :root[data-theme="dark"],
@@ -93,6 +97,9 @@
   --phase-conditioning: #34d399;
   --phase-cool-down: #22d3ee;
   --phase-break: #8c8676;
+
+  --court-wood: #2b1d10;
+  --court-wood-grain: #432c17;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -132,6 +139,9 @@
     --phase-conditioning: #34d399;
     --phase-cool-down: #22d3ee;
     --phase-break: #8c8676;
+
+    --court-wood: #2b1d10;
+    --court-wood-grain: #432c17;
   }
 }
 

@@ -1,0 +1,119 @@
+{
+  "seedKey": "contested-shot-pump-fake",
+  "title": "Contested Shot Pump Fake",
+  "description": "Shooters work against a hand in their face, using a pump fake to get a defender airborne before rising for a clean, uncontested shot.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["decision_making"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["shooting", "pump fake"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use a believable pump fake to draw a defender off their feet before shooting clean.",
+    "setup": "A shooter catches the ball as a defender closes out with a hand up.",
+    "organization": "",
+    "instructions": [
+      "On the catch, sell a shot fake with the ball and eyes, holding the base as if shooting.",
+      "If the defender jumps, rise and shoot once they're in the air.",
+      "If the defender holds their ground, pass or attack off the dribble instead.",
+      "Rotate defenders every six reps."
+    ],
+    "coachingPoints": [
+      "Keep the fake low and short — a big fake telegraphs and wastes time.",
+      "Only shoot once the defender has actually left their feet.",
+      "Have a second option ready if the fake doesn't draw a jump."
+    ],
+    "commonMistakes": [
+      "Shooting into a defender who never left the ground.",
+      "Faking so big that there's no time left to actually shoot.",
+      "Dropping the follow-through early instead of holding it."
+    ],
+    "safety": "The defender contests with verticality, not by lunging into the shooter.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "x1",
+            "step": 1,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [0.9, 0]
+              }
+            ]
+          },
+          {
+            "id": "sh2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

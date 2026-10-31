@@ -1,0 +1,79 @@
+{
+  "seedKey": "tennis-ball-dribble-challenge",
+  "title": "Tennis Ball Dribble Challenge",
+  "description": "Players dribble a basketball with one hand while tossing and catching a tennis ball with the other, isolating true one-handed ball control.",
+  "category": "ball_handling",
+  "primarySkill": "ball_control",
+  "secondarySkills": ["dribbling"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["ball handling", "coordination"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Prove true one-handed control by removing the usual second-hand assistance.",
+    "setup": "Each player dribbles a basketball with one hand while holding a small tennis-style ball in the other.",
+    "organization": "",
+    "instructions": [
+      "Dribble the basketball with the right hand while tossing the tennis ball up and catching it with the left.",
+      "Switch hands after 30 seconds.",
+      "Add a few steps of walking once both hands can manage the pattern.",
+      "Finish with eyes closed for five seconds on each hand, if under control."
+    ],
+    "coachingPoints": [
+      "Let the dribbling hand work completely independently of the tossing hand.",
+      "Keep the basketball dribble at a normal, game-like height.",
+      "Reset calmly if control is lost rather than rushing back in."
+    ],
+    "commonMistakes": [
+      "Dribbling too low out of caution, which isn't game-realistic.",
+      "Watching the dribbling hand instead of the tennis ball.",
+      "Letting the off-hand drop instead of staying ready to protect the ball."
+    ],
+    "safety": "Use a soft tennis-style ball only, not anything with a hard surface.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

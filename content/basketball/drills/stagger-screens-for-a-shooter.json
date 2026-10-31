@@ -1,0 +1,129 @@
+{
+  "seedKey": "stagger-screens-for-a-shooter",
+  "title": "Stagger Screens for a Shooter",
+  "description": "Two screeners set staggered screens one after another to free a shooter coming off a long, well-timed route to the ball.",
+  "category": "team_offense",
+  "primarySkill": "screening",
+  "secondarySkills": [],
+  "subSkills": ["setting_screens"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["team offense", "stagger screens"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use two staggered screens in sequence to fully free a shooter for a catch-and-shoot.",
+    "setup": "A shooter starts near the baseline with two screeners set up along their path to the wing.",
+    "organization": "",
+    "instructions": [
+      "The shooter cuts off the first screen tight, reading the defender's path.",
+      "Immediately after, the shooter cuts off the second, staggered screen the same way.",
+      "The passer delivers the ball the instant the shooter clears the second screen.",
+      "Reset with the screeners rotating who sets the first versus the second screen."
+    ],
+    "coachingPoints": [
+      "Both screens must be set and stationary in the shooter's actual path.",
+      "The shooter should brush both screens tightly, not run wide around them.",
+      "The passer needs to be ready early — the window closes fast."
+    ],
+    "commonMistakes": [
+      "Screens set too far apart, giving the defender space to recover between them.",
+      "Shooter cutting wide and missing the benefit of either screen.",
+      "Standing still after a pass instead of moving with purpose."
+    ],
+    "safety": "Screens must be legal and stationary at the moment of contact.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "p3",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

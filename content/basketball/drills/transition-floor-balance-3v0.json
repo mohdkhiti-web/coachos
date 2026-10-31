@@ -1,0 +1,113 @@
+{
+  "seedKey": "transition-floor-balance-3v0",
+  "title": "Transition Floor Balance 3v0",
+  "description": "Three players push the ball up the floor together, practising the lane assignments and spacing that keep a fast break organised.",
+  "category": "team_offense",
+  "primarySkill": "spacing",
+  "secondarySkills": ["decision_making"],
+  "subSkills": ["numbers_advantage"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "full_court",
+  "tags": ["team offense", "transition", "spacing"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Keep the floor balanced in three lanes while pushing the ball up the court quickly.",
+    "setup": "Three players start near half court, one with the ball in the middle lane.",
+    "organization": "",
+    "instructions": [
+      "The middle player pushes the ball while the outside two sprint wide lanes.",
+      "The wide players stay behind the ball slightly until a passing angle opens.",
+      "The ball handler reads the defense (or imagines it) and decides to pass or finish.",
+      "Reset at the far baseline and run it back the other way."
+    ],
+    "coachingPoints": [
+      "Keep the three lanes spread — a bunched break is easy to defend.",
+      "Sprint with purpose, not just running fast in a random direction.",
+      "The ball handler should attack downhill, not drift sideways."
+    ],
+    "commonMistakes": [
+      "Wide players drifting into the same lane as the ball handler.",
+      "Ball handler slowing down to wait for support instead of pushing the pace.",
+      "Crowding a teammate's space instead of keeping good spacing."
+    ],
+    "safety": "Make sure the full length of the court is clear before sprinting at speed.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_half_court"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "far_right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

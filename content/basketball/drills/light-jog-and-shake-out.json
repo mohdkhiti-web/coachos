@@ -1,0 +1,82 @@
+{
+  "seedKey": "light-jog-and-shake-out",
+  "title": "Light Jog and Shake-Out",
+  "description": "A very easy closing jog combined with shaking out the arms and legs, helping flush out fatigue before players leave practice.",
+  "category": "cooldown",
+  "primarySkill": "recovery_mobility",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["cool_down"],
+  "ageMin": 6,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 2,
+  "durationMax": 4,
+  "space": "full_court",
+  "tags": ["cooldown", "recovery"],
+  "equipment": [],
+  "content": {
+    "objective": "Help the body transition out of high effort with gentle movement rather than stopping abruptly.",
+    "setup": "The group jogs together at an easy pace around the court.",
+    "organization": "",
+    "instructions": [
+      "Jog one easy lap of the court as a group, well below practice intensity.",
+      "Stop and shake out both arms loosely for 15 seconds.",
+      "Shake out each leg loosely for 15 seconds per side.",
+      "Finish with a few slow, deep breaths before leaving the court."
+    ],
+    "coachingPoints": [
+      "Keep the jog genuinely easy — this is recovery, not more conditioning.",
+      "Let the shaking be loose and relaxed, not tense.",
+      "Use this moment to let the energy settle before players leave."
+    ],
+    "commonMistakes": [
+      "Turning the easy jog into another conditioning sprint out of habit.",
+      "Rushing through the shake-out instead of actually relaxing the muscles.",
+      "Treating it as optional instead of part of the session."
+    ],
+    "safety": "Make sure the jogging lane is clear of any remaining equipment.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_corner"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

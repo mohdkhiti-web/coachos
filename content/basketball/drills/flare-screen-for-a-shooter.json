@@ -1,0 +1,113 @@
+{
+  "seedKey": "flare-screen-for-a-shooter",
+  "title": "Flare Screen for a Shooter",
+  "description": "A screener sets a flare screen to free a shooter moving away from the ball, a common way to create an open three off ball reversal.",
+  "category": "team_offense",
+  "primarySkill": "screening",
+  "secondarySkills": [],
+  "subSkills": ["setting_screens"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "half_court",
+  "tags": ["team offense", "flare screen"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Set a well-timed flare screen that frees a shooter moving away from the ball.",
+    "setup": "A shooter starts near the elbow; a screener sets up behind the shooter's defender.",
+    "organization": "",
+    "instructions": [
+      "As the ball reverses to the far side, the screener sets a flare screen on the shooter's defender.",
+      "The shooter reads the screen and flares out to the corner or wing.",
+      "The passer delivers a skip pass to the now-open shooter.",
+      "Reset and repeat with the screener and shooter swapping roles."
+    ],
+    "coachingPoints": [
+      "Time the screen to arrive just as the defender starts to chase.",
+      "The shooter should flare at an angle, not run in a straight line.",
+      "The passer must be ready with the skip pass the instant the shooter is open."
+    ],
+    "commonMistakes": [
+      "Setting the screen too early, before the defender commits to chasing.",
+      "Shooter flaring too slowly and letting the defender recover.",
+      "Cutting without actually drawing any real defensive attention."
+    ],
+    "safety": "The screener holds a legal, stationary position before contact.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

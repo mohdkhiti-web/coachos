@@ -1,0 +1,113 @@
+{
+  "seedKey": "post-and-perimeter-two-man-game",
+  "title": "Post and Perimeter Two-Man Game",
+  "description": "A wing and a post player work a simple two-man game — entry pass, cut, re-post — reading the defense without extra teammates involved yet.",
+  "category": "team_offense",
+  "primarySkill": "decision_making",
+  "secondarySkills": ["passing", "cutting"],
+  "subSkills": ["reading_the_defense"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "2v2",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["team offense", "post play"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Read the post defender's help and choose between feeding the post, cutting, or resetting.",
+    "setup": "A wing player and a post player work together against two live defenders.",
+    "organization": "",
+    "instructions": [
+      "The wing enters the ball to the post player on the block.",
+      "The wing immediately cuts through the lane, reading whether the post defender helps.",
+      "If the cutter's defender helps on the post, the post kicks it back out for an open shot.",
+      "If no help comes, the post works one-on-one for a finish."
+    ],
+    "coachingPoints": [
+      "Enter the pass to the post player's target hand, not just anywhere.",
+      "Cut with real purpose — a lazy cut draws no help.",
+      "Post player should read the help before forcing a move."
+    ],
+    "commonMistakes": [
+      "Cutting without actually drawing any defensive attention.",
+      "Post forcing a tough shot instead of kicking out to the open cutter's teammate.",
+      "Cutting without actually drawing any real defensive attention."
+    ],
+    "safety": "Post defenders hold position legally without grabbing or hooking.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

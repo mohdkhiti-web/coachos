@@ -1,0 +1,102 @@
+{
+  "seedKey": "trap-and-recover-two-defenders",
+  "title": "Trap and Recover Two Defenders",
+  "description": "Two defenders trap a ball handler in a corner, then sprint to recover to their own assignments the moment the ball is passed out.",
+  "category": "individual_defense",
+  "primarySkill": "help_defense",
+  "secondarySkills": ["communication"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "half_court",
+  "tags": ["defense", "trap"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Trap aggressively without fouling, then recover quickly once the ball is out of the trap.",
+    "setup": "A ball handler is trapped in the corner by two defenders; two other offensive players wait to receive an outlet.",
+    "organization": "",
+    "instructions": [
+      "Both defenders close the trap at the same time, hands high and active.",
+      "The ball handler looks to pass out of the trap as soon as a lane opens.",
+      "Both trapping defenders sprint immediately to recover to their own matchups once the pass is released.",
+      "Rotate which two defenders trap each round."
+    ],
+    "coachingPoints": [
+      "Trap with active hands, not grabbing or reaching in low.",
+      "Communicate who recovers to which open player.",
+      "Sprint the recovery — a slow jog gives up an easy shot."
+    ],
+    "commonMistakes": [
+      "Both defenders recovering to the same player and leaving another open.",
+      "Trapping too passively to actually force a rushed pass.",
+      "Watching the ball only and losing track of the opponent."
+    ],
+    "safety": "Hands stay up and active; no reaching in low where contact is likely.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "right_short_corner"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

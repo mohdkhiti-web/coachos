@@ -19,7 +19,7 @@ export async function CoachingProfileCard({ profile }: { profile: CoachingProfil
     return (
       <section
         aria-labelledby="profile-h"
-        className="relative overflow-hidden rounded-xl border border-accent/60 bg-accent-soft p-6 shadow-paper"
+        className="relative animate-fade-up overflow-hidden rounded-xl border border-accent/60 bg-accent-soft p-6 shadow-paper"
       >
         <BasketballIcon className="absolute -top-3 -right-3 size-20 opacity-25" />
         <h2
@@ -50,7 +50,7 @@ export async function CoachingProfileCard({ profile }: { profile: CoachingProfil
   return (
     <section
       aria-labelledby="profile-h"
-      className="rounded-xl border border-line bg-surface-raised p-6 shadow-paper"
+      className="animate-fade-up rounded-xl border border-line bg-surface-raised p-6 shadow-paper"
     >
       <h2 id="profile-h" className="text-lg font-semibold tracking-tight text-ink">
         {t("title")}
@@ -59,7 +59,8 @@ export async function CoachingProfileCard({ profile }: { profile: CoachingProfil
         {chips.map((c, i) => (
           <li
             key={`${c}-${i}`}
-            className="rounded-full border border-line-strong px-3 py-1 text-sm font-medium text-ink"
+            className="animate-fade-up rounded-full border border-line-strong px-3 py-1 text-sm font-medium text-ink"
+            style={{ "--fade-delay": `${Math.min(i, 8) * 40}ms` } as React.CSSProperties}
           >
             {c}
           </li>

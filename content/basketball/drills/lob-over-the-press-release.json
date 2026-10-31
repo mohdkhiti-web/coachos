@@ -1,0 +1,137 @@
+{
+  "seedKey": "lob-over-the-press-release",
+  "title": "Lob Over the Press Release",
+  "description": "Against an aggressive deny press, a tall or athletic player breaks long for a lob pass over the top of the pressure as a release valve.",
+  "category": "press_break",
+  "primarySkill": "press_break",
+  "secondarySkills": ["passing"],
+  "subSkills": ["press_release"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 5,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "full_court",
+  "tags": ["press break", "lob pass"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use a well-timed deep pass over the press as a release valve when short outlets are denied.",
+    "setup": "A deny press covers the short outlets tightly, leaving a long release open behind the defense.",
+    "organization": "",
+    "instructions": [
+      "If short outlets are fully denied, a teammate breaks long behind the press.",
+      "The inbounder delivers a high, accurate lob over the pressure.",
+      "The long receiver catches in stride and advances immediately.",
+      "Reset with the short-outlet options tried first before using the long release."
+    ],
+    "coachingPoints": [
+      "Use the long release as a last option, not the first instinct.",
+      "Throw with enough height to clear outstretched hands safely.",
+      "The long receiver must be a reliable catcher under pressure."
+    ],
+    "commonMistakes": [
+      "Throwing the long pass as a first option instead of exhausting short outlets.",
+      "Underthrowing the lob into a defender's reach.",
+      "Standing still instead of working to get open against the pressure."
+    ],
+    "safety": "The long pass should have a safe, high arc, not a flat, risky throw.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "half_court_center"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "far_left_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [0, -1.5]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "far_left_wing",
+              "offset": [0.5, -0.5]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "m2",
+            "step": 2,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "left_half_court"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

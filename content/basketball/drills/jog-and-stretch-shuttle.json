@@ -1,0 +1,134 @@
+{
+  "seedKey": "jog-and-stretch-shuttle",
+  "title": "Jog and Stretch Shuttle",
+  "description": "Players jog the width of the court doing a different dynamic stretch on each trip to raise body temperature before the ball comes out.",
+  "category": "warm_up",
+  "primarySkill": "recovery_mobility",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "",
+  "phases": [],
+  "ageMin": 6,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 20,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["warm-up", "mobility"],
+  "equipment": [],
+  "content": {
+    "objective": "Raise heart rate and open up the hips, ankles and shoulders before any ball work.",
+    "setup": "Players line up on the sideline in a group of four or five.",
+    "organization": "",
+    "instructions": [
+      "Jog across doing high knees, then jog back doing butt kicks.",
+      "Walk across with lunges and a twist toward the front leg, then walk back with straight-leg kicks.",
+      "Side-shuffle across in a low stance, then carioca back.",
+      "Finish with two light jogs at an easy pace."
+    ],
+    "coachingPoints": [
+      "Keep the group moving together, not racing.",
+      "Stay tall during high knees; stay low during the shuffle.",
+      "Breathe normally — this is a warm-up, not a sprint."
+    ],
+    "commonMistakes": [
+      "Rushing the stretch and losing the movement quality.",
+      "Bunching up instead of spreading across the width.",
+      "Skipping the easier reps and going straight to full intensity."
+    ],
+    "safety": "Check the floor is dry and clear before any lateral movement.",
+    "progressions": [],
+    "regressions": [],
+    "variations": ["Add a ball to carry (not dribble) on the last two trips."]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "mk1",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "mk2",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "mk3",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "mk4",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "mk5",
+            "type": "marker",
+            "kind": "end",
+            "at": {
+              "anchor": "right_corner"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "s1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing"
+              },
+              {
+                "anchor": "top_key"
+              },
+              {
+                "anchor": "right_wing"
+              },
+              {
+                "anchor": "right_corner"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

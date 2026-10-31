@@ -1,0 +1,147 @@
+{
+  "seedKey": "2v2-pick-and-roll-defense",
+  "title": "2v2 Pick-and-Roll Defense",
+  "description": "Two defenders work together against a live ball screen, choosing between hedging, dropping, or switching based on the coach's call.",
+  "category": "team_defense",
+  "primarySkill": "pick_and_roll",
+  "secondarySkills": ["communication"],
+  "subSkills": ["pnr_defense"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "2v2",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["team defense", "pick and roll defense"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Defend a live ball screen using the called coverage — hedge, drop or switch — communicated clearly between both defenders.",
+    "setup": "An offensive ball handler and screener run a live ball screen against two defenders.",
+    "organization": "",
+    "instructions": [
+      "The coach calls the coverage before the rep: hedge, drop, or switch.",
+      "Both defenders communicate the call out loud as the screen approaches.",
+      "They execute the coverage, containing the ball handler without fouling.",
+      "Reset with a new coverage called for the next rep."
+    ],
+    "coachingPoints": [
+      "Call the coverage early and loudly, not after the screen arrives.",
+      "On a switch, communicate clearly who has who.",
+      "Stay low and balanced regardless of which coverage is used."
+    ],
+    "commonMistakes": [
+      "Both defenders assuming the other has the switch, leaving someone open.",
+      "Hedging too hard and losing the screener on the roll.",
+      "Talking too little for teammates to react in time."
+    ],
+    "safety": "Screens must be legal and defenders should avoid unnecessary contact when fighting through.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1.2]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [0.5, 0.5]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "sc1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o2",
+            "target": {
+              "anchor": "top_key",
+              "offset": [0, 1.2]
+            },
+            "kind": "ball"
+          },
+          {
+            "id": "m2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line"
+              }
+            ]
+          },
+          {
+            "id": "sh3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "seedKey": "euro-step-both-directions",
+  "title": "Euro-Step Both Directions",
+  "description": "Players rehearse the two-step lateral euro-step move to avoid a defender at the rim, practising it toward both the left and right side.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["footwork"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["finishing", "euro-step"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use a two-step lateral move to avoid a defender's position before finishing at the rim.",
+    "setup": "Players attack from the elbow with a ball, approaching the lane at an angle.",
+    "organization": "",
+    "instructions": [
+      "Drive into the lane and plant the first step going one direction.",
+      "Take a second step laterally the opposite way, moving the body away from the imaginary defender.",
+      "Finish with a soft touch off the backboard using the hand furthest from the defender's side.",
+      "Repeat starting from the opposite elbow, mirroring the move."
+    ],
+    "coachingPoints": [
+      "Keep the ball protected on the side away from the defender at every step.",
+      "Stay low through both steps for balance.",
+      "Finish with touch, not force, once clear of the defender."
+    ],
+    "commonMistakes": [
+      "Taking three steps instead of the legal two.",
+      "Exposing the ball on the defender's side during the move.",
+      "Bringing the ball down low where it can be knocked away."
+    ],
+    "safety": "Watch for other players when driving across the lane at speed.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

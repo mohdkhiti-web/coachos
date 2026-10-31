@@ -1,0 +1,102 @@
+{
+  "seedKey": "protect-the-rock-shell",
+  "title": "Protect the Rock Shell",
+  "description": "A ball handler dribbles inside a tight shell formed by teammates' arms, learning to protect the ball from constant light pressure on all sides.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": [],
+  "subSkills": ["protect_the_ball"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 12,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["ball handling", "pressure"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Keep the ball alive under constant, close defensive pressure from more than one side.",
+    "setup": "One ball handler stands in the middle of three or four teammates forming a tight circle around them.",
+    "organization": "",
+    "instructions": [
+      "The ball handler dribbles in place, pivoting to keep the ball away from whoever is closest.",
+      "The surrounding players reach and poke at the ball without grabbing or fouling hard.",
+      "Rotate the ball handler every 20 seconds.",
+      "Add a dribble-out: the ball handler must dribble out of the circle to end their turn successfully."
+    ],
+    "coachingPoints": [
+      "Keep the ball on the side away from the nearest defender.",
+      "Use the forearm and body, not just the dribbling hand, to shield.",
+      "Pivot the body to change which side is exposed."
+    ],
+    "commonMistakes": [
+      "Picking up the dribble out of panic.",
+      "Keeping the ball in the same spot instead of moving it side to side.",
+      "Watching the ball instead of keeping the head up."
+    ],
+    "safety": "Reach for the ball only — no grabbing the arm or body.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

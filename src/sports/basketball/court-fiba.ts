@@ -40,7 +40,11 @@ function endMarkings(transform?: string): CourtPrimitive[] {
     transform,
   });
   return [
-    p(`M ${-LANE_HALF} ${BASELINE} H ${LANE_HALF} V ${f(FREE_THROW_Y)} H ${-LANE_HALF} Z`),
+    // the painted key: the one marking filled on screen (a real court's lane colour), never on print/mono (no ink spent)
+    {
+      ...p(`M ${-LANE_HALF} ${BASELINE} H ${LANE_HALF} V ${f(FREE_THROW_Y)} H ${-LANE_HALF} Z`),
+      fill: "accent",
+    },
     p(
       `M ${-CIRCLE_R} ${f(FREE_THROW_Y)} A ${CIRCLE_R} ${CIRCLE_R} 0 0 0 ${CIRCLE_R} ${f(FREE_THROW_Y)}`,
     ),

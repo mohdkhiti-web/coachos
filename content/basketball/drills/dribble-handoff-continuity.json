@@ -1,0 +1,113 @@
+{
+  "seedKey": "dribble-handoff-continuity",
+  "title": "Dribble Handoff Continuity",
+  "description": "Players practise the dribble handoff — a soft pass delivered while both players are moving — as a continuous team-offense action.",
+  "category": "team_offense",
+  "primarySkill": "passing",
+  "secondarySkills": ["screening"],
+  "subSkills": ["passing_on_the_move"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "half_court",
+  "tags": ["team offense", "handoff"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Deliver and receive a clean, well-timed dribble handoff while both players are moving.",
+    "setup": "A ball handler dribbles toward a teammate curling to meet them near the wing.",
+    "organization": "",
+    "instructions": [
+      "The ball handler dribbles toward the cutter, timing the approach to meet them.",
+      "Hand the ball off softly at the moment of the exchange, not a hard pass.",
+      "The receiver attacks immediately off the handoff, either driving or shooting.",
+      "The player who gave the handoff screens briefly for the receiver before clearing out."
+    ],
+    "coachingPoints": [
+      "Time the handoff so both players arrive at the same spot together.",
+      "Keep the exchange soft and controlled, not a thrown pass.",
+      "The receiver should attack with purpose immediately, not pause after the catch."
+    ],
+    "commonMistakes": [
+      "Handing off too early or late, forcing an awkward catch.",
+      "Receiver standing still after the handoff instead of attacking.",
+      "Standing still after a pass instead of moving with purpose."
+    ],
+    "safety": "Keep the exchange area clear so both players can move freely.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

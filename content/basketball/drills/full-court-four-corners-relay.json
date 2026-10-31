@@ -1,0 +1,107 @@
+{
+  "seedKey": "full-court-four-corners-relay",
+  "title": "Full-Court Four-Corners Relay",
+  "description": "Teams race in a relay that requires dribbling to all four corners of the full court before finishing with a layup, combining speed and ball control.",
+  "category": "competition",
+  "primarySkill": "conditioning",
+  "secondarySkills": ["dribbling", "finishing"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 6,
+  "playersMax": 20,
+  "durationMin": 6,
+  "durationMax": 9,
+  "space": "full_court",
+  "tags": ["competition", "relay"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 4
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Combine speed, ball control and finishing under the pressure of a timed team relay.",
+    "setup": "Teams line up at one baseline; the course requires touching all four corners of the full court.",
+    "organization": "",
+    "instructions": [
+      "The first player dribbles to touch each of the four corners of the court in sequence.",
+      "After touching all four corners, finish with a layup at the starting basket.",
+      "Tag the next teammate to begin their turn immediately after the layup.",
+      "The team that finishes all players first wins the relay."
+    ],
+    "coachingPoints": [
+      "Keep the dribble under control even while racing the clock.",
+      "Take the most efficient path between corners without cutting the course short.",
+      "Finish the layup properly rather than rushing and missing, which costs more time overall."
+    ],
+    "commonMistakes": [
+      "Cutting corners short instead of actually touching each one.",
+      "Losing the dribble by moving faster than the handle allows.",
+      "Rushing decisions just because the format feels competitive."
+    ],
+    "safety": "Make sure the full-court course is clear of other equipment and groups.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_half_court"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "s1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "far_free_throw_line"
+              }
+            ]
+          },
+          {
+            "id": "sh2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

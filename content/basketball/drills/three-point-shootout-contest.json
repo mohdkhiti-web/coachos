@@ -1,0 +1,204 @@
+{
+  "seedKey": "three-point-shootout-contest",
+  "title": "Three-Point Shootout Contest",
+  "description": "Players race against the clock to make as many three-pointers as possible from five racks around the arc, head-to-head against teammates.",
+  "category": "competition",
+  "primarySkill": "shooting_form",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 9,
+  "space": "half_court",
+  "tags": ["competition", "three-point contest"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 5
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Shoot with both volume and accuracy under a timed, head-to-head scoring format.",
+    "setup": "Five balls are placed at each of five spots around the three-point arc; a timer is set for 45 to 60 seconds.",
+    "organization": "",
+    "instructions": [
+      "The shooter works through all five balls at a spot before moving to the next spot.",
+      "Continue around all five spots, re-racking as needed, until time expires.",
+      "Count total makes as the final score for that turn.",
+      "Compare scores between players across multiple rounds."
+    ],
+    "coachingPoints": [
+      "Keep the shooting motion consistent even as the pace increases.",
+      "Move efficiently between spots to maximise shots taken.",
+      "Stay composed if an early rack goes poorly — there's time to recover."
+    ],
+    "commonMistakes": [
+      "Rushing so much that shooting mechanics completely break down.",
+      "Wasting time chasing long rebounds instead of grabbing the next rack ball.",
+      "Losing composure after a bad result instead of resetting for the next one."
+    ],
+    "safety": "Keep the rebounding area behind the shooter clear of other players.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_corner"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "anchor": "top_key"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c4",
+            "type": "cone",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c5",
+            "type": "cone",
+            "at": {
+              "anchor": "right_corner"
+            },
+            "variant": "flat"
+          }
+        ],
+        "actions": [
+          {
+            "id": "sh1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing"
+              }
+            ]
+          },
+          {
+            "id": "sh3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m4",
+            "step": 3,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "top_key"
+              }
+            ]
+          },
+          {
+            "id": "sh5",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m6",
+            "step": 4,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_wing"
+              }
+            ]
+          },
+          {
+            "id": "sh7",
+            "step": 4,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m8",
+            "step": 5,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_corner"
+              }
+            ]
+          },
+          {
+            "id": "sh9",
+            "step": 5,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

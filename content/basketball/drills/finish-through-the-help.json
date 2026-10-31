@@ -1,0 +1,119 @@
+{
+  "seedKey": "finish-through-the-help",
+  "title": "Finish Through the Help",
+  "description": "A driver attacks the rim as a help defender steps over, practising the finish adjustment needed when help arrives from the weak side.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["decision_making"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "2v2",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "half_court",
+  "tags": ["finishing", "help defense"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Adjust the finish — shoulder, floater or kick-out — based on where help defense arrives from.",
+    "setup": "A driver attacks from the wing as a help defender steps over from the weak side at the last moment.",
+    "organization": "",
+    "instructions": [
+      "The driver attacks hard toward the rim as if no help is there.",
+      "As the help defender steps over, the driver chooses: finish away from the help, use a floater, or kick out to an open spot.",
+      "Vary which choice the driver makes each rep to practise reading, not repeating.",
+      "Rotate the help defender's timing — early, late, and on-time — across reps."
+    ],
+    "coachingPoints": [
+      "Keep the eyes up to see the help arriving.",
+      "Protect the ball on the side the help is coming from.",
+      "Decide early — hesitating in the air leads to turnovers."
+    ],
+    "commonMistakes": [
+      "Driving with the head down and missing the help defender entirely.",
+      "Forcing a finish into the helper instead of adjusting.",
+      "Finishing off the wrong foot for the angle of approach."
+    ],
+    "safety": "Help defenders contest with verticality, no undercutting the shooter.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "left_block",
+              "offset": [1.5, -0.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "x1",
+            "step": 1,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [0.9, 0]
+              }
+            ]
+          },
+          {
+            "id": "sh2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

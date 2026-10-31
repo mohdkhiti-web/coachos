@@ -1,0 +1,113 @@
+{
+  "seedKey": "two-v-two-score-only-off-cut",
+  "title": "2v2 Score-Only-Off-a-Cut Game",
+  "description": "A constraint game where baskets only count if the shooter received the ball directly off a cut, rewarding movement over standing isolation plays.",
+  "category": "small_sided_games",
+  "primarySkill": "cutting",
+  "secondarySkills": ["decision_making"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "2v2",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 16,
+  "playersMin": 4,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 9,
+  "space": "half_court",
+  "tags": ["small-sided", "2v2", "cutting"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Reward purposeful cutting by only counting baskets scored directly off a cut.",
+    "setup": "Two offensive players face two defenders in a half-court game with a scoring constraint.",
+    "organization": "",
+    "instructions": [
+      "Play live 2v2 to a target score.",
+      "A made basket only counts if the shooter caught the ball directly off a cut, not a standing catch.",
+      "Players must constantly move and cut to create legal scoring chances.",
+      "Rotate in new pairs after every four possessions."
+    ],
+    "coachingPoints": [
+      "Cut with real purpose since standing catches don't score points.",
+      "Time cuts to match when the passer is actually able to deliver the ball.",
+      "Use screens to help a teammate's cut when it's not your turn to cut."
+    ],
+    "commonMistakes": [
+      "Standing still and shooting anyway, forgetting the constraint.",
+      "Cutting without any real timing or purpose, just to satisfy the rule.",
+      "Playing at a walk-through pace instead of real game speed."
+    ],
+    "safety": "Keep contact controlled; call fouls to maintain a fair pace.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

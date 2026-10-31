@@ -144,11 +144,15 @@
 @utility animate-fade-in {
   animation: cos-fade-in var(--motion-base) var(--ease-out);
 }
+/* `--fade-delay` is optional (default 0ms): a list/grid can stagger its items by setting a different delay on each one,
+   without every existing caller having to change — the two call sites that want a cascade are the only ones that set it. */
 @utility animate-fade-up {
   animation: cos-fade-up var(--motion-slow) var(--ease-out) backwards;
+  animation-delay: var(--fade-delay, 0ms);
 }
 @utility animate-fade-down {
   animation: cos-fade-down var(--motion-slow) var(--ease-out) backwards;
+  animation-delay: var(--fade-delay, 0ms);
 }
 @utility animate-pop {
   animation: cos-pop var(--motion-slow) var(--ease-out);

@@ -1,0 +1,113 @@
+{
+  "seedKey": "secondary-break-trailer-three",
+  "title": "Secondary Break Trailer Three",
+  "description": "After the initial fast break settles, a trailing big sprints in for a kick-out three-pointer — the 'secondary break' shot many teams rely on.",
+  "category": "transition",
+  "primarySkill": "spacing",
+  "secondarySkills": ["shooting_form"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 4,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "full_court",
+  "tags": ["transition", "secondary break"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Deliver and finish the kick-out three-pointer created by a trailing player after the initial break.",
+    "setup": "A primary break group of two or three pushes ahead while a trailing shooter sprints a step behind.",
+    "organization": "",
+    "instructions": [
+      "The initial break attacks the rim, drawing defensive attention.",
+      "The trailer sprints in and spots up beyond the arc, already squared to shoot.",
+      "The ball handler kicks the ball out to the trailer rather than forcing a tough shot.",
+      "The trailer catches and shoots immediately, no hesitation."
+    ],
+    "coachingPoints": [
+      "The trailer must sprint, not jog, to arrive in time.",
+      "Kick the ball out early rather than forcing a contested finish.",
+      "Trailer should be squared up and ready before the ball arrives."
+    ],
+    "commonMistakes": [
+      "Trailer arriving too late because they jogged instead of sprinting.",
+      "Ball handler forcing a tough shot instead of trusting the trailer.",
+      "Jogging back instead of sprinting to get into position."
+    ],
+    "safety": "Make sure the trailer's sprint lane is clear of defenders retreating.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_half_court"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "far_top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

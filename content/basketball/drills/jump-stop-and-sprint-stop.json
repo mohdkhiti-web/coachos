@@ -1,0 +1,84 @@
+{
+  "seedKey": "jump-stop-and-sprint-stop",
+  "title": "Jump-Stop and Sprint-Stop Combo",
+  "description": "Players practise both the two-foot jump-stop and the one-two sprint-stop at game speed, learning when each stop fits better.",
+  "category": "footwork",
+  "primarySkill": "footwork",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["footwork", "stops"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Choose and execute the right stop — two-footed or one-two — under control at speed.",
+    "setup": "Players sprint-dribble from the wing toward the elbow with a ball.",
+    "organization": "",
+    "instructions": [
+      "On the first rep, finish with a two-footed jump-stop, landing both feet at once.",
+      "On the second rep, finish with a one-two sprint-stop, feet landing in quick sequence.",
+      "Alternate stop types every rep for ten total reps.",
+      "Add a pass fake immediately after each stop to check balance."
+    ],
+    "coachingPoints": [
+      "Stay low through the stop — standing tall means losing balance.",
+      "Keep the ball secure through the stop, not loose in one hand.",
+      "Choose the stop before arriving, not as an afterthought."
+    ],
+    "commonMistakes": [
+      "Travelling by letting the pivot foot slide after the stop.",
+      "Decelerating too early and losing speed before the stop even matters.",
+      "Letting the feet settle flat instead of staying on the balls of the feet."
+    ],
+    "safety": "Give enough space ahead to decelerate safely at speed.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

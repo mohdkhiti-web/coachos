@@ -1,0 +1,137 @@
+{
+  "seedKey": "trap-escape-dribble-move",
+  "title": "Trap Escape Dribble Move",
+  "description": "A ball handler caught in a two-player trap practises a legal spin or retreat dribble to escape before the trap fully closes, without picking up the ball early.",
+  "category": "press_break",
+  "primarySkill": "press_break",
+  "secondarySkills": ["dribbling", "decision_making"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "full_court",
+  "tags": ["press break", "trap escape"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Escape a closing trap with a legal dribble move before being forced to pick up the ball.",
+    "setup": "A ball handler is approached by two defenders closing in from both angles to form a trap.",
+    "organization": "",
+    "instructions": [
+      "The ball handler keeps the dribble alive as the trap closes, reading the gap between defenders.",
+      "Use a retreat dribble or spin move to escape before the trap fully closes.",
+      "Once clear, immediately look to pass to an open teammate rather than dribbling into more pressure.",
+      "Reset with the trap closing from different angles each time."
+    ],
+    "coachingPoints": [
+      "Keep the dribble alive as long as possible — picking it up early removes all options.",
+      "Use a low, controlled move, not a panicked, high dribble.",
+      "Look to pass immediately once clear of the trap."
+    ],
+    "commonMistakes": [
+      "Picking up the dribble out of panic before the trap is even fully closed.",
+      "Dribbling in a tight circle without actually escaping the pressure.",
+      "Forcing a long pass when a short outlet was actually available."
+    ],
+    "safety": "Trapping defenders keep hands active but do not grab the ball handler.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "far_right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "far_top_key"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "far_right_wing",
+              "offset": [-0.8, -0.3]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "far_top_key",
+              "offset": [0, -1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "m2",
+            "step": 2,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "left_half_court"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "seedKey": "free-throw-routine-reps",
+  "title": "Free-Throw Routine Reps",
+  "description": "Players build and rehearse a consistent pre-shot routine at the free-throw line, repeating it the same way whether the shot goes in or not.",
+  "category": "shooting",
+  "primarySkill": "free_throws",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill", "cool_down"],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["shooting", "free throws"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build one repeatable pre-shot routine and perform it identically on every attempt.",
+    "setup": "Shooter stands at the free-throw line with a ball and enough space to set a routine.",
+    "organization": "",
+    "instructions": [
+      "Choose a simple routine: for example, two dribbles, a breath, and a spin of the ball.",
+      "Perform the exact same routine before every single attempt, make or miss.",
+      "Shoot sets of ten, recording makes without changing the routine based on results.",
+      "Finish with five free throws under simulated fatigue after a short sprint."
+    ],
+    "coachingPoints": [
+      "Keep the routine identical regardless of the previous shot's result.",
+      "Breathe out right before the release to stay relaxed.",
+      "Track makes over time rather than reacting to any single miss."
+    ],
+    "commonMistakes": [
+      "Changing the routine after a miss out of frustration.",
+      "Rushing the routine when tired instead of trusting it.",
+      "Rushing the release instead of trusting the mechanics."
+    ],
+    "safety": "Keep the lane clear for a rebounder standing to the side.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "free_throw_line"
+            },
+            "variant": "flat"
+          }
+        ],
+        "actions": [
+          {
+            "id": "sh1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

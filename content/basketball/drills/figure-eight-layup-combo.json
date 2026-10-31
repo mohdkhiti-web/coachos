@@ -1,0 +1,134 @@
+{
+  "seedKey": "figure-eight-layup-combo",
+  "title": "Figure-Eight Layup Combo",
+  "description": "Players dribble a tight figure-eight pattern at the top of the key, then attack the rim, linking ball-handling control directly to finishing.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["finishing"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["ball handling", "finishing"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Transfer a tight, controlled dribble pattern directly into a decisive drive to the rim.",
+    "setup": "Players start at the top of the key with a ball, facing the basket.",
+    "organization": "",
+    "instructions": [
+      "Dribble a tight figure-eight between and around the legs for five full cycles.",
+      "On the sixth cycle, explode forward into a drive toward the basket.",
+      "Finish with a layup using two hard dribbles to get there.",
+      "Jog back and switch the hand that leads the figure-eight."
+    ],
+    "coachingPoints": [
+      "Keep the figure-eight tight and low before exploding forward.",
+      "Attack in a straight line once the move starts — no hesitation.",
+      "Finish strong with the correct footwork at the rim."
+    ],
+    "commonMistakes": [
+      "Losing control of the figure-eight before the drive even starts.",
+      "Drifting sideways instead of attacking downhill.",
+      "Watching the ball instead of keeping the head up."
+    ],
+    "safety": "Make sure the path to the rim is clear before exploding forward.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "d1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow"
+              },
+              {
+                "anchor": "right_elbow"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 3.3
+            },
+            "text": "Figure-eight then attack"
+          }
+        ]
+      }
+    }
+  ]
+}

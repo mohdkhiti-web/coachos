@@ -1,0 +1,113 @@
+{
+  "seedKey": "end-of-game-foul-to-give",
+  "title": "End-of-Game Foul-to-Give Situation",
+  "description": "Leading by a small margin late in the game with a foul to give, the defense practises using it wisely without fouling out of desperation.",
+  "category": "special_situations",
+  "primarySkill": "late_game_execution",
+  "secondarySkills": ["communication"],
+  "subSkills": ["foul_situations"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "5v5",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 10,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["special situations", "fouling"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Use an available team foul wisely to disrupt the offense's rhythm without conceding free throws.",
+    "setup": "A live defensive possession starts with the defense reminded they have one foul available to give before the other team shoots free throws.",
+    "organization": "",
+    "instructions": [
+      "The defense communicates clearly who has the green light to use the foul.",
+      "The chosen defender fouls early in the possession, well away from the basket, to use up clock without risk.",
+      "The rest of the defense plays normally, aware the foul has now been used.",
+      "Reset with a different simulated time and defender assigned to foul each rep."
+    ],
+    "coachingPoints": [
+      "Communicate before the possession who will use the foul.",
+      "Foul early and away from the rim, never in a way that risks a shooting foul.",
+      "Stay disciplined for the rest of the possession once the foul is used."
+    ],
+    "commonMistakes": [
+      "Fouling near the basket, risking free throws instead of just a non-shooting foul.",
+      "No clear communication, leading to confusion about who fouls.",
+      "Forgetting the backup option if the first read isn't there."
+    ],
+    "safety": "The foul should be light and controlled, just enough to stop the clock legally and safely.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

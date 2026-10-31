@@ -1,0 +1,129 @@
+{
+  "seedKey": "step-back-jumper-reps",
+  "title": "Step-Back Jumper Reps",
+  "description": "Advanced shooters practise creating separation with a hard step-back dribble move before rising into a jump shot, a staple of modern isolation scoring.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": [],
+  "subSkills": ["shooting_off_the_dribble"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 13,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["shooting", "step-back"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Create clean separation with a controlled step-back before shooting in balance.",
+    "setup": "Shooter starts with the ball just inside the three-point line, facing the basket.",
+    "organization": "",
+    "instructions": [
+      "Attack forward with one or two dribbles as if driving.",
+      "Push off and step back explosively while squaring the shoulders to the rim.",
+      "Land balanced with both feet set before releasing the shot.",
+      "Rebound and repeat from a different starting angle."
+    ],
+    "coachingPoints": [
+      "Gather the ball before the step-back, not mid-air.",
+      "Land under control — a leaning landing ruins the shot.",
+      "Keep the same release point regardless of the move that set it up."
+    ],
+    "commonMistakes": [
+      "Fading away instead of stepping straight back.",
+      "Rushing the shot before the feet are actually set.",
+      "Rushing the release instead of trusting the mechanics."
+    ],
+    "safety": "Make sure there is enough clear space behind to step back safely.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "top_key"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "variant": "flat"
+          }
+        ],
+        "actions": [
+          {
+            "id": "sh1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing"
+              }
+            ]
+          },
+          {
+            "id": "sh3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "seedKey": "two-ball-pound-series",
+  "title": "Two-Ball Pound Series",
+  "description": "Dribbling two balls at once in simultaneous and alternating patterns builds coordination and a stronger weak hand.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["ball_control"],
+  "subSkills": ["weak_hand"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["ball handling", "two-ball"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Build symmetrical control by forcing both hands to work independently and together.",
+    "setup": "Each player has two balls and stands in an athletic stance with space around them.",
+    "organization": "",
+    "instructions": [
+      "Dribble both balls at the same height and the same time for 20 touches.",
+      "Alternate the balls so one is up while the other is down for 20 touches.",
+      "Add a low pound dribble with both balls below the knee for 15 seconds.",
+      "Finish with 15 seconds of alternating dribbles at the fastest controlled speed."
+    ],
+    "coachingPoints": [
+      "Keep the eyes up, not on either ball.",
+      "Use even pressure from both hands at the same rhythm.",
+      "Stay in an athletic stance, not standing tall."
+    ],
+    "commonMistakes": [
+      "Letting one ball drift higher than the other.",
+      "Losing the stance and standing straight up.",
+      "Speeding up until control breaks down, instead of building speed gradually."
+    ],
+    "safety": "Give each player a few metres of open space to recover a loose ball safely.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

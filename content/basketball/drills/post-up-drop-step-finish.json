@@ -1,0 +1,119 @@
+{
+  "seedKey": "post-up-drop-step-finish",
+  "title": "Post-Up Drop-Step Finish",
+  "description": "A post player seals for position on the block, then drop-steps baseline or middle depending on where the defender overplays, finishing strong at the rim.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["decision_making"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["finishing", "post play", "drop step"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Read which side the defender overplays and drop-step to the open side for an easy finish.",
+    "setup": "A post player seals on the block as a defender plays either high-side or low-side.",
+    "organization": "",
+    "instructions": [
+      "Catch the ball with a strong, wide base and seal the defender's position.",
+      "Feel which side the defender is leaning and drop-step to the opposite, open side.",
+      "Finish strong with two hands, keeping the ball above the shoulders.",
+      "Reset with the defender switching sides every few reps."
+    ],
+    "coachingPoints": [
+      "Feel for the defender's position rather than looking back at them.",
+      "Keep the drop-step tight and low for balance.",
+      "Finish with authority once the lane opens."
+    ],
+    "commonMistakes": [
+      "Drop-stepping into the defender instead of away from them.",
+      "Catching with a narrow base that's easy to push off balance.",
+      "Finishing off the wrong foot for the angle of approach."
+    ],
+    "safety": "Defender holds position without grabbing or hooking the post player's arm.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_block"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "right_block",
+              "offset": [0, 0.8]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "x1",
+            "step": 1,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [0.9, 0]
+              }
+            ]
+          },
+          {
+            "id": "sh2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

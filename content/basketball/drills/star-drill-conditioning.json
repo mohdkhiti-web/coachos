@@ -1,0 +1,149 @@
+{
+  "seedKey": "star-drill-conditioning",
+  "title": "Star Drill Conditioning",
+  "description": "Players sprint, backpedal, and shuffle along the lines of a star pattern drawn on the court, combining multiple movement types in one conditioning circuit.",
+  "category": "conditioning",
+  "primarySkill": "speed_agility",
+  "secondarySkills": [],
+  "subSkills": ["change_of_direction"],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 10,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["conditioning", "agility"],
+  "equipment": [
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 5
+    }
+  ],
+  "content": {
+    "objective": "Build agility and conditioning together by varying movement type across a star-shaped pattern.",
+    "setup": "Five cones are arranged in a star pattern with a clear centre point.",
+    "organization": "",
+    "instructions": [
+      "Sprint from the centre to the first cone and sprint back.",
+      "Shuffle laterally from the centre to the second cone and shuffle back.",
+      "Backpedal from the centre to the third cone and sprint forward back.",
+      "Continue the pattern through all five points, varying the movement type at each."
+    ],
+    "coachingPoints": [
+      "Stay low through shuffles and backpedals, not just the sprints.",
+      "Touch each cone clearly before returning to the centre.",
+      "Keep the same intensity on the final point as the first."
+    ],
+    "commonMistakes": [
+      "Rounding the cone instead of touching it directly.",
+      "Slowing the movement quality as fatigue builds late in the set.",
+      "Pacing too conservatively instead of working at real effort."
+    ],
+    "safety": "Make sure the cones are stable and the floor is clear around the star pattern.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "under_basket"
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "c4",
+            "type": "cone",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "c5",
+            "type": "cone",
+            "at": {
+              "anchor": "under_basket"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "d1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing"
+              },
+              {
+                "anchor": "top_key"
+              },
+              {
+                "anchor": "right_wing"
+              },
+              {
+                "anchor": "under_basket"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 3.3
+            },
+            "text": "Sprint, shuffle, backpedal"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "seedKey": "three-v-three-shot-clock-pressure",
+  "title": "3v3 Shot-Clock Pressure Game",
+  "description": "A half-court 3v3 with a short imposed shot clock, forcing decisive decision-making instead of over-passing or holding the ball.",
+  "category": "small_sided_games",
+  "primarySkill": "decision_making",
+  "secondarySkills": ["communication"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "3v3",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 6,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 9,
+  "space": "half_court",
+  "tags": ["small-sided", "3v3", "shot clock"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 6
+    }
+  ],
+  "content": {
+    "objective": "Make quick, confident decisions under a short shot clock rather than over-passing or stalling.",
+    "setup": "Three offensive players face three defenders, with a coach counting down a 14-second shot clock out loud.",
+    "organization": "",
+    "instructions": [
+      "Play live 3v3 with the coach counting down from 14 seconds each possession.",
+      "A shot must go up before the count reaches zero, or the possession is a turnover.",
+      "Teams should look for the best available shot early rather than waiting until the count is critical.",
+      "Rotate teams after every four possessions."
+    ],
+    "coachingPoints": [
+      "Attack with purpose from the start of the possession, not just at the end.",
+      "Communicate the time remaining to teammates.",
+      "Take a good available shot rather than forcing a worse one as time runs out."
+    ],
+    "commonMistakes": [
+      "Holding the ball too long early, then panicking as the clock runs down.",
+      "Forcing a terrible shot right at the buzzer instead of taking an earlier good one.",
+      "Ignoring the game's constraint once the pressure is on."
+    ],
+    "safety": "Keep contact controlled; call fouls to maintain a fair pace.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "p3",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

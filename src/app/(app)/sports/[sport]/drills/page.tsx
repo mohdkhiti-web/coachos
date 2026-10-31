@@ -92,8 +92,12 @@ export default async function DrillLibraryPage({
         {result.items.length > 0 ? (
           <>
             <ul className="grid gap-5 sm:grid-cols-2 2xl:grid-cols-3">
-              {result.items.map((d) => (
-                <li key={d.id}>
+              {result.items.map((d, i) => (
+                <li
+                  key={d.id}
+                  className="animate-fade-up"
+                  style={{ "--fade-delay": `${Math.min(i, 8) * 45}ms` } as React.CSSProperties}
+                >
                   <DrillCard
                     drill={d}
                     href={`${basePath}/${d.id}`}

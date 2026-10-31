@@ -1,0 +1,118 @@
+{
+  "seedKey": "line-touch-interval-sprints",
+  "title": "Line-Touch Interval Sprints",
+  "description": "Players sprint to touch each line on the court in a fixed sequence with timed rest intervals, a simple, equipment-free conditioning staple.",
+  "category": "conditioning",
+  "primarySkill": "conditioning",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "full_court",
+  "tags": ["conditioning", "intervals"],
+  "equipment": [
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build conditioning through simple, measurable sprint intervals with controlled rest.",
+    "setup": "Players line up on the baseline with a timer set for repeated intervals.",
+    "organization": "",
+    "instructions": [
+      "On the whistle, sprint to touch the free-throw line and return to the baseline.",
+      "Rest for a fixed interval (for example, 20 seconds).",
+      "Sprint to touch half court and return to the baseline.",
+      "Repeat the sequence for the planned number of rounds, resting the same interval each time."
+    ],
+    "coachingPoints": [
+      "Sprint at full effort on every rep, not just the first one.",
+      "Use the rest interval fully to recover, not to chat or wander.",
+      "Touch each line clearly rather than cutting the turn early."
+    ],
+    "commonMistakes": [
+      "Pacing conservatively instead of sprinting at genuine effort.",
+      "Cutting the rest interval short or extending it inconsistently.",
+      "Pacing too conservatively instead of working at real effort."
+    ],
+    "safety": "Make sure the court is clear and dry before beginning the intervals.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket"
+            }
+          },
+          {
+            "id": "mk1",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "under_basket"
+            }
+          },
+          {
+            "id": "mk2",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "mk3",
+            "type": "marker",
+            "kind": "end",
+            "at": {
+              "anchor": "half_court_center"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "s1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line"
+              },
+              {
+                "anchor": "half_court_center"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

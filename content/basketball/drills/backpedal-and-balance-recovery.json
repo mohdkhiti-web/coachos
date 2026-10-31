@@ -1,0 +1,82 @@
+{
+  "seedKey": "backpedal-and-balance-recovery",
+  "title": "Backpedal and Balance Recovery",
+  "description": "Players sprint forward, backpedal under control, and recover into a balanced defensive stance — the transition moment most footwork drills skip.",
+  "category": "footwork",
+  "primarySkill": "footwork",
+  "secondarySkills": ["speed_agility"],
+  "subSkills": ["change_of_direction"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["footwork", "agility"],
+  "equipment": [],
+  "content": {
+    "objective": "Transition smoothly from a forward sprint to a controlled backpedal and a balanced stance.",
+    "setup": "Players line up at the wing with open space to sprint toward the top of the key.",
+    "organization": "",
+    "instructions": [
+      "Sprint forward for three steps on the coach's signal.",
+      "Immediately backpedal under control for three steps on the next signal.",
+      "Drop into a low, balanced defensive stance on the final whistle.",
+      "Repeat with randomised timing so the transition stays reactive."
+    ],
+    "coachingPoints": [
+      "Keep the body low through the whole transition, not just at the stance.",
+      "Use short, quick steps when backpedaling, not long strides.",
+      "Land the final stance with the feet already shoulder-width apart."
+    ],
+    "commonMistakes": [
+      "Standing up tall right before dropping into the stance.",
+      "Overstriding during the backpedal, which slows the recovery.",
+      "Letting the feet settle flat instead of staying on the balls of the feet."
+    ],
+    "safety": "Check the backpedal path is completely clear before starting.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

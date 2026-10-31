@@ -1,0 +1,73 @@
+{
+  "seedKey": "foam-roll-and-breathe",
+  "title": "Foam Roll and Breathe",
+  "description": "Players use a foam roller or their own body weight to release tight muscles while focusing on slow, controlled breathing to finish practice.",
+  "category": "cooldown",
+  "primarySkill": "recovery_mobility",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["cool_down"],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "any_space",
+  "tags": ["cooldown", "recovery"],
+  "equipment": [],
+  "content": {
+    "objective": "Release muscle tightness from practice while training slow, controlled breathing as part of recovery.",
+    "setup": "Each player finds a personal space on the floor with a foam roller if available.",
+    "organization": "",
+    "instructions": [
+      "Roll the calves slowly for 30 seconds each side, breathing deeply throughout.",
+      "Roll the quads slowly for 30 seconds each side.",
+      "Roll the upper back slowly for 30 seconds.",
+      "Finish lying still for 30 seconds focusing only on slow breathing."
+    ],
+    "coachingPoints": [
+      "Move slowly — rushing the roll reduces its benefit.",
+      "Breathe out slowly through any uncomfortable spot rather than holding tension.",
+      "Keep the room calm and quiet during the final breathing portion."
+    ],
+    "commonMistakes": [
+      "Rolling too quickly to finish faster.",
+      "Holding the breath instead of breathing through tight spots.",
+      "Skipping the breathing and stretching once the group gets talkative."
+    ],
+    "safety": "Avoid rolling directly over any joint; stop immediately if there is sharp pain.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

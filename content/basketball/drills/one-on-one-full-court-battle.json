@@ -1,0 +1,128 @@
+{
+  "seedKey": "one-on-one-full-court-battle",
+  "title": "One-on-One Full-Court Battle",
+  "description": "Two players compete full-court one-on-one, combining transition offense, transition defense and half-court scoring in a single live format.",
+  "category": "competition",
+  "primarySkill": "decision_making",
+  "secondarySkills": ["conditioning", "competitiveness"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "1v1",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["competition", "1-on-1"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Combine transition play and half-court scoring skill in one continuous, competitive full-court matchup.",
+    "setup": "Two players start at one baseline and play live, full-court one-on-one to a target score.",
+    "organization": "",
+    "instructions": [
+      "The offensive player attacks the full length of the court against the defender.",
+      "A score, steal, or defensive rebound immediately flips the roles the other direction.",
+      "Play continuously to a target score, such as seven points.",
+      "Rest briefly between games and rotate to a new opponent."
+    ],
+    "coachingPoints": [
+      "Transition mentally immediately on any change of possession.",
+      "Pace yourself across the full game rather than sprinting out of breath early.",
+      "Play disciplined defense even while tired from the previous possession."
+    ],
+    "commonMistakes": [
+      "Jogging back on defense instead of sprinting to recover.",
+      "Forcing a tough shot out of fatigue instead of resetting the possession.",
+      "Playing carelessly in a round that feels less important."
+    ],
+    "safety": "Keep contact controlled; call fouls to maintain a fair and safe pace.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_half_court"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "far_top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "s1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "far_free_throw_line"
+              }
+            ]
+          },
+          {
+            "id": "s2",
+            "step": 1,
+            "type": "sprint",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "far_top_key",
+                "offset": [-1, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "sh3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

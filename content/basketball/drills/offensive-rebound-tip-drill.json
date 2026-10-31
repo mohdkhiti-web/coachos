@@ -1,0 +1,84 @@
+{
+  "seedKey": "offensive-rebound-tip-drill",
+  "title": "Offensive Rebound Tip Drill",
+  "description": "A player tosses the ball off the backboard themselves and tips it back in repeatedly, building quick hands and timing for offensive rebounds.",
+  "category": "rebounding",
+  "primarySkill": "rebounding",
+  "secondarySkills": [],
+  "subSkills": ["offensive_rebounding"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["rebounding", "tip-in"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Attack the ball at its highest point and tip it back toward the rim with soft touch.",
+    "setup": "A player stands under the basket and tosses the ball off the backboard to themselves.",
+    "organization": "",
+    "instructions": [
+      "Toss the ball softly off the backboard above the rim.",
+      "Jump to meet the ball at its highest point and tip it back toward the rim.",
+      "Repeat continuously for ten tips without letting the ball touch the floor.",
+      "Alternate tipping with the right hand, then the left hand."
+    ],
+    "coachingPoints": [
+      "Jump to the ball rather than waiting for it to come down.",
+      "Use the fingertips for a soft tip, not a hard slap.",
+      "Keep both hands ready in case the first tip needs a follow-up."
+    ],
+    "commonMistakes": [
+      "Waiting at the floor level instead of attacking the ball in the air.",
+      "Tipping too hard and sending the ball away from the rim.",
+      "Watching the shot instead of immediately finding a body to box out."
+    ],
+    "safety": "Only one player under the rim at a time during the drill.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

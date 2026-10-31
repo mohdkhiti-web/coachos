@@ -1,0 +1,84 @@
+{
+  "seedKey": "finishing-with-the-weak-hand-only",
+  "title": "Finishing With the Weak Hand Only",
+  "description": "Players finish every single layup with the non-dominant hand for an entire set, forcing genuine improvement in the hand most players avoid.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": [],
+  "subSkills": ["both_hands_finishing"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["finishing", "weak hand"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build real confidence finishing with the weak hand by removing the option to switch back.",
+    "setup": "Players approach the rim from the side matching their weak hand.",
+    "organization": "",
+    "instructions": [
+      "Approach the basket from the side where the weak-hand finish is natural.",
+      "Finish every single rep with the weak hand only, no exceptions.",
+      "Use a soft touch off the backboard rather than forcing the shot.",
+      "After ten makes, add one defender applying token pressure."
+    ],
+    "coachingPoints": [
+      "Slow the approach down if needed — control matters more than speed here.",
+      "Keep the ball high and away from the body on the approach.",
+      "Celebrate the makes; this is meant to build confidence, not frustration."
+    ],
+    "commonMistakes": [
+      "Switching back to the strong hand out of habit under any pressure.",
+      "Rushing the approach before the weak hand is ready.",
+      "Rushing the last two steps instead of gathering under control."
+    ],
+    "safety": "Keep the area under the rim clear for a controlled, unhurried approach.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_block"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

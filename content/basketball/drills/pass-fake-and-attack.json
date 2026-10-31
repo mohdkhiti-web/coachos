@@ -1,0 +1,119 @@
+{
+  "seedKey": "pass-fake-and-attack",
+  "title": "Pass Fake and Attack",
+  "description": "Ball handlers practise a convincing pass fake to freeze a defender's hands before attacking the rim off the dribble.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["decision_making"],
+  "subSkills": ["reading_the_defense"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["passing", "pass fake"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Sell a pass fake convincingly enough to open a driving lane.",
+    "setup": "A ball handler faces a defender one-on-one at the top of the key.",
+    "organization": "",
+    "instructions": [
+      "Step and look as if making a real pass to an imaginary teammate on the wing.",
+      "As the defender reacts, explode past them on the dribble toward the rim.",
+      "Finish with a layup, keeping the ball high and away from recovering defenders.",
+      "Reset and repeat with the fake going to the opposite side."
+    ],
+    "coachingPoints": [
+      "Move the ball and the eyes together on the fake.",
+      "Attack immediately once the defender bites — don't hesitate.",
+      "Keep the fake believable; a lazy fake won't move anyone."
+    ],
+    "commonMistakes": [
+      "Faking with the eyes but not the ball, or vice versa.",
+      "Waiting too long after the fake before attacking.",
+      "Catching flat-footed instead of stepping to meet the ball."
+    ],
+    "safety": "Defender reacts to the fake but doesn't lunge aggressively at the ball.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1.4]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "x1",
+            "step": 1,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [0.9, 0]
+              }
+            ]
+          },
+          {
+            "id": "sh2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

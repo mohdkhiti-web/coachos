@@ -1,0 +1,91 @@
+{
+  "seedKey": "static-stretch-circle",
+  "title": "Static Stretch Circle",
+  "description": "The team forms a circle and works through a sequence of static stretches together, bringing the heart rate down and closing practice calmly.",
+  "category": "cooldown",
+  "primarySkill": "recovery_mobility",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["cool_down"],
+  "ageMin": 6,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "any_space",
+  "tags": ["cooldown", "stretching"],
+  "equipment": [],
+  "content": {
+    "objective": "Lower the heart rate gradually and stretch the major muscle groups used during practice.",
+    "setup": "The whole group forms a loose circle with enough space to stretch freely.",
+    "organization": "",
+    "instructions": [
+      "Hold a quad stretch on each leg for 20 seconds.",
+      "Hold a hamstring stretch on each leg for 20 seconds.",
+      "Hold a shoulder and triceps stretch on each arm for 20 seconds.",
+      "Finish with a few deep, slow breaths as a group before practice ends."
+    ],
+    "coachingPoints": [
+      "Hold each stretch still, without bouncing.",
+      "Breathe slowly and deeply throughout.",
+      "Keep the mood calm — this is meant to bring the energy down, not up."
+    ],
+    "commonMistakes": [
+      "Bouncing in and out of the stretch instead of holding it still.",
+      "Rushing through stretches to finish practice faster.",
+      "Rushing through it to finish practice sooner."
+    ],
+    "safety": "Never stretch to the point of pain — a gentle pull is enough.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

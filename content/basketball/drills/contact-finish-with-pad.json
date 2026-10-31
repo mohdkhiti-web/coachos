@@ -1,0 +1,84 @@
+{
+  "seedKey": "contact-finish-with-pad",
+  "title": "Contact Finish With Pad",
+  "description": "A coach holds a soft pad to create realistic light contact as players finish through it, building confidence finishing through a bump at the rim.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": [],
+  "subSkills": ["finishing_with_contact"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["finishing", "contact"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Finish through realistic light contact without losing balance or shot technique.",
+    "setup": "A coach or teammate holds a soft contact pad at the block; the shooter drives from the wing.",
+    "organization": "",
+    "instructions": [
+      "Drive from the wing toward the rim at game speed.",
+      "Accept light contact from the pad on the way up through the shot.",
+      "Finish strong through the pad, protecting the ball with the off-arm.",
+      "Rotate so every player gets several reps through the pad."
+    ],
+    "coachingPoints": [
+      "Gather the ball with both hands before the contact arrives.",
+      "Finish through the shot, don't flinch away from the pad.",
+      "Use the off-arm to create space, not to push off illegally."
+    ],
+    "commonMistakes": [
+      "Slowing down before contact instead of attacking through it.",
+      "Losing the ball on contact from loose handling.",
+      "Rushing the last two steps instead of gathering under control."
+    ],
+    "safety": "The pad holder applies only light, controlled pressure — never a hard check.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "seedKey": "down-screen-and-curl",
+  "title": "Down Screen and Curl",
+  "description": "A player sets a down screen for a teammate who curls hard off it toward the rim, learning to read when to curl versus pop.",
+  "category": "team_offense",
+  "primarySkill": "screening",
+  "secondarySkills": ["cutting"],
+  "subSkills": ["using_screens"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "half_court",
+  "tags": ["team offense", "screening"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Set a solid down screen, then read whether to curl, pop or fade off it.",
+    "setup": "A screener sets up at the elbow; a cutter starts at the block.",
+    "organization": "",
+    "instructions": [
+      "The screener sets a wide, stationary screen at the elbow.",
+      "The cutter comes off the screen tight, brushing the screener's shoulder.",
+      "If the defender trails, the cutter curls directly to the rim.",
+      "If the defender goes under, the cutter pops out to the wing for a catch-and-shoot instead."
+    ],
+    "coachingPoints": [
+      "The screener must be set and stationary before contact, not moving into it.",
+      "The cutter should read the defender's path, not guess.",
+      "Change speed off the screen to create real separation."
+    ],
+    "commonMistakes": [
+      "Screener moving into the defender instead of staying set.",
+      "Cutter drifting too far from the screen, giving the defender room to recover.",
+      "Cutting without actually drawing any real defensive attention."
+    ],
+    "safety": "The screener holds a legal, stationary position — no moving into contact.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -488,11 +488,31 @@ describe("rendering", () => {
     expect(s2).toContain('opacity="0.28"'); // step 1's cut, faint
   });
 
-  it("an older diagram renders exactly as it did before the workspace existed", () => {
-    // no new attribute leaks into legacy markup
-    const html = markup(base());
-    for (const forbidden of ["rotate(", "scale(", "opacity=", "paintOrder", "paint-order"]) {
-      expect(html).not.toContain(forbidden);
+  it("an older diagram renders exactly as it did before the workspace existed, on export themes", () => {
+    // print/mono are what golden tests, PDFs and PNGs use — they must stay byte-for-byte as before: no per-object
+    // look leaks in, and no hardwood decoration either (screen-only, so exports never spend ink on it).
+    for (const theme of ["print", "mono"] as const) {
+      const html = markup(base(), { theme });
+      for (const forbidden of [
+        "rotate(",
+        "scale(",
+        "opacity=",
+        "paintOrder",
+        "paint-order",
+        "wood",
+        "vignette",
+      ]) {
+        expect(html, theme).not.toContain(forbidden);
+      }
     }
+  });
+
+  it("the hardwood court is a theme-level decoration, not a per-object leak: it appears for a plain diagram with no looks set", () => {
+    const html = markup(base()); // default theme: screen
+    expect(html).toContain("-wood"); // the grain pattern
+    expect(html).toContain("-vignette"); // the ambient edge falloff
+    expect(html).toContain("<ellipse"); // a grounding shadow under the plain player/ball
+    // still true: no per-ENTITY rotate/scale, because nothing in this diagram sets its own rotation or scale
+    expect(html).not.toMatch(/<g[^>]*transform="[^"]*(?:rotate|scale)\(/);
   });
 });

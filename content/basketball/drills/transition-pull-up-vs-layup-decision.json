@@ -1,0 +1,128 @@
+{
+  "seedKey": "transition-pull-up-vs-layup-decision",
+  "title": "Transition Pull-Up vs Layup Decision",
+  "description": "A ball handler in transition reads whether the retreating defender has cut off the rim, choosing between a pull-up jumper and a drive to the basket.",
+  "category": "transition",
+  "primarySkill": "decision_making",
+  "secondarySkills": ["shooting_form"],
+  "subSkills": ["reading_the_defense"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "full_court",
+  "tags": ["transition", "decision making"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Choose between a pull-up jumper and a drive to the rim based on where the retreating defender sets up.",
+    "setup": "A ball handler pushes the ball in transition against one retreating defender.",
+    "organization": "",
+    "instructions": [
+      "The ball handler attacks at full speed toward the basket.",
+      "If the defender retreats to protect the rim, the ball handler pulls up for a jumper before reaching them.",
+      "If the defender is late, the ball handler attacks all the way to the rim for a layup.",
+      "Reset with the defender varying how early or late they retreat."
+    ],
+    "coachingPoints": [
+      "Make the read early, well before reaching the defender.",
+      "Stay balanced on the pull-up rather than rushing it off a full sprint.",
+      "Attack downhill with conviction once the layup is the right read."
+    ],
+    "commonMistakes": [
+      "Pulling up even when the rim was actually open.",
+      "Forcing a layup into a set defender instead of taking the available jumper.",
+      "Jogging back instead of sprinting to get into position."
+    ],
+    "safety": "Keep the drive at a controlled, game-realistic intensity.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_half_court"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "far_free_throw_line"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "s1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "far_free_throw_line"
+              }
+            ]
+          },
+          {
+            "id": "s2",
+            "step": 1,
+            "type": "sprint",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "far_top_key",
+                "offset": [-1, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "sh3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "seedKey": "floater-off-one-foot",
+  "title": "Floater Off One Foot",
+  "description": "Players practise the floating one-foot finish used to shoot over a taller defender without fully attacking the rim for a contested layup.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["finishing", "floater"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Release a soft floater early, before reaching the rim, to finish over a taller defender.",
+    "setup": "Players attack from the elbow with a ball, driving toward the lane.",
+    "organization": "",
+    "instructions": [
+      "Drive two or three steps into the lane at a controlled pace.",
+      "Rise off one foot well before reaching the rim.",
+      "Release the ball high and soft with a lot of arc, aiming just over the front of the rim.",
+      "Land balanced and retreat to get back on defense."
+    ],
+    "coachingPoints": [
+      "Release earlier than feels natural — that's what beats the help defender.",
+      "Use a high, soft arc rather than a flat shot.",
+      "Keep the eyes on the target, not on an imaginary shot-blocker."
+    ],
+    "commonMistakes": [
+      "Driving all the way to the rim instead of releasing early.",
+      "Shooting flat instead of with a high arc.",
+      "Bringing the ball down low where it can be knocked away."
+    ],
+    "safety": "Make sure the landing area is clear before driving at speed.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

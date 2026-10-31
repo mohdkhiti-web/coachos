@@ -1,0 +1,123 @@
+{
+  "seedKey": "sideline-stack-three-point-look",
+  "title": "Sideline Stack Three-Point Look",
+  "description": "A sideline inbound uses a stack of players along the lane, releasing one at a time to create a clean look at a three-pointer.",
+  "category": "special_situations",
+  "primarySkill": "inbounding",
+  "secondarySkills": [],
+  "subSkills": ["sideline_inbounds"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "team",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 5,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["special situations", "inbounds", "three-point"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Release players one at a time from a stack to create a clean three-point look.",
+    "setup": "Three players stack vertically along the lane; the inbounder stands on the sideline.",
+    "organization": "",
+    "instructions": [
+      "The first player in the stack curls out toward the ball as a decoy.",
+      "The second player waits a beat, then releases to the three-point line opposite the decoy.",
+      "The inbounder reads the defense and delivers to whichever option is actually open.",
+      "Reset with the decoy and shooter roles swapped."
+    ],
+    "coachingPoints": [
+      "Release in sequence, not all at once, to avoid clogging the same space.",
+      "The shooter should be ready to catch and shoot immediately.",
+      "Inbounder reads the defense rather than always going to the first option."
+    ],
+    "commonMistakes": [
+      "Both players releasing to the same spot and crowding each other.",
+      "Rushing the release before the decoy has actually moved the defense.",
+      "Forgetting the backup option if the first read isn't there."
+    ],
+    "safety": "Keep the inbounding lane clear so the pass has a safe path.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "player",
+            "side": "offense",
+            "label": "C",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "c1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "top_key"
+              }
+            ]
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "c1",
+            "to": "o1"
+          },
+          {
+            "id": "sh3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

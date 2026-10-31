@@ -15,7 +15,11 @@ export type CourtPrimitive = {
   stroke: Stroke;
   /** Optional SVG transform, e.g. to mirror the far end of a full court. */
   transform?: string;
-  fill?: "none" | "surface";
+  /**
+   * `"accent"` paints the shape with the sport's accent colour at low opacity — a real court's painted key/lane — but
+   * ONLY on screen: print and mono exports stay unfilled, so a PDF/PNG never spends ink on a colour fill (§7).
+   */
+  fill?: "none" | "surface" | "accent";
 };
 
 export interface CourtPack {

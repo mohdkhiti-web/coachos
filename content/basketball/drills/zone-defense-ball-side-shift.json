@@ -1,0 +1,129 @@
+{
+  "seedKey": "zone-defense-ball-side-shift",
+  "title": "Zone Defense Ball-Side Shift",
+  "description": "Players in a basic zone alignment practise shifting together toward the ball side on every pass, closing gaps as a unit rather than individually.",
+  "category": "team_defense",
+  "primarySkill": "communication",
+  "secondarySkills": ["help_defense"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "team",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 5,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["team defense", "zone"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Shift the entire zone shape together toward the ball side on every single pass.",
+    "setup": "Five defenders set up in a zone shape; a coach or passer moves the ball around the perimeter with no live offense yet.",
+    "organization": "",
+    "instructions": [
+      "As the ball moves to one side, the whole zone shifts that direction together.",
+      "Keep the zone's shape consistent — no gaps opening between defenders.",
+      "On a reversal pass, shift back the other way as one unit.",
+      "Add a post flash into the middle of the zone for the defenders to also account for."
+    ],
+    "coachingPoints": [
+      "Move on the pass, not after it arrives.",
+      "Keep the defenders' spacing even as the zone shifts.",
+      "Talk constantly to stay organised as a unit."
+    ],
+    "commonMistakes": [
+      "Shifting too far and leaving the weak side completely open.",
+      "One defender lagging behind the rest of the shift.",
+      "Ball-watching instead of tracking both the ball and the assignment."
+    ],
+    "safety": "This drill has no live offense yet, so contact should not occur.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "p3",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

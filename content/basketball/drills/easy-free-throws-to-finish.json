@@ -1,0 +1,104 @@
+{
+  "seedKey": "easy-free-throws-to-finish",
+  "title": "Easy Free Throws to Finish",
+  "description": "A relaxed set of free throws at the very end of practice, closing on a positive, low-pressure note while reinforcing the shooting routine.",
+  "category": "cooldown",
+  "primarySkill": "free_throws",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["cool_down"],
+  "ageMin": 7,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["cooldown", "free throws"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Close practice on a calm, positive note while reinforcing a consistent free-throw routine.",
+    "setup": "Players line up at the free-throw line, one shooting at a time.",
+    "organization": "",
+    "instructions": [
+      "Shoot five relaxed free throws using the same routine as always.",
+      "Rotate to the next player after their five attempts.",
+      "No pressure or counting toward a game — just calm, quality repetition.",
+      "Finish with everyone taking one 'last shot' together to end practice."
+    ],
+    "coachingPoints": [
+      "Keep the same calm routine as any other free throw.",
+      "Use this as a moment to reinforce good habits, not to critique misses.",
+      "End on a positive note regardless of makes or misses."
+    ],
+    "commonMistakes": [
+      "Rushing through to leave practice sooner.",
+      "Turning it into a stressful competition when the point is to relax.",
+      "Rushing through it to finish practice sooner."
+    ],
+    "safety": "Keep the line organised so only one shooter is at the line at a time.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "free_throw_line"
+            },
+            "variant": "flat"
+          }
+        ],
+        "actions": [
+          {
+            "id": "sh1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

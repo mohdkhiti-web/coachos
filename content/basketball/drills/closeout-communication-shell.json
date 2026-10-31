@@ -1,0 +1,145 @@
+{
+  "seedKey": "closeout-communication-shell",
+  "title": "Closeout Communication Shell",
+  "description": "A shell-defense variation focused purely on verbal communication — every rotation, closeout and help call must be spoken out loud.",
+  "category": "team_defense",
+  "primarySkill": "communication",
+  "secondarySkills": ["help_defense"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "4v4",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 8,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 9,
+  "space": "half_court",
+  "tags": ["team defense", "communication", "shell"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 8
+    }
+  ],
+  "content": {
+    "objective": "Build the verbal habits that make team defense work: every action is called out loud.",
+    "setup": "Four offensive players pass around the perimeter against four live defenders in a shell shape.",
+    "organization": "",
+    "instructions": [
+      "Every defender must call 'ball' when guarding the ball and 'help' or 'deny' otherwise.",
+      "On a drive, the helping defender calls 'help left' or 'help right' loudly.",
+      "On a closeout, the closing defender calls 'shot' or 'ball' as they arrive.",
+      "A defense that stays silent for a possession restarts that possession."
+    ],
+    "coachingPoints": [
+      "Communicate before moving, not after.",
+      "Keep calls short and specific, not vague shouting.",
+      "Make eye contact with teammates during rotations when possible."
+    ],
+    "commonMistakes": [
+      "Rotating correctly but silently, which breaks down under real game pressure.",
+      "Calling out too late for the information to actually help anyone.",
+      "Rotating to the wrong player and leaving someone else open."
+    ],
+    "safety": "Keep ball movement controlled enough that communication, not chaos, is the focus.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "p3",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4"
+          },
+          {
+            "id": "p4",
+            "step": 4,
+            "type": "pass",
+            "from": "o4",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

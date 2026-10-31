@@ -1,0 +1,113 @@
+{
+  "seedKey": "two-ball-partner-passing",
+  "title": "Two-Ball Partner Passing",
+  "description": "Partners pass two balls simultaneously back and forth, forcing both hands and eyes to track two objects in flight at once.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["catching"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["passing", "two-ball", "hand-eye"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 20
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Track and pass two balls at the same time without either one being dropped.",
+    "setup": "Partners stand four metres apart, each starting with one ball.",
+    "organization": "",
+    "instructions": [
+      "Both partners pass their ball to the other at the same moment.",
+      "Catch and immediately pass back without pausing to reset.",
+      "Keep a steady rhythm for 30 seconds, then rest and repeat.",
+      "Mix pass types: one chest pass and one bounce pass happening at once."
+    ],
+    "coachingPoints": [
+      "Stay relaxed — tension causes drops.",
+      "Keep both passes at a predictable, repeatable height.",
+      "Communicate out loud if the rhythm breaks down."
+    ],
+    "commonMistakes": [
+      "Watching only one ball and losing track of the other.",
+      "Rushing the rhythm until passes collide.",
+      "Catching flat-footed instead of stepping to meet the ball."
+    ],
+    "safety": "Keep pairs well spread so a dropped ball doesn't roll into another group.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

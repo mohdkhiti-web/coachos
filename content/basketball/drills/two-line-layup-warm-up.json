@@ -1,0 +1,113 @@
+{
+  "seedKey": "two-line-layup-warm-up",
+  "title": "Two-Line Layup Warm-Up",
+  "description": "A classic pre-practice warm-up: two lines feed each other for easy layups to get shots going and bodies moving before drills begin.",
+  "category": "warm_up",
+  "primarySkill": "finishing",
+  "secondarySkills": ["passing"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 6,
+  "playersMax": 20,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["warm-up", "layups"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Get easy, controlled makes while the team gets loose.",
+    "setup": "One line starts at the left wing with a ball, the other at the right block without one.",
+    "organization": "",
+    "instructions": [
+      "The wing passes ahead to the cutter stepping toward the basket.",
+      "The cutter finishes a layup off the backboard.",
+      "Both players rotate to the opposite line after their touch.",
+      "Keep a steady rhythm — one group should never wait long for the other."
+    ],
+    "coachingPoints": [
+      "Lead the pass to where the cutter is going, not where they are.",
+      "Finish with the foot opposite the shooting hand.",
+      "Jog back into line with purpose, not a stroll."
+    ],
+    "commonMistakes": [
+      "Passing too early or too hard for an easy finish.",
+      "Lines bunching up at one basket.",
+      "Rushing through the movements instead of using the full range of motion."
+    ],
+    "safety": "Keep the landing area under the rim clear before the next pair starts.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

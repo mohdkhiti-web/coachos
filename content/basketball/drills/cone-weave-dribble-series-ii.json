@@ -1,0 +1,164 @@
+{
+  "seedKey": "cone-weave-dribble-series-ii",
+  "title": "Cone Weave Dribble Series II",
+  "description": "A tighter cone weave than the basic version, forcing low, controlled crossovers between cones spaced close together down the floor.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": [],
+  "subSkills": ["crossover", "change_of_pace"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "full_court",
+  "tags": ["ball handling", "cones"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 6
+    }
+  ],
+  "content": {
+    "objective": "Keep the ball low and change direction sharply at each closely spaced cone.",
+    "setup": "Six cones are placed in a zig-zag roughly a metre apart down the length of the court.",
+    "organization": "",
+    "instructions": [
+      "Dribble with the outside hand approaching each cone.",
+      "Crossover low and tight exactly as you reach each cone.",
+      "Accelerate for two dribbles between cones, then decelerate into the next crossover.",
+      "Jog back and repeat with the other hand leading."
+    ],
+    "coachingPoints": [
+      "Change speed, not just direction, at every cone.",
+      "Keep the ball below the knee through each crossover.",
+      "Protect the ball with the off-hand and a forearm bar."
+    ],
+    "commonMistakes": [
+      "Dribbling in a straight line and ignoring the zig-zag.",
+      "Standing up tall while weaving through.",
+      "Letting the off-hand drop instead of staying ready to protect the ball."
+    ],
+    "safety": "Make sure the cone line is clear of other groups before starting.",
+    "progressions": [],
+    "regressions": [],
+    "variations": ["Finish the last cone with a hesitation move and a sprint to the rim."]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "c4",
+            "type": "cone",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "c5",
+            "type": "cone",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          },
+          {
+            "id": "c6",
+            "type": "cone",
+            "at": {
+              "anchor": "right_wing"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "d1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_block"
+              },
+              {
+                "anchor": "left_elbow"
+              },
+              {
+                "anchor": "top_key"
+              },
+              {
+                "anchor": "right_elbow"
+              },
+              {
+                "anchor": "right_wing"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 3.3
+            },
+            "text": "Crossover at each cone"
+          }
+        ]
+      }
+    }
+  ]
+}

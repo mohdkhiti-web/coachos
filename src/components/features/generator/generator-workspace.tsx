@@ -422,7 +422,11 @@ const PreviewPanel = React.forwardRef<
               const start = starts[index] ?? 0;
               const drill = item.drillId ? preview.drills[item.drillId] : undefined;
               return (
-                <li key={`${index}-${item.drillId ?? "break"}`} className="space-y-3 p-4 sm:p-5">
+                <li
+                  key={`${index}-${item.drillId ?? "break"}`}
+                  className="animate-fade-up space-y-3 p-4 sm:p-5"
+                  style={{ "--fade-delay": `${Math.min(index, 8) * 45}ms` } as React.CSSProperties}
+                >
                   <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
                     <div className="min-w-0 space-y-1.5">
                       <div className="flex flex-wrap items-center gap-2">

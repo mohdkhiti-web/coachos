@@ -1,0 +1,179 @@
+{
+  "seedKey": "form-shooting-ladder",
+  "title": "Form Shooting Ladder",
+  "description": "Shooters work outward from directly under the basket to the free-throw line in small steps, only moving back once form holds up at the closer range.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 7,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["shooting", "form"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build range gradually, only moving back once makes are consistent at the closer distance.",
+    "setup": "Shooter starts directly under the basket with a ball.",
+    "organization": "",
+    "instructions": [
+      "Make five shots in a row directly under the basket using correct form.",
+      "Move to the block and repeat, then the elbow, then the free-throw line.",
+      "If a spot isn't making five in a row within ten shots, stay there longer before moving back.",
+      "Rebound your own shot each time to keep the pace quick."
+    ],
+    "coachingPoints": [
+      "Prioritise form over makes at every step — a lucky make with bad form doesn't count.",
+      "Use full legs on every shot, even close to the rim.",
+      "Keep the same release point regardless of distance."
+    ],
+    "commonMistakes": [
+      "Rushing back to the free-throw line before form is solid closer in.",
+      "Losing the follow-through once shots start missing.",
+      "Dropping the follow-through early instead of holding it."
+    ],
+    "safety": "Watch for other players' rebounds crossing your shooting lane.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "under_basket"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "anchor": "left_block"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c4",
+            "type": "cone",
+            "at": {
+              "anchor": "free_throw_line"
+            },
+            "variant": "flat"
+          }
+        ],
+        "actions": [
+          {
+            "id": "sh1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_block"
+              }
+            ]
+          },
+          {
+            "id": "sh3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m4",
+            "step": 3,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow"
+              }
+            ]
+          },
+          {
+            "id": "sh5",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m6",
+            "step": 4,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line"
+              }
+            ]
+          },
+          {
+            "id": "sh7",
+            "step": 4,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

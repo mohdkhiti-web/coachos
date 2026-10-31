@@ -66,8 +66,12 @@ export function TemplateGrid({
   return (
     <>
       <ul className="grid gap-4 sm:grid-cols-2 2xl:grid-cols-3">
-        {items.map((x) => (
-          <li key={x.id} className="animate-fade-up">
+        {items.map((x, i) => (
+          <li
+            key={x.id}
+            className="animate-fade-up"
+            style={{ "--fade-delay": `${Math.min(i, 8) * 45}ms` } as React.CSSProperties}
+          >
             <TemplateCard template={x} canCreate={canCreate} onApply={() => setApplying(x)} />
           </li>
         ))}

@@ -1,0 +1,120 @@
+{
+  "seedKey": "dribble-knockout-one-v-one",
+  "title": "Dribble Knockout 1v1",
+  "description": "Every player dribbles inside a confined space while trying to knock away everyone else's ball and protect their own — the last ball bouncing wins.",
+  "category": "ball_handling",
+  "primarySkill": "ball_control",
+  "secondarySkills": ["dribbling", "competitiveness"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["skill", "game"],
+  "ageMin": 9,
+  "ageMax": 16,
+  "playersMin": 5,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["ball handling", "competition", "fun"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 16
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Protect your own dribble while trying to knock other players' balls away, under real pressure.",
+    "setup": "Everyone dribbles freely inside the three-point line, one ball each.",
+    "organization": "",
+    "instructions": [
+      "On the whistle, every player dribbles and tries to slap away an opponent's ball without using two hands on their own.",
+      "A player whose ball goes out of the space or stops bouncing is out.",
+      "The space shrinks every minute by moving the boundary in.",
+      "Last player still dribbling wins the round; reset and go again."
+    ],
+    "coachingPoints": [
+      "Keep the body between the ball and other players.",
+      "Use the off-hand to shield, not to swat wildly.",
+      "Keep the head up to see where other balls are coming from."
+    ],
+    "commonMistakes": [
+      "Chasing other balls and losing your own.",
+      "Bunching in the middle instead of using the whole space.",
+      "Speeding up until control breaks down, instead of building speed gradually."
+    ],
+    "safety": "No full-arm swipes at another player's hands — slap at the ball only.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_slot"
+            }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": {
+              "anchor": "right_slot"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

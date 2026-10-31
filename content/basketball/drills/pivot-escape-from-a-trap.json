@@ -1,0 +1,102 @@
+{
+  "seedKey": "pivot-escape-from-a-trap",
+  "title": "Pivot Escape From a Trap",
+  "description": "A ball handler is trapped by two defenders in a corner and must use quick, low pivots to find a passing angle out, without picking up a travel.",
+  "category": "footwork",
+  "primarySkill": "pivoting",
+  "secondarySkills": ["passing", "decision_making"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["footwork", "trap"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Keep a legal, planted pivot foot while pivoting to find a safe passing angle out of a trap.",
+    "setup": "A ball handler is trapped in the corner by two defenders closing in from both angles.",
+    "organization": "",
+    "instructions": [
+      "On the catch, immediately plant one foot as the pivot foot and keep it down.",
+      "Pivot low, scanning for an open outlet rather than panicking.",
+      "Pass as soon as a safe angle opens, protecting the ball through the pivot.",
+      "Rotate which two players apply the trap each round."
+    ],
+    "coachingPoints": [
+      "Plant the pivot foot immediately — deciding late causes travels.",
+      "Keep the ball high and away from both defenders' reach.",
+      "Stay calm; rushing the pass under pressure causes turnovers."
+    ],
+    "commonMistakes": [
+      "Lifting the pivot foot while still deciding where to pass.",
+      "Panicking and throwing a pass without checking the outlet is actually open.",
+      "Standing up tall instead of staying low through the movement."
+    ],
+    "safety": "Defenders trap with hands up, no grabbing the ball handler.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "right_short_corner"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

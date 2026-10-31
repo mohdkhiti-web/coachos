@@ -1,0 +1,84 @@
+{
+  "seedKey": "seated-ball-control-circuit",
+  "title": "Seated Ball Control Circuit",
+  "description": "A low-impact ball-control circuit done seated or on one knee, isolating hand speed and touch without the legs doing any of the work.",
+  "category": "ball_handling",
+  "primarySkill": "ball_control",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["ball handling", "hands"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Isolate hand speed and ball control without the legs compensating for weak hands.",
+    "setup": "Each player sits on the floor or kneels on one knee with a ball.",
+    "organization": "",
+    "instructions": [
+      "Dribble the ball rapidly between the legs for 20 seconds.",
+      "Dribble in a figure-eight around the body for 20 seconds.",
+      "Pound the ball hard and low with one hand for 15 seconds, then switch hands.",
+      "Finish with 15 seconds of fast alternating hand taps on top of the ball."
+    ],
+    "coachingPoints": [
+      "Use only the fingers and wrist, not the whole arm.",
+      "Keep the ball low and under control at all times.",
+      "Keep the eyes up once the pattern is comfortable."
+    ],
+    "commonMistakes": [
+      "Letting the ball bounce too high between touches.",
+      "Using the palm instead of the fingertips.",
+      "Letting the off-hand drop instead of staying ready to protect the ball."
+    ],
+    "safety": "Make sure the floor space is clear before sitting or kneeling down.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

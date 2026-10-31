@@ -1,0 +1,113 @@
+{
+  "seedKey": "rebound-and-outlet-pass",
+  "title": "Rebound and Outlet Pass",
+  "description": "A rebounder secures a missed shot and immediately pivots to find the outlet pass that starts a fast break, under light pressure.",
+  "category": "rebounding",
+  "primarySkill": "rebounding",
+  "secondarySkills": ["passing"],
+  "subSkills": ["defensive_rebounding"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["rebounding", "outlet pass"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Secure the rebound with two hands and find the outlet pass quickly to start the break.",
+    "setup": "A coach or player shoots and misses on purpose; a rebounder and an outlet target wait nearby.",
+    "organization": "",
+    "instructions": [
+      "Secure the rebound at its highest point with both hands, elbows out.",
+      "Land balanced and immediately pivot away from any pressure.",
+      "Find the outlet pass to the wing, leading them up the floor.",
+      "Rotate the rebounder every three reps."
+    ],
+    "coachingPoints": [
+      "Chin the ball above the shoulders right after the catch.",
+      "Pivot away from pressure before looking to pass.",
+      "Make the outlet pass sharp and on time, not a lazy lob."
+    ],
+    "commonMistakes": [
+      "Bringing the ball down low where it can be stripped.",
+      "Outletting to a spot instead of leading the receiver forward.",
+      "Reaching for the ball with one hand instead of securing it with two."
+    ],
+    "safety": "Light contact only when simulating pressure on the rebounder.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "seedKey": "three-v-three-one-dribble-max",
+  "title": "3v3 One-Dribble Maximum Game",
+  "description": "A half-court 3v3 limiting every player to one dribble maximum per touch, speeding up decision-making and ball movement.",
+  "category": "small_sided_games",
+  "primarySkill": "decision_making",
+  "secondarySkills": ["passing", "catching"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "3v3",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 6,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 9,
+  "space": "half_court",
+  "tags": ["small-sided", "3v3", "constraint game"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 6
+    }
+  ],
+  "content": {
+    "objective": "Speed up decision-making by limiting every touch to a single dribble at most.",
+    "setup": "Three offensive players face three defenders in a half-court game with the dribble limited.",
+    "organization": "",
+    "instructions": [
+      "Play live 3v3 to a target score.",
+      "Each player may take at most one dribble per touch before passing or shooting.",
+      "A second dribble on the same touch results in a turnover.",
+      "Rotate teams after every four possessions."
+    ],
+    "coachingPoints": [
+      "Catch already thinking about the next pass, not just the dribble.",
+      "Move without the ball to create easy one-dribble advantages.",
+      "Use the one dribble purposefully — toward the rim or to improve a passing angle."
+    ],
+    "commonMistakes": [
+      "Taking the one dribble immediately out of habit instead of looking to pass first.",
+      "Standing still and forcing a tough shot rather than passing to a better-positioned teammate.",
+      "Reverting to one-on-one play instead of using the whole group."
+    ],
+    "safety": "Keep contact controlled; call fouls to maintain a fair pace.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "p3",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

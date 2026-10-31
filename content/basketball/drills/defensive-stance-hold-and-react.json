@@ -1,0 +1,112 @@
+{
+  "seedKey": "defensive-stance-hold-and-react",
+  "title": "Defensive Stance Hold and React",
+  "description": "Players hold a low defensive stance for time while reacting to a coach's hand signals for slide direction, building stance endurance.",
+  "category": "footwork",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": [],
+  "subSkills": ["stance_and_slides"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["footwork", "defense", "stance"],
+  "equipment": [],
+  "content": {
+    "objective": "Hold a correct, low defensive stance under fatigue while still reacting quickly to signals.",
+    "setup": "Players spread out facing the coach in a defensive stance.",
+    "organization": "",
+    "instructions": [
+      "Hold the defensive stance continuously while the coach points left, right, forward or back.",
+      "Slide one step in the signalled direction, then return to a neutral low stance.",
+      "Increase the pace of signals as the set progresses.",
+      "Finish with 10 seconds of fast feet in place without standing up."
+    ],
+    "coachingPoints": [
+      "Keep the chest up even as the legs fatigue.",
+      "React immediately to each signal rather than anticipating the next one.",
+      "Keep the hands active and ready throughout."
+    ],
+    "commonMistakes": [
+      "Standing up out of the stance as fatigue sets in.",
+      "Anticipating the signal instead of truly reacting.",
+      "Standing up tall instead of staying low through the movement."
+    ],
+    "safety": "Make sure the floor is dry and clear of obstacles before sliding.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "d1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow"
+              }
+            ]
+          },
+          {
+            "id": "x2",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "left_elbow"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

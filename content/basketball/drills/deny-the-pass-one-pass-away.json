@@ -1,0 +1,113 @@
+{
+  "seedKey": "deny-the-pass-one-pass-away",
+  "title": "Deny the Pass One Pass Away",
+  "description": "A defender practises denying the easy pass to a player one pass away, staying in the passing lane with a hand ready to deflect.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": ["decision_making"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 3,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["defense", "denial"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Stay in the passing lane to deny the ball while still seeing both the ball and the offensive player.",
+    "setup": "A ball handler at the top looks to pass to a teammate one pass away on the wing.",
+    "organization": "",
+    "instructions": [
+      "The defender positions with a hand and foot in the passing lane, body angled to see both ball and player.",
+      "The ball handler looks to find a passing window at different angles.",
+      "The defender adjusts position with every ball movement, staying in the lane.",
+      "Rotate: a completed pass means the denial defender switches roles."
+    ],
+    "coachingPoints": [
+      "Keep a hand in the passing lane at all times, not down at the side.",
+      "See the ball and the player at the same time — never fully turn the back on either.",
+      "Move on the pass, not after it."
+    ],
+    "commonMistakes": [
+      "Turning the back on the ball to watch only the offensive player.",
+      "Standing flat-footed instead of adjusting with ball movement.",
+      "Reaching with the hands instead of moving the feet."
+    ],
+    "safety": "Hands stay in the passing lane only, no grabbing the offensive player.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

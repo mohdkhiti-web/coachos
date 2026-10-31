@@ -1,0 +1,113 @@
+{
+  "seedKey": "one-dribble-pull-up-pairs",
+  "title": "One-Dribble Pull-Up Pairs",
+  "description": "Partners feed each other for a one-dribble attack into a pull-up jumper, training the quick in-between shot used to beat a closing defender.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": [],
+  "subSkills": ["shooting_off_the_dribble"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "half_court",
+  "tags": ["shooting", "pull-up"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Catch, take exactly one hard dribble, and rise into a balanced pull-up jumper.",
+    "setup": "A passer feeds a shooter who starts a step inside the three-point line.",
+    "organization": "",
+    "instructions": [
+      "The passer delivers the ball as the shooter is already stepping toward the rim.",
+      "The shooter takes exactly one hard dribble toward the basket.",
+      "Plant and rise into a quick pull-up jumper, no second dribble.",
+      "Rebound and rotate roles after ten reps each."
+    ],
+    "coachingPoints": [
+      "Gather the ball on the move, not after stopping.",
+      "Keep the dribble low and quick, not a slow bounce.",
+      "Square the shoulders fully before releasing."
+    ],
+    "commonMistakes": [
+      "Taking an extra dribble before rising up.",
+      "Fading away instead of going straight up on the jumper.",
+      "Dropping the follow-through early instead of holding it."
+    ],
+    "safety": "Keep the rebound area clear for the shooter's landing.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

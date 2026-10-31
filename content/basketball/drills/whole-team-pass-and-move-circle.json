@@ -1,0 +1,120 @@
+{
+  "seedKey": "whole-team-pass-and-move-circle",
+  "title": "Whole-Team Pass-and-Move Circle",
+  "description": "The whole group forms a big circle and passes one ball around while sliding one spot to the side, waking up the hands and feet together.",
+  "category": "warm_up",
+  "primarySkill": "passing",
+  "secondarySkills": ["catching"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 7,
+  "ageMax": 16,
+  "playersMin": 6,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["warm-up", "passing"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Combine simple passing with constant lateral movement to raise the heart rate.",
+    "setup": "The whole group forms one large circle with a couple of metres between each player.",
+    "organization": "",
+    "instructions": [
+      "Pass the ball to the player on your right, then slide two steps to your right.",
+      "Keep the circle moving continuously in the same direction.",
+      "After two minutes, reverse the passing direction and the sliding direction.",
+      "Finish with the ball travelling as fast as the group can safely manage."
+    ],
+    "coachingPoints": [
+      "Catch before you slide — don't anticipate the catch.",
+      "Keep the circle evenly spaced as it rotates.",
+      "Call the receiver's name on every pass."
+    ],
+    "commonMistakes": [
+      "Drifting the circle smaller or larger over time.",
+      "Passing before the receiver is ready.",
+      "Skipping the easier reps and going straight to full intensity."
+    ],
+    "safety": "Keep the circle wide enough that sliding players don't collide.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": {
+              "anchor": "right_corner"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

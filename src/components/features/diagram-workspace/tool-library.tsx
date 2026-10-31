@@ -252,11 +252,11 @@ function ToolCard({
           onPick(tool);
         }}
         className={cn(
-          "flex h-12 w-full cursor-grab touch-manipulation items-center gap-2 rounded-md border px-2 pr-7 text-left text-xs font-medium select-none smooth-colors",
+          "flex h-12 w-full press cursor-grab touch-manipulation items-center gap-2 rounded-md border px-2 pr-7 text-left text-xs font-medium select-none smooth-colors",
           "focus-visible:outline-2 active:cursor-grabbing disabled:opacity-50",
           active
             ? "border-accent bg-accent-soft text-ink"
-            : "border-line-strong bg-surface-raised text-ink hover:bg-surface-sunken",
+            : "border-line-strong bg-surface-raised text-ink hover:border-line-strong hover:bg-surface-sunken hover:shadow-paper",
         )}
       >
         <span className="grid h-9 w-12 shrink-0 place-items-center">

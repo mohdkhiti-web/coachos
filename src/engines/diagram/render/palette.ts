@@ -26,6 +26,13 @@ export interface Palette {
   /** Outline and fill of training equipment that has no colour of its own. */
   equip: string;
   equipFill: string;
+  /** A painted area (the key/lane): the accent at low opacity. Screen only — absent on print/mono (no fill, no ink). */
+  keyFill?: string;
+  /**
+   * The court surface itself. Screen only: a subtle two-tone hardwood pattern (base + grain) instead of the flat
+   * `surface` fill, and a soft vignette toward the edges. Absent on print/mono, which stay flat and ink-light.
+   */
+  wood?: { base: string; grain: string };
   /** The colours a coach can pick, by name: fixed values that read on any court, printed or on screen. */
   named: Record<DiagramColor, NamedColor>;
 }
@@ -55,6 +62,8 @@ export const PALETTES: Record<DiagramTheme, Palette> = {
     font: "var(--font-barlow), 'Arial Narrow', Arial, sans-serif",
     equip: "var(--ink-muted)",
     equipFill: "var(--surface-sunken)",
+    keyFill: "var(--accent)",
+    wood: { base: "var(--court-wood)", grain: "var(--court-wood-grain)" },
     named: {
       orange: { fill: "#ea580c", ink: "#ffffff" },
       blue: { fill: "#2563eb", ink: "#ffffff" },

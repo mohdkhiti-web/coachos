@@ -1,0 +1,161 @@
+{
+  "seedKey": "five-v-five-half-court-scrimmage",
+  "title": "5v5 Half-Court Scrimmage",
+  "description": "A full team half-court scrimmage with normal rules, the closest thing to a real game situation a half-court setting allows.",
+  "category": "small_sided_games",
+  "primarySkill": "decision_making",
+  "secondarySkills": ["communication", "spacing"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "5v5",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 10,
+  "playersMax": 16,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["small-sided", "5v5", "scrimmage"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Apply everything practised in isolated drills within a realistic, competitive team setting.",
+    "setup": "Two full five-player teams play a live half-court scrimmage under normal rules.",
+    "organization": "",
+    "instructions": [
+      "Play to a target score or for a set number of minutes with normal rules in effect.",
+      "The coach may stop play briefly to correct a spacing, cutting or defensive rotation issue.",
+      "Play both offense and defense live at game intensity.",
+      "Rotate substitutes in regularly so everyone gets scrimmage reps."
+    ],
+    "coachingPoints": [
+      "Apply the spacing, cutting and defensive habits built in earlier drills.",
+      "Communicate constantly on both ends of the floor.",
+      "Play at game speed and intensity, not a walk-through pace."
+    ],
+    "commonMistakes": [
+      "Reverting to individual, isolated play instead of using team concepts.",
+      "Dropping communication once the scrimmage gets competitive.",
+      "Reverting to one-on-one play instead of using the whole group."
+    ],
+    "safety": "Officiate fouls and violations fairly to keep the scrimmage safe and realistic.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "p3",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4"
+          },
+          {
+            "id": "p4",
+            "step": 4,
+            "type": "pass",
+            "from": "o4",
+            "to": "o5"
+          },
+          {
+            "id": "p5",
+            "step": 5,
+            "type": "pass",
+            "from": "o5",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

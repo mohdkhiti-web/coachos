@@ -1,0 +1,113 @@
+{
+  "seedKey": "contain-the-penetration-4v4",
+  "title": "Contain the Penetration 4v4",
+  "description": "Four defenders focus purely on stopping dribble penetration into the paint, rotating and recovering as a group whenever the ball gets past the first line.",
+  "category": "team_defense",
+  "primarySkill": "help_defense",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "4v4",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 8,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 9,
+  "space": "half_court",
+  "tags": ["team defense", "penetration"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 8
+    }
+  ],
+  "content": {
+    "objective": "Stop the ball from reaching the paint as a team, not relying on one defender alone.",
+    "setup": "Four offensive players attack live against four defenders in a half-court setup.",
+    "organization": "",
+    "instructions": [
+      "The offense looks to penetrate the paint off the dribble from any angle.",
+      "The nearest defender contains first; a help defender steps in if the ball gets by.",
+      "The team rotates to cover any player left open by the help.",
+      "Score possessions by stops to track the defense's success."
+    ],
+    "coachingPoints": [
+      "Contain before helping — don't give up the ball too easily.",
+      "Help from the correct helper, not just whoever reacts first.",
+      "Recover to shooters immediately once the ball is kicked back out."
+    ],
+    "commonMistakes": [
+      "Multiple defenders collapsing on the ball and leaving two shooters open.",
+      "Helping too late once the ball handler is already at the rim.",
+      "Ball-watching instead of tracking both the ball and the assignment."
+    ],
+    "safety": "Keep penetration drives at a controlled, game-realistic speed.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

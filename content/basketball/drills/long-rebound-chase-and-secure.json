@@ -1,0 +1,84 @@
+{
+  "seedKey": "long-rebound-chase-and-secure",
+  "title": "Long Rebound Chase and Secure",
+  "description": "A coach deliberately shoots long misses that bounce away from the rim, training players to track and secure rebounds that don't come down easily.",
+  "category": "rebounding",
+  "primarySkill": "rebounding",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["rebounding", "long rebounds"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Track the ball off a long miss and sprint to secure it before it rolls away.",
+    "setup": "A coach deliberately shoots long, off-target misses from the free-throw line.",
+    "organization": "",
+    "instructions": [
+      "The coach shoots a shot intended to bounce long off the rim.",
+      "The rebounder tracks the flight and sprints to get in front of the bounce.",
+      "Secure the ball with two hands and pivot away from pressure immediately.",
+      "Rotate rebounders every three attempts."
+    ],
+    "coachingPoints": [
+      "Read the angle of the miss early, don't wait to react.",
+      "Sprint through the rebound rather than drifting toward it.",
+      "Secure with two hands even on an awkward bounce."
+    ],
+    "commonMistakes": [
+      "Standing under the rim and hoping the ball comes to you.",
+      "Reaching with one hand on a bouncing ball instead of using two.",
+      "Releasing the box-out position too early to chase the ball."
+    ],
+    "safety": "Watch for other players when chasing a long rebound at speed.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

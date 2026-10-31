@@ -1,0 +1,113 @@
+{
+  "seedKey": "rapid-fire-rebound-and-shoot",
+  "title": "Rapid-Fire Rebound-and-Shoot",
+  "description": "Two players share one basket, each rebounding the other's miss or make and resetting as fast as possible for a high-volume shooting burst.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 2,
+  "durationMin": 2,
+  "durationMax": 4,
+  "space": "half_court",
+  "tags": ["shooting", "volume"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Maximise the number of quality shots taken in a short, high-tempo burst.",
+    "setup": "Two shooters share one basket with two balls, each shooting from their own spot.",
+    "organization": "",
+    "instructions": [
+      "Both shooters shoot continuously, rebounding their own ball after each attempt.",
+      "Keep both feet set and reload as quickly as possible after every shot.",
+      "Run the burst for 30 to 45 seconds, then switch shooting spots.",
+      "Count total makes across three bursts to track progress over time."
+    ],
+    "coachingPoints": [
+      "Don't sacrifice form for speed — a fast, broken shot doesn't help.",
+      "Keep the rebound-to-release transition as smooth as possible.",
+      "Stay in the same shooting spot for the whole burst."
+    ],
+    "commonMistakes": [
+      "Rushing so much that the base and follow-through break down.",
+      "Chasing a long rebound into the other shooter's space.",
+      "Rushing the release instead of trusting the mechanics."
+    ],
+    "safety": "Keep enough separation between the two shooters' landing areas.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

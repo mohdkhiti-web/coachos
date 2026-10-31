@@ -1,0 +1,91 @@
+{
+  "seedKey": "jump-stop-pivot-warm-up",
+  "title": "Jump-Stop Pivot Warm-Up",
+  "description": "Players jog, catch an imaginary pass, jump-stop and pivot both directions — a simple way to rehearse balance and footwork before contact drills.",
+  "category": "warm_up",
+  "primarySkill": "pivoting",
+  "secondarySkills": ["footwork"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "",
+  "phases": [],
+  "ageMin": 7,
+  "ageMax": 16,
+  "playersMin": 4,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["warm-up", "footwork", "pivoting"],
+  "equipment": [],
+  "content": {
+    "objective": "Rehearse a controlled jump-stop and both front and reverse pivots at an easy pace.",
+    "setup": "Players jog in a loose line across half court with space to stop safely.",
+    "organization": "",
+    "instructions": [
+      "Jog two steps, then jump-stop landing on both feet at once.",
+      "Front pivot 180 degrees on the left foot, then reset.",
+      "Jump-stop again and reverse pivot 180 degrees on the right foot.",
+      "Repeat the sequence while jogging back the other way."
+    ],
+    "coachingPoints": [
+      "Land the jump-stop with the feet shoulder-width apart.",
+      "Keep the pivot foot planted and spin on the ball of the foot.",
+      "Stay low and balanced through the whole pivot."
+    ],
+    "commonMistakes": [
+      "Landing the jump-stop on one foot before the other.",
+      "Lifting the pivot foot off the floor while turning.",
+      "Letting the group's pace drift apart instead of staying together."
+    ],
+    "safety": "Give each player a few metres of clear space to land and turn.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

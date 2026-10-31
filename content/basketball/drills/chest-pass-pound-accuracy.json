@@ -1,0 +1,113 @@
+{
+  "seedKey": "chest-pass-pound-accuracy",
+  "title": "Chest Pass Pound Accuracy",
+  "description": "Partners practise crisp, two-hand chest passes at a target on the chest, building the accuracy that most other passing drills assume is already there.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 7,
+  "ageMax": 14,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["passing", "fundamentals"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 10
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Deliver a flat, accurate chest pass that arrives at the partner's chest, not their feet or face.",
+    "setup": "Partners stand four metres apart facing each other, one ball per pair.",
+    "organization": "",
+    "instructions": [
+      "Step toward the target and push the ball with both thumbs, snapping the wrists outward.",
+      "Aim for the partner's chest on every pass.",
+      "Catch with both hands and immediately give a target before returning the pass.",
+      "After two minutes, take one step back and repeat at the longer distance."
+    ],
+    "coachingPoints": [
+      "Step into every pass — don't pass from a standstill.",
+      "Finish with the thumbs pointing down after release.",
+      "Call the receiver's name before passing."
+    ],
+    "commonMistakes": [
+      "Passing from the waist instead of the chest.",
+      "Lobbing the ball instead of a flat, firm pass.",
+      "Telegraphing the pass with the eyes before releasing it."
+    ],
+    "safety": "Keep pairs spaced well apart so a wild pass doesn't hit a neighbouring group.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

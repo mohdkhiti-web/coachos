@@ -1,0 +1,104 @@
+{
+  "seedKey": "beat-the-pro-shooting-challenge",
+  "title": "Beat the Pro Shooting Challenge",
+  "description": "A challenger must out-shoot a designated 'pro' from a chosen spot before three misses accumulate, a simple and motivating competitive format.",
+  "category": "competition",
+  "primarySkill": "shooting_form",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 10,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["competition", "shooting"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build competitive shooting pressure in a simple, repeatable one-on-one shooting format.",
+    "setup": "A designated 'pro' and a challenger alternate shots from a chosen spot, both shooting after any make.",
+    "organization": "",
+    "instructions": [
+      "The pro shoots first; if they make it, the challenger must match the make or take a loss point.",
+      "If the pro misses, the challenger shoots to try to 'take the crown' with a make.",
+      "Three total misses for either player ends that player's turn as the pro.",
+      "The next challenger in line steps up to face the new pro."
+    ],
+    "coachingPoints": [
+      "Stay composed whether shooting to match or shooting to take over.",
+      "Use consistent shooting mechanics regardless of the pressure of the format.",
+      "Rebound quickly to keep the game moving at a good pace."
+    ],
+    "commonMistakes": [
+      "Rushing a shot out of excitement when a chance to 'take the crown' appears.",
+      "Getting discouraged after one miss instead of resetting mentally for the next shot.",
+      "Losing composure after a bad result instead of resetting for the next one."
+    ],
+    "safety": "Keep the shooting area clear of other players' rebounds.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "top_key"
+            },
+            "variant": "flat"
+          }
+        ],
+        "actions": [
+          {
+            "id": "sh1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

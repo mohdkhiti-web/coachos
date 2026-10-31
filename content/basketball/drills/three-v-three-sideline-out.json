@@ -1,0 +1,123 @@
+{
+  "seedKey": "three-v-three-sideline-out",
+  "title": "3v3 Sideline Out-of-Bounds Game",
+  "description": "A half-court 3v3 that always restarts from a sideline inbound, practising entries, denial and quick decisions under a five-second count.",
+  "category": "small_sided_games",
+  "primarySkill": "inbounding",
+  "secondarySkills": ["decision_making"],
+  "subSkills": ["sideline_inbounds"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "3v3",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 6,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 9,
+  "space": "half_court",
+  "tags": ["small-sided", "3v3", "inbounds"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 6
+    }
+  ],
+  "content": {
+    "objective": "Get the ball inbounded safely and into a good attacking position before the five-second count expires.",
+    "setup": "Every possession starts with a sideline inbound against three defenders denying the catch.",
+    "organization": "",
+    "instructions": [
+      "The inbounder has five seconds to find a teammate and get the ball in.",
+      "Teammates cut and relocate to get open for the inbound pass.",
+      "Once inbounded, play live 3v3 to a score or a defensive stop.",
+      "Rotate which team inbounds after every possession."
+    ],
+    "coachingPoints": [
+      "Move immediately to get open; standing still invites a five-second violation.",
+      "Inbounder should pivot to see the whole floor, not just one target.",
+      "Play with urgency once the ball is in — don't waste the advantage of a clean inbound."
+    ],
+    "commonMistakes": [
+      "Standing still and letting the defense deny every target.",
+      "Panicking near the five-second mark and forcing a bad pass.",
+      "Playing at a walk-through pace instead of real game speed."
+    ],
+    "safety": "Denial defenders use hands and body only, no grabbing a cutter's jersey.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "player",
+            "side": "offense",
+            "label": "C",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "c1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow"
+              }
+            ]
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "c1",
+            "to": "o1"
+          },
+          {
+            "id": "sh3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

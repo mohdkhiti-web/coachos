@@ -1,0 +1,79 @@
+{
+  "seedKey": "wall-shooting-form-check",
+  "title": "Wall Shooting Form Check",
+  "description": "Players shoot a soft one-handed form shot against a wall from close range, isolating a clean release with no rim to distract from the mechanics.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": [],
+  "subSkills": ["follow_through"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 6,
+  "ageMax": 14,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "any_space",
+  "tags": ["shooting", "form"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build a clean one-handed release and follow-through without worrying about making a shot.",
+    "setup": "Players stand about two metres from a wall, ball in the shooting hand with the guide hand lightly on the side.",
+    "organization": "",
+    "instructions": [
+      "Shoot the ball softly at a spot on the wall using one hand only.",
+      "Snap the wrist on release and hold the follow-through until the ball returns.",
+      "Catch the rebound and repeat for ten reps, then switch to two-handed set-up with a one-handed finish.",
+      "Finish with ten reps focusing only on a high, relaxed elbow."
+    ],
+    "coachingPoints": [
+      "Hold the follow-through — don't drop the arm early.",
+      "Keep the guide hand off the ball at release.",
+      "Aim for a consistent release point every time."
+    ],
+    "commonMistakes": [
+      "Pushing the ball with the guide hand at release.",
+      "Dropping the elbow out to the side instead of keeping it under the ball.",
+      "Letting the elbow drift out to the side instead of staying under the ball."
+    ],
+    "safety": "Make sure the space near the wall is clear of other players' rebounds.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

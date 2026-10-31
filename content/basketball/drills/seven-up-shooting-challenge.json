@@ -1,0 +1,154 @@
+{
+  "seedKey": "seven-up-shooting-challenge",
+  "title": "Seven-Up Shooting Challenge",
+  "description": "A simple scoring challenge where a three-pointer is worth two points and a mid-range shot one point, racing to reach seven points first.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 10,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["shooting", "competition"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build competitive shooting volume with a simple points-based target to race toward.",
+    "setup": "Shooter chooses freely between mid-range and three-point attempts around the arc.",
+    "organization": "",
+    "instructions": [
+      "A made three-pointer scores two points; a made mid-range shot scores one point.",
+      "Rebound your own shot and move to a new spot before the next attempt.",
+      "Race to reach exactly seven points first, in a group, or against your own best time alone.",
+      "Track the number of shots needed to reach seven over multiple attempts to measure progress."
+    ],
+    "coachingPoints": [
+      "Choose shot locations you'd actually take in a game.",
+      "Keep the same shooting rhythm regardless of the shot's point value.",
+      "Move with purpose between spots to keep the pace up."
+    ],
+    "commonMistakes": [
+      "Only shooting threes and ignoring mid-range development.",
+      "Rushing shots late in the race instead of staying composed.",
+      "Letting the elbow drift out to the side instead of staying under the ball."
+    ],
+    "safety": "Make sure the court is clear of other equipment while moving between spots.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "anchor": "top_key"
+            },
+            "variant": "flat"
+          },
+          {
+            "id": "c3",
+            "type": "cone",
+            "at": {
+              "anchor": "right_wing"
+            },
+            "variant": "flat"
+          }
+        ],
+        "actions": [
+          {
+            "id": "sh1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "top_key"
+              }
+            ]
+          },
+          {
+            "id": "sh3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "m4",
+            "step": 3,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_wing"
+              }
+            ]
+          },
+          {
+            "id": "sh5",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

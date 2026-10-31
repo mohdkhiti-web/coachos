@@ -1,0 +1,82 @@
+{
+  "seedKey": "partner-resistance-sprint",
+  "title": "Partner Resistance Sprint",
+  "description": "One partner provides light resistance with a hand on the back while the other drives forward, building explosive first-step power.",
+  "category": "conditioning",
+  "primarySkill": "speed_agility",
+  "secondarySkills": [],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["conditioning", "explosive power"],
+  "equipment": [],
+  "content": {
+    "objective": "Build explosive first-step power by driving forward against light partner resistance.",
+    "setup": "Partners line up with the resisting partner's hand lightly on the other's back or shoulder.",
+    "organization": "",
+    "instructions": [
+      "The driving partner explodes forward for five steps against light resistance.",
+      "The resisting partner applies only enough resistance to challenge, not to stop the movement.",
+      "Switch roles after five reps each.",
+      "Finish with five reps of unresisted sprints to feel the speed transfer."
+    ],
+    "coachingPoints": [
+      "Drive with the arms and a strong forward lean on the first few steps.",
+      "Resisting partner should apply light, steady pressure, not a sudden shove.",
+      "Finish each rep with a controlled deceleration, not a crash stop."
+    ],
+    "commonMistakes": [
+      "Resisting partner applying too much force, risking a strain.",
+      "Driving partner leaning so far forward that balance is lost.",
+      "Letting technique break down once fatigue sets in."
+    ],
+    "safety": "Keep the resistance light and controlled at all times; stop immediately if either partner loses balance.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

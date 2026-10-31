@@ -1,0 +1,161 @@
+{
+  "seedKey": "five-out-motion-passing",
+  "title": "Five-Out Motion Passing",
+  "description": "Five players space out beyond the arc and pass continuously, cutting and filling spots in a basic motion-offense pattern with no defense yet.",
+  "category": "team_offense",
+  "primarySkill": "spacing",
+  "secondarySkills": ["passing", "cutting"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "team",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 5,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["team offense", "motion", "spacing"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Keep good floor balance while passing and cutting continuously with no defense pressuring yet.",
+    "setup": "Five players space out around the perimeter, one ball to start.",
+    "organization": "",
+    "instructions": [
+      "Pass the ball to any open teammate and cut toward the basket.",
+      "A teammate not involved in the cut fills the vacated spot.",
+      "Continue passing, cutting and filling continuously for two minutes.",
+      "Add a coach calling 'reverse' to force the ball the opposite direction occasionally."
+    ],
+    "coachingPoints": [
+      "Keep the five spots balanced at all times — never bunch two players together.",
+      "Cut with purpose, not just to be moving.",
+      "Fill spots promptly so spacing never collapses."
+    ],
+    "commonMistakes": [
+      "Two players drifting to the same spot after a cut.",
+      "Standing still after a pass instead of cutting or filling.",
+      "Crowding a teammate's space instead of keeping good spacing."
+    ],
+    "safety": "Keep the whole perimeter clear of equipment so cutting lanes stay open.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "p2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "p3",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4"
+          },
+          {
+            "id": "p4",
+            "step": 4,
+            "type": "pass",
+            "from": "o4",
+            "to": "o5"
+          },
+          {
+            "id": "p5",
+            "step": 5,
+            "type": "pass",
+            "from": "o5",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

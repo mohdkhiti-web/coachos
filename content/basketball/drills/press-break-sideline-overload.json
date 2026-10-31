@@ -1,0 +1,156 @@
+{
+  "seedKey": "press-break-sideline-overload",
+  "title": "Press-Break Sideline Overload",
+  "description": "Against a trap-heavy press, the offense overloads one sideline with multiple outlets, giving the ball handler several safe release options.",
+  "category": "press_break",
+  "primarySkill": "press_break",
+  "secondarySkills": [],
+  "subSkills": ["attacking_pressure"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 5,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["press break", "trap"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Create multiple safe outlets along one sideline so a trap always has somewhere to release the ball.",
+    "setup": "The offense sets up with three players stacked at different heights along one sideline against full-court pressure.",
+    "organization": "",
+    "instructions": [
+      "The ball handler attacks the sideline where the overload is set.",
+      "If trapped, the ball handler passes to the nearest safe outlet, never forcing it across the court.",
+      "The receiving player immediately looks to advance the ball up the same sideline.",
+      "Reset with the overload set up on the opposite sideline."
+    ],
+    "coachingPoints": [
+      "Keep outlets at different distances so there's always a short, safe pass available.",
+      "Never force a long cross-court pass under trap pressure.",
+      "Advance the ball quickly once past the trap, don't stop and admire it."
+    ],
+    "commonMistakes": [
+      "Forcing a risky pass across the court instead of using the nearest outlet.",
+      "Outlets standing too close together, letting one defender cover two of them.",
+      "Standing still instead of working to get open against the pressure."
+    ],
+    "safety": "Run the press at a controlled intensity so traps don't become reckless contact.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "far_left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "far_left_block"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "far_left_short_corner"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "far_left_wing",
+              "offset": [0.5, -0.5]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "far_left_block",
+              "offset": [0.5, -0.5]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "anchor": "far_left_short_corner",
+              "offset": [0.5, -0.5]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "p1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "m2",
+            "step": 2,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "left_half_court"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "seedKey": "up-and-under-post-finish",
+  "title": "Up-and-Under Post Finish",
+  "description": "A post player practises the up-and-under move — a shot fake followed by a step through — to finish against a defender who bites on the fake.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["pivoting"],
+  "subSkills": [],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": [],
+  "ageMin": 12,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["finishing", "post play"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use a shot fake and step-through to finish once the defender commits to blocking the shot.",
+    "setup": "A post player catches on the block with a defender playing tight behind them.",
+    "organization": "",
+    "instructions": [
+      "Catch and pivot to face the defender with the ball secure.",
+      "Shot fake convincingly, holding the fake for a real beat.",
+      "If the defender jumps or reaches, step through to the open side and finish.",
+      "If the defender stays down, pass back out or try a different move."
+    ],
+    "coachingPoints": [
+      "Keep the fake low — a big, slow fake gives the defender time to recover.",
+      "Step through decisively once the defender commits.",
+      "Protect the ball with the body throughout the move."
+    ],
+    "commonMistakes": [
+      "Fading away on the finish instead of stepping through strong.",
+      "Travelling by moving the pivot foot during the fake.",
+      "Finishing off the wrong foot for the angle of approach."
+    ],
+    "safety": "Defender contests with hands up only, no early contact before the shot.",
+    "progressions": [],
+    "regressions": [],
+    "variations": []
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-0.9, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "x1",
+            "step": 1,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [0.9, 0]
+              }
+            ]
+          },
+          {
+            "id": "sh2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "seedKey": "hesitation-and-go-series",
+  "title": "Hesitation-and-Go Series",
+  "description": "Players practise the hesitation move — a change of pace without changing hands — to set up a burst past an imaginary defender.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": [],
+  "subSkills": ["change_of_pace"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": [],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "half_court",
+  "tags": ["ball handling", "change of pace"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Sell a change of pace convincingly enough to beat a defender off the dribble.",
+    "setup": "Players space out around the key, each with a ball, facing the basket.",
+    "organization": "",
+    "instructions": [
+      "Dribble forward at a medium pace for two dribbles.",
+      "Rise up slightly as if preparing to shoot, hesitating for a half-second.",
+      "Explode forward low and fast for three hard dribbles.",
+      "Finish the move with a layup or a pull-up, then reset and repeat."
+    ],
+    "coachingPoints": [
+      "Change the ball's rhythm, not just the body's.",
+      "Keep the shoulders level during the hesitation — don't lean back.",
+      "Explode on the first step after the hesitation, not the second."
+    ],
+    "commonMistakes": [
+      "Standing all the way up during the hesitation.",
+      "Taking the same speed in and out of the move.",
+      "Speeding up until control breaks down, instead of building speed gradually."
+    ],
+    "safety": "Leave room ahead for a full-speed burst without running into another group.",
+    "progressions": [],
+    "regressions": [],
+    "variations": ["Finish with a pull-up jump shot instead of a drive to the rim."]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "c1",
+            "type": "cone",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "c2",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "d1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "x": 0,
+              "y": 3.3
+            },
+            "text": "Hesitate, then burst"
+          }
+        ]
+      }
+    }
+  ]
+}
