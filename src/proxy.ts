@@ -14,7 +14,22 @@ import { getSessionCookie } from "better-auth/cookies";
  */
 
 const COOKIE_PREFIX = "coachos"; // keep in sync with `advanced.cookiePrefix` in identity/auth.ts
-const PROTECTED_PREFIXES = ["/dashboard", "/settings", "/onboarding", "/sports"];
+const PROTECTED_PREFIXES = [
+  "/dashboard",
+  "/settings",
+  "/onboarding",
+  "/sports",
+  "/sessions",
+  "/assistant",
+  "/templates",
+  "/roster",
+];
+
+// Route Handlers under a protected prefix that return their OWN explicit JSON error response for an
+// unauthenticated or wrong-account caller (never a redirect) — PDF/PNG export, fetched directly as well as
+// from a link. The optimistic redirect below would otherwise turn that 401/404 JSON into a 307 to /sign-in,
+// which a plain fetch (or Playwright's APIRequestContext) follows and sees as a 200 HTML page instead.
+const API_ROUTE_EXCEPTIONS = /\/document\/(?:pdf|png)$/;
 
 function buildCsp(nonce: string): string {
   const isDev = process.env.NODE_ENV === "development";
@@ -55,9 +70,9 @@ export function proxy(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const csp = buildCsp(nonce);
 
-  const isProtected = PROTECTED_PREFIXES.some(
-    (p) => pathname === p || pathname.startsWith(`${p}/`),
-  );
+  const isProtected =
+    !API_ROUTE_EXCEPTIONS.test(pathname) &&
+    PROTECTED_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`));
   if (isProtected && !getSessionCookie(request, { cookiePrefix: COOKIE_PREFIX })) {
     const url = new URL("/sign-in", request.url);
     url.searchParams.set("next", `${pathname}${search}`);

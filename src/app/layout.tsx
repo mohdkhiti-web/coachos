@@ -6,6 +6,7 @@ import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/next";
 import { ToastProvider } from "@/components/ui/toast";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { env } from "@/lib/env";
 import { parseTheme, THEME_COOKIE } from "@/lib/theme";
 import "@/styles/globals.css";
 
@@ -73,7 +74,8 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
             <ToastProvider dismissLabel={t("dismiss")}>{children}</ToastProvider>
           </TooltipProvider>
         </NextIntlClientProvider>
-        <Analytics />
+        {/* Only loads on an actual Vercel deployment: elsewhere its script 404s and the CSP correctly blocks it. */}
+        {env.VERCEL ? <Analytics /> : null}
       </body>
     </html>
   );

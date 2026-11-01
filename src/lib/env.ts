@@ -95,6 +95,12 @@ const schema = z
     ALLOW_DEV_AI: bool(false),
 
     LOG_LEVEL: z.enum(["fatal", "error", "warn", "info", "debug", "trace"]).default("info"),
+
+    // Set automatically by Vercel on every deployment (never by us). Used only to decide whether Vercel Analytics'
+    // script is worth loading at all: /_vercel/insights/script.js is served by Vercel's edge, not by this app, so
+    // outside an actual Vercel deployment (local dev, `next start`, e2e against a local prod build) it 404s —
+    // which this app's strict CSP + nosniff then (correctly) refuses to execute as a script.
+    VERCEL: bool(false),
   })
   .superRefine((v, ctx) => {
     const partial = (names: Array<keyof typeof v>, provider: string) => {

@@ -41,7 +41,6 @@ export async function CoachingProfileCard({ profile }: { profile: CoachingProfil
   }
 
   const chips = [
-    to("ready.sport"),
     ...profile.ageGroups.map((k) => to(`q2.options.${k}.label`)),
     ...(profile.typicalPlayers ? [to("ready.players", { count: profile.typicalPlayers })] : []),
     ...(profile.experience ? [to(`q1.options.${profile.experience}.label`)] : []),

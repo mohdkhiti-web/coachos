@@ -66,11 +66,9 @@ describe("messages/en.json", () => {
       /const\s+\[([^\]]+)\]\s*=\s*await\s+Promise\.all\(\[([\s\S]*?)\]\)/g,
     )) {
       const names = m[1]!.split(",").map((s) => s.trim());
-      const calls = [
-        ...m[2]!.matchAll(
-          /(getTranslations|getFormatter|getLocale|getMessages|cookies|headers|[A-Za-z_.]+\([^)]*\))/g,
-        ),
-      ].map((c) => c[0]);
+      // One call expression per Promise.all element, in order — including non-translation calls (e.g.
+      // `listTeams(actor)`), which must still consume a slot so later elements stay aligned with `names`.
+      const calls = [...m[2]!.matchAll(/[A-Za-z_][\w.]*\([^)]*\)/g)].map((c) => c[0]);
       calls.forEach((c, i) => {
         const ns = /getTranslations\(\s*"([\w.]+)"\s*\)/.exec(c)?.[1];
         if (ns && names[i]) vars.push({ name: names[i]!, ns });
