@@ -13,6 +13,7 @@ import { publicPageRate, publicPdfRate } from "@/modules/sharing/public-limits";
  */
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 const problem = (code: Parameters<typeof httpStatus>[0]) =>
   NextResponse.json(

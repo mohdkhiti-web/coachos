@@ -10,8 +10,10 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
 
-  // PDF export drives a headless browser from the server (src/modules/exports): keep that package out of the bundle.
-  serverExternalPackages: ["playwright-core"],
+  // PDF export drives a headless browser from the server (src/modules/exports): keep these out of the bundle.
+  // @sparticuz/chromium ships its binary as data files next to the package — bundling it breaks extraction
+  // ("/var/task/bin does not exist" on Vercel/Lambda) because the bundler moves the JS but not those files.
+  serverExternalPackages: ["playwright-core", "@sparticuz/chromium"],
 
   experimental: {
     // Server Actions accept only same-origin requests by default (CSRF); list real domains explicitly.

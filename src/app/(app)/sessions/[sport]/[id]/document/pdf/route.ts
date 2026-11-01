@@ -12,6 +12,10 @@ import { contentDisposition, exportPlanPdf } from "@/modules/exports";
  */
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+// A cold serverless Chromium (extraction + launch) plus the render itself can exceed Vercel's default 10s —
+// PDF_TIMEOUT_MS (45s default) is the renderer's own ceiling; this gives it room to actually reach that ceiling
+// instead of being killed by the platform first. Vercel caps this to whatever the project's plan actually allows.
+export const maxDuration = 60;
 
 const problem = (code: Parameters<typeof httpStatus>[0]) =>
   NextResponse.json(

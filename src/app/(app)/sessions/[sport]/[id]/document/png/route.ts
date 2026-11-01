@@ -16,6 +16,8 @@ import { contentDisposition, exportPlanPng, type PngOptions } from "@/modules/ex
  */
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+// Every page as a ZIP can render several sheets in one request; give it the same headroom as the PDF route.
+export const maxDuration = 60;
 
 const problem = (code: Parameters<typeof httpStatus>[0], fields?: Record<string, string[]>) =>
   NextResponse.json(

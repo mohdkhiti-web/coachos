@@ -53,7 +53,12 @@ export interface PdfRenderer {
 }
 
 export interface ChromiumOptions {
-  executablePath: string;
+  /**
+   * Resolved lazily, on first launch, not eagerly here: a system browser resolves instantly (a known path), while the
+   * serverless fallback (`serverless-browser.ts`) extracts a binary to /tmp on first use. `null` means no browser is
+   * available after all (e.g. the serverless binary failed to extract) — surfaced as a `RenderError("crashed")`.
+   */
+  resolveBrowser: () => Promise<{ executablePath: string; args?: string[] } | null>;
   /** Only requests to this origin are allowed: the renderer can reach the app and nothing else. */
   origin: string;
   timeoutMs: number;
@@ -81,10 +86,18 @@ export function createChromiumRenderer(options: ChromiumOptions): PdfRenderer {
 
   const launch = () => {
     if (!browser) {
-      browser = import("playwright-core")
-        .then(({ chromium }) =>
-          chromium.launch({ executablePath: options.executablePath, headless: true }),
-        )
+      browser = options
+        .resolveBrowser()
+        .then((found) => {
+          if (!found) throw new RenderError("crashed", "no browser available");
+          return import("playwright-core").then(({ chromium }) =>
+            chromium.launch({
+              executablePath: found.executablePath,
+              args: found.args,
+              headless: true,
+            }),
+          );
+        })
         .then((b) => {
           b.on("disconnected", () => {
             browser = null;
