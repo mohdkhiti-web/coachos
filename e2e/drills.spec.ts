@@ -1,12 +1,19 @@
 import { expect, test, type Page } from "@playwright/test";
-import { readdirSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { completeOnboarding, newUser, signUpAndVerify, toast } from "./support/helpers";
 
-// one JSON file per library drill (content/basketball/drills): the library size comes straight from the content
-const LIBRARY = readdirSync(path.join(process.cwd(), "content", "basketball", "drills")).filter(
-  (f) => f.endsWith(".json"),
-).length;
+const DRILLS_DIR = path.join(process.cwd(), "content", "basketball", "drills");
+// one JSON file per library drill (content/basketball/drills): the library size (and every facet count below)
+// comes straight from the content, so these never drift out of sync as drills are added or removed.
+const DRILL_FILES = readdirSync(DRILLS_DIR).filter((f) => f.endsWith(".json"));
+const DRILLS = DRILL_FILES.map((f) => JSON.parse(readFileSync(path.join(DRILLS_DIR, f), "utf8")));
+const LIBRARY = DRILLS.length;
+const SHOOTING = DRILLS.filter((d) => d.category === "shooting").length;
+const FORMAT_3V3 = DRILLS.filter((d) => d.format === "3v3").length;
+const COOL_DOWN = DRILLS.filter((d) => (d.phases ?? []).includes("cool_down")).length;
+const WEAK_HAND = DRILLS.filter((d) => (d.subSkills ?? []).includes("weak_hand")).length;
+const plural = (n: number) => `${n} drill${n === 1 ? "" : "s"}`;
 
 async function signedIn(page: Page, label = "Coach") {
   const user = newUser(label);
@@ -63,9 +70,12 @@ async function fillDrill(page: Page, title: string) {
   await page.getByRole("checkbox", { name: "Basketballs" }).check();
 }
 
-/** Draw a valid diagram with the structured builder: two players, a ball, and a pass. */
+/**
+ * Draw a valid diagram with the structured builder: two players, a ball, and a pass. The court is already on
+ * screen for a brand-new drill (one empty diagram slot); "Add a diagram" only unlocks a SECOND slot once this
+ * first one actually has something drawn in it, so it is never clicked here.
+ */
 async function drawDiagram(page: Page) {
-  await page.getByRole("button", { name: "Add a diagram" }).click();
   const add = page.getByRole("group", { name: "Add to the court" });
   await add.getByRole("button", { name: "Offense" }).click();
   await add.getByRole("button", { name: "Offense" }).click();
@@ -111,7 +121,8 @@ test("the drill library journey: drills → basketball → drills → filter →
 
     await filters(page).getByLabel("Category").selectOption("shooting");
     await expect(page).toHaveURL(/category=shooting/);
-    await expect(results(page)).toHaveText("4 drills");
+    // "N drills" when everything fits on one page, "…of N drills" once it paginates — match either
+    await expect(results(page)).toHaveText(new RegExp(`${plural(SHOOTING)}$`));
     await expect(page.getByRole("link", { name: "Five-Spot Shooting" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Mikan Drill" })).toHaveCount(0);
 
@@ -159,7 +170,7 @@ test("the drill library journey: drills → basketball → drills → filter →
     const chip3v3 = chips.getByRole("link", { name: "3v3", exact: true });
     await chip3v3.click();
     await expect(page).toHaveURL(/format=3v3/);
-    await expect(results(page)).toHaveText("4 drills");
+    await expect(results(page)).toHaveText(new RegExp(`${plural(FORMAT_3V3)}$`));
     await expect(page.getByRole("link", { name: "3v3 Half-Court Game to Seven" })).toBeVisible();
     await expect(chip3v3).toHaveAttribute("aria-current", "true");
     await chip3v3.click(); // pressing the active chip clears it
@@ -173,14 +184,14 @@ test("the drill library journey: drills → basketball → drills → filter →
     await expect(page).not.toHaveURL(/intensity=/); // let each navigation settle before the next change
 
     await filters(page).getByLabel("Best used in", { exact: true }).selectOption("cool_down");
-    await expect(results(page)).toHaveText("2 drills"); // the two cool-down drills
+    await expect(results(page)).toHaveText(new RegExp(`${plural(COOL_DOWN)}$`));
     await page.getByRole("link", { name: "Remove filter: Best for: Cool-down" }).click();
     await expect(page).not.toHaveURL(/phase=/);
     await expect(results(page)).toHaveText(new RegExp(`of ${LIBRARY} drills`));
 
     // a sub-skill finds its drills, and its parent skill finds them too
     await filters(page).getByLabel("Skill", { exact: true }).selectOption("weak_hand");
-    await expect(results(page)).toHaveText("2 drills");
+    await expect(results(page)).toHaveText(new RegExp(`${plural(WEAK_HAND)}$`));
     await expect(page.getByRole("link", { name: "Stationary Ball-Handling Series" })).toBeVisible();
     await filters(page).getByLabel("Skill", { exact: true }).selectOption("dribbling");
     await expect(page.getByRole("link", { name: "Stationary Ball-Handling Series" })).toBeVisible();

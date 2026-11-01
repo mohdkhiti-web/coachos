@@ -508,7 +508,8 @@ for (const scheme of ["light", "dark"] as const) {
       await expect(page.getByRole("checkbox", { name: "Crossover" })).toBeVisible();
       await audit(page, `drill form with focus areas (${scheme})`);
 
-      await page.getByRole("button", { name: "Add a diagram" }).click();
+      // a brand-new drill already has one empty diagram slot on screen; "Add a diagram" only unlocks a second
+      // one once this first one has something drawn in it
       const add = page.getByRole("group", { name: "Add to the court" });
       await add.getByRole("button", { name: "Offense" }).click();
       await add.getByRole("button", { name: "Defender" }).click();
@@ -535,10 +536,11 @@ test("keyboard-only: the library can be filtered, paged and a drill opened witho
   await search.focus();
   await page.keyboard.type("closeout");
   await expect(page).toHaveURL(/q=closeout/);
-  await expect(page.getByRole("link", { name: "Closeout and Contain" })).toBeVisible();
+  // exact: the library also has "Closeout and Contain the Drive", a distinct drill
+  await expect(page.getByRole("link", { name: "Closeout and Contain", exact: true })).toBeVisible();
 
   // the drill card is one link (a single tab stop), and Enter opens it
-  await page.getByRole("link", { name: "Closeout and Contain" }).focus();
+  await page.getByRole("link", { name: "Closeout and Contain", exact: true }).focus();
   await page.keyboard.press("Enter");
   await expect(page.getByRole("heading", { name: "Closeout and Contain", level: 2 })).toBeVisible();
 
@@ -587,7 +589,8 @@ test("no console errors, CSP violations, or missing translations across the Phas
     await expect(page.locator("main")).toBeVisible();
     await page.waitForLoadState("networkidle");
   }
-  await page.getByRole("button", { name: "Add a diagram" }).click();
+  // a brand-new drill already has one empty diagram slot on screen; "Add a diagram" only unlocks a second
+  // one once this first one has something drawn in it
   await page
     .getByRole("group", { name: "Add to the court" })
     .getByRole("button", { name: "Offense" })

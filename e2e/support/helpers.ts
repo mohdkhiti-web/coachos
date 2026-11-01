@@ -154,7 +154,7 @@ export async function signIn(page: Page, user: Pick<TestUser, "email" | "passwor
   await page.goto("/sign-in");
   await page.getByLabel("Email").fill(user.email);
   await page.getByLabel("Password", { exact: true }).fill(user.password);
-  await page.getByRole("button", { name: "Sign in" }).click();
+  await page.getByRole("button", { name: "Sign in", exact: true }).click();
 }
 
 /**

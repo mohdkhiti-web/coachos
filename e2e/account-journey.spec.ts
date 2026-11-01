@@ -63,14 +63,15 @@ test("full account lifecycle", async ({ page, browser }) => {
 
   await test.step("navigation only offers modules that exist", async () => {
     const nav = page.getByRole("navigation", { name: "Main navigation" }).first();
-    // Sessions (the session builder), Templates (saved designs) and Drills (the basketball library). No list of sports, and
-    // nothing for features that don't exist yet.
+    // Sessions (the session builder), Templates (saved designs), Drills (the sport's library) and Roster
+    // (teams/players). No list of sports, and nothing for features that don't exist yet.
     await expect(nav.getByRole("link")).toHaveText([
       "Dashboard",
       "Sessions",
       "AI Coach",
       "Templates",
       "Drills",
+      "Roster",
       "Settings",
     ]);
   });
@@ -104,7 +105,10 @@ test("full account lifecycle", async ({ page, browser }) => {
   await test.step("preferences: reviewing them completes the checklist", async () => {
     await page.goto("/settings/preferences");
     await page.getByLabel("Units").selectOption("imperial");
-    await page.getByRole("button", { name: "Save changes" }).click();
+    // Units and Sounds are two independent forms, each with its own "Save changes" button: scope to the one
+    // that actually contains the field just changed.
+    const unitsForm = page.locator("form").filter({ has: page.getByLabel("Units") });
+    await unitsForm.getByRole("button", { name: "Save changes" }).click();
     await expect(toast(page, "Changes saved.")).toBeVisible();
     await page.goto("/dashboard");
     await expect(page.getByRole("heading", { name: "You're all set" })).toBeVisible();

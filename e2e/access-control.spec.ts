@@ -19,6 +19,10 @@ test.describe("signed-out visitors", () => {
     "/onboarding",
     "/sports",
     "/sports/basketball/drills",
+    "/sessions",
+    "/assistant",
+    "/templates",
+    "/roster",
   ]) {
     test(`${path} redirects to sign-in and remembers where they were going`, async ({ page }) => {
       await page.goto(path);
@@ -123,14 +127,14 @@ test.describe("sign-in rules", () => {
     await expect(page).toHaveURL(/\/sign-in\?next=/);
     await page.getByLabel("Email").fill(user.email);
     await page.getByLabel("Password", { exact: true }).fill(user.password);
-    await page.getByRole("button", { name: "Sign in" }).click();
+    await page.getByRole("button", { name: "Sign in", exact: true }).click();
     await expect(page).toHaveURL(/\/settings\/security/);
 
     await signOut(page);
     await page.goto("/sign-in?next=https://evil.example/phish");
     await page.getByLabel("Email").fill(user.email);
     await page.getByLabel("Password", { exact: true }).fill(user.password);
-    await page.getByRole("button", { name: "Sign in" }).click();
+    await page.getByRole("button", { name: "Sign in", exact: true }).click();
     await expect(page).toHaveURL(/localhost:3100\/dashboard/);
   });
 });

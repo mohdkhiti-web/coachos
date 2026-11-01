@@ -218,7 +218,8 @@ test("a library drill copied into a session keeps what the coach chose; updating
 
   // make my own copy of a library drill, so I can change it afterwards
   await page.goto("/sports/basketball/drills?q=closeout");
-  await page.getByRole("link", { name: "Closeout and Contain" }).click();
+  // exact: the library also has "Closeout and Contain the Drive", a distinct drill
+  await page.getByRole("link", { name: "Closeout and Contain", exact: true }).click();
   await page.getByRole("button", { name: "Copy to my drills" }).click();
   await expect(
     page.getByRole("heading", { name: "Copy of Closeout and Contain", level: 2 }),

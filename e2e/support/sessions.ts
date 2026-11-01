@@ -92,6 +92,6 @@ export async function pickDrill(page: Page, builderPath: string, search: string,
   if (await toggle.isVisible()) await toggle.click();
   await filters.getByLabel("Search").fill(search);
   await expect(page).toHaveURL(/q=/);
-  await page.getByRole("link", { name: `Add to session: ${title}` }).click();
+  await page.getByRole("link", { name: `Add to session: ${title}`, exact: true }).click();
   await expect(page.getByRole("heading", { level: 1, name: title })).toBeVisible();
 }

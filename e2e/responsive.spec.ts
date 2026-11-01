@@ -96,7 +96,8 @@ test("Phase 2: sports, library, drill detail and the drill form fit a phone and 
 
   // the form + diagram builder
   await page.goto("/sports/basketball/drills/new");
-  await page.getByRole("button", { name: "Add a diagram" }).click();
+  // a brand-new drill already has one empty diagram slot on screen; "Add a diagram" only unlocks a second
+  // one once this first one has something drawn in it
   const add = page.getByRole("group", { name: "Add to the court" });
   await add.getByRole("button", { name: "Offense" }).click();
   await add.getByRole("button", { name: "Offense" }).click();
