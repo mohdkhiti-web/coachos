@@ -1,15 +1,19 @@
 # CoachOS
 
 The operating system for basketball coaches — plan practices, build sessions, develop skills and coach with an
-AI assistant that works from real drills. The product is basketball-only; the data model and code are still
-sport-aware underneath (the sport key stays in URLs and the catalog), so nothing structural stands in the way of
-another sport later.
+AI assistant that works from real drills. Deployed at [bbcoaches.click](https://bbcoaches.click). The data model and
+code are sport-aware (the sport key stays in URLs and the catalog): basketball and Wheelchair Basketball are both
+live today, and nothing structural stands in the way of another sport later.
 
 - Architecture and roadmap: [ARCHITECTURE.md](ARCHITECTURE.md) (read §0 first)
-- **Status: Phase 2 (Sports foundation · Basketball workspace · Drill library) is merged locally; the Session
-  Creator is in progress on branch `phase-3`** — drill library facets, session data model, the session builder,
-  (Step 4) design + live preview + browser print, (Step 5) saved templates, (Step 6) PDF export, (Step 7) logos, PNG export and secure sharing and (Step 8) the deterministic session generator, the AI Coach
-  and the diagram editor are built. Nothing here has been pushed. Teams, players, lesson plans, billing and analytics are later steps.
+- **Status: on `main`, deployed to production.** Live: accounts, onboarding, the drill library (court diagrams,
+  194 basketball + 60 Wheelchair Basketball drills), the session builder, design + live preview + browser print,
+  saved templates, PDF/PNG export, secure sharing, the deterministic session generator, the AI Coach, the diagram
+  editor, and a team/player roster. Lesson plans, billing and analytics are later steps.
+- **After pushing new content or a schema change**, production needs `npm run db:migrate` then `npm run db:seed`
+  run against it explicitly — there is no CI/CD pipeline that does this automatically yet (see §21 of
+  ARCHITECTURE.md for the intended pipeline). Forgetting this step is why a deploy can look "live" while the
+  database is still missing the content or tables the new code expects.
 
 ## Quick start (Windows/macOS/Linux, Node 24)
 
