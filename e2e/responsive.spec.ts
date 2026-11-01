@@ -87,6 +87,10 @@ test("Phase 2: sports, library, drill detail and the drill form fit a phone and 
   await expect(page.getByRole("link", { name: "Remove filter: Beginner" })).toBeVisible();
   expect(await noHorizontalScroll(page), "filtered library overflows horizontally").toBe(true);
 
+  // search for a specific drill rather than relying on it landing on page 1 of a now much larger library
+  await page.getByRole("search", { name: "Filters" }).getByLabel("Search").fill("partner chest");
+  await expect(page).toHaveURL(/q=/);
+
   // a drill: the court diagram scales to the screen and nothing overflows
   await page.getByRole("link", { name: /^Partner Chest/ }).click();
   await expect(page.getByRole("heading", { name: /^Partner Chest/, level: 2 })).toBeVisible();
@@ -97,10 +101,19 @@ test("Phase 2: sports, library, drill detail and the drill form fit a phone and 
   // the form + diagram builder
   await page.goto("/sports/basketball/drills/new");
   // a brand-new drill already has one empty diagram slot on screen; "Add a diagram" only unlocks a second
-  // one once this first one has something drawn in it
-  const add = page.getByRole("group", { name: "Add to the court" });
-  await add.getByRole("button", { name: "Offense" }).click();
-  await add.getByRole("button", { name: "Offense" }).click();
+  // one once this first one has something drawn in it. Tools are picked from the category palette (a tap
+  // selects, a tap on the court places it — dragging is mouse/pen only, since it would fight scrolling the
+  // tool list on a touch screen) rather than an "Add to the court" button group.
+  const openTools = page.getByTestId("open-tools");
+  const court = page.getByTestId("court-canvas");
+  const box = (await court.boundingBox())!;
+  const players = page.getByRole("region", { name: "Players" });
+  // on a phone the tool panel is a drawer that closes again once a tool is picked — reopen it each time
+  for (const x of [0.35, 0.65]) {
+    if (await openTools.isVisible()) await openTools.click();
+    await players.getByRole("button", { name: "Offensive player", exact: true }).click();
+    await page.mouse.click(box.x + box.width * x, box.y + box.height * 0.5);
+  }
   await expect(page.getByText("This diagram is valid.")).toBeVisible();
   expect(await noHorizontalScroll(page), "drill form overflows horizontally").toBe(true);
 });

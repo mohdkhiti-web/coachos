@@ -73,17 +73,28 @@ async function fillDrill(page: Page, title: string) {
 /**
  * Draw a valid diagram with the structured builder: two players, a ball, and a pass. The court is already on
  * screen for a brand-new drill (one empty diagram slot); "Add a diagram" only unlocks a SECOND slot once this
- * first one actually has something drawn in it, so it is never clicked here.
+ * first one actually has something drawn in it, so it is never clicked here. Tools are picked from the
+ * category palette (click to select, then click the court to place — dragging is an alternative, not required)
+ * rather than the older "Add to the court" button group, which this builder no longer has.
  */
 async function drawDiagram(page: Page) {
-  const add = page.getByRole("group", { name: "Add to the court" });
-  await add.getByRole("button", { name: "Offense" }).click();
-  await add.getByRole("button", { name: "Offense" }).click();
-  await add.getByRole("button", { name: "Ball" }).click();
-  await page
-    .getByRole("group", { name: "Add an action" })
-    .getByRole("button", { name: "Pass" })
-    .click();
+  const court = page.getByTestId("court-canvas");
+  const box = (await court.boundingBox())!;
+  const p1 = { x: box.x + box.width * 0.35, y: box.y + box.height * 0.5 };
+  const p2 = { x: box.x + box.width * 0.65, y: box.y + box.height * 0.5 };
+  const players = page.getByRole("region", { name: "Players" });
+  const balls = page.getByRole("region", { name: "Balls" });
+  const passing = page.getByRole("region", { name: "Passing" });
+
+  await players.getByRole("button", { name: "Offensive player", exact: true }).click();
+  await page.mouse.click(p1.x, p1.y);
+  await players.getByRole("button", { name: "Offensive player", exact: true }).click();
+  await page.mouse.click(p2.x, p2.y);
+  await balls.getByRole("button", { name: "Basketball", exact: true }).click();
+  await page.mouse.click(p1.x, p1.y); // "give them the ball"
+  await passing.getByRole("button", { name: "Pass", exact: true }).click();
+  await page.mouse.click(p1.x, p1.y); // the passer
+  await page.mouse.click(p2.x, p2.y); // the receiver
   await expect(page.getByText("This diagram is valid.")).toBeVisible();
 }
 
@@ -109,7 +120,7 @@ test("the drill library journey: drills → basketball → drills → filter →
     await expect(page.getByText(String(LIBRARY), { exact: true }).first()).toBeVisible();
     const tabs = page.getByRole("navigation", { name: "Workspace sections" });
     await expect(tabs.getByRole("link")).toHaveText(["Overview", "Drills", "Sessions"]); // no Teams/Players tabs yet
-    await expect(page.getByText("You haven't created a drill yet")).toBeVisible();
+    await expect(page.getByText("You haven't created a drill yet").first()).toBeVisible();
     await page.getByRole("link", { name: /^Shooting/ }).click(); // a category tile deep-links into the filtered library
     await expect(page).toHaveURL(/category=shooting/);
   });

@@ -509,15 +509,30 @@ for (const scheme of ["light", "dark"] as const) {
       await audit(page, `drill form with focus areas (${scheme})`);
 
       // a brand-new drill already has one empty diagram slot on screen; "Add a diagram" only unlocks a second
-      // one once this first one has something drawn in it
-      const add = page.getByRole("group", { name: "Add to the court" });
-      await add.getByRole("button", { name: "Offense" }).click();
-      await add.getByRole("button", { name: "Defender" }).click();
-      await add.getByRole("button", { name: "Ball" }).click();
-      await page
-        .getByRole("group", { name: "Add an action" })
-        .getByRole("button", { name: "Pass" })
-        .click();
+      // one once this first one has something drawn in it. Tools come from the category palette (click to
+      // select, then click the court to place) rather than an "Add to the court" button group.
+      {
+        const court = page.getByTestId("court-canvas");
+        const box = (await court.boundingBox())!;
+        const p1 = { x: box.x + box.width * 0.35, y: box.y + box.height * 0.5 };
+        const p2 = { x: box.x + box.width * 0.65, y: box.y + box.height * 0.5 };
+        const players = page.getByRole("region", { name: "Players" });
+        await players.getByRole("button", { name: "Offensive player", exact: true }).click();
+        await page.mouse.click(p1.x, p1.y);
+        await players.getByRole("button", { name: "Defensive player", exact: true }).click();
+        await page.mouse.click(p2.x, p2.y);
+        await page
+          .getByRole("region", { name: "Balls" })
+          .getByRole("button", { name: "Basketball", exact: true })
+          .click();
+        await page.mouse.click(p1.x, p1.y); // "give them the ball"
+        await page
+          .getByRole("region", { name: "Passing" })
+          .getByRole("button", { name: "Pass", exact: true })
+          .click();
+        await page.mouse.click(p1.x, p1.y); // the passer
+        await page.mouse.click(p2.x, p2.y); // the receiver
+      }
       await expect(page.getByText("This diagram is valid.")).toBeVisible();
       await audit(page, `diagram builder (${scheme})`);
     });
@@ -590,11 +605,15 @@ test("no console errors, CSP violations, or missing translations across the Phas
     await page.waitForLoadState("networkidle");
   }
   // a brand-new drill already has one empty diagram slot on screen; "Add a diagram" only unlocks a second
-  // one once this first one has something drawn in it
+  // one once this first one has something drawn in it. Pick a tool from the category palette, then click
+  // the court to place it.
   await page
-    .getByRole("group", { name: "Add to the court" })
-    .getByRole("button", { name: "Offense" })
+    .getByRole("region", { name: "Players" })
+    .getByRole("button", { name: "Offensive player", exact: true })
     .click();
+  const court = page.getByTestId("court-canvas");
+  const box = (await court.boundingBox())!;
+  await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
 
   const body = await page.locator("body").innerText();
   expect(body).not.toMatch(/MISSING_MESSAGE|drills\.\w+\.\w+|diagram\.builder\./);
