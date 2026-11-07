@@ -17,10 +17,13 @@
 @theme inline {
   --motion-fast: 120ms;
   --motion-base: 180ms;
-  --motion-slow: 260ms;
-  --motion-shimmer: 1.6s;
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-slow: 240ms;
+  --motion-shimmer: 1.4s;
+  /* Strong curves: ease-out for anything entering or answering the pointer, ease-in-out for things moving on
+     screen, the drawer curve for sheets. Never ease-in on UI. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 /* ---------------------------------------------------------------------------------------------------------------
@@ -184,7 +187,7 @@
     transform var(--motion-base) var(--ease-out),
     box-shadow var(--motion-base) var(--ease-out),
     border-color var(--motion-base) var(--ease-out);
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
     &:hover {
       transform: translateY(-2px);
       border-color: var(--color-line-strong);
@@ -233,6 +236,92 @@
     cy var(--motion-base) var(--ease-out),
     x var(--motion-base) var(--ease-out),
     y var(--motion-base) var(--ease-out);
+}
+
+/* ---------------------------------------------------------------------------------------------------------------
+ * The signature: the running tally (see components/ui/tally.tsx). A scorer strikes each minute block in with one
+ * short orange stroke — the block's fill wipes in from the left (clip-path, compositor-cheap) and a strike line
+ * crosses it. Only ever runs on a block that was just added; a page load shows the finished tally.
+ * ------------------------------------------------------------------------------------------------------------- */
+@keyframes cos-tally-fill {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+@keyframes cos-tally-strike {
+  0% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+  55% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+@utility tally-fill {
+  animation: cos-tally-fill 360ms var(--ease-out) backwards;
+  animation-delay: var(--tally-delay, 0ms);
+}
+@utility tally-strike {
+  transform-origin: left center;
+  animation: cos-tally-strike 520ms var(--ease-out) forwards;
+  animation-delay: var(--tally-delay, 0ms);
+}
+
+/* A digit column in a <RollingNumber>: the column slides to the new digit (transition, so a value that changes
+   again mid-roll retargets smoothly instead of restarting). */
+@utility digit-roll {
+  transition: transform 260ms var(--ease-out);
+}
+
+/* A row that just moved or arrived holds the coach's orange mark until the next interaction elsewhere. */
+@keyframes cos-mark-in {
+  from {
+    transform: scaleY(0);
+  }
+}
+@utility changed-mark {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: var(--accent-bright);
+    animation: cos-mark-in 240ms var(--ease-out);
+  }
+}
+
+/* First-load stagger for a list or grid: children rise in 40ms apart (capped), never on later updates. */
+@utility stagger-in {
+  & > * {
+    animation: cos-fade-up var(--motion-slow) var(--ease-out) backwards;
+  }
+  & > :nth-child(2) {
+    animation-delay: 40ms;
+  }
+  & > :nth-child(3) {
+    animation-delay: 80ms;
+  }
+  & > :nth-child(4) {
+    animation-delay: 120ms;
+  }
+  & > :nth-child(5) {
+    animation-delay: 160ms;
+  }
+  & > :nth-child(6) {
+    animation-delay: 200ms;
+  }
+  & > :nth-child(n + 7) {
+    animation-delay: 240ms;
+  }
 }
 
 /* Never let an animation leave the printed page in a half-transitioned state, and never cost a frame preparing

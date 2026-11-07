@@ -38,7 +38,7 @@ export function LocalClock({ timezone }: { timezone: string }) {
   return (
     <div className="text-left sm:text-right">
       <p className="eyebrow">{t("label")}</p>
-      <p className="numeral text-5xl leading-none font-semibold text-ink">{time}</p>
+      <p className="mt-1 numeral text-4xl leading-none font-bold text-ink">{time}</p>
       <p className="mt-1.5 text-sm text-ink-muted">
         {day}
         {day ? " · " : ""}

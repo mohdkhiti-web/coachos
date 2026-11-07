@@ -1,5 +1,7 @@
 import { cookies } from "next/headers";
 import { getTranslations } from "next-intl/server";
+import Link from "next/link";
+import { Plus } from "lucide-react";
 import { BrandMark, Wordmark } from "@/components/ui/brand";
 import { CourtMark } from "@/components/ui/court-mark";
 import { RouteTransition } from "@/components/motion";
@@ -28,16 +30,17 @@ export async function AppShell({
   assistant?: boolean;
   children: React.ReactNode;
 }) {
-  const [t, tc, cookieStore] = await Promise.all([
+  const [t, tc, tn, cookieStore] = await Promise.all([
     getTranslations("shell"),
     getTranslations("common"),
+    getTranslations("nav"),
     cookies(),
   ]);
   const theme = parseTheme(cookieStore.get(THEME_COOKIE)?.value);
   const sport = parseSportPref(cookieStore.get(SPORT_COOKIE)?.value) ?? PRIMARY_SPORT_KEY;
 
   return (
-    <div className="min-h-dvh md:grid md:grid-cols-[16rem_minmax(0,1fr)] print:block">
+    <div className="min-h-dvh md:grid md:grid-cols-[15.5rem_minmax(0,1fr)] print:block">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink print:hidden"
@@ -45,20 +48,34 @@ export async function AppShell({
         {tc("skipToContent")}
       </a>
 
-      {/* Desktop rail */}
-      <aside className="sticky top-0 hidden h-dvh flex-col border-r border-line bg-surface-raised md:flex print:hidden">
+      {/* Desktop rail: the sheet's printed blue-ink band */}
+      <aside className="sticky top-0 hidden h-dvh flex-col bg-rail text-rail-ink md:flex print:hidden">
         <div className="flex h-16 items-center px-5">
-          <Wordmark />
+          <Link href="/dashboard" className="rounded-md" aria-label="CoachOS">
+            <Wordmark tone="rail" />
+          </Link>
         </div>
-        <div className="court-rule" />
-        <nav aria-label={t("mainNav")} className="flex-1 px-3 py-4">
+        {viewer ? (
+          <div className="px-3 pb-2">
+            <Link
+              href={`/sessions/${sport}/new`}
+              className="flex h-11 press items-center gap-2.5 rounded-md bg-accent px-3 text-sm font-semibold text-accent-ink shadow-[0_1px_0_rgb(0_0_0/0.25),inset_0_1px_0_rgb(255_255_255/0.16)] smooth-colors hover:bg-accent-strong"
+            >
+              <Plus className="size-4" aria-hidden />
+              {tn("newSession")}
+            </Link>
+          </div>
+        ) : null}
+        <nav aria-label={t("mainNav")} className="flex-1 overflow-y-auto px-3 py-3">
           <NavLinks variant="rail" assistant={assistant} />
         </nav>
         {viewer ? (
-          <div className="relative overflow-hidden border-t border-line px-5 py-4">
-            <CourtMark className="pointer-events-none absolute -right-8 -bottom-6 h-28 w-auto opacity-50" />
-            <p className="eyebrow">{t("workspace")}</p>
-            <p className="relative mt-1 truncate text-sm font-semibold text-ink">
+          <div className="relative overflow-hidden border-t border-rail-line px-5 py-4">
+            <CourtMark className="pointer-events-none absolute -right-10 -bottom-8 h-32 w-auto text-rail-line" />
+            <p className="relative text-[0.72rem] font-semibold tracking-[0.09em] text-rail-muted uppercase [font-stretch:80%]">
+              {t("workspace")}
+            </p>
+            <p className="relative mt-1 truncate text-sm font-semibold text-rail-ink">
               {viewer.organization.name}
             </p>
           </div>
@@ -66,13 +83,15 @@ export async function AppShell({
       </aside>
 
       <div className="flex min-h-dvh min-w-0 flex-col">
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-3 border-b border-line bg-surface/90 px-4 backdrop-blur md:justify-end md:px-8 print:hidden">
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-3 border-b border-line bg-surface/92 px-4 backdrop-blur-md md:justify-end md:px-8 print:hidden">
           {/* Mobile has no side rail, so the workspace name lives here; on desktop the rail already shows it. */}
           <div className="flex min-w-0 items-center gap-3 md:hidden">
             <BrandMark className="size-8" />
             {viewer ? (
               <div className="min-w-0">
-                <p className="eyebrow leading-none">{t("workspace")}</p>
+                <p className="text-[0.7rem] leading-none font-semibold tracking-[0.09em] text-ink-muted uppercase [font-stretch:80%]">
+                  {t("workspace")}
+                </p>
                 <p className="truncate text-sm font-semibold text-ink">
                   {viewer.organization.name}
                 </p>
@@ -86,9 +105,9 @@ export async function AppShell({
           </div>
         </header>
 
-        <main id="main" className="flex-1 px-4 py-6 pb-28 md:px-8 md:py-10 md:pb-10 print:p-0">
+        <main id="main" className="flex-1 px-4 py-6 pb-28 md:px-10 md:py-10 md:pb-12 print:p-0">
           {/* a page may ask for more room (the design workspace) with a data-page-wide element inside it */}
-          <div className="mx-auto w-full max-w-5xl has-[[data-page-wide]]:max-w-[92rem] print:max-w-none">
+          <div className="mx-auto w-full max-w-6xl has-[[data-page-wide]]:max-w-[92rem] print:max-w-none">
             <RouteTransition>{children}</RouteTransition>
           </div>
         </main>
@@ -97,7 +116,7 @@ export async function AppShell({
       {/* Mobile tab bar */}
       <nav
         aria-label={t("mainNav")}
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-surface-raised pb-[env(safe-area-inset-bottom)] md:hidden print:hidden"
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-surface-raised/95 pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_24px_-18px_rgb(15_27_51/0.35)] backdrop-blur-md md:hidden print:hidden"
       >
         <NavLinks variant="bar" assistant={assistant} />
       </nav>

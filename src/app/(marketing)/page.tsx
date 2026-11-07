@@ -64,7 +64,7 @@ export default async function LandingPage() {
   const start = viewer ? "/dashboard" : "/sign-up";
 
   return (
-    <div className="arena relative flex min-h-dvh flex-col overflow-x-clip text-ink arena-surface">
+    <div className="arena relative flex min-h-dvh flex-col overflow-x-clip arena-surface text-ink">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink"

@@ -25,7 +25,8 @@
     "templates": "Templates",
     "assistant": "AI Coach",
     "drills": "Drills",
-    "roster": "Roster"
+    "roster": "Roster",
+    "newSession": "New session"
   },
   "theme": {
     "toggle": "Theme: {mode}. Click to change.",
@@ -617,6 +618,23 @@
     },
     "cc": {
       "eyebrow": "Coaching Command Center",
+      "court": {
+        "title": "On court",
+        "next": "Next on court",
+        "latest": "Latest session",
+        "emptyTitle": "Your first practice starts here.",
+        "emptyBody": "Build a session and its minutes fill this strip, phase by phase, like a scorer keeping the running score.",
+        "open": "Open session",
+        "document": "Session sheet",
+        "total": "{count} min",
+        "target": "Planned for {count} min",
+        "activities": "{count, plural, one {# activity} other {# activities}}",
+        "noActivities": "No activities yet. Add drills to fill the tally.",
+        "unscheduled": "Not scheduled",
+        "tallyLabel": "{total} minutes across {count, plural, one {# activity} other {# activities}}",
+        "actionsTitle": "Start something",
+        "noPhase": "Unphased"
+      },
       "quick": {
         "title": "Quick actions",
         "build": {
@@ -653,7 +671,9 @@
         "squad": "Squad size",
         "squadUnit": "{count, plural, one {player} other {players}}",
         "squadNone": "Not set yet",
-        "squadAdd": "Add your squad size"
+        "squadAdd": "Add your squad size",
+        "library": "Library drills",
+        "libraryUnit": "{count, plural, one {drill} other {drills}}"
       },
       "recent": {
         "title": "Recent sessions",

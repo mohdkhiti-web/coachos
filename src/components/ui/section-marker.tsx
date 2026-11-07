@@ -1,27 +1,25 @@
 import { cn } from "@/lib/cn";
 
 /**
- * Numbered section marker ("01 —"). The signature detail of the Playbook identity: it will appear
- * identically in printed documents later, so screen and paper share one visual language (§2.2).
+ * A small printed section label: condensed caps with a short orange tick, the way a scoresheet labels its blocks.
+ * `n` is kept for existing callers but no longer printed: section numbers carry no information here.
  * Pass `as="h2" | "h3"` (and an `id`) when it is the heading of a section — one element, one read-out.
  */
 export function SectionMarker({
-  n,
   children,
   className,
   as: Tag = "p",
   id,
 }: {
-  n: number;
+  n?: number;
   children: React.ReactNode;
   className?: string;
   as?: "p" | "h2" | "h3";
   id?: string;
 }) {
   return (
-    <Tag id={id} className={cn("flex items-center gap-3 eyebrow", className)}>
-      <span className="numeral text-accent">{String(n).padStart(2, "0")}</span>
-      <span aria-hidden className="h-px w-6 bg-line-strong" />
+    <Tag id={id} className={cn("flex items-center gap-2.5 eyebrow", className)}>
+      <span aria-hidden className="h-[3px] w-4 rounded-full bg-accent-bright" />
       <span>{children}</span>
     </Tag>
   );

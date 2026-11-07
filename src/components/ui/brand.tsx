@@ -25,12 +25,24 @@ export function BrandMark({ className }: { className?: string }) {
   );
 }
 
-export function Wordmark({ className }: { className?: string }) {
+/** "CoachOS" set in the condensed display width; "OS" is the coach's orange mark. `tone="rail"` for the blue band. */
+export function Wordmark({
+  className,
+  tone = "ink",
+}: {
+  className?: string;
+  tone?: "ink" | "rail";
+}) {
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
       <BrandMark />
-      <span className="display text-[1.65rem] leading-none tracking-[0.04em] text-ink uppercase">
-        Coach<span className="text-accent">OS</span>
+      <span
+        className={cn(
+          "display text-[1.7rem] leading-none tracking-[0.005em]",
+          tone === "rail" ? "text-rail-ink" : "text-ink",
+        )}
+      >
+        Coach<span className={tone === "rail" ? "text-accent-bright" : "text-accent"}>OS</span>
       </span>
     </span>
   );

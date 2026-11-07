@@ -5,12 +5,15 @@ import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 export const buttonVariants = cva(
-  "inline-flex press items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap select-none smooth-colors focus-visible:outline-2 disabled:pointer-events-none disabled:opacity-55 disabled:active:scale-100 [&_svg]:shrink-0",
+  "inline-flex press items-center justify-center gap-2 rounded-md font-semibold whitespace-nowrap select-none smooth-colors focus-visible:outline-2 disabled:pointer-events-none disabled:opacity-55 disabled:active:scale-100 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        primary: "bg-accent text-accent-ink hover:bg-accent-strong",
-        secondary: "border border-line-strong bg-surface-raised text-ink hover:bg-surface-sunken",
+        primary:
+          "bg-accent text-accent-ink shadow-[0_1px_0_rgb(0_0_0/0.12),inset_0_1px_0_rgb(255_255_255/0.14)] hover:bg-accent-strong",
+        ink: "bg-ink text-surface hover:opacity-90",
+        secondary:
+          "border border-line-strong bg-surface-raised text-ink shadow-[0_1px_0_rgb(15_27_51/0.04)] hover:border-ink-faint hover:bg-surface-sunken",
         ghost: "text-ink hover:bg-surface-sunken",
         danger: "bg-danger text-white hover:brightness-110 dark:text-black",
         link: "h-auto rounded-xs p-0 text-accent underline-offset-4 hover:underline",

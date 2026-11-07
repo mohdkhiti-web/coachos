@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  ArrowUpRight,
+  ArrowRight,
   BookOpen,
   ClipboardPlus,
   LayoutTemplate,
@@ -12,8 +12,8 @@ import { getTranslations } from "next-intl/server";
 import { cn } from "@/lib/cn";
 
 /**
- * The coach's shortcuts. Every tile goes somewhere that works today: nothing here points at a feature that does not
- * exist yet (the AI Coach tile only appears when the assistant is actually set up on this server).
+ * The coach's shortcuts as one ruled list beside the court panel. Every row goes somewhere that works today (the AI
+ * Coach row only exists when the assistant is set up on this server). Building a session leads, in the coach's orange.
  */
 export async function QuickActions({
   sportKey,
@@ -24,7 +24,10 @@ export async function QuickActions({
   sportName: string;
   assistant: boolean;
 }) {
-  const t = await getTranslations("dashboard.cc.quick");
+  const [t, tc] = await Promise.all([
+    getTranslations("dashboard.cc.quick"),
+    getTranslations("dashboard.cc.court"),
+  ]);
   const actions: Array<{
     key: "build" | "generate" | "ai" | "drills" | "templates";
     href: string;
@@ -39,50 +42,52 @@ export async function QuickActions({
   ];
 
   return (
-    <section aria-labelledby="quick-actions">
-      <h2 id="quick-actions" className="sr-only">
-        {t("title")}
-      </h2>
-      <ul className="grid grid-cols-2 gap-3 lg:grid-cols-5">
-        {actions.map(({ key, href, icon: Icon, primary }, i) => (
-          <li
-            key={key}
-            className="rise"
-            style={{ "--rise-delay": `${i * 60}ms` } as React.CSSProperties}
-          >
+    <section
+      aria-labelledby="quick-actions"
+      className="overflow-hidden rounded-xl border border-line bg-surface-raised shadow-paper"
+    >
+      <header className="border-b border-line px-5 py-3">
+        <h2 id="quick-actions" className="eyebrow">
+          {tc("actionsTitle")}
+        </h2>
+      </header>
+      <ul className="divide-y divide-line">
+        {actions.map(({ key, href, icon: Icon, primary }) => (
+          <li key={key}>
             <Link
               href={href}
               className={cn(
-                "group relative flex h-full interactive-surface flex-col gap-3 overflow-hidden rounded-xl border p-4 shadow-paper",
+                "group flex items-center gap-4 px-5 py-3.5 smooth-colors",
                 primary
-                  ? "border-accent bg-accent text-accent-ink"
-                  : "border-line bg-surface-raised text-ink",
+                  ? "bg-accent text-accent-ink hover:bg-accent-strong"
+                  : "hover:bg-surface-sunken",
               )}
             >
               <span
                 className={cn(
-                  "inline-flex size-10 items-center justify-center rounded-lg",
-                  primary ? "bg-accent-ink/15" : "bg-accent-soft text-accent",
+                  "inline-flex size-9 shrink-0 items-center justify-center rounded-md",
+                  primary ? "bg-black/15" : "border border-line bg-surface text-accent",
                 )}
               >
-                <Icon className="size-5" aria-hidden />
+                <Icon className="size-[1.1rem]" aria-hidden />
               </span>
-              <span className="block">
-                <span className="block text-base font-semibold tracking-tight">
-                  {t(`${key}.title`)}
-                </span>
+              <span className="min-w-0 flex-1">
+                <span className="block font-semibold">{t(`${key}.title`)}</span>
                 <span
                   className={cn(
-                    "mt-0.5 block text-sm",
-                    primary ? "text-accent-ink" : "text-ink-muted",
+                    "block truncate text-sm",
+                    primary ? "text-accent-ink/85" : "text-ink-muted",
                   )}
                 >
                   {t(`${key}.body`, { sport: sportName })}
                 </span>
               </span>
-              <ArrowUpRight
+              <ArrowRight
                 aria-hidden
-                className="absolute top-4 right-4 size-4 opacity-0 transition-[opacity,transform] duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100 group-focus-visible:opacity-100"
+                className={cn(
+                  "size-4 shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-1",
+                  primary ? "" : "text-ink-faint group-hover:text-ink",
+                )}
               />
             </Link>
           </li>

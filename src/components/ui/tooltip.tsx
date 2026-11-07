@@ -13,7 +13,7 @@ export function Tooltip({ label, children }: { label: string; children: React.Re
       <TT.Portal>
         <TT.Content
           sideOffset={6}
-          className="z-50 origin-[var(--radix-tooltip-content-transform-origin)] rounded-md bg-ink px-2.5 py-1.5 text-xs font-medium text-surface shadow-paper data-[state=closed]:animate-out data-[state=delayed-open]:animate-in data-[state=instant-open]:animate-in"
+          className="z-50 origin-[var(--radix-tooltip-content-transform-origin)] rounded-md bg-ink px-2.5 py-1.5 text-xs font-medium text-surface shadow-paper data-[state=closed]:animate-scale-out data-[state=delayed-open]:animate-scale-in"
         >
           {label}
         </TT.Content>

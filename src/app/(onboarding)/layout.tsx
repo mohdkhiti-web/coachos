@@ -7,7 +7,7 @@ import { Wordmark } from "@/components/ui/brand";
 export default async function OnboardingLayout({ children }: LayoutProps<"/">) {
   const tc = await getTranslations("common");
   return (
-    <div className="arena relative flex min-h-dvh flex-col overflow-hidden px-4 py-5 text-ink arena-surface sm:px-10">
+    <div className="arena relative flex min-h-dvh flex-col overflow-hidden arena-surface px-4 py-5 text-ink sm:px-10">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink"
