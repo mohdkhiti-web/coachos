@@ -1,0 +1,156 @@
+{
+  "seedKey": "target-hands-passing",
+  "title": "Target Hands Passing",
+  "description": "Receivers hold their hands up as a target in different spots; passers must hit the target exactly with a chest, bounce or overhead pass.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["catching"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "group",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 6,
+  "ageMax": 14,
+  "playersMin": 2,
+  "playersMax": 30,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "any_space",
+  "tags": ["accuracy", "fundamentals"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Deliver accurate passes to the receiver's target hands, choosing the right pass type for where the target is.",
+    "setup": "Partners face each other four metres apart with one ball.",
+    "organization": "Pairs; the receiver changes the target after every catch.",
+    "instructions": [
+      "The receiver shows two hands at chest height: the passer throws a chest pass.",
+      "The receiver shows hands at the hip: the passer throws a bounce pass that arrives at the hip.",
+      "The receiver shows hands above the head: the passer throws an overhead pass.",
+      "The receiver mixes the targets at random.",
+      "Switch roles after 10 passes."
+    ],
+    "coachingPoints": [
+      "Step toward the target as you pass.",
+      "Follow through with thumbs down and fingers pointing at the target.",
+      "Bounce passes hit the floor about two-thirds of the way to the receiver."
+    ],
+    "commonMistakes": [
+      "Passing without stepping, so the ball floats.",
+      "Bounce pass landing too close to the passer.",
+      "Ignoring the target and passing to the chest every time."
+    ],
+    "safety": "Pairs face the same direction as the next pair so loose balls do not fly into other players.",
+    "progressions": [
+      "Receiver moves the target while the ball is in the air.",
+      "Add a passive defender between partners."
+    ],
+    "regressions": ["Two metres apart.", "Chest passes only."],
+    "variations": ["One-hand push passes to the target.", "Count perfect hits out of ten."],
+    "successCriteria": [
+      "8 of 10 passes arrive in the target hands.",
+      "Correct pass type for every target."
+    ],
+    "gameApplication": "Receivers show where they want the ball; passers who hit that target let shooters shoot and cutters finish without adjusting.",
+    "repetitions": "3 sets of 10 passes each way",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      },
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing",
+              "offset": [0, -1.6]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [0, -1.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o3"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4",
+            "kind": "bounce"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

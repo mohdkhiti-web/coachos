@@ -1,0 +1,195 @@
+{
+  "seedKey": "two-player-full-court-no-dribble",
+  "title": "Two-Player Full-Court No-Dribble",
+  "description": "Two players move the ball the length of the court and score using passes only, practising passing on the run and catching in stride.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["catching", "finishing"],
+  "subSkills": ["passing_on_the_move"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["skill", "conditioning"],
+  "ageMin": 10,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "full_court",
+  "tags": ["full court", "no dribble"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Advance the ball with accurate passes on the run, without travelling, and finish with a lay-up.",
+    "setup": "Pairs on the baseline, five metres apart, one ball per pair.",
+    "organization": "Pairs go one after another; return on the other side.",
+    "instructions": [
+      "Both players sprint up the court about five metres apart.",
+      "Pass back and forth with chest passes ahead of the partner; no dribbling allowed.",
+      "The receiver must pass before taking a third step.",
+      "The player who catches inside the three-point line finishes with a lay-up.",
+      "Come back the other way with bounce passes."
+    ],
+    "coachingPoints": [
+      "Pass ahead into your partner's path.",
+      "Catch with a stride stop or one-two step to avoid travelling.",
+      "Keep the spacing: no closer than four metres."
+    ],
+    "commonMistakes": [
+      "Travelling after the catch on the run.",
+      "Passing behind the partner.",
+      "Drifting together and handing the ball over."
+    ],
+    "safety": "Lanes stay wide; pairs leave only when the previous pair has passed half court.",
+    "progressions": ["Set a pass limit (four passes to score).", "Add a chasing defender."],
+    "regressions": ["Jog the length.", "Allow one dribble per player."],
+    "variations": ["Three players weaving without dribbles.", "Overhead passes only."],
+    "successCriteria": [
+      "Scores with no travel or dropped pass.",
+      "Uses four passes or fewer for the length."
+    ],
+    "gameApplication": "Fast breaks are won by passes that beat the defense down the floor.",
+    "repetitions": "4 trips per pair",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-1, -0.6]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [1, -0.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [0, 3]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [0, 3]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "sprint",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_sideline_center",
+                "offset": [-1.5, 0]
+              }
+            ]
+          },
+          {
+            "id": "a5",
+            "step": 2,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_sideline_center",
+                "offset": [1.5, 0]
+              }
+            ]
+          },
+          {
+            "id": "a6",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          },
+          {
+            "id": "a7",
+            "step": 3,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "far_right_block",
+                "offset": [0, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a8",
+            "step": 4,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

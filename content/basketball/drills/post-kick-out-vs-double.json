@@ -1,0 +1,205 @@
+{
+  "seedKey": "post-kick-out-vs-double",
+  "title": "Post Kick-Out vs Double Team",
+  "description": "A post player receives on the block, reads the double team and passes out to the open perimeter player — the most important pass a post makes.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["decision_making"],
+  "subSkills": ["reading_the_defense", "passing_under_pressure"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["post", "double team", "kick out"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Recognise where the double team came from and pass to the player left open, quickly and away from the defense.",
+    "setup": "Post player on the right block; perimeter players at the right wing, top and left wing; two defenders.",
+    "organization": "Rotate positions every four reps.",
+    "instructions": [
+      "The wing passes to the post player, who catches with a strong two-hand grip.",
+      "One defender guards the post; the second comes to double from the wing or top.",
+      "The post pivots to see the floor and reads where the double came from.",
+      "Pass to the player whose defender doubled (often the passer who relocates).",
+      "That player catches and shoots."
+    ],
+    "coachingPoints": [
+      "Chin the ball and look over the shoulder to the middle.",
+      "The open player is usually where the double came from.",
+      "Perimeter players relocate after passing to the post."
+    ],
+    "commonMistakes": [
+      "Dribbling into the double team.",
+      "Passing back over the defenders' heads.",
+      "Holding the ball too long."
+    ],
+    "safety": "Double teams play the ball; no hacking or pinning the post player's arms.",
+    "progressions": [
+      "Third defender who rotates to the open pass.",
+      "Double comes at random times."
+    ],
+    "regressions": [
+      "Coach announces where the double comes from.",
+      "Defenders' hands behind backs."
+    ],
+    "variations": [
+      "High-post catch and kick to the corner.",
+      "Post kicks out, then reposts for a re-entry."
+    ],
+    "successCriteria": [
+      "Correct receiver on 8 of 10 doubles.",
+      "Pass within two seconds of the double arriving."
+    ],
+    "gameApplication": "Post players who pass out of doubles make the double team costly for the defense.",
+    "repetitions": "8 reps per post player",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_block"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [0, 0.8]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [-0.6, -0.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "defend",
+            "kind": "trap",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [0.8, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [0.6, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a5",
+            "step": 4,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

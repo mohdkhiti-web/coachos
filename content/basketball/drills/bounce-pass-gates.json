@@ -1,0 +1,194 @@
+{
+  "seedKey": "bounce-pass-gates",
+  "title": "Bounce Pass Gates",
+  "description": "Partners bounce-pass through a narrow gate of two cones on the floor between them; the bounce must land inside the gate.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["catching"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 6,
+  "ageMax": 14,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "any_space",
+  "tags": ["bounce pass", "accuracy"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Throw bounce passes that land in the right spot so they arrive at the receiver's waist.",
+    "setup": "Partners five metres apart with two cones one metre apart at the two-thirds point.",
+    "organization": "Pairs; count gates hit out of ten, then switch the gate to the other side.",
+    "instructions": [
+      "Step toward the partner and push the ball down through the gate.",
+      "The ball must bounce between the cones.",
+      "The receiver catches at waist height with two hands.",
+      "After ten passes, move the gate to the other side and repeat.",
+      "Narrow the gate as accuracy improves."
+    ],
+    "coachingPoints": [
+      "Bounce point about two-thirds of the way to the receiver.",
+      "Thumbs point down on the follow-through.",
+      "Receiver catches with hands low, fingers down."
+    ],
+    "commonMistakes": [
+      "Bounce too close to the passer, so the ball arrives at the ankles.",
+      "Bounce too close to the receiver, so it pops up too high.",
+      "Pushing with one hand only and losing direction."
+    ],
+    "safety": "Pairs spaced so a missed pass rolls into open space, not other pairs.",
+    "progressions": [
+      "Receiver moves sideways; passer must lead them.",
+      "Add a defender's hand above the gate."
+    ],
+    "regressions": ["Wider gate.", "Three metres apart."],
+    "variations": [
+      "One-hand bounce passes from the hip.",
+      "Bounce pass on the move between two moving partners."
+    ],
+    "successCriteria": [
+      "7 of 10 bounces land in the gate.",
+      "Ball arrives between the receiver's waist and knees."
+    ],
+    "gameApplication": "Bounce passes beat high hands; their accuracy decides whether the cutter can catch and finish.",
+    "repetitions": "2 sets of 10 each side",
+    "resources": [
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot",
+              "offset": [-0.6, 0]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_slot",
+              "offset": [4.4, 0]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing",
+              "offset": [0, -2.8]
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_wing",
+              "offset": [3.6, -2.8]
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_slot",
+              "offset": [2.6, 0.6]
+            }
+          },
+          {
+            "id": "k2",
+            "type": "cone",
+            "at": {
+              "anchor": "left_slot",
+              "offset": [2.6, -0.6]
+            }
+          },
+          {
+            "id": "k3",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing",
+              "offset": [2.2, -2.2]
+            }
+          },
+          {
+            "id": "k4",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing",
+              "offset": [2.2, -3.4]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o3"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "bounce"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4",
+            "kind": "bounce"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

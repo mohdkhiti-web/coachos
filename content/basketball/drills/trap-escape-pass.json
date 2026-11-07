@@ -1,0 +1,192 @@
+{
+  "seedKey": "trap-escape-pass",
+  "title": "Trap Escape Pass",
+  "description": "A ball handler is trapped near the sideline by two defenders and must protect the ball, then split or pass over the trap to the open teammate.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["press_break", "pivoting"],
+  "subSkills": ["passing_under_pressure", "attacking_pressure"],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["trap", "press", "pressure"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Stay calm in a trap: pivot away, keep the ball high or low and pass to the open middle or sideline outlet.",
+    "setup": "Ball handler near the right sideline at half court; two trappers; outlets at the middle and the sideline.",
+    "organization": "Rotate ball handler, trappers, outlets.",
+    "instructions": [
+      "The ball handler dribbles toward the sideline; two defenders trap.",
+      "Pick up the dribble only if needed; pivot away from the trap and keep the ball moving (high-low).",
+      "Outlets move: the middle player flashes toward the ball, the sideline player comes back.",
+      "Pass over or around the trap to the open outlet: overhead or bounce.",
+      "The outlet attacks the open floor."
+    ],
+    "coachingPoints": [
+      "Do not turn your back fully: see the floor.",
+      "Pass fake to move the trappers' hands.",
+      "Outlets come to the ball; do not wait."
+    ],
+    "commonMistakes": [
+      "Picking up the dribble too early.",
+      "Lob passes across the court (interception).",
+      "Outlets standing still behind defenders."
+    ],
+    "safety": "Trappers play the ball, no hacking the arms; stop play on any dangerous swipe.",
+    "progressions": [
+      "Add a fourth defender who rotates to the middle.",
+      "Five-second count on the trapped player."
+    ],
+    "regressions": ["Trappers arrive one at a time.", "Outlets stand in fixed spots."],
+    "variations": [
+      "Trap in the corner instead of the sideline.",
+      "Split the trap with a dribble when it is not closed."
+    ],
+    "successCriteria": [
+      "Escapes the trap without a turnover on most reps.",
+      "Passes within four seconds of the trap."
+    ],
+    "gameApplication": "Presses rely on traps; teams that pass out of them calmly turn pressure into lay-ups.",
+    "repetitions": "6 reps per ball handler",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_half_court",
+              "offset": [1, -1.4]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [-0.9, 0.6]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o1",
+              "offset": [0.4, -0.9]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1.2]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [1.2, -1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [-0.8, 1.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "cut",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [1.4, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "overhead"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_half_court",
+              "offset": [-1.6, -2.6]
+            },
+            "text": "Trap"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "seedKey": "wrap-around-pass-vs-defender",
+  "title": "Wrap-Around Pass vs Defender",
+  "description": "A driver who meets a help defender wraps the ball around the defender's body to a teammate on the baseline — an advanced pass from drive situations.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["decision_making", "finishing"],
+  "subSkills": ["passing_under_pressure", "reading_the_defense"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["wrap pass", "drive", "help defense"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Pass around a stepping-up help defender to the open teammate behind them, using one hand and a tight wrap.",
+    "setup": "Driver at the wing, a help defender at the block, a receiver in the short corner.",
+    "organization": "Rotate driver, help defender, receiver.",
+    "instructions": [
+      "The driver attacks baseline toward the rim.",
+      "The help defender steps across to stop the drive.",
+      "The driver steps under or beside the defender and wraps the ball around their hip with one hand.",
+      "The short-corner receiver catches and finishes.",
+      "If the help does not come, the driver finishes."
+    ],
+    "coachingPoints": [
+      "Two hands until the last moment, then one-hand wrap.",
+      "Pass low around the hip, not over the arms.",
+      "Read the help: no help, no pass."
+    ],
+    "commonMistakes": [
+      "Wrapping the ball too early, so the help recovers.",
+      "Throwing it behind the receiver.",
+      "Charging into the help defender."
+    ],
+    "safety": "The help defender stands still or slides; no taking charges in this drill.",
+    "progressions": [
+      "Live help defender who can choose to stay home.",
+      "Add a defender on the receiver."
+    ],
+    "regressions": ["Bounce pass instead of the wrap.", "Help defender stationary."],
+    "variations": [
+      "Wrap from the middle drive to the weak-side dunker spot.",
+      "Wrap to a rolling screener."
+    ],
+    "successCriteria": [
+      "Correct decision (pass or finish) in 8 of 10 reps.",
+      "Pass reaches the receiver in a scoring position."
+    ],
+    "gameApplication": "When help defense comes, the open player is right behind it; the wrap pass finds them.",
+    "repetitions": "6 reps each side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "right_block",
+              "offset": [-0.8, 0.6]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_short_corner",
+              "offset": [0.4, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [0.4, 1.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "help",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [0, 1]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "bounce"
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "seedKey": "wing-entry-vs-denial",
+  "title": "Wing Entry vs Denial",
+  "description": "The wing works to get open against a denying defender with V-cuts and back-door cuts; the guard must read the cut and deliver the entry.",
+  "category": "passing",
+  "primarySkill": "cutting",
+  "secondarySkills": ["passing"],
+  "subSkills": ["passing_under_pressure"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "2v2",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["denial", "v-cut", "back door", "entry"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Beat a denying defender with a V-cut or a back-door cut, and complete the entry pass from the top.",
+    "setup": "Guard at the top with the ball; wing with a defender in denial.",
+    "organization": "Rotate guard, wing, defender.",
+    "instructions": [
+      "The wing walks the defender toward the lane.",
+      "V-cut: plant and sprint back out to the wing, showing the outside hand.",
+      "If the defender overplays, plant and cut back door to the rim.",
+      "The guard reads the cut and passes: chest pass to the V-cut, bounce pass to the back door.",
+      "Play the possession out 1v1 if the entry is made on the wing."
+    ],
+    "coachingPoints": [
+      "Change of speed: slow in, fast out.",
+      "Show the hand away from the defender.",
+      "Passer fakes high before a bounce pass back door."
+    ],
+    "commonMistakes": [
+      "Cutting at one speed, so the defender stays attached.",
+      "Passing to the hand next to the defender.",
+      "Forcing the entry into a defender's hand."
+    ],
+    "safety": "Wing and defender may not push off; contact as in a game.",
+    "progressions": ["Defend the guard too (2v2).", "Add a weak-side help defender."],
+    "regressions": ["Defender gives a half-step cushion.", "V-cut only, no back door."],
+    "variations": ["Entry from the sideline (inbound).", "Use a flare cut instead of a V-cut."],
+    "successCriteria": [
+      "Entry completed within five seconds on most reps.",
+      "Correct pass type for the cut."
+    ],
+    "gameApplication": "Getting the ball to the wing is the first step of most half-court offenses; denial is how defenses take it away.",
+    "repetitions": "6 possessions per role",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [-0.6, -0.4]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [0.4, 0]
+              },
+              {
+                "anchor": "right_wing",
+                "offset": [0.4, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.2, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "bounce"
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

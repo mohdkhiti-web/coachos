@@ -1,0 +1,163 @@
+{
+  "seedKey": "baseball-pass-long-outlet",
+  "title": "Baseball Pass Long Outlet",
+  "description": "Players practise the one-hand baseball pass over 15 to 20 metres to a teammate leaking out, the long pass that starts a fast break.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["catching"],
+  "subSkills": ["passing_on_the_move"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "full_court",
+  "tags": ["baseball pass", "outlet", "transition"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Throw an accurate, catchable one-hand pass over a long distance, leading a running teammate.",
+    "setup": "Passers under the basket with balls; receivers start at the free-throw line extended on the sideline.",
+    "organization": "Passer becomes receiver; receiver lays up and goes to the passer line.",
+    "instructions": [
+      "The receiver sprints up the sideline toward the far end.",
+      "The passer steps toward the target and throws a baseball pass: ball behind the ear, one-hand throw, follow-through to the target.",
+      "Lead the receiver so they catch beyond half court.",
+      "The receiver finishes at the far rim.",
+      "Alternate sides."
+    ],
+    "coachingPoints": [
+      "Step with the opposite foot, like a catcher's throw.",
+      "Backspin keeps the pass straight; avoid side spin.",
+      "Aim at the receiver's lead shoulder."
+    ],
+    "commonMistakes": [
+      "Throwing with two hands and losing distance.",
+      "Side spin that curves the pass out of bounds.",
+      "Throwing at the receiver instead of ahead."
+    ],
+    "safety": "Receivers look back for the ball; no one else on the sideline lane during the throw.",
+    "progressions": [
+      "Add a defender chasing the receiver.",
+      "Pass after a rebound from a missed shot."
+    ],
+    "regressions": [
+      "Shorter distance to the free-throw line extended.",
+      "Two-hand overhead pass instead."
+    ],
+    "variations": [
+      "Bounce the baseball pass once at the end (for shorter distances).",
+      "Hit a receiver cutting to the middle."
+    ],
+    "successCriteria": [
+      "Pass is caught in stride beyond half court.",
+      "No pass goes out of bounds in the set."
+    ],
+    "gameApplication": "One long pass beats the whole defense down the floor for a lay-up.",
+    "repetitions": "5 throws per side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [0, 0.6]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [1.8, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_sideline_center",
+                "offset": [-0.6, 0]
+              },
+              {
+                "anchor": "far_left_wing",
+                "offset": [-1, 1]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "overhead"
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [0, -2]
+            },
+            "text": "Baseball pass"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "seedKey": "back-door-bounce-pass-timing",
+  "title": "Back-Door Bounce Pass Timing",
+  "description": "Pairs rehearse the exact moment of the back-door pass: the cutter plants, the passer fakes, and the bounce pass arrives as the cutter turns to the rim.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["cutting", "finishing"],
+  "subSkills": ["passing_on_the_move"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["back door", "bounce pass", "timing"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Time the back-door bounce pass to the moment the cutter turns to the rim, so the catch happens in stride for a lay-up.",
+    "setup": "Passer at the top of the key; cutter at the wing; a cone or coach as the denying defender.",
+    "organization": "Rotate passer and cutter; alternate sides.",
+    "instructions": [
+      "The cutter jogs out toward the wing as if to receive.",
+      "The cutter plants the outside foot and turns to the rim.",
+      "As the cutter turns, the passer fakes a pass to the wing, then bounce-passes to the space in front of the cutter.",
+      "The cutter catches in stride and finishes.",
+      "Repeat from the other side."
+    ],
+    "coachingPoints": [
+      "Pass on the plant, not after it.",
+      "Bounce the ball just inside the lane.",
+      "Cutter shows a hand toward the rim."
+    ],
+    "commonMistakes": [
+      "Late pass that arrives behind the cutter.",
+      "Chest pass into the defender's hands.",
+      "Cutter rounding the cut instead of planting."
+    ],
+    "safety": "Cutters finish and clear the lane before the next rep.",
+    "progressions": ["Live denying defender.", "Back door from the corner along the baseline."],
+    "regressions": ["Cutter walks the cut.", "Passer at the elbow (shorter pass)."],
+    "variations": ["Back door off a dribble entry instead of a pass fake.", "Lob back door."],
+    "successCriteria": ["Cutter catches in stride on 8 of 10 reps.", "Finishes the lay-up."],
+    "gameApplication": "Back-door cuts punish over-denial; they only work if the pass arrives on time.",
+    "repetitions": "6 reps each side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "eq1",
+            "type": "equipment",
+            "kind": "mannequin",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [-0.6, -0.5]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [0.4, 0.8]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.6, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "bounce"
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

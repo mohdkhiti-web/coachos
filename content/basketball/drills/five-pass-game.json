@@ -1,0 +1,219 @@
+{
+  "seedKey": "five-pass-game",
+  "title": "Five-Pass Game",
+  "description": "Teams score a point by completing five consecutive passes without dribbling; the defense scores by deflecting or stealing — a high-touch passing and moving game.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["cutting", "communication"],
+  "subSkills": ["passing_under_pressure"],
+  "level": "beginner",
+  "intensity": "high",
+  "format": "4v4",
+  "phases": ["small_sided"],
+  "ageMin": 7,
+  "ageMax": 99,
+  "playersMin": 6,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["game", "no dribble", "movement"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 6
+    }
+  ],
+  "content": {
+    "objective": "Move without the ball to get open and pass quickly and accurately under defensive pressure.",
+    "setup": "Half court, two teams of three or four with bibs.",
+    "organization": "Play for 3-minute games; losing team stays on.",
+    "instructions": [
+      "The offense may not dribble: the ball moves only by passing.",
+      "Count each completed pass out loud; five in a row scores a point.",
+      "No pass back to the player who just passed to you.",
+      "A deflection, steal or ball out of bounds resets the count and turns the ball over.",
+      "After a point, the ball goes to the other team at the top of the key."
+    ],
+    "coachingPoints": [
+      "Cut to open space and show a target.",
+      "Use pivots and fakes before passing.",
+      "Pass to where the receiver is moving."
+    ],
+    "commonMistakes": [
+      "Everyone standing still around the ball.",
+      "Lob passes over defenders that are easy to intercept.",
+      "Bunching up in one area."
+    ],
+    "safety": "No contact on the passer; defenders cannot wrestle for held balls (held ball = turnover to defense).",
+    "progressions": [
+      "Require bounce passes for passes three and four.",
+      "Score only if the fifth pass leads to a lay-up."
+    ],
+    "regressions": ["Three passes for a point.", "Offense outnumbers defense 4v3."],
+    "variations": ["Allow one dribble per player.", "Play in a smaller area to increase pressure."],
+    "successCriteria": [
+      "Team scores at least one point per minute.",
+      "Every player touches the ball in each scoring sequence."
+    ],
+    "gameApplication": "Players learn that moving without the ball and passing early beats pressure better than dribbling.",
+    "repetitions": "3 games of 3 minutes",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      },
+      {
+        "title": "Jr. NBA practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [0.6, 0]
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-0.6, 0.4]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [0, -0.9]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [0.6, -0.4]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "entity": "o3",
+              "offset": [-0.4, -0.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o4",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [-0.6, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o4",
+            "kind": "bounce"
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "left_corner",
+                "offset": [0.6, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "pass",
+            "from": "o4",
+            "to": "o2"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_slot",
+              "offset": [0.8, 1.4]
+            },
+            "text": "5 passes = 1 pt"
+          }
+        ]
+      }
+    }
+  ]
+}

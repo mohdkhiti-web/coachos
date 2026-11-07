@@ -1,0 +1,158 @@
+{
+  "seedKey": "lob-entry-pass",
+  "title": "Lob Entry Pass",
+  "description": "When a post player is fronted, the passer lobs the ball over the defender for a catch near the rim; timing and touch are everything.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["finishing"],
+  "subSkills": ["passing_under_pressure"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "2v2",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["lob", "post entry", "fronted post"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Read a fronted post and deliver a lob that only the post player can catch, with the right height and landing spot.",
+    "setup": "Passer at the wing; post player at the block with a defender fronting them.",
+    "organization": "Rotate passer, post, defender.",
+    "instructions": [
+      "The post player seals the fronting defender with their back and a raised target hand toward the rim.",
+      "The passer reads the front and the weak side: no help means lob.",
+      "Throw a two-hand overhead lob aimed above the front of the rim.",
+      "The post player releases the seal, catches high and finishes.",
+      "If weak-side help is there, swing the ball instead."
+    ],
+    "coachingPoints": [
+      "Aim for the space between the post and the rim, not at the post's hands.",
+      "Soft lob with arc, not a line drive.",
+      "Post holds the seal until the ball passes over the defender."
+    ],
+    "commonMistakes": [
+      "Lob too flat for the defender to deflect.",
+      "Lob too long, out of bounds.",
+      "Post releasing early and pushing off."
+    ],
+    "safety": "Defender fronts but does not undercut the jumping post player.",
+    "progressions": [
+      "Add a weak-side helper who can rotate.",
+      "Pass from the top instead of the wing."
+    ],
+    "regressions": ["Defender stays still in front.", "Shorter lob from the elbow."],
+    "variations": ["Lob to a back-door cutter.", "High-low lob from the elbow to the block."],
+    "successCriteria": ["6 of 10 lobs caught at the rim.", "No lob thrown into weak-side help."],
+    "gameApplication": "Fronted posts are open behind the defense; the lob punishes the front.",
+    "repetitions": "6 lobs per passer",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [0, 0.7]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "overhead"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [0.8, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [1.4, 0.8]
+            },
+            "text": "Lob over the front"
+          }
+        ]
+      }
+    }
+  ]
+}
