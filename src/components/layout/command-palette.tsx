@@ -162,7 +162,7 @@ export function CommandPalette({ sport, assistant }: { sport: string; assistant:
         >
           <Search className="size-4" aria-hidden />
           <span className="hidden sm:inline">{t("open")}</span>
-          <kbd className="ml-auto hidden rounded-[4px] border border-line px-1.5 py-px font-sans text-[0.7rem] text-ink-faint sm:inline">
+          <kbd className="ml-auto hidden rounded-[4px] border border-line-strong px-1.5 py-px font-sans text-[0.7rem] text-ink-muted sm:inline">
             Ctrl K
           </kbd>
         </button>
@@ -261,7 +261,7 @@ export function CommandPalette({ sport, assistant }: { sport: string; assistant:
               ))
             )}
           </div>
-          <p className="border-t border-line px-4 py-2.5 text-xs text-ink-faint">{t("hint")}</p>
+          <p className="border-t border-line px-4 py-2.5 text-xs text-ink-muted">{t("hint")}</p>
         </D.Content>
       </D.Portal>
     </D.Root>

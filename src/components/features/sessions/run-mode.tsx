@@ -314,7 +314,7 @@ export function RunMode({
                 {t("addMinute")}
               </button>
             </div>
-            <p className="hidden text-sm text-ink-faint md:block">{t("keys")}</p>
+            <p className="hidden text-sm text-ink-muted md:block">{t("keys")}</p>
           </section>
 
           <aside className="flex min-w-0 flex-col gap-5">
