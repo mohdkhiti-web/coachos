@@ -27,43 +27,38 @@ export default async function AuthLayout({ children }: LayoutProps<"/">) {
           </Link>
         </header>
         <main id="main" className="relative flex flex-1 items-center justify-center py-10">
-          <div className="w-full max-w-md rise rounded-2xl p-6 glass-panel sm:p-8">{children}</div>
+          <div className="w-full max-w-md rise rounded-xl p-6 glass-panel sm:p-8">{children}</div>
         </main>
       </div>
 
       {/* The court panel: decorative, hidden on small screens. */}
-      <aside className="relative hidden overflow-hidden border-l border-line lg:block">
+      {/* The printed blue-ink band of the sheet, with the court drawing itself: decorative, desktop only. */}
+      <aside className="relative hidden overflow-hidden bg-rail text-rail-ink lg:block">
         <HalfCourt
           animated
-          className="absolute -right-16 -bottom-10 h-[112%] w-auto text-ink/[0.14]"
+          className="absolute -right-16 -bottom-10 h-[112%] w-auto text-rail-ink/[0.16]"
           strokeWidth={1.6}
         />
         <div className="relative flex h-full max-w-lg flex-col justify-end gap-5 p-14 pb-20">
           <p
-            className="rise eyebrow text-accent"
-            style={{ "--rise-delay": "300ms" } as React.CSSProperties}
-          >
-            {t("eyebrow")}
-          </p>
-          <p
-            className="rise display text-7xl text-ink"
+            className="rise display text-7xl text-rail-ink"
             style={{ "--rise-delay": "420ms" } as React.CSSProperties}
           >
             {t("title")}
           </p>
           <p
-            className="max-w-sm rise text-base text-ink-muted"
+            className="max-w-sm rise text-base text-rail-muted"
             style={{ "--rise-delay": "540ms" } as React.CSSProperties}
           >
             {t("body")}
           </p>
           <ul
-            className="mt-2 rise space-y-2.5 text-sm text-ink"
+            className="mt-2 rise space-y-2.5 text-sm text-rail-ink"
             style={{ "--rise-delay": "660ms" } as React.CSSProperties}
           >
             {(["plan", "ai", "share"] as const).map((k) => (
               <li key={k} className="flex items-center gap-2.5">
-                <Check className="size-4 shrink-0 text-accent" aria-hidden />
+                <Check className="size-4 shrink-0 text-accent-bright" aria-hidden />
                 {t(`points.${k}`)}
               </li>
             ))}

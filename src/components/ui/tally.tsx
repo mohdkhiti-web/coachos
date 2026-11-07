@@ -27,8 +27,11 @@ export function Tally({
   segments,
   target = 0,
   size = "md",
+  intro = false,
   className,
 }: {
+  /** Strike EVERY block in on mount, one after another (a showcase: the landing page). */
+  intro?: boolean;
   segments: readonly TallySegment[];
   /** The planned length. A marker is drawn where it falls when the total runs past it. */
   target?: number;
@@ -53,7 +56,7 @@ export function Tally({
       <div className="absolute inset-0 flex">
         {segments.map((s, i) => {
           if (s.minutes <= 0) return null;
-          const fresh = !initialIds.has(s.id);
+          const fresh = intro || !initialIds.has(s.id);
           return (
             <span
               key={s.id}
@@ -62,7 +65,13 @@ export function Tally({
                 i > 0 && "border-l border-surface-raised",
                 fresh && "tally-fill",
               )}
-              style={{ width: `${(s.minutes / scale) * 100}%`, background: phaseColor(s.phase) }}
+              style={
+                {
+                  width: `${(s.minutes / scale) * 100}%`,
+                  background: phaseColor(s.phase),
+                  "--tally-delay": intro ? `${500 + i * 220}ms` : undefined,
+                } as React.CSSProperties
+              }
             >
               {fresh && size === "md" ? (
                 <span className="absolute inset-x-1 top-1/2 h-[2px] tally-strike -translate-y-1/2 rounded-full bg-accent-bright" />

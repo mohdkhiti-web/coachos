@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
 /**
  * Social sign-in and the motion system, against the production build.
@@ -73,49 +73,31 @@ test("a failed or cancelled social sign-in returns to the sign-in screen with a 
 });
 
 test.describe("the landing page's motion follows the coach's settings", () => {
-  test("with motion allowed: the court draws itself and the ball flies", async ({ page }) => {
+  // The hero's session sheet strikes its running tally in, block by block (CSS animations on `.tally-fill`).
+  const tallyBlock = (page: Page) => page.locator(".tally-fill >> visible=true").first();
+  const settledClip = (page: Page) =>
+    tallyBlock(page).evaluate((el) => getComputedStyle(el).clipPath);
+
+  test("with motion allowed: the tally strikes in and ends complete", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "no-preference" });
     await page.goto("/");
-    // the animated ball is shown; its static twin (already through the hoop) is not
-    await expect(page.locator(".motion-safe-only").first()).toBeVisible();
-    expect(
-      await page
-        .locator(".motion-reduce-only")
-        .first()
-        .evaluate((el) => getComputedStyle(el).display),
-    ).toBe("none");
-    // the lines finish drawing (the animation ends in its finished state)
+    // the blocks really animate…
+    expect(await tallyBlock(page).evaluate((el) => el.getAnimations().length)).toBeGreaterThan(0);
+    // …and every animation ends in its finished state (fully revealed)
     await expect
-      .poll(
-        () =>
-          page
-            .locator(".court-draw path >> visible=true")
-            .first()
-            .evaluate((el) => getComputedStyle(el).strokeDashoffset),
-        { timeout: 8_000 },
-      )
-      .toBe("0px");
+      .poll(() => settledClip(page), { timeout: 8_000 })
+      .toMatch(/^(none|inset\(0(px)?\))$/);
   });
 
-  test("with reduced motion: nothing moves, and the artwork is complete at once", async ({
+  test("with reduced motion: nothing moves, and the sheet is complete at once", async ({
     page,
   }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
-    const display = (sel: string) =>
-      page
-        .locator(sel)
-        .first()
-        .evaluate((el) => getComputedStyle(el).display);
-    expect(await display(".motion-safe-only")).toBe("none"); // the flying ball is not rendered…
-    expect(await display(".motion-reduce-only")).not.toBe("none"); // …its finished twin is
-    // every line is already drawn, every element already in place
-    expect(
-      await page
-        .locator(".court-draw path >> visible=true")
-        .first()
-        .evaluate((el) => getComputedStyle(el).strokeDashoffset),
-    ).toBe("0px");
+    // no delay, no travel: the tally is fully drawn and every element is in place immediately
+    await expect
+      .poll(() => settledClip(page), { timeout: 1_000 })
+      .toMatch(/^(none|inset\(0(px)?\))$/);
     expect(
       await page
         .locator(".rise")
@@ -130,26 +112,15 @@ test.describe("the landing page's motion follows the coach's settings", () => {
     await expect(page.getByRole("link", { name: "Explore CoachOS" })).toBeVisible();
   });
 
-  test("printing never leaves the court half drawn", async ({ page }) => {
+  test("printing never leaves the sheet half drawn", async ({ page }) => {
     await page.emulateMedia({ media: "print", reducedMotion: "no-preference" });
     await page.goto("/");
+    expect(await settledClip(page)).toMatch(/^(none|inset\(0(px)?\))$/);
     expect(
       await page
-        .locator(".court-draw path >> visible=true")
+        .locator(".rise")
         .first()
-        .evaluate((el) => getComputedStyle(el).strokeDashoffset),
-    ).toBe("0px");
-    expect(
-      await page
-        .locator(".motion-safe-only")
-        .first()
-        .evaluate((el) => getComputedStyle(el).display),
-    ).toBe("none");
-    expect(
-      await page
-        .locator(".motion-reduce-only")
-        .first()
-        .evaluate((el) => getComputedStyle(el).display),
-    ).not.toBe("none");
+        .evaluate((el) => getComputedStyle(el).opacity),
+    ).toBe("1");
   });
 });

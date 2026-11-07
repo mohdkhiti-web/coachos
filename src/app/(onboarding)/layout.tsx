@@ -19,7 +19,7 @@ export default async function OnboardingLayout({ children }: LayoutProps<"/">) {
         <Wordmark />
       </header>
       <main id="main" className="relative flex flex-1 items-center justify-center py-8">
-        <div className="w-full max-w-3xl rounded-2xl p-6 glass-panel sm:p-10">{children}</div>
+        <div className="w-full max-w-3xl rounded-xl p-6 glass-panel sm:p-10">{children}</div>
       </main>
     </div>
   );

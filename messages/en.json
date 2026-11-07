@@ -166,7 +166,8 @@
           "title": "Share and export",
           "body": "Export a PDF or PNG, or send a private read-only link to your staff. Revoke it any time."
         }
-      }
+      },
+      "listLabel": "What CoachOS does"
     },
     "ai": {
       "eyebrow": "AI Coach",
@@ -225,7 +226,16 @@
     "footer": "© {year} CoachOS · Basketball coaching software",
     "hero": {
       "videoPause": "Pause background video",
-      "videoPlay": "Play background video"
+      "videoPlay": "Play background video",
+      "sheet": {
+        "label": "Example session",
+        "title": "U14 shooting · Tuesday",
+        "meta": "12 players · Gym 2",
+        "status": "Draft",
+        "total": "min",
+        "tallyLabel": "60 minutes: warm-up, two skill blocks, a game and a cool-down",
+        "court": "Give-and-go, drawn on the court"
+      }
     }
   },
   "auth": {
