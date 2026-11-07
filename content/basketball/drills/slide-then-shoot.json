@@ -1,0 +1,150 @@
+{
+  "seedKey": "slide-then-shoot",
+  "title": "Slide-Then-Shoot",
+  "description": "Players defend for a few seconds with hard slides, then sprint out to a spot and shoot — training the switch from defense to a game shot when tired.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["on_ball_defense", "conditioning"],
+  "subSkills": ["catch_and_shoot", "stance_and_slides"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["skill", "conditioning"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["fatigue", "transition"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Shoot with good form immediately after defensive effort, as in real possessions.",
+    "setup": "Player in the lane in a defensive stance; passer at the top.",
+    "organization": "Shooter works 30 seconds, then swaps.",
+    "instructions": [
+      "Slide lane line to lane line four times in a low stance.",
+      "Sprint out to the wing.",
+      "Catch the pass and shoot.",
+      "Return to the lane and repeat.",
+      "Count makes in 30 seconds."
+    ],
+    "coachingPoints": [
+      "Stay low on the slides.",
+      "Gather the feet before the catch.",
+      "Legs tired: use them more, not less."
+    ],
+    "commonMistakes": [
+      "Lazy slides to save energy for the shot.",
+      "Short shots from tired legs.",
+      "Catching while still running."
+    ],
+    "safety": "Build up rounds gradually; water between rounds.",
+    "progressions": ["Six slides, three-point shot.", "Add a closeout defender."],
+    "regressions": ["Two slides.", "Shoot from the elbow."],
+    "variations": ["Backpedal and sprint instead of slides.", "Shoot off one dribble."],
+    "successCriteria": ["At least three makes in 30 seconds.", "Full slides on every rep."],
+    "gameApplication": "Players shoot best when ready for the shot even after a hard defensive possession.",
+    "repetitions": "4 rounds of 30 s",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [-1.2, -1]
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [1.2, -1]
+              },
+              {
+                "anchor": "free_throw_line",
+                "offset": [-1.2, -1]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing"
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "c1",
+            "to": "o1"
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

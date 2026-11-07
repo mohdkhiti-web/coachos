@@ -1,0 +1,153 @@
+{
+  "seedKey": "jump-stop-shooting",
+  "title": "Jump-Stop Shooting",
+  "description": "Players dribble in, jump-stop on balance and shoot, connecting the dribble to a legal, balanced shooting base.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["footwork", "dribbling"],
+  "subSkills": ["shooting_off_the_dribble"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 7,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["jump stop", "balance", "fundamentals"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 3
+    }
+  ],
+  "content": {
+    "objective": "Stop on two feet at once, square to the rim, and shoot in balance without drifting.",
+    "setup": "Three cones in the lane area (left of the lane, middle, right) about three metres from the rim.",
+    "organization": "One line at the top; rotate after each shot.",
+    "instructions": [
+      "Dribble from the top toward a cone.",
+      "Jump-stop at the cone with both feet landing together, knees bent.",
+      "Square the shoulders and hips to the rim.",
+      "Shoot and hold the follow-through.",
+      "Rebound, pass to the next player and go to the back of the line."
+    ],
+    "coachingPoints": [
+      "Land with feet shoulder-width apart.",
+      "Ball goes straight up into the shooting pocket.",
+      "Go straight up and land on the same spot."
+    ],
+    "commonMistakes": [
+      "Landing one foot after the other and travelling.",
+      "Leaning forward after the stop.",
+      "Shooting before the shoulders are square."
+    ],
+    "safety": "Shooters rebound their own ball only when the lane is clear; nobody stands under the rim while others shoot.",
+    "progressions": ["Jump stop at full speed.", "Defender trails the dribbler."],
+    "regressions": ["Walk in and stop.", "Catch a pass and jump-stop instead of dribbling."],
+    "variations": ["Jump-stop and bank shot.", "Jump-stop, pivot, shoot."],
+    "successCriteria": ["No travel on any stop.", "Lands within a foot of the take-off spot."],
+    "gameApplication": "A balanced jump stop gives young players a legal, controlled finish to any drive.",
+    "repetitions": "3 shots at each cone",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      },
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [0.4, -1.4]
+            }
+          },
+          {
+            "id": "k2",
+            "type": "cone",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, -1.2]
+            }
+          },
+          {
+            "id": "k3",
+            "type": "cone",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [-0.4, -1.4]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [0, -1]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

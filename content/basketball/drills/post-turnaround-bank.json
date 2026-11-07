@@ -1,0 +1,138 @@
+{
+  "seedKey": "post-turnaround-bank",
+  "title": "Post Turnaround Bank Shot",
+  "description": "From a post catch, the player turns to face the baseline side and uses the backboard for a short turnaround jumper.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["footwork", "pivoting"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 8,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["post", "turnaround", "bank"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Catch in the post, turn on balance toward the baseline and bank a short jumper off the square.",
+    "setup": "Passer at the wing; post player on the block with back to the basket.",
+    "organization": "Swap after eight reps.",
+    "instructions": [
+      "Seal on the block and show a target with the outside hand.",
+      "Catch with two hands and chin the ball.",
+      "Front-pivot on the inside foot toward the baseline to face the rim at an angle.",
+      "Rise and aim at the top near corner of the square.",
+      "Repeat on the other block."
+    ],
+    "coachingPoints": [
+      "Chin the ball before turning.",
+      "Pivot, do not hop.",
+      "Use the board from the angle."
+    ],
+    "commonMistakes": [
+      "Travelling on the turn.",
+      "Fading away and leaving the shot short.",
+      "Turning into the middle, where help defenders are."
+    ],
+    "safety": "Shooters rebound their own ball only when the lane is clear; nobody stands under the rim while others shoot.",
+    "progressions": [
+      "Defender plays behind the post.",
+      "Shot fake after the turn and step through."
+    ],
+    "regressions": ["Start already facing the rim.", "No jump: set shot off the board."],
+    "variations": ["Turn to the middle and shoot a hook.", "Turnaround from the short corner."],
+    "successCriteria": ["Seven of ten made from each block.", "No travels."],
+    "gameApplication": "Post players who can turn and score keep defenders honest when they double the ball.",
+    "repetitions": "8 reps each block",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [0.3, -0.3]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

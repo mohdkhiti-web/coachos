@@ -1,0 +1,135 @@
+{
+  "seedKey": "beef-partner-check",
+  "title": "BEEF Partner Check",
+  "description": "Partners watch each other shoot and check one cue at a time — Balance, Eyes, Elbow, Follow-through — giving specific feedback after each shot.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["communication"],
+  "subSkills": ["follow_through"],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 8,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["BEEF", "feedback", "form"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Understand the four shooting checkpoints and recognise them in a partner's shot.",
+    "setup": "Pairs share a basket; shooter three metres from the rim, partner beside them with the second ball.",
+    "organization": "Five shots per cue, then swap roles.",
+    "instructions": [
+      "Round 1 (Balance): the partner checks the feet are shoulder-width and the shooter lands in place.",
+      "Round 2 (Eyes): the partner checks the eyes stay on the target until the ball lands.",
+      "Round 3 (Elbow): the partner checks the elbow sits under the ball.",
+      "Round 4 (Follow-through): the partner checks the arm finishes high with the wrist relaxed.",
+      "After each shot the partner gives one sentence of feedback."
+    ],
+    "coachingPoints": [
+      "Watch only the cue for that round.",
+      "Feedback is specific: 'Elbow was out' not 'bad shot'.",
+      "Shooter repeats a shot after a correction."
+    ],
+    "commonMistakes": [
+      "Partners watching the ball instead of the shooter.",
+      "Vague feedback.",
+      "Trying to fix all four cues at once."
+    ],
+    "safety": "Shooters rebound their own ball only when the lane is clear; nobody stands under the rim while others shoot.",
+    "progressions": ["Move to five metres.", "Partner gives feedback on two cues at once."],
+    "regressions": ["Coach demonstrates each cue first.", "Shoot at a lowered rim."],
+    "variations": ["Film shots on a phone and check together.", "Use BEEF on free throws."],
+    "successCriteria": [
+      "Partner identifies the cue correctly in most shots.",
+      "Shooter improves the corrected cue on the next shot."
+    ],
+    "gameApplication": "Players who can self-correct their form keep their shot reliable without a coach watching.",
+    "repetitions": "4 rounds of 5 shots each",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [-1.2, -1]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0.2, -1.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1]
+            },
+            "text": "Balance · Eyes · Elbow · Follow"
+          }
+        ]
+      }
+    }
+  ]
+}

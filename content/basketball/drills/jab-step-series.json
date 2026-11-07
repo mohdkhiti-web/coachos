@@ -1,0 +1,138 @@
+{
+  "seedKey": "jab-step-series",
+  "title": "Jab-Step Series",
+  "description": "From triple threat, the player uses a jab step to test the defender, then shoots, drives or crosses over depending on the reaction.",
+  "category": "shooting",
+  "primarySkill": "footwork",
+  "secondarySkills": ["shooting_form", "decision_making"],
+  "subSkills": ["reading_the_defense"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["jab step", "triple threat", "1v1"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Read a defender's reaction to the jab step and choose the right counter: shoot, drive or cross-over drive.",
+    "setup": "Offense catches at the wing; defender guards from the lane.",
+    "organization": "Live 1v1 from the catch; swap after each possession.",
+    "instructions": [
+      "Catch in triple threat facing the rim.",
+      "Jab a short step at the defender's front foot with the non-pivot foot.",
+      "Defender retreats: rise and shoot.",
+      "Defender stays: drive past on the jab side.",
+      "Defender over-reacts to the jab: cross the jab foot over and drive the other way."
+    ],
+    "coachingPoints": [
+      "Short, sharp jab: keep the weight on the pivot foot.",
+      "Eyes on the defender's feet.",
+      "Ball tight in the shooting pocket."
+    ],
+    "commonMistakes": [
+      "Long jab that loses balance.",
+      "Lifting the pivot foot (travel).",
+      "Deciding before seeing the reaction."
+    ],
+    "safety": "Defenders play legally, no reaching for the held ball.",
+    "progressions": ["Two jabs maximum before deciding.", "Add a help defender."],
+    "regressions": ["Defender reacts on purpose.", "No live play after the decision."],
+    "variations": ["Jab and step-back.", "Jab series from the elbow."],
+    "successCriteria": ["Correct counter on most possessions.", "No travels."],
+    "gameApplication": "The jab step gives players time and information before they commit.",
+    "repetitions": "6 possessions per player",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [-0.5, -0.8]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [-0.4, -0.3]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [1.2, 1.2]
+            },
+            "text": "Jab → shoot / drive / cross"
+          }
+        ]
+      }
+    }
+  ]
+}

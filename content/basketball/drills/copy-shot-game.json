@@ -1,0 +1,147 @@
+{
+  "seedKey": "copy-shot-game",
+  "title": "Copy-Shot Game",
+  "description": "In this traditional shooting game, a leader calls and takes a shot; if it goes in, everyone must copy it exactly or collect a letter — five letters and you are out.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["competitiveness", "finishing"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "group",
+  "phases": ["small_sided", "cool_down"],
+  "ageMin": 8,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 8,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["game", "creativity", "HORSE"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Develop a range of shots with both hands and from different spots in a low-pressure game.",
+    "setup": "Two to six players at one basket with one ball.",
+    "organization": "Players take turns as the leader in a fixed order.",
+    "instructions": [
+      "The leader calls the shot (spot, hand, type) before shooting.",
+      "If the leader makes it, each player in turn must copy it.",
+      "A player who misses the copy gets a letter.",
+      "If the leader misses, the next player becomes the leader.",
+      "Five letters and you are out; last player in wins."
+    ],
+    "coachingPoints": [
+      "Call the shot clearly before shooting.",
+      "Choose shots you practise: weak-hand lay-ups, bank shots.",
+      "Same routine under pressure."
+    ],
+    "commonMistakes": [
+      "Unrealistic trick shots that do not help development.",
+      "Not calling the shot.",
+      "Copying without the same hand or spot."
+    ],
+    "safety": "No dunks or hanging on the rim; shots from realistic spots only.",
+    "progressions": [
+      "Only game shots allowed (no trick shots).",
+      "Each player must use the weak hand once as the leader."
+    ],
+    "regressions": [
+      "Three letters instead of five.",
+      "Leader can only choose from a list of shots."
+    ],
+    "variations": [
+      "Team version: teams of two copy each other.",
+      "Only shots from inside the lane."
+    ],
+    "successCriteria": [
+      "Every called shot is copied exactly.",
+      "Uses at least one weak-hand shot as leader."
+    ],
+    "gameApplication": "Players add shots to their game when they are free to try them in a game format.",
+    "repetitions": "1 to 2 games",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-0.6, 1]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1.4]
+            },
+            "text": "Call it, make it, copy it"
+          }
+        ]
+      }
+    }
+  ]
+}

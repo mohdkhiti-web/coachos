@@ -1,0 +1,167 @@
+{
+  "seedKey": "one-hand-form-shooting",
+  "title": "One-Hand Form Shooting",
+  "description": "Shooters release with the shooting hand only, close to the rim, to groove a straight elbow, a wrist snap and a high follow-through without the guide hand interfering.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": [],
+  "subSkills": ["follow_through"],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "individual",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 7,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 12,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["form", "one hand", "close range"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build a straight, repeatable one-hand release: elbow under the ball, wrist snap, fingers finishing toward the rim.",
+    "setup": "Players one metre in front of the rim, square to it, a ball each; two or three players per basket.",
+    "organization": "Players take turns of five shots, then rotate.",
+    "instructions": [
+      "Balance the ball on the shooting hand's finger pads, wrist bent back, elbow under the ball.",
+      "Put the guide hand behind the back.",
+      "Bend the knees, extend and push the ball up with one hand.",
+      "Hold the follow-through: arm straight, wrist relaxed, fingers pointing at the rim.",
+      "Make five, then take one step back; stop at the edge of the lane."
+    ],
+    "coachingPoints": [
+      "Elbow under the ball, pointing at the rim.",
+      "Ball rolls off the index and middle fingers last.",
+      "Hold the finish until the ball hits the rim."
+    ],
+    "commonMistakes": [
+      "Elbow flaring out to the side.",
+      "Pushing the ball from the palm (flat shot).",
+      "Dropping the arm before the ball arrives."
+    ],
+    "safety": "Shooters rebound their own ball only when the lane is clear; nobody stands under the rim while others shoot.",
+    "progressions": ["Add the guide hand at the side only for balance.", "Shoot from the elbows."],
+    "regressions": ["Use a smaller ball or a lowered rim.", "Shoot at the backboard square only."],
+    "variations": ["Left-hand form shots to build touch.", "Count swishes only."],
+    "successCriteria": [
+      "Five makes in a row at each distance.",
+      "Follow-through held on every shot."
+    ],
+    "gameApplication": "Every good jump shot is built on the one-hand release; this keeps it clean.",
+    "repetitions": "5 makes at each of 4 distances",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      },
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "basket",
+              "offset": [0, 1.2]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "basket",
+              "offset": [-1.2, 1.6]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "basket",
+              "offset": [1.2, 1.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b3",
+            "type": "ball",
+            "heldBy": "o3"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o2"
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o3"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 0.8]
+            },
+            "text": "One hand, step back on 5"
+          }
+        ]
+      }
+    }
+  ]
+}

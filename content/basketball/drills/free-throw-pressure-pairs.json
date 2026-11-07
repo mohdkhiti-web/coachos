@@ -1,0 +1,129 @@
+{
+  "seedKey": "free-throw-pressure-pairs",
+  "title": "Free-Throw Pressure Pairs",
+  "description": "Pairs must both make their free throws in the same round; a miss by either means both run a short sprint — building composure when a teammate depends on you.",
+  "category": "shooting",
+  "primarySkill": "free_throws",
+  "secondarySkills": ["competitiveness"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["free throws", "pressure", "accountability"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Make free throws under shared pressure, keeping the same routine regardless of the stakes.",
+    "setup": "Pairs at each basket; one shooter at the line, partner rebounding.",
+    "organization": "Each player shoots two; then swap.",
+    "instructions": [
+      "Player A shoots two free throws using a consistent routine.",
+      "Player B shoots two free throws.",
+      "If the pair makes all four, they score a point.",
+      "If the pair misses two or more, both sprint baseline to free-throw line and back.",
+      "Play to five points."
+    ],
+    "coachingPoints": [
+      "Same routine every time: dribbles, breath, shot.",
+      "Focus on the rim, not the consequence.",
+      "Encourage your partner after a miss."
+    ],
+    "commonMistakes": [
+      "Rushing the second shot after a miss.",
+      "Changing the routine under pressure.",
+      "Blaming the partner."
+    ],
+    "safety": "Sprints are short; water available; stop if anyone feels unwell.",
+    "progressions": ["Pair must make 4 of 4.", "Shoot after a full-court sprint."],
+    "regressions": ["Pair needs 3 of 4.", "No sprint penalty; just count points."],
+    "variations": ["Groups of four instead of pairs.", "One-and-one format."],
+    "successCriteria": [
+      "Pair reaches five points within the time.",
+      "Routine kept identical on every attempt."
+    ],
+    "gameApplication": "Late-game free throws happen under pressure; practising them with consequences builds composure.",
+    "repetitions": "Play to 5 points",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [-0.6, 0.2]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 1.2]
+            },
+            "text": "Both make or both run"
+          }
+        ]
+      }
+    }
+  ]
+}

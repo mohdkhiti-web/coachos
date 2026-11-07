@@ -1,0 +1,132 @@
+{
+  "seedKey": "crossover-pull-up-jumper",
+  "title": "Crossover Pull-Up Jumper",
+  "description": "Shooters attack at speed, cross over and pull up for a mid-range jumper, stopping on balance from a full-speed dribble.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["dribbling"],
+  "subSkills": ["shooting_off_the_dribble", "crossover"],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["pull-up", "crossover", "mid-range"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Stop from a full-speed dribble with a crossover into a balanced, square pull-up jumper.",
+    "setup": "Line at half court on the right side.",
+    "organization": "One at a time; rebound and go to the other side.",
+    "instructions": [
+      "Attack the right elbow at speed with the right hand.",
+      "At the three-point line, cross over to the left hand.",
+      "On the next dribble, gather and plant both feet (hop or 1-2).",
+      "Rise straight up and shoot.",
+      "Repeat from the left side going right."
+    ],
+    "coachingPoints": [
+      "Last dribble harder and lower: it stops the momentum.",
+      "Shoulders square before the rise.",
+      "Land where you took off."
+    ],
+    "commonMistakes": [
+      "Drifting forward on the shot.",
+      "Crossover too high and wide.",
+      "Picking the ball up early and losing rhythm."
+    ],
+    "safety": "Shooters rebound their own ball only when the lane is clear; nobody stands under the rim while others shoot.",
+    "progressions": ["Live defender trailing.", "Pull-up from three-point range."],
+    "regressions": ["Jog speed.", "Pull-up without the crossover."],
+    "variations": ["In-and-out into the pull-up.", "Pull-up off a hesitation."],
+    "successCriteria": ["Lands within half a metre of the take-off spot.", "Six of twelve made."],
+    "gameApplication": "Mid-range pull-ups punish defenses that protect the rim and give space.",
+    "repetitions": "6 each side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_half_court",
+              "offset": [-1, -0.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [0.6, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [-0.6, 0.2]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "seedKey": "lying-down-release-practice",
+  "title": "Lying-Down Release Practice",
+  "description": "Players lie on their backs and shoot the ball straight up so it lands back in the shooting hand — an isolated drill for backspin and a straight release.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["ball_control"],
+  "subSkills": ["follow_through"],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "individual",
+  "phases": ["warm_up", "cool_down", "skill"],
+  "ageMin": 7,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 30,
+  "durationMin": 3,
+  "durationMax": 5,
+  "space": "any_space",
+  "tags": ["release", "backspin", "home practice"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Feel a straight, one-hand release with even backspin, without the distractions of the rim and legs.",
+    "setup": "Players lie on their backs on the floor, spread out, a ball each.",
+    "organization": "Whole group; also an at-home exercise.",
+    "instructions": [
+      "Lie on the back with knees bent, ball in the shooting hand above the shoulder.",
+      "Elbow points to the ceiling, under the ball.",
+      "Shoot the ball straight up about one metre with a wrist snap.",
+      "Catch it with the same hand and repeat.",
+      "Check the spin: the seams should rotate straight backward."
+    ],
+    "coachingPoints": [
+      "Straight up and straight down: if it drifts, the elbow is out.",
+      "Snap the wrist, fingers finish pointing up.",
+      "Even backspin, no side spin."
+    ],
+    "commonMistakes": [
+      "Pushing the ball with two hands.",
+      "Ball drifting to the side.",
+      "Flicking with the fingers only, no elbow extension."
+    ],
+    "safety": "Shoot only a metre high so the ball cannot hit faces; spread players out.",
+    "progressions": ["Shoot higher (two metres).", "Close the eyes on the last five reps."],
+    "regressions": ["Shoot to a partner kneeling beside you.", "Use a smaller ball."],
+    "variations": ["Standing version against a wall target.", "Weak-hand reps for touch."],
+    "successCriteria": [
+      "Ten reps in a row landing back in the hand.",
+      "Straight backspin seen on most reps."
+    ],
+    "gameApplication": "A straight release with backspin gives the ball a soft touch on the rim.",
+    "repetitions": "3 sets of 15",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b3",
+            "type": "ball",
+            "heldBy": "o3"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 2]
+            },
+            "text": "Lie down, shoot up"
+          }
+        ]
+      }
+    }
+  ]
+}
