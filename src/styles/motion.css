@@ -277,6 +277,17 @@
 @utility digit-roll {
   transition: transform 260ms var(--ease-out);
 }
+/* The 0-9 strip is generated content, so it is never part of the element's text (screen readers, copy, tests). */
+@utility digit-strip {
+  display: block;
+  line-height: 1;
+  &::before {
+    content: "0\A 1\A 2\A 3\A 4\A 5\A 6\A 7\A 8\A 9";
+    white-space: pre;
+    display: block;
+    line-height: 1;
+  }
+}
 
 /* A row that just moved or arrived holds the coach's orange mark until the next interaction elsewhere. */
 @keyframes cos-mark-in {

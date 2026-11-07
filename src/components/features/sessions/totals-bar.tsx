@@ -3,6 +3,8 @@
 import { Clock } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useFlash } from "@/components/motion";
+import { RollingNumber } from "@/components/ui/rolling-number";
+import { Tally, type TallySegment } from "@/components/ui/tally";
 import { cn } from "@/lib/cn";
 import { formatClockTime } from "@/modules/plans/format";
 
@@ -16,8 +18,11 @@ export function TotalsBar({
   remaining,
   endTime,
   endsNextDay,
+  segments = [],
   className,
 }: {
+  /** The activities in timeline order, for the running tally (phase colours). */
+  segments?: readonly TallySegment[];
   total: number;
   target: number;
   remaining: number;
@@ -31,29 +36,23 @@ export function TotalsBar({
   const over = remaining < 0;
   // A brief accent tint on the numbers that actually changed (an activity added/removed/resized) — never on
   // first render, and never a shake or bounce, just a single acknowledgement (motion.css `cos-flash`).
-  const totalFlash = useFlash(total);
   const endFlash = useFlash(endTime);
 
   return (
     <section
       aria-label={t("label")}
       className={cn(
-        "flex flex-wrap items-center gap-x-8 gap-y-2 rounded-lg border border-line-strong bg-surface-raised px-4 py-3 shadow-paper",
+        "flex flex-wrap items-center gap-x-8 gap-y-2.5 rounded-xl border border-line-strong bg-surface-raised/95 px-4 py-3 shadow-pop backdrop-blur-md",
         className,
       )}
     >
       <p className="flex items-baseline gap-2">
         <span className="eyebrow">{t("total")}</span>
-        <span
-          key={totalFlash.flashKey}
-          className={cn(
-            "-mx-1 rounded px-1 numeral text-4xl leading-none font-semibold text-ink",
-            totalFlash.changed && "animate-flash",
-          )}
+        <RollingNumber
+          value={total}
+          className="numeral text-4xl leading-none font-bold text-ink"
           data-testid="total-minutes"
-        >
-          {total}
-        </span>
+        />
         <span className="text-sm font-medium text-ink-muted uppercase">{t("minutes")}</span>
       </p>
 
@@ -97,15 +96,9 @@ export function TotalsBar({
         aria-valuemax={target}
         aria-valuenow={Math.min(total, target)}
         aria-valuetext={t("progressText", { total, target })}
-        className="h-1.5 w-full overflow-hidden rounded-full bg-line"
+        className="w-full"
       >
-        <div
-          className={cn(
-            "h-full origin-left rounded-full transition-transform duration-500 ease-out",
-            over ? "bg-warning" : "bg-accent",
-          )}
-          style={{ transform: `scaleX(${target > 0 ? Math.min(1, total / target) : 0})` }}
-        />
+        <Tally segments={segments} target={target} />
       </div>
     </section>
   );

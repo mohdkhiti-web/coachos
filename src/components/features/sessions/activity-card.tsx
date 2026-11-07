@@ -149,7 +149,7 @@ export function ActivityCard({
         aria-labelledby={headingId}
         data-kind={activity.kind}
         className={cn(
-          "flex overflow-hidden rounded-lg border shadow-paper transition-shadow duration-200 ease-out",
+          "relative flex overflow-hidden rounded-lg border shadow-paper transition-shadow duration-200 ease-out",
           isBreak
             ? "border-dashed border-line-strong bg-surface-sunken"
             : "border-line bg-surface-raised",
@@ -157,7 +157,8 @@ export function ActivityCard({
           !leaving && "hover:shadow-lift",
         )}
       >
-        <span aria-hidden className={cn("w-1.5 shrink-0", bar)} />
+        {/* this activity's block of the running tally: its phase colour along the top edge */}
+        <span aria-hidden className={cn("absolute inset-x-0 top-0 h-[3px]", bar)} />
 
         <div className="flex min-w-0 flex-1 gap-2 p-3 sm:gap-3 sm:p-4">
           {canEdit ? (

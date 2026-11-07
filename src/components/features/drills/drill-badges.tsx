@@ -22,7 +22,7 @@ export function LevelMeter({
             key={i}
             className={cn(
               "h-3 w-1.5 rounded-[1px]",
-              i <= PIPS[level] ? "bg-accent" : "bg-line-strong",
+              i <= PIPS[level] ? "bg-ink" : "bg-line-strong",
             )}
           />
         ))}
@@ -33,7 +33,7 @@ export function LevelMeter({
 }
 
 const SCOPE_STYLE: Record<DrillScope, string> = {
-  library: "border-accent text-accent-strong bg-accent-soft",
+  library: "border-accent/40 text-accent bg-accent-soft",
   mine: "border-line-strong text-ink bg-surface-sunken",
   workspace: "border-line-strong text-ink-muted bg-surface-raised",
 };
@@ -43,7 +43,7 @@ export function ScopeBadge({ scope, label }: { scope: DrillScope; label: string 
   return (
     <span
       className={cn(
-        "inline-flex shrink-0 items-center rounded-full border px-2.5 py-0.5 eyebrow text-[0.7rem] tracking-[0.1em] whitespace-nowrap",
+        "inline-flex shrink-0 items-center rounded-[4px] border px-1.5 py-px eyebrow text-[0.66rem] tracking-[0.08em] whitespace-nowrap",
         SCOPE_STYLE[scope],
       )}
     >

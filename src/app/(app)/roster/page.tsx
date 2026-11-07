@@ -5,6 +5,7 @@ import { Card, CardBody, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { requireViewer } from "@/modules/identity";
 import { listPlayers, listTeams } from "@/modules/roster";
+import { MetaTag } from "@/components/ui/page-header";
 
 export const metadata: Metadata = { title: "Roster" };
 
@@ -18,10 +19,9 @@ export default async function RosterPage() {
 
   return (
     <div className="space-y-8">
-      <header className="flex flex-wrap items-end justify-between gap-4">
-        <div className="space-y-1">
-          <p className="eyebrow text-accent">{t("eyebrow")}</p>
-          <h1 className="display text-4xl text-ink">{t("title")}</h1>
+      <header className="flex flex-wrap items-end justify-between gap-4 border-b border-line pb-6">
+        <div className="space-y-2">
+          <h1 className="display text-[2.6rem] text-ink md:text-5xl">{t("title")}</h1>
           <p className="max-w-2xl text-ink-muted">{t("subtitle")}</p>
         </div>
         <Button asChild>

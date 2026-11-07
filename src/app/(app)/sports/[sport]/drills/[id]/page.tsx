@@ -78,13 +78,13 @@ export default async function DrillDetailPage({
         ) : null}
 
         <header className="space-y-4">
-          <div className="flex flex-wrap items-center gap-3">
-            <p className="eyebrow">{drill.category.name}</p>
-            <ScopeBadge scope={drill.scope} label={t(`scopes.${drill.scope}`)} />
-          </div>
-          <h2 id="drill-title" className="max-w-3xl display text-4xl text-ink md:text-6xl">
+          <h2 id="drill-title" className="max-w-3xl display text-[2.6rem] text-ink md:text-6xl">
             {drill.title}
           </h2>
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="font-semibold text-accent">{drill.category.name}</span>
+            <ScopeBadge scope={drill.scope} label={t(`scopes.${drill.scope}`)} />
+          </div>
           <p className="max-w-3xl text-lg leading-relaxed text-ink-muted">{drill.description}</p>
           <div className="flex flex-wrap items-center gap-2">
             <DrillActions
@@ -114,7 +114,8 @@ export default async function DrillDetailPage({
           </div>
         </header>
 
-        <dl className="grid grid-cols-2 gap-x-6 gap-y-5 border-y border-line py-5 sm:grid-cols-3 lg:grid-cols-4">
+        {/* the drill's facts as a ruled sheet of boxed fields */}
+        <dl className="grid grid-cols-2 overflow-hidden rounded-xl border border-line bg-surface-raised shadow-paper sm:grid-cols-3 lg:grid-cols-4 [&>div]:-mr-px [&>div]:-mb-px [&>div]:border-r [&>div]:border-b [&>div]:border-line [&>div]:px-4 [&>div]:py-3.5">
           <Stat value={range(drill.durationMin, drill.durationMax)} label={t("card.minutes")} />
           <Stat value={range(drill.playersMin, drill.playersMax)} label={t("card.players")} />
           <Stat value={range(drill.ageMin, drill.ageMax)} label={t("card.ages")} />

@@ -8,6 +8,7 @@ import { listTimezones } from "@/lib/timezones";
 import { requireViewer, sessionDefaults } from "@/modules/identity";
 import { getAgeGroups, getObjectives, getSport } from "@/modules/sports";
 import { getSportModule } from "@/sports/registry";
+import { MetaTag } from "@/components/ui/page-header";
 
 export const metadata: Metadata = { title: "Generate session" };
 
@@ -33,10 +34,12 @@ export default async function GenerateSessionPage({
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
-      <header className="space-y-2">
-        <p className="eyebrow text-accent">{sport.name}</p>
-        <h1 className="display text-4xl text-ink md:text-5xl">{t("title")}</h1>
+      <header className="space-y-2 border-b border-line pb-6">
+        <h1 className="display text-[2.6rem] text-ink md:text-5xl">{t("title")}</h1>
         <p className="max-w-2xl text-base text-ink-muted">{t("subtitle")}</p>
+        <div className="pt-1">
+          <MetaTag>{sport.name}</MetaTag>
+        </div>
       </header>
       <GeneratorWorkspace
         sportKey={sport.key}

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-import { TiltCard } from "@/components/motion";
 import { CourtMark } from "@/components/ui/court-mark";
 import { cn } from "@/lib/cn";
 import type { DrillCardDto } from "@/modules/drills/dto";
@@ -39,104 +38,99 @@ export async function DrillCard({
   const hiddenEquipment = drill.equipment.length - shownEquipment.length;
 
   return (
-    <TiltCard>
-      <article
-        className={cn(
-          "group relative flex interactive-surface flex-col overflow-hidden rounded-lg border border-line bg-surface-raised shadow-paper",
-          className,
+    <article
+      className={cn(
+        "group relative flex interactive-surface flex-col overflow-hidden rounded-lg border border-line bg-surface-raised shadow-paper",
+        className,
+      )}
+    >
+      {/* a court-line accent that draws in from the left when the card is hovered or focused */}
+      <span
+        aria-hidden
+        className="absolute inset-x-0 top-0 z-10 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 ease-out group-focus-within:scale-x-100 group-hover:scale-x-100"
+      />
+      <div className="flex h-44 items-center justify-center overflow-hidden border-b border-line bg-surface-sunken">
+        {drill.diagram ? (
+          <DrillDiagram
+            diagram={drill.diagram}
+            decorative
+            className="h-full w-full p-1 transition-transform duration-300 ease-out [@media(hover:hover)]:group-hover:scale-[1.03]"
+          />
+        ) : (
+          <CourtMark className="h-28 w-auto opacity-60" />
         )}
-      >
-        {/* a court-line accent that draws in from the left when the card is hovered or focused */}
-        <span
-          aria-hidden
-          className="absolute inset-x-0 top-0 z-10 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 ease-out group-focus-within:scale-x-100 group-hover:scale-x-100"
-        />
-        <div className="flex h-44 items-center justify-center overflow-hidden border-b border-line bg-surface-sunken">
-          {drill.diagram ? (
-            <DrillDiagram
-              diagram={drill.diagram}
-              decorative
-              className="h-full w-full p-1 transition-transform duration-300 ease-out group-hover:scale-[1.04]"
-            />
-          ) : (
-            <CourtMark className="h-28 w-auto opacity-60" />
-          )}
-        </div>
-        <FavoriteButton
-          sportKey={sportKey}
-          drillId={drill.id}
-          title={drill.title}
-          initial={drill.isFavorite}
-        />
+      </div>
+      <FavoriteButton
+        sportKey={sportKey}
+        drillId={drill.id}
+        title={drill.title}
+        initial={drill.isFavorite}
+      />
 
-        <div className="flex flex-1 flex-col gap-3 p-4">
-          <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-2">
-            <p className="eyebrow">{drill.category.name}</p>
-            <ScopeBadge scope={drill.scope} label={t(`scopes.${drill.scope}`)} />
-          </div>
-
-          <Heading className="text-lg leading-snug font-semibold tracking-tight text-ink">
-            <Link
-              href={href}
-              className="focus-visible:after:outline-focus rounded-xs outline-none after:absolute after:inset-0 after:rounded-lg focus-visible:after:outline-2 focus-visible:after:outline-offset-2"
-            >
-              {drill.title}
-            </Link>
-          </Heading>
-
-          <p className="line-clamp-2 text-sm text-ink-muted">{drill.description}</p>
-
-          <dl className="mt-auto grid grid-cols-3 gap-3 border-t border-line pt-3">
-            <Stat value={range(drill.durationMin, drill.durationMax)} label={t("card.minutes")} />
-            <Stat value={range(drill.playersMin, drill.playersMax)} label={t("card.players")} />
-            <Stat value={range(drill.ageMin, drill.ageMax)} label={t("card.ages")} />
-          </dl>
-
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <LevelMeter level={drill.level} label={t(`levels.${drill.level}`)} />
-            <IntensityMeter
-              intensity={drill.intensity}
-              label={t(`intensities.${drill.intensity}`)}
-            />
-            {drill.format ? <FormatPill label={t(`formats.${drill.format}`)} /> : null}
-          </div>
-          {drill.primarySkill ? (
-            <p className="-mt-1 inline-flex items-center gap-2 text-sm text-ink-muted">
-              <span
-                aria-hidden
-                className="size-1.5 rounded-full bg-accent transition-transform duration-200 group-hover:scale-150"
-              />
-              {drill.primarySkill.name}
-            </p>
-          ) : null}
-
-          {shownEquipment.length > 0 ? (
-            <ul className="flex flex-wrap gap-1.5" aria-label={t("card.equipment")}>
-              {shownEquipment.map((e) => (
-                <li
-                  key={e.key}
-                  className="rounded-xs border border-line bg-surface px-2 py-0.5 text-xs text-ink-muted"
-                >
-                  {e.name}
-                </li>
-              ))}
-              {hiddenEquipment > 0 ? (
-                <li className="rounded-xs px-1 py-0.5 text-xs text-ink-muted">
-                  {t("card.more", { count: hiddenEquipment })}
-                </li>
-              ) : null}
-            </ul>
-          ) : null}
-          <p
-            aria-hidden
-            className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-[opacity,transform] duration-200 [@media(hover:hover)]:translate-y-1 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-focus-within:translate-y-0 [@media(hover:hover)]:group-focus-within:opacity-100 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100"
+      <div className="flex flex-1 flex-col gap-3 p-4">
+        <Heading className="text-lg leading-snug font-semibold tracking-tight text-ink">
+          <Link
+            href={href}
+            className="focus-visible:after:outline-focus rounded-xs outline-none after:absolute after:inset-0 after:rounded-lg focus-visible:after:outline-2 focus-visible:after:outline-offset-2"
           >
-            {t("card.view")}
-            <ArrowRight className="size-4" />
-          </p>
-          {footer ? <div className="relative z-10 pt-1">{footer}</div> : null}
+            {drill.title}
+          </Link>
+        </Heading>
+
+        <div className="-mt-1.5 flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
+          <span className="text-sm font-medium text-accent">{drill.category.name}</span>
+          <ScopeBadge scope={drill.scope} label={t(`scopes.${drill.scope}`)} />
         </div>
-      </article>
-    </TiltCard>
+
+        <p className="line-clamp-2 text-sm text-ink-muted">{drill.description}</p>
+
+        <dl className="mt-auto grid grid-cols-3 gap-3 border-t border-line pt-3">
+          <Stat value={range(drill.durationMin, drill.durationMax)} label={t("card.minutes")} />
+          <Stat value={range(drill.playersMin, drill.playersMax)} label={t("card.players")} />
+          <Stat value={range(drill.ageMin, drill.ageMax)} label={t("card.ages")} />
+        </dl>
+
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <LevelMeter level={drill.level} label={t(`levels.${drill.level}`)} />
+          <IntensityMeter intensity={drill.intensity} label={t(`intensities.${drill.intensity}`)} />
+          {drill.format ? <FormatPill label={t(`formats.${drill.format}`)} /> : null}
+        </div>
+        {drill.primarySkill ? (
+          <p className="-mt-1 inline-flex items-center gap-2 text-sm text-ink-muted">
+            <span
+              aria-hidden
+              className="size-1.5 rounded-full bg-accent transition-transform duration-200 group-hover:scale-150"
+            />
+            {drill.primarySkill.name}
+          </p>
+        ) : null}
+
+        {shownEquipment.length > 0 ? (
+          <ul className="flex flex-wrap gap-1.5" aria-label={t("card.equipment")}>
+            {shownEquipment.map((e) => (
+              <li
+                key={e.key}
+                className="rounded-xs border border-line bg-surface px-2 py-0.5 text-xs text-ink-muted"
+              >
+                {e.name}
+              </li>
+            ))}
+            {hiddenEquipment > 0 ? (
+              <li className="rounded-xs px-1 py-0.5 text-xs text-ink-muted">
+                {t("card.more", { count: hiddenEquipment })}
+              </li>
+            ) : null}
+          </ul>
+        ) : null}
+        <p
+          aria-hidden
+          className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-[opacity,transform] duration-200 [@media(hover:hover)]:translate-y-1 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-focus-within:translate-y-0 [@media(hover:hover)]:group-focus-within:opacity-100 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100"
+        >
+          {t("card.view")}
+          <ArrowRight className="size-4" />
+        </p>
+        {footer ? <div className="relative z-10 pt-1">{footer}</div> : null}
+      </div>
+    </article>
   );
 }

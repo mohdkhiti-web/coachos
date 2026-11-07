@@ -1,36 +1,38 @@
 import { cn } from "@/lib/cn";
 
-const DIGITS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-
 /**
  * A number whose digits roll in place when it changes, like a flap board updating one character at a time. Each digit
- * is a column of 0-9 translated to the current digit with a CSS transition, so a value that changes again mid-roll
- * retargets smoothly. The first render is static (the transform is simply set). Columns are keyed from the right, so
- * 9 → 10 adds a column instead of shifting every digit.
+ * is a CSS-generated 0-9 strip translated to the current digit with a transition, so a value that changes again
+ * mid-roll retargets smoothly. The first render is static (the transform is simply set). Columns are keyed from the
+ * right, so 9 → 10 adds a column instead of shifting every digit.
  *
- * Screen readers get the plain value once; the columns are hidden. Non-digit characters (":" "-" ",") are static.
+ * The element's TEXT is exactly the value (a visually hidden copy); the strips are generated content, invisible to
+ * screen readers, copy and paste, and text assertions.
  */
 export function RollingNumber({
   value,
   className,
+  ...rest
 }: {
   value: number | string;
   className?: string;
-}) {
+} & Omit<React.ComponentProps<"span">, "children">) {
   const text = String(value);
   const chars = [...text];
   return (
-    <span className={cn("relative inline-flex tabular-nums", className)}>
+    <span className={cn("relative inline-flex tabular-nums", className)} {...rest}>
       <span className="sr-only">{text}</span>
       <span aria-hidden className="inline-flex">
         {chars.map((ch, i) => {
           const key = chars.length - i;
-          const d = DIGITS.indexOf(ch);
+          const d = "0123456789".indexOf(ch);
           if (d < 0) {
             return (
-              <span key={`c${key}`} className="inline-block">
-                {ch}
-              </span>
+              <span
+                key={`c${key}`}
+                className="inline-block before:content-[attr(data-char)]"
+                data-char={ch}
+              />
             );
           }
           return (
@@ -39,15 +41,9 @@ export function RollingNumber({
               className="relative inline-block h-[1em] overflow-hidden leading-none"
             >
               <span
-                className="flex flex-col digit-roll"
+                className="digit-strip digit-roll"
                 style={{ transform: `translateY(-${d}em)` }}
-              >
-                {DIGITS.map((n) => (
-                  <span key={n} className="block h-[1em] leading-none">
-                    {n}
-                  </span>
-                ))}
-              </span>
+              />
             </span>
           );
         })}

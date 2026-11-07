@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { getTranslations } from "next-intl/server";
 import { SportTabs } from "@/components/features/sports/sport-tabs";
 import { getSport } from "@/modules/sports";
 
@@ -12,15 +11,13 @@ export default async function SportLayout({ children, params }: LayoutProps<"/sp
   const { sport: key } = await params;
   const sport = await getSport(key);
   if (!sport) notFound();
-  const t = await getTranslations("workspace");
 
   return (
     <div data-sport={sport.key} className="space-y-8">
-      <header className="space-y-4">
-        <div className="space-y-1">
-          <p className="eyebrow text-accent">{t("eyebrow", { sport: sport.name })}</p>
-          <h1 className="display text-5xl text-ink md:text-6xl">{sport.name}</h1>
-        </div>
+      <header className="space-y-5">
+        <h1 className="display text-[2.6rem] text-ink sm:text-5xl md:text-[3.5rem]">
+          {sport.name}
+        </h1>
         <SportTabs sport={sport.key} />
       </header>
       {children}

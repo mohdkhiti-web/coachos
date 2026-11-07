@@ -22,6 +22,7 @@ import {
   statusesFor,
 } from "@/modules/plans";
 import { getAgeGroups, getSport } from "@/modules/sports";
+import { MetaTag } from "@/components/ui/page-header";
 
 export const metadata: Metadata = { title: "My Sessions" };
 
@@ -74,10 +75,12 @@ export default async function MySessionsPage({
 
   return (
     <div className="space-y-8">
-      <header className="flex flex-wrap items-end justify-between gap-4">
-        <div className="space-y-1">
-          <p className="eyebrow text-accent">{sport.name}</p>
-          <h1 className="display text-5xl text-ink md:text-6xl">{t("title")}</h1>
+      <header className="flex flex-wrap items-end justify-between gap-4 border-b border-line pb-6">
+        <div className="space-y-2.5">
+          <h1 className="display text-[2.6rem] text-ink sm:text-5xl md:text-[3.5rem]">
+            {t("title")}
+          </h1>
+          <MetaTag>{sport.name}</MetaTag>
         </div>
         {canCreate ? (
           <div className="flex flex-wrap items-center gap-3">
