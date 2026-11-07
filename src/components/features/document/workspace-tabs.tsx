@@ -50,7 +50,7 @@ export function WorkspaceTabs({
                 }}
                 className={cn(
                   "focus-visible:outline-focus flex min-h-10 items-center rounded-sm px-4 text-sm font-medium focus-visible:outline-2",
-                  active ? "bg-accent text-accent-ink" : "text-ink hover:bg-surface-sunken",
+                  active ? "bg-accent-bright text-accent-ink" : "text-ink hover:bg-surface-sunken",
                 )}
               >
                 {t(`tabs.${view}`)}

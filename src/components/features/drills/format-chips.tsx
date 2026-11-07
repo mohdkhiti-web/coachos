@@ -31,7 +31,7 @@ export async function FormatChips({
                 className={cn(
                   "focus-visible:outline-focus inline-flex min-h-10 min-w-12 items-center justify-center rounded-full border px-3.5 py-1 numeral text-sm font-semibold transition-colors focus-visible:outline-2",
                   active
-                    ? "border-accent bg-accent text-accent-ink"
+                    ? "border-accent bg-accent-bright text-accent-ink"
                     : "border-line-strong bg-surface-raised text-ink hover:border-accent hover:bg-accent-soft",
                 )}
               >

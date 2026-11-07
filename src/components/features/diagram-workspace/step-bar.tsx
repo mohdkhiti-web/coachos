@@ -62,7 +62,7 @@ export function StepBar({
             className={cn(
               "h-10 max-w-40 min-w-16 truncate rounded-md border px-3 text-sm font-medium smooth-colors",
               on
-                ? "border-accent bg-accent text-accent-ink"
+                ? "border-accent bg-accent-bright text-accent-ink"
                 : "border-line-strong bg-surface-raised text-ink hover:bg-surface-sunken",
             )}
           >

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { getFormatter, getTranslations } from "next-intl/server";
 import { Card, CardBody } from "@/components/ui/card";
-import { SectionMarker } from "@/components/ui/section-marker";
 import { can } from "@/lib/authz/can";
 import type { WidgetProps } from "./widgets";
 
@@ -28,7 +27,7 @@ export async function WorkspaceCard({ viewer }: WidgetProps) {
   return (
     <Card interactive>
       <CardBody className="space-y-4">
-        <SectionMarker n={2}>{t("eyebrow")}</SectionMarker>
+        <h2 className="text-lg font-semibold tracking-tight text-ink">{t("eyebrow")}</h2>
         <dl className="divide-y divide-line">
           {rows.map(([label, value]) => (
             <div

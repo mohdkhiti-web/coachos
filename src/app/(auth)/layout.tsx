@@ -15,7 +15,7 @@ export default async function AuthLayout({ children }: LayoutProps<"/">) {
     <div className="arena grid min-h-dvh arena-surface text-ink lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-md focus:bg-accent-bright focus:px-4 focus:py-2 focus:text-accent-ink"
       >
         {tc("skipToContent")}
       </a>

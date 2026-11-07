@@ -25,6 +25,7 @@ import {
   reviseGenerationAction,
 } from "@/modules/generator/actions";
 import type { GenerationPreview } from "@/modules/generator/dto";
+import { Tally } from "@/components/ui/tally";
 import type { Issue, Reason } from "@/modules/generator/types";
 import {
   emptyOptions,
@@ -400,6 +401,17 @@ const PreviewPanel = React.forwardRef<
             total: preview.considered.total,
           })}
         </p>
+        {/* the running tally of the proposal: each new version strikes its blocks in */}
+        <Tally
+          key={preview.items.map((i) => i.drillId ?? "break").join("-")}
+          intro
+          className="mt-3"
+          segments={preview.items.map((i, n) => ({
+            id: `${n}-${i.drillId ?? "break"}`,
+            minutes: i.durationMin,
+            phase: i.phase ?? "break",
+          }))}
+        />
       </header>
 
       {errors.length > 0 ? (

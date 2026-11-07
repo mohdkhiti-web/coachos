@@ -72,7 +72,7 @@ export function TotalsBar({
           {endsNextDay ? <span className="text-sm text-ink-muted">{t("nextDay")}</span> : null}
         </p>
       ) : (
-        <p className="inline-flex items-center gap-1.5 text-sm text-ink-muted">
+        <p className="hidden items-center gap-1.5 text-sm text-ink-muted sm:inline-flex">
           <Clock className="size-4" aria-hidden />
           {t("noEnd")}
         </p>

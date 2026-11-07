@@ -54,7 +54,7 @@ export function NavLinks({ variant, assistant }: { variant: "rail" | "bar"; assi
               {active && variant === "bar" ? (
                 <span
                   aria-hidden
-                  className="absolute inset-x-6 top-0 h-0.5 animate-fade-in rounded-full bg-accent"
+                  className="absolute inset-x-6 top-0 h-0.5 animate-fade-in rounded-full bg-accent-bright"
                 />
               ) : null}
               <Icon

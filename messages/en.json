@@ -673,7 +673,7 @@
         }
       },
       "snapshot": {
-        "title": "Today's coaching snapshot",
+        "title": "Your sheet",
         "next": "Next session",
         "nextNone": "Nothing scheduled",
         "nextNoneBody": "Give a session a date and it appears here.",
@@ -686,7 +686,7 @@
         "squadUnit": "{count, plural, one {player} other {players}}",
         "squadNone": "Not set yet",
         "squadAdd": "Add your squad size",
-        "library": "Library drills",
+        "library": "Library at a glance",
         "libraryUnit": "{count, plural, one {drill} other {drills}}"
       },
       "recent": {

@@ -47,7 +47,7 @@ export async function DrillCard({
       {/* a court-line accent that draws in from the left when the card is hovered or focused */}
       <span
         aria-hidden
-        className="absolute inset-x-0 top-0 z-10 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 ease-out group-focus-within:scale-x-100 group-hover:scale-x-100"
+        className="absolute inset-x-0 top-0 z-10 h-0.5 origin-left scale-x-0 bg-accent-bright transition-transform duration-300 ease-out group-focus-within:scale-x-100 group-hover:scale-x-100"
       />
       <div className="flex h-44 items-center justify-center overflow-hidden border-b border-line bg-surface-sunken">
         {drill.diagram ? (
@@ -99,7 +99,7 @@ export async function DrillCard({
           <p className="-mt-1 inline-flex items-center gap-2 text-sm text-ink-muted">
             <span
               aria-hidden
-              className="size-1.5 rounded-full bg-accent transition-transform duration-200 group-hover:scale-150"
+              className="size-1.5 rounded-full bg-accent-bright transition-transform duration-200 group-hover:scale-150"
             />
             {drill.primarySkill.name}
           </p>

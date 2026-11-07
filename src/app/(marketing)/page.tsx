@@ -63,7 +63,7 @@ export default async function LandingPage() {
     <div className="arena relative flex min-h-dvh flex-col overflow-x-clip arena-surface text-ink">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-md focus:bg-accent-bright focus:px-4 focus:py-2 focus:text-accent-ink"
       >
         {tc("skipToContent")}
       </a>
@@ -207,27 +207,26 @@ export default async function LandingPage() {
               {t("platform.title")}
             </h2>
             <p className="mt-4 max-w-2xl text-base text-ink-muted">{t("platform.intro")}</p>
-            {/* the specification sheet: one ruled list, every row a capability that works today */}
+            {/* The register: one ruled sheet, a row per capability that works today. Left column, the boxed condensed
+                label in blue ink with its orange mark; right column, what it does. */}
             <ul
               aria-label={t("platform.listLabel")}
-              className="mt-12 grid overflow-hidden rounded-xl border border-line bg-surface-raised md:grid-cols-2 [&>li]:-mr-px [&>li]:-mb-px [&>li]:border-r [&>li]:border-b [&>li]:border-line"
+              className="mt-12 divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface-raised"
             >
               {FEATURES.map(({ key, icon: Icon }) => (
                 <li
                   key={key}
-                  className="group flex gap-5 p-6 smooth-colors hover:bg-surface-sunken sm:p-7"
+                  className="group grid gap-3 px-5 py-5 smooth-colors hover:bg-surface-sunken sm:grid-cols-[17rem_minmax(0,1fr)] sm:items-center sm:gap-8 sm:px-7"
                 >
-                  <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-line-strong text-accent transition-transform duration-200 ease-out group-hover:-translate-y-0.5">
-                    <Icon className="size-5" aria-hidden />
-                  </span>
-                  <span className="min-w-0">
-                    <h3 className="text-lg font-semibold tracking-tight text-ink">
-                      {t(`platform.features.${key}.title`)}
-                    </h3>
-                    <p className="mt-1.5 text-[0.95rem] leading-relaxed text-ink-muted">
-                      {t(`platform.features.${key}.body`)}
-                    </p>
-                  </span>
+                  <h3 className="flex items-center gap-3 display text-[1.6rem] leading-none text-ink">
+                    <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-md border border-line-strong text-accent transition-colors duration-200 group-hover:border-accent-bright">
+                      <Icon className="size-[1.1rem]" aria-hidden />
+                    </span>
+                    {t(`platform.features.${key}.title`)}
+                  </h3>
+                  <p className="max-w-2xl text-[0.98rem] leading-relaxed text-ink-muted sm:border-l sm:border-line sm:pl-8">
+                    {t(`platform.features.${key}.body`)}
+                  </p>
                 </li>
               ))}
             </ul>
@@ -264,7 +263,7 @@ export default async function LandingPage() {
               <span className="absolute top-4 right-4 rounded-[4px] border border-line-strong px-1.5 py-px eyebrow text-[0.66rem]">
                 {t("ai.exampleTag")}
               </span>
-              <p className="max-w-[85%] rounded-lg rounded-bl-[3px] bg-accent px-4 py-3 text-[0.95rem] text-accent-ink">
+              <p className="max-w-[85%] rounded-lg rounded-bl-[3px] bg-accent-bright px-4 py-3 text-[0.95rem] text-accent-ink">
                 {t("ai.exampleRequest")}
               </p>
               <div className="mt-4 rounded-lg border border-line-strong bg-surface p-4">

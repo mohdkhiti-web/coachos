@@ -9,7 +9,7 @@ export function BrandMark({ className }: { className?: string }) {
       focusable="false"
       className={cn("size-8 shrink-0", className)}
     >
-      <rect width="32" height="32" rx="8" className="fill-accent" />
+      <rect width="32" height="32" rx="8" className="fill-accent-bright" />
       <g
         fill="none"
         stroke="var(--accent-ink)"

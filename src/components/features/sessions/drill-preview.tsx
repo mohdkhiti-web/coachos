@@ -17,7 +17,7 @@ function Bullets({ items }: { items: string[] }) {
     <ul className="space-y-2 text-sm leading-relaxed text-ink">
       {items.map((item, i) => (
         <li key={i} className="flex gap-2.5">
-          <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+          <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-bright" />
           <span>{item}</span>
         </li>
       ))}

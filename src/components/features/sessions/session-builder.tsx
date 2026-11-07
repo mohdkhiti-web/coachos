@@ -660,6 +660,20 @@ export function SessionBuilder({
               </div>
             }
           />
+
+          <TotalsBar
+            className="sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-20 md:bottom-4"
+            total={summary.totalMinutes}
+            target={Number.isFinite(targetMinutes) ? targetMinutes : 0}
+            remaining={summary.remainingMinutes}
+            endTime={summary.schedule?.endTime ?? null}
+            endsNextDay={summary.schedule?.endsNextDay ?? false}
+            segments={view.map((a) => ({
+              id: a.id,
+              minutes: a.durationMin,
+              phase: a.kind === "break" ? "break" : a.phase,
+            }))}
+          />
         </section>
 
         <aside
@@ -685,20 +699,6 @@ export function SessionBuilder({
           </Card>
         </aside>
       </div>
-
-      <TotalsBar
-        className="sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-20 md:bottom-4"
-        total={summary.totalMinutes}
-        target={Number.isFinite(targetMinutes) ? targetMinutes : 0}
-        remaining={summary.remainingMinutes}
-        endTime={summary.schedule?.endTime ?? null}
-        endsNextDay={summary.schedule?.endsNextDay ?? false}
-        segments={view.map((a) => ({
-          id: a.id,
-          minutes: a.durationMin,
-          phase: a.kind === "break" ? "break" : a.phase,
-        }))}
-      />
 
       <div role="status" aria-live="polite" className="sr-only">
         {announcement}

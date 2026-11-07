@@ -210,7 +210,7 @@
 
 /* Overscroll and short pages must not flash the app's paper colour behind an arena page. */
 html:has(.arena) {
-  background: #0a1226;
+  background: #121f3b;
   color-scheme: dark;
 }
 

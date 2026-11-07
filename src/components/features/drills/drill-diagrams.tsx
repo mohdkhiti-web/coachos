@@ -93,7 +93,7 @@ export function DrillDiagrams({
               className={cn(
                 "h-10 max-w-48 truncate rounded-md border px-3 text-sm font-medium smooth-colors",
                 i === index
-                  ? "border-accent bg-accent text-accent-ink"
+                  ? "border-accent bg-accent-bright text-accent-ink"
                   : "border-line-strong bg-surface-raised text-ink hover:bg-surface-sunken",
               )}
             >

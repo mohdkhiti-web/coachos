@@ -98,7 +98,7 @@ export function FilterForm({
             {t("title")}
           </span>
           {activeCount > 0 ? (
-            <span className="rounded-full bg-accent px-2 py-0.5 numeral text-sm text-accent-ink">
+            <span className="rounded-full bg-accent-bright px-2 py-0.5 numeral text-sm text-accent-ink">
               {activeCount}
             </span>
           ) : null}

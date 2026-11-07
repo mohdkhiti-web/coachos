@@ -43,7 +43,7 @@ export async function AppShell({
     <div className="min-h-dvh md:grid md:grid-cols-[15.5rem_minmax(0,1fr)] print:block">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink print:hidden"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-md focus:bg-accent-bright focus:px-4 focus:py-2 focus:text-accent-ink print:hidden"
       >
         {tc("skipToContent")}
       </a>
@@ -59,7 +59,7 @@ export async function AppShell({
           <div className="px-3 pb-2">
             <Link
               href={`/sessions/${sport}/new`}
-              className="flex h-11 press items-center gap-2.5 rounded-md bg-accent px-3 text-sm font-semibold text-accent-ink shadow-[0_1px_0_rgb(0_0_0/0.25),inset_0_1px_0_rgb(255_255_255/0.16)] smooth-colors hover:bg-accent-strong"
+              className="flex h-11 press items-center gap-2.5 rounded-md bg-accent-bright px-3 text-sm font-semibold text-accent-ink shadow-[0_1px_0_rgb(0_0_0/0.25),inset_0_1px_0_rgb(255_255_255/0.16)] smooth-colors hover:bg-accent-bright-strong"
             >
               <Plus className="size-4" aria-hidden />
               {tn("newSession")}

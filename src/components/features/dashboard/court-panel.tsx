@@ -36,7 +36,7 @@ export async function CourtPanel({
         className="flex flex-col overflow-hidden rounded-xl border border-line bg-surface-raised shadow-paper"
       >
         <header className="flex items-center justify-between gap-3 border-b border-line px-5 py-3">
-          <h2 id="court-h" className="eyebrow">
+          <h2 id="court-h" className="text-base font-semibold text-ink">
             {t("title")}
           </h2>
         </header>
@@ -83,7 +83,7 @@ export async function CourtPanel({
       className="flex flex-col overflow-hidden rounded-xl border border-line bg-surface-raised shadow-paper"
     >
       <header className="flex items-center justify-between gap-3 border-b border-line px-5 py-3">
-        <h2 id="court-h" className="eyebrow">
+        <h2 id="court-h" className="text-base font-semibold text-ink">
           {featured.kind === "next" ? t("next") : t("latest")}
         </h2>
         <StatusBadge status={plan.status} label={ts(`status.${plan.status}`)} />

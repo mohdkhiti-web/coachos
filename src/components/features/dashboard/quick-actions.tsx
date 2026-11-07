@@ -47,7 +47,7 @@ export async function QuickActions({
       className="overflow-hidden rounded-xl border border-line bg-surface-raised shadow-paper"
     >
       <header className="border-b border-line px-5 py-3">
-        <h2 id="quick-actions" className="eyebrow">
+        <h2 id="quick-actions" className="text-base font-semibold text-ink">
           {tc("actionsTitle")}
         </h2>
       </header>
@@ -59,7 +59,7 @@ export async function QuickActions({
               className={cn(
                 "group flex items-center gap-4 px-5 py-3.5 smooth-colors",
                 primary
-                  ? "bg-accent text-accent-ink hover:bg-accent-strong"
+                  ? "bg-accent-bright text-accent-ink hover:bg-accent-bright-strong"
                   : "hover:bg-surface-sunken",
               )}
             >

@@ -69,13 +69,16 @@ export async function RecommendedDrills({
               className="rise"
               style={{ "--rise-delay": `${i * 70}ms` } as React.CSSProperties}
             >
-              <p className="mb-2 eyebrow text-accent">
-                {t("forPriority", { priority: to(`q4.options.${priority}.label`) })}
-              </p>
               <DrillCard
                 drill={drill}
                 href={`/sports/${sportKey}/drills/${drill.id}`}
                 sportKey={sportKey}
+                className="h-full"
+                footer={
+                  <p className="border-t border-line pt-3 text-sm font-semibold text-accent">
+                    {t("forPriority", { priority: to(`q4.options.${priority}.label`) })}
+                  </p>
+                }
               />
             </li>
           ))}

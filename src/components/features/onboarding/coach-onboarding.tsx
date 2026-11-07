@@ -139,7 +139,7 @@ export function CoachOnboarding({ needsName }: { needsName: boolean }) {
                 key={s}
                 className={cn(
                   "h-1 w-3.5 rounded-full smooth-colors min-[420px]:w-6 sm:w-9",
-                  s <= question ? "bg-accent" : "bg-line-strong",
+                  s <= question ? "bg-accent-bright" : "bg-line-strong",
                 )}
               />
             ))}

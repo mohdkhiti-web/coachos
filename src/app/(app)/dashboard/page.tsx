@@ -13,6 +13,7 @@ import { cn } from "@/lib/cn";
 import { parseSportPref, SPORT_COOKIE } from "@/lib/sport-pref";
 import { assistantAvailability } from "@/modules/assistant";
 import { getCommandCenter } from "@/modules/dashboard";
+import { getSportOverview } from "@/modules/drills";
 import { requireViewer } from "@/modules/identity";
 import { getSport } from "@/modules/sports";
 import { PRIMARY_SPORT_KEY } from "@/sports/registry";
@@ -34,11 +35,12 @@ export default async function DashboardPage() {
   const viewer = await requireViewer(); // real, database-backed check (redirects if signed out / not onboarded)
   const cookieStore = await cookies();
   const sportKey = parseSportPref(cookieStore.get(SPORT_COOKIE)?.value) ?? PRIMARY_SPORT_KEY;
-  const [t, tcc, center, sport] = await Promise.all([
+  const [t, tcc, center, sport, overview] = await Promise.all([
     getTranslations("dashboard"),
     getTranslations("dashboard.cc"),
     getCommandCenter(viewer, sportKey),
     getSport(sportKey),
+    getSportOverview(viewer.actor, sportKey),
   ]);
   const sportName = sport?.name ?? "";
   const firstName = viewer.user.name.trim().split(/\s+/)[0] ?? viewer.user.name;
@@ -63,6 +65,7 @@ export default async function DashboardPage() {
       </div>
       <Snapshot
         data={center}
+        overview={overview}
         sportKey={sportKey}
         squadSize={viewer.profile.coaching.typicalPlayers}
       />
