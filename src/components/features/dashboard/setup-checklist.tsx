@@ -36,7 +36,7 @@ export async function SetupChecklist({ viewer }: WidgetProps) {
                 className={cn(
                   "mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full border",
                   item.done
-                    ? "border-success bg-success text-white dark:text-black"
+                    ? "border-success bg-success text-status-ink"
                     : "border-line-strong text-ink-faint",
                 )}
               >

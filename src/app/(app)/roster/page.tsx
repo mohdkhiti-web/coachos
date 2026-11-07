@@ -50,8 +50,8 @@ export default async function RosterPage() {
               <Card interactive className="h-full">
                 <Link href={`/roster/${team.id}`} className="block h-full">
                   <CardHeader>
-                    <p className="eyebrow">{team.sportName}</p>
                     <CardTitle>{team.name}</CardTitle>
+                    <p className="text-sm font-medium text-accent">{team.sportName}</p>
                   </CardHeader>
                   <CardBody className="flex items-center justify-between">
                     <span className="text-sm text-ink-muted">

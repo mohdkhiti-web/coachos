@@ -49,6 +49,7 @@
   --warning-soft: #fbedd3;
   --success: #17724a;
   --success-soft: #daf1e5;
+  --status-ink: #ffffff; /* text on a solid danger/success fill */
   --info: #1f4fbf;
   --info-soft: #e1e9fb;
 
@@ -104,6 +105,7 @@
   --warning-soft: #33280f;
   --success: #4fd497;
   --success-soft: #0f2c25;
+  --status-ink: #0b1226;
   --info: #8fb0ff;
   --info-soft: #16244a;
 
@@ -157,6 +159,7 @@
     --warning-soft: #33280f;
     --success: #4fd497;
     --success-soft: #0f2c25;
+    --status-ink: #0b1226;
     --info: #8fb0ff;
     --info-soft: #16244a;
 
@@ -205,6 +208,7 @@
   --color-warning-soft: var(--warning-soft);
   --color-success: var(--success);
   --color-success-soft: var(--success-soft);
+  --color-status-ink: var(--status-ink);
   --color-info: var(--info);
   --color-info-soft: var(--info-soft);
   --color-overlay: var(--overlay);

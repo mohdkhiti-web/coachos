@@ -15,7 +15,7 @@ export const buttonVariants = cva(
         secondary:
           "border border-line-strong bg-surface-raised text-ink shadow-[0_1px_0_rgb(15_27_51/0.04)] hover:border-ink-faint hover:bg-surface-sunken",
         ghost: "text-ink hover:bg-surface-sunken",
-        danger: "bg-danger text-white hover:brightness-110 dark:text-black",
+        danger: "bg-danger text-status-ink hover:brightness-110",
         link: "h-auto rounded-xs p-0 text-accent underline-offset-4 hover:underline",
       },
       size: {
