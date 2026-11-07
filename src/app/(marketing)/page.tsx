@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { BasketballCourtBackground, CoachImage } from "@/components/basketball";
+import { CinematicVideo } from "@/components/basketball/cinematic-video";
 import { DrillDiagram } from "@/components/features/drills/drill-diagram";
 import { HeroSheet } from "@/components/features/marketing/hero-sheet";
 import { LANDING_DIAGRAM } from "@/components/features/marketing/landing-diagram";
@@ -165,6 +166,36 @@ export default async function LandingPage() {
           </div>
         </section>
 
+        {/* ---------------------------------------------------------------- the court (cinematic band) */}
+        <section
+          aria-labelledby="court-h"
+          className="relative isolate overflow-hidden border-t border-line/60"
+        >
+          <CinematicVideo
+            sources={[
+              { src: "/videos/hero-court.webm", type: "video/webm" },
+              { src: "/videos/hero-court.mp4", type: "video/mp4" },
+            ]}
+            poster="/images/cinematic/hero-court-poster.jpg"
+            pauseLabel={t("hero.videoPause")}
+            playLabel={t("hero.videoPlay")}
+            className="absolute inset-0 -z-10 h-full w-full"
+          />
+          {/* legibility scrim: the ink ground rises from the bottom-left where the words sit */}
+          <div
+            aria-hidden
+            className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,var(--surface)_0%,rgb(10_18_38/0.55)_32%,transparent_70%),linear-gradient(to_right,rgb(10_18_38/0.7),transparent_62%)]"
+          />
+          <div className="mx-auto flex min-h-[34rem] w-full max-w-6xl flex-col justify-end px-4 py-16 sm:px-8 md:min-h-[40rem] md:py-20">
+            <h2 id="court-h" className="max-w-3xl display text-[2.8rem] text-ink sm:text-7xl">
+              {t("court.title")}
+            </h2>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-muted">
+              {t("court.body")}
+            </p>
+          </div>
+        </section>
+
         {/* ---------------------------------------------------------------- platform */}
         <section
           id="platform"
@@ -268,9 +299,13 @@ export default async function LandingPage() {
             </h2>
             <ol className="mt-12 grid gap-6 lg:grid-cols-3">
               {HOW.map(({ key, slot }, i) => (
-                <li key={key} className="overflow-hidden rounded-xl glass-panel">
-                  <div className="border-b border-line bg-surface-sunken/60 p-4">
-                    <CoachImage slot={slot} className="mx-auto max-h-44" />
+                <li key={key} className="group overflow-hidden rounded-xl glass-panel">
+                  <div className="aspect-[4/3] overflow-hidden border-b border-line bg-surface-sunken">
+                    <CoachImage
+                      slot={slot}
+                      sizes="(min-width: 1024px) 22rem, 92vw"
+                      className="h-full w-full rounded-none object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    />
                   </div>
                   <div className="p-6">
                     <p className="numeral text-2xl leading-none font-bold text-accent">{i + 1}</p>

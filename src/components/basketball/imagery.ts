@@ -30,10 +30,28 @@ export interface ImageSpec {
 }
 
 export const IMAGERY: Record<ImageSlot, ImageSpec> = {
-  "landing.planning": { scene: "planning", alt: "A coach drawing up a play on a tactics board" },
-  "landing.shooting": { scene: "shooting", alt: "A player shooting" },
+  "landing.planning": {
+    scene: "planning",
+    alt: "A coach's hands drawing a half-court play on a clipboard at the sideline",
+    src: "/images/cinematic/clipboard.webp",
+    width: 1168,
+    height: 880,
+  },
+  "landing.shooting": {
+    scene: "shooting",
+    alt: "A player's sneakers cutting sharply on hardwood as the ball bounces ahead",
+    src: "/images/cinematic/sneakers.webp",
+    width: 1168,
+    height: 880,
+  },
   "landing.defense": { scene: "defense", alt: "A defender sliding to stay in front of the ball" },
-  "landing.huddle": { scene: "huddle", alt: "A team huddle seen from above" },
+  "landing.huddle": {
+    scene: "huddle",
+    alt: "A wheelchair basketball player pushing up the court while dribbling",
+    src: "/images/cinematic/wheelchair.webp",
+    width: 1344,
+    height: 752,
+  },
   "onboarding.panel": { scene: "planning", alt: "A coach with a tactics board" },
   "dashboard.empty": { scene: "shooting", alt: "A player shooting on an empty court" },
   "drills.discovery": { scene: "defense", alt: "Players working through a defensive drill" },

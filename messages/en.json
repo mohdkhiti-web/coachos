@@ -236,6 +236,10 @@
         "tallyLabel": "60 minutes: warm-up, two skill blocks, a game and a cool-down",
         "court": "Give-and-go, drawn on the court"
       }
+    },
+    "court": {
+      "title": "Built for the hour on the court.",
+      "body": "The planning happens here, so the time in the gym goes to your players: drills with real diagrams, a timeline that adds itself up, and a sheet ready to print before you leave the house."
     }
   },
   "auth": {
@@ -901,7 +905,9 @@
       "mineEyebrow": "Yours",
       "mineTitle": "Your drills",
       "mineEmptyTitle": "You haven't created a drill yet",
-      "mineEmptyBody": "Build your own drill — with a court diagram — or copy one from the library and make it yours."
+      "mineEmptyBody": "Build your own drill — with a court diagram — or copy one from the library and make it yours.",
+      "videoPause": "Pause the video",
+      "videoPlay": "Play the video"
     }
   },
   "drills": {

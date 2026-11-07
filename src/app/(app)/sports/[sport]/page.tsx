@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, Plus } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { DrillCard } from "@/components/features/drills/drill-card";
+import { CinematicVideo } from "@/components/basketball/cinematic-video";
 import { Button } from "@/components/ui/button";
 import { Card, CardBody } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
@@ -33,6 +34,26 @@ export default async function SportOverviewPage({ params }: PageProps<"/sports/[
 
   return (
     <div className="space-y-12">
+      <div className="relative h-52 overflow-hidden rounded-xl border border-line bg-rail shadow-paper sm:h-64 md:h-80">
+        {sport.key === "wheelchair_basketball" ? (
+          <CinematicVideo
+            sources={[{ src: "/videos/wheelchair.webm", type: "video/webm" }]}
+            poster="/images/cinematic/wheelchair-poster.jpg"
+            pauseLabel={t("videoPause")}
+            playLabel={t("videoPlay")}
+            className="h-full w-full object-[50%_18%]"
+          />
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element -- decorative banner, compressed WebP
+          <img
+            src="/images/cinematic/arena.webp"
+            alt=""
+            aria-hidden
+            className="h-full w-full object-cover object-[50%_62%]"
+          />
+        )}
+      </div>
+
       <section
         aria-label={t("summary")}
         className="flex flex-wrap items-center justify-between gap-6"
