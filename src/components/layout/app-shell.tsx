@@ -9,6 +9,7 @@ import { parseTheme, THEME_COOKIE } from "@/lib/theme";
 import { parseSportPref, SPORT_COOKIE } from "@/lib/sport-pref";
 import type { Viewer } from "@/modules/identity";
 import { PRIMARY_SPORT_KEY } from "@/sports/registry";
+import { CommandPalette } from "./command-palette";
 import { NavLinks } from "./nav-links";
 import { SportSwitcher } from "./sport-switcher";
 import { ThemeToggle } from "./theme-toggle";
@@ -99,6 +100,7 @@ export async function AppShell({
             ) : null}
           </div>
           <div className="flex items-center gap-1">
+            {viewer ? <CommandPalette sport={sport} assistant={assistant} /> : null}
             {viewer ? <SportSwitcher initial={sport} /> : null}
             <ThemeToggle initial={theme} />
             {viewer ? <UserMenu name={viewer.user.name} email={viewer.user.email} /> : null}

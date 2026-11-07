@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, FileText, Plus } from "lucide-react";
+import { ArrowRight, FileText, Play, Plus } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { StatusBadge } from "@/components/features/sessions/badges";
 import { Button } from "@/components/ui/button";
@@ -21,11 +21,12 @@ export async function CourtPanel({
   featured: FeaturedSession | null;
   sportKey: string;
 }) {
-  const [t, td, ts, tdoc, locale] = await Promise.all([
+  const [t, td, ts, tdoc, tr, locale] = await Promise.all([
     getTranslations("dashboard.cc.court"),
     getTranslations("drills"),
     getTranslations("sessions"),
     getTranslations("sessions.document"),
+    getTranslations("sessions.run"),
     getLocale(),
   ]);
 
@@ -145,6 +146,14 @@ export async function CourtPanel({
               <ArrowRight className="size-4" aria-hidden />
             </Link>
           </Button>
+          {blocks.length > 0 ? (
+            <Button asChild variant="ink">
+              <Link href={`/sessions/${sportKey}/${plan.id}/run`}>
+                <Play className="size-4" aria-hidden />
+                {tr("open")}
+              </Link>
+            </Button>
+          ) : null}
           <Button asChild variant="secondary">
             <Link href={`/sessions/${sportKey}/${plan.id}/document`}>
               <FileText className="size-4" aria-hidden />

@@ -10,6 +10,7 @@ import {
   Coffee,
   Copy,
   Eye,
+  Play,
   FileCheck2,
   ListPlus,
   MoreHorizontal,
@@ -101,6 +102,7 @@ export function SessionBuilder({
   assistantHref?: string | null;
 }) {
   const t = useTranslations("sessions.builder");
+  const tr = useTranslations("sessions.run");
   const ts = useTranslations("sessions");
   const te = useTranslations("errors");
   const tc = useTranslations("common");
@@ -521,6 +523,14 @@ export function SessionBuilder({
                 <Link href={assistantHref} data-testid="improve-with-ai">
                   <Sparkles className="size-4" aria-hidden />
                   {t("improveWithAi")}
+                </Link>
+              </Button>
+            ) : null}
+            {view.length > 0 ? (
+              <Button asChild variant="secondary">
+                <Link href={`${listHref}/${plan.id}/run`} data-testid="run-practice">
+                  <Play className="size-4" aria-hidden />
+                  {tr("open")}
                 </Link>
               </Button>
             ) : null}

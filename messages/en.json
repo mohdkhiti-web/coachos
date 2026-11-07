@@ -1886,7 +1886,36 @@
     },
     "generate": "Generate a session",
     "createWithAi": "Create with AI",
-    "createWithAiPrompt": "Create a 60 minute shooting session for 12 players U14 beginner"
+    "createWithAiPrompt": "Create a 60 minute shooting session for 12 players U14 beginner",
+    "run": {
+      "title": "Run practice",
+      "open": "Run practice",
+      "exit": "Exit run mode",
+      "start": "Start",
+      "pause": "Pause",
+      "resume": "Resume",
+      "next": "Next activity",
+      "previous": "Previous activity",
+      "addMinute": "+1 min",
+      "addMinuteLabel": "Add one minute to this activity",
+      "restart": "Run again",
+      "nowLabel": "Now",
+      "nextLabel": "Up next",
+      "lastActivity": "Last activity of the session",
+      "remaining": "Time left in this activity",
+      "elapsed": "{elapsed} of {total} min",
+      "activityOf": "Activity {index} of {count}",
+      "points": "Coaching points",
+      "noPoints": "No coaching points written for this activity.",
+      "break": "Break",
+      "done": "Practice complete.",
+      "doneBody": "{count, plural, one {# activity} other {# activities}} and {minutes} minutes on the court. Nice work, Coach.",
+      "backToSession": "Back to the session",
+      "keys": "Space start or pause · ← → change activity · Esc exit",
+      "awake": "Screen stays awake while the clock runs",
+      "empty": "This session has no activities yet. Add drills in the builder first.",
+      "announce": "Now: {title}, {minutes} minutes."
+    }
   },
   "roster": {
     "eyebrow": "Teams & players",
@@ -3013,6 +3042,31 @@
       "warmUp": "Warm-up",
       "cones": "Cone drill",
       "ladder": "Agility ladder"
+    }
+  },
+  "palette": {
+    "open": "Search",
+    "openLabel": "Search drills, sessions and pages",
+    "title": "Search CoachOS",
+    "placeholder": "Search drills, sessions or jump to a page…",
+    "goTo": "Go to",
+    "drills": "Drills",
+    "sessions": "Sessions",
+    "searching": "Searching…",
+    "none": "Nothing matches \"{q}\".",
+    "hint": "↑ ↓ to move · Enter to open · Esc to close",
+    "minutes": "{count} min",
+    "pages": {
+      "dashboard": "Dashboard",
+      "sessions": "My sessions",
+      "newSession": "New session",
+      "generate": "Generate a session",
+      "drills": "Drill library",
+      "newDrill": "Create a drill",
+      "templates": "Templates",
+      "roster": "Roster",
+      "assistant": "AI Coach",
+      "settings": "Settings"
     }
   }
 }

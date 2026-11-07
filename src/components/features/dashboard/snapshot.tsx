@@ -62,24 +62,24 @@ export async function Snapshot({
         >
           {t("title")}
         </h2>
-        <dl className="divide-y divide-line">
+        <ul className="divide-y divide-line">
           {rows.map((r) => (
-            <div key={r.label}>
+            <li key={r.label}>
               <Link
                 href={r.href}
                 className="group flex items-baseline justify-between gap-4 px-5 py-3 smooth-colors hover:bg-surface-sunken focus-visible:-outline-offset-2"
               >
-                <dt className="text-sm text-ink-muted">{r.label}</dt>
-                <dd className="flex items-baseline gap-1.5">
+                <span className="text-sm text-ink-muted">{r.label}</span>
+                <span className="flex items-baseline gap-1.5">
                   <span className="numeral text-2xl leading-none font-bold text-ink">
                     {r.value}
                   </span>
                   {r.unit ? <span className="text-sm text-ink-muted">{r.unit}</span> : null}
-                </dd>
+                </span>
               </Link>
-            </div>
+            </li>
           ))}
-        </dl>
+        </ul>
       </div>
 
       <div>

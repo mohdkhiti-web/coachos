@@ -35,4 +35,4 @@ UI transitions are 140 to 220ms with strong ease-out (cubic-bezier(0.23,1,0.32,1
 
 ## Unresolved
 
-There are no photographs. Real coach imagery is still the user's to supply (slots in imagery.ts).
+Photographs and footage now exist: original Higgsfield-generated stills and clips, provenance recorded in public/images/cinematic/README.md. They are content on Persuade surfaces (landing) and sport overview banners, never UI chrome. Real coach photography remains the user's to supply (same file names, or the slots in src/components/basketball/imagery.ts).
