@@ -52,6 +52,7 @@ export default async function DrillDetailPage({
     { id: "progressions", title: t("detail.progressions"), items: c.progressions },
     { id: "regressions", title: t("detail.regressions"), items: c.regressions },
     { id: "variations", title: t("detail.variations"), items: c.variations },
+    { id: "success", title: t("detail.successCriteria"), items: c.successCriteria },
   ].filter((s) => s.items.length > 0);
   // numbered sections: the optional "Organization" block shifts the ones after it
   const hasOrganization = c.organization.length > 0;
@@ -260,6 +261,23 @@ export default async function DrillDetailPage({
                   <BulletList items={s.items} />
                 </div>
               ))}
+            </section>
+          ) : null}
+
+          {c.gameApplication || c.repetitions ? (
+            <section className="grid gap-6 rounded-xl border border-line bg-surface-raised p-5 sm:grid-cols-[minmax(0,1fr)_minmax(0,16rem)]">
+              {c.gameApplication ? (
+                <div className="space-y-2">
+                  <h3 className="eyebrow">{t("detail.gameApplication")}</h3>
+                  <p className="text-base leading-relaxed text-ink">{c.gameApplication}</p>
+                </div>
+              ) : null}
+              {c.repetitions ? (
+                <div className="space-y-2 sm:border-l sm:border-line sm:pl-6">
+                  <h3 className="eyebrow">{t("detail.repetitions")}</h3>
+                  <p className="numeral text-xl leading-snug text-ink">{c.repetitions}</p>
+                </div>
+              ) : null}
             </section>
           ) : null}
 

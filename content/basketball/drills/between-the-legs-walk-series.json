@@ -1,0 +1,135 @@
+{
+  "seedKey": "between-the-legs-walk-series",
+  "title": "Between-the-Legs Walk Series",
+  "description": "Players walk the length of the court taking a between-the-legs dribble on every step, building rhythm and a protected change of hands.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["ball_control"],
+  "subSkills": ["protect_the_ball"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["between the legs", "rhythm"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Pass the ball between the legs in rhythm with the footwork, so the change of hands is protected by the body.",
+    "setup": "Players on the baseline with a ball each, spaced along it.",
+    "organization": "Everyone walks the court together, then jogs back on the return.",
+    "instructions": [
+      "Step forward with the left foot and bounce the ball between the legs from right hand to left.",
+      "Step with the right foot and bounce it back from left to right.",
+      "Keep walking the length of the court, one between-the-legs per step.",
+      "On the way back, walk backwards doing the same move.",
+      "Finish with a stationary set of 20 fast between-the-legs in a wide stance."
+    ],
+    "coachingPoints": [
+      "Bounce the ball under the middle of the body, not off to the side.",
+      "Front foot steps, then the ball goes through.",
+      "Hips low, chest up, eyes forward."
+    ],
+    "commonMistakes": [
+      "Hitting the leg because the stance is too narrow.",
+      "Standing tall and walking stiff-legged.",
+      "Looking down at the ball."
+    ],
+    "safety": "Players walk in separate lanes; a ball that escapes is retrieved only when the lane is clear.",
+    "progressions": [
+      "Jog the series instead of walking.",
+      "Add a crossover after every second between-the-legs."
+    ],
+    "regressions": ["Stationary only, in a wide stance.", "Allow a pause between each change."],
+    "variations": [
+      "Combine with a behind-the-back on the return trip.",
+      "Partners race, losing a step for every bobble."
+    ],
+    "successCriteria": [
+      "Walks the full court without the ball hitting a leg.",
+      "Rhythm matches the footwork every step."
+    ],
+    "gameApplication": "The between-the-legs change keeps the body between the defender and the ball while changing hands in traffic.",
+    "repetitions": "2 lengths forward, 1 backward",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner",
+              "offset": [2, 0.3]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [0, 2]
+              },
+              {
+                "anchor": "left_sideline_center",
+                "offset": [2.5, 0]
+              },
+              {
+                "anchor": "far_right_wing",
+                "offset": [0, -1]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "left_sideline_center",
+              "offset": [4.5, 0.8]
+            },
+            "text": "Step + through"
+          }
+        ]
+      }
+    }
+  ]
+}

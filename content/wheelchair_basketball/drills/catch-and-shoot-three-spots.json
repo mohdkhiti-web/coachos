@@ -1,23 +1,23 @@
 {
   "seedKey": "catch-and-shoot-three-spots",
-  "title": "Catch-and-Shoot Three Spots",
-  "description": "A shooter catches a pass at three spots around the arc and releases immediately, with no extra adjustment, building a reliable game-speed catch-and-shoot.",
+  "title": "Shoot, Push and Relocate",
+  "description": "After each shot the player pushes to a new spot and must catch the next pass on the move, training relocation and a ready chair rather than a stationary catch.",
   "category": "shooting",
   "primarySkill": "shooting_form",
-  "secondarySkills": [],
-  "subSkills": ["catch_and_shoot"],
+  "secondarySkills": ["chair_propulsion"],
+  "subSkills": ["catch_and_shoot", "shooting_off_the_push"],
   "level": "intermediate",
   "intensity": "medium",
   "format": "group",
-  "phases": [],
+  "phases": ["skill"],
   "ageMin": 10,
-  "ageMax": 18,
+  "ageMax": 99,
   "playersMin": 2,
   "playersMax": 16,
-  "durationMin": 5,
-  "durationMax": 7,
+  "durationMin": 6,
+  "durationMax": 10,
   "space": "half_court",
-  "tags": ["shooting", "catch and shoot"],
+  "tags": ["shooting", "relocation", "catch and shoot"],
   "equipment": [
     {
       "type": "basketball",
@@ -36,29 +36,49 @@
     }
   ],
   "content": {
-    "objective": "Catch the ball already squared and release in one motion, with no wasted adjustment.",
-    "setup": "A passer feeds the shooter in turn at the left wing, top of the key and right wing.",
-    "organization": "",
+    "objective": "Relocate with two or three strong pushes after a shot and arrive squared and ready to catch and shoot again.",
+    "setup": "Three spots around the arc (left wing, top, right wing). A passer with two balls under the basket.",
+    "organization": "Shooter and passer swap after 60 seconds; a rebounder can join groups of three.",
     "instructions": [
-      "Square the chair to the basket before the pass arrives.",
-      "Catch with the hands already shaped for the shot.",
-      "Release immediately, no extra dribble or adjustment.",
-      "Make five at each spot before moving on, then switch roles with the passer."
+      "The shooter starts at the left wing, receives a pass and shoots.",
+      "Immediately after the release, push to the top spot with two or three strong strokes.",
+      "Brake and square the chair to the basket as you arrive, hands up for the ball.",
+      "Catch and shoot; then push to the right wing and repeat.",
+      "Count makes in 60 seconds, then swap roles."
     ],
     "coachingPoints": [
-      "Square up before the catch, not after.",
-      "Keep the same release point regardless of the spot.",
-      "Catch and shoot in one continuous motion."
+      "First push starts as soon as the ball leaves the hands.",
+      "Turn the chair with the final stroke so it arrives facing the rim.",
+      "Show a target with both hands before the pass comes."
     ],
     "commonMistakes": [
-      "Catching off-angle and needing to re-square before shooting.",
-      "Rushing the release before the chair is actually set.",
-      "Rocking the chair to generate power instead of using the trunk."
+      "Watching the shot instead of relocating.",
+      "Arriving still rolling and shooting off balance.",
+      "Pushing to the spot and turning afterwards, which costs time."
     ],
-    "safety": "Keep the passer out of the shooter's direct line to the basket.",
-    "progressions": [],
-    "regressions": [],
-    "variations": []
+    "safety": "Passer stays under the rim, out of the shooter's push lane; check that anti-tip casters are fitted for fast braking.",
+    "progressions": [
+      "Add a defender who closes out on the catch.",
+      "Relocate to a random spot called by the passer."
+    ],
+    "regressions": ["Allow a full stop before the catch.", "Two spots only, closer to the rim."],
+    "variations": [
+      "Relocate along the baseline (corner to short corner).",
+      "Shoot off one push toward the passer (shooting off the push)."
+    ],
+    "successCriteria": [
+      "Arrives squared at each spot before the pass is released.",
+      "Makes at least 5 shots in 60 seconds."
+    ],
+    "gameApplication": "Shooters who relocate after passing or shooting get open again; a stationary shooter is easy to guard.",
+    "repetitions": "3 x 60 s per shooter",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
   },
   "diagrams": [
     {
@@ -82,45 +102,60 @@
             "mobility": "chair"
           },
           {
-            "id": "b1",
-            "type": "ball",
-            "heldBy": "o1"
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [0, 0.6]
+            },
+            "mobility": "chair"
           },
           {
-            "id": "c1",
+            "id": "k1",
             "type": "cone",
             "at": {
               "anchor": "left_wing"
-            },
-            "variant": "flat"
+            }
           },
           {
-            "id": "c2",
+            "id": "k2",
             "type": "cone",
             "at": {
               "anchor": "top_key"
-            },
-            "variant": "flat"
+            }
           },
           {
-            "id": "c3",
+            "id": "k3",
             "type": "cone",
             "at": {
               "anchor": "right_wing"
-            },
-            "variant": "flat"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o2"
           }
         ],
         "actions": [
           {
-            "id": "sh1",
+            "id": "a1",
             "step": 1,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
             "type": "shot",
             "entity": "o1"
           },
           {
-            "id": "m2",
-            "step": 2,
+            "id": "a3",
+            "step": 3,
             "type": "move",
             "entity": "o1",
             "path": [
@@ -130,30 +165,27 @@
             ]
           },
           {
-            "id": "sh3",
-            "step": 2,
-            "type": "shot",
-            "entity": "o1"
-          },
-          {
-            "id": "m4",
-            "step": 3,
-            "type": "move",
+            "id": "a4",
+            "step": 4,
+            "type": "sprint",
             "entity": "o1",
             "path": [
               {
                 "anchor": "right_wing"
               }
             ]
-          },
-          {
-            "id": "sh5",
-            "step": 3,
-            "type": "shot",
-            "entity": "o1"
           }
         ],
-        "annotations": []
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1.4]
+            },
+            "text": "Shoot · push · relocate"
+          }
+        ]
       }
     }
   ]

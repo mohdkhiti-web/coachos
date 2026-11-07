@@ -1,0 +1,183 @@
+{
+  "seedKey": "combo-move-ladder",
+  "title": "Combo Move Ladder",
+  "description": "Players climb a ladder of dribble combinations at three cones, adding one move per level, until they can link crossover, between-the-legs and behind-the-back in rhythm.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["ball_control"],
+  "subSkills": ["crossover", "protect_the_ball"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 10,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["combination moves", "progression"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 3
+    }
+  ],
+  "content": {
+    "objective": "Link two and three dribble moves together in rhythm, keeping the ball low and protected between moves.",
+    "setup": "Three cones in a line from the top of the key to the free-throw line, two metres apart.",
+    "organization": "One line at half court; the next player starts at the second cone.",
+    "instructions": [
+      "Level 1: crossover at each cone, finish with a lay-up.",
+      "Level 2: crossover plus between-the-legs at each cone.",
+      "Level 3: crossover, between-the-legs and behind-the-back at each cone.",
+      "Move up a level only after two clean runs at the current one.",
+      "Finish every run at the rim at game speed."
+    ],
+    "coachingPoints": [
+      "Rhythm first: each move takes one dribble.",
+      "Ball below the knee during every change.",
+      "The last move points the body at the rim."
+    ],
+    "commonMistakes": [
+      "Extra dribbles between moves.",
+      "Rising up out of the stance on the behind-the-back.",
+      "Looking at the cone instead of the rim."
+    ],
+    "safety": "Run cones in a straight line with room either side; the finisher clears the lane before the next starts.",
+    "progressions": [
+      "Add a passive defender at the last cone.",
+      "Pull up for a jump shot instead of finishing."
+    ],
+    "regressions": ["Stationary combinations before moving.", "Level 1 only for younger players."],
+    "variations": ["Reverse combinations (behind-the-back first).", "Two-ball version of level 1."],
+    "successCriteria": [
+      "Two clean runs at a level before moving up.",
+      "No extra dribbles between moves."
+    ],
+    "gameApplication": "Defenders stop the first move; linked combinations create the second and third advantage.",
+    "repetitions": "2 clean runs per level",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [0, -0.6]
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1.6]
+            }
+          },
+          {
+            "id": "k2",
+            "type": "cone",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "k3",
+            "type": "cone",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 1.2]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [0.5, 1.6]
+              },
+              {
+                "anchor": "top_key",
+                "offset": [-0.5, 0]
+              },
+              {
+                "anchor": "free_throw_line",
+                "offset": [0.5, 1.2]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.6, 1]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [1.8, 0.8]
+            },
+            "text": "Level 1-2-3"
+          }
+        ]
+      }
+    }
+  ]
+}

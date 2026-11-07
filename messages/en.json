@@ -1092,7 +1092,10 @@
       "duplicated": "A copy is now in your drills.",
       "archivedNotice": "This drill is archived. It can be read here but no longer appears in the library.",
       "explainWithAi": "Explain with AI",
-      "explainWithAiPrompt": "Explain the {title} drill"
+      "explainWithAiPrompt": "Explain the {title} drill",
+      "successCriteria": "Success looks like",
+      "gameApplication": "In the game",
+      "repetitions": "Reps and sets"
     },
     "form": {
       "createTitle": "Create a drill",
@@ -1182,7 +1185,10 @@
       "visibilityHint": "Private drills are visible only to you.",
       "visibilityPrivate": "Only me",
       "visibilityOrganization": "Everyone in this workspace",
-      "privateNote": "In your personal workspace, drills are private to you."
+      "privateNote": "In your personal workspace, drills are private to you.",
+      "successCriteria": "Success criteria",
+      "gameApplication": "In the game",
+      "repetitions": "Reps and sets"
     }
   },
   "diagram": {

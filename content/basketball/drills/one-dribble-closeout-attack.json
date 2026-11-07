@@ -1,0 +1,167 @@
+{
+  "seedKey": "one-dribble-closeout-attack",
+  "title": "One-Dribble Closeout Attack",
+  "description": "The receiver catches a pass as a defender closes out and must beat the closeout with one hard dribble into a pull-up, floater or lay-up.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["decision_making", "shooting_form"],
+  "subSkills": ["shooting_off_the_dribble"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["closeout", "one dribble"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Read the closeout and attack it with one efficient dribble, using the defender's momentum against them.",
+    "setup": "Passer at the top of the key; offense at the wing; defense starts under the basket.",
+    "organization": "Rotate passer to offense to defense to passer.",
+    "instructions": [
+      "The defender passes to the wing and closes out hard.",
+      "The receiver catches in triple threat and reads the closeout.",
+      "If the defender flies past the shot fake, attack with one dribble into a pull-up.",
+      "If the defender closes high, drive the high foot with one dribble to the rim.",
+      "Play live for three seconds after the catch."
+    ],
+    "coachingPoints": [
+      "Catch ready: feet set, eyes on the rim.",
+      "Attack the defender's top foot.",
+      "One dribble only: long and low."
+    ],
+    "commonMistakes": [
+      "Holding the ball and letting the defender recover.",
+      "Driving into the defender's chest.",
+      "Two or three dribbles that let the help come."
+    ],
+    "safety": "Defenders close out under control, chopping their feet; no running through the shooter.",
+    "progressions": [
+      "Add a help defender who rotates on the drive.",
+      "Kick out to a corner shooter if help arrives."
+    ],
+    "regressions": [
+      "Defender closes out at half speed and shows a lean.",
+      "No live play after the decision."
+    ],
+    "variations": ["Start from the corner.", "Allow a jab-step before the dribble."],
+    "successCriteria": [
+      "Scores or creates a clean shot on 6 of 10 possessions.",
+      "Uses one dribble only."
+    ],
+    "gameApplication": "Attacking closeouts is the second half of every drive-and-kick; one dribble keeps help defenders out of the play.",
+    "repetitions": "5 possessions per role",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [0.6, 0.4]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [-1, -0.8]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [0.4, 1.6]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

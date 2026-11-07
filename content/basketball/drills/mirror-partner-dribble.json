@@ -1,0 +1,156 @@
+{
+  "seedKey": "mirror-partner-dribble",
+  "title": "Mirror Partner Dribble",
+  "description": "Partners face each other, both dribbling; the leader makes moves and the follower copies them instantly, which keeps both heads up.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["communication"],
+  "subSkills": ["crossover", "weak_hand"],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "group",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 7,
+  "ageMax": 16,
+  "playersMin": 2,
+  "playersMax": 30,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "any_space",
+  "tags": ["partner", "eyes up", "mirror"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Copy a partner's dribble moves in real time, forcing the eyes to stay on the partner rather than on the ball.",
+    "setup": "Partners face each other two metres apart, each with a ball.",
+    "organization": "Pairs anywhere on the court; switch leader every 30 seconds.",
+    "instructions": [
+      "The leader dribbles in place and changes height, hand or move.",
+      "The follower copies each change as quickly as possible, as a mirror image.",
+      "The leader adds simple moves: crossover, between the legs, a step forward or back.",
+      "After 30 seconds, the follower becomes the leader.",
+      "Final round: the leader moves around the court and the follower shadows them."
+    ],
+    "coachingPoints": [
+      "Watch the partner's chest and hands, not your own ball.",
+      "Copy instantly; the delay is what you are training out.",
+      "Stay low the whole time."
+    ],
+    "commonMistakes": [
+      "Looking down to check the ball before copying.",
+      "Leader making moves too hard for the follower to see.",
+      "Standing up between moves."
+    ],
+    "safety": "Pairs stay two metres apart and keep moving rounds at a walk or jog.",
+    "progressions": [
+      "Leader moves around the court; follower keeps the two-metre gap.",
+      "Add a second ball for both partners."
+    ],
+    "regressions": ["Leader announces each move out loud.", "Stationary moves only."],
+    "variations": ["Groups of three: two followers.", "Leader uses only the weak hand."],
+    "successCriteria": [
+      "Follower matches each change within one dribble.",
+      "Neither partner loses the ball in a round."
+    ],
+    "gameApplication": "Reading a defender's body while dribbling is the same skill as reading a partner here.",
+    "repetitions": "4 rounds of 30 s",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot",
+              "offset": [0, 0.4]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_slot",
+              "offset": [0, -1.8]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_slot",
+              "offset": [0, 0.4]
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_slot",
+              "offset": [0, -1.8]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b3",
+            "type": "ball",
+            "heldBy": "o3"
+          },
+          {
+            "id": "b4",
+            "type": "ball",
+            "heldBy": "o4"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 2.6]
+            },
+            "text": "Leader ↔ Follower"
+          }
+        ]
+      }
+    }
+  ]
+}

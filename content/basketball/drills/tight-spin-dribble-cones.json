@@ -1,0 +1,193 @@
+{
+  "seedKey": "tight-spin-dribble-cones",
+  "title": "Tight Spin Dribble Cones",
+  "description": "Players spin around cones placed close together, learning to pull the ball tight to the hip so a defender cannot reach it during the turn.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["footwork"],
+  "subSkills": ["protect_the_ball"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["spin move", "cones"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Execute a tight spin dribble that keeps the ball close to the body and the eyes up through the turn.",
+    "setup": "Four cones in a diagonal line from the wing to the block, two metres apart.",
+    "organization": "One line at the wing; go when the player ahead reaches the third cone.",
+    "instructions": [
+      "Drive at the first cone with the right hand.",
+      "Plant the left foot beside the cone and spin backwards, pulling the ball tight around the hip.",
+      "Switch the ball to the left hand as you come out of the spin.",
+      "Attack the next cone and spin the other way.",
+      "After the last cone, finish at the rim."
+    ],
+    "coachingPoints": [
+      "Pull the ball, do not swing it: it stays on the hip through the spin.",
+      "Plant foot close to the cone so the spin is tight.",
+      "Snap the head round first to see the floor."
+    ],
+    "commonMistakes": [
+      "Wide spin that takes the ball away from the body.",
+      "Carrying the ball with the palm under it.",
+      "Losing sight of the rim during the spin."
+    ],
+    "safety": "Cones low and flat; players finish away from the next player's path.",
+    "progressions": [
+      "Add a defender beside each cone who swipes at the ball.",
+      "Spin, then pull up for a jump shot."
+    ],
+    "regressions": [
+      "Walk through the footwork without the ball.",
+      "Two cones only, with more space."
+    ],
+    "variations": [
+      "Reverse the course from the baseline outward.",
+      "Use a half-spin and come back the same way."
+    ],
+    "successCriteria": [
+      "Ball stays below the hip and close to the body in every spin.",
+      "No carry violations."
+    ],
+    "gameApplication": "A tight spin beats a defender who has cut off the drive and is leaning to the ball.",
+    "repetitions": "4 runs per side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing",
+              "offset": [-0.6, 0.6]
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing",
+              "offset": [0.8, -0.4]
+            }
+          },
+          {
+            "id": "k2",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-0.6, -1.4]
+            }
+          },
+          {
+            "id": "k3",
+            "type": "cone",
+            "at": {
+              "anchor": "left_block",
+              "offset": [0.6, 1.4]
+            }
+          },
+          {
+            "id": "k4",
+            "type": "cone",
+            "at": {
+              "anchor": "left_block",
+              "offset": [1.8, 0.3]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [1.4, -1]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [0, -2]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [1.4, 0.8]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "seedKey": "number-call-eyes-up-dribble",
+  "title": "Number-Call Eyes-Up Dribble",
+  "description": "Players dribble while the coach flashes fingers; they shout the number, building the habit of dribbling with the head up.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["ball_control", "communication"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "individual",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 6,
+  "ageMax": 14,
+  "playersMin": 1,
+  "playersMax": 30,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "any_space",
+  "tags": ["eyes up", "vision"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Dribble with control while reading information from the coach, so the eyes are free to see the floor in games.",
+    "setup": "Players face the coach in scattered spots with a ball each.",
+    "organization": "Whole group. The coach stands where everyone can see one raised hand.",
+    "instructions": [
+      "Players start a control dribble at waist height.",
+      "The coach raises a hand showing one to five fingers.",
+      "Players shout the number as soon as they see it, without stopping the dribble.",
+      "Every 20 seconds the coach calls 'switch' and players change hands.",
+      "Finish with a round where the number tells them which move to make (1 crossover, 2 between the legs)."
+    ],
+    "coachingPoints": [
+      "Chin up: see the coach's whole body, not just the hand.",
+      "Keep the ball on the side, away from the knees.",
+      "Answer loudly; a quiet answer usually means a late look."
+    ],
+    "commonMistakes": [
+      "Peeking at the ball before answering.",
+      "Dribbling too high and losing control while looking up.",
+      "Stopping the dribble to call the number."
+    ],
+    "safety": "Keep a clear space around each player; stop the round if balls start rolling into others.",
+    "progressions": [
+      "Flash numbers with both hands and ask for the total.",
+      "Add a move per number to make it a decision drill."
+    ],
+    "regressions": [
+      "Allow a two-hand catch after each number for beginners.",
+      "Show the number for longer."
+    ],
+    "variations": [
+      "Use colours on cards instead of fingers.",
+      "Partners take turns flashing numbers."
+    ],
+    "successCriteria": [
+      "Calls the correct number within one second, eight times in a row.",
+      "No lost balls in a 30-second round."
+    ],
+    "gameApplication": "A player who dribbles with the head up sees the open cutter and the help defender before it is too late.",
+    "repetitions": "4 rounds of 30 s, alternating hands",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b3",
+            "type": "ball",
+            "heldBy": "o3"
+          },
+          {
+            "id": "b4",
+            "type": "ball",
+            "heldBy": "o4"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, -1.2]
+            },
+            "text": "Coach flashes 1-5"
+          }
+        ]
+      }
+    }
+  ]
+}

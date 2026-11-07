@@ -1,0 +1,174 @@
+{
+  "seedKey": "speed-dribble-four-touch-race",
+  "title": "Speed Dribble Four-Touch Race",
+  "description": "Players race to cover half the court in as few dribbles as possible, learning to push the ball out ahead and run onto it.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["speed_agility"],
+  "subSkills": ["change_of_pace"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["skill", "conditioning"],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["speed dribble", "transition"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use a long push dribble in the open floor, covering ground with four dribbles or fewer from baseline to half court.",
+    "setup": "Two lines on the baseline, one ball per player.",
+    "organization": "Players race the player in the other line.",
+    "instructions": [
+      "On the whistle, push the ball out ahead at waist height and sprint after it.",
+      "Count the dribbles to the half-court line; target four or fewer.",
+      "Continue to the far rim and finish with a lay-up.",
+      "Return along the sideline to the other line.",
+      "Repeat with the other hand from the other line."
+    ],
+    "coachingPoints": [
+      "Push the ball forward, not down.",
+      "Let the ball travel a full stride ahead.",
+      "Run upright and fast; collect the ball low near the rim."
+    ],
+    "commonMistakes": [
+      "Bouncing the ball straight down and over-dribbling.",
+      "Pushing too far and losing the ball to the sideline.",
+      "Slowing down to finish."
+    ],
+    "safety": "Racers stay in their own half of the lane; the next pair waits until the finish is clear.",
+    "progressions": [
+      "Three dribbles to half court.",
+      "Add a chasing defender who starts on the free-throw line."
+    ],
+    "regressions": ["Count to six dribbles.", "Finish with a jump stop instead of a lay-up."],
+    "variations": ["Weak-hand only.", "Finish with a pass to a trailing teammate."],
+    "successCriteria": [
+      "Reaches half court in four dribbles or fewer with control.",
+      "Makes the lay-up at full speed."
+    ],
+    "gameApplication": "In transition the ball must move faster than the defense; fewer, longer dribbles get there first.",
+    "repetitions": "3 races per hand",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner",
+              "offset": [2.8, 0.3]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_corner",
+              "offset": [-2.8, 0.3]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_sideline_center",
+                "offset": [3, 0]
+              },
+              {
+                "anchor": "far_right_block"
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_sideline_center",
+                "offset": [-3, 0]
+              },
+              {
+                "anchor": "far_left_block"
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [0, -1.4]
+            },
+            "text": "≤ 4 dribbles"
+          }
+        ]
+      }
+    }
+  ]
+}

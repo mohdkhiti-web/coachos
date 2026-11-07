@@ -1,0 +1,159 @@
+{
+  "seedKey": "partner-poke-pressure-dribble",
+  "title": "Partner Poke Pressure Dribble",
+  "description": "A partner tries to poke the ball while the dribbler protects it in place with the body, the off arm and a low dribble.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["competitiveness"],
+  "subSkills": ["protect_the_ball"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 24,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "any_space",
+  "tags": ["pressure", "protect the ball", "partner"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Protect a live dribble from a defender's hands using the body, the off arm and the dribble height.",
+    "setup": "Pairs with one ball; the dribbler stands in a box about two metres square.",
+    "organization": "30-second rounds; switch roles each round.",
+    "instructions": [
+      "The dribbler starts low in a box, the partner one arm-length away.",
+      "On the whistle, the partner tries to touch the ball with either hand.",
+      "The dribbler may move within the box, change hands and turn the body.",
+      "Count the number of touches the partner gets in 30 seconds.",
+      "Switch roles; lower score wins."
+    ],
+    "coachingPoints": [
+      "Off arm up as a bar, not pushing.",
+      "Body between partner and ball at all times.",
+      "Lower dribble the closer the partner gets."
+    ],
+    "commonMistakes": [
+      "Pushing the partner away with the off arm (foul).",
+      "Turning the back fully and losing vision.",
+      "Dribbling high in front of the body."
+    ],
+    "safety": "Pokers touch the ball only; no slapping arms or reaching across the body.",
+    "progressions": ["Two pokers against one dribbler.", "Shrink the box."],
+    "regressions": ["Poker uses one hand only.", "Allow a 1-second hold every five dribbles."],
+    "variations": [
+      "Weak hand only for the dribbler.",
+      "Dribbler must also keep one foot in a hoop or square."
+    ],
+    "successCriteria": [
+      "Fewer than three touches conceded in 30 seconds.",
+      "No offensive fouls with the off arm."
+    ],
+    "gameApplication": "Ball protection under a reaching defender prevents most backcourt and trap turnovers.",
+    "repetitions": "6 rounds of 30 s",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [0.6, 0.8]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [0.7, 0.4]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "zone_rect",
+            "from": {
+              "anchor": "top_key",
+              "offset": [-1, 0]
+            },
+            "to": {
+              "anchor": "top_key",
+              "offset": [1, 2]
+            }
+          },
+          {
+            "type": "zone_rect",
+            "from": {
+              "anchor": "left_wing",
+              "offset": [-1, -1]
+            },
+            "to": {
+              "anchor": "left_wing",
+              "offset": [1, 1]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

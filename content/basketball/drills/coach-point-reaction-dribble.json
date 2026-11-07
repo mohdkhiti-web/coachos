@@ -1,0 +1,185 @@
+{
+  "seedKey": "coach-point-reaction-dribble",
+  "title": "Coach-Point Reaction Dribble",
+  "description": "The coach points left, right, forward or back; players react with the right dribble move in that direction, reading a visual cue like a defender's movement.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["speed_agility", "decision_making"],
+  "subSkills": ["change_of_pace", "crossover"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 24,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["reaction", "vision"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "React to a visual signal with the correct change of direction, keeping control and the head up.",
+    "setup": "Players in rows facing the coach, a ball each, with two metres of space all around.",
+    "organization": "Whole group reacts at once.",
+    "instructions": [
+      "Players dribble in an athletic stance.",
+      "Coach points left or right: crossover and take two hard dribbles that way.",
+      "Coach points forward: attack two dribbles forward.",
+      "Coach points back: two retreat dribbles.",
+      "Coach raises a fist: jump-stop and pivot to face the coach."
+    ],
+    "coachingPoints": [
+      "React to the arm, not the voice.",
+      "Every move ends low and balanced, ready for the next one.",
+      "Change hands so the ball is always on the side away from the movement direction you came from."
+    ],
+    "commonMistakes": [
+      "Watching other players and copying them late.",
+      "Making the move without moving the feet.",
+      "Losing balance on the retreat."
+    ],
+    "safety": "Keep rows staggered so two-dribble moves never collide; do not point players toward each other.",
+    "progressions": [
+      "Add a fake: the coach points one way and then the other quickly.",
+      "Partners take the coach role."
+    ],
+    "regressions": ["Use only left and right.", "Call the direction as well as pointing."],
+    "variations": [
+      "Finish each sequence with a shot when the coach points at the rim.",
+      "Use coloured cards for directions."
+    ],
+    "successCriteria": [
+      "Moves the correct way within half a second of the signal.",
+      "No lost balls over a 45-second round."
+    ],
+    "gameApplication": "Ball handlers react to the defender's feet and hands; this trains that reaction with a simple signal.",
+    "repetitions": "4 rounds of 45 s",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [0, -1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_slot",
+                "offset": [-1.6, 0]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [1.6, 0]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_slot",
+                "offset": [-1.6, 1.4]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [1.6, 1.4]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [0, -2.2]
+            },
+            "text": "Coach points"
+          }
+        ]
+      }
+    }
+  ]
+}

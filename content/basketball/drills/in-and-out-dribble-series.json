@@ -1,0 +1,181 @@
+{
+  "seedKey": "in-and-out-dribble-series",
+  "title": "In-and-Out Dribble Series",
+  "description": "A lane-to-lane series teaching the in-and-out (fake crossover) move, first stationary, then walking, then at game speed.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["decision_making"],
+  "subSkills": ["change_of_pace", "protect_the_ball"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 10,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["in and out", "fake crossover"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Fake a crossover with the hand and shoulders while the ball stays in the same hand, freezing the defender before attacking.",
+    "setup": "Players line up along the baseline with a ball each, facing half court.",
+    "organization": "Waves of four to six players at a time.",
+    "instructions": [
+      "Stationary: dribble with the right hand and roll the hand over the top of the ball toward the left, then pull it back out.",
+      "Walking: take the in-and-out every two steps, staying low.",
+      "Jogging: dip the inside shoulder on the 'in', then explode on the 'out'.",
+      "Full speed: in-and-out at the free-throw line, the half-court line and the far free-throw line.",
+      "Repeat the whole series with the left hand."
+    ],
+    "coachingPoints": [
+      "The ball stays outside the knee; only the hand rolls over it.",
+      "Sell the fake with the head and shoulders.",
+      "Push off the inside foot to go back out."
+    ],
+    "commonMistakes": [
+      "Carrying the ball (palm under the ball) on the roll.",
+      "Fake too small to move a defender.",
+      "Standing up during the move."
+    ],
+    "safety": "Keep waves in separate lanes; return along the sideline, not through the next wave.",
+    "progressions": [
+      "Chain the in-and-out into a real crossover (double move).",
+      "Add a defender who must react."
+    ],
+    "regressions": [
+      "Practise the hand roll without dribbling.",
+      "Do the stationary stage only for U10."
+    ],
+    "variations": [
+      "Finish each run with a pull-up jump shot.",
+      "Use a coach as a passive defender at half court."
+    ],
+    "successCriteria": [
+      "Ball never crosses the body during the in-and-out.",
+      "No carrying calls in a full series."
+    ],
+    "gameApplication": "The in-and-out punishes a defender who jumps at the crossover; it gets the ball handler past the first defender without changing hands.",
+    "repetitions": "2 runs per stage, each hand",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner",
+              "offset": [1, 0]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_corner",
+              "offset": [-1, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [-1.2, 0.4]
+              },
+              {
+                "anchor": "left_wing",
+                "offset": [1, 1.5]
+              },
+              {
+                "anchor": "left_half_court",
+                "offset": [1, -0.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [1.2, 0.4]
+              },
+              {
+                "anchor": "right_wing",
+                "offset": [-1, 1.5]
+              },
+              {
+                "anchor": "right_half_court",
+                "offset": [-1, -0.6]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-1.6, 1.2]
+            },
+            "text": "In-out"
+          },
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [1.6, 1.2]
+            },
+            "text": "In-out"
+          }
+        ]
+      }
+    }
+  ]
+}

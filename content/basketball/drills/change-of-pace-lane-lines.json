@@ -1,0 +1,193 @@
+{
+  "seedKey": "change-of-pace-lane-lines",
+  "title": "Change-of-Pace Lane Lines",
+  "description": "Players alternate between a slow, controlled dribble and a sudden burst between the lines, learning that speed change beats a defender as well as a move does.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["speed_agility"],
+  "subSkills": ["change_of_pace"],
+  "level": "beginner",
+  "intensity": "high",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "full_court",
+  "tags": ["change of pace", "speed"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use a slow-to-fast change of pace, with no change of hand, to gain a step on a defender.",
+    "setup": "Three lines on the baseline (left, middle, right), a ball each.",
+    "organization": "First player in each line goes together; next group leaves at the free-throw line.",
+    "instructions": [
+      "Jog with a high control dribble to the free-throw line extended.",
+      "Sprint with a low, pushed dribble to the half-court line.",
+      "Hesitate: slow down, rise up slightly, keep dribbling.",
+      "Burst again to the far free-throw line and finish at the rim.",
+      "Come back on the other side using the other hand."
+    ],
+    "coachingPoints": [
+      "The slow phase is a weapon: look relaxed, then explode.",
+      "Push the ball out in front on the burst.",
+      "Lower the hips the instant you speed up."
+    ],
+    "commonMistakes": [
+      "One steady speed the whole length.",
+      "Sprinting with the ball behind the hip.",
+      "Hesitation so long the dribble dies."
+    ],
+    "safety": "Lines stay in their own third of the court; finishers clear the lane straight away.",
+    "progressions": [
+      "Add a trailing defender who starts one metre behind.",
+      "Combine each burst with a crossover."
+    ],
+    "regressions": ["Walk-to-jog instead of jog-to-sprint.", "Shorten the run to half court."],
+    "variations": [
+      "The coach calls 'slow' or 'go' at random.",
+      "Finish with a pull-up instead of a lay-up."
+    ],
+    "successCriteria": [
+      "Clear difference between the slow and fast phases.",
+      "Ball kept in front of the body on every burst."
+    ],
+    "gameApplication": "Most open lanes come from a change of speed: the defender relaxes, and the ball handler goes.",
+    "repetitions": "3 to 4 runs each hand",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner",
+              "offset": [2.5, 0.2]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [0, 0.4]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_corner",
+              "offset": [-2.5, 0.2]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b3",
+            "type": "ball",
+            "heldBy": "o3"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [0, 0.2]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "center_circle"
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "far_free_throw_line"
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [2.4, 0.8]
+            },
+            "text": "Slow"
+          },
+          {
+            "type": "text",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [2.2, 0.6]
+            },
+            "text": "Burst"
+          }
+        ]
+      }
+    }
+  ]
+}

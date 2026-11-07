@@ -1,0 +1,158 @@
+{
+  "seedKey": "three-height-stationary-dribble",
+  "title": "Three-Height Stationary Dribble",
+  "description": "Players dribble in place at knee, waist and shoulder height on the coach's call, learning to control the bounce before they move.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["ball_control"],
+  "subSkills": ["weak_hand"],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "individual",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 6,
+  "ageMax": 12,
+  "playersMin": 1,
+  "playersMax": 30,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "any_space",
+  "tags": ["fundamentals", "stationary", "dribble height"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Control the ball at three dribble heights with either hand, using fingertips and a soft wrist, while keeping the eyes up.",
+    "setup": "Each player has a ball and a personal spot spread across the court, facing the coach.",
+    "organization": "Whole group at once. The coach calls 'low', 'middle' or 'high' and the hand to use.",
+    "instructions": [
+      "Start in an athletic stance: feet shoulder-width, knees bent, chest up, eyes on the coach.",
+      "On 'low', dribble at knee height with quick, short bounces.",
+      "On 'middle', dribble at waist height: the normal control dribble.",
+      "On 'high', dribble at shoulder height as if pushing the ball in transition, without standing up straight.",
+      "Switch hands on the call and repeat all three heights."
+    ],
+    "coachingPoints": [
+      "Push the ball down with the finger pads, not the palm.",
+      "The lower the dribble, the lower your hips: the ball and your body go down together.",
+      "Keep the off arm up as a shield.",
+      "Eyes on the coach, never on the ball."
+    ],
+    "commonMistakes": [
+      "Slapping the ball with a flat palm.",
+      "Standing straight up for the high dribble and losing the stance.",
+      "Looking down at the ball between calls."
+    ],
+    "safety": "Spread players out so dropped balls do not roll under others' feet; younger players use a size 5 or 6 ball.",
+    "progressions": [
+      "Call heights faster and mix in 'switch' (change hands without stopping).",
+      "Add a second ball for advanced players."
+    ],
+    "regressions": [
+      "Start with two-hand catches between dribbles for U8 players.",
+      "Allow players to glance at the ball for the first rounds."
+    ],
+    "variations": [
+      "Partners face each other and call heights for each other.",
+      "Add a count: how many low dribbles in 20 seconds?"
+    ],
+    "successCriteria": [
+      "Ten controlled dribbles at each height with each hand without a lost ball.",
+      "Answers the coach's call within one dribble."
+    ],
+    "gameApplication": "Low dribbles protect the ball under pressure, high dribbles move it quickly in the open court; changing height on demand is the base of every move.",
+    "repetitions": "3 rounds of 30 s per hand, 15 s rest",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      },
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "half_court_center"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b3",
+            "type": "ball",
+            "heldBy": "o3"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 2.4]
+            },
+            "text": "Low · Middle · High"
+          }
+        ]
+      }
+    }
+  ]
+}

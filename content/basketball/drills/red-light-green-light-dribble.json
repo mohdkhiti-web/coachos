@@ -1,0 +1,212 @@
+{
+  "seedKey": "red-light-green-light-dribble",
+  "title": "Red Light, Green Light Dribble",
+  "description": "A classic stop-and-go game for young players: dribble forward on green, jump-stop on red, and keep the ball alive the whole time.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["footwork", "ball_control"],
+  "subSkills": ["change_of_pace"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["warm_up", "small_sided"],
+  "ageMin": 5,
+  "ageMax": 10,
+  "playersMin": 4,
+  "playersMax": 24,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["game", "u8", "stop and go"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Start, stop and change speed while keeping control of the dribble, finishing each stop with a balanced jump stop.",
+    "setup": "Players line up on the baseline with a ball each. The coach stands at the half-court line facing them.",
+    "organization": "Whole group races together. First to tag the coach becomes the next caller.",
+    "instructions": [
+      "On 'green light', players dribble forward toward the coach.",
+      "On 'yellow light', they slow to a walk while keeping the dribble going.",
+      "On 'red light', they jump-stop with both feet and catch the ball in triple threat.",
+      "Anyone who travels, double-dribbles or loses the ball returns to the baseline.",
+      "The first player to reach and tag the coach wins the round and calls the next one."
+    ],
+    "coachingPoints": [
+      "Stop on two feet at the same time.",
+      "Catch the ball and hold it at the hip on red.",
+      "Keep the eyes on the coach to react first."
+    ],
+    "commonMistakes": [
+      "Sliding a foot after the stop (travel).",
+      "Restarting the dribble after catching on red (double dribble).",
+      "Watching the ball and missing the call."
+    ],
+    "safety": "Run lanes must be wide enough that players are never shoulder to shoulder; stop the game if anyone dives for a ball.",
+    "progressions": [
+      "Require the weak hand on green.",
+      "Add 'turn' (pivot 180 degrees) as an extra light."
+    ],
+    "regressions": [
+      "Allow a two-hand pick-up instead of a jump stop.",
+      "Shorten the distance to the free-throw line."
+    ],
+    "variations": ["Players are the caller in pairs.", "Use a whistle code instead of words."],
+    "successCriteria": [
+      "Reaches the coach without a violation.",
+      "Every red-light stop is a two-foot stop with the ball protected."
+    ],
+    "gameApplication": "Stopping under control is how young players avoid travels at the end of drives and on the catch.",
+    "repetitions": "5 to 6 races",
+    "resources": [
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_short_corner"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_short_corner"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "half_court_center"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b3",
+            "type": "ball",
+            "heldBy": "o3"
+          },
+          {
+            "id": "b4",
+            "type": "ball",
+            "heldBy": "o4"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [-0.5, 3]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "left_slot",
+                "offset": [0, 2]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [0, 2]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o4",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [0.5, 3]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [0, -1]
+            },
+            "text": "Green · Yellow · Red"
+          }
+        ]
+      }
+    }
+  ]
+}

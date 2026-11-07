@@ -1,0 +1,219 @@
+{
+  "seedKey": "cone-pickup-dribble",
+  "title": "Cone Pickup Dribble",
+  "description": "Cones are scattered over the half court; players dribble to each one, crouch to pick it up with the free hand and carry it back, rewarding a low, controlled dribble.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["ball_control"],
+  "subSkills": ["protect_the_ball"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["warm_up", "small_sided"],
+  "ageMin": 5,
+  "ageMax": 11,
+  "playersMin": 4,
+  "playersMax": 20,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["u8", "game", "low dribble"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 20
+    }
+  ],
+  "content": {
+    "objective": "Keep a controlled dribble while bending low and reaching with the free hand, the same body position used to protect the ball.",
+    "setup": "Twenty cones scattered inside the three-point line; two teams start at the baseline corners with a ball each.",
+    "organization": "Two teams; each team collects cones into its own corner.",
+    "instructions": [
+      "On the whistle, players dribble to any cone.",
+      "Crouch low, keep dribbling, and pick the cone up with the free hand.",
+      "Dribble back to the team corner and drop the cone.",
+      "Only one cone per trip; a lost ball means the cone goes back.",
+      "When all cones are collected, the team with more wins."
+    ],
+    "coachingPoints": [
+      "Bend at the knees to reach the cone, not at the waist.",
+      "Dribble with the hand away from the cone.",
+      "Eyes up: plan the next cone while you dribble back."
+    ],
+    "commonMistakes": [
+      "Stopping the dribble to pick up the cone.",
+      "Bending the back and dribbling too high.",
+      "Grabbing a cone with the dribbling hand."
+    ],
+    "safety": "Use soft flat cones; players may not dive for cones or push each other.",
+    "progressions": ["Weak hand only.", "Cones must be carried back on the head (balance)."],
+    "regressions": [
+      "Allow two dribbles of rest with a two-hand catch.",
+      "Fewer cones and a smaller area."
+    ],
+    "variations": [
+      "Coloured cones worth different points.",
+      "Return cones to the middle instead (reverse race)."
+    ],
+    "successCriteria": [
+      "Every cone collected without a lost dribble.",
+      "Picks cones up from a knee bend, not a waist bend."
+    ],
+    "gameApplication": "Low dribbling with a free arm is how young players protect the ball when a defender reaches in.",
+    "repetitions": "3 games of about 90 s",
+    "resources": [
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner",
+              "offset": [0.6, 0]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_corner",
+              "offset": [-0.6, 0]
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing",
+              "offset": [0.6, -0.4]
+            }
+          },
+          {
+            "id": "k2",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "k3",
+            "type": "cone",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "k4",
+            "type": "cone",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          },
+          {
+            "id": "k5",
+            "type": "cone",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [-0.6, -0.4]
+            }
+          },
+          {
+            "id": "k6",
+            "type": "cone",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-0.8, 1.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [0.4, -0.2]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_corner",
+                "offset": [0.6, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [0.2, -0.4]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_corner",
+                "offset": [-0.6, 0.4]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

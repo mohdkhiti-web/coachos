@@ -52,6 +52,9 @@ export interface DrillFormValues {
   progressions: string;
   regressions: string;
   variations: string;
+  successCriteria: string;
+  gameApplication: string;
+  repetitions: string;
   equipment: Record<string, EquipmentValue>;
   resources: ResourceValue[];
   diagrams: Array<{ title: string; diagram: DiagramInput }>;
@@ -101,6 +104,9 @@ export function emptyValues(o: { space: string; equipmentKeys: string[] }): Dril
     progressions: "",
     regressions: "",
     variations: "",
+    successCriteria: "",
+    gameApplication: "",
+    repetitions: "",
     equipment: Object.fromEntries(
       o.equipmentKeys.map((k) => [k, { on: false, rule: "fixed" as const, quantity: "1" }]),
     ),
@@ -146,6 +152,9 @@ export function valuesFromDrill(d: DrillDetailDto, equipmentKeys: string[]): Dri
     progressions: fromLines(d.content.progressions),
     regressions: fromLines(d.content.regressions),
     variations: fromLines(d.content.variations),
+    successCriteria: fromLines(d.content.successCriteria),
+    gameApplication: d.content.gameApplication,
+    repetitions: d.content.repetitions,
     resources: d.content.resources.map((r) => ({ kind: r.kind, title: r.title, url: r.url })),
     diagrams: d.diagrams.map((g) => ({ title: g.title, diagram: g.diagram })),
     visibility: d.visibility === "organization" ? "organization" : "private",
@@ -193,6 +202,9 @@ export function toPayload(v: DrillFormValues, version?: number): DrillInputRaw {
       progressions: toLines(v.progressions),
       regressions: toLines(v.regressions),
       variations: toLines(v.variations),
+      successCriteria: toLines(v.successCriteria),
+      gameApplication: v.gameApplication,
+      repetitions: v.repetitions,
       resources: v.resources
         .filter((r) => r.title.trim() || r.url.trim())
         .map((r) => ({ kind: r.kind, title: r.title, url: r.url })),

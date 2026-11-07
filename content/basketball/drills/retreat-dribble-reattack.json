@@ -1,0 +1,181 @@
+{
+  "seedKey": "retreat-dribble-reattack",
+  "title": "Retreat Dribble and Re-Attack",
+  "description": "Ball handlers learn to back out of pressure with a retreat dribble, keeping their eyes up, then re-attack the gap or reset the offense.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["decision_making"],
+  "subSkills": ["protect_the_ball", "change_of_pace"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["retreat dribble", "pressure"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Escape a trap or a cut-off with a backward retreat dribble, keep the ball alive and re-attack before the defense recovers.",
+    "setup": "A ball handler starts at the wing; a defender stands in front at arm's length. A second line waits at the top.",
+    "organization": "Partners rotate: offense to defense, defense to the back of the line.",
+    "instructions": [
+      "The ball handler attacks the defender toward the baseline.",
+      "The defender cuts off the drive; the ball handler takes two retreat dribbles straight back, body sideways, ball on the far hip.",
+      "As the defender closes, the ball handler crosses or changes pace and re-attacks the middle.",
+      "Play 1v1 live to a finish or a stop.",
+      "Rotate after each possession."
+    ],
+    "coachingPoints": [
+      "Retreat with the shoulders turned so the body protects the ball.",
+      "Keep the eyes on the rim, not the defender's hands.",
+      "Re-attack the moment the defender's weight goes forward."
+    ],
+    "commonMistakes": [
+      "Turning the back completely and losing sight of the floor.",
+      "Picking up the dribble while backing up.",
+      "Retreating too far and stalling the offense."
+    ],
+    "safety": "Defenders play the ball, not the body; no reaching across the face.",
+    "progressions": [
+      "Add a second defender to create a trap.",
+      "Re-attack must end in a pass to a cutter."
+    ],
+    "regressions": [
+      "Defender is passive and only shows the cut-off.",
+      "Retreat without a defender, on the coach's whistle."
+    ],
+    "variations": [
+      "Start at the top against a hedging defender.",
+      "Limit the re-attack to three dribbles."
+    ],
+    "successCriteria": [
+      "Keeps the dribble alive through the retreat every time.",
+      "Re-attacks within two dribbles of the retreat."
+    ],
+    "gameApplication": "Retreat dribbles get ball handlers out of traps and corners, where most turnovers happen.",
+    "repetitions": "4 to 6 possessions per player",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [0.6, -0.8]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_corner",
+                "offset": [1.8, 1.8]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "left_corner",
+                "offset": [2.3, 1.2]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [0.4, 0.8]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [0.4, 0]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "left_wing",
+              "offset": [-0.2, 1.8]
+            },
+            "text": "Retreat"
+          }
+        ]
+      }
+    }
+  ]
+}
