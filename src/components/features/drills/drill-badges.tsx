@@ -33,7 +33,7 @@ export function LevelMeter({
 }
 
 const SCOPE_STYLE: Record<DrillScope, string> = {
-  library: "border-accent/40 text-accent bg-accent-soft",
+  library: "border-accent/40 text-accent-strong bg-accent-soft",
   mine: "border-line-strong text-ink bg-surface-sunken",
   workspace: "border-line-strong text-ink-muted bg-surface-raised",
 };

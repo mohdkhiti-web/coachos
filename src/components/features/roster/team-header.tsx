@@ -51,8 +51,8 @@ export function TeamHeader({ team }: { team: TeamDto }) {
   return (
     <header className="flex flex-wrap items-start justify-between gap-4">
       <div className="space-y-1">
-        <p className="eyebrow text-accent">{team.sportName}</p>
         <h1 className="display text-4xl text-ink">{team.name}</h1>
+        <p className="text-sm font-semibold text-accent">{team.sportName}</p>
         {team.notes ? <p className="max-w-2xl text-ink-muted">{team.notes}</p> : null}
         {team.status === "archived" ? (
           <span className="inline-block rounded-xs border border-line px-2 py-0.5 text-xs text-ink-muted">

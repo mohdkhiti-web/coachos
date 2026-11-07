@@ -87,8 +87,8 @@ export async function TemplatesListView({
     <div className="space-y-8">
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div className="space-y-1">
-          <p className="eyebrow text-accent">{sport?.name}</p>
           <h1 className="display text-5xl text-ink md:text-6xl">{t("title")}</h1>
+          <p className="text-sm font-semibold text-accent">{sport?.name}</p>
           <p className="max-w-2xl text-base text-ink-muted">{t("subtitle")}</p>
         </div>
         {canCreate && newHref ? (

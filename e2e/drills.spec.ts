@@ -148,7 +148,9 @@ test("the drill library journey: drills → basketball → drills → filter →
 
     await filters(page).getByLabel("Level").selectOption("advanced");
     await filters(page).getByLabel("Search").fill("zzzzqqqq");
-    await expect(page.getByText("No drills match those filters")).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "No drills match those filters" }),
+    ).toBeVisible();
     await page.getByRole("link", { name: "Clear filters" }).click();
     await expect(page).toHaveURL(/\/drills$/);
     // regression: the search box's pending (debounced) submit must not resurrect the old query over the cleared URL
@@ -396,7 +398,9 @@ test("the drill library journey: drills → basketball → drills → filter →
     await expect(page.getByRole("link", { name: `${title} (v3)` })).toHaveCount(0);
     // still readable by direct link, clearly marked
     await page.goto(drillUrl);
-    await expect(page.getByText(/This drill is archived/)).toBeVisible();
+    await expect(
+      page.getByRole("status").filter({ hasText: /This drill is archived/ }),
+    ).toBeVisible();
     await expect(page.getByRole("link", { name: "Edit" })).toHaveCount(0);
   });
 });
@@ -437,7 +441,7 @@ test("private drills belong to their owner: another user cannot find, open, or e
 
   // …search never leaks it, not even by typo…
   await b.goto(`/sports/basketball/drills?q=${encodeURIComponent(secret.slice(0, 12))}`);
-  await expect(b.getByText("No drills match those filters")).toBeVisible();
+  await expect(b.getByRole("heading", { name: "No drills match those filters" })).toBeVisible();
   await b.goto(`/sports/basketball/drills?q=${encodeURIComponent("Secrat Drll")}`);
   await expect(b.getByText(secret)).toHaveCount(0);
 

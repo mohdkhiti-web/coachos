@@ -282,7 +282,7 @@ test("templates work on a phone: list, card actions, editor with Design/Preview 
   await completeOnboarding(page);
 
   await page.goto("/templates/basketball");
-  await expect(page.getByText("No templates yet")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "No templates yet" })).toBeVisible();
   expect(await noHorizontalScroll(page), "empty templates page overflows").toBe(true);
   const create = page.getByRole("link", { name: "New template" }).first();
   expect((await create.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);

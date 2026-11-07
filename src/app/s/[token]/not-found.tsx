@@ -8,8 +8,8 @@ export default async function SharedNotFound() {
       id="main"
       className="mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center gap-4 px-4 text-center"
     >
-      <p className="eyebrow text-accent">CoachOS</p>
       <h1 className="display text-4xl text-ink">{t("unavailableTitle")}</h1>
+      <p className="text-sm font-semibold text-accent">CoachOS</p>
       <p className="text-base text-ink-muted">{t("unavailableBody")}</p>
       <Link
         href="/"

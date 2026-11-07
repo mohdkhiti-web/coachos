@@ -13,14 +13,9 @@
  * The arena: a dark court-at-night surface (uses the dark tokens via `.arena`, see globals.css)
  * ------------------------------------------------------------------------------------------------------------- */
 
-/* The dark sheet with its ruled grid: faint hairline squares, the way a scoresheet's running-score columns sit
-   behind everything. Flat colour, no glow. */
+/* The dark sheet: flat blue-ink stock. No grid, no glow — structure comes from the content's own rules. */
 @utility arena-surface {
   background-color: var(--surface);
-  background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.028) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.028) 1px, transparent 1px);
-  background-size: 32px 32px;
 }
 
 /* A sheet panel: solid raised stock, the one hairline, a soft offset shadow. (Name kept for existing callers.) */

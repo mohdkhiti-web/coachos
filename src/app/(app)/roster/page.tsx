@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Card, CardBody, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { EmptyState } from "@/components/ui/empty-state";
 import { requireViewer } from "@/modules/identity";
 import { listPlayers, listTeams } from "@/modules/roster";
 import { MetaTag } from "@/components/ui/page-header";
@@ -31,10 +32,16 @@ export default async function RosterPage() {
 
       {teams.length === 0 ? (
         <Card>
-          <CardBody className="space-y-2 text-center">
-            <p className="font-semibold text-ink">{t("empty.title")}</p>
-            <p className="text-sm text-ink-muted">{t("empty.body")}</p>
-          </CardBody>
+          <EmptyState
+            scene="planning"
+            title={t("empty.title")}
+            description={t("empty.body")}
+            action={
+              <Button asChild>
+                <Link href="/roster/new">{t("newTeam")}</Link>
+              </Button>
+            }
+          />
         </Card>
       ) : (
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

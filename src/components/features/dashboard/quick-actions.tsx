@@ -76,7 +76,7 @@ export async function QuickActions({
                 <span
                   className={cn(
                     "block truncate text-sm",
-                    primary ? "text-accent-ink/85" : "text-ink-muted",
+                    primary ? "text-accent-ink" : "text-ink-muted",
                   )}
                 >
                   {t(`${key}.body`, { sport: sportName })}
