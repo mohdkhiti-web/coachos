@@ -1,0 +1,167 @@
+{
+  "seedKey": "t-drill-agility",
+  "title": "T-Drill Agility",
+  "description": "A classic agility pattern: sprint forward, slide left, slide right across, slide back to the middle and backpedal to the start.",
+  "category": "footwork",
+  "primarySkill": "speed_agility",
+  "secondarySkills": ["on_ball_defense"],
+  "subSkills": ["change_of_direction", "stance_and_slides"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "individual",
+  "phases": ["skill", "conditioning"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 10,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["agility test", "T-drill"],
+  "equipment": [
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 4
+    },
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Combine forward, lateral and backward movement efficiently and measure improvement.",
+    "setup": "Four cones in a T: base cone, centre cone five metres ahead, two side cones five metres either side of the centre.",
+    "organization": "One at a time; timed.",
+    "instructions": [
+      "Sprint from the base to the centre cone.",
+      "Slide left to the left cone.",
+      "Slide right to the right cone.",
+      "Slide back to the centre.",
+      "Backpedal to the base."
+    ],
+    "coachingPoints": ["Low slides, no crossed feet.", "Touch each cone.", "Explosive changes."],
+    "commonMistakes": ["Turning sideways to run.", "Standing up.", "Missing cone touches."],
+    "safety": "Use a clear, dry floor and space players so nobody collides when changing direction.",
+    "progressions": ["Add a reaction start.", "Repeat with less rest."],
+    "regressions": ["Shorter T.", "Walk-through."],
+    "variations": ["Start left or right at random.", "Dribble on the sprint."],
+    "successCriteria": ["Improves time over the season.", "Correct movements every run."],
+    "gameApplication": "A standard agility measure that tracks defensive movement quality.",
+    "repetitions": "3 timed runs",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [0, 1]
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [0, 1]
+            }
+          },
+          {
+            "id": "k2",
+            "type": "cone",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 0]
+            }
+          },
+          {
+            "id": "k3",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-2, 0]
+            }
+          },
+          {
+            "id": "k4",
+            "type": "cone",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [2, 0]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line"
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [-2, 0]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [2, 0]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 4,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

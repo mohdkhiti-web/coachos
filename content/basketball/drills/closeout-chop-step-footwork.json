@@ -1,0 +1,149 @@
+{
+  "seedKey": "closeout-chop-step-footwork",
+  "title": "Closeout Chop-Step Footwork",
+  "description": "Defenders sprint toward a shooter, then chop the feet with short, quick steps to arrive balanced with a high hand — without flying past.",
+  "category": "footwork",
+  "primarySkill": "closeouts",
+  "secondarySkills": ["footwork", "on_ball_defense"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 10,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["closeout", "chop steps"],
+  "equipment": [
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Cover ground fast and then arrive under control, ready to contest or slide.",
+    "setup": "Cones at the wings and corners; defenders start in the lane.",
+    "organization": "Lines of defenders take turns.",
+    "instructions": [
+      "Sprint from the lane toward a cone.",
+      "Halfway, start short, quick chop steps.",
+      "Arrive with a high hand and the weight back.",
+      "Slide one step to cut off an imaginary drive.",
+      "Return and close out to the next cone."
+    ],
+    "coachingPoints": [
+      "Sprint first, chop second.",
+      "Hand high, butt low.",
+      "Arrive with feet still moving."
+    ],
+    "commonMistakes": [
+      "Running past the cone.",
+      "Arriving upright and flat-footed.",
+      "Chopping too early and arriving late."
+    ],
+    "safety": "Use a clear, dry floor and space players so nobody collides when changing direction.",
+    "progressions": [
+      "Close out to a real shooter who may drive.",
+      "Closeouts to random cones called."
+    ],
+    "regressions": ["Jog to the chop.", "Closer cones."],
+    "variations": ["Short closeout vs long closeout.", "Closeout and contest without jumping."],
+    "successCriteria": ["Arrives balanced at every cone.", "Hand up on every closeout."],
+    "gameApplication": "Good closeouts take away the shot without giving up the drive.",
+    "repetitions": "8 closeouts",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, -1.2]
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "k2",
+            "type": "cone",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "k3",
+            "type": "cone",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "k4",
+            "type": "cone",
+            "at": {
+              "anchor": "right_corner"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [-0.8, -0.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [0.8, -0.6]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

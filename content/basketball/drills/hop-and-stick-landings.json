@@ -1,0 +1,132 @@
+{
+  "seedKey": "hop-and-stick-landings",
+  "title": "Hop and Stick Landings",
+  "description": "Single-leg hops in different directions, each landing 'stuck' for two seconds, building the balance and knee control that reduce injury risk.",
+  "category": "footwork",
+  "primarySkill": "footwork",
+  "secondarySkills": ["speed_agility"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 9,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 30,
+  "durationMin": 5,
+  "durationMax": 6,
+  "space": "any_space",
+  "tags": ["landing", "balance", "injury prevention"],
+  "equipment": [],
+  "content": {
+    "objective": "Land on one leg with control and correct knee alignment.",
+    "setup": "Players spread out beside a court line.",
+    "organization": "Whole group.",
+    "instructions": [
+      "Stand on the right leg beside a line.",
+      "Hop forward over the line and land on the right leg; hold two seconds.",
+      "Hop sideways back over the line and hold.",
+      "Hop diagonally and hold.",
+      "Repeat on the left leg."
+    ],
+    "coachingPoints": [
+      "Soft knee, hip back on landing.",
+      "Knee over the toes, not inward.",
+      "Hold the landing still."
+    ],
+    "commonMistakes": [
+      "Knee collapsing inward.",
+      "Hopping too far and wobbling.",
+      "Putting the other foot down."
+    ],
+    "safety": "Stop and correct any knee that collapses inward; this is the main point of the drill.",
+    "progressions": ["Longer hops.", "Catch a pass on the landing."],
+    "regressions": ["Two-foot hops and holds.", "Hold onto a partner's shoulder for balance."],
+    "variations": ["Eyes closed on the hold (advanced).", "Hop onto a marked spot."],
+    "successCriteria": [
+      "Holds every landing two seconds.",
+      "Knee alignment correct on most landings."
+    ],
+    "gameApplication": "Single-leg control protects knees and ankles on lay-ups, cuts and rebounds.",
+    "repetitions": "3 sets of 6 hops per leg",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [-1.2, 0]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [1.2, 0]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [-1.2, 0.8]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [1.8, 0]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1.4]
+            },
+            "text": "Hop · stick 2 s"
+          }
+        ]
+      }
+    }
+  ]
+}

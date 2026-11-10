@@ -1,0 +1,112 @@
+{
+  "seedKey": "quick-feet-line-taps",
+  "title": "Quick-Feet Line Taps",
+  "description": "Players tap the toes alternately on a line as fast as possible, then sprint on the whistle — a reaction and foot-speed starter.",
+  "category": "footwork",
+  "primarySkill": "speed_agility",
+  "secondarySkills": ["footwork"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["warm_up"],
+  "ageMin": 7,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 30,
+  "durationMin": 4,
+  "durationMax": 5,
+  "space": "full_court",
+  "tags": ["foot speed", "reaction"],
+  "equipment": [],
+  "content": {
+    "objective": "Build foot speed and a fast reaction from a moving start.",
+    "setup": "Players on the baseline facing the court.",
+    "organization": "Waves.",
+    "instructions": [
+      "Tap the toes alternately on the line as fast as possible.",
+      "On the whistle, sprint to the free-throw line.",
+      "Jog back.",
+      "Repeat with different start positions (sideways, backward).",
+      "Three rounds per position."
+    ],
+    "coachingPoints": ["Light, quick taps.", "First step explosive.", "Lean slightly forward."],
+    "commonMistakes": ["Slow, heavy taps.", "False starts.", "Standing upright on the start."],
+    "safety": "Use a clear, dry floor and space players so nobody collides when changing direction.",
+    "progressions": ["Sprint to half court.", "Visual signal instead of whistle."],
+    "regressions": ["Walk back slowly.", "Shorter taps periods."],
+    "variations": ["Partner race.", "Start lying down."],
+    "successCriteria": ["Fast taps throughout.", "Quick reaction on the signal."],
+    "gameApplication": "Quick feet and reactions win loose balls and races down the floor.",
+    "repetitions": "3 rounds per start position",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-0.6, -1]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [0.6, -1]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [0, 0.2]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [0, 0.2]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

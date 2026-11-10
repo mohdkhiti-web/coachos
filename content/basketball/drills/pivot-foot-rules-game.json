@@ -1,0 +1,129 @@
+{
+  "seedKey": "pivot-foot-rules-game",
+  "title": "Pivot-Foot Rules Game",
+  "description": "A quick game for young players: the coach calls 'left' or 'right' foot as the pivot and players with a ball must pivot only on it; mistakes earn a fun penalty.",
+  "category": "footwork",
+  "primarySkill": "pivoting",
+  "secondarySkills": ["footwork"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "group",
+  "phases": ["warm_up"],
+  "ageMin": 5,
+  "ageMax": 10,
+  "playersMin": 4,
+  "playersMax": 30,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "any_space",
+  "tags": ["rules", "pivot", "game"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Learn that one foot stays planted while the other moves, in a playful format.",
+    "setup": "Players spread out holding a ball.",
+    "organization": "Whole group.",
+    "instructions": [
+      "Coach calls 'left foot': players pivot around the left foot.",
+      "Coach calls 'switch': stop and pivot on the right foot.",
+      "Coach calls 'freeze': hold still.",
+      "Players who move the pivot foot do two jumping jacks and rejoin.",
+      "Speed up the calls."
+    ],
+    "coachingPoints": [
+      "Keep the toes of the pivot foot glued down.",
+      "Turn on the ball of the foot.",
+      "Ball held tight."
+    ],
+    "commonMistakes": ["Shuffling the pivot foot.", "Jumping on 'switch'.", "Dropping the ball."],
+    "safety": "Use a clear, dry floor and space players so nobody collides when changing direction.",
+    "progressions": ["Add a partner who 'defends'.", "Pivot and pass on 'pass'."],
+    "regressions": ["Without a ball.", "Slower calls."],
+    "variations": ["Pivot to face a colour cone.", "Pivot in pairs back-to-back."],
+    "successCriteria": ["No pivot-foot mistakes in a round.", "Correct foot on every call."],
+    "gameApplication": "Young players travel less once the pivot foot is automatic.",
+    "repetitions": "3 rounds",
+    "resources": [
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b3",
+            "type": "ball",
+            "heldBy": "o3"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 2.4]
+            },
+            "text": "Left! Right! Freeze!"
+          }
+        ]
+      }
+    }
+  ]
+}

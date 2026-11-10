@@ -1,0 +1,134 @@
+{
+  "seedKey": "pivot-clock",
+  "title": "Pivot Clock",
+  "description": "Players holding a ball pivot to the hours of an imaginary clock called by the coach, using front and reverse pivots without lifting the pivot foot.",
+  "category": "footwork",
+  "primarySkill": "pivoting",
+  "secondarySkills": ["footwork", "ball_control"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "individual",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 6,
+  "ageMax": 14,
+  "playersMin": 1,
+  "playersMax": 30,
+  "durationMin": 5,
+  "durationMax": 6,
+  "space": "any_space",
+  "tags": ["pivot", "fundamentals"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Master front and reverse pivots on either foot while keeping the ball protected.",
+    "setup": "Players spread out, each holding a ball, facing 12 o'clock (the coach).",
+    "organization": "Whole group.",
+    "instructions": [
+      "Choose the left foot as the pivot foot.",
+      "Coach calls '3 o'clock': front-pivot to face that direction.",
+      "Coach calls '9': reverse-pivot to face it.",
+      "Return to 12 after each call.",
+      "Switch pivot foot after ten calls."
+    ],
+    "coachingPoints": [
+      "Pivot on the ball of the foot.",
+      "Ball chinned, elbows out.",
+      "Stay low through the turn."
+    ],
+    "commonMistakes": [
+      "Lifting or sliding the pivot foot.",
+      "Standing up during the pivot.",
+      "Swinging the ball wide."
+    ],
+    "safety": "Space players so a swinging elbow never reaches another player.",
+    "progressions": ["Faster calls.", "Partner reaches for the ball during pivots."],
+    "regressions": ["Front pivots only.", "Without a ball."],
+    "variations": ["Pivot and pass at the called hour.", "Pivot and shot fake."],
+    "successCriteria": ["No travels in ten calls.", "Ball stays protected."],
+    "gameApplication": "Pivoting protects the ball and finds passing angles after a stopped dribble.",
+    "repetitions": "2 rounds of 10 calls per foot",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      },
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [0, -1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1.4]
+            },
+            "text": "12"
+          },
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [1.6, 0]
+            },
+            "text": "3"
+          },
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [-1.6, 0]
+            },
+            "text": "9"
+          }
+        ]
+      }
+    }
+  ]
+}

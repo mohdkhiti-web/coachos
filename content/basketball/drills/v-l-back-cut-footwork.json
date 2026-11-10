@@ -1,0 +1,138 @@
+{
+  "seedKey": "v-l-back-cut-footwork",
+  "title": "V, L and Back-Cut Footwork",
+  "description": "Players learn the footwork of the three basic cuts without a defender: the V-cut, the L-cut and the back cut, each ending in a target hand.",
+  "category": "footwork",
+  "primarySkill": "cutting",
+  "secondarySkills": ["footwork", "catching"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 9,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["cuts", "get open"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Execute the three basic cuts with sharp plants and clear targets.",
+    "setup": "Passer at the top; cutters at the wing.",
+    "organization": "Rotate cutter and passer.",
+    "instructions": [
+      "V-cut: walk toward the lane, plant the inside foot, push out to the wing and show a hand.",
+      "L-cut: walk up the lane line to the elbow, plant and cut out to the wing in an L.",
+      "Back cut: walk out toward the wing, plant the outside foot and cut to the rim.",
+      "Receive the pass on each cut.",
+      "Finish or shoot."
+    ],
+    "coachingPoints": [
+      "Slow, then sharp: the plant makes the cut.",
+      "Show a target on every cut.",
+      "Eyes on the passer."
+    ],
+    "commonMistakes": ["Rounded cuts.", "No change of speed.", "Hands down on the catch."],
+    "safety": "Cutters clear the lane after each finish.",
+    "progressions": ["Add a denying defender.", "Cutter reads which cut to use."],
+    "regressions": ["Walk each cut.", "One cut type per round."],
+    "variations": ["Flare cut away from the ball.", "Curl cut off a cone."],
+    "successCriteria": ["Sharp plants on every cut.", "Catches with a target hand ready."],
+    "gameApplication": "Most open shots come from good cuts.",
+    "repetitions": "3 of each cut",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.8, 1.4]
+              },
+              {
+                "anchor": "right_wing",
+                "offset": [0.2, 0.2]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [0.6, 1.4]
+            },
+            "text": "V · L · back"
+          }
+        ]
+      }
+    }
+  ]
+}
