@@ -1,0 +1,139 @@
+{
+  "seedKey": "jump-the-lazy-pass",
+  "title": "Jump the Lazy Pass",
+  "description": "Defenders one pass away read the passer's eyes and jump a slow, telegraphed pass for a steal — then learn when not to gamble.",
+  "category": "individual_defense",
+  "primarySkill": "help_defense",
+  "secondarySkills": ["speed_agility", "decision_making"],
+  "subSkills": ["help_position"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["anticipation", "steal"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Anticipate passes from the passer's eyes and body, and jump only when the steal is certain.",
+    "setup": "Passer at the top; receiver at the wing; defender one pass away.",
+    "organization": "Rotate roles.",
+    "instructions": [
+      "The passer looks at the receiver for a moment before passing (telegraphing).",
+      "The defender sits in the passing lane with a hand out.",
+      "On a slow, telegraphed pass, the defender explodes into the lane for the steal.",
+      "On a quick pass, the defender closes out instead.",
+      "Push the ball the other way after a steal."
+    ],
+    "coachingPoints": [
+      "Read the eyes and the wind-up.",
+      "Commit fully or not at all.",
+      "After a steal, go."
+    ],
+    "commonMistakes": [
+      "Gambling on every pass and getting beaten back door.",
+      "Half-hearted jumps.",
+      "Reaching around the receiver."
+    ],
+    "safety": "No diving at the receiver's legs.",
+    "progressions": ["Passer mixes quick and lazy passes.", "Add a back-door option."],
+    "regressions": ["Coach throws obviously slow passes.", "No receiver movement."],
+    "variations": ["Jump the skip pass.", "Jump the entry pass to the post."],
+    "successCriteria": ["Steals the lazy passes.", "Does not gamble on quick ones."],
+    "gameApplication": "Anticipation turns opponents' bad passes into easy baskets.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "right_slot",
+              "offset": [-0.4, -1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "sprint",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [0.6, -0.4]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

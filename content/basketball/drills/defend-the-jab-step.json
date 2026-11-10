@@ -1,0 +1,136 @@
+{
+  "seedKey": "defend-the-jab-step",
+  "title": "Defend the Jab Step",
+  "description": "Defenders learn to give ground on a jab without biting: a small retreat step keeps them in front, and a hand stays up for the shot.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": ["footwork"],
+  "subSkills": ["stance_and_slides"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["jab step", "discipline"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "React to a jab step with a small retreat (not a lunge), staying balanced for the shot or drive.",
+    "setup": "Offense with the ball at the wing in triple threat; defender in front.",
+    "organization": "Live 1v1; switch after each possession.",
+    "instructions": [
+      "The offensive player jabs at the defender.",
+      "The defender takes a short retreat step with the back foot, keeping the stance.",
+      "If the offense rises to shoot, contest with a high hand.",
+      "If they drive, slide and cut off.",
+      "Play live for five seconds."
+    ],
+    "coachingPoints": [
+      "Retreat step, not a jump.",
+      "Weight on the balls of the feet.",
+      "Hand up after every jab."
+    ],
+    "commonMistakes": [
+      "Lunging backward and giving an open shot.",
+      "Biting toward the jab foot.",
+      "Crossing the feet."
+    ],
+    "safety": "Defenders play legally: chest up, no reaching across the body, no pushing; stop play on any dangerous contact.",
+    "progressions": ["Two jabs in a row.", "Offense may use a jab-crossover."],
+    "regressions": ["Offense jabs without attacking.", "Walk-through."],
+    "variations": ["Defend the rocker on the dribble.", "Defend the shot fake."],
+    "successCriteria": ["Stays balanced on every jab.", "Holds the offense to tough shots."],
+    "gameApplication": "Disciplined defenders do not give up the first step on a fake.",
+    "repetitions": "6 possessions per player",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [-0.5, -0.8]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [-0.4, -0.3]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "recover",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [-0.8, -1.2]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "seedKey": "stay-down-vs-fakes",
+  "title": "Stay Down vs Fakes",
+  "description": "Rim protectors and on-ball defenders practise staying on the floor through shot and gather fakes, then contesting vertically on the real shot.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": ["closeouts"],
+  "subSkills": ["containing_the_dribble"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["discipline", "fakes", "contest"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Avoid leaving the feet on fakes and still contest the real shot.",
+    "setup": "Offense with the ball in the lane; defender in front.",
+    "organization": "Switch each possession.",
+    "instructions": [
+      "The offense jump-stops in the lane.",
+      "The offense uses up to two shot fakes.",
+      "The defender keeps the hands high but feet on the floor.",
+      "On the real shot, jump vertically.",
+      "Box out and rebound."
+    ],
+    "coachingPoints": [
+      "Watch the hips, not the ball.",
+      "Hands high, feet down.",
+      "Jump only when the ball goes up past the head."
+    ],
+    "commonMistakes": [
+      "Jumping at the first fake.",
+      "Lowering the hands while waiting.",
+      "Jumping forward into the shooter."
+    ],
+    "safety": "Vertical contests only; no landing on the shooter.",
+    "progressions": ["Offense may pivot and step through.", "Add a second fake type (pass fake)."],
+    "regressions": ["One fake only.", "Shooter announces fake or shot (coach-led)."],
+    "variations": ["Defend the euro gather.", "Defend the up-and-under post move."],
+    "successCriteria": ["Never leaves the floor on a fake.", "Contests every real shot."],
+    "gameApplication": "Defenders who stay down avoid fouls and easy step-through lay-ups.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, -1.4]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "basket",
+              "offset": [0, 1.2]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

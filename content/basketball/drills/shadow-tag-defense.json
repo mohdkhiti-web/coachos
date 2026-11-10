@@ -1,0 +1,138 @@
+{
+  "seedKey": "shadow-tag-defense",
+  "title": "Shadow Tag Defense",
+  "description": "A tag game for young players: the 'shadow' must stay within an arm's length of a partner who moves around the court, teaching defensive movement through play.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": ["footwork", "speed_agility"],
+  "subSkills": ["stance_and_slides"],
+  "level": "beginner",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["warm_up", "small_sided"],
+  "ageMin": 5,
+  "ageMax": 10,
+  "playersMin": 4,
+  "playersMax": 30,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["game", "u8", "defense"],
+  "equipment": [],
+  "content": {
+    "objective": "Stay with a moving partner using quick feet, the basic idea of guarding someone.",
+    "setup": "Pairs inside the half court.",
+    "organization": "30-second rounds; switch roles.",
+    "instructions": [
+      "The leader moves around the half court (walk, jog, change direction).",
+      "The shadow stays within an arm's length.",
+      "On the whistle, both freeze; the shadow scores a point if still close.",
+      "Switch roles.",
+      "Add slides: the shadow must face the leader."
+    ],
+    "coachingPoints": [
+      "Face your partner.",
+      "Small, quick steps.",
+      "Watch the belly button, not the feet."
+    ],
+    "commonMistakes": [
+      "Chasing from behind.",
+      "Big steps that overrun.",
+      "Crossing feet when sliding."
+    ],
+    "safety": "Jogging pace in a crowded space; leaders cannot run backward into others.",
+    "progressions": ["Leader dribbles a ball.", "Shadow must stay in a stance."],
+    "regressions": ["Walking only.", "Larger distance allowed."],
+    "variations": ["Leader can 'escape' by touching a line.", "Groups of three: two shadows."],
+    "successCriteria": ["Close at most freezes.", "Faces the partner throughout."],
+    "gameApplication": "Guarding a player starts with staying with them; games teach it without boredom.",
+    "repetitions": "4 rounds of 30 s",
+    "resources": [
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [0.3, -0.7]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [-0.5, -0.5]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [0, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "move",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [0.2, -0.1]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

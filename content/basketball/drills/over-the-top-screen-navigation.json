@@ -1,0 +1,158 @@
+{
+  "seedKey": "over-the-top-screen-navigation",
+  "title": "Over-the-Top Screen Navigation",
+  "description": "On-ball defenders practise getting over the top of a ball screen — getting skinny, staying attached to the ball handler — instead of dying on the screen.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": ["pick_and_roll"],
+  "subSkills": ["pnr_defense", "containing_the_dribble"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "2v2",
+  "phases": ["skill"],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["pick and roll", "screen navigation"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Fight over a ball screen with a skinny body and stay in a position to contest or recover.",
+    "setup": "Ball handler at the top; screener; on-ball defender.",
+    "organization": "Rotate roles.",
+    "instructions": [
+      "The screener sets a screen on the ball handler's defender.",
+      "The defender gets skinny: turn the shoulders and step over the screener's top foot.",
+      "Stay attached to the ball handler's hip.",
+      "Re-enter the stance and contest a pull-up or contain the drive.",
+      "Play live 2v2 if the screener's defender joins."
+    ],
+    "coachingPoints": [
+      "See the screen early (teammate calls it).",
+      "Skinny shoulders, push off the back foot.",
+      "Hip to hip with the ball handler."
+    ],
+    "commonMistakes": [
+      "Running into the screen.",
+      "Going under and giving a pull-up three.",
+      "Losing the ball handler after getting through."
+    ],
+    "safety": "Legal screens only; defenders do not hold the screener.",
+    "progressions": ["Screener's defender hedges.", "Ball handler rejects the screen."],
+    "regressions": ["Walk-through.", "No screener's defender."],
+    "variations": ["Navigate a side ball screen.", "Navigate a re-screen."],
+    "successCriteria": ["Gets over the top on most reps.", "Stays in contesting position."],
+    "gameApplication": "Ball screens are the most common action in basketball; on-ball defenders must get through them.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_slot",
+              "offset": [-0.4, 0.6]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [0, -0.8]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o2",
+            "target": {
+              "entity": "x1",
+              "offset": [0.5, 0]
+            },
+            "kind": "ball"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [0, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "defend",
+            "kind": "recover",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [0.4, 0.2]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

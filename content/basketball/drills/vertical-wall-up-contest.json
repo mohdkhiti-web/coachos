@@ -1,0 +1,129 @@
+{
+  "seedKey": "vertical-wall-up-contest",
+  "title": "Vertical Wall-Up Contest",
+  "description": "Defenders practise 'walling up' — jumping straight up with arms vertical — to contest finishes without fouling.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": ["closeouts"],
+  "subSkills": ["containing_the_dribble"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["verticality", "rim protection"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Contest shots at the rim legally with vertical arms, absorbing contact in the chest.",
+    "setup": "Defender under the rim; drivers at the wing.",
+    "organization": "Rotate drivers and defenders.",
+    "instructions": [
+      "The driver attacks the rim at half speed.",
+      "The defender establishes position in the driver's path before they take off.",
+      "Jump straight up with both arms vertical.",
+      "Absorb contact with the chest; do not swing the arms down.",
+      "Rebound."
+    ],
+    "coachingPoints": [
+      "Arms straight up like a wall.",
+      "Feet set before the driver leaves the floor.",
+      "Land balanced."
+    ],
+    "commonMistakes": [
+      "Swiping down (foul).",
+      "Jumping into the driver.",
+      "Moving under the driver late."
+    ],
+    "safety": "Half-speed drives; padded contact only; stop if anyone lands awkwardly.",
+    "progressions": ["Full speed.", "Driver may euro."],
+    "regressions": ["Stationary shooter.", "Contest without jumping."],
+    "variations": ["Wall up on a post shot.", "Wall up in transition."],
+    "successCriteria": ["No fouls on contests.", "Most shots altered."],
+    "gameApplication": "Verticality lets defenders protect the rim without picking up fouls.",
+    "repetitions": "6 contests per defender",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "basket",
+              "offset": [0.4, 1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [0, 1.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}
