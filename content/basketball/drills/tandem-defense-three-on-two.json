@@ -1,0 +1,240 @@
+{
+  "seedKey": "tandem-defense-three-on-two",
+  "title": "Tandem Defense 3-on-2",
+  "description": "Two defenders stand in tandem (one high, one low) to defend a three-on-two break, with the top defender stopping the ball and the low defender taking the first pass.",
+  "category": "team_defense",
+  "primarySkill": "help_defense",
+  "secondarySkills": [
+    "communication",
+    "speed_agility"
+  ],
+  "subSkills": [
+    "defensive_rotations"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 5,
+  "playersMax": 15,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "full_court",
+  "tags": [
+    "tandem",
+    "3-on-2",
+    "transition defense"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Delay a three-on-two break with tandem positioning and rotations until help arrives.",
+    "setup": "Two defenders in the lane (one at the free-throw line, one under the basket); three attackers at half court.",
+    "organization": "Defenders stay for two possessions; the attackers rotate.",
+    "instructions": [
+      "The top defender stops the ball at the top of the key.",
+      "On a pass to a wing, the low defender takes the wing.",
+      "The top defender drops to the basket area.",
+      "On a pass back across, the defenders rotate again.",
+      "Force a contested jump shot rather than a lay-up."
+    ],
+    "coachingPoints": [
+      "Top stops the ball, bottom takes the first pass.",
+      "Talk every rotation.",
+      "Make them make an extra pass."
+    ],
+    "commonMistakes": [
+      "Both defenders going to the ball.",
+      "Low defender leaving the rim early.",
+      "Silent rotations."
+    ],
+    "safety": "Play legal defense: no hand-checking, no running through screens; stop play on any dangerous collision.",
+    "progressions": [
+      "Add a trailing defender.",
+      "4-on-3 with three defenders."
+    ],
+    "regressions": [
+      "Attackers jog.",
+      "Freeze after each pass."
+    ],
+    "variations": [
+      "Defend 2-on-1 instead.",
+      "Side-by-side defense (compare)."
+    ],
+    "successCriteria": [
+      "Lay-ups prevented.",
+      "At least two passes forced."
+    ],
+    "gameApplication": "Teams get caught outnumbered in transition; tandem defense limits the damage.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [
+                0,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_sideline_center",
+              "offset": [
+                2.2,
+                -2
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_sideline_center",
+              "offset": [
+                -2.2,
+                -2
+              ]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [
+                0,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "basket",
+              "offset": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [
+                  0,
+                  1.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [
+                  0.6,
+                  -0.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "defend",
+            "kind": "recover",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  0,
+                  1.2
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

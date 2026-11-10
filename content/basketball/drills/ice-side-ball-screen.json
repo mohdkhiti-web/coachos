@@ -1,0 +1,242 @@
+{
+  "seedKey": "ice-side-ball-screen",
+  "title": "ICE the Side Ball Screen",
+  "description": "On a side ball screen, the on-ball defender jumps to the top side and forces the ball handler away from the screen toward the sideline, while the big drops to wall the baseline.",
+  "category": "team_defense",
+  "primarySkill": "pick_and_roll",
+  "secondarySkills": [
+    "communication",
+    "on_ball_defense"
+  ],
+  "subSkills": [
+    "pnr_defense"
+  ],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "2v2",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "ICE",
+    "side pick and roll",
+    "coverage"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Keep a side ball screen from turning into a middle drive by 'icing' it toward the baseline.",
+    "setup": "Ball handler at the right wing; screener coming from the elbow; two defenders.",
+    "organization": "Rotate pairs every four reps.",
+    "instructions": [
+      "The screener's defender calls 'ICE!' as the screen comes.",
+      "The on-ball defender jumps to the top side of the ball handler, denying the screen.",
+      "The ball handler is forced toward the baseline.",
+      "The big's defender drops to the block to wall the drive, staying between ball and rim.",
+      "Recover to the roller as the guard defender catches up."
+    ],
+    "coachingPoints": [
+      "Call it early.",
+      "On-ball defender's body is above the ball, not behind.",
+      "Big walls the baseline, does not chase."
+    ],
+    "commonMistakes": [
+      "On-ball defender going over the screen anyway.",
+      "Big stepping out too high.",
+      "No recovery to the roller."
+    ],
+    "safety": "Play legal defense: no hand-checking, no running through screens; stop play on any dangerous collision.",
+    "progressions": [
+      "Live 2v2 with a weak-side helper.",
+      "Ball handler rejects the screen."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "Ball handler at half speed."
+    ],
+    "variations": [
+      "ICE from the corner.",
+      "Pin-down then side screen."
+    ],
+    "successCriteria": [
+      "Ball handler forced baseline on most reps.",
+      "No middle drive."
+    ],
+    "gameApplication": "ICE keeps side ball screens away from the middle where the help is thinnest.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [
+                0.4,
+                0
+              ]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                0,
+                0.7
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [
+                -0.4,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o2",
+            "target": {
+              "entity": "o1",
+              "offset": [
+                -0.6,
+                0.4
+              ]
+            },
+            "kind": "ball"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [
+                  -0.4,
+                  0.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_corner",
+                "offset": [
+                  -0.4,
+                  1.2
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "defend",
+            "kind": "drop",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [
+                  -0.6,
+                  0.8
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [
+                1.6,
+                1.4
+              ]
+            },
+            "text": "ICE!"
+          }
+        ]
+      }
+    }
+  ]
+}

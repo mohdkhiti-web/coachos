@@ -1,0 +1,242 @@
+{
+  "seedKey": "three-stops-in-a-row",
+  "title": "Three Stops in a Row",
+  "description": "A competitive half-court game where the defense must get three consecutive stops to earn a point, rewarding sustained team defense.",
+  "category": "team_defense",
+  "primarySkill": "competitiveness",
+  "secondarySkills": [
+    "help_defense",
+    "communication"
+  ],
+  "subSkills": [
+    "defensive_rotations"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "5v5",
+  "phases": [
+    "small_sided",
+    "game"
+  ],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 10,
+  "playersMax": 15,
+  "durationMin": 10,
+  "durationMax": 15,
+  "space": "half_court",
+  "tags": [
+    "game",
+    "stops",
+    "consistency"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Sustain defensive effort and rotations across several possessions, not just one.",
+    "setup": "Half-court 5v5; the defense must stop the offense three times in a row.",
+    "organization": "Defense stays on until it earns a point; a third team can rotate in on offense.",
+    "instructions": [
+      "Offense attacks live.",
+      "A stop is a miss rebounded by the defense, a turnover or a shot-clock violation.",
+      "Three consecutive stops earn the defense a point and a switch.",
+      "Any score resets the stop count to zero.",
+      "Coach chooses the defensive scheme each round."
+    ],
+    "coachingPoints": [
+      "Every possession matters equally.",
+      "Finish with the defensive rebound.",
+      "Talk and celebrate stops to build energy."
+    ],
+    "commonMistakes": [
+      "Relaxing after a stop.",
+      "Forgetting to rebound.",
+      "Arguing about calls."
+    ],
+    "safety": "Play legal defense: no hand-checking, no running through screens; stop play on any dangerous collision.",
+    "progressions": [
+      "Four stops.",
+      "Shot clock of 20 seconds."
+    ],
+    "regressions": [
+      "Two stops.",
+      "4v4."
+    ],
+    "variations": [
+      "Offense must score in under three passes.",
+      "Bonus stops for charges."
+    ],
+    "successCriteria": [
+      "Defense earns at least one point per round.",
+      "Rebounds secured after misses."
+    ],
+    "gameApplication": "Consistency wins defensive battles; one good possession is not enough.",
+    "repetitions": "2 rounds of 6 minutes",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_block"
+            }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                0,
+                -0.8
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [
+                -0.5,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [
+                -0.2,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "x4",
+            "type": "player",
+            "side": "defense",
+            "label": "X4",
+            "at": {
+              "entity": "o4",
+              "offset": [
+                0,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "x5",
+            "type": "player",
+            "side": "defense",
+            "label": "X5",
+            "at": {
+              "anchor": "left_block",
+              "offset": [
+                -0.4,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [
+                0,
+                -1.4
+              ]
+            },
+            "text": "Stops: 0 / 3"
+          }
+        ]
+      }
+    }
+  ]
+}

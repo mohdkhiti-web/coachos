@@ -1,0 +1,218 @@
+{
+  "seedKey": "defending-back-and-cross-screens",
+  "title": "Defending Back and Cross Screens",
+  "description": "Post defenders and their teammates defend back screens and cross screens near the basket with early calls and a quick switch or fight-through.",
+  "category": "team_defense",
+  "primarySkill": "communication",
+  "secondarySkills": [
+    "help_defense"
+  ],
+  "subSkills": [
+    "defensive_rotations"
+  ],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "2v2",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "back screen",
+    "cross screen",
+    "post defense"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Prevent lobs and post seals off back and cross screens by communicating and choosing a coverage early.",
+    "setup": "Two offensive bigs on the blocks (cross screen) or a big and a guard at the elbow and wing (back screen); a passer.",
+    "organization": "Rotate roles.",
+    "instructions": [
+      "Cross screen: one big screens across the lane for the other.",
+      "The screener's defender calls the screen early.",
+      "The cutter's defender fights over the top (high side) to deny the post seal.",
+      "Back screen: the screener's defender opens up to see and help on the lob.",
+      "Switch when the call is made."
+    ],
+    "coachingPoints": [
+      "Early call, before contact.",
+      "High side on cross screens.",
+      "Open up to the ball on back screens."
+    ],
+    "commonMistakes": [
+      "Turning the back to the ball on the back screen.",
+      "Getting sealed under the cross screen.",
+      "Late switches that give a lob."
+    ],
+    "safety": "Play legal defense: no hand-checking, no running through screens; stop play on any dangerous collision.",
+    "progressions": [
+      "Add a weak-side helper.",
+      "Offense reads and slips."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "No lob allowed."
+    ],
+    "variations": [
+      "Defend a flex screen.",
+      "Defend the UCLA cut."
+    ],
+    "successCriteria": [
+      "No lobs conceded.",
+      "No deep post seals."
+    ],
+    "gameApplication": "Screens near the rim lead to the easiest baskets; early calls stop them.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [
+                0,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "entity": "o3",
+              "offset": [
+                0,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o3",
+            "target": {
+              "entity": "x2",
+              "offset": [
+                0.4,
+                0
+              ]
+            },
+            "kind": "cross"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [
+                  0.6,
+                  0.4
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [
+                  0.6,
+                  1
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

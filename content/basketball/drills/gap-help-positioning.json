@@ -1,0 +1,216 @@
+{
+  "seedKey": "gap-help-positioning",
+  "title": "Gap Help Positioning",
+  "description": "Defenders one pass away learn to stand in the 'gap' between the ball and their player so the dribbler sees a crowd when looking to drive.",
+  "category": "team_defense",
+  "primarySkill": "help_defense",
+  "secondarySkills": [
+    "on_ball_defense"
+  ],
+  "subSkills": [
+    "help_position"
+  ],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "3v3",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 6,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "gap help",
+    "drive prevention"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Show help in the driving gap and still recover to your player on the pass.",
+    "setup": "3v3 with the ball at the top, wings on both sides.",
+    "organization": "Rotate every four possessions.",
+    "instructions": [
+      "The ball handler at the top looks to drive.",
+      "Both wing defenders stand a step off their player, in the gap toward the ball.",
+      "On a drive, the gap defender steps in to show help (a 'stunt').",
+      "On a pass, the gap defender recovers.",
+      "Play live."
+    ],
+    "coachingPoints": [
+      "Show the gap, then recover.",
+      "Hands active in the gap.",
+      "Recover on the pass, not the catch."
+    ],
+    "commonMistakes": [
+      "Standing glued to your player (no help).",
+      "Sagging too far and conceding the shot.",
+      "Late recovery."
+    ],
+    "safety": "Play legal defense: no hand-checking, no running through screens; stop play on any dangerous collision.",
+    "progressions": [
+      "Add drive-and-kick reads.",
+      "4v4."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "Drives at half speed."
+    ],
+    "variations": [
+      "Gap help against a post entry.",
+      "Gap help from the corner."
+    ],
+    "successCriteria": [
+      "Drives deterred by the gap.",
+      "Kick-outs contested."
+    ],
+    "gameApplication": "Gap help stops drives before they start, which keeps the defense compact.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                0,
+                -0.8
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "right_slot",
+              "offset": [
+                -0.8,
+                -1
+              ]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "anchor": "left_slot",
+              "offset": [
+                0.8,
+                -1
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [
+                  -0.8,
+                  0.2
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "help",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [
+                  -0.4,
+                  0.4
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

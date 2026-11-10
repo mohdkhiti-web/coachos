@@ -1,0 +1,214 @@
+{
+  "seedKey": "x-out-rotation",
+  "title": "X-Out Rotation",
+  "description": "After a skip pass, the two weak-side defenders swap assignments in an X — the nearer defender closes out, the other sinks to the open player — to recover faster.",
+  "category": "team_defense",
+  "primarySkill": "help_defense",
+  "secondarySkills": [
+    "closeouts",
+    "communication"
+  ],
+  "subSkills": [
+    "defensive_rotations"
+  ],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "group",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 6,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "rotation",
+    "skip pass",
+    "X-out"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Recover from a skip pass with an X-out switch rather than a long, late closeout.",
+    "setup": "Offense in a 4-out spread with the ball at the right wing; defense in help positions; one helper sunk deep.",
+    "organization": "Rotate offense and defense every four possessions.",
+    "instructions": [
+      "Ball at the right wing; the weak-side defenders sink to help.",
+      "The offense skips to the left wing.",
+      "The defender nearest the wing (from the low help spot) closes out to the wing.",
+      "The higher help defender drops to the corner player: the X.",
+      "Both call 'Switch!'; play live."
+    ],
+    "coachingPoints": [
+      "Closest defender takes the ball.",
+      "Call the switch loudly.",
+      "Sprint on the skip, not after the catch."
+    ],
+    "commonMistakes": [
+      "Both chasing the ball.",
+      "Silent swaps that leave a player open.",
+      "Late reaction to the skip."
+    ],
+    "safety": "Play legal defense: no hand-checking, no running through screens; stop play on any dangerous collision.",
+    "progressions": [
+      "Offense may drive the closeout.",
+      "Second skip back."
+    ],
+    "regressions": [
+      "Walk-through with freezes.",
+      "Skip pass lofted slowly."
+    ],
+    "variations": [
+      "X-out in a 3v3 on one side.",
+      "X-out against a 5-out offense."
+    ],
+    "successCriteria": [
+      "No open shot after the skip on most possessions.",
+      "Switch called every time."
+    ],
+    "gameApplication": "Rotating with an X-out covers skip passes faster than one long closeout.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [
+                0,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "anchor": "left_block",
+              "offset": [
+                0.2,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "skip"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x3",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [
+                  0.6,
+                  -0.8
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 1,
+            "type": "defend",
+            "kind": "recover",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "left_corner",
+                "offset": [
+                  0.8,
+                  0.8
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}
