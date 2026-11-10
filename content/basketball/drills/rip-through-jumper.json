@@ -1,0 +1,148 @@
+{
+  "seedKey": "rip-through-jumper",
+  "title": "Rip-Through Jumper",
+  "description": "After the catch, the player rips the ball low across the body to clear the defender's hands, then rises into a jumper or attacks the space.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["footwork"],
+  "subSkills": ["shooting_off_the_dribble"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["rip through", "triple threat"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Protect the ball from a reaching defender with a low rip-through and shoot in balance after it.",
+    "setup": "Passer at the top; shooter at the wing; defender closing out.",
+    "organization": "Rotate shooter, defender, passer.",
+    "instructions": [
+      "Catch at the wing in triple threat.",
+      "The defender reaches for the ball.",
+      "Rip the ball low across the knees from the high side to the low side.",
+      "Bring it back up to the shooting pocket and shoot if the defender retreats.",
+      "If the defender stays low, drive the open side instead."
+    ],
+    "coachingPoints": [
+      "Rip below the knees, fast.",
+      "Keep the pivot foot planted.",
+      "Return to the pocket before shooting."
+    ],
+    "commonMistakes": [
+      "Ripping at waist height into the defender's hands.",
+      "Swinging elbows into the defender (foul).",
+      "Travelling on the rip."
+    ],
+    "safety": "Elbows stay close to the body; no swinging at the defender's head.",
+    "progressions": ["Rip-through and one-dribble pull-up.", "Live 1v1 after the rip."],
+    "regressions": ["Defender holds hands still.", "Rip without a defender, shoot."],
+    "variations": ["Rip from the elbow.", "Rip into a crossover step drive."],
+    "successCriteria": [
+      "Ball never touched during the rip.",
+      "Shot taken in balance after the rip."
+    ],
+    "gameApplication": "The rip-through protects the ball from aggressive defenders and creates shooting space.",
+    "repetitions": "6 reps per player",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [0.6, -0.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [-0.2, -0.2]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "seedKey": "transition-pull-up-or-rim-read",
+  "title": "Transition Pull-Up or Rim Read",
+  "description": "In a 1v1 transition race, the ball handler reads the retreating defender: pull up when the defender protects the rim, attack the rim when the defender stops at the arc.",
+  "category": "shooting",
+  "primarySkill": "decision_making",
+  "secondarySkills": ["shooting_form", "finishing"],
+  "subSkills": ["shooting_off_the_dribble", "reading_the_defense"],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "full_court",
+  "tags": ["transition", "pull-up", "read"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Make the right transition shot decision based on where the retreating defender sets up.",
+    "setup": "Ball handler at half court; defender at the free-throw line facing them.",
+    "organization": "Switch roles each possession.",
+    "instructions": [
+      "The ball handler attacks at speed from half court.",
+      "The defender chooses: retreat to protect the rim or step up at the arc.",
+      "Defender retreats: pull up from the free-throw line area.",
+      "Defender steps up: attack past them to the rim.",
+      "Play the possession out."
+    ],
+    "coachingPoints": [
+      "Read early: by the three-point line.",
+      "Pull up on balance at speed.",
+      "Attack the defender's front foot if they step up."
+    ],
+    "commonMistakes": [
+      "Deciding before reading.",
+      "Driving into a set defender.",
+      "Rushed, off-balance pull-ups."
+    ],
+    "safety": "Defenders do not take charges at full speed in this drill.",
+    "progressions": ["Add a trailing defender.", "Pull-up threes allowed."],
+    "regressions": ["Defender signals their choice early.", "Jog speed."],
+    "variations": ["Start from a defensive rebound.", "2v1 version."],
+    "successCriteria": ["Correct read on most possessions.", "Scores at a high rate."],
+    "gameApplication": "Transition defenders give either the rim or the pull-up; great guards take whichever they leave.",
+    "repetitions": "6 possessions per player",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [0, 1]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 0.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [0, 1.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "recover",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [0, 1.6]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "seedKey": "one-and-one-free-throw-scenarios",
+  "title": "One-and-One Free-Throw Scenarios",
+  "description": "Players shoot game scenarios — one-and-one, two shots down by one, last-second free throws — with the coach setting the situation each time.",
+  "category": "shooting",
+  "primarySkill": "free_throws",
+  "secondarySkills": ["late_game_execution"],
+  "subSkills": ["foul_situations"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["free throws", "late game", "scenarios"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Make free throws in specific game situations, keeping the same routine regardless of the score.",
+    "setup": "One shooter at the line; teammates line the lane as in a game.",
+    "organization": "Coach announces the scenario; shooters rotate.",
+    "instructions": [
+      "The coach announces a situation (e.g. 'one-and-one, down one, 10 seconds left').",
+      "The shooter goes through the full routine.",
+      "In a one-and-one, the second shot happens only after a make.",
+      "Players on the lane react as in a game (box out or run back).",
+      "Rotate shooters and situations."
+    ],
+    "coachingPoints": [
+      "Same routine whatever the situation.",
+      "Breathe out before the shot.",
+      "Teammates support, never distract."
+    ],
+    "commonMistakes": [
+      "Rushing because the situation is tense.",
+      "Changing the routine.",
+      "Lane players forgetting their jobs."
+    ],
+    "safety": "Lane players start only when the ball hits the rim.",
+    "progressions": ["Add a consequence for misses (team sprint).", "Scenarios after a sprint."],
+    "regressions": ["Two shots every time.", "No lane players."],
+    "variations": ["Intentional miss situation for the last shot.", "Shoot with crowd noise."],
+    "successCriteria": ["Routine unchanged across scenarios.", "Makes at a game-ready rate."],
+    "gameApplication": "Close games are decided at the line; rehearsing the exact situations reduces surprise.",
+    "repetitions": "2 scenarios per player per round",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [0.4, 0.2]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-0.4, 0.2]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "right_block",
+              "offset": [0.4, 1.4]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-0.4, 1.4]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1.4]
+            },
+            "text": "Down 1 · one-and-one"
+          }
+        ]
+      }
+    }
+  ]
+}

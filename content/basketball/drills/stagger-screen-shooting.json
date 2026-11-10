@@ -1,0 +1,187 @@
+{
+  "seedKey": "stagger-screen-shooting",
+  "title": "Stagger Screen Shooting",
+  "description": "A shooter comes off two staggered screens to the wing or top for a catch-and-shoot, learning to set up the cut and read which screen to use.",
+  "category": "shooting",
+  "primarySkill": "screening",
+  "secondarySkills": ["shooting_form", "cutting"],
+  "subSkills": ["using_screens", "catch_and_shoot"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["stagger screen", "off-ball screens"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use a two-screen stagger to lose a defender and catch square for a shot.",
+    "setup": "Passer at the right wing; screeners at the left block and left elbow; shooter under the basket.",
+    "organization": "Rotate shooter, screeners and passer.",
+    "instructions": [
+      "The shooter starts under the basket and sets up the defender toward the baseline.",
+      "The first screener at the block screens; the second at the elbow screens just after.",
+      "The shooter runs tight off both screens to the left slot.",
+      "The passer passes as the shooter clears the second screen.",
+      "Catch, square, shoot."
+    ],
+    "coachingPoints": [
+      "Set the defender up before using the screens.",
+      "Run tight off each screener's hip.",
+      "Screeners hold until the shooter passes."
+    ],
+    "commonMistakes": [
+      "Cutting before the screens are set.",
+      "Wide cuts between screens.",
+      "Screeners moving into the shooter's path."
+    ],
+    "safety": "Screeners stationary with arms in.",
+    "progressions": ["Defender chases the shooter.", "Shooter curls the second screen if trailed."],
+    "regressions": ["One screener only.", "No defender."],
+    "variations": ["Stagger to the corner.", "Screener pops after the stagger."],
+    "successCriteria": [
+      "Catch arrives with the feet set.",
+      "Shooter uses both screens on most reps."
+    ],
+    "gameApplication": "Staggers free shooters who are being chased by a good defender.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [0, 0.4]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o3",
+            "target": {
+              "anchor": "left_block",
+              "offset": [0.8, 0.2]
+            },
+            "kind": "stagger"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "screen",
+            "entity": "o4",
+            "target": {
+              "anchor": "left_elbow",
+              "offset": [0.6, -0.2]
+            },
+            "kind": "stagger"
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [0.6, 0.4]
+              },
+              {
+                "anchor": "left_elbow",
+                "offset": [0.4, 0]
+              },
+              {
+                "anchor": "left_slot"
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "skip"
+          },
+          {
+            "id": "a5",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

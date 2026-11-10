@@ -1,0 +1,145 @@
+{
+  "seedKey": "post-face-up-jumper",
+  "title": "Post Face-Up Jumper",
+  "description": "Post players catch on the block or short corner, face up to the defender and shoot a short jumper when the defender gives space.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["pivoting", "decision_making"],
+  "subSkills": ["reading_the_defense"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["post", "face up"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Face up from a post catch, read the defender's distance and shoot or drive.",
+    "setup": "Passer at the wing; post player at the block; defender behind the post.",
+    "organization": "Rotate passer, post, defender.",
+    "instructions": [
+      "Catch with two hands and chin the ball.",
+      "Reverse-pivot to face the defender and the rim.",
+      "Defender back: shoot the short jumper.",
+      "Defender close: jab and drive past.",
+      "Play live for three seconds."
+    ],
+    "coachingPoints": [
+      "Pivot without travelling.",
+      "See the defender's feet on the face-up.",
+      "Shoot high over the defender."
+    ],
+    "commonMistakes": [
+      "Dribbling immediately after facing up.",
+      "Shooting when the defender is close.",
+      "Travelling on the pivot."
+    ],
+    "safety": "Defenders do not wrap arms around the post player.",
+    "progressions": ["Add a double team after the catch.", "Face-up from the elbow."],
+    "regressions": ["Defender gives a fixed cushion.", "No live play."],
+    "variations": ["Face-up and bank shot.", "Face-up and crossover drive."],
+    "successCriteria": ["Correct decision on most reps.", "No travels."],
+    "gameApplication": "Post players who can face up keep defenders from playing behind them comfortably.",
+    "repetitions": "6 reps per player",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [0.4, 0.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [-0.2, 0.2]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}
