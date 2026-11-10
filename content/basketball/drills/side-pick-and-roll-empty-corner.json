@@ -1,0 +1,214 @@
+{
+  "seedKey": "side-pick-and-roll-empty-corner",
+  "title": "Side Pick-and-Roll With an Empty Corner",
+  "description": "A side ball screen with the corner on that side cleared, so the low help must come from the weak side and leave a shooter.",
+  "category": "team_offense",
+  "primarySkill": "pick_and_roll",
+  "secondarySkills": [
+    "spacing",
+    "decision_making"
+  ],
+  "subSkills": [
+    "pnr_ball_handler",
+    "pnr_screener",
+    "reading_the_defense"
+  ],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "4v4",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 8,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "side pick and roll",
+    "empty corner",
+    "spacing"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use an empty-corner side ball screen to create a roll to the rim or a kick to the weak side.",
+    "setup": "Ball handler at the right wing; screener; two weak-side shooters (left wing, left corner); four defenders.",
+    "organization": "Rotate every four possessions.",
+    "instructions": [
+      "The right corner is empty.",
+      "The screener sets a side ball screen.",
+      "The ball handler attacks the middle; the screener rolls to the rim.",
+      "The low help comes from the weak side.",
+      "Read: lob/bounce to the roller or kick to the open shooter."
+    ],
+    "coachingPoints": [
+      "Keep the corner empty.",
+      "Roller runs to the rim, not the block.",
+      "Shooters stay spaced."
+    ],
+    "commonMistakes": [
+      "A shooter drifting into the empty corner.",
+      "Ball handler picking up the dribble.",
+      "Late kick-outs."
+    ],
+    "safety": "Screens are set stationary and legal; defenders are allowed to see the screen in walk-throughs before live play.",
+    "progressions": [
+      "Live 5v5.",
+      "Defense ICEs the screen."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "3v3 on one side."
+    ],
+    "variations": [
+      "Empty-side pick-and-pop.",
+      "Re-screen if blitzed."
+    ],
+    "successCriteria": [
+      "Open roll or kick-out.",
+      "Spacing maintained."
+    ],
+    "gameApplication": "Empty-corner sets make every help decision a costly one for the defense.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [
+                0.6,
+                0.2
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o2",
+            "target": {
+              "anchor": "right_wing",
+              "offset": [
+                -0.6,
+                0
+              ]
+            },
+            "kind": "ball"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [
+                  -0.6,
+                  0.4
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  0.6,
+                  0.6
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_corner",
+              "offset": [
+                -0.8,
+                -0.4
+              ]
+            },
+            "text": "Empty"
+          }
+        ]
+      }
+    }
+  ]
+}

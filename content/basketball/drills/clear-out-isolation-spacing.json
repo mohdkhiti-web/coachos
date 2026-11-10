@@ -1,0 +1,212 @@
+{
+  "seedKey": "clear-out-isolation-spacing",
+  "title": "Clear-Out Isolation Spacing",
+  "description": "Four players clear one side of the floor for an isolation and learn where to stand and move so that a help defender always leaves an open teammate.",
+  "category": "team_offense",
+  "primarySkill": "spacing",
+  "secondarySkills": [
+    "dribbling",
+    "decision_making"
+  ],
+  "subSkills": [
+    "reading_the_defense"
+  ],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "5v5",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 10,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "isolation",
+    "clear-out",
+    "spacing"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Give an isolation scorer room to work while keeping a passing outlet for every help rotation.",
+    "setup": "Ball handler isolated on the right wing; four teammates spaced on the weak side and in the corners.",
+    "organization": "Rotate scorers every two possessions.",
+    "instructions": [
+      "Clear the strong side: corner stays deep, others fill the weak side.",
+      "The ball handler attacks 1v1.",
+      "If help comes, the helper's player relocates to an open spot.",
+      "The scorer finishes or kicks.",
+      "Teammates crash for rebounds on the shot."
+    ],
+    "coachingPoints": [
+      "Spacing beyond the arc.",
+      "Relocate when your defender helps.",
+      "Scorer reads the help."
+    ],
+    "commonMistakes": [
+      "Standing too close to the action.",
+      "Ball handler forcing into help.",
+      "No rebounders."
+    ],
+    "safety": "Screens are set stationary and legal; defenders are allowed to see the screen in walk-throughs before live play.",
+    "progressions": [
+      "Shot-clock pressure (eight seconds).",
+      "Defense doubles the scorer."
+    ],
+    "regressions": [
+      "2v2 on one side.",
+      "Help only on drives."
+    ],
+    "variations": [
+      "Isolation from the top.",
+      "Post isolation."
+    ],
+    "successCriteria": [
+      "Good shot or kick on most possessions.",
+      "Spacing kept."
+    ],
+    "gameApplication": "Isolations work only when four teammates make help defense costly.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                -1.4,
+                0
+              ]
+            }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                -0.4,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [
+                  0,
+                  0.6
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "zone_rect",
+            "from": {
+              "anchor": "right_wing",
+              "offset": [
+                -1,
+                -1.2
+              ]
+            },
+            "to": {
+              "anchor": "right_corner",
+              "offset": [
+                0.2,
+                0.4
+              ]
+            },
+            "label": "Iso side"
+          }
+        ]
+      }
+    }
+  ]
+}

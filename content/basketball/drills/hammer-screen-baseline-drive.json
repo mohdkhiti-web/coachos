@@ -1,0 +1,201 @@
+{
+  "seedKey": "hammer-screen-baseline-drive",
+  "title": "Hammer Screen on a Baseline Drive",
+  "description": "As a teammate drives baseline, a weak-side player sets a flare-style (hammer) screen on the corner shooter's defender so the shooter fades to the wing.",
+  "category": "team_offense",
+  "primarySkill": "screening",
+  "secondarySkills": [
+    "passing",
+    "shooting_form"
+  ],
+  "subSkills": [
+    "setting_screens",
+    "skip_passes",
+    "catch_and_shoot"
+  ],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "3v3",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 15,
+  "ageMax": 99,
+  "playersMin": 6,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "hammer",
+    "baseline drive",
+    "skip"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Free a weak-side shooter during a baseline drive with a hammer screen and a skip pass.",
+    "setup": "Driver at the right wing; shooter in the left corner; screener at the left elbow; three defenders.",
+    "organization": "Rotate every four reps.",
+    "instructions": [
+      "The wing drives baseline.",
+      "As the low help steps in, the screener sets a hammer screen on the corner defender.",
+      "The shooter fades along the baseline to the left wing.",
+      "The driver throws a skip pass over the top.",
+      "Catch and shoot."
+    ],
+    "coachingPoints": [
+      "Screen timed with the drive.",
+      "Shooter fades away from the screen.",
+      "Skip pass high and on target."
+    ],
+    "commonMistakes": [
+      "Screening too early.",
+      "Shooter moving toward the ball.",
+      "Flat skip pass."
+    ],
+    "safety": "Screens are set stationary and legal; defenders are allowed to see the screen in walk-throughs before live play.",
+    "progressions": [
+      "Defense switches the hammer.",
+      "Driver chooses finish or skip."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "No defense on the shooter."
+    ],
+    "variations": [
+      "Hammer from the dunker spot.",
+      "Hammer on a middle drive."
+    ],
+    "successCriteria": [
+      "Open shots from the hammer.",
+      "Accurate skips."
+    ],
+    "gameApplication": "The hammer punishes defenses that help from the weak-side corner.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [
+                -0.4,
+                0.4
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [
+                  -0.6,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "screen",
+            "entity": "o3",
+            "target": {
+              "anchor": "left_corner",
+              "offset": [
+                0.6,
+                -0.4
+              ]
+            },
+            "kind": "flare"
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [
+                  -0.4,
+                  0.4
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "skip"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "seedKey": "spain-pick-and-roll",
+  "title": "Spain Pick-and-Roll",
+  "description": "A third player sets a back screen on the roller's defender during a ball screen, freeing the roller for a lob or the back-screener to pop for three.",
+  "category": "team_offense",
+  "primarySkill": "pick_and_roll",
+  "secondarySkills": [
+    "screening",
+    "decision_making"
+  ],
+  "subSkills": [
+    "pnr_ball_handler",
+    "pnr_screener",
+    "setting_screens"
+  ],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "3v3",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 15,
+  "ageMax": 99,
+  "playersMin": 6,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "Spain",
+    "back screen",
+    "pick and roll"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Run Spain action to overload the pick-and-roll coverage and create a lob, a pop or a drive.",
+    "setup": "Ball handler at the top, screener above, back-screener in the lane; three defenders.",
+    "organization": "Walk, then live; rotate every four possessions.",
+    "instructions": [
+      "The screener sets a ball screen at the top.",
+      "As the screener rolls, the third player back-screens the roller's defender.",
+      "The roller dives to the rim.",
+      "The back-screener pops to the arc.",
+      "The ball handler reads: lob, pop or drive."
+    ],
+    "coachingPoints": [
+      "Back screen timed with the roll.",
+      "Pop immediately after screening.",
+      "Ball handler keeps the dribble alive."
+    ],
+    "commonMistakes": [
+      "Back screen too early.",
+      "Back-screener rolling into traffic.",
+      "Ball handler stopping."
+    ],
+    "safety": "Screens are set stationary and legal; defenders are allowed to see the screen in walk-throughs before live play.",
+    "progressions": [
+      "Add a weak-side shooter.",
+      "Defense switches everything."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "Defenders passive."
+    ],
+    "variations": [
+      "Spain on a side screen.",
+      "Spain with a hand-off."
+    ],
+    "successCriteria": [
+      "Open lob, pop or drive.",
+      "No offensive fouls."
+    ],
+    "gameApplication": "Spain action puts two defenders in conflict and is hard to switch.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                0,
+                0.8
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                0.8,
+                1.4
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [
+                0,
+                0.4
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [
+                0,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o2",
+            "target": {
+              "anchor": "top_key",
+              "offset": [
+                0.4,
+                1
+              ]
+            },
+            "kind": "ball"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "screen",
+            "entity": "o3",
+            "target": {
+              "anchor": "free_throw_line",
+              "offset": [
+                0.4,
+                -0.2
+              ]
+            },
+            "kind": "back"
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  0,
+                  0.8
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "cut",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [
+                  -0.6,
+                  0
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

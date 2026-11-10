@@ -1,0 +1,203 @@
+{
+  "seedKey": "high-low-post-feed",
+  "title": "High-Low Post Feed",
+  "description": "Two bigs play together: the high post catches at the free-throw line and feeds the low post, who seals their defender on the high side.",
+  "category": "team_offense",
+  "primarySkill": "passing",
+  "secondarySkills": [
+    "footwork",
+    "decision_making"
+  ],
+  "subSkills": [
+    "reading_the_defense"
+  ],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "2v2",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "high-low",
+    "bigs",
+    "post"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Score from high-low action by sealing the low defender and feeding over the top or with a bounce pass.",
+    "setup": "A wing passer; a high post at the free-throw line; a low post on the block; two defenders on the bigs.",
+    "organization": "Rotate positions every four reps.",
+    "instructions": [
+      "The wing passes to the high post.",
+      "The low post seals the defender on the high side (back to the defender).",
+      "The high post feeds a lob over the top or a bounce pass to the seal.",
+      "The low post catches and finishes.",
+      "If no feed, the high post shoots or swings."
+    ],
+    "coachingPoints": [
+      "Seal before the catch at the high post.",
+      "High post faces the rim on the catch.",
+      "Pass to the side away from the defender."
+    ],
+    "commonMistakes": [
+      "Sealing too late.",
+      "Flat lobs that get intercepted.",
+      "Low post drifting into the lane (three seconds)."
+    ],
+    "safety": "Screens are set stationary and legal; defenders are allowed to see the screen in walk-throughs before live play.",
+    "progressions": [
+      "Add a weak-side helper.",
+      "Against a 2-3 zone."
+    ],
+    "regressions": [
+      "Defenders passive.",
+      "Coach as the high post."
+    ],
+    "variations": [
+      "Short-corner to high post feed.",
+      "High-low off a ball screen."
+    ],
+    "successCriteria": [
+      "Feeds completed.",
+      "Seals held."
+    ],
+    "gameApplication": "High-low passes beat fronting defenders and zones alike.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_block",
+              "offset": [
+                0.2,
+                -0.2
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [
+                0,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "entity": "o3",
+              "offset": [
+                0.2,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "move",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [
+                  0.4,
+                  0.4
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3",
+            "kind": "overhead"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

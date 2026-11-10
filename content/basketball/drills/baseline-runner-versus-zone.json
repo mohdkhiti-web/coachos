@@ -1,0 +1,195 @@
+{
+  "seedKey": "baseline-runner-versus-zone",
+  "title": "Baseline Runner vs the Zone",
+  "description": "One offensive player runs the baseline from corner to corner under a zone, appearing on the side the ball goes to and creating an overload.",
+  "category": "team_offense",
+  "primarySkill": "spacing",
+  "secondarySkills": [
+    "cutting",
+    "passing",
+    "decision_making"
+  ],
+  "subSkills": [
+    "reading_the_defense",
+    "passing_on_the_move"
+  ],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "5v5",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 10,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "zone offense",
+    "baseline runner",
+    "overload"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Overload one side of a zone by running a player along the baseline as the ball is reversed.",
+    "setup": "Offense in a 1-3-1 against a 2-3 zone; baseline runner starts in one corner.",
+    "organization": "Rotate every four possessions.",
+    "instructions": [
+      "The ball is on the right side; the runner is in the right corner.",
+      "Reverse the ball to the left via the top.",
+      "The runner runs the baseline to the left corner, using the bigs as screens.",
+      "Catch in the corner and shoot or attack the gap.",
+      "Repeat on each reversal."
+    ],
+    "coachingPoints": [
+      "Run when the ball is reversed.",
+      "Use the high and low posts as screens.",
+      "Catch ready to shoot."
+    ],
+    "commonMistakes": [
+      "Running too early.",
+      "Running in front of the zone.",
+      "Passing before the runner arrives."
+    ],
+    "safety": "Screens are set stationary and legal; defenders are allowed to see the screen in walk-throughs before live play.",
+    "progressions": [
+      "Zone bumps the runner.",
+      "Live 5v5."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "No defense on the runner."
+    ],
+    "variations": [
+      "Runner stops in the short corner.",
+      "Two runners."
+    ],
+    "successCriteria": [
+      "Corner catch on reversals.",
+      "Overload created."
+    ],
+    "gameApplication": "A baseline runner gives a zone a problem it cannot shift to cover in time.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o3"
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o5",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  0,
+                  1.4
+                ]
+              },
+              {
+                "anchor": "left_corner"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

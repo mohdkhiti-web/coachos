@@ -1,0 +1,219 @@
+{
+  "seedKey": "attack-the-zone-short-corner",
+  "title": "Attack the 2-3 Zone From the Short Corner",
+  "description": "A player in the short corner punishes a 2-3 zone: catch, face up, and score or feed the high post and the weak-side cutter.",
+  "category": "team_offense",
+  "primarySkill": "spacing",
+  "secondarySkills": [
+    "passing",
+    "decision_making"
+  ],
+  "subSkills": [
+    "reading_the_defense"
+  ],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "5v5",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 10,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "zone offense",
+    "short corner",
+    "2-3"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use the short corner to pull the bottom of the zone apart and find the high post or a cutter.",
+    "setup": "Five offensive players: top, two wings, high post, short corner; five defenders in a 2-3 zone.",
+    "organization": "Rotate every four possessions.",
+    "instructions": [
+      "The ball goes to the wing.",
+      "The wing passes to the short corner.",
+      "The zone's bottom defender steps out.",
+      "Short corner looks: shot, high post diving to the rim, or weak-side cutter.",
+      "If nothing, kick back out and swing."
+    ],
+    "coachingPoints": [
+      "Face up on the catch.",
+      "High post dives when the bottom steps out.",
+      "Weak side cuts behind the zone."
+    ],
+    "commonMistakes": [
+      "Short corner turning their back to the rim.",
+      "High post standing.",
+      "Passing around the outside only."
+    ],
+    "safety": "Screens are set stationary and legal; defenders are allowed to see the screen in walk-throughs before live play.",
+    "progressions": [
+      "Live 5v5.",
+      "Zone matchups."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "Zone stays passive."
+    ],
+    "variations": [
+      "Short corner from the other side.",
+      "Overload set."
+    ],
+    "successCriteria": [
+      "Paint touches.",
+      "Good shot on most possessions."
+    ],
+    "gameApplication": "Zones break from the inside, and the short corner is the softest spot.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": {
+              "anchor": "right_short_corner"
+            }
+          },
+          {
+            "id": "x4",
+            "type": "player",
+            "side": "defense",
+            "label": "X4",
+            "at": {
+              "anchor": "right_block",
+              "offset": [
+                -0.6,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o2",
+            "to": "o5"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x4",
+            "path": [
+              {
+                "anchor": "right_short_corner",
+                "offset": [
+                  -0.6,
+                  0.4
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o4",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  0,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "pass",
+            "from": "o5",
+            "to": "o4"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

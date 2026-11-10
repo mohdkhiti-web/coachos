@@ -1,0 +1,206 @@
+{
+  "seedKey": "inside-out-repost",
+  "title": "Inside-Out and Repost",
+  "description": "The post catches, draws help and passes out to a shooter, then immediately reposts (re-seals) for a second, deeper catch.",
+  "category": "team_offense",
+  "primarySkill": "passing",
+  "secondarySkills": [
+    "spacing",
+    "footwork",
+    "decision_making"
+  ],
+  "subSkills": [
+    "reading_the_defense"
+  ],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "post",
+    "inside-out",
+    "repost"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use the post as a passer to create open threes and re-seal for a better post catch.",
+    "setup": "Post on the block; shooters at the wing and top; a post defender and a digger.",
+    "organization": "Rotate every four reps.",
+    "instructions": [
+      "The wing enters to the post.",
+      "The digger helps; the post kicks to the open shooter.",
+      "Immediately reposts: seal the defender with the hip.",
+      "The shooter either shoots or feeds the repost.",
+      "Score."
+    ],
+    "coachingPoints": [
+      "Kick to the open player.",
+      "Repost right after the pass.",
+      "Seal with the hip, target hand up."
+    ],
+    "commonMistakes": [
+      "Forcing shots into help.",
+      "Standing after the pass.",
+      "Pushing off on the repost."
+    ],
+    "safety": "Screens are set stationary and legal; defenders are allowed to see the screen in walk-throughs before live play.",
+    "progressions": [
+      "Live 3v3.",
+      "Shooter relocates after the kick."
+    ],
+    "regressions": [
+      "No digger.",
+      "Coach as passer."
+    ],
+    "variations": [
+      "Repost on the other block.",
+      "High post version."
+    ],
+    "successCriteria": [
+      "Open shot or deep catch on most reps.",
+      "Repost every time."
+    ],
+    "gameApplication": "Inside-out play forces defenses to choose between doubling the post and guarding shooters.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [
+                -0.2,
+                -0.2
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [
+                -0.4,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "defend",
+            "kind": "help",
+            "entity": "x3",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [
+                  -0.6,
+                  -0.8
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [
+                  -0.4,
+                  0.2
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

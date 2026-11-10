@@ -1,0 +1,186 @@
+{
+  "seedKey": "shuffle-cut-read",
+  "title": "Shuffle Cut Read",
+  "description": "A player on the weak-side wing uses a screen at the high post to 'shuffle cut' to the ball-side block, reading whether to go over or under the screen.",
+  "category": "team_offense",
+  "primarySkill": "cutting",
+  "secondarySkills": [
+    "screening",
+    "decision_making"
+  ],
+  "subSkills": [
+    "using_screens",
+    "reading_the_defense"
+  ],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "3v3",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "shuffle",
+    "cut",
+    "read"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Read the defender to choose the cut path off a shuffle screen and arrive open on the ball-side block.",
+    "setup": "Ball at the right wing; screener at the left elbow; cutter at the left wing.",
+    "organization": "Rotate every four reps.",
+    "instructions": [
+      "The ball is on the right wing.",
+      "The screener sets a screen at the left elbow.",
+      "The cutter reads: defender high = cut under the screen; defender low = cut over the top.",
+      "Arrive at the right block with a target hand.",
+      "The wing feeds the cutter."
+    ],
+    "coachingPoints": [
+      "Read before the cut.",
+      "Shoulder to shoulder off the screen.",
+      "Target hand on arrival."
+    ],
+    "commonMistakes": [
+      "Cutting the same way every time.",
+      "Rushing the cut.",
+      "Not finishing the cut on the block."
+    ],
+    "safety": "Screens are set stationary and legal; defenders are allowed to see the screen in walk-throughs before live play.",
+    "progressions": [
+      "Live defense.",
+      "Screener slips after the cut."
+    ],
+    "regressions": [
+      "Defender in a fixed position.",
+      "No defense."
+    ],
+    "variations": [
+      "Shuffle cut to the corner.",
+      "Shuffle screen from a guard."
+    ],
+    "successCriteria": [
+      "Correct read on most reps.",
+      "Catch on the block."
+    ],
+    "gameApplication": "Shuffle cuts create lay-ups in continuity and set plays.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "entity": "o3",
+              "offset": [
+                0.4,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [
+                  0.4,
+                  0.4
+                ]
+              },
+              {
+                "anchor": "right_block",
+                "offset": [
+                  -0.4,
+                  0
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o3"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

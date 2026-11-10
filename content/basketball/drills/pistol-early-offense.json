@@ -1,0 +1,199 @@
+{
+  "seedKey": "pistol-early-offense",
+  "title": "Pistol Early Offense",
+  "description": "In early offense, the point guard passes to the wing and receives an immediate hand-off back on the move, with the big ready to screen.",
+  "category": "team_offense",
+  "primarySkill": "pick_and_roll",
+  "secondarySkills": [
+    "passing",
+    "decision_making"
+  ],
+  "subSkills": [
+    "pnr_ball_handler",
+    "passing_on_the_move"
+  ],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "3v3",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 6,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "full_court",
+  "tags": [
+    "pistol",
+    "early offense",
+    "hand-off"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Flow from transition into a quick two-man game on the side before the defense sets.",
+    "setup": "Point guard pushing from half court; wing running the sideline; big trailing; three defenders.",
+    "organization": "Rotate every four possessions.",
+    "instructions": [
+      "The point guard pushes up the floor and passes to the wing.",
+      "The point follows the pass for a hand-off.",
+      "The big runs into a ball screen.",
+      "The point guard attacks: score, kick or hit the roller.",
+      "Play live."
+    ],
+    "coachingPoints": [
+      "Play with speed.",
+      "Wing catches and turns to hand off.",
+      "Big screens without stopping the flow."
+    ],
+    "commonMistakes": [
+      "Stopping the ball before the hand-off.",
+      "Big arriving late.",
+      "Wrong spacing on the weak side."
+    ],
+    "safety": "Screens are set stationary and legal; defenders are allowed to see the screen in walk-throughs before live play.",
+    "progressions": [
+      "Defense switches the hand-off.",
+      "5v5 transition."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "No defense."
+    ],
+    "variations": [
+      "Wing keeps the ball and screens.",
+      "Pistol into a drag screen."
+    ],
+    "successCriteria": [
+      "Quick shot within eight seconds.",
+      "No turnovers."
+    ],
+    "gameApplication": "Early offense gets easier shots than half-court sets.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                0,
+                -1.6
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [
+                -0.4,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                -1,
+                -2
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [
+                  0.2,
+                  0
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "screen",
+            "entity": "o3",
+            "target": {
+              "anchor": "right_slot",
+              "offset": [
+                -0.6,
+                -0.4
+              ]
+            },
+            "kind": "ball"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}
