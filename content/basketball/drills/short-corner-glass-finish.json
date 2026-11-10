@@ -1,0 +1,119 @@
+{
+  "seedKey": "short-corner-glass-finish",
+  "title": "Short-Corner Glass Finish",
+  "description": "Baseline drivers finish from the sharp angle of the short corner, using the backboard edge rather than going under the rim.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["footwork"],
+  "subSkills": ["both_hands_finishing"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["baseline", "angle", "glass"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Finish from a baseline angle by using the backboard edge and staying in bounds.",
+    "setup": "Lines in both corners.",
+    "organization": "Alternate corners.",
+    "instructions": [
+      "Drive along the baseline from the corner.",
+      "Gather in the short corner with the body facing the board.",
+      "Take off and lay the ball high on the near side of the board.",
+      "Do not drift under or behind the backboard.",
+      "Repeat from the other corner with the other hand."
+    ],
+    "coachingPoints": [
+      "Stay inside the baseline.",
+      "High on the near side of the glass.",
+      "Outside hand finishes."
+    ],
+    "commonMistakes": [
+      "Drifting under the backboard.",
+      "Stepping on the baseline.",
+      "Using the inside hand into the defender."
+    ],
+    "safety": "Finishers land on two feet and clear the lane; the next player waits until the landing area is empty.",
+    "progressions": ["Help defender steps across.", "Reverse finish option."],
+    "regressions": ["Start closer.", "Walk the gather."],
+    "variations": ["Baseline power finish.", "Baseline floater."],
+    "successCriteria": ["No baseline violations.", "Makes from both corners."],
+    "gameApplication": "Baseline drives end at a sharp angle; finishing there is a skill of its own.",
+    "repetitions": "6 each corner",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_short_corner",
+                "offset": [1.6, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "seedKey": "ball-protection-finish-vs-swipes",
+  "title": "Ball-Protection Finish vs Swipes",
+  "description": "Two partners swipe at the ball (not the arms) as the finisher drives to the rim, teaching the finisher to keep the ball high and tight.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["dribbling"],
+  "subSkills": ["finishing_with_contact"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["ball protection", "traffic"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Protect the ball through the gather and finish when defenders reach for it.",
+    "setup": "Two swipers stand at the elbow and the block; a line at the wing.",
+    "organization": "Rotate swipers and finishers.",
+    "instructions": [
+      "Drive from the wing between the two swipers.",
+      "The swipers reach for the ball as it passes.",
+      "Gather the ball high and tight to the chest on the side away from them.",
+      "Finish off the board.",
+      "Repeat from the other side."
+    ],
+    "coachingPoints": [
+      "Rip the ball high on the gather.",
+      "Shoulder between swiper and ball.",
+      "Finish strong, do not shy away."
+    ],
+    "commonMistakes": [
+      "Gathering low at the waist.",
+      "Holding the ball out in front.",
+      "Pulling away from the rim."
+    ],
+    "safety": "Swipers touch the ball only; no hitting arms or face.",
+    "progressions": ["Swipers move.", "Three swipers."],
+    "regressions": ["One swiper.", "Swipers hold pads instead of reaching."],
+    "variations": ["Power finish off two feet.", "Euro around the second swiper."],
+    "successCriteria": ["Ball protected on most reps.", "Finish made despite the swipe."],
+    "gameApplication": "In traffic, finishers lose the ball on the gather; keeping it high and tight saves possessions.",
+    "repetitions": "6 each side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [-0.6, 0]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [-1.2, 0.8]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.2, 1.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

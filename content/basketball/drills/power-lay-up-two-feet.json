@@ -1,0 +1,119 @@
+{
+  "seedKey": "power-lay-up-two-feet",
+  "title": "Power Lay-Up off Two Feet",
+  "description": "Players finish with a two-foot jump stop and a strong two-hand lift, the safest finish in traffic for developing players.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["footwork"],
+  "subSkills": ["finishing_with_contact"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 9,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["power lay-up", "two feet"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Finish strongly off two feet with the body shielding the ball and the ball high.",
+    "setup": "Lines at both wings with a ball each.",
+    "organization": "Alternate wings; rebound and switch lines.",
+    "instructions": [
+      "Dribble toward the block.",
+      "Jump-stop on two feet with the shoulders parallel to the baseline.",
+      "Keep the ball high at the chin with two hands.",
+      "Jump strongly off both feet and finish off the board with the outside hand.",
+      "Land on two feet."
+    ],
+    "coachingPoints": [
+      "Stop on two feet, wide base.",
+      "Ball high: chin to forehead.",
+      "Explode straight up."
+    ],
+    "commonMistakes": [
+      "Bringing the ball down to the waist.",
+      "Fading away from the rim.",
+      "Jump stop too far from the rim."
+    ],
+    "safety": "Finishers land on two feet and clear the lane; the next player waits until the landing area is empty.",
+    "progressions": ["Coach bumps with a pad.", "Add a shot fake before the power finish."],
+    "regressions": ["Start from a stationary jump stop.", "No dribble: catch and power up."],
+    "variations": ["Power finish from the middle.", "Power finish after an offensive rebound."],
+    "successCriteria": ["Lands balanced on two feet every rep.", "Ball stays above the shoulders."],
+    "gameApplication": "In traffic, a two-foot finish is stronger and keeps the player on balance.",
+    "repetitions": "8 each side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [0, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

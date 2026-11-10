@@ -1,0 +1,170 @@
+{
+  "seedKey": "approach-angle-lay-ups",
+  "title": "Approach-Angle Lay-Ups",
+  "description": "Lay-ups from three approaches — baseline, wing and middle — so young players learn where to aim on the backboard from each angle.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["footwork"],
+  "subSkills": ["both_hands_finishing"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill", "warm_up"],
+  "ageMin": 7,
+  "ageMax": 16,
+  "playersMin": 3,
+  "playersMax": 18,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["lay-up", "angles", "fundamentals"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 3
+    }
+  ],
+  "content": {
+    "objective": "Adjust the take-off and backboard target to the angle of approach.",
+    "setup": "Three cones: baseline (corner), wing and top of the key; a line at each.",
+    "organization": "Lines rotate clockwise after each lay-up.",
+    "instructions": [
+      "Baseline line: dribble along the baseline and finish high on the near side of the square.",
+      "Wing line: finish on the top corner of the square.",
+      "Middle line: finish soft over the front of the rim or off the middle of the square.",
+      "Rebound your own ball and join the next line.",
+      "Switch to the other side of the court for the other hand."
+    ],
+    "coachingPoints": [
+      "Steeper angle, higher on the board.",
+      "Correct foot for the hand.",
+      "Eyes on the target spot."
+    ],
+    "commonMistakes": [
+      "Same aim point from every angle.",
+      "Running under the rim from the baseline.",
+      "Wrong foot on the middle approach."
+    ],
+    "safety": "Finishers land on two feet and clear the lane; the next player waits until the landing area is empty.",
+    "progressions": ["Full speed.", "Weak-hand side round."],
+    "regressions": ["Two angles only.", "Walk then jog."],
+    "variations": ["Finish with a reverse from the baseline.", "Add a defender trailing."],
+    "successCriteria": ["Makes from all three angles.", "Correct foot every time."],
+    "gameApplication": "Drives arrive from different angles; each needs its own finish.",
+    "repetitions": "3 rounds through all lines",
+    "resources": [
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b3",
+            "type": "ball",
+            "heldBy": "o3"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_short_corner",
+                "offset": [-0.8, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [0, 1.2]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "dribble",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [0, -1.6]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "seedKey": "inside-foot-lay-up",
+  "title": "Inside-Foot Lay-Up",
+  "description": "Advanced finishers practise taking off from the 'wrong' (same-side) foot to change timing against shot-blockers who expect the normal take-off.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["footwork"],
+  "subSkills": ["both_hands_finishing"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["inside foot", "timing"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Finish off the inside foot (same foot as the finishing hand) to disrupt a defender's timing.",
+    "setup": "Lines at both wings.",
+    "organization": "Alternate sides.",
+    "instructions": [
+      "Drive toward the rim with the right hand.",
+      "Take off from the right foot (one step early) instead of the left.",
+      "Finish with the right hand, body turned slightly to shield.",
+      "Compare timing with a normal lay-up.",
+      "Repeat on the left side."
+    ],
+    "coachingPoints": [
+      "Early take-off surprises the blocker.",
+      "Shield with the off shoulder.",
+      "Soft touch: the angle changes."
+    ],
+    "commonMistakes": [
+      "Losing balance on the take-off.",
+      "Using it every time (predictable).",
+      "Finishing too far from the rim."
+    ],
+    "safety": "Finishers land on two feet and clear the lane; the next player waits until the landing area is empty.",
+    "progressions": ["Live shot-blocker.", "Inside-foot finish off a euro."],
+    "regressions": ["Walk the footwork.", "Stand close and finish."],
+    "variations": ["Inside-foot reverse.", "Inside-foot floater."],
+    "successCriteria": ["Balanced take-off on most reps.", "Makes at a good rate."],
+    "gameApplication": "Changing the take-off foot changes the release time, which beats shot-blockers.",
+    "repetitions": "6 each side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [0, 1.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [1.6, 0.6]
+            },
+            "text": "Same-foot take-off"
+          }
+        ]
+      }
+    }
+  ]
+}

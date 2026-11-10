@@ -1,0 +1,163 @@
+{
+  "seedKey": "four-corner-lay-up-box",
+  "title": "Four-Corner Lay-Up Box",
+  "description": "Four lines at the corners of the half court pass and cut in a continuous pattern, producing a steady stream of lay-ups from both sides — a whole-team finishing drill.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["passing", "catching"],
+  "subSkills": ["both_hands_finishing", "passing_on_the_move"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "team",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 9,
+  "ageMax": 99,
+  "playersMin": 8,
+  "playersMax": 20,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["lay-up lines", "team warm-up"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Catch on the move and finish lay-ups from both sides in a continuous team pattern.",
+    "setup": "Four lines: both wings at half court and both corners; balls in the half-court lines.",
+    "organization": "Players follow their pass to the next line clockwise.",
+    "instructions": [
+      "The right half-court line passes to the right corner line.",
+      "The right corner player passes back as the passer cuts to the rim.",
+      "The cutter catches in stride and finishes.",
+      "The corner player rebounds and passes to the next half-court line.",
+      "Switch direction after three minutes for the other hand."
+    ],
+    "coachingPoints": [
+      "Lead passes in front of the cutter.",
+      "Call names before passing.",
+      "Finish with the correct hand."
+    ],
+    "commonMistakes": [
+      "Late passes that make the cutter stop.",
+      "Two players going for the same rebound.",
+      "Slow rotation between lines."
+    ],
+    "safety": "Rebounders clear the lane at once; only one cutter at a time.",
+    "progressions": ["Two balls running at once.", "Finish with a pull-up instead."],
+    "regressions": ["Walking pace.", "Fewer lines."],
+    "variations": ["Bounce passes only.", "Reverse lay-ups."],
+    "successCriteria": ["Continuous flow for three minutes.", "Most lay-ups made."],
+    "gameApplication": "Catching on the move and finishing are the end of every fast break.",
+    "repetitions": "2 x 3 minutes",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_half_court"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_half_court"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow"
+              },
+              {
+                "anchor": "right_block",
+                "offset": [0, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

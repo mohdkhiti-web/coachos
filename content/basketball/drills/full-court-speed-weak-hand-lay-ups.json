@@ -1,0 +1,136 @@
+{
+  "seedKey": "full-court-speed-weak-hand-lay-ups",
+  "title": "Full-Court Speed Lay-Ups, Weak Hand",
+  "description": "Players dribble the full length with the weak hand at speed and finish with a weak-hand lay-up at the far rim.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["dribbling", "speed_agility"],
+  "subSkills": ["weak_hand", "both_hands_finishing"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["skill", "conditioning"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["weak hand", "speed", "full court"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Finish with the weak hand at full speed after a weak-hand dribble.",
+    "setup": "Two lines in the corners of one baseline.",
+    "organization": "Go when the player ahead reaches half court.",
+    "instructions": [
+      "Speed-dribble up the sideline with the weak hand.",
+      "Cut into the lane at the far free-throw line extended.",
+      "Finish with a weak-hand lay-up.",
+      "Return up the other side with the other hand.",
+      "Count makes out of ten trips."
+    ],
+    "coachingPoints": [
+      "Push the ball ahead with the weak hand.",
+      "Gather early enough to take off correctly.",
+      "Soft finish at speed."
+    ],
+    "commonMistakes": [
+      "Switching to the strong hand near the rim.",
+      "Over-running the take-off.",
+      "Throwing the ball at the board."
+    ],
+    "safety": "Finishers land on two feet and clear the lane; the next player waits until the landing area is empty.",
+    "progressions": ["Chasing defender.", "Reverse lay-up on the weak side."],
+    "regressions": ["Half court.", "Jog speed."],
+    "variations": ["Euro step with the weak hand.", "Finish with a floater."],
+    "successCriteria": ["Eight of ten weak-hand finishes.", "No hand switch near the rim."],
+    "gameApplication": "Defenders force fast-break finishers to the weak hand; it has to hold up at speed.",
+    "repetitions": "5 trips each direction",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_corner",
+              "offset": [-0.6, 0.3]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_sideline_center",
+                "offset": [-0.8, 0]
+              },
+              {
+                "anchor": "far_left_wing",
+                "offset": [1, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "far_left_block",
+                "offset": [0, 0.8]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "seedKey": "chase-down-finish",
+  "title": "Chase-Down Finish",
+  "description": "A finisher with a head start is chased by a defender from behind and must finish without slowing down or getting blocked from behind.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["speed_agility", "competitiveness"],
+  "subSkills": ["finishing_with_contact"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["transition", "chase down"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Finish in transition with a defender chasing, protecting the ball with the body and finishing on the far side.",
+    "setup": "Finisher at half court; chaser two metres behind.",
+    "organization": "Switch roles each rep.",
+    "instructions": [
+      "On the whistle, the finisher speed-dribbles to the rim.",
+      "The chaser sprints to contest from behind.",
+      "The finisher keeps the body between chaser and ball.",
+      "Finish on the side away from the chaser, or jump-stop and fake if they arrive.",
+      "Switch roles."
+    ],
+    "coachingPoints": [
+      "Do not slow down to look back.",
+      "Finish away from the chaser.",
+      "Use the jump stop if caught."
+    ],
+    "commonMistakes": [
+      "Floating the lay-up out where the chaser can block it.",
+      "Slowing down near the rim.",
+      "Finishing with the hand nearest the chaser."
+    ],
+    "safety": "Chasers contest the ball only; no pushing from behind.",
+    "progressions": ["Smaller head start.", "Second chaser from the side."],
+    "regressions": ["Bigger head start.", "Chaser jogs."],
+    "variations": ["Start from a steal at half court.", "Euro step away from the chaser."],
+    "successCriteria": ["Finishes at a good rate.", "Never blocked from behind."],
+    "gameApplication": "Breakaway lay-ups get blocked when finishers slow down; this trains finishing with a chaser.",
+    "repetitions": "4 reps each role",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [0, -1]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [0, 1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [0, 0.6]
+              },
+              {
+                "anchor": "right_block",
+                "offset": [-0.4, 1]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "sprint",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [0.8, 1.6]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "seedKey": "one-minute-lay-up-challenge",
+  "title": "One-Minute Lay-Up Challenge",
+  "description": "Players make as many lay-ups as possible in one minute, alternating sides and hands, rebounding their own ball each time.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["conditioning", "competitiveness"],
+  "subSkills": ["both_hands_finishing"],
+  "level": "beginner",
+  "intensity": "high",
+  "format": "individual",
+  "phases": ["skill", "conditioning"],
+  "ageMin": 8,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 8,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["lay-ups", "timed", "both hands"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Finish lay-ups with the correct hand from both sides at a high pace while staying in control.",
+    "setup": "One player per basket with a ball; coach times.",
+    "organization": "Players go one at a time; others count.",
+    "instructions": [
+      "Start at the right side and make a right-hand lay-up.",
+      "Rebound before the second bounce and dribble out to the left side.",
+      "Make a left-hand lay-up and continue alternating.",
+      "Only correct-hand, correct-foot lay-ups count.",
+      "Record the total; try to beat it next time."
+    ],
+    "coachingPoints": [
+      "Correct foot and hand even when tired.",
+      "Dribble out only to the elbow, then attack.",
+      "Soft off the board."
+    ],
+    "commonMistakes": [
+      "Wrong hand on the left side to go faster.",
+      "Rushing and missing lay-ups.",
+      "Dribbling too far out."
+    ],
+    "safety": "One player per basket at a time.",
+    "progressions": ["Two minutes.", "Reverse lay-ups count double."],
+    "regressions": ["30 seconds.", "Same side only."],
+    "variations": ["Partner rebounds and passes.", "Power lay-ups only."],
+    "successCriteria": ["Beats the previous score.", "No incorrect lay-ups counted."],
+    "gameApplication": "Lay-ups at speed and on both sides are the most common finishes in a game.",
+    "repetitions": "3 rounds",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_block",
+              "offset": [0.6, 1.2]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [-0.4, 0]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [-0.6, 1]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

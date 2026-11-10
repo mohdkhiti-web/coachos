@@ -1,0 +1,143 @@
+{
+  "seedKey": "lay-up-footwork-steps",
+  "title": "Lay-Up Footwork Steps",
+  "description": "Young players learn the right-hand and left-hand lay-up step by step: one step, then two steps, then a dribble into the two-step approach.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["footwork"],
+  "subSkills": ["both_hands_finishing"],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "individual",
+  "phases": ["skill", "warm_up"],
+  "ageMin": 6,
+  "ageMax": 12,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["lay-up", "fundamentals", "footwork"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Learn the opposite-foot take-off for each lay-up: right hand off the left foot, left hand off the right foot.",
+    "setup": "A line at the right block (45 degrees, close) with a ball each; later at the free-throw line extended.",
+    "organization": "One player at a time; rebound and rejoin.",
+    "instructions": [
+      "Stage 1: stand one step away, step with the left foot and lift the right knee, lay the ball up with the right hand.",
+      "Stage 2: start two steps away: right foot, left foot, jump off the left and finish right.",
+      "Stage 3: one dribble, then the right-left steps and finish.",
+      "Aim for the top corner of the square.",
+      "Repeat all stages on the left side with the left hand."
+    ],
+    "coachingPoints": [
+      "Opposite foot and hand: lift the knee on the shooting side.",
+      "Jump up, not forward.",
+      "Use the backboard."
+    ],
+    "commonMistakes": [
+      "Jumping off the same foot as the shooting hand.",
+      "Throwing the ball at the rim instead of laying it up.",
+      "Running under the basket."
+    ],
+    "safety": "Finishers land on two feet and clear the lane; the next player waits until the landing area is empty.",
+    "progressions": [
+      "Start from the free-throw line extended with two dribbles.",
+      "Alternate sides every lay-up."
+    ],
+    "regressions": ["Walk the steps without a ball first.", "Lowered rim."],
+    "variations": [
+      "Say the steps out loud ('right, left, up').",
+      "Lay-ups from a pass instead of a dribble."
+    ],
+    "successCriteria": [
+      "Correct foot and hand on 8 of 10 lay-ups on each side.",
+      "Ball off the backboard square."
+    ],
+    "gameApplication": "The lay-up is the highest-percentage shot; correct footwork makes it reliable on both sides.",
+    "repetitions": "5 per stage, each side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      },
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [-1.2, -1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [0.2, 1.2]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [1.4, 0.6]
+            },
+            "text": "Right · left · up"
+          }
+        ]
+      }
+    }
+  ]
+}
