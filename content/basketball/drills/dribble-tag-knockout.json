@@ -1,0 +1,227 @@
+{
+  "seedKey": "dribble-tag-knockout",
+  "title": "Dribble Tag Knockout",
+  "description": "Everyone dribbles inside a marked area and tries to knock other players' balls away while protecting their own; knocked-out players do a skill to re-enter.",
+  "category": "competition",
+  "primarySkill": "dribbling",
+  "secondarySkills": [
+    "ball_control",
+    "competitiveness"
+  ],
+  "subSkills": [
+    "protect_the_ball",
+    "weak_hand"
+  ],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [
+    "warm_up",
+    "game"
+  ],
+  "ageMin": 7,
+  "ageMax": 16,
+  "playersMin": 6,
+  "playersMax": 30,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "PE",
+    "knockout",
+    "ball protection"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Protect the dribble with the body and eyes up while trying to win the ball from others.",
+    "setup": "Every player with a ball inside the three-point line (or a cone square for large groups).",
+    "organization": "Rounds of 60 seconds.",
+    "instructions": [
+      "Everyone dribbles inside the area.",
+      "Try to tap other players' balls out while keeping your own.",
+      "Lost the ball or stopped dribbling: leave the area.",
+      "Re-enter after ten weak-hand dribbles at the side.",
+      "Count how many times you were knocked out."
+    ],
+    "coachingPoints": [
+      "Body between the defender and the ball.",
+      "Eyes up.",
+      "Change hands and speed."
+    ],
+    "commonMistakes": [
+      "Watching the ball.",
+      "Dribbling high.",
+      "Pushing players."
+    ],
+    "safety": "Tap only the ball, never the player; the area is big enough to avoid collisions.",
+    "progressions": [
+      "Weak hand only.",
+      "Smaller area."
+    ],
+    "regressions": [
+      "Larger area.",
+      "Players can hold the ball for two seconds."
+    ],
+    "variations": [
+      "Team version: colours against colours.",
+      "Coach is the only tagger."
+    ],
+    "successCriteria": [
+      "Fewer knockouts each round.",
+      "Eyes up most of the time."
+    ],
+    "gameApplication": "Protecting the ball in traffic is a game skill every guard needs.",
+    "repetitions": "4 rounds",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                -1,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                1,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [
+                -1,
+                0.4
+              ]
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [
+                1,
+                0.4
+              ]
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing",
+              "offset": [
+                0.4,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "k2",
+            "type": "cone",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [
+                -0.4,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "k3",
+            "type": "cone",
+            "at": {
+              "anchor": "left_block",
+              "offset": [
+                -0.4,
+                0
+              ]
+            }
+          },
+          {
+            "id": "k4",
+            "type": "cone",
+            "at": {
+              "anchor": "right_block",
+              "offset": [
+                0.4,
+                0
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b3",
+            "type": "ball",
+            "heldBy": "o3"
+          },
+          {
+            "id": "b4",
+            "type": "ball",
+            "heldBy": "o4"
+          }
+        ],
+        "actions": [],
+        "annotations": []
+      }
+    }
+  ]
+}

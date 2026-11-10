@@ -1,0 +1,197 @@
+{
+  "seedKey": "stop-and-score-five-v-five",
+  "title": "Stop-and-Score 5v5",
+  "description": "Each team earns a point only by getting a defensive stop and then scoring on the following possession, linking defense to offense.",
+  "category": "small_sided_games",
+  "primarySkill": "competitiveness",
+  "secondarySkills": [
+    "help_defense",
+    "decision_making"
+  ],
+  "subSkills": [
+    "defensive_rotations",
+    "reading_the_defense"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "5v5",
+  "phases": [
+    "small_sided",
+    "game"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 10,
+  "playersMax": 12,
+  "durationMin": 10,
+  "durationMax": 12,
+  "space": "full_court",
+  "tags": [
+    "stop and score",
+    "scrimmage"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Connect defensive stops to offensive execution: one without the other earns nothing.",
+    "setup": "Full-court 5v5.",
+    "organization": "Play for eight minutes.",
+    "instructions": [
+      "Play full court.",
+      "A team earns a point when it gets a stop and then scores on the next possession.",
+      "A stop followed by a miss earns nothing.",
+      "Normal scoring is not counted.",
+      "First to five points wins."
+    ],
+    "coachingPoints": [
+      "Defense first.",
+      "Value the possession after a stop.",
+      "Transition with purpose."
+    ],
+    "commonMistakes": [
+      "Rushing the shot after a stop.",
+      "Relaxing on defense after scoring.",
+      "Losing track of the score."
+    ],
+    "safety": "Fair contact only; the coach stops play for reckless fouls and keeps waiting teams off the playing area.",
+    "progressions": [
+      "Two stops and a score.",
+      "Shot clock."
+    ],
+    "regressions": [
+      "Half-court version.",
+      "4v4."
+    ],
+    "variations": [
+      "Stop-score-stop for three points.",
+      "Bonus for transition baskets."
+    ],
+    "successCriteria": [
+      "Several stop-and-score sequences.",
+      "Turnovers low after stops."
+    ],
+    "gameApplication": "Games swing on runs, and runs are built from stops followed by scores.",
+    "repetitions": "8 minutes",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_sideline_center",
+              "offset": [
+                -1.4,
+                0
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_sideline_center",
+              "offset": [
+                1.4,
+                0
+              ]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                0,
+                0.4
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "basket",
+              "offset": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "far_free_throw_line",
+              "offset": [
+                0,
+                0
+              ]
+            },
+            "text": "Stop + score = 1"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "seedKey": "one-v-one-ladder-tournament",
+  "title": "1v1 Ladder Tournament",
+  "description": "Players are paired at several baskets; winners move up a basket and losers move down, so everyone ends up competing against players of similar level.",
+  "category": "competition",
+  "primarySkill": "competitiveness",
+  "secondarySkills": [
+    "dribbling",
+    "on_ball_defense",
+    "finishing"
+  ],
+  "subSkills": [
+    "containing_the_dribble"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "1v1",
+  "phases": [
+    "game"
+  ],
+  "ageMin": 10,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 20,
+  "durationMin": 10,
+  "durationMax": 15,
+  "space": "full_court",
+  "tags": [
+    "ladder",
+    "1v1",
+    "tournament"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Compete in 1v1 games against matched opponents, with promotion and relegation keeping every game close.",
+    "setup": "Pairs at each basket; the 'top' basket is labelled.",
+    "organization": "Two-minute games; winners move up, losers move down.",
+    "instructions": [
+      "Play 1v1 make-it-take-it for two minutes.",
+      "Check the ball at the top every possession.",
+      "Winner moves one basket up; loser one basket down.",
+      "Top-basket winner stays.",
+      "Play six rounds."
+    ],
+    "coachingPoints": [
+      "Compete every possession.",
+      "Use the moves you practise.",
+      "Defend without fouling."
+    ],
+    "commonMistakes": [
+      "Giving up when behind.",
+      "Arguing calls.",
+      "Only shooting jump shots."
+    ],
+    "safety": "Fair contact only; the coach stops play for reckless fouls and keeps waiting teams off the playing area.",
+    "progressions": [
+      "Three-dribble limit.",
+      "Must score inside the arc."
+    ],
+    "regressions": [
+      "Defender plays at half speed.",
+      "Shorter games."
+    ],
+    "variations": [
+      "2v2 ladder.",
+      "Shooting-only ladder."
+    ],
+    "successCriteria": [
+      "Close games across the ladder.",
+      "Fair play."
+    ],
+    "gameApplication": "Matched competition builds confidence and toughness at every level.",
+    "repetitions": "6 rounds",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                0,
+                -0.8
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [
+                  -0.4,
+                  0.4
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [
+                0,
+                -1
+              ]
+            },
+            "text": "Win: move up"
+          }
+        ]
+      }
+    }
+  ]
+}

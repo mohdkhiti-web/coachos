@@ -1,0 +1,182 @@
+{
+  "seedKey": "one-v-one-three-dribble-wing",
+  "title": "1v1 From the Catch: Three-Dribble Limit",
+  "description": "A 1v1 game that starts with a catch on the wing; the attacker has three dribbles to score, forcing efficient moves.",
+  "category": "small_sided_games",
+  "primarySkill": "decision_making",
+  "secondarySkills": [
+    "dribbling",
+    "on_ball_defense"
+  ],
+  "subSkills": [
+    "reading_the_defense",
+    "containing_the_dribble"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "1v1",
+  "phases": [
+    "small_sided",
+    "game"
+  ],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "1v1",
+    "three dribbles",
+    "efficiency"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Create a good shot with three dribbles or fewer after a catch on the wing.",
+    "setup": "Passer at the top; attacker at the wing; defender closing out from the elbow.",
+    "organization": "Games to three; rotate.",
+    "instructions": [
+      "The passer passes to the wing.",
+      "The defender closes out on the pass.",
+      "The attacker has three dribbles to score.",
+      "A fourth dribble is a turnover.",
+      "Winner stays on offense."
+    ],
+    "coachingPoints": [
+      "Attack the closeout immediately.",
+      "Every dribble goes somewhere.",
+      "Defense: contain without fouling."
+    ],
+    "commonMistakes": [
+      "Dribbling in place.",
+      "Rushing a bad shot on the third dribble.",
+      "Defender flying past."
+    ],
+    "safety": "Fair contact only; the coach stops play for reckless fouls and keeps waiting teams off the playing area.",
+    "progressions": [
+      "Two dribbles.",
+      "From the corner."
+    ],
+    "regressions": [
+      "Four dribbles.",
+      "Defender starts closer."
+    ],
+    "variations": [
+      "From the top.",
+      "Post entry 1v1."
+    ],
+    "successCriteria": [
+      "Shot within three dribbles.",
+      "Few turnovers."
+    ],
+    "gameApplication": "Most real attacks finish within a few dribbles of the catch.",
+    "repetitions": "Games to 3",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [
+                  -0.6,
+                  -0.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [
+                  -0.8,
+                  -0.2
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

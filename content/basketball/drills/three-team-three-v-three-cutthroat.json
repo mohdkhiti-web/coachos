@@ -1,0 +1,235 @@
+{
+  "seedKey": "three-team-three-v-three-cutthroat",
+  "title": "Three-Team 3v3 Cutthroat",
+  "description": "Three teams rotate: a team that scores stays on offense, the defense goes off, and the waiting team steps on as the new defense.",
+  "category": "small_sided_games",
+  "primarySkill": "competitiveness",
+  "secondarySkills": [
+    "conditioning",
+    "communication",
+    "help_defense"
+  ],
+  "subSkills": [
+    "defensive_rotations"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "3v3",
+  "phases": [
+    "small_sided",
+    "game"
+  ],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 9,
+  "playersMax": 12,
+  "durationMin": 10,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": [
+    "cutthroat",
+    "rotation",
+    "game"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 9
+    }
+  ],
+  "content": {
+    "objective": "Raise intensity on both ends: a stop is the only way to get off defense and onto offense.",
+    "setup": "Three teams of three; one on offense, one on defense, one waiting at half court.",
+    "organization": "Play for eight minutes; each team keeps its own score.",
+    "instructions": [
+      "Offense attacks.",
+      "Score: offense stays on and gets a point; defense goes off; waiting team defends.",
+      "Stop: the defense becomes the offense and the old offense goes off.",
+      "New defense must be ready immediately.",
+      "Most points after eight minutes wins."
+    ],
+    "coachingPoints": [
+      "Waiting team ready at half court.",
+      "Defense earns offense with a stop.",
+      "Fast transitions between possessions."
+    ],
+    "commonMistakes": [
+      "Slow changeovers.",
+      "Waiting team not paying attention.",
+      "Arguing over calls."
+    ],
+    "safety": "Fair contact only; the coach stops play for reckless fouls and keeps waiting teams off the playing area.",
+    "progressions": [
+      "Clear the ball past the arc on a stop.",
+      "Shot clock."
+    ],
+    "regressions": [
+      "2v2 version.",
+      "Offense must pass twice."
+    ],
+    "variations": [
+      "Points for stops too.",
+      "Full-court cutthroat."
+    ],
+    "successCriteria": [
+      "Changeovers within three seconds.",
+      "Effort high throughout."
+    ],
+    "gameApplication": "Cutthroat rewards consistency at both ends.",
+    "repetitions": "8 minutes",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                0,
+                -0.8
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [
+                -0.4,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "entity": "o3",
+              "offset": [
+                0.4,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [
+                -1,
+                0.4
+              ]
+            }
+          },
+          {
+            "id": "c2",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [
+                0,
+                0.4
+              ]
+            }
+          },
+          {
+            "id": "c3",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [
+                1,
+                0.4
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [
+                0,
+                -0.6
+              ]
+            },
+            "text": "Waiting team"
+          }
+        ]
+      }
+    }
+  ]
+}

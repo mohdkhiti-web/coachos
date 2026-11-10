@@ -1,0 +1,215 @@
+{
+  "seedKey": "two-v-two-ball-screen-only",
+  "title": "2v2 Ball-Screen-Only Game",
+  "description": "A 2v2 game where every possession must start with a ball screen, giving both offense and defense many pick-and-roll reps in a live setting.",
+  "category": "small_sided_games",
+  "primarySkill": "pick_and_roll",
+  "secondarySkills": [
+    "competitiveness",
+    "decision_making"
+  ],
+  "subSkills": [
+    "pnr_ball_handler",
+    "pnr_screener",
+    "pnr_defense"
+  ],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "2v2",
+  "phases": [
+    "small_sided",
+    "game"
+  ],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "pick and roll",
+    "2v2",
+    "game"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Practise pick-and-roll offense and coverages with the pressure of a scored game.",
+    "setup": "2v2 at the top of the key; waiting pairs on the baseline.",
+    "organization": "Games to five; winners stay.",
+    "instructions": [
+      "Each possession must begin with a ball screen.",
+      "The defense chooses its coverage (or the coach calls it).",
+      "Play live after the screen.",
+      "Score: 2 inside, 3 outside.",
+      "Rotate pairs."
+    ],
+    "coachingPoints": [
+      "Offense reads the coverage.",
+      "Defense talks before the screen.",
+      "Screener sets good angles."
+    ],
+    "commonMistakes": [
+      "Using the screen without reading.",
+      "Defense not communicating.",
+      "Ball handler stopping."
+    ],
+    "safety": "Fair contact only; the coach stops play for reckless fouls and keeps waiting teams off the playing area.",
+    "progressions": [
+      "Defense must switch everything.",
+      "Re-screen allowed."
+    ],
+    "regressions": [
+      "Defense tells the coverage first.",
+      "No three-pointers."
+    ],
+    "variations": [
+      "Side screen only.",
+      "Hand-off only."
+    ],
+    "successCriteria": [
+      "Correct reads.",
+      "Coverages communicated."
+    ],
+    "gameApplication": "Pick-and-roll is the most-used action in the game; reps under pressure matter.",
+    "repetitions": "Games to 5",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                0,
+                0.8
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                0,
+                -0.8
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [
+                0,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o2",
+            "target": {
+              "entity": "x1",
+              "offset": [
+                0.5,
+                0
+              ]
+            },
+            "kind": "ball"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [
+                  -0.4,
+                  0.4
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  0.4,
+                  0.8
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}
