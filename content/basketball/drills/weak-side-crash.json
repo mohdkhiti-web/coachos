@@ -1,0 +1,172 @@
+{
+  "seedKey": "weak-side-crash",
+  "title": "Weak-Side Crash",
+  "description": "Weak-side offensive players time a crash to the rim on a shot from the other side, using an inside step to beat a defender who is watching the ball.",
+  "category": "rebounding",
+  "primarySkill": "rebounding",
+  "secondarySkills": [
+    "cutting"
+  ],
+  "subSkills": [
+    "offensive_rebounding"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "1v1",
+  "phases": [
+    "skill"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "crash",
+    "weak side",
+    "offensive rebounding"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Get to the weak-side rebounding spot on a shot from the strong side before the defender can box out.",
+    "setup": "Attacker at the left wing; defender in help position; coach shooting from the right side.",
+    "organization": "Four reps each; rotate.",
+    "instructions": [
+      "The coach shoots from the right wing or corner.",
+      "On the release, the attacker attacks the defender's top foot with a fake.",
+      "Step inside with the opposite foot and crash to the weak-side block.",
+      "Get a hand on the ball: tip, catch or put back.",
+      "The defender tries to box out."
+    ],
+    "coachingPoints": [
+      "Go on the release.",
+      "Fake high, go low and inside.",
+      "Weak side gets most misses."
+    ],
+    "commonMistakes": [
+      "Crashing straight into the defender.",
+      "Waiting to see if it misses.",
+      "Going over the back (foul)."
+    ],
+    "safety": "Contact is with the body and forearms only: no pushing in the back, no undercutting a jumping player.",
+    "progressions": [
+      "Two crashers.",
+      "Defender starts closer."
+    ],
+    "regressions": [
+      "Defender passive.",
+      "Coach misses on purpose."
+    ],
+    "variations": [
+      "Crash from the corner.",
+      "Crash then tip-out to a guard."
+    ],
+    "successCriteria": [
+      "Touches the ball on most misses.",
+      "No over-the-back fouls."
+    ],
+    "gameApplication": "Weak-side crashing produces the most offensive rebounds in the game.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [
+                0.2,
+                0
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "c1"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_slot",
+                "offset": [
+                  0.8,
+                  0
+                ]
+              },
+              {
+                "anchor": "left_block",
+                "offset": [
+                  0.6,
+                  0.4
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

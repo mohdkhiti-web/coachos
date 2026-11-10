@@ -1,0 +1,186 @@
+{
+  "seedKey": "chin-it-secure-through-contact",
+  "title": "Chin It: Secure Through Contact",
+  "description": "Rebounders catch a ball and immediately 'chin' it — elbows out, ball under the chin — while a partner with a pad bumps and swipes.",
+  "category": "rebounding",
+  "primarySkill": "rebounding",
+  "secondarySkills": [
+    "ball_control"
+  ],
+  "subSkills": [
+    "defensive_rebounding"
+  ],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": [
+    "skill"
+  ],
+  "ageMin": 10,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "half_court",
+  "tags": [
+    "secure",
+    "contact",
+    "chin"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "markers",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Hold onto rebounds when bumped by protecting the ball under the chin with the elbows out.",
+    "setup": "Rebounder near the block; a partner with a contact pad or arm; coach tosses off the board.",
+    "organization": "Five rebounds each, then rotate.",
+    "instructions": [
+      "The coach tosses the ball off the backboard.",
+      "Jump and catch with two hands.",
+      "Land wide and bring the ball to the chin, elbows out.",
+      "The partner bumps with the pad and swipes at the ball for two seconds.",
+      "Pivot away and outlet."
+    ],
+    "coachingPoints": [
+      "Ball to the chin immediately.",
+      "Elbows out, not swinging.",
+      "Wide, strong landing."
+    ],
+    "commonMistakes": [
+      "Bringing the ball down to the waist.",
+      "Swinging elbows at the partner.",
+      "Narrow landing that gets knocked over."
+    ],
+    "safety": "Elbows protect the ball but are never swung; the partner bumps the body, not the head.",
+    "progressions": [
+      "Two swipers.",
+      "Catch in traffic after a box-out."
+    ],
+    "regressions": [
+      "No bump, swipes only.",
+      "Catch a chest pass instead of a rebound."
+    ],
+    "variations": [
+      "Chin then power-up shot.",
+      "Chin then pivot to outlet."
+    ],
+    "successCriteria": [
+      "Keeps the ball on most reps.",
+      "No elbow fouls."
+    ],
+    "gameApplication": "Many rebounds are lost after the catch; chinning the ball keeps them.",
+    "repetitions": "5 rebounds x 3",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_block",
+              "offset": [
+                -0.4,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                0.6,
+                0.2
+              ]
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "c1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  0.8,
+                  0.6
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [
+                -0.4,
+                1.2
+              ]
+            },
+            "text": "Ball to chin"
+          }
+        ]
+      }
+    }
+  ]
+}

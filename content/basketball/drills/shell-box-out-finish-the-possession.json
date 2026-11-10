@@ -1,0 +1,249 @@
+{
+  "seedKey": "shell-box-out-finish-the-possession",
+  "title": "Shell Box-Out: Finish the Possession",
+  "description": "A 4v4 shell possession that only ends with a defensive rebound: every defender must find a body on the shot and the defense earns the stop only when it secures the ball.",
+  "category": "rebounding",
+  "primarySkill": "boxing_out",
+  "secondarySkills": [
+    "rebounding",
+    "help_defense",
+    "communication"
+  ],
+  "subSkills": [
+    "defensive_rebounding",
+    "help_position"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "4v4",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 8,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "shell",
+    "box-out",
+    "team rebounding"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 8
+    }
+  ],
+  "content": {
+    "objective": "Connect shell positioning to team rebounding so that defensive possessions end with the ball, not just a miss.",
+    "setup": "4v4 shell; offense passes around, then shoots on the coach's signal.",
+    "organization": "Defense stays on until three stops; rotate.",
+    "instructions": [
+      "Offense passes around the shell; defense adjusts positions.",
+      "On the coach's call, the receiver shoots.",
+      "All four defenders find a body and box out.",
+      "Defense must secure the rebound for the stop.",
+      "Offensive rebound = possession continues."
+    ],
+    "coachingPoints": [
+      "Find, hit, get.",
+      "Guards rebound too.",
+      "No stop without the ball."
+    ],
+    "commonMistakes": [
+      "Watching the shot.",
+      "Leaving the shooter unboxed.",
+      "Celebrating the miss before securing it."
+    ],
+    "safety": "Contact is with the body and forearms only: no pushing in the back, no undercutting a jumping player.",
+    "progressions": [
+      "Live possession with drives.",
+      "Five stops."
+    ],
+    "regressions": [
+      "Freeze on the shot, check box-outs.",
+      "3v3."
+    ],
+    "variations": [
+      "Box-outs after a skip pass.",
+      "Outlet and go after the stop."
+    ],
+    "successCriteria": [
+      "Every attacker boxed out.",
+      "Stops completed with the ball."
+    ],
+    "gameApplication": "A miss is only a stop when the defense holds the ball.",
+    "repetitions": "3 stops per group",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                0,
+                -0.8
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [
+                -0.5,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [
+                0,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "x4",
+            "type": "player",
+            "side": "defense",
+            "label": "X4",
+            "at": {
+              "anchor": "left_block",
+              "offset": [
+                -0.4,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x3",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [
+                  -0.6,
+                  -1
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x4",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [
+                  -0.8,
+                  0
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

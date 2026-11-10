@@ -1,0 +1,166 @@
+{
+  "seedKey": "meet-the-crasher-early",
+  "title": "Meet the Crasher Early",
+  "description": "Perimeter defenders learn to make contact with a crashing wing at the three-point line, before they get a running start toward the rim.",
+  "category": "rebounding",
+  "primarySkill": "boxing_out",
+  "secondarySkills": [
+    "rebounding"
+  ],
+  "subSkills": [
+    "defensive_rebounding"
+  ],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": [
+    "skill"
+  ],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "box-out",
+    "wing",
+    "hit first"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Stop a crashing perimeter player at the arc so they never reach the rebounding area.",
+    "setup": "Attacker at the wing, defender guarding them; coach shooting from the opposite elbow.",
+    "organization": "Four reps each, then rotate.",
+    "instructions": [
+      "The coach shoots.",
+      "The defender steps toward the attacker immediately ('Hit!').",
+      "Make contact with the forearm and chest at the three-point line.",
+      "Turn and hold the attacker outside the paint.",
+      "Release and pursue the ball if it bounces long."
+    ],
+    "coachingPoints": [
+      "Go to them, do not wait.",
+      "Contact at the arc, not the block.",
+      "Pursue after the hold."
+    ],
+    "commonMistakes": [
+      "Watching the shot first.",
+      "Letting the attacker build speed.",
+      "Holding too long and missing the ball."
+    ],
+    "safety": "Contact is with the body and forearms only: no pushing in the back, no undercutting a jumping player.",
+    "progressions": [
+      "Attacker may fake one way.",
+      "Two crashing wings, two defenders."
+    ],
+    "regressions": [
+      "Attacker jogs.",
+      "Coach calls 'Shot!' before releasing."
+    ],
+    "variations": [
+      "From the corner.",
+      "Guard vs post: mismatch box-out."
+    ],
+    "successCriteria": [
+      "Attacker kept outside the paint.",
+      "Contact made within one step."
+    ],
+    "gameApplication": "Crashing wings get the most offensive rebounds; stopping them early is the fix.",
+    "repetitions": "4 reps x 3",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                -0.5,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "c1"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [
+                  -0.2,
+                  -0.2
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

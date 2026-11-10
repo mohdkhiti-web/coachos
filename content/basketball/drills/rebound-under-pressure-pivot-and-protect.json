@@ -1,0 +1,194 @@
+{
+  "seedKey": "rebound-under-pressure-pivot-and-protect",
+  "title": "Rebound Under Pressure: Pivot and Protect",
+  "description": "After securing a rebound, the rebounder is trapped by two defenders and must pivot away from the pressure to find the outlet.",
+  "category": "rebounding",
+  "primarySkill": "rebounding",
+  "secondarySkills": [
+    "pivoting",
+    "passing"
+  ],
+  "subSkills": [
+    "defensive_rebounding",
+    "passing_under_pressure"
+  ],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [
+    "skill"
+  ],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "trap",
+    "pivot",
+    "outlet"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Escape an immediate trap after a defensive rebound by pivoting away and passing to a moving outlet.",
+    "setup": "Rebounder under the basket; two trapping defenders at the elbows; an outlet at the wing.",
+    "organization": "Four reps each, then rotate.",
+    "instructions": [
+      "The coach shoots.",
+      "The rebounder secures the ball and chins it.",
+      "Both elbow defenders close in to trap.",
+      "Pivot away from the trap, ball kept high or low away from hands.",
+      "Outlet to the wing, who moves to get open."
+    ],
+    "coachingPoints": [
+      "Chin first, then look.",
+      "Pivot away from pressure.",
+      "Outlet moves toward the sideline to be seen."
+    ],
+    "commonMistakes": [
+      "Dribbling into the trap.",
+      "Pivoting toward the defenders.",
+      "Lob passes over the trap that get stolen."
+    ],
+    "safety": "Contact is with the body and forearms only: no pushing in the back, no undercutting a jumping player.",
+    "progressions": [
+      "Third defender in the outlet lane.",
+      "Outlet must be on the side the rebound landed."
+    ],
+    "regressions": [
+      "One trapper.",
+      "Trappers have no hands."
+    ],
+    "variations": [
+      "Escape with one power dribble.",
+      "Outlet to the middle."
+    ],
+    "successCriteria": [
+      "Clean outlet on most reps.",
+      "No held balls."
+    ],
+    "gameApplication": "Pressing teams trap the rebounder to stop a fast break before it starts.",
+    "repetitions": "4 reps x 3",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "basket",
+              "offset": [
+                0.6,
+                0.8
+              ]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "defend",
+            "kind": "trap",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  1.2,
+                  1.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [
+                  0.6,
+                  0.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}
