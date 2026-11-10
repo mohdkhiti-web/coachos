@@ -1,0 +1,216 @@
+{
+  "seedKey": "drag-screen-in-transition",
+  "title": "Drag Screen in Transition",
+  "description": "The trailing big sprints into a ball screen for the point guard as they cross half court, before the defense is set.",
+  "category": "transition",
+  "primarySkill": "pick_and_roll",
+  "secondarySkills": [
+    "decision_making",
+    "conditioning"
+  ],
+  "subSkills": [
+    "pnr_ball_handler",
+    "pnr_screener"
+  ],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "3v3",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 6,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "full_court",
+  "tags": [
+    "drag screen",
+    "early offense"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Use a drag screen in early offense to attack the defense while it is still matching up.",
+    "setup": "Point guard with the ball near half court; trailer big behind; wing running wide; defenders retreating.",
+    "organization": "Rotate every four possessions.",
+    "instructions": [
+      "The point guard pushes the ball up the floor.",
+      "The trailer sprints straight to the ball and screens at the top of the key.",
+      "The point guard attacks off the screen.",
+      "The screener rolls or pops depending on the defender.",
+      "The wing stays in the corner."
+    ],
+    "coachingPoints": [
+      "Screen early, before the defense sets.",
+      "Ball handler keeps speed.",
+      "Corner shooter stays wide."
+    ],
+    "commonMistakes": [
+      "Stopping the ball to wait for the screen.",
+      "Trailer jogging.",
+      "Wing cutting into the paint."
+    ],
+    "safety": "Lanes stay wide so players do not collide; runners finishing at speed have clear space behind the basket.",
+    "progressions": [
+      "Double drag (two trailers).",
+      "5v5."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "Defenders jog back."
+    ],
+    "variations": [
+      "Drag into a hand-off.",
+      "Drag on the side."
+    ],
+    "successCriteria": [
+      "Advantage within two seconds of the screen.",
+      "Shot in under ten seconds."
+    ],
+    "gameApplication": "Drag screens are among the most efficient early-offense actions.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [
+                0.6,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [
+                -0.6,
+                -0.8
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [
+                  0.6,
+                  -0.2
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [
+                  0,
+                  -0.6
+                ]
+              },
+              {
+                "anchor": "left_slot",
+                "offset": [
+                  0.6,
+                  0.2
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  0.4,
+                  1
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "seedKey": "touch-the-baseline-five-on-four",
+  "title": "Touch-the-Baseline 5v4 Break",
+  "description": "After a defensive stop, one defender on the other team must touch the far baseline, creating a 5-on-4 advantage the offense must convert quickly.",
+  "category": "transition",
+  "primarySkill": "decision_making",
+  "secondarySkills": [
+    "passing",
+    "conditioning"
+  ],
+  "subSkills": [
+    "numbers_advantage",
+    "reading_the_defense"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "5v5",
+  "phases": [
+    "small_sided",
+    "game"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 10,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "full_court",
+  "tags": [
+    "5v4",
+    "advantage",
+    "transition"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Recognise and exploit a five-on-four advantage before the late defender gets back.",
+    "setup": "5v5 half-court possession; on the change of possession the coach names one player who must touch the baseline.",
+    "organization": "Play continuously for four minutes.",
+    "instructions": [
+      "Play a half-court possession.",
+      "On the defensive rebound, the coach names a player on the team that lost the ball.",
+      "That player touches the baseline before getting back.",
+      "The new offense pushes to exploit 5v4.",
+      "The late defender sprints back and joins."
+    ],
+    "coachingPoints": [
+      "Find the open player quickly.",
+      "Push before the defender recovers.",
+      "Defense: protect the paint first."
+    ],
+    "commonMistakes": [
+      "Walking the ball up.",
+      "Not identifying the missing defender.",
+      "Defense chasing the ball."
+    ],
+    "safety": "Lanes stay wide so players do not collide; runners finishing at speed have clear space behind the basket.",
+    "progressions": [
+      "Two players touch the baseline (5v3).",
+      "Shot within six seconds."
+    ],
+    "regressions": [
+      "4v3 version.",
+      "Offense gets an extra second."
+    ],
+    "variations": [
+      "Start from a made shot.",
+      "Late defender sprints from half court."
+    ],
+    "successCriteria": [
+      "Advantage converted on most possessions.",
+      "Good shot within eight seconds."
+    ],
+    "gameApplication": "Recognising advantages in transition wins easy baskets.",
+    "repetitions": "4 minutes x 2",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [
+                0,
+                0.2
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_sideline_center",
+              "offset": [
+                -1.4,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_sideline_center",
+              "offset": [
+                1.4,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                0,
+                0.4
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "basket",
+              "offset": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [
+                  0,
+                  -0.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_corner"
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "left_wing"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

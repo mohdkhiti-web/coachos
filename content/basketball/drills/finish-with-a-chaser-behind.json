@@ -1,0 +1,187 @@
+{
+  "seedKey": "finish-with-a-chaser-behind",
+  "title": "Finish With a Chaser Behind",
+  "description": "An attacker with a head start finishes a lay-up while a defender chases from behind, learning to protect the ball from block attempts from the trailing side.",
+  "category": "transition",
+  "primarySkill": "finishing",
+  "secondarySkills": [
+    "dribbling",
+    "conditioning"
+  ],
+  "subSkills": [
+    "both_hands_finishing",
+    "protect_the_ball"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "1v1",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "full_court",
+  "tags": [
+    "chase-down",
+    "lay-up",
+    "protect"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Score a breakaway lay-up with a defender chasing by keeping speed and finishing on the side away from the chaser.",
+    "setup": "Attacker with the ball at half court; defender two metres behind.",
+    "organization": "Alternate starting sides; swap roles.",
+    "instructions": [
+      "The attacker starts on the coach's whistle.",
+      "The defender chases one second later.",
+      "Speed dribble with the hand away from the chaser.",
+      "Finish with the hand away from the chaser (or a reverse lay-up).",
+      "Defender attempts a legal block from behind."
+    ],
+    "coachingPoints": [
+      "Do not slow down.",
+      "Ball on the far side from the chaser.",
+      "Finish high off the glass."
+    ],
+    "commonMistakes": [
+      "Slowing down to look back.",
+      "Finishing on the chaser's side.",
+      "Jumping too far under the rim."
+    ],
+    "safety": "Chasers may only swipe at the ball in the air; no contact with the shooter's body, and runners have room to land behind the basket.",
+    "progressions": [
+      "Shorter head start.",
+      "Defender starts beside."
+    ],
+    "regressions": [
+      "Longer head start.",
+      "Defender jogs."
+    ],
+    "variations": [
+      "From a steal at the top.",
+      "Chase-down defense focus."
+    ],
+    "successCriteria": [
+      "Scores most breakaways.",
+      "No blocked shots."
+    ],
+    "gameApplication": "Breakaway lay-ups are missed more often than they should be; this rehearses them under pressure.",
+    "repetitions": "6 per side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [
+                0,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [
+                0.8,
+                -1.4
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [
+                  -0.4,
+                  0
+                ]
+              },
+              {
+                "anchor": "basket",
+                "offset": [
+                  -0.6,
+                  0.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "sprint",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [
+                  0.4,
+                  -0.4
+                ]
+              },
+              {
+                "anchor": "basket",
+                "offset": [
+                  0.4,
+                  1
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}
