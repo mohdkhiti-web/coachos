@@ -4,7 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { CourtMark } from "@/components/ui/court-mark";
 import { cn } from "@/lib/cn";
 import type { DrillCardDto } from "@/modules/drills/dto";
-import { DrillDiagram } from "./drill-diagram";
+import { DiagramPreview } from "./diagram-preview";
 import { FormatPill, IntensityMeter, LevelMeter, range, ScopeBadge, Stat } from "./drill-badges";
 import { FavoriteButton } from "./favorite-button";
 
@@ -51,9 +51,8 @@ export async function DrillCard({
       />
       <div className="flex h-44 items-center justify-center overflow-hidden border-b border-line bg-surface-sunken">
         {drill.diagram ? (
-          <DrillDiagram
+          <DiagramPreview
             diagram={drill.diagram}
-            decorative
             className="h-full w-full p-1 transition-transform duration-300 ease-out [@media(hover:hover)]:group-hover:scale-[1.03]"
           />
         ) : (

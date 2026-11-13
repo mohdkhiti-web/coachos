@@ -73,3 +73,32 @@ test("a library drill's diagram plays, steps, scrubs and tilts into broadcast vi
   await expect(court.locator("canvas")).toHaveCount(0);
   await expect(page.getByRole("region", { name: "Diagrams" }).locator("svg").first()).toBeVisible();
 });
+
+test("a library card's court plays the drill while hovered and rests when the pointer leaves", async ({
+  page,
+}, testInfo) => {
+  await signUpAndVerify(page, newUser("Preview"));
+  await completeOnboarding(page);
+  await page.goto("/sports/basketball/drills");
+  await page
+    .getByRole("search", { name: "Filters" })
+    .getByLabel("Search")
+    .fill("Ball Screen 2-on-2");
+  await expect(page).toHaveURL(/q=Ball/);
+  const card = page
+    .getByRole("article")
+    .filter({ has: page.getByRole("link", { name: "Ball Screen 2-on-2", exact: true }) })
+    .first();
+  const court = card.locator("svg").first();
+  const still = await court.innerHTML();
+
+  await card.hover();
+  await expect(card.locator("[data-playing]")).toHaveCount(1);
+  await page.waitForTimeout(1200);
+  expect(await court.innerHTML()).not.toEqual(still); // players have moved
+  await card.screenshot({ path: testInfo.outputPath("card-preview.png") });
+
+  await page.mouse.move(0, 0);
+  await expect(card.locator("[data-playing]")).toHaveCount(0);
+  expect(await court.innerHTML()).toEqual(still); // back to the drawn diagram exactly
+});
