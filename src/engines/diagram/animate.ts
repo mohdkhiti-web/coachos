@@ -47,6 +47,9 @@ export interface StepSpan {
 export interface BallFx {
   lift: number;
   spin: number;
+  /** What is moving the ball, and how far through it (0-1) — lets a 3D view place a shot between hand and rim. */
+  kind: "pass" | "bounce" | "lob" | "shot" | "dribble";
+  u: number;
 }
 
 /** Peak height (metres above the hand) of a ball in flight, by kind of throw. */
@@ -211,16 +214,25 @@ export function buildTimeline(d: Diagram, pack: CourtPack): Timeline {
           } else {
             holder = undefined;
             loose = lerp(start, end, ease(u));
+            const pk = a.kind ?? "standard";
             ballFx.set(id, {
-              lift: flightLift(a.kind ?? "standard", u),
+              lift: flightLift(pk, u),
               spin: flown / BALL_RADIUS,
+              kind: pk === "bounce" ? "bounce" : pk === "standard" ? "pass" : "lob",
+              u,
             });
           }
         } else {
           holder = undefined;
           loose = lerp(start, end, ease(u)); // a shot ends at the target and stays there
           // backspin: a shot turns against its direction of travel
-          if (u < 1) ballFx.set(id, { lift: flightLift("shot", u), spin: -flown / BALL_RADIUS });
+          if (u < 1)
+            ballFx.set(id, {
+              lift: flightLift("shot", u),
+              spin: -flown / BALL_RADIUS,
+              kind: "shot",
+              u,
+            });
           else ballFx.delete(id);
         }
       }
@@ -236,7 +248,12 @@ export function buildTimeline(d: Diagram, pack: CourtPack): Timeline {
           const u = clamp01((local - dribble.from) / (dribble.to - dribble.from || 1));
           if (u > 0 && u < 1) {
             const dist = length(dribble.ra.points) * ease(u);
-            ballFx.set(id, { lift: dribbleLift(dist), spin: dist / BALL_RADIUS });
+            ballFx.set(id, {
+              lift: dribbleLift(dist),
+              spin: dist / BALL_RADIUS,
+              kind: "dribble",
+              u,
+            });
           }
         }
       } else if (loose) positions.set(id, loose);

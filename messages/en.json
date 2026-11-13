@@ -3087,6 +3087,10 @@
     "stepOf": "Step {n} of {total}",
     "speed": "Playback speed {speed}×, change speed",
     "broadcast": "Broadcast",
-    "whole": "Whole drill"
+    "whole": "Whole drill",
+    "camera": "Camera",
+    "plan": "Plan",
+    "threeD": "3D",
+    "loading3d": "Building the court…"
   }
 }

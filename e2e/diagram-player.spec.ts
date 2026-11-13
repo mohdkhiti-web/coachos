@@ -57,4 +57,19 @@ test("a library drill's diagram plays, steps, scrubs and tilts into broadcast vi
   await page.screenshot({ path: testInfo.outputPath("broadcast.png") });
   await controls.getByRole("button", { name: "Whole drill" }).click();
   await expect(page.getByText(/^Step \d+ of \d+/)).toHaveCount(0);
+
+  // 3D: a WebGL court driven by the same playback; the flat diagram returns on "Plan"
+  const camera = controls.getByRole("group", { name: "Camera" });
+  await camera.getByRole("button", { name: "3D" }).click();
+  const court = page.getByRole("img", { name: "Screen, use, roll, finish" });
+  await expect(court.locator("canvas")).toBeVisible();
+  await court.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(600);
+  await court.screenshot({ path: testInfo.outputPath("court-3d-rest.png") });
+  await scrub.fill((max - 0.75).toFixed(2)); // the shot, in the air
+  await page.waitForTimeout(300);
+  await court.screenshot({ path: testInfo.outputPath("court-3d-shot.png") });
+  await camera.getByRole("button", { name: "Plan" }).click();
+  await expect(court.locator("canvas")).toHaveCount(0);
+  await expect(page.getByRole("region", { name: "Diagrams" }).locator("svg").first()).toBeVisible();
 });

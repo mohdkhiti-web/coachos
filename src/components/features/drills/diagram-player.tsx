@@ -2,14 +2,17 @@
 
 import * as React from "react";
 import { useTranslations } from "next-intl";
-import { Pause, Play, RotateCcw, SkipBack, SkipForward, View } from "lucide-react";
-import { buildTimeline, DiagramView, type Diagram } from "@/engines/diagram";
+import { Box, Pause, Play, RotateCcw, SkipBack, SkipForward, Square, View } from "lucide-react";
+import { buildTimeline, describeDiagram, DiagramView, type Diagram } from "@/engines/diagram";
 import type { Pt } from "@/engines/diagram/pack";
 import { useReducedMotion } from "@/components/motion/use-reduced-motion";
 import { cn } from "@/lib/cn";
 import { getCourtPack } from "@/sports/registry";
 
 const SPEEDS = [0.5, 1, 1.5, 2] as const;
+/** three.js is only downloaded when a coach opens the 3D view. */
+const Court3D = React.lazy(() => import("./court-3d"));
+type Camera = "plan" | "broadcast" | "3d";
 /** How far back (seconds) a ball's trail reaches, and how many samples draw it. */
 const TRAIL_S = 0.32;
 const TRAIL_SAMPLES = 8;
@@ -23,6 +26,8 @@ const TRAIL_SAMPLES = 8;
  * Plays once by itself the first time most of it scrolls into view (unless the coach prefers reduced motion — then it
  * never moves on its own and Play steps from one phase to the next instead of animating between them). "Broadcast"
  * tilts the court into perspective, the camera angle of a TV feed, with a CSS 3D transform (GPU-composited, no WebGL).
+ * "3D" swaps in a WebGL court (`court-3d.tsx`, loaded on demand) driven by the very same frames; a device without
+ * WebGL keeps the flat views and the 3D option disappears.
  */
 export function DiagramPlayer({
   diagram,
@@ -46,7 +51,12 @@ export function DiagramPlayer({
   const [clock, setClock] = React.useState<number | null>(null);
   const [playing, setPlaying] = React.useState(false);
   const [speed, setSpeed] = React.useState<(typeof SPEEDS)[number]>(1);
-  const [broadcast, setBroadcast] = React.useState(false);
+  const [camera, setCamera] = React.useState<Camera>("plan");
+  const [no3d, setNo3d] = React.useState(false);
+  const on3dUnavailable = React.useCallback(() => {
+    setNo3d(true);
+    setCamera("plan");
+  }, []);
   const autoplayed = React.useRef(false);
   const root = React.useRef<HTMLDivElement>(null);
 
@@ -171,27 +181,78 @@ export function DiagramPlayer({
   ) : null;
 
   const playable = duration > 0;
+  const broadcast = camera === "broadcast";
+  const can3d = !no3d && (pack.hoops?.length ?? 0) > 0;
+  const cameras: { id: Camera; label: string; icon: React.ReactNode }[] = [
+    { id: "plan", label: t("plan"), icon: <Square aria-hidden /> },
+    { id: "broadcast", label: t("broadcast"), icon: <View aria-hidden /> },
+    ...(can3d ? [{ id: "3d" as const, label: t("threeD"), icon: <Box aria-hidden /> }] : []),
+  ];
+  const cameraSwitch = (
+    <div
+      role="group"
+      aria-label={t("camera")}
+      className="flex items-center rounded-md bg-surface-sunken p-0.5"
+    >
+      {cameras.map((c) => (
+        <button
+          key={c.id}
+          type="button"
+          aria-pressed={camera === c.id}
+          onClick={() => setCamera(c.id)}
+          className={cn(
+            "inline-flex h-11 press items-center gap-1.5 rounded-[5px] px-2.5 text-sm font-semibold smooth-colors focus-visible:outline-2 sm:h-8 [&_svg]:size-3.5",
+            camera === c.id
+              ? "bg-ink text-surface shadow-[0_1px_2px_rgb(15_27_51/0.25)]"
+              : "text-ink-muted hover:text-ink",
+          )}
+        >
+          {c.icon}
+          {c.label}
+        </button>
+      ))}
+    </div>
+  );
 
   return (
     <div ref={root} className={className}>
       <div className="relative overflow-hidden [perspective:1400px]">
-        <div
-          className={cn(
-            "origin-[50%_62%] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
-            broadcast && "[transform:rotateX(38deg)_scale(0.94)]",
-          )}
-        >
-          <DiagramView
-            diagram={diagram}
-            pack={pack}
-            title={title}
-            className="mx-auto max-h-[36rem] w-full"
-            positions={frame?.positions}
-            visibleActions={frame?.visibleActions}
-            ballFx={frame?.ballFx}
-            overlay={overlay}
-          />
-        </div>
+        {camera === "3d" ? (
+          <React.Suspense
+            fallback={
+              <div className="flex aspect-[4/3] max-h-[36rem] w-full items-center justify-center bg-[#0F1B33] text-sm font-medium text-[#F4F6F9]/80">
+                {t("loading3d")}
+              </div>
+            }
+          >
+            <Court3D
+              diagram={diagram}
+              pack={pack}
+              frame={frame}
+              label={title ?? pack.label}
+              description={describeDiagram(diagram)}
+              onUnavailable={on3dUnavailable}
+            />
+          </React.Suspense>
+        ) : (
+          <div
+            className={cn(
+              "origin-[50%_62%] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+              broadcast && "[transform:rotateX(38deg)_scale(0.94)]",
+            )}
+          >
+            <DiagramView
+              diagram={diagram}
+              pack={pack}
+              title={title}
+              className="mx-auto max-h-[36rem] w-full"
+              positions={frame?.positions}
+              visibleActions={frame?.visibleActions}
+              ballFx={frame?.ballFx}
+              overlay={overlay}
+            />
+          </div>
+        )}
         {frame && spans.length > 1 ? (
           <p
             aria-live="polite"
@@ -277,23 +338,12 @@ export function DiagramPlayer({
                 type="button"
                 onClick={() => setSpeed((s) => SPEEDS[(SPEEDS.indexOf(s) + 1) % SPEEDS.length]!)}
                 aria-label={t("speed", { speed })}
-                className="h-9 min-w-12 press rounded-md px-2 numeral text-sm font-semibold text-ink smooth-colors hover:bg-surface-sunken focus-visible:outline-2"
+                className="h-11 min-w-12 press rounded-md px-2 numeral text-sm font-semibold text-ink smooth-colors hover:bg-surface-sunken focus-visible:outline-2 sm:h-9"
               >
                 {speed}×
               </button>
             )}
-            <button
-              type="button"
-              aria-pressed={broadcast}
-              onClick={() => setBroadcast((b) => !b)}
-              className={cn(
-                "inline-flex h-9 press items-center gap-1.5 rounded-md px-2.5 text-sm font-semibold smooth-colors focus-visible:outline-2 [&_svg]:size-4",
-                broadcast ? "bg-ink text-surface" : "text-ink hover:bg-surface-sunken",
-              )}
-            >
-              <View aria-hidden />
-              {t("broadcast")}
-            </button>
+            {cameraSwitch}
             {!atRest ? (
               <button
                 type="button"
@@ -301,14 +351,16 @@ export function DiagramPlayer({
                   setPlaying(false);
                   setClock(null);
                 }}
-                className="h-9 press rounded-md px-2.5 text-sm font-medium text-ink-muted smooth-colors hover:bg-surface-sunken hover:text-ink focus-visible:outline-2"
+                className="h-11 press rounded-md px-2.5 text-sm font-medium text-ink-muted smooth-colors hover:bg-surface-sunken hover:text-ink focus-visible:outline-2 sm:h-9"
               >
                 {t("whole")}
               </button>
             ) : null}
           </div>
         </div>
-      ) : null}
+      ) : (
+        <div className="flex justify-end border-t border-line px-3 py-2">{cameraSwitch}</div>
+      )}
     </div>
   );
 }

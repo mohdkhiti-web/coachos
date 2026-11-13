@@ -506,3 +506,34 @@ test("the basketball onboarding, the ready screen and the Command Center work on
   await page.goto("/");
   expect(await noHorizontalScroll(page), "landing overflows").toBe(true);
 });
+
+test("the drill diagram player fits a phone: 44px controls, no overflow, and the 3D court renders", async ({
+  page,
+}, testInfo) => {
+  await signUpAndVerify(page, newUser());
+  await completeOnboarding(page);
+  await page.goto("/sports/basketball/drills");
+  await page.getByRole("button", { name: /^Filters/ }).click(); // folded away on a phone
+  await page
+    .getByRole("search", { name: "Filters" })
+    .getByLabel("Search")
+    .fill("Ball Screen 2-on-2");
+  await expect(page).toHaveURL(/q=Ball/);
+  await page.getByRole("link", { name: "Ball Screen 2-on-2", exact: true }).first().click();
+  await expect(page.getByRole("heading", { name: "Ball Screen 2-on-2" })).toBeVisible();
+
+  const controls = page.getByRole("group", { name: "Playback" });
+  await controls.scrollIntoViewIfNeeded();
+  expect(await noHorizontalScroll(page)).toBe(true);
+  for (const button of await controls.getByRole("button").all()) {
+    const box = await button.boundingBox();
+    const name = (await button.getAttribute("aria-label")) ?? (await button.textContent()) ?? "";
+    expect(box?.height ?? 0, name).toBeGreaterThanOrEqual(44);
+  }
+  await controls.getByRole("group", { name: "Camera" }).getByRole("button", { name: "3D" }).click();
+  const court = page.getByRole("img", { name: "Screen, use, roll, finish" });
+  await expect(court.locator("canvas")).toBeVisible();
+  expect(await noHorizontalScroll(page)).toBe(true);
+  await page.waitForTimeout(500);
+  await court.screenshot({ path: testInfo.outputPath("court-3d-phone.png") });
+});
