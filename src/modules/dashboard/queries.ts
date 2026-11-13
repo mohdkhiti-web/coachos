@@ -1,8 +1,25 @@
 import "server-only";
+import { and, eq, inArray, isNull, sql } from "drizzle-orm";
+import { planActivities, plans } from "@/db/schema";
+import type { Actor } from "@/lib/authz/can";
+import { tenantTx } from "@/lib/db/tx";
 import { parseFilters, searchDrills, type DrillCardDto } from "@/modules/drills";
-import { recommendationAge, recommendationQueries, type Viewer } from "@/modules/identity";
+import { getSportOverview } from "@/modules/drills";
+import {
+  PRIORITY_QUERY,
+  recommendationAge,
+  recommendationQueries,
+  type Viewer,
+} from "@/modules/identity";
 import { getPlan, listPlans, type PlanListItemDto } from "@/modules/plans";
+import { getSport } from "@/modules/sports";
 import type { CoachPriority } from "@/db/enums";
+import {
+  summarizeTraining,
+  trainingWindow,
+  type TrainingRow,
+  type TrainingSummary,
+} from "./training";
 
 /**
  * Everything the Command Center shows, read from the same queries the rest of the app uses — sessions from the plans
@@ -41,6 +58,8 @@ export interface CommandCenterDto {
   sessionCount: number;
   favoriteCount: number;
   recommendations: Recommendation[];
+  /** Weekly load and skill coverage from the coach's scheduled sessions. */
+  training: TrainingSummary;
 }
 
 const LIVE = ["draft", "published"] as const;
@@ -64,8 +83,12 @@ export async function getCommandCenter(
   const age = recommendationAge(profile.coaching.ageGroups);
   const queries = recommendationQueries(profile.coaching.priorities);
 
-  const [upcoming, recent, favorites, library, ...perPriority] = await Promise.all([
-    listPlans(actor, sportKey, { from: todayIn(profile.timezone), statuses: [...LIVE], limit: 30 }),
+  const today = todayIn(profile.timezone);
+  const window = trainingWindow(today);
+  const [rows, overview, upcoming, recent, favorites, library, ...perPriority] = await Promise.all([
+    trainingRows(actor, sportKey, window.from, window.to),
+    getSportOverview(actor, sportKey),
+    listPlans(actor, sportKey, { from: today, statuses: [...LIVE], limit: 30 }),
     listPlans(actor, sportKey, { statuses: [...LIVE], limit: 3 }),
     searchDrills(actor, sportKey, { ...base, favorites: true }, { pageSize: 1 }),
     searchDrills(actor, sportKey, { ...base, scope: "library" }, { pageSize: 1 }),
@@ -116,7 +139,18 @@ export async function getCommandCenter(
       }
     : null;
 
+  // the coach's priorities that map onto a library category, named as the library names them
+  const names = new Map((overview?.categories ?? []).map((c) => [c.key, c.name]));
+  const priorityCategories = [
+    ...new Set(
+      profile.coaching.priorities
+        .map((p) => PRIORITY_QUERY[p]?.category)
+        .filter((k): k is string => !!k && names.has(k)),
+    ),
+  ].map((key) => ({ key, name: names.get(key)! }));
+
   return {
+    training: summarizeTraining(rows, today, priorityCategories),
     featured,
     libraryCount: library?.total ?? 0,
     nextSession,
@@ -126,4 +160,37 @@ export async function getCommandCenter(
     favoriteCount: favorites?.total ?? 0,
     recommendations,
   };
+}
+
+/** One row per activity of the live, dated sessions in [from, to] — the raw material of the training charts. */
+async function trainingRows(
+  actor: Actor,
+  sportKey: string,
+  from: string,
+  to: string,
+): Promise<TrainingRow[]> {
+  const sport = await getSport(sportKey);
+  if (!sport) return [];
+  return tenantTx(actor, (tx) =>
+    tx
+      .select({
+        date: sql<string>`${plans.scheduledDate}::text`,
+        planId: plans.id,
+        phase: planActivities.phase,
+        kind: planActivities.kind,
+        minutes: planActivities.durationMin,
+        categoryKey: sql<string | null>`${planActivities.snapshot} -> 'category' ->> 'key'`,
+        categoryName: sql<string | null>`${planActivities.snapshot} -> 'category' ->> 'name'`,
+      })
+      .from(planActivities)
+      .innerJoin(plans, eq(plans.id, planActivities.planId))
+      .where(
+        and(
+          eq(plans.sportId, sport.id),
+          isNull(plans.deletedAt),
+          inArray(plans.status, [...LIVE]),
+          sql`${plans.scheduledDate} BETWEEN ${from} AND ${to}`,
+        ),
+      ),
+  );
 }

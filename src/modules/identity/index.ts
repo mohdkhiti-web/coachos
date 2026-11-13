@@ -18,5 +18,6 @@ export {
   hasCoachingProfile,
   recommendationAge,
   recommendationQueries,
+  PRIORITY_QUERY,
   sessionDefaults,
 } from "./coaching-profile";

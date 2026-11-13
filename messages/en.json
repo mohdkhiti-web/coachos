@@ -716,6 +716,48 @@
       },
       "account": {
         "title": "Account and workspace"
+      },
+      "training": {
+        "title": "Training load",
+        "subtitle": "Minutes on your calendar each week, from your scheduled sessions.",
+        "viewAs": "Show training load as",
+        "chart": "Chart",
+        "table": "Table",
+        "thisWeek": "minutes this week",
+        "aboveAverage": "{minutes} min above your 4-week average",
+        "belowAverage": "{minutes} min below your 4-week average",
+        "onAverage": "Right on your 4-week average",
+        "chartLabel": "Scheduled training minutes per week",
+        "barLabel": "Week of {range}: {minutes} minutes in {sessions, plural, one {# session} other {# sessions}}",
+        "tipSummary": "{minutes} min · {sessions, plural, =0 {no sessions} one {# session} other {# sessions}}",
+        "minutes": "{minutes} min",
+        "now": "This week",
+        "next": "Next",
+        "legendPast": "Past weeks",
+        "legendCurrent": "This week",
+        "legendNext": "Planned ahead",
+        "colWeek": "Week",
+        "colSessions": "Sessions",
+        "colMinutes": "Minutes",
+        "colPhases": "By phase (min)",
+        "empty": "Nothing on the calendar yet. Give a session a date and its minutes show up here, week by week.",
+        "emptyCta": "Plan a session",
+        "coverageTitle": "Where the time went",
+        "coverageSubtitle": "Minutes by drill category, this week and the three before.",
+        "coverageEmpty": "No scheduled drills in the last four weeks.",
+        "custom": "Custom activities",
+        "priority": "Priority",
+        "untrainedTitle": "Your priorities with no time scheduled in four weeks",
+        "findDrills": "{name} drills",
+        "phases": {
+          "warm_up": "Warm-up",
+          "skill": "Skill work",
+          "small_sided": "Small-sided game",
+          "game": "Game / competition",
+          "conditioning": "Conditioning",
+          "cool_down": "Cool-down",
+          "unphased": "No phase"
+        }
       }
     }
   },

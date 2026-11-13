@@ -122,6 +122,17 @@
     transform: rotate(360deg);
   }
 }
+/* a chart bar rising from its baseline (transform only: composited, no layout) */
+@keyframes cos-grow-y {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes cos-grow-x {
+  from {
+    transform: scaleX(0);
+  }
+}
 /* ---------------------------------------------------------------------------------------------------------------
  * Utilities
  * ------------------------------------------------------------------------------------------------------------- */
@@ -156,6 +167,14 @@
 @utility animate-fade-down {
   animation: cos-fade-down var(--motion-slow) var(--ease-out) backwards;
   animation-delay: var(--fade-delay, 0ms);
+}
+@utility animate-grow-y {
+  transform-origin: bottom;
+  animation: cos-grow-y 700ms var(--ease-out) backwards;
+}
+@utility animate-grow-x {
+  transform-origin: left;
+  animation: cos-grow-x 700ms var(--ease-out) backwards;
 }
 @utility animate-pop {
   animation: cos-pop var(--motion-slow) var(--ease-out);

@@ -8,6 +8,7 @@ import { QuickActions } from "@/components/features/dashboard/quick-actions";
 import { RecentSessions } from "@/components/features/dashboard/recent-sessions";
 import { RecommendedDrills } from "@/components/features/dashboard/recommended-drills";
 import { Snapshot } from "@/components/features/dashboard/snapshot";
+import { TrainingLoad } from "@/components/features/dashboard/training-load";
 import { DASHBOARD_WIDGETS } from "@/components/features/dashboard/widgets";
 import { cn } from "@/lib/cn";
 import { parseSportPref, SPORT_COOKIE } from "@/lib/sport-pref";
@@ -69,6 +70,7 @@ export default async function DashboardPage() {
         sportKey={sportKey}
         squadSize={viewer.profile.coaching.typicalPlayers}
       />
+      <TrainingLoad training={center.training} sportKey={sportKey} />
 
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
         <RecentSessions
