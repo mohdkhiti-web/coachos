@@ -152,6 +152,7 @@ test("AI Coach: draw a diagram and change it — the picture is shown before any
   const drawing = proposals(page).first();
   await expect(drawing).toHaveAttribute("data-kind", "set_diagram", { timeout: 20_000 });
   await expect(drawing.getByRole("img", { name: "Suggested diagram" })).toBeVisible();
+  await expect(drawing.getByRole("group", { name: "Camera" })).toBeVisible(); // playable before applying
   await drawing.getByRole("button", { name: /Create Diagram|Update Diagram/ }).click();
   const dialog = page.getByRole("dialog");
   if (await dialog.isVisible().catch(() => false))
