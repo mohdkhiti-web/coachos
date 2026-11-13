@@ -1,0 +1,126 @@
+{
+  "seedKey": "four-three-two-one-sprint-ladder",
+  "title": "4-3-2-1 Sprint Ladder",
+  "description": "A sprint ladder down the floor: four lengths, then three, two and one, with set rest between each, building repeated-sprint fitness.",
+  "category": "conditioning",
+  "primarySkill": "conditioning",
+  "secondarySkills": ["speed_agility", "competitiveness"],
+  "subSkills": ["change_of_direction"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["conditioning"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 30,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["sprints", "repeated sprint", "ladder"],
+  "equipment": [
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Develop repeated-sprint ability with a decreasing ladder and controlled rest.",
+    "setup": "Players on the baseline.",
+    "organization": "Rest 30 seconds between sets.",
+    "instructions": [
+      "Run four court lengths in 24 seconds (adjust for age).",
+      "Rest 30 seconds.",
+      "Three lengths in 18 seconds.",
+      "Two lengths in 12 seconds.",
+      "One length all-out."
+    ],
+    "coachingPoints": [
+      "Touch each baseline with a foot.",
+      "Hit the target times.",
+      "Recover with walking and breathing."
+    ],
+    "commonMistakes": [
+      "Starting too fast and fading.",
+      "Rounding the turns.",
+      "Sitting down during rest."
+    ],
+    "safety": "Build volume gradually, allow water breaks, and stop any player who shows dizziness or pain; work-to-rest ratios suit the group's age.",
+    "progressions": ["Shorter rest.", "Add a ball."],
+    "regressions": ["3-2-1 only.", "Longer target times."],
+    "variations": ["Team must all make the time.", "Defensive slides on the last length."],
+    "successCriteria": ["Target times met.", "Consistent effort."],
+    "gameApplication": "Basketball is repeated sprints with short recoveries.",
+    "repetitions": "1–2 ladders",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [-0.8, 0.4]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [0.8, 0.4]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "far_under_basket",
+                "offset": [0.8, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "far_under_basket",
+                "offset": [-0.8, 0.4]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

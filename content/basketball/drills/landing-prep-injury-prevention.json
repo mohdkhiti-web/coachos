@@ -1,0 +1,114 @@
+{
+  "seedKey": "landing-prep-injury-prevention",
+  "title": "Landing Prep: Injury-Prevention Warm-Up",
+  "description": "A short, structured routine of balance, squats, lunges and controlled jump-landings, based on common principles of knee and ankle injury-prevention warm-ups.",
+  "category": "warm_up",
+  "primarySkill": "recovery_mobility",
+  "secondarySkills": ["footwork"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "group",
+  "phases": ["warm_up"],
+  "ageMin": 9,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 40,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "any_space",
+  "tags": ["injury prevention", "landing", "balance"],
+  "equipment": [],
+  "content": {
+    "objective": "Prepare the knees and ankles with balance and landing practice that reduces the risk of common basketball injuries.",
+    "setup": "Players in lines across the baseline with space around them.",
+    "organization": "Each exercise for 30 seconds or 8 reps.",
+    "instructions": [
+      "Single-leg balance, eyes open then closed (30 seconds each leg).",
+      "Bodyweight squats with knees tracking over toes.",
+      "Forward lunges with a controlled knee.",
+      "Two-foot jump and stick the landing for two seconds.",
+      "Single-leg hop and stick, both legs."
+    ],
+    "coachingPoints": [
+      "Knees over toes, not inward.",
+      "Soft landings, hips back.",
+      "Control before speed."
+    ],
+    "commonMistakes": [
+      "Knees caving in on landing.",
+      "Stiff-legged landings.",
+      "Rushing the reps."
+    ],
+    "safety": "Exercises progress only when the previous one is controlled; stop on any pain.",
+    "progressions": ["Hop with a quarter turn.", "Partner nudge during balance."],
+    "regressions": ["Hold a partner for balance.", "Fewer reps."],
+    "variations": ["With a ball held overhead.", "On the lane line."],
+    "successCriteria": ["Knees aligned on every landing.", "Balance held for 30 seconds."],
+    "gameApplication": "Landing well is the most effective protection against knee and ankle injuries.",
+    "repetitions": "1 routine",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-0.6, -0.6]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, -0.6]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_block",
+              "offset": [0.6, -0.6]
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 0]
+            },
+            "text": "Stick the landing"
+          }
+        ]
+      }
+    }
+  ]
+}

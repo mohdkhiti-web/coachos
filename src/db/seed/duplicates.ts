@@ -140,6 +140,8 @@ export const REVIEWED_DISTINCT: Readonly<Record<string, string>> = {
     "Game-situation rehearsal vs fatigue conditioning at the line.",
   "four-corner-passing|slide-and-pass-lines":
     "Warm-up passing pattern around four corners vs lateral passing while sliding in pairs.",
+  "one-minute-full-court-lay-ups|two-minute-full-range-drill":
+    "Full-court sprint-and-finish conditioning vs a half-court three-spot shooting test by range.",
   "rebound-and-outlet-pass|rebound-outlet-and-go":
     "Outlet technique (rebounding) vs a full three-player fast break (transition).",
   "rebound-outlet-and-go|rebound-to-outlet-full-speed":

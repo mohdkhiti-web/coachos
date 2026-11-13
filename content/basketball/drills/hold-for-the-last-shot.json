@@ -1,0 +1,181 @@
+{
+  "seedKey": "hold-for-the-last-shot",
+  "title": "Hold for the Last Shot",
+  "description": "With the game tied and the ball, the offense holds until about eight seconds remain, then runs a set action to shoot with time for a rebound but no time for a reply.",
+  "category": "special_situations",
+  "primarySkill": "late_game_execution",
+  "secondarySkills": ["decision_making", "pick_and_roll"],
+  "subSkills": ["clock_management", "pnr_ball_handler"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "5v5",
+  "phases": ["game"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 10,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["last shot", "clock management"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    },
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Manage the clock to take the last shot of the game without leaving the opponent time to respond.",
+    "setup": "Half court, score tied, 30 seconds on the clock, offense with the ball.",
+    "organization": "Run four times; rotate who takes the shot.",
+    "instructions": [
+      "Hold the ball safely beyond the arc.",
+      "At eight seconds, start the action (ball screen or isolation).",
+      "Shoot by two to three seconds.",
+      "Crash two players for a tip.",
+      "Others get back to stop a long pass."
+    ],
+    "coachingPoints": [
+      "Start the action on time.",
+      "Ball handler attacks; no last-second desperation.",
+      "Plan for the rebound and the defense."
+    ],
+    "commonMistakes": [
+      "Starting too late.",
+      "Turning it over while holding.",
+      "Everyone watching the shot."
+    ],
+    "safety": "Situations are walked through before being played live at game speed.",
+    "progressions": ["Defense traps the holder.", "Down one: must score."],
+    "regressions": ["Walk-through.", "No defense."],
+    "variations": ["Hold for a two-for-one.", "Shot clock off vs on."],
+    "successCriteria": ["Shot released between 3 and 1 seconds.", "No turnovers."],
+    "gameApplication": "Tied games are often decided by last-shot management.",
+    "repetitions": "4 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, -0.6]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0.8, 0.6]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o2",
+            "target": {
+              "anchor": "top_key",
+              "offset": [0.4, 0]
+            },
+            "kind": "ball"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [-0.6, 0]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [0, 0.6]
+            },
+            "text": "Go at 0:08"
+          }
+        ]
+      }
+    }
+  ]
+}

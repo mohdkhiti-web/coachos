@@ -1,0 +1,156 @@
+{
+  "seedKey": "two-for-one-end-of-quarter",
+  "title": "Two-for-One at the End of a Quarter",
+  "description": "With 30–40 seconds left in a quarter, the offense pushes for a quick shot so it gets the last possession too.",
+  "category": "special_situations",
+  "primarySkill": "late_game_execution",
+  "secondarySkills": ["decision_making", "conditioning"],
+  "subSkills": ["clock_management", "reading_the_defense"],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "5v5",
+  "phases": ["game"],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 10,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["two-for-one", "clock management"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    },
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Win an extra possession at the end of a quarter by shooting early enough to get the ball back.",
+    "setup": "Coach sets the clock to 38 seconds with the ball in the backcourt.",
+    "organization": "Run four times; reverse roles.",
+    "instructions": [
+      "Push the ball immediately.",
+      "Take a good shot with at least 28 seconds left (shot-clock length plus a few seconds).",
+      "Get back on defense.",
+      "On the defensive rebound, push for the last shot.",
+      "Score the last-shot possession before the buzzer."
+    ],
+    "coachingPoints": [
+      "Know the target time.",
+      "Good shot, not any shot.",
+      "Last possession: shoot with three seconds left."
+    ],
+    "commonMistakes": [
+      "Shooting a bad shot too early.",
+      "Missing the window.",
+      "Holding the last possession too long."
+    ],
+    "safety": "Situations are walked through before being played live at game speed.",
+    "progressions": ["Defense tries to slow the push.", "Start at 34 seconds."],
+    "regressions": ["Coach calls the time aloud.", "No defense on the push."],
+    "variations": ["Defending a two-for-one.", "End-of-half version."],
+    "successCriteria": ["Two possessions achieved.", "Clock managed correctly."],
+    "gameApplication": "Two-for-one decisions add possessions across a season.",
+    "repetitions": "4 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "far_free_throw_line"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_sideline_center",
+              "offset": [-1, 0]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_sideline_center",
+              "offset": [1, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "center_circle",
+                "offset": [0, 0]
+              },
+              {
+                "anchor": "top_key",
+                "offset": [0, 0]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [0, -1.2]
+            },
+            "text": "0:38"
+          }
+        ]
+      }
+    }
+  ]
+}

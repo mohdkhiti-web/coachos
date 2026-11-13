@@ -1,0 +1,169 @@
+{
+  "seedKey": "intentional-free-throw-miss",
+  "title": "Intentional Free-Throw Miss Play",
+  "description": "Down two with a second or two left and shooting a final free throw, the shooter deliberately misses off the rim and the lane players attack the rebound for a tying put-back.",
+  "category": "special_situations",
+  "primarySkill": "late_game_execution",
+  "secondarySkills": ["rebounding", "free_throws"],
+  "subSkills": ["clock_management", "offensive_rebounding"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["game"],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 6,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["intentional miss", "free throw", "end of game"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Execute a deliberate miss that hits the rim and win the offensive rebound for a tying basket.",
+    "setup": "Shooter at the line; offensive and defensive players in lane spots.",
+    "organization": "Rotate shooters; run six times.",
+    "instructions": [
+      "The shooter aims hard at the front of the rim (or the side) to create a long rebound.",
+      "Lane attackers spin to the middle on the release.",
+      "The player nearest the expected landing spot calls 'Mine!'.",
+      "Put back or tip immediately.",
+      "The shot must hit the rim or it is a violation."
+    ],
+    "coachingPoints": [
+      "The miss must hit the rim.",
+      "Lane players move on the release.",
+      "Score immediately; no time to dribble."
+    ],
+    "commonMistakes": [
+      "Air ball (violation).",
+      "Attackers stepping in early.",
+      "Bringing the ball down after the rebound."
+    ],
+    "safety": "Situations are walked through before being played live at game speed.",
+    "progressions": ["Defense boxes out fully.", "Down three: tip out for a three."],
+    "regressions": ["Defense passive.", "Practise the miss alone."],
+    "variations": ["Miss to a specific side.", "Shooter crashes too."],
+    "successCriteria": ["Miss hits the rim every time.", "Offensive rebound won some reps."],
+    "gameApplication": "A rehearsed intentional miss gives a real chance in a hopeless-looking situation.",
+    "repetitions": "6 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, -0.4]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [-0.2, -1.2]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_block",
+              "offset": [0.2, -1.2]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "right_block",
+              "offset": [-0.2, 0]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "left_block",
+              "offset": [0.2, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [0.6, 0.4]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [-0.4, -1]
+            },
+            "text": "Hit the rim"
+          }
+        ]
+      }
+    }
+  ]
+}

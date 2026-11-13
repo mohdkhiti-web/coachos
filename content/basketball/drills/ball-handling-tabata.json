@@ -1,0 +1,133 @@
+{
+  "seedKey": "ball-handling-tabata",
+  "title": "Ball-Handling Intervals 20/10",
+  "description": "Interval conditioning with the ball: 20 seconds of hard stationary or moving dribble work, 10 seconds rest, eight rounds.",
+  "category": "conditioning",
+  "primarySkill": "conditioning",
+  "secondarySkills": ["dribbling", "ball_control"],
+  "subSkills": ["weak_hand", "crossover"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "individual",
+  "phases": ["conditioning"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 30,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "any_space",
+  "tags": ["intervals", "ball handling", "fitness"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Combine ball-handling skill with high-intensity interval fitness.",
+    "setup": "Every player with a ball and enough space.",
+    "organization": "Eight rounds, the coach calls the drill for each round.",
+    "instructions": [
+      "Round 1: fast pound dribbles right hand.",
+      "Round 2: left hand.",
+      "Round 3: crossovers; Round 4: between the legs.",
+      "Round 5–8: dribble with high knees, slides, lunges, then free choice.",
+      "Rest 10 seconds between rounds."
+    ],
+    "coachingPoints": ["Go hard for the full 20 seconds.", "Low, controlled dribble.", "Eyes up."],
+    "commonMistakes": [
+      "Losing control when going faster.",
+      "Slowing in the last seconds.",
+      "Watching the ball."
+    ],
+    "safety": "Build volume gradually, allow water breaks, and stop any player who shows dizziness or pain; work-to-rest ratios suit the group's age.",
+    "progressions": ["Two balls.", "Longer work periods."],
+    "regressions": ["15 seconds work, 15 rest.", "Four rounds."],
+    "variations": ["Partner mirror version.", "Moving down the court."],
+    "successCriteria": ["Full effort all rounds.", "Few lost balls."],
+    "gameApplication": "Ball control has to hold up when tired.",
+    "repetitions": "8 rounds",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b3",
+            "type": "ball",
+            "heldBy": "o3"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, -1.6]
+            },
+            "text": "20 on / 10 off"
+          }
+        ]
+      }
+    }
+  ]
+}

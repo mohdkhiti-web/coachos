@@ -1,0 +1,170 @@
+{
+  "seedKey": "length-of-the-court-last-shot",
+  "title": "Length-of-the-Court Last Shot",
+  "description": "With under five seconds left and the ball under the opponent's basket, the team practises a long pass and catch-and-shoot or a quick push to score.",
+  "category": "special_situations",
+  "primarySkill": "late_game_execution",
+  "secondarySkills": ["inbounding", "passing"],
+  "subSkills": ["clock_management", "baseline_inbounds"],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "5v5",
+  "phases": ["game"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 10,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "full_court",
+  "tags": ["last shot", "full court", "clock"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    },
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Score from the full length of the court in under five seconds with a rehearsed plan.",
+    "setup": "Inbounder on the far baseline; five seconds on the clock; defense chooses its coverage.",
+    "organization": "Run three versions; rotate inbounders.",
+    "instructions": [
+      "Inbounder can run the baseline after a made basket (or not: coach sets it).",
+      "Option 1: long pass to a catcher at the far free-throw line, who tips or passes to a shooter.",
+      "Option 2: short inbound to a guard who pushes with four dribbles.",
+      "The clock starts on the first touch inbounds.",
+      "Shoot before the buzzer."
+    ],
+    "coachingPoints": [
+      "Know whether you can run the baseline.",
+      "Catcher goes up with two hands.",
+      "Shoot on the way up, not after the buzzer."
+    ],
+    "commonMistakes": [
+      "Throwing the long pass too low.",
+      "Dribbling too many times.",
+      "Shot released after time expires."
+    ],
+    "safety": "Situations are walked through before being played live at game speed.",
+    "progressions": ["Three seconds.", "Defense guards the inbounder."],
+    "regressions": ["Eight seconds.", "No defense on the catcher."],
+    "variations": ["After a timeout (advance to half court).", "Down three: must be a three."],
+    "successCriteria": ["Shot released in time.", "Plan executed."],
+    "gameApplication": "Games are won and lost on rehearsed end-of-game plays.",
+    "repetitions": "6 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "far_under_basket",
+              "offset": [0, 0.8]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "far_free_throw_line"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, -0.4]
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o3",
+            "kind": "overhead"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4"
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o4"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [0, -1.2]
+            },
+            "text": "0:05"
+          }
+        ]
+      }
+    }
+  ]
+}
