@@ -31,6 +31,7 @@ import { Dialog, DialogClose, DialogContent } from "@/components/ui/dialog";
 import { Menu, MenuContent, MenuItem, MenuTrigger } from "@/components/ui/menu";
 import { cn } from "@/lib/cn";
 import { formatOffset } from "@/modules/plans/schedule";
+import { RollingNumber } from "@/components/ui/rolling-number";
 import type { BuilderActivity } from "./builder-model";
 import { PHASE_BAR, PhaseBadge } from "./badges";
 
@@ -141,7 +142,7 @@ export function ActivityCard({
       aria-hidden={leaving || undefined}
       className={cn(
         "scroll-mt-28",
-        sortable.isDragging && "relative z-20 opacity-90",
+        sortable.isDragging && "relative z-20",
         leaving ? "pointer-events-none animate-out" : "animate-fade-up",
       )}
     >
@@ -149,11 +150,12 @@ export function ActivityCard({
         aria-labelledby={headingId}
         data-kind={activity.kind}
         className={cn(
-          "relative flex overflow-hidden rounded-lg border shadow-paper transition-shadow duration-200 ease-out",
+          "relative flex overflow-hidden rounded-lg border shadow-paper transition-[box-shadow,transform] duration-200 ease-out",
           isBreak
             ? "border-dashed border-line-strong bg-surface-sunken"
             : "border-line bg-surface-raised",
-          sortable.isDragging && "ring-2 ring-accent",
+          // lifted off the sheet: a touch bigger, a slight tilt and a deeper shadow while it is carried
+          sortable.isDragging && "scale-[1.02] -rotate-[0.6deg] shadow-pop ring-2 ring-accent",
           !leaving && "hover:shadow-lift",
         )}
       >
@@ -180,7 +182,9 @@ export function ActivityCard({
                 <p className="flex flex-wrap items-baseline gap-x-2 numeral text-lg leading-tight text-ink">
                   <span>
                     <span className="sr-only">{t("timeRange")} </span>
-                    {formatOffset(startMin)}–{formatOffset(endMin)}
+                    {/* the times roll to their new values when blocks are reordered or resized */}
+                    <RollingNumber value={formatOffset(startMin)} />–
+                    <RollingNumber value={formatOffset(endMin)} />
                   </span>
                   <span className="text-base text-ink-muted">
                     <span aria-hidden>·</span> {t("minutes", { count: activity.durationMin })}
