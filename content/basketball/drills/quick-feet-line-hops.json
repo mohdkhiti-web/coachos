@@ -1,0 +1,110 @@
+{
+  "seedKey": "quick-feet-line-hops",
+  "title": "Quick-Feet Line Hops",
+  "description": "Fast two-foot and single-foot hops over a court line — forward-back, side-to-side, scissors — for foot speed and rhythm.",
+  "category": "footwork",
+  "primarySkill": "speed_agility",
+  "secondarySkills": ["footwork"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["warm_up"],
+  "ageMin": 7,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 30,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "any_space",
+  "tags": ["foot speed", "warm-up"],
+  "equipment": [],
+  "content": {
+    "objective": "Improve foot speed and coordination with quick, light contacts.",
+    "setup": "Each player beside a court line.",
+    "organization": "Whole group; 20-second bouts.",
+    "instructions": [
+      "Two feet forward and back over the line for 20 seconds.",
+      "Two feet side to side for 20 seconds.",
+      "Scissors (one foot in front, switch) for 20 seconds.",
+      "Right foot only, then left foot only.",
+      "Rest 20 seconds between bouts."
+    ],
+    "coachingPoints": [
+      "Stay on the balls of the feet.",
+      "Small, quick hops.",
+      "Arms relaxed and in rhythm."
+    ],
+    "commonMistakes": ["Big, slow jumps.", "Landing on the heels.", "Looking down at the line."],
+    "safety": "Use a clear, dry floor and space players so nobody collides when changing direction.",
+    "progressions": ["Count contacts and beat the score.", "Add a ball dribble."],
+    "regressions": ["Slower tempo.", "Ten-second bouts."],
+    "variations": ["Partner calls the pattern change.", "Hop over a flat cone."],
+    "successCriteria": ["Light, quick contacts throughout.", "Improves contact count."],
+    "gameApplication": "Quick feet help players react on defense and gather on offense.",
+    "repetitions": "5 bouts of 20 s",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [-1.4, 0]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 0]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [1.4, 0]
+            }
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1.2]
+            },
+            "text": "Quick hops over the line"
+          }
+        ]
+      }
+    }
+  ]
+}

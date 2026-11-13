@@ -1,0 +1,178 @@
+{
+  "seedKey": "pull-back-crossover-escape",
+  "title": "Pull-Back Crossover Escape",
+  "description": "Against a defender who cuts off the drive, the ball handler pulls the ball back with two dribbles and crosses into the open side.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["decision_making"],
+  "subSkills": ["crossover", "protect_the_ball"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["pull-back", "escape dribble"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Create space from a beaten-to-the-spot defender with a pull-back dribble, then cross into the space the defender left.",
+    "setup": "Offense at the right wing, defense set to cut off a baseline drive.",
+    "organization": "Live 1v1; rotate offense to defense to line.",
+    "instructions": [
+      "Drive hard toward the baseline.",
+      "When the defender cuts it off, take one or two backward pull-back dribbles with the right hand.",
+      "As the defender follows, cross the ball to the left hand.",
+      "Attack the middle of the floor to the rim or a pull-up.",
+      "Play it out live."
+    ],
+    "coachingPoints": [
+      "Pull back on a slight angle, keeping the body between defender and ball.",
+      "Cross only when the defender commits forward.",
+      "Sprint out of the crossover."
+    ],
+    "commonMistakes": [
+      "Pulling back so far the move takes too long.",
+      "Crossing while the defender is still balanced.",
+      "High crossover that the defender deflects."
+    ],
+    "safety": "Defenders play legally: no hand-checking or pushing the dribbler.",
+    "progressions": [
+      "Defender may trap with a second player after the pull-back.",
+      "Finish with a kick-out pass to the corner."
+    ],
+    "regressions": [
+      "Defender walks to the cut-off spot on cue.",
+      "Allow three pull-back dribbles."
+    ],
+    "variations": ["Pull-back into a step-back jump shot.", "Pull-back from the top of the key."],
+    "successCriteria": [
+      "Creates at least an arm-length of space with the pull-back.",
+      "Crosses only when the defender's weight goes forward."
+    ],
+    "gameApplication": "The pull-back crossover turns a stopped drive into a new advantage instead of a turnover.",
+    "repetitions": "6 possessions per player",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [-0.4, -0.8]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_corner",
+                "offset": [-1.6, 1.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_corner",
+                "offset": [-2, 1.1]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [-0.2, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [-0.6, 0]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [1, 1.4]
+            },
+            "text": "Pull back"
+          }
+        ]
+      }
+    }
+  ]
+}

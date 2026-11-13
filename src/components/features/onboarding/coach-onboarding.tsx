@@ -139,7 +139,7 @@ export function CoachOnboarding({ needsName }: { needsName: boolean }) {
                 key={s}
                 className={cn(
                   "h-1 w-3.5 rounded-full smooth-colors min-[420px]:w-6 sm:w-9",
-                  s <= question ? "bg-accent" : "bg-line-strong",
+                  s <= question ? "bg-accent-bright" : "bg-line-strong",
                 )}
               />
             ))}
@@ -160,8 +160,8 @@ export function CoachOnboarding({ needsName }: { needsName: boolean }) {
       <div key={step} className={direction === "forward" ? "step-forward" : "step-back"}>
         {step === 0 ? (
           <div className="mb-8 space-y-3">
-            <p className="eyebrow text-accent">{t("intro")}</p>
             <h1 className="display text-4xl text-ink sm:text-5xl">{t("title")}</h1>
+            <p className="text-sm font-semibold text-accent">{t("intro")}</p>
           </div>
         ) : null}
         <h2
@@ -257,7 +257,6 @@ function Ready({ answers, onEnter }: { answers: Answers; onEnter: () => void }) 
         className="mx-auto mb-6 h-40 w-auto text-ink/35 sm:h-52"
         strokeWidth={2.4}
       />
-      <p className="eyebrow text-accent">{t("ready.eyebrow")}</p>
       <h1
         ref={first}
         tabIndex={-1}
@@ -265,6 +264,7 @@ function Ready({ answers, onEnter }: { answers: Answers; onEnter: () => void }) 
       >
         {t("ready.title")}
       </h1>
+      <p className="text-sm font-semibold text-accent">{t("ready.eyebrow")}</p>
       <p className="mx-auto mt-3 max-w-md text-base text-ink-muted">{t("ready.subtitle")}</p>
 
       <ul

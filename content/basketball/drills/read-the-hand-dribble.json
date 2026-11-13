@@ -1,0 +1,152 @@
+{
+  "seedKey": "read-the-hand-dribble",
+  "title": "Read-the-Hand Dribble",
+  "description": "A partner raises one hand on one side; the dribbler must move the ball to the opposite side instantly, learning to keep the ball away from where a defender is reaching.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["decision_making"],
+  "subSkills": ["crossover", "protect_the_ball"],
+  "level": "intermediate",
+  "intensity": "low",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 2,
+  "playersMax": 24,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "any_space",
+  "tags": ["reaction", "partner", "protect the ball"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Read where a defender's hand is and move the ball to the opposite side without looking down.",
+    "setup": "Partners face each other one metre apart; one ball for the dribbler.",
+    "organization": "30-second rounds; switch roles each round.",
+    "instructions": [
+      "The dribbler starts a waist-high dribble in an athletic stance.",
+      "The partner holds up the left or right hand as if reaching for the ball.",
+      "The dribbler moves the ball to the opposite side with a crossover, between-the-legs or behind-the-back.",
+      "The partner switches hands at random, faster as the round goes on.",
+      "Switch roles after 30 seconds."
+    ],
+    "coachingPoints": [
+      "Keep the eyes on the partner's chest to see both hands.",
+      "Change sides with the lowest move you can.",
+      "Recover your stance after every change."
+    ],
+    "commonMistakes": [
+      "Moving the ball toward the raised hand.",
+      "Waiting for the hand to drop before reacting.",
+      "Crossing at waist height."
+    ],
+    "safety": "Partner's hand stays up in the air; no actual swiping at the ball.",
+    "progressions": [
+      "Partner may swipe gently with the raised hand.",
+      "Two partners, one each side."
+    ],
+    "regressions": [
+      "Partner calls 'left' or 'right' as well as raising the hand.",
+      "Slower changes for the first round."
+    ],
+    "variations": [
+      "Partner holds a pad instead of a hand.",
+      "Dribbler must also step away from the hand."
+    ],
+    "successCriteria": [
+      "Correct side within one dribble on 9 of 10 cues.",
+      "No lost balls in a round."
+    ],
+    "gameApplication": "Ball handlers keep possession by moving the ball away from the defender's active hand.",
+    "repetitions": "6 rounds of 30 s",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [-1.4, 0.6]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [0, -1.1]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key",
+              "offset": [1.4, 0.6]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [0, -1.1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 2.4]
+            },
+            "text": "Ball away from the hand"
+          }
+        ]
+      }
+    }
+  ]
+}

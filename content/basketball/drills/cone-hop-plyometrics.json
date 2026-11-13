@@ -1,0 +1,156 @@
+{
+  "seedKey": "cone-hop-plyometrics",
+  "title": "Cone Hop Plyometrics",
+  "description": "Two-foot hops over low cones in a line, then lateral hops, building elastic leg power for rebounding and finishing.",
+  "category": "footwork",
+  "primarySkill": "speed_agility",
+  "secondarySkills": ["rebounding"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "individual",
+  "phases": ["skill", "conditioning"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 12,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["plyometrics", "power"],
+  "equipment": [
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 6
+    }
+  ],
+  "content": {
+    "objective": "Develop quick, elastic jumping with soft, safe landings.",
+    "setup": "Six low flat cones in a line one metre apart.",
+    "organization": "One at a time; walk back.",
+    "instructions": [
+      "Two-foot hop over each cone with minimal ground time.",
+      "Walk back.",
+      "Lateral two-foot hops along the line, side to side.",
+      "Single-leg hops over three cones (advanced players).",
+      "Finish with one maximum jump and a soft landing."
+    ],
+    "coachingPoints": [
+      "Quick off the ground.",
+      "Land on the balls of the feet, knees soft.",
+      "Arms drive the jump."
+    ],
+    "commonMistakes": [
+      "Long pauses between hops.",
+      "Stiff, loud landings.",
+      "Knees collapsing inward."
+    ],
+    "safety": "Use flat cones only; limit total contacts and skip single-leg hops for young players.",
+    "progressions": ["Add a ball catch at the end.", "Increase spacing."],
+    "regressions": ["Hop over lines instead of cones.", "Fewer cones."],
+    "variations": ["Zig-zag hops.", "Hop and turn 90 degrees."],
+    "successCriteria": ["Quick, quiet contacts.", "Controlled final landing."],
+    "gameApplication": "Quick second jumps win rebounds and tip-ins.",
+    "repetitions": "3 rounds",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-1, 0.4]
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-0.2, 1.2]
+            }
+          },
+          {
+            "id": "k2",
+            "type": "cone",
+            "at": {
+              "anchor": "left_block",
+              "offset": [0.4, 2]
+            }
+          },
+          {
+            "id": "k3",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [0, 0.4]
+            }
+          },
+          {
+            "id": "k4",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [0.6, 1.2]
+            }
+          },
+          {
+            "id": "k5",
+            "type": "cone",
+            "at": {
+              "anchor": "left_slot",
+              "offset": [0, 0.2]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [-0.2, 1.2]
+              },
+              {
+                "anchor": "left_block",
+                "offset": [0.4, 2]
+              },
+              {
+                "anchor": "left_elbow",
+                "offset": [0, 0.4]
+              },
+              {
+                "anchor": "left_elbow",
+                "offset": [0.6, 1.2]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

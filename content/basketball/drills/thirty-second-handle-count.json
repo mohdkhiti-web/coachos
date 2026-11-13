@@ -1,0 +1,140 @@
+{
+  "seedKey": "thirty-second-handle-count",
+  "title": "Thirty-Second Handle Count",
+  "description": "Players count how many clean moves of a given type they make in 30 seconds, then try to beat their own score — a self-measured skill test.",
+  "category": "ball_handling",
+  "primarySkill": "ball_control",
+  "secondarySkills": ["dribbling", "competitiveness"],
+  "subSkills": ["crossover", "weak_hand"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 8,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 30,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "any_space",
+  "tags": ["test", "personal best", "count"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Measure and improve ball-handling speed and control with a simple, repeatable personal test.",
+    "setup": "Players spread out with a ball each; the coach runs a stopwatch.",
+    "organization": "Whole group tests together; players record their own scores.",
+    "instructions": [
+      "Test 1: crossovers in 30 seconds; count each clean change of hand.",
+      "Test 2: between-the-legs in 30 seconds.",
+      "Test 3: weak-hand pound dribbles in 30 seconds.",
+      "A move only counts if the ball stays below the waist and under control.",
+      "Repeat the tests the following week and compare."
+    ],
+    "coachingPoints": [
+      "Quality first: a sloppy move does not count.",
+      "Stay low the whole 30 seconds.",
+      "Breathe and keep a rhythm."
+    ],
+    "commonMistakes": [
+      "Counting moves with the ball above the waist.",
+      "Standing up as fatigue sets in.",
+      "Losing the ball and giving up the round."
+    ],
+    "safety": "Personal spaces at least two metres apart; stop a test if a ball rolls into someone's space.",
+    "progressions": [
+      "Two-ball versions of the tests.",
+      "Add a 'with eyes closed for 5 seconds' challenge for advanced players."
+    ],
+    "regressions": ["20-second rounds.", "Count only the strong hand at first."],
+    "variations": ["Partners count for each other.", "Team total challenge against another team."],
+    "successCriteria": [
+      "Beats the previous week's score on at least one test.",
+      "No counted move made above the waist."
+    ],
+    "gameApplication": "Tracking scores turns ball-handling homework into visible progress players will practise on their own.",
+    "repetitions": "3 tests x 30 s, twice",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot",
+              "offset": [0, 0.6]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_slot",
+              "offset": [0, 0.6]
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, -0.4]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 2.6]
+            },
+            "text": "Count in 30 s"
+          }
+        ]
+      }
+    }
+  ]
+}

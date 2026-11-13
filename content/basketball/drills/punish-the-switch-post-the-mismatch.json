@@ -1,0 +1,197 @@
+{
+  "seedKey": "punish-the-switch-post-the-mismatch",
+  "title": "Punish the Switch: Post the Mismatch",
+  "description": "After a switch puts a small defender on a big, the offense recognises it, clears the side and gets the ball to the big posting up before the defense can scramble.",
+  "category": "team_offense",
+  "primarySkill": "spacing",
+  "secondarySkills": [
+    "passing",
+    "decision_making",
+    "footwork"
+  ],
+  "subSkills": [
+    "reading_the_defense",
+    "passing_under_pressure"
+  ],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "3v3",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 6,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "mismatch",
+    "switch",
+    "post up"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Exploit a switch by sealing the smaller defender and feeding the post before help arrives.",
+    "setup": "3v3; the offense runs a ball screen and the defense must switch it.",
+    "organization": "Rotate every four possessions.",
+    "instructions": [
+      "Run a ball screen at the top; the defense switches.",
+      "The big calls 'Mismatch!' and seals the small defender on the block.",
+      "The ball handler moves to the wing to improve the entry angle.",
+      "The third player clears to the weak side to take away the helper.",
+      "Enter the post and score, or kick if the double comes."
+    ],
+    "coachingPoints": [
+      "Seal immediately after the switch.",
+      "Clear the side.",
+      "Pass to the target hand."
+    ],
+    "commonMistakes": [
+      "Ignoring the mismatch and playing on.",
+      "Sealing too far from the basket.",
+      "Weak-side player standing in the help lane."
+    ],
+    "safety": "Screens are set stationary and legal; post contact uses the body, never hooking or pushing with the arms.",
+    "progressions": [
+      "Defense fronts the post.",
+      "Defense doubles from the top."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "Defense does not help."
+    ],
+    "variations": [
+      "Guard isolates the big on the perimeter.",
+      "Mismatch from an off-ball switch."
+    ],
+    "successCriteria": [
+      "Post touch after most switches.",
+      "Score or open kick-out."
+    ],
+    "gameApplication": "Switching defenses invite mismatches; teams that punish them force the defense to stop switching.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [
+                -0.2,
+                -0.2
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [
+                -0.4,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "left_corner",
+                "offset": [
+                  0.4,
+                  -0.4
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "bounce"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [
+                1.4,
+                1.4
+              ]
+            },
+            "text": "Mismatch!"
+          }
+        ]
+      }
+    }
+  ]
+}

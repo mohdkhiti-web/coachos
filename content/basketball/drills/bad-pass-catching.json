@@ -1,0 +1,149 @@
+{
+  "seedKey": "bad-pass-catching",
+  "title": "Bad-Pass Catching",
+  "description": "The coach throws deliberately imperfect passes — low, high, behind — and receivers must secure them, preparing for the real passes they get in games.",
+  "category": "passing",
+  "primarySkill": "catching",
+  "secondarySkills": ["footwork"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 10,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["catching", "reaction"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Catch and secure off-target passes by moving the feet to the ball and using two hands.",
+    "setup": "Coach at the top of the key; players in a line at the wing.",
+    "organization": "One player at a time; catch, secure, shoot or pass back.",
+    "instructions": [
+      "The player cuts to the wing and shows a target.",
+      "The coach throws a pass that is low, high, wide or behind.",
+      "The player moves the feet to get the body behind the ball and catches with two hands.",
+      "After securing, the player squares up and shoots.",
+      "The next player goes."
+    ],
+    "coachingPoints": [
+      "Move the feet first, then the hands.",
+      "Two hands on every catch, even when stretching.",
+      "Secure, then look up."
+    ],
+    "commonMistakes": [
+      "Reaching with one hand and fumbling.",
+      "Giving up on a bad pass.",
+      "Rushing the shot before the ball is secure."
+    ],
+    "safety": "Passes are imperfect but not thrown hard at the body or face.",
+    "progressions": [
+      "Add a defender who contests the catch.",
+      "Player must catch on the move and finish."
+    ],
+    "regressions": ["Only low or wide passes.", "Tell the player which pass is coming."],
+    "variations": [
+      "Use a medicine ball for the first rounds (strength).",
+      "Catch in the post with a defender on the back."
+    ],
+    "successCriteria": ["Secures 8 of 10 imperfect passes.", "No one-hand catches."],
+    "gameApplication": "Game passes are rarely perfect; players who catch them keep possessions alive.",
+    "repetitions": "10 catches per player",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [-0.6, -1]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "pass",
+            "from": "c1",
+            "to": "o1"
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_slot",
+              "offset": [0.6, 1.2]
+            },
+            "text": "Low · high · wide"
+          }
+        ]
+      }
+    }
+  ]
+}

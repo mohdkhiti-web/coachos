@@ -1,0 +1,163 @@
+{
+  "seedKey": "dunker-spot-catch-and-finish",
+  "title": "Dunker-Spot Catch and Finish",
+  "description": "A big waits in the dunker spot (short baseline beside the lane); when the guard drives and draws the help, the big catches a dump-off and finishes immediately.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["catching", "spacing"],
+  "subSkills": ["finishing_with_contact"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["dunker spot", "dump-off"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Catch a dump-off pass low near the baseline and finish quickly before the defense recovers.",
+    "setup": "Guard at the top; big in the left dunker spot; a help defender guarding the big.",
+    "organization": "Rotate guard, big and defender.",
+    "instructions": [
+      "The guard drives the middle.",
+      "The big's defender steps up to help.",
+      "The big stays low and visible on the baseline, hands ready.",
+      "The guard dumps off a bounce pass.",
+      "The big catches and finishes with a power lay-up without dribbling."
+    ],
+    "coachingPoints": [
+      "Stay out of the lane (no three seconds) until the drive.",
+      "Catch low, rise immediately.",
+      "No dribble on the catch."
+    ],
+    "commonMistakes": [
+      "Bringing the ball down where it can be stripped.",
+      "Drifting into the lane too early.",
+      "Dribbling before the finish."
+    ],
+    "safety": "Help defender does not undercut the finisher.",
+    "progressions": [
+      "Defender recovers: finish through contact.",
+      "Two-big dunker and corner game."
+    ],
+    "regressions": ["No defender.", "Chest pass instead of bounce."],
+    "variations": ["Dunker on the right side.", "Lob to the dunker spot."],
+    "successCriteria": ["Finish without a dribble on most catches.", "Catch made with two hands."],
+    "gameApplication": "The dunker spot gives bigs easy baskets whenever their defender helps on a drive.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_short_corner",
+              "offset": [1.6, 0.2]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [0.6, 0.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [-0.4, -1.2]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "help",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [-0.6, -2]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "bounce"
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

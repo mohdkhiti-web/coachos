@@ -1,0 +1,168 @@
+{
+  "seedKey": "baseline-drive-vs-rotation",
+  "title": "Baseline Drive vs Rotation",
+  "description": "A baseline driver reads the weak-side defender's rotation: finish if it is late, dump off or kick to the corner if it arrives.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["decision_making", "passing"],
+  "subSkills": ["reading_the_defense", "both_hands_finishing"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["baseline drive", "rotation"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Read the rotating help defender on a baseline drive and choose the finish or the right pass.",
+    "setup": "Driver at the right wing; teammates at the left block and left corner; one help defender.",
+    "organization": "Rotate roles.",
+    "instructions": [
+      "Drive baseline from the right wing.",
+      "The help defender rotates from the weak side (or stays).",
+      "No help: finish.",
+      "Help comes from the block: dump off to the block player.",
+      "Help comes from the corner: kick to the corner shooter."
+    ],
+    "coachingPoints": [
+      "Eyes up to see the help early.",
+      "Jump-stop if you need to pass.",
+      "Finish strong if the help is late."
+    ],
+    "commonMistakes": [
+      "Driving out of bounds.",
+      "Deciding before the rotation.",
+      "Passing into the help defender."
+    ],
+    "safety": "Help defender does not take charges under the rim in this drill.",
+    "progressions": ["Two help defenders.", "Live 4v3."],
+    "regressions": ["Help defender announces where they come from.", "One pass option."],
+    "variations": ["Baseline drive from the left.", "Middle drive version."],
+    "successCriteria": ["Correct decision on most reps.", "No turnovers."],
+    "gameApplication": "Baseline drives force rotations; the driver's read decides who scores.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "left_block",
+              "offset": [0.8, 1.2]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_short_corner",
+                "offset": [-1, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "help",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.6, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "bounce"
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

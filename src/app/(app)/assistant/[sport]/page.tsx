@@ -17,6 +17,7 @@ import { toConversationDto, toMessageDto } from "@/modules/assistant/serialize";
 import { requireViewer } from "@/modules/identity";
 import { getPlan, listPlans } from "@/modules/plans";
 import { getSport } from "@/modules/sports";
+import { MetaTag } from "@/components/ui/page-header";
 
 export const metadata: Metadata = { title: "AI Coach" };
 
@@ -40,10 +41,12 @@ export default async function AssistantPage({
   const canAuthor = can(actor, "plan:create", { organizationId: actor.organizationId });
 
   const header = (
-    <header className="space-y-2">
-      <p className="eyebrow text-accent">{sport.name}</p>
-      <h1 className="display text-4xl text-ink md:text-5xl">{t("title")}</h1>
+    <header className="space-y-2 border-b border-line pb-6">
+      <h1 className="display text-[2.6rem] text-ink md:text-5xl">{t("title")}</h1>
       <p className="max-w-2xl text-base text-ink-muted">{t("subtitle")}</p>
+      <div className="pt-1">
+        <MetaTag>{sport.name}</MetaTag>
+      </div>
     </header>
   );
 

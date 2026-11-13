@@ -25,7 +25,8 @@
     "templates": "Templates",
     "assistant": "AI Coach",
     "drills": "Drills",
-    "roster": "Roster"
+    "roster": "Roster",
+    "newSession": "New session"
   },
   "theme": {
     "toggle": "Theme: {mode}. Click to change.",
@@ -165,7 +166,8 @@
           "title": "Share and export",
           "body": "Export a PDF or PNG, or send a private read-only link to your staff. Revoke it any time."
         }
-      }
+      },
+      "listLabel": "What CoachOS does"
     },
     "ai": {
       "eyebrow": "AI Coach",
@@ -224,7 +226,20 @@
     "footer": "© {year} CoachOS · Basketball coaching software",
     "hero": {
       "videoPause": "Pause background video",
-      "videoPlay": "Play background video"
+      "videoPlay": "Play background video",
+      "sheet": {
+        "label": "Example session",
+        "title": "U14 shooting · Tuesday",
+        "meta": "12 players · Gym 2",
+        "status": "Draft",
+        "total": "min",
+        "tallyLabel": "60 minutes: warm-up, two skill blocks, a game and a cool-down",
+        "court": "Give-and-go, drawn on the court"
+      }
+    },
+    "court": {
+      "title": "Built for the hour on the court.",
+      "body": "The planning happens here, so the time in the gym goes to your players: drills with real diagrams, a timeline that adds itself up, and a sheet ready to print before you leave the house."
     }
   },
   "auth": {
@@ -617,6 +632,23 @@
     },
     "cc": {
       "eyebrow": "Coaching Command Center",
+      "court": {
+        "title": "On court",
+        "next": "Next on court",
+        "latest": "Latest session",
+        "emptyTitle": "Your first practice starts here.",
+        "emptyBody": "Build a session and its minutes fill this strip, phase by phase, like a scorer keeping the running score.",
+        "open": "Open session",
+        "document": "Session sheet",
+        "total": "{count} min",
+        "target": "Planned for {count} min",
+        "activities": "{count, plural, one {# activity} other {# activities}}",
+        "noActivities": "No activities yet. Add drills to fill the tally.",
+        "unscheduled": "Not scheduled",
+        "tallyLabel": "{total} minutes across {count, plural, one {# activity} other {# activities}}",
+        "actionsTitle": "Start something",
+        "noPhase": "Unphased"
+      },
       "quick": {
         "title": "Quick actions",
         "build": {
@@ -641,7 +673,7 @@
         }
       },
       "snapshot": {
-        "title": "Today's coaching snapshot",
+        "title": "Your sheet",
         "next": "Next session",
         "nextNone": "Nothing scheduled",
         "nextNoneBody": "Give a session a date and it appears here.",
@@ -653,7 +685,9 @@
         "squad": "Squad size",
         "squadUnit": "{count, plural, one {player} other {players}}",
         "squadNone": "Not set yet",
-        "squadAdd": "Add your squad size"
+        "squadAdd": "Add your squad size",
+        "library": "Library at a glance",
+        "libraryUnit": "{count, plural, one {drill} other {drills}}"
       },
       "recent": {
         "title": "Recent sessions",
@@ -682,6 +716,48 @@
       },
       "account": {
         "title": "Account and workspace"
+      },
+      "training": {
+        "title": "Training load",
+        "subtitle": "Minutes on your calendar each week, from your scheduled sessions.",
+        "viewAs": "Show training load as",
+        "chart": "Chart",
+        "table": "Table",
+        "thisWeek": "minutes this week",
+        "aboveAverage": "{minutes} min above your 4-week average",
+        "belowAverage": "{minutes} min below your 4-week average",
+        "onAverage": "Right on your 4-week average",
+        "chartLabel": "Scheduled training minutes per week",
+        "barLabel": "Week of {range}: {minutes} minutes in {sessions, plural, one {# session} other {# sessions}}",
+        "tipSummary": "{minutes} min · {sessions, plural, =0 {no sessions} one {# session} other {# sessions}}",
+        "minutes": "{minutes} min",
+        "now": "This week",
+        "next": "Next",
+        "legendPast": "Past weeks",
+        "legendCurrent": "This week",
+        "legendNext": "Planned ahead",
+        "colWeek": "Week",
+        "colSessions": "Sessions",
+        "colMinutes": "Minutes",
+        "colPhases": "By phase (min)",
+        "empty": "Nothing on the calendar yet. Give a session a date and its minutes show up here, week by week.",
+        "emptyCta": "Plan a session",
+        "coverageTitle": "Where the time went",
+        "coverageSubtitle": "Minutes by drill category, this week and the three before.",
+        "coverageEmpty": "No scheduled drills in the last four weeks.",
+        "custom": "Custom activities",
+        "priority": "Priority",
+        "untrainedTitle": "Your priorities with no time scheduled in four weeks",
+        "findDrills": "{name} drills",
+        "phases": {
+          "warm_up": "Warm-up",
+          "skill": "Skill work",
+          "small_sided": "Small-sided game",
+          "game": "Game / competition",
+          "conditioning": "Conditioning",
+          "cool_down": "Cool-down",
+          "unphased": "No phase"
+        }
       }
     }
   },
@@ -871,7 +947,9 @@
       "mineEyebrow": "Yours",
       "mineTitle": "Your drills",
       "mineEmptyTitle": "You haven't created a drill yet",
-      "mineEmptyBody": "Build your own drill — with a court diagram — or copy one from the library and make it yours."
+      "mineEmptyBody": "Build your own drill — with a court diagram — or copy one from the library and make it yours.",
+      "videoPause": "Pause the video",
+      "videoPlay": "Play the video"
     }
   },
   "drills": {
@@ -1056,7 +1134,10 @@
       "duplicated": "A copy is now in your drills.",
       "archivedNotice": "This drill is archived. It can be read here but no longer appears in the library.",
       "explainWithAi": "Explain with AI",
-      "explainWithAiPrompt": "Explain the {title} drill"
+      "explainWithAiPrompt": "Explain the {title} drill",
+      "successCriteria": "Success looks like",
+      "gameApplication": "In the game",
+      "repetitions": "Reps and sets"
     },
     "form": {
       "createTitle": "Create a drill",
@@ -1146,7 +1227,10 @@
       "visibilityHint": "Private drills are visible only to you.",
       "visibilityPrivate": "Only me",
       "visibilityOrganization": "Everyone in this workspace",
-      "privateNote": "In your personal workspace, drills are private to you."
+      "privateNote": "In your personal workspace, drills are private to you.",
+      "successCriteria": "Success criteria",
+      "gameApplication": "In the game",
+      "repetitions": "Reps and sets"
     }
   },
   "diagram": {
@@ -1850,7 +1934,36 @@
     },
     "generate": "Generate a session",
     "createWithAi": "Create with AI",
-    "createWithAiPrompt": "Create a 60 minute shooting session for 12 players U14 beginner"
+    "createWithAiPrompt": "Create a 60 minute shooting session for 12 players U14 beginner",
+    "run": {
+      "title": "Run practice",
+      "open": "Run practice",
+      "exit": "Exit run mode",
+      "start": "Start",
+      "pause": "Pause",
+      "resume": "Resume",
+      "next": "Next activity",
+      "previous": "Previous activity",
+      "addMinute": "+1 min",
+      "addMinuteLabel": "Add one minute to this activity",
+      "restart": "Run again",
+      "nowLabel": "Now",
+      "nextLabel": "Up next",
+      "lastActivity": "Last activity of the session",
+      "remaining": "Time left in this activity",
+      "elapsed": "{elapsed} of {total} min",
+      "activityOf": "Activity {index} of {count}",
+      "points": "Coaching points",
+      "noPoints": "No coaching points written for this activity.",
+      "break": "Break",
+      "done": "Practice complete.",
+      "doneBody": "{count, plural, one {# activity} other {# activities}} and {minutes} minutes on the court. Nice work, Coach.",
+      "backToSession": "Back to the session",
+      "keys": "Space start or pause · ← → change activity · Esc exit",
+      "awake": "Screen stays awake while the clock runs",
+      "empty": "This session has no activities yet. Add drills in the builder first.",
+      "announce": "Now: {title}, {minutes} minutes."
+    }
   },
   "roster": {
     "eyebrow": "Teams & players",
@@ -1899,6 +2012,41 @@
       "classification": "Classification (optional)",
       "classificationHint": "A wheelchair-basketball functional classification point value, 1.0–4.5, if you track it. Reference only — never used to limit or suggest drills.",
       "classificationNone": "Not recorded"
+    },
+    "age": "{age} yrs",
+    "born": "Born {date}",
+    "noDetails": "No details yet",
+    "editPlayer": "Edit {name}",
+    "removePlayer": "Remove {name}",
+    "squadList": "{name} squad",
+    "figures": {
+      "label": "Roster at a glance",
+      "teams": "Active teams",
+      "players": "Players",
+      "unassigned": "Unassigned",
+      "sessions28": "Sessions · 28 days"
+    },
+    "sheet": {
+      "archived": "Archived",
+      "players": "{count, plural, =0 {No players yet} one {# player} other {# players}}",
+      "playersLabel": "Players",
+      "ages": "Ages",
+      "medianAge": "Median age",
+      "sessions28": "Sessions · 28 d",
+      "minutes28": "Minutes · 28 d",
+      "weeksLabel": "{minutes} scheduled minutes over the last six weeks, this week and next",
+      "next": "Next",
+      "last": "Done",
+      "planFor": "Plan a session for this team",
+      "ageProfile": "Age profile",
+      "ageN": "{count, plural, one {# player} other {# players}} aged {age}",
+      "withoutDob": "{count, plural, one {# player} other {# players}} without a date of birth",
+      "noAges": "Add dates of birth to see the squad's age spread.",
+      "classification": "Classification points",
+      "pointsN": "{count, plural, =0 {No players} one {# player} other {# players}} at {points}",
+      "training": "Training",
+      "eightWeeks": "Last 6 weeks · this · next",
+      "noSessions": "No dated sessions for {team} yet. Sessions count here when their Team field matches this team's name."
     }
   },
   "templates": {
@@ -2978,5 +3126,48 @@
       "cones": "Cone drill",
       "ladder": "Agility ladder"
     }
+  },
+  "palette": {
+    "open": "Search",
+    "openLabel": "Search drills, sessions and pages",
+    "title": "Search CoachOS",
+    "placeholder": "Search drills, sessions or jump to a page…",
+    "goTo": "Go to",
+    "drills": "Drills",
+    "sessions": "Sessions",
+    "searching": "Searching…",
+    "none": "Nothing matches \"{q}\".",
+    "hint": "↑ ↓ to move · Enter to open · Esc to close",
+    "minutes": "{count} min",
+    "pages": {
+      "dashboard": "Dashboard",
+      "sessions": "My sessions",
+      "newSession": "New session",
+      "generate": "Generate a session",
+      "drills": "Drill library",
+      "newDrill": "Create a drill",
+      "templates": "Templates",
+      "roster": "Roster",
+      "assistant": "AI Coach",
+      "settings": "Settings"
+    }
+  },
+  "diagramPlayer": {
+    "controls": "Playback",
+    "play": "Play the drill",
+    "pause": "Pause",
+    "replay": "Play again",
+    "restart": "Restart",
+    "prevStep": "Previous step",
+    "nextStep": "Next step",
+    "position": "Playback position",
+    "stepOf": "Step {n} of {total}",
+    "speed": "Playback speed {speed}×, change speed",
+    "broadcast": "Broadcast",
+    "whole": "Whole drill",
+    "camera": "Camera",
+    "plan": "Plan",
+    "threeD": "3D",
+    "loading3d": "Building the court…"
   }
 }

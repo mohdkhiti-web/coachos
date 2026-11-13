@@ -1,0 +1,136 @@
+{
+  "seedKey": "legal-screen-setting-footwork",
+  "title": "Legal Screen-Setting Footwork",
+  "description": "Players learn to set a legal screen: jump-stop into a wide base, arms protected, and hold still until the cutter passes.",
+  "category": "footwork",
+  "primarySkill": "screening",
+  "secondarySkills": ["footwork"],
+  "subSkills": ["setting_screens"],
+  "level": "intermediate",
+  "intensity": "low",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 10,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 15,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["screens", "legal", "fundamentals"],
+  "equipment": [
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 3
+    }
+  ],
+  "content": {
+    "objective": "Set a stationary, legal screen with a wide base and correct body position.",
+    "setup": "Groups of three: screener, cutter and a stand-in defender (or cone).",
+    "organization": "Rotate roles every four reps.",
+    "instructions": [
+      "The screener jogs toward the defender.",
+      "Jump-stop into a wide stance one step from the defender.",
+      "Arms crossed at the chest or hands at the waist.",
+      "Hold still while the cutter brushes past.",
+      "After the cutter passes, roll or pop away."
+    ],
+    "coachingPoints": [
+      "Stop before contact: the defender must run into you.",
+      "Wide base, knees bent.",
+      "Hold until the cutter is past."
+    ],
+    "commonMistakes": [
+      "Moving into the defender (moving screen).",
+      "Sticking out a hip or leg.",
+      "Leaving the screen too early."
+    ],
+    "safety": "Screeners keep arms in; defenders brush past without charging.",
+    "progressions": ["Live defender who fights through.", "Screener reads to roll or pop."],
+    "regressions": ["Screen a cone.", "Walk-through."],
+    "variations": [
+      "Down screen footwork.",
+      "Back screen footwork (one step away from blind defender)."
+    ],
+    "successCriteria": ["Stationary at contact every rep.", "No arms or hips extended."],
+    "gameApplication": "Legal screens free teammates without giving away offensive fouls.",
+    "repetitions": "4 reps per role",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [-0.6, -0.4]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o1",
+            "target": {
+              "entity": "x2",
+              "offset": [-0.4, 0.4]
+            },
+            "kind": "down"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [0.2, 0.8]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

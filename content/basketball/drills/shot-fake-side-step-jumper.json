@@ -1,0 +1,161 @@
+{
+  "seedKey": "shot-fake-side-step-jumper",
+  "title": "Shot Fake, Side-Step Jumper",
+  "description": "From a catch, the shooter fakes, the defender flies past and the shooter side-steps one stride to shoot a clean jumper.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["footwork", "decision_making"],
+  "subSkills": ["shooting_off_the_dribble"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["side step", "shot fake"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use a convincing shot fake and a balanced side-step (one dribble or none) to create a clean shot against a hard closeout.",
+    "setup": "Passer at the top; shooter at the wing; a defender closes out from the lane.",
+    "organization": "Rotate passer, shooter, defender.",
+    "instructions": [
+      "The shooter catches the pass ready to shoot.",
+      "The defender closes out hard.",
+      "Shot fake: bring the ball up to the forehead, eyes on the rim, legs still bent.",
+      "As the defender rises, side-step (one dribble or a legal hop) to the side.",
+      "Square up and shoot."
+    ],
+    "coachingPoints": [
+      "Fake with the ball and eyes, not by standing up.",
+      "Side-step wide, past the defender's body.",
+      "Land square before shooting."
+    ],
+    "commonMistakes": [
+      "Straightening the legs on the fake.",
+      "Side-step that drifts away from the rim.",
+      "Travelling on the hop."
+    ],
+    "safety": "Defenders contest without jumping into the shooter.",
+    "progressions": ["Live defender who may stay down.", "Side-step into a three."],
+    "regressions": ["Defender jumps on cue.", "No dribble: fake and shoot."],
+    "variations": ["Fake and drive past instead.", "Side-step toward the baseline."],
+    "successCriteria": [
+      "Defender bites on the fake most of the time.",
+      "Shot taken in balance after the side-step."
+    ],
+    "gameApplication": "The side-step jumper punishes defenders who close out too hard on shooters.",
+    "repetitions": "6 reps each side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [-0.6, 1.2]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [-0.8, -0.6]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [1.2, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

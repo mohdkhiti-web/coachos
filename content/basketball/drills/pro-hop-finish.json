@@ -1,0 +1,134 @@
+{
+  "seedKey": "pro-hop-finish",
+  "title": "Pro Hop Finish",
+  "description": "The finisher gathers on one foot and hops to land on two feet beside the rim, creating a strong, balanced base to finish with either hand.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["footwork"],
+  "subSkills": ["finishing_with_contact", "both_hands_finishing"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["pro hop", "gather"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use a one-to-two-foot hop gather to get balanced, change angle slightly and finish strong.",
+    "setup": "Lines at the top and both wings.",
+    "organization": "Rotate lines.",
+    "instructions": [
+      "Drive toward the rim with the outside hand.",
+      "On the last dribble, gather the ball and take off from one foot.",
+      "Hop sideways or forward and land on both feet at once.",
+      "Finish off two feet with either hand.",
+      "Vary the hop direction to avoid an imaginary defender."
+    ],
+    "coachingPoints": [
+      "Gather and hop in one motion.",
+      "Land on two feet together (legal).",
+      "Ball protected high."
+    ],
+    "commonMistakes": [
+      "Landing one foot after the other (travel).",
+      "Hopping too far from the rim.",
+      "Ball low during the hop."
+    ],
+    "safety": "Finishers land on two feet and clear the lane; the next player waits until the landing area is empty.",
+    "progressions": ["Defender with a pad bumps after the hop.", "Hop into a shot fake."],
+    "regressions": ["Stationary hop and finish.", "Walk the gather."],
+    "variations": ["Hop to the middle from the wing.", "Hop after a spin."],
+    "successCriteria": [
+      "Legal landing on every rep.",
+      "Finishes with both hands across the drill."
+    ],
+    "gameApplication": "The pro hop lets finishers absorb contact and choose the finishing side late.",
+    "repetitions": "8 per line",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [0.4, -1]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [0.8, 1.2]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "seedKey": "talk-drill-ball-help-shot",
+  "title": "Talk Drill: Ball, Help, Shot",
+  "description": "A shell where every defender must call their role out loud on every pass — 'Ball!', 'Help!', 'Deny!', 'Shot!' — building a talking defense.",
+  "category": "team_defense",
+  "primarySkill": "communication",
+  "secondarySkills": [
+    "help_defense"
+  ],
+  "subSkills": [
+    "help_position"
+  ],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "4v4",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 9,
+  "ageMax": 99,
+  "playersMin": 8,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "communication",
+    "shell"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Make defensive communication automatic: every defender names their job on every pass.",
+    "setup": "Four offensive players around the arc, four defenders.",
+    "organization": "Offense passes slowly; rotate after six stops or two minutes.",
+    "instructions": [
+      "Offense passes around the perimeter, holding each catch for two seconds.",
+      "The on-ball defender shouts 'Ball!'.",
+      "One-pass-away defenders shout 'Deny!'; two-passes-away shout 'Help!'.",
+      "On any shot, everyone shouts 'Shot!' and boxes out.",
+      "A silent defender costs the defense a point."
+    ],
+    "coachingPoints": [
+      "Loud and early: talk before the catch.",
+      "Name the job, then do it.",
+      "Talk on every pass, not just some."
+    ],
+    "commonMistakes": [
+      "Talking after the move.",
+      "One player talking for everyone.",
+      "Calling the wrong role."
+    ],
+    "safety": "Play legal defense: no hand-checking, no running through screens; stop play on any dangerous collision.",
+    "progressions": [
+      "Live drives after the third pass.",
+      "Add screens to call ('Screen left!')."
+    ],
+    "regressions": [
+      "Freeze after each pass to check calls.",
+      "Two passes away only."
+    ],
+    "variations": [
+      "Defenders may only talk, no pointing.",
+      "Add 'Switch!' calls on cuts."
+    ],
+    "successCriteria": [
+      "Every defender talks on every pass.",
+      "Correct role called."
+    ],
+    "gameApplication": "Talking defenses rotate on time; silent defenses get beaten by simple passes.",
+    "repetitions": "3 rounds",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                0,
+                -0.8
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [
+                -0.5,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [
+                0,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "x4",
+            "type": "player",
+            "side": "defense",
+            "label": "X4",
+            "at": {
+              "anchor": "left_block",
+              "offset": [
+                -0.6,
+                0.8
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [
+                -1.4,
+                0.8
+              ]
+            },
+            "text": "Help!"
+          },
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [
+                -1.4,
+                0.8
+              ]
+            },
+            "text": "Ball!"
+          }
+        ]
+      }
+    }
+  ]
+}

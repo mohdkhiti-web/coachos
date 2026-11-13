@@ -1,0 +1,159 @@
+{
+  "seedKey": "handles-under-fatigue",
+  "title": "Handles Under Fatigue",
+  "description": "Players sprint a full court, then immediately perform a precise ball-handling sequence, training control when the legs and lungs are tired.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["conditioning"],
+  "subSkills": ["protect_the_ball"],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "individual",
+  "phases": ["skill", "conditioning"],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "full_court",
+  "tags": ["fatigue", "late game"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Keep dribble quality, footwork and decisions when fatigued, as in the last minutes of a game.",
+    "setup": "A ball rests on a cone at half court; players start on the baseline.",
+    "organization": "Waves of two to four; work 40 seconds, rest 40 seconds.",
+    "instructions": [
+      "Sprint to the far baseline and back to half court.",
+      "Pick up the ball and perform 10 crossovers, 10 between-the-legs and 10 behind-the-back, stationary and low.",
+      "Speed-dribble to the near rim and finish.",
+      "Rest while the next wave goes.",
+      "Repeat for the planned sets."
+    ],
+    "coachingPoints": [
+      "Quality before speed in the stationary block, even when tired.",
+      "Breathe out on the moves; stay low.",
+      "Finish strong: tired players miss lay-ups by slowing down."
+    ],
+    "commonMistakes": [
+      "Sloppy, high dribbles because of fatigue.",
+      "Skipping reps to finish sooner.",
+      "Walking into the lay-up."
+    ],
+    "safety": "Build up sets over weeks; stop anyone showing dizziness. Water available between sets.",
+    "progressions": [
+      "Add a defender who pressures the final speed dribble.",
+      "Shorten rest to 30 seconds."
+    ],
+    "regressions": ["Half-court sprint only.", "Reduce each move to five reps."],
+    "variations": [
+      "Replace the moves with a two-ball block.",
+      "Finish with a free throw instead of a lay-up."
+    ],
+    "successCriteria": [
+      "Completes the handling block with no lost ball after the sprint.",
+      "Makes the finish on at least 4 of 5 sets."
+    ],
+    "gameApplication": "Turnovers rise late in games; ball handlers who practise tired protect the ball when it matters.",
+    "repetitions": "4 to 6 sets, 40 s work / 40 s rest",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [0, 0.8]
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [0, -0.8]
+            }
+          },
+          {
+            "id": "bl1",
+            "type": "ball",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [0, -0.8]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "far_free_throw_line",
+                "offset": [0, 2]
+              },
+              {
+                "anchor": "center_circle",
+                "offset": [0, -1.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "center_circle",
+                "offset": [0.4, -1.6]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [2.6, -1.6]
+            },
+            "text": "30 moves, then drive"
+          }
+        ]
+      }
+    }
+  ]
+}

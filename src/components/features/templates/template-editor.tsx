@@ -240,7 +240,7 @@ export function TemplateEditor({
         onClick={() => setView(v)}
         className={cn(
           "focus-visible:outline-focus flex min-h-10 items-center rounded-sm px-4 text-sm font-medium focus-visible:outline-2",
-          view === v ? "bg-accent text-accent-ink" : "text-ink hover:bg-surface-sunken",
+          view === v ? "bg-accent-bright text-accent-ink" : "text-ink hover:bg-surface-sunken",
         )}
       >
         {t(`tabs.${v}`)}
@@ -330,10 +330,10 @@ export function TemplateEditor({
         </Link>
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="min-w-0 space-y-1">
-            <p className="eyebrow text-accent">{sportName}</p>
             <h1 className="display text-3xl break-words text-ink md:text-4xl">
               {mode === "create" ? t("newTitle") : name.trim() || t("untitled")}
             </h1>
+            <p className="text-sm font-semibold text-accent">{sportName}</p>
             {mode === "edit" && template ? (
               <p className="text-sm text-ink-muted">
                 {t("meta", { revision: template.revision, version: template.version })}

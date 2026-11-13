@@ -47,7 +47,7 @@ export function Segmented<T extends string | number>({
                 "relative flex min-h-10 cursor-pointer items-center px-3.5 text-sm font-medium select-none",
                 focusRing,
                 checked
-                  ? "bg-accent text-accent-ink"
+                  ? "bg-accent-bright text-accent-ink"
                   : "bg-surface-raised text-ink hover:bg-surface-sunken",
                 disabled && "cursor-not-allowed opacity-60",
               )}

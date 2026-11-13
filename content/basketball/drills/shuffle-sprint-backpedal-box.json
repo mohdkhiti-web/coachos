@@ -1,0 +1,153 @@
+{
+  "seedKey": "shuffle-sprint-backpedal-box",
+  "title": "Shuffle, Sprint, Backpedal Box",
+  "description": "Around a half-court box, players defensive-slide the baseline, sprint the sideline, slide across half court and backpedal down the other sideline.",
+  "category": "conditioning",
+  "primarySkill": "speed_agility",
+  "secondarySkills": ["conditioning", "on_ball_defense"],
+  "subSkills": ["change_of_direction", "stance_and_slides"],
+  "level": "beginner",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["conditioning"],
+  "ageMin": 10,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "half_court",
+  "tags": ["defensive conditioning", "movement patterns"],
+  "equipment": [
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 4
+    },
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build defensive movement fitness by linking slides, sprints and backpedals in a continuous pattern.",
+    "setup": "Cones at the four corners of a half court.",
+    "organization": "Players start every five seconds; three laps each, rest one minute.",
+    "instructions": [
+      "Slide along the baseline in a low stance.",
+      "Sprint up the sideline to half court.",
+      "Slide across the half-court line.",
+      "Backpedal down the other sideline.",
+      "Repeat for three laps."
+    ],
+    "coachingPoints": [
+      "Stay low on slides.",
+      "Change direction at the cone, not before.",
+      "Backpedal with the chest over the toes."
+    ],
+    "commonMistakes": [
+      "Crossing the feet on slides.",
+      "Rounding the corners.",
+      "Standing up when tired."
+    ],
+    "safety": "Build volume gradually, allow water breaks, and stop any player who shows dizziness or pain; work-to-rest ratios suit the group's age.",
+    "progressions": ["Add a closeout at each cone.", "Time each lap."],
+    "regressions": ["One lap.", "Walk the backpedal."],
+    "variations": ["Reverse the direction.", "Partner chase."],
+    "successCriteria": ["Low stance through all laps.", "Consistent lap times."],
+    "gameApplication": "Defenders slide, sprint and backpedal in every possession.",
+    "repetitions": "3 laps x 3",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner",
+              "offset": [0, 0.6]
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_corner",
+              "offset": [0, 0.6]
+            }
+          },
+          {
+            "id": "k2",
+            "type": "cone",
+            "at": {
+              "anchor": "right_corner",
+              "offset": [0, 0.6]
+            }
+          },
+          {
+            "id": "k3",
+            "type": "cone",
+            "at": {
+              "anchor": "right_half_court",
+              "offset": [0, -0.2]
+            }
+          },
+          {
+            "id": "k4",
+            "type": "cone",
+            "at": {
+              "anchor": "left_half_court",
+              "offset": [0, -0.2]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_corner",
+                "offset": [0, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_half_court",
+                "offset": [0, -0.2]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

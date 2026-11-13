@@ -12,17 +12,13 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-import {
-  BasketballCourtBackground,
-  BasketballHeroScene,
-  CoachImage,
-  HeroVideoBackground,
-} from "@/components/basketball";
+import { BasketballCourtBackground, CoachImage } from "@/components/basketball";
+import { CinematicVideo } from "@/components/basketball/cinematic-video";
 import { DrillDiagram } from "@/components/features/drills/drill-diagram";
+import { HeroSheet } from "@/components/features/marketing/hero-sheet";
 import { LANDING_DIAGRAM } from "@/components/features/marketing/landing-diagram";
 import { Button } from "@/components/ui/button";
 import { Wordmark } from "@/components/ui/brand";
-import { SectionMarker } from "@/components/ui/section-marker";
 import type { ImageSlot } from "@/components/basketball/imagery";
 import { getViewer } from "@/modules/identity";
 
@@ -64,10 +60,10 @@ export default async function LandingPage() {
   const start = viewer ? "/dashboard" : "/sign-up";
 
   return (
-    <div className="arena relative flex min-h-dvh flex-col overflow-x-clip text-ink arena-surface">
+    <div className="arena relative flex min-h-dvh flex-col overflow-x-clip arena-surface text-ink">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-md focus:bg-accent-bright focus:px-4 focus:py-2 focus:text-accent-ink"
       >
         {tc("skipToContent")}
       </a>
@@ -116,20 +112,18 @@ export default async function LandingPage() {
       <main id="main" className="relative flex-1">
         {/* ---------------------------------------------------------------- hero */}
         <section className="relative isolate">
-          <HeroVideoBackground pauseLabel={t("hero.videoPause")} playLabel={t("hero.videoPlay")} />
-          <div className="relative mx-auto grid w-full max-w-6xl items-center gap-6 px-4 pt-14 pb-16 sm:px-8 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:pt-20 md:pb-24 lg:gap-12">
+          <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-4 pt-12 pb-16 sm:px-8 md:pt-20 md:pb-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14">
             <div className="relative">
-              <p className="mb-5 rise eyebrow text-accent">{t("eyebrow")}</p>
               <h1>
                 <span
-                  className="block rise display text-[4.25rem] leading-[0.92] text-ink uppercase sm:text-[6.5rem] lg:text-[8rem]"
-                  style={delay(80)}
+                  className="block rise display text-[4.5rem] leading-[0.88] text-ink sm:text-[7rem] lg:text-[7.5rem]"
+                  style={delay(60)}
                 >
-                  Coach<span className="text-ember">OS</span>
+                  Coach<span className="text-accent">OS</span>
                 </span>
                 <span
-                  className="mt-4 block max-w-lg rise display text-[1.75rem] leading-[1.1] text-ink sm:text-[2.25rem]"
-                  style={delay(200)}
+                  className="mt-5 block max-w-md rise display text-[1.9rem] leading-[1.05] text-ink sm:text-[2.6rem]"
+                  style={delay(160)}
                 >
                   {t("title")}
                 </span>
@@ -153,8 +147,8 @@ export default async function LandingPage() {
               </div>
             </div>
 
-            <div className="relative hidden aspect-[548/588] w-full max-w-[34rem] justify-self-end md:block">
-              <BasketballHeroScene />
+            <div className="relative rise" style={delay(280)}>
+              <HeroSheet />
             </div>
           </div>
 
@@ -172,6 +166,36 @@ export default async function LandingPage() {
           </div>
         </section>
 
+        {/* ---------------------------------------------------------------- the court (cinematic band) */}
+        <section
+          aria-labelledby="court-h"
+          className="relative isolate overflow-hidden border-t border-line/60"
+        >
+          <CinematicVideo
+            sources={[
+              { src: "/videos/hero-court.webm", type: "video/webm" },
+              { src: "/videos/hero-court.mp4", type: "video/mp4" },
+            ]}
+            poster="/images/cinematic/hero-court-poster.jpg"
+            pauseLabel={t("hero.videoPause")}
+            playLabel={t("hero.videoPlay")}
+            className="absolute inset-0 -z-10 h-full w-full"
+          />
+          {/* legibility scrim: the ink ground rises from the bottom-left where the words sit */}
+          <div
+            aria-hidden
+            className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,var(--surface)_0%,rgb(10_18_38/0.55)_32%,transparent_70%),linear-gradient(to_right,rgb(10_18_38/0.7),transparent_62%)]"
+          />
+          <div className="mx-auto flex min-h-[34rem] w-full max-w-6xl flex-col justify-end px-4 py-16 sm:px-8 md:min-h-[40rem] md:py-20">
+            <h2 id="court-h" className="max-w-3xl display text-[2.8rem] text-ink sm:text-7xl">
+              {t("court.title")}
+            </h2>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-muted">
+              {t("court.body")}
+            </p>
+          </div>
+        </section>
+
         {/* ---------------------------------------------------------------- platform */}
         <section
           id="platform"
@@ -179,24 +203,28 @@ export default async function LandingPage() {
           className="scroll-mt-20 border-t border-line/60"
         >
           <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-8">
-            <SectionMarker n={1}>{t("platform.eyebrow")}</SectionMarker>
-            <h2 id="platform-h" className="mt-4 max-w-3xl display text-4xl text-ink sm:text-6xl">
+            <h2 id="platform-h" className="max-w-3xl display text-[2.6rem] text-ink sm:text-6xl">
               {t("platform.title")}
             </h2>
             <p className="mt-4 max-w-2xl text-base text-ink-muted">{t("platform.intro")}</p>
-            <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {/* The register: one ruled sheet, a row per capability that works today. Left column, the boxed condensed
+                label in blue ink with its orange mark; right column, what it does. */}
+            <ul
+              aria-label={t("platform.listLabel")}
+              className="mt-12 divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface-raised"
+            >
               {FEATURES.map(({ key, icon: Icon }) => (
                 <li
                   key={key}
-                  className="group relative interactive-surface overflow-hidden rounded-xl p-6 glass-panel"
+                  className="group grid gap-3 px-5 py-5 smooth-colors hover:bg-surface-sunken sm:grid-cols-[17rem_minmax(0,1fr)] sm:items-center sm:gap-8 sm:px-7"
                 >
-                  <span className="mb-5 inline-flex size-11 items-center justify-center rounded-lg border border-accent/40 bg-accent-soft text-accent">
-                    <Icon className="size-5" aria-hidden />
-                  </span>
-                  <h3 className="text-lg font-semibold tracking-tight text-ink">
+                  <h3 className="flex items-center gap-3 display text-[1.6rem] leading-none text-ink">
+                    <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-md border border-line-strong text-accent transition-colors duration-200 group-hover:border-accent-bright">
+                      <Icon className="size-[1.1rem]" aria-hidden />
+                    </span>
                     {t(`platform.features.${key}.title`)}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                  <p className="max-w-2xl text-[0.98rem] leading-relaxed text-ink-muted sm:border-l sm:border-line sm:pl-8">
                     {t(`platform.features.${key}.body`)}
                   </p>
                 </li>
@@ -213,8 +241,7 @@ export default async function LandingPage() {
         >
           <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-4 py-20 sm:px-8 lg:grid-cols-2">
             <div>
-              <SectionMarker n={2}>{t("ai.eyebrow")}</SectionMarker>
-              <h2 id="ai-h" className="mt-4 display text-4xl text-ink sm:text-6xl">
+              <h2 id="ai-h" className="display text-[2.6rem] text-ink sm:text-6xl">
                 {t("ai.title")}
               </h2>
               <p className="mt-4 max-w-lg text-base leading-relaxed text-ink-muted">
@@ -232,14 +259,14 @@ export default async function LandingPage() {
               </ol>
             </div>
 
-            <figure className="relative overflow-hidden rounded-2xl p-5 glass-panel sm:p-6">
-              <span className="absolute top-4 right-4 rounded-full border border-line-strong px-2.5 py-0.5 eyebrow">
+            <figure className="relative overflow-hidden rounded-xl p-5 pt-12 glass-panel sm:p-6 sm:pt-6">
+              <span className="absolute top-4 right-4 rounded-[4px] border border-line-strong px-1.5 py-px eyebrow text-[0.66rem]">
                 {t("ai.exampleTag")}
               </span>
-              <p className="max-w-[85%] rounded-xl bg-accent px-4 py-3 text-[0.95rem] text-accent-ink">
+              <p className="max-w-[85%] rounded-lg rounded-bl-[3px] bg-accent-bright px-4 py-3 text-[0.95rem] text-accent-ink">
                 {t("ai.exampleRequest")}
               </p>
-              <div className="mt-4 rounded-xl border border-line-strong bg-surface p-4">
+              <div className="mt-4 rounded-lg border border-line-strong bg-surface p-4">
                 <p className="eyebrow">{t("ai.exampleTitle")}</p>
                 <ol className="mt-3 divide-y divide-line text-sm">
                   {(
@@ -266,18 +293,21 @@ export default async function LandingPage() {
         {/* ---------------------------------------------------------------- how */}
         <section id="how" aria-labelledby="how-h" className="scroll-mt-20 border-t border-line/60">
           <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-8">
-            <SectionMarker n={3}>{t("how.eyebrow")}</SectionMarker>
-            <h2 id="how-h" className="mt-4 max-w-3xl display text-4xl text-ink sm:text-6xl">
+            <h2 id="how-h" className="max-w-3xl display text-[2.6rem] text-ink sm:text-6xl">
               {t("how.title")}
             </h2>
             <ol className="mt-12 grid gap-6 lg:grid-cols-3">
               {HOW.map(({ key, slot }, i) => (
-                <li key={key} className="overflow-hidden rounded-2xl glass-panel">
-                  <div className="border-b border-line bg-surface-sunken/60 p-4">
-                    <CoachImage slot={slot} className="mx-auto max-h-44" />
+                <li key={key} className="group overflow-hidden rounded-xl glass-panel">
+                  <div className="aspect-[4/3] overflow-hidden border-b border-line bg-surface-sunken">
+                    <CoachImage
+                      slot={slot}
+                      sizes="(min-width: 1024px) 22rem, 92vw"
+                      className="h-full w-full rounded-none object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    />
                   </div>
                   <div className="p-6">
-                    <p className="numeral text-sm text-accent">0{i + 1}</p>
+                    <p className="numeral text-2xl leading-none font-bold text-accent">{i + 1}</p>
                     <h3 className="mt-1 text-lg font-semibold tracking-tight text-ink">
                       {t(`how.steps.${key}.title`)}
                     </h3>
@@ -295,15 +325,14 @@ export default async function LandingPage() {
         <section aria-labelledby="diagrams-h" className="border-t border-line/60">
           <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-4 py-20 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
             <div>
-              <SectionMarker n={4}>{t("diagrams.eyebrow")}</SectionMarker>
-              <h2 id="diagrams-h" className="mt-4 display text-4xl text-ink sm:text-6xl">
+              <h2 id="diagrams-h" className="display text-[2.6rem] text-ink sm:text-6xl">
                 {t("diagrams.title")}
               </h2>
               <p className="mt-4 max-w-lg text-base leading-relaxed text-ink-muted">
                 {t("diagrams.body")}
               </p>
             </div>
-            <figure className="overflow-hidden rounded-2xl glass-panel">
+            <figure className="overflow-hidden rounded-xl glass-panel">
               <DrillDiagram
                 diagram={LANDING_DIAGRAM}
                 title={t("diagrams.caption")}
@@ -323,7 +352,7 @@ export default async function LandingPage() {
         >
           <BasketballCourtBackground animated={false} />
           <div className="relative mx-auto w-full max-w-6xl px-4 py-24 text-center sm:px-8">
-            <h2 id="cta-h" className="display text-5xl text-ink sm:text-7xl">
+            <h2 id="cta-h" className="display text-[3rem] text-ink sm:text-7xl">
               {t("cta.title")}
             </h2>
             <p className="mx-auto mt-4 max-w-md text-base text-ink-muted">{t("cta.body")}</p>

@@ -1,0 +1,172 @@
+{
+  "seedKey": "low-rim-confidence-shooting",
+  "title": "Low-Rim Confidence Shooting",
+  "description": "Young or new players shoot at a lowered portable rim with a smaller ball, so they can use correct form and see the ball go in — a key PE and mini-basketball adaptation.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["ball_control"],
+  "subSkills": ["follow_through"],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 5,
+  "ageMax": 11,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "any_space",
+  "tags": ["PE", "mini-basketball", "lowered rim", "u8"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Build correct one-hand shooting form and confidence at a rim and ball size suited to the players' strength.",
+    "setup": "Portable rims lowered to around 2.6 m (or as low as available) and size 5 balls; stations around the gym.",
+    "organization": "Groups of three to four per rim; rotate stations every three minutes.",
+    "instructions": [
+      "Stand close to the rim with feet shoulder-width and the ball on the fingertips.",
+      "Shoot with one hand, the other hand at the side.",
+      "Follow through: 'reach into the cookie jar' finish.",
+      "Score a point for every make; step back after three makes.",
+      "Rotate to the next rim on the whistle."
+    ],
+    "coachingPoints": [
+      "Ball on the fingers, not the palm.",
+      "Bend the knees: the legs help the shot.",
+      "Hold the finish."
+    ],
+    "commonMistakes": [
+      "Two-hand chest throws because the rim is too high.",
+      "Standing too far away.",
+      "Looking at the ball, not the rim."
+    ],
+    "safety": "Portable rims weighted and stable; no hanging on rims; players wait their turn behind a line.",
+    "progressions": ["Raise the rim gradually as form holds.", "Add a jump stop before the shot."],
+    "regressions": ["Even closer to the rim.", "Use a softer, lighter ball."],
+    "variations": ["Bank shots off the portable board.", "Team scoring race across rims."],
+    "successCriteria": [
+      "Correct one-hand form on most shots.",
+      "Every player scores multiple baskets."
+    ],
+    "gameApplication": "Players who learn correct form early, at the right height, do not have to unlearn a chest throw later.",
+    "repetitions": "3 stations x 3 minutes",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      },
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-0.4, -1]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [0.4, -1]
+            }
+          },
+          {
+            "id": "eq1",
+            "type": "equipment",
+            "kind": "hoop_portable",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-1, 0]
+            }
+          },
+          {
+            "id": "eq2",
+            "type": "equipment",
+            "kind": "hoop_portable",
+            "at": {
+              "anchor": "right_block",
+              "offset": [1, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1",
+            "to": {
+              "anchor": "left_block",
+              "offset": [-1, 0]
+            }
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "shot",
+            "entity": "o2",
+            "to": {
+              "anchor": "right_block",
+              "offset": [1, 0]
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 1.4]
+            },
+            "text": "Lowered rims"
+          }
+        ]
+      }
+    }
+  ]
+}

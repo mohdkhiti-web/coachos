@@ -1,66 +1,127 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Plus } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-import { Card, CardBody, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardBody, CardHeader, CardTitle } from "@/components/ui/card";
+import { EmptyState } from "@/components/ui/empty-state";
+import { PlayerRow } from "@/components/features/roster/player-row";
+import { TeamSheetCard } from "@/components/features/roster/team-sheet";
+import { cn } from "@/lib/cn";
+import { todayIn } from "@/lib/calendar";
 import { requireViewer } from "@/modules/identity";
-import { listPlayers, listTeams } from "@/modules/roster";
+import {
+  ageOn,
+  listPlayers,
+  listTeams,
+  rosterSessions,
+  squadProfile,
+  teamPulse,
+} from "@/modules/roster";
 
 export const metadata: Metadata = { title: "Roster" };
 
 export default async function RosterPage() {
-  const { actor } = await requireViewer();
-  const [t, teams, unassigned] = await Promise.all([
+  const viewer = await requireViewer();
+  const { actor } = viewer;
+  const today = todayIn(viewer.profile.timezone);
+  const [t, teams, everyone] = await Promise.all([
     getTranslations("roster"),
     listTeams(actor),
-    listPlayers(actor, { teamId: null }),
+    listPlayers(actor),
   ]);
+  const unassigned = everyone.filter((p) => p.teamId === null);
+  const sessions = await rosterSessions(
+    actor,
+    teams.map((tm) => tm.sportKey),
+    today,
+  );
+  const sheets = teams.map((team) => ({
+    team,
+    pulse: teamPulse(team.name, sessions, today),
+    squad: squadProfile(
+      everyone.filter((p) => p.teamId === team.id),
+      today,
+    ),
+  }));
+  const teamOptions = teams.map((tm) => ({ id: tm.id, name: tm.name }));
+  const active = teams.filter((tm) => tm.status === "active").length;
+  const figures = [
+    { label: t("figures.teams"), value: active },
+    { label: t("figures.players"), value: everyone.length },
+    { label: t("figures.unassigned"), value: unassigned.length },
+    {
+      label: t("figures.sessions28"),
+      value: sheets.reduce((n, s) => n + s.pulse.sessions28, 0),
+    },
+  ];
+  const byName = [...unassigned].sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <div className="space-y-8">
-      <header className="flex flex-wrap items-end justify-between gap-4">
-        <div className="space-y-1">
-          <p className="eyebrow text-accent">{t("eyebrow")}</p>
-          <h1 className="display text-4xl text-ink">{t("title")}</h1>
+      <header className="flex flex-wrap items-end justify-between gap-4 border-b border-line pb-6">
+        <div className="space-y-2">
+          <h1 className="display text-[2.6rem] text-ink md:text-5xl">{t("title")}</h1>
           <p className="max-w-2xl text-ink-muted">{t("subtitle")}</p>
         </div>
         <Button asChild>
-          <Link href="/roster/new">{t("newTeam")}</Link>
+          <Link href="/roster/new">
+            <Plus className="size-4" aria-hidden />
+            {t("newTeam")}
+          </Link>
         </Button>
       </header>
 
       {teams.length === 0 ? (
         <Card>
-          <CardBody className="space-y-2 text-center">
-            <p className="font-semibold text-ink">{t("empty.title")}</p>
-            <p className="text-sm text-ink-muted">{t("empty.body")}</p>
-          </CardBody>
+          <EmptyState
+            scene="planning"
+            title={t("empty.title")}
+            description={t("empty.body")}
+            action={
+              <Button asChild>
+                <Link href="/roster/new">{t("newTeam")}</Link>
+              </Button>
+            }
+          />
         </Card>
       ) : (
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {teams.map((team) => (
-            <li key={team.id}>
-              <Card interactive className="h-full">
-                <Link href={`/roster/${team.id}`} className="block h-full">
-                  <CardHeader>
-                    <p className="eyebrow">{team.sportName}</p>
-                    <CardTitle>{team.name}</CardTitle>
-                  </CardHeader>
-                  <CardBody className="flex items-center justify-between">
-                    <span className="text-sm text-ink-muted">
-                      {t("playerCount", { count: team.playerCount })}
-                    </span>
-                    {team.status === "archived" ? (
-                      <span className="rounded-xs border border-line px-2 py-0.5 text-xs text-ink-muted">
-                        {t("archived")}
-                      </span>
-                    ) : null}
-                  </CardBody>
-                </Link>
-              </Card>
-            </li>
-          ))}
-        </ul>
+        <>
+          <dl
+            aria-label={t("figures.label")}
+            className="grid grid-cols-2 overflow-hidden rounded-xl border border-line bg-surface-raised shadow-paper sm:grid-cols-4"
+          >
+            {figures.map((f, i) => (
+              <div
+                key={f.label}
+                className={cn(
+                  "animate-fade-up px-5 py-4",
+                  i > 0 && "sm:border-l sm:border-line",
+                  i % 2 === 1 && "max-sm:border-l max-sm:border-line",
+                  i > 1 && "max-sm:border-t max-sm:border-line",
+                )}
+                style={{ animationDelay: `${i * 60}ms` }}
+              >
+                <dd className="display numeral text-4xl leading-none text-ink">{f.value}</dd>
+                <dt className="mt-1.5 text-xs font-medium tracking-wide text-ink-muted uppercase">
+                  {f.label}
+                </dt>
+              </div>
+            ))}
+          </dl>
+
+          <ul className="grid stagger-in gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            {sheets.map((s, i) => (
+              <li
+                key={s.team.id}
+                className="animate-fade-up"
+                style={{ animationDelay: `${120 + i * 70}ms` }}
+              >
+                <TeamSheetCard team={s.team} pulse={s.pulse} squad={s.squad} index={i} />
+              </li>
+            ))}
+          </ul>
+        </>
       )}
 
       <Card>
@@ -69,19 +130,18 @@ export default async function RosterPage() {
           <p className="text-sm text-ink-muted">{t("unassigned.description")}</p>
         </CardHeader>
         <CardBody>
-          {unassigned.length === 0 ? (
+          {byName.length === 0 ? (
             <p className="text-sm text-ink-muted">{t("unassigned.empty")}</p>
           ) : (
             <ul className="divide-y divide-line">
-              {unassigned.map((p) => (
-                <li key={p.id} className="flex items-center justify-between gap-3 py-2.5">
-                  <span className="text-sm font-medium text-ink">{p.name}</span>
-                  {p.classification !== null ? (
-                    <span className="text-xs text-ink-muted">
-                      {t("classification")} {p.classification.toFixed(1)}
-                    </span>
-                  ) : null}
-                </li>
+              {byName.map((p, i) => (
+                <PlayerRow
+                  key={p.id}
+                  player={p}
+                  teams={teamOptions}
+                  number={i + 1}
+                  age={p.dateOfBirth ? ageOn(p.dateOfBirth, today) : null}
+                />
               ))}
             </ul>
           )}

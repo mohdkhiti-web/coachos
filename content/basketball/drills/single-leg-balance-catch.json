@@ -1,0 +1,118 @@
+{
+  "seedKey": "single-leg-balance-catch",
+  "title": "Single-Leg Balance Catch",
+  "description": "Players balance on one leg and catch passes from different directions, training stability for contact situations.",
+  "category": "footwork",
+  "primarySkill": "footwork",
+  "secondarySkills": ["catching"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "group",
+  "phases": ["warm_up"],
+  "ageMin": 8,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "any_space",
+  "tags": ["balance", "stability", "injury prevention"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Improve single-leg balance and core control under the distraction of a catch.",
+    "setup": "Partners three metres apart, one ball.",
+    "organization": "Pairs; 30 seconds per leg.",
+    "instructions": [
+      "Stand on the right leg, knee slightly bent.",
+      "The partner passes high, low and to each side.",
+      "Catch and return the pass without putting the other foot down.",
+      "Switch legs after 30 seconds.",
+      "Switch roles."
+    ],
+    "coachingPoints": ["Soft standing knee.", "Hips level.", "Brace the trunk on the catch."],
+    "commonMistakes": [
+      "Locked straight knee.",
+      "Hip dropping to one side.",
+      "Touching the floor with the free foot."
+    ],
+    "safety": "Gentle passes; players stand away from walls and equipment.",
+    "progressions": ["Eyes closed between catches.", "Stand on a folded mat."],
+    "regressions": ["Lightly touch the free toe down.", "Chest passes only."],
+    "variations": ["Single-leg chest passes back.", "Partner gives a gentle push on the ball."],
+    "successCriteria": ["30 seconds per leg without touching down.", "Level hips throughout."],
+    "gameApplication": "Balance on one leg helps players finish through contact and land safely.",
+    "repetitions": "2 rounds per leg",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_slot",
+              "offset": [2.8, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "left_slot",
+              "offset": [1.4, 1.2]
+            },
+            "text": "One leg"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "seedKey": "half-court-corner-trap",
+  "title": "Half-Court Corner Trap",
+  "description": "From man-to-man, defenders trap the ball when it is dribbled or passed into the corner, using the baseline and sideline as extra defenders.",
+  "category": "team_defense",
+  "primarySkill": "help_defense",
+  "secondarySkills": [
+    "communication",
+    "on_ball_defense"
+  ],
+  "subSkills": [
+    "defensive_rotations"
+  ],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "4v4",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 8,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "trap",
+    "corner"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Trap the corner and rotate the remaining defenders to the most dangerous passing lanes.",
+    "setup": "4v4 with the ball at the right wing.",
+    "organization": "Rotate every four possessions.",
+    "instructions": [
+      "The wing passes or dribbles into the right corner.",
+      "The corner defender and the wing defender trap.",
+      "The weak-side defenders rotate: one takes the wing pass, one protects the rim.",
+      "Trap high hands, feet together with your teammate's.",
+      "Play live after the pass out."
+    ],
+    "coachingPoints": [
+      "Trap the catch.",
+      "No gap between the trappers' feet.",
+      "Rotators take the closest passes first."
+    ],
+    "commonMistakes": [
+      "Reaching in for fouls.",
+      "Leaving a gap to split.",
+      "Rotators covering the same player."
+    ],
+    "safety": "Play legal defense: no hand-checking, no running through screens; stop play on any dangerous collision.",
+    "progressions": [
+      "Trap the post entry instead.",
+      "Offense practises escaping."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "Offense must hold the ball three seconds."
+    ],
+    "variations": [
+      "Trap on the baseline drive.",
+      "Trap at half court."
+    ],
+    "successCriteria": [
+      "Turnovers or forced long passes.",
+      "No layups after the trap."
+    ],
+    "gameApplication": "Corners are natural traps; the sideline and baseline act as two more defenders.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                -0.5,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "right_corner",
+              "offset": [
+                -1.2,
+                1.2
+              ]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [
+                0,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "x4",
+            "type": "player",
+            "side": "defense",
+            "label": "X4",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [
+                -0.8,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "defend",
+            "kind": "trap",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "right_corner",
+                "offset": [
+                  -0.8,
+                  0.8
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x3",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [
+                  -0.6,
+                  -0.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x4",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  -0.4,
+                  1
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

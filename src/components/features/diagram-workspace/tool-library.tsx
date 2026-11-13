@@ -120,7 +120,7 @@ export function ToolLibrary({
             className={cn(
               "h-8 rounded-full border px-3 text-xs font-medium smooth-colors",
               category === c
-                ? "border-accent bg-accent text-accent-ink"
+                ? "border-accent bg-accent-bright text-accent-ink"
                 : "border-line-strong bg-surface-raised text-ink hover:bg-surface-sunken",
             )}
           >

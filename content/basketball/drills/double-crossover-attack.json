@@ -1,0 +1,157 @@
+{
+  "seedKey": "double-crossover-attack",
+  "title": "Double-Crossover Attack",
+  "description": "A quick crossover back-and-forth at the top of the key to wrong-foot the defender, then an attack to the rim or a pull-up.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["shooting_form"],
+  "subSkills": ["crossover", "shooting_off_the_dribble"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["double crossover", "1v1"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Make two crossovers in rhythm without raising the ball, then read the defender's weight to drive or pull up.",
+    "setup": "Offense starts at the top of the key with a ball, defense one arm-length in front.",
+    "organization": "Play live 1v1 after the move; switch roles each possession.",
+    "instructions": [
+      "From triple threat, start a right-hand dribble toward the right slot.",
+      "Cross to the left hand, then immediately back to the right (two dribbles).",
+      "Read the defender: if they lean left, drive right to the rim.",
+      "If they drop back, pull up from the elbow.",
+      "Play the possession out against live defense."
+    ],
+    "coachingPoints": [
+      "Both crossovers below the knee and quick.",
+      "Look at the rim, not the ball, during the move.",
+      "Commit to the read: drive or pull up, no extra dribbles."
+    ],
+    "commonMistakes": [
+      "Adding a third, unplanned crossover.",
+      "Crossing in front of the defender's reach.",
+      "Driving into a set defender instead of reading the lean."
+    ],
+    "safety": "Defenders cannot slap down on the ball from above the shoulder.",
+    "progressions": ["Start from a live catch on the wing.", "Add a help defender in the lane."],
+    "regressions": [
+      "Walk the double crossover, then add speed.",
+      "Passive defender who leans on cue."
+    ],
+    "variations": ["Crossover then between-the-legs.", "Double crossover into a step-back."],
+    "successCriteria": [
+      "Both crossovers under control.",
+      "Correct decision (drive or pull up) in at least 7 of 10 tries."
+    ],
+    "gameApplication": "A second change of hand catches defenders who react to the first one.",
+    "repetitions": "6 possessions per player",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 0.6]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [0, -0.9]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [-0.6, -0.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [0.4, -0.6]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_slot",
+              "offset": [0.8, 0.6]
+            },
+            "text": "Cross-cross"
+          }
+        ]
+      }
+    }
+  ]
+}

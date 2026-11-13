@@ -1,0 +1,185 @@
+{
+  "seedKey": "behind-the-back-transition-change",
+  "title": "Behind-the-Back Transition Change",
+  "description": "At full speed in the open court, ball handlers change direction with a behind-the-back dribble, which keeps the body between the ball and a chasing defender.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["speed_agility"],
+  "subSkills": ["protect_the_ball"],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "full_court",
+  "tags": ["behind the back", "transition"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Change direction at speed with a behind-the-back dribble without breaking stride.",
+    "setup": "Two cones at each free-throw line extended, a cone in the middle at half court.",
+    "organization": "One line in each corner; go when the player ahead reaches half court.",
+    "instructions": [
+      "Push the ball hard from the corner toward the middle cone.",
+      "At the cone, wrap the ball behind the back to the other hand without slowing.",
+      "Attack the far elbow cone and repeat the behind-the-back.",
+      "Finish at the far rim.",
+      "Return along the other sideline with the other hand."
+    ],
+    "coachingPoints": [
+      "Wrap the ball around the hip with the wrist, not the arm.",
+      "Step with the same-side foot as the ball goes behind.",
+      "Keep sprinting through the change."
+    ],
+    "commonMistakes": [
+      "Slowing almost to a stop before the move.",
+      "Ball bouncing too far behind and getting lost.",
+      "Swinging the whole arm."
+    ],
+    "safety": "Clear lanes; the next player waits until the previous one has passed half court.",
+    "progressions": [
+      "Add a chasing defender who starts two metres behind.",
+      "Two behind-the-backs in a row at the middle cone."
+    ],
+    "regressions": ["Walk then jog the move.", "Stationary behind-the-back wraps first."],
+    "variations": [
+      "Finish with a pass to a trailer.",
+      "Use the move to avoid a cone 'charge spot'."
+    ],
+    "successCriteria": [
+      "No loss of speed through the change.",
+      "Finishes with the hand away from the last cone."
+    ],
+    "gameApplication": "The behind-the-back is the safest change of hand at full speed because the ball never crosses in front of a defender.",
+    "repetitions": "3 trips each direction",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner",
+              "offset": [1, 0.3]
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-1, 0]
+            }
+          },
+          {
+            "id": "k2",
+            "type": "cone",
+            "at": {
+              "anchor": "center_circle"
+            }
+          },
+          {
+            "id": "k3",
+            "type": "cone",
+            "at": {
+              "anchor": "far_left_elbow",
+              "offset": [-1, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [-0.4, 0.4]
+              },
+              {
+                "anchor": "center_circle",
+                "offset": [0.6, 0]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "far_left_elbow",
+                "offset": [-0.4, -0.4]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "far_left_block",
+                "offset": [0, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

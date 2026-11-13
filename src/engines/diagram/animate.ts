@@ -38,6 +38,46 @@ export interface StepSpan {
   end: number;
 }
 
+/**
+ * The third dimension of a ball the diagram draws from above: how high it is off the floor (metres) and how far it has
+ * turned (radians). Derived from the action that moves it — a pass arcs a little (a skip or overhead pass more, a bounce
+ * pass touches the floor halfway), a shot climbs and drops into the rim, a dribble bounces in rhythm with the dribbler's
+ * stride. Absent from `ballFx` = held still or lying on the floor.
+ */
+export interface BallFx {
+  lift: number;
+  spin: number;
+  /** What is moving the ball, and how far through it (0-1) — lets a 3D view place a shot between hand and rim. */
+  kind: "pass" | "bounce" | "lob" | "shot" | "dribble";
+  u: number;
+}
+
+/** Peak height (metres above the hand) of a ball in flight, by kind of throw. */
+export const PEAK_LIFT = {
+  standard: 0.35,
+  skip: 1.3,
+  overhead: 1.3,
+  shot: 3.2,
+  dribble: 0.55,
+} as const;
+/** Metres of travel per dribble bounce. */
+const DRIBBLE_STRIDE = 1.15;
+const BALL_RADIUS = 0.12;
+
+export function flightLift(
+  kind: "standard" | "bounce" | "skip" | "overhead" | "shot",
+  u: number,
+): number {
+  const k = clamp01(u);
+  if (kind === "bounce") return 0.5 * Math.abs(Math.sin(2 * Math.PI * k));
+  return PEAK_LIFT[kind] * Math.sin(Math.PI * k);
+}
+
+/** Height of a dribbled ball after the dribbler has covered `dist` metres: floor contact every stride. */
+export function dribbleLift(dist: number): number {
+  return PEAK_LIFT.dribble * Math.abs(Math.sin((Math.PI * dist) / DRIBBLE_STRIDE));
+}
+
 export interface Frame {
   /** Every entity's position at this moment, by id (balls included). */
   positions: Map<string, Pt>;
@@ -45,6 +85,8 @@ export interface Frame {
   visibleActions: Set<string>;
   /** The step being played (0 for a diagram without actions). */
   step: number;
+  /** Height and spin of each ball that is in the air or being dribbled. */
+  ballFx: Map<string, BallFx>;
 }
 
 export interface Timeline {
@@ -81,7 +123,12 @@ export function buildTimeline(d: Diagram, pack: CourtPack): Timeline {
     return {
       duration: 0,
       spans: [],
-      frameAt: () => ({ positions: restingPositions(d, pack), visibleActions: new Set(), step: 0 }),
+      frameAt: () => ({
+        positions: restingPositions(d, pack),
+        visibleActions: new Set(),
+        step: 0,
+        ballFx: new Map(),
+      }),
     };
   }
 
@@ -141,6 +188,7 @@ export function buildTimeline(d: Diagram, pack: CourtPack): Timeline {
 
     // balls: with their holder, in the air, or where they lie
     const holders = holdersAtStep(d, plan.step);
+    const ballFx = new Map<string, BallFx>();
     const flights = plan.timed.filter(
       (x) => x.ra.action.type === "pass" || x.ra.action.type === "shot",
     );
@@ -157,27 +205,62 @@ export function buildTimeline(d: Diagram, pack: CourtPack): Timeline {
         if (local < from) continue; // not thrown yet: still held
         const start = ra.points[0]!;
         const end = ra.points[ra.points.length - 1]!;
+        const flown = length(ra.points) * ease(u);
         if (a.type === "pass") {
           if (u >= 1) {
             holder = a.to; // caught: the ball travels with the receiver
             loose = undefined;
+            ballFx.delete(id);
           } else {
             holder = undefined;
             loose = lerp(start, end, ease(u));
+            const pk = a.kind ?? "standard";
+            ballFx.set(id, {
+              lift: flightLift(pk, u),
+              spin: flown / BALL_RADIUS,
+              kind: pk === "bounce" ? "bounce" : pk === "standard" ? "pass" : "lob",
+              u,
+            });
           }
         } else {
           holder = undefined;
           loose = lerp(start, end, ease(u)); // a shot ends at the target and stays there
+          // backspin: a shot turns against its direction of travel
+          if (u < 1)
+            ballFx.set(id, {
+              lift: flightLift("shot", u),
+              spin: -flown / BALL_RADIUS,
+              kind: "shot",
+              u,
+            });
+          else ballFx.delete(id);
         }
       }
       if (holder) {
         const at = positions.get(holder) ?? starts.get(holder);
         if (at) positions.set(id, { x: at.x + BALL_OFFSET.x, y: at.y + BALL_OFFSET.y });
+        // a holder on a dribble bounces the ball in rhythm with the ground they cover
+        const dribble = plan.timed.find(
+          (x) =>
+            x.ra.action.type === "dribble" && (x.ra.action as { entity: string }).entity === holder,
+        );
+        if (dribble) {
+          const u = clamp01((local - dribble.from) / (dribble.to - dribble.from || 1));
+          if (u > 0 && u < 1) {
+            const dist = length(dribble.ra.points) * ease(u);
+            ballFx.set(id, {
+              lift: dribbleLift(dist),
+              spin: dist / BALL_RADIUS,
+              kind: "dribble",
+              u,
+            });
+          }
+        }
       } else if (loose) positions.set(id, loose);
     }
 
     const visible = new Set(plan.timed.filter((x) => local >= x.from).map((x) => x.ra.action.id));
-    return { positions, visibleActions: visible, step: plan.step };
+    return { positions, visibleActions: visible, step: plan.step, ballFx };
   }
 
   return { duration: clock, spans, frameAt };

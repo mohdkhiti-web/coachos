@@ -1,0 +1,133 @@
+{
+  "seedKey": "crossover-step-finish",
+  "title": "Crossover-Step Finish",
+  "description": "On a drive, the player changes direction with a crossover step (stepping across the body) to get the shoulders past the defender before finishing.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["footwork", "dribbling"],
+  "subSkills": ["crossover"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["crossover step", "drive"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Win the first step with a long crossover step and keep the shoulder ahead of the defender to the rim.",
+    "setup": "Offense at the wing in triple threat; defender in front.",
+    "organization": "Live 1v1; switch after each possession.",
+    "instructions": [
+      "Jab with the right foot toward the baseline.",
+      "Defender reacts: swing the ball low across and step the right foot across the body toward the middle.",
+      "Push the first dribble long with the left hand.",
+      "Get the left shoulder past the defender's hip.",
+      "Finish at the rim with the left hand."
+    ],
+    "coachingPoints": [
+      "Long crossover step, low.",
+      "Shoulder past the hip: then you own the lane.",
+      "Ball low on the swing."
+    ],
+    "commonMistakes": [
+      "Short first step that lets the defender recover.",
+      "Travelling on the crossover step.",
+      "Upright body on the drive."
+    ],
+    "safety": "Legal defense; no tripping on the crossover step.",
+    "progressions": ["Help defender at the rim.", "Finish with a floater if help arrives."],
+    "regressions": ["Passive defender.", "Walk the footwork."],
+    "variations": ["Crossover step from the top.", "Crossover step to a pull-up."],
+    "successCriteria": ["Gets the shoulder past the defender on most reps.", "No travels."],
+    "gameApplication": "The crossover step wins drives against defenders who overplay the jab side.",
+    "repetitions": "6 possessions per player",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [-0.5, -0.8]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [-0.4, 0]
+              },
+              {
+                "anchor": "right_block",
+                "offset": [-1, 0.8]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

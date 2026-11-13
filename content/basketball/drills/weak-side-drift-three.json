@@ -1,0 +1,150 @@
+{
+  "seedKey": "weak-side-drift-three",
+  "title": "Weak-Side Drift Three",
+  "description": "When a teammate drives baseline, the weak-side wing drifts to the corner behind the help defender for a kick-out three.",
+  "category": "shooting",
+  "primarySkill": "spacing",
+  "secondarySkills": ["shooting_form", "decision_making"],
+  "subSkills": ["catch_and_shoot"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["drift", "spacing", "corner three"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Move to the open spot behind the help on a baseline drive and shoot off the skip or kick pass.",
+    "setup": "Driver at the right wing; shooter at the left wing; optional help defender.",
+    "organization": "Rotate driver and shooter.",
+    "instructions": [
+      "The driver attacks baseline from the right wing.",
+      "As the help defender steps in, the left wing drifts down to the left corner.",
+      "The driver jump-stops or passes on the move to the left corner.",
+      "The shooter catches with the feet behind the line and shoots.",
+      "Repeat from the other side."
+    ],
+    "coachingPoints": [
+      "Drift on the drive, not before.",
+      "Stay in the driver's line of sight.",
+      "Arrive with the feet ready."
+    ],
+    "commonMistakes": [
+      "Standing still behind the help defender.",
+      "Drifting too early and pulling the help with you.",
+      "Feet on the line."
+    ],
+    "safety": "Driver stops before the baseline; no driving into the shooter's lane.",
+    "progressions": ["Add a defender recovering to the corner.", "Shooter drives the closeout."],
+    "regressions": ["Shooter starts in the corner.", "Mid-range corner shot."],
+    "variations": ["Lift to the wing when the drive is middle.", "45-degree cut instead of drift."],
+    "successCriteria": [
+      "Drift timed to the drive on most reps.",
+      "Catch made with feet behind the line."
+    ],
+    "gameApplication": "Drive-and-kick works only if the shooters move to where the help leaves.",
+    "repetitions": "6 reps each side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [0.8, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "left_corner"
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "skip"
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

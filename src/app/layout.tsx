@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Barlow_Condensed, Geist, Geist_Mono } from "next/font/google";
+import { Archivo, Geist_Mono } from "next/font/google";
 import { cookies, headers } from "next/headers";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
@@ -10,14 +10,14 @@ import { env } from "@/lib/env";
 import { parseTheme, THEME_COOKIE } from "@/lib/theme";
 import "@/styles/globals.css";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
-// Condensed display face for headings and scoreboard numerals (ARCHITECTURE.md §2.2).
-const barlow = Barlow_Condensed({
-  variable: "--font-barlow",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+// One family for the whole product: Archivo's width axis gives the interface (100%) and the condensed
+// scoresheet numerals and display titles (75-80%) from a single variable font.
+const archivo = Archivo({
+  variable: "--font-archivo",
+  subsets: ["latin", "latin-ext"],
+  axes: ["wdth"],
 });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: { default: "CoachOS", template: "%s · CoachOS" },
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f6f1e7" },
-    { media: "(prefers-color-scheme: dark)", color: "#0d0f12" },
+    { media: "(prefers-color-scheme: light)", color: "#f4f6f9" },
+    { media: "(prefers-color-scheme: dark)", color: "#121f3b" },
   ],
 };
 
@@ -53,7 +53,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang={locale}
       data-theme={theme === "system" ? undefined : theme}
-      className={`${geistSans.variable} ${geistMono.variable} ${barlow.variable} h-full`}
+      className={`${archivo.variable} ${geistMono.variable} h-full`}
       suppressHydrationWarning
     >
       <head>

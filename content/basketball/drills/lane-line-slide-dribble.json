@@ -1,0 +1,166 @@
+{
+  "seedKey": "lane-line-slide-dribble",
+  "title": "Lane-Line Slide Dribble",
+  "description": "Players slide sideways along the lane lines while dribbling, mimicking the lateral steps a ball handler uses to probe a defense or evade a trap.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["footwork"],
+  "subSkills": ["protect_the_ball"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 9,
+  "ageMax": 18,
+  "playersMin": 1,
+  "playersMax": 12,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["lateral", "slide"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Move laterally in a stance while keeping the dribble on the trailing side and the shoulders square.",
+    "setup": "Players line up at the baseline end of each lane line, a ball each.",
+    "organization": "One player per lane line at a time.",
+    "instructions": [
+      "Face the sideline in a low stance with the ball in the hand nearest the baseline.",
+      "Slide up the lane line to the free-throw line, dribbling with the trailing hand.",
+      "At the free-throw line, cross the ball over and slide back down.",
+      "Repeat three lengths, then face the other way.",
+      "Finish with a jump stop and a shot from the block."
+    ],
+    "coachingPoints": [
+      "Slide: feet do not cross or click together.",
+      "Ball on the trailing side, body between ball and lane.",
+      "Chest up, shoulders level."
+    ],
+    "commonMistakes": [
+      "Crossing the feet like a run.",
+      "Ball drifting in front of the body.",
+      "Rising out of the stance on the turn."
+    ],
+    "safety": "One player per lane line; the shooter clears before the next starts.",
+    "progressions": [
+      "Add a defender mirroring on the other side of the lane.",
+      "Speed up with a stopwatch."
+    ],
+    "regressions": ["Slide without the ball first.", "Shorter distance: block to the second hash."],
+    "variations": [
+      "Slide along the three-point line.",
+      "Hesitate and attack at the free-throw line."
+    ],
+    "successCriteria": ["Three lengths with the feet never crossing.", "No lost dribble."],
+    "gameApplication": "Lateral movement with the ball lets guards probe a zone or slide away from a trapping defender.",
+    "repetitions": "3 lengths each direction",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block",
+              "offset": [0.3, -1]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [-0.3, -1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [0.3, 0]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [-0.3, 0]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [0.3, -0.8]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.3, -0.8]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

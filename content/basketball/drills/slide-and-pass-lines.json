@@ -1,0 +1,154 @@
+{
+  "seedKey": "slide-and-pass-lines",
+  "title": "Slide-and-Pass Lines",
+  "description": "Partners slide sideways across the court together, passing back and forth while staying in a defensive-style stance — combining footwork and passing on the move.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["footwork", "catching"],
+  "subSkills": ["passing_on_the_move"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 7,
+  "ageMax": 16,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["slide", "moving passes"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Catch and pass accurately while both players are moving sideways, keeping a low, balanced stance.",
+    "setup": "Partners face each other three metres apart on the baseline, one ball per pair.",
+    "organization": "Pairs go together; the next pair leaves at the free-throw line.",
+    "instructions": [
+      "Both partners slide sideways up the court, facing each other.",
+      "Chest-pass back and forth while sliding, without crossing the feet.",
+      "At half court, switch to bounce passes.",
+      "At the far baseline, return with overhead passes.",
+      "Keep the gap constant at three metres."
+    ],
+    "coachingPoints": [
+      "Pass slightly ahead of your partner's direction of travel.",
+      "Stay low: the stance is what makes the catch easy.",
+      "Talk: call the pass type."
+    ],
+    "commonMistakes": [
+      "Crossing the feet into a run.",
+      "Passing straight at the partner, so it arrives behind them.",
+      "Drifting apart and throwing longer passes."
+    ],
+    "safety": "Pairs leave enough space so the next pair does not overlap; slide at jog speed.",
+    "progressions": ["Speed up the slide.", "Add a third player who chases and tries to deflect."],
+    "regressions": ["Walk the slide.", "Two metres apart."],
+    "variations": ["One-hand passes.", "Two balls per pair."],
+    "successCriteria": ["No dropped passes in a length.", "Feet never cross."],
+    "gameApplication": "Guards and wings pass while moving laterally around the perimeter; this builds that coordination early.",
+    "repetitions": "2 lengths per pass type",
+    "resources": [
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block",
+              "offset": [0, -0.8]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [0, -0.8]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [2, 2]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [-2, 2]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 1]
+            },
+            "text": "Slide · pass · slide"
+          }
+        ]
+      }
+    }
+  ]
+}

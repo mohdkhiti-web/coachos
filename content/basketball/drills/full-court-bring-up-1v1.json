@@ -1,0 +1,170 @@
+{
+  "seedKey": "full-court-bring-up-1v1",
+  "title": "Full-Court Bring-Up 1v1",
+  "description": "A ball handler brings the ball up the full court against a pressuring defender, with a ten-second limit to cross half court and a live finish.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["press_break", "conditioning"],
+  "subSkills": ["protect_the_ball", "change_of_pace"],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "1v1",
+  "phases": ["skill", "small_sided"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "full_court",
+  "tags": ["1v1", "pressure", "ten seconds"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Beat sustained pressure for the length of the court, within the time limit, and still have the legs to finish.",
+    "setup": "Offense on the baseline with the ball, defender one arm-length in front.",
+    "organization": "Pairs; switch roles after each trip; next pair starts when the court is clear.",
+    "instructions": [
+      "The defender pressures from the baseline.",
+      "The ball handler must cross half court within 10 seconds.",
+      "After half court, play live 1v1 to a score or a stop.",
+      "Defender scores a point for a steal, a 10-second violation or a stop.",
+      "Switch roles and come back the other way."
+    ],
+    "coachingPoints": [
+      "Attack the defender's chest early to turn them.",
+      "Use change of pace more than moves.",
+      "Save energy: walk the ball when the defender backs off."
+    ],
+    "commonMistakes": [
+      "Over-dribbling side to side without gaining ground.",
+      "Getting trapped on the sideline.",
+      "Arriving exhausted and taking a rushed shot."
+    ],
+    "safety": "Legal defense only; stop the play for any dangerous contact near the sideline.",
+    "progressions": [
+      "Defender may trap with a second defender at half court.",
+      "Reduce the time to 8 seconds."
+    ],
+    "regressions": ["Defender gives a one-metre cushion.", "Remove the live finish."],
+    "variations": ["Start with an inbound pass.", "Defender must force the ball to one side."],
+    "successCriteria": [
+      "Crosses half court within the limit on most trips.",
+      "Scores or gets a good shot on at least half the trips."
+    ],
+    "gameApplication": "Every guard faces full-court pressure; bringing the ball up alone builds confidence against it.",
+    "repetitions": "3 trips each role",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [0, 0.6]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [0, 1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [-1, 0]
+              },
+              {
+                "anchor": "left_sideline_center",
+                "offset": [3.5, 0]
+              },
+              {
+                "anchor": "far_right_wing",
+                "offset": [0, 0]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [-0.6, 0.8]
+              },
+              {
+                "anchor": "left_sideline_center",
+                "offset": [3.8, 0.8]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [2.6, 0.6]
+            },
+            "text": "10 s to cross"
+          }
+        ]
+      }
+    }
+  ]
+}

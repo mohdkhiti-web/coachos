@@ -1,0 +1,190 @@
+{
+  "seedKey": "chair-defender-hesitation-cross",
+  "title": "Chair Defender Hesitation Cross",
+  "description": "A chair stands in for the defender: the ball handler hesitates in front of it, then crosses over and attacks the rim, rehearsing the timing of a two-move attack.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["finishing"],
+  "subSkills": ["crossover", "change_of_pace"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 10,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["hesitation", "crossover", "chair"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "chairs",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Combine a hesitation with a crossover at the right distance from a defender and finish at the rim.",
+    "setup": "A chair at the top of the key and one at the left wing; lines at half court and the right wing.",
+    "organization": "Players alternate starts; rebound your own ball and go to the other line.",
+    "instructions": [
+      "Attack the chair at speed with the right hand.",
+      "One stride before the chair, hesitate: slow down, lift the head and shoulders as if to stop.",
+      "Cross the ball low to the left hand and step past the chair.",
+      "Drive to the rim and finish with the left hand.",
+      "From the wing line, run the same move at the second chair and finish on the other side."
+    ],
+    "coachingPoints": [
+      "Hesitate close to the chair: about one arm-length away.",
+      "The crossover goes below the knee.",
+      "Accelerate past the chair's shoulder, not into it."
+    ],
+    "commonMistakes": [
+      "Making the move too far from the chair.",
+      "The hesitation stops the dribble altogether.",
+      "Fading away from the rim after the move."
+    ],
+    "safety": "Chairs are placed away from the lane so a missed finish never lands on them.",
+    "progressions": [
+      "Replace the chair with a passive, then live defender.",
+      "Finish with a floater instead of a lay-up."
+    ],
+    "regressions": [
+      "Walk through the move without the hesitation first.",
+      "Finish with a jump stop and a shot."
+    ],
+    "variations": [
+      "Hesitation into a between-the-legs.",
+      "Pull up for a jump shot after the move."
+    ],
+    "successCriteria": [
+      "Move made within one arm-length of the chair.",
+      "Finishes with the correct hand."
+    ],
+    "gameApplication": "The hesitation freezes the defender's feet; the crossover then attacks the side they cannot reach.",
+    "repetitions": "5 reps from each line",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [0, -0.6]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [0.6, 0.8]
+            }
+          },
+          {
+            "id": "eq1",
+            "type": "equipment",
+            "kind": "chair",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "eq2",
+            "type": "equipment",
+            "kind": "chair",
+            "at": {
+              "anchor": "left_wing",
+              "offset": [1, -0.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [0.8, 0.8]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [0.6, -0.4]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [1.8, 0.6]
+            },
+            "text": "Hesi"
+          }
+        ]
+      }
+    }
+  ]
+}

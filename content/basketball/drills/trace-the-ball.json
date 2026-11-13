@@ -1,0 +1,125 @@
+{
+  "seedKey": "trace-the-ball",
+  "title": "Trace the Ball",
+  "description": "A defender mirrors the ball with one hand as the offensive player moves it high, low and side to side from triple threat — keeping hands active without fouling.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": [],
+  "subSkills": ["stance_and_slides"],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 7,
+  "ageMax": 16,
+  "playersMin": 2,
+  "playersMax": 30,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "any_space",
+  "tags": ["active hands", "tracing", "fundamentals"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Keep a hand on the ball's path (tracing) to bother shots and passes without reaching in.",
+    "setup": "Pairs face each other one arm-length apart; the offensive player holds the ball.",
+    "organization": "30 seconds, then switch.",
+    "instructions": [
+      "The offensive player moves the ball slowly: overhead, to each hip, to each side.",
+      "The defender traces the ball with the nearest hand, palm facing it, without touching.",
+      "Speed up gradually.",
+      "The offensive player adds pass fakes.",
+      "Switch roles."
+    ],
+    "coachingPoints": [
+      "Hand follows the ball like a shadow.",
+      "Stay in a stance; feet stay quiet.",
+      "No slapping."
+    ],
+    "commonMistakes": [
+      "Swiping at the ball.",
+      "Standing straight up.",
+      "Reacting to fakes with the whole body."
+    ],
+    "safety": "No contact with the ball handler's arms.",
+    "progressions": [
+      "Add a pass to a third player; defender tries to deflect.",
+      "Offensive player may pivot."
+    ],
+    "regressions": ["Slower movements.", "Two hands tracing."],
+    "variations": [
+      "Trace a dribbler at walking speed.",
+      "Trace while a partner shoots a set shot."
+    ],
+    "successCriteria": ["Hand stays on the ball's path for 30 seconds.", "No fouls."],
+    "gameApplication": "Tracing the ball after the dribble stops makes passes difficult and leads to turnovers.",
+    "repetitions": "4 rounds of 30 s",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      },
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [0, -0.8]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [1.6, 0.6]
+            },
+            "text": "Trace high · low"
+          }
+        ]
+      }
+    }
+  ]
+}

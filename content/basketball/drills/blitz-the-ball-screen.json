@@ -1,0 +1,266 @@
+{
+  "seedKey": "blitz-the-ball-screen",
+  "title": "Blitz the Ball Screen",
+  "description": "Both defenders trap the ball handler on the screen, forcing the ball out; the other defenders rotate to cover the short roll and the open shooters.",
+  "category": "team_defense",
+  "primarySkill": "pick_and_roll",
+  "secondarySkills": [
+    "help_defense",
+    "communication",
+    "speed_agility"
+  ],
+  "subSkills": [
+    "pnr_defense",
+    "defensive_rotations"
+  ],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "4v4",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 15,
+  "ageMax": 99,
+  "playersMin": 8,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": [
+    "blitz",
+    "trap",
+    "rotation"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Force the ball out of the ball handler's hands with a trap and rotate behind it to take away the easy pass.",
+    "setup": "4v4 with a ball screen at the top; two weak-side defenders.",
+    "organization": "Rotate offense and defense.",
+    "instructions": [
+      "Both defenders trap the ball handler as the screen is set.",
+      "Trap with high hands and the feet stopping the split.",
+      "The low weak-side defender rotates to the short roll.",
+      "The other weak-side defender splits the two weak-side shooters.",
+      "Play live."
+    ],
+    "coachingPoints": [
+      "Trap high and tight, no gap to split.",
+      "Hands up to stop the pass over the top.",
+      "Rotate on the pass out of the trap."
+    ],
+    "commonMistakes": [
+      "Trapping with low hands.",
+      "Leaving a gap between trappers.",
+      "Weak side not rotating."
+    ],
+    "safety": "Play legal defense: no hand-checking, no running through screens; stop play on any dangerous collision.",
+    "progressions": [
+      "Offense uses a pocket pass.",
+      "Add a fifth player."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "No live play after the pass."
+    ],
+    "variations": [
+      "Blitz a side screen.",
+      "Blitz then recover to man."
+    ],
+    "successCriteria": [
+      "Ball forced out on most possessions.",
+      "Short roll covered."
+    ],
+    "gameApplication": "Blitzes take the ball out of a great scorer's hands and test the rest of the offense.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_slot",
+              "offset": [
+                -0.4,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                0,
+                -0.8
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [
+                0,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [
+                0,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "x4",
+            "type": "player",
+            "side": "defense",
+            "label": "X4",
+            "at": {
+              "anchor": "left_block",
+              "offset": [
+                -0.4,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "defend",
+            "kind": "trap",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [
+                  0.8,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [
+                  0.6,
+                  0
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "defend",
+            "kind": "help",
+            "entity": "x4",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [
+                  -0.6,
+                  -0.6
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "seedKey": "backpedal-hip-flip-sprint",
+  "title": "Backpedal, Hip Flip, Sprint",
+  "description": "Players backpedal, flip the hips on a signal and sprint, the footwork a defender uses to turn and run with a cutter.",
+  "category": "footwork",
+  "primarySkill": "speed_agility",
+  "secondarySkills": ["footwork", "on_ball_defense"],
+  "subSkills": ["change_of_direction"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["hip flip", "backpedal"],
+  "equipment": [],
+  "content": {
+    "objective": "Turn the hips quickly from a backpedal into a forward sprint without losing speed.",
+    "setup": "Players face the coach on the half-court line.",
+    "organization": "Waves of four.",
+    "instructions": [
+      "Backpedal toward the baseline.",
+      "Coach points left or right.",
+      "Flip the hips that way and sprint diagonally.",
+      "Coach whistles: stop in a stance.",
+      "Jog back and repeat."
+    ],
+    "coachingPoints": [
+      "Open the hips in one move.",
+      "Stay low in the backpedal.",
+      "Eyes on the coach."
+    ],
+    "commonMistakes": [
+      "Turning the wrong way.",
+      "Standing up in the backpedal.",
+      "Slow, two-step turns."
+    ],
+    "safety": "Use a clear, dry floor and space players so nobody collides when changing direction.",
+    "progressions": ["React to a ball thrown by the coach.", "Mirror a partner."],
+    "regressions": ["Walk the backpedal.", "Same direction each rep."],
+    "variations": ["Hip flip twice.", "Hip flip into a slide."],
+    "successCriteria": ["Turns the correct way every time.", "No loss of speed on the turn."],
+    "gameApplication": "Defenders flip their hips to run with cutters and drivers who get past.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [0, -0.6]
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, -1]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [0, 1.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_slot",
+                "offset": [-1.2, 0]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

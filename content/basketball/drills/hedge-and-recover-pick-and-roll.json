@@ -1,0 +1,233 @@
+{
+  "seedKey": "hedge-and-recover-pick-and-roll",
+  "title": "Hedge and Recover",
+  "description": "The screener's defender hedges out hard to stop the ball handler's path, then recovers to the roller as the on-ball defender gets back in front.",
+  "category": "team_defense",
+  "primarySkill": "pick_and_roll",
+  "secondarySkills": [
+    "communication"
+  ],
+  "subSkills": [
+    "pnr_defense"
+  ],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "2v2",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "hedge",
+    "pick and roll",
+    "recover"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Use a hard hedge to buy time for the on-ball defender, then recover to the screener before they catch.",
+    "setup": "Ball handler and screener at the top; two defenders.",
+    "organization": "Rotate pairs every four reps.",
+    "instructions": [
+      "The screener sets a ball screen.",
+      "The screener's defender steps out sideways into the ball handler's path (hedge), showing hands.",
+      "The ball handler is pushed wide; the on-ball defender fights over the screen.",
+      "When the on-ball defender is back, the hedger sprints back to the roller.",
+      "Play live."
+    ],
+    "coachingPoints": [
+      "Hedge with the body, not the hands.",
+      "Stay long enough for your teammate to get back.",
+      "Recover with a hand in the passing lane."
+    ],
+    "commonMistakes": [
+      "Hedging too far and giving a split.",
+      "Recovering too early.",
+      "On-ball defender going under while the big hedges."
+    ],
+    "safety": "Play legal defense: no hand-checking, no running through screens; stop play on any dangerous collision.",
+    "progressions": [
+      "Add weak-side tag on the roll.",
+      "Pick-and-pop screener."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "Ball handler at half speed."
+    ],
+    "variations": [
+      "Soft show instead of a hard hedge.",
+      "Hedge on a side screen."
+    ],
+    "successCriteria": [
+      "Ball handler pushed away from the paint.",
+      "Roller covered on recovery."
+    ],
+    "gameApplication": "Hedging stops ball handlers from turning the corner on the screen.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_slot",
+              "offset": [
+                -0.4,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                0,
+                -0.8
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [
+                0,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o2",
+            "target": {
+              "entity": "x1",
+              "offset": [
+                0.5,
+                0
+              ]
+            },
+            "kind": "ball"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "hedge",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [
+                  -0.4,
+                  1.4
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [
+                  -0.4,
+                  -0.8
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "defend",
+            "kind": "recover",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [
+                  0,
+                  -0.8
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

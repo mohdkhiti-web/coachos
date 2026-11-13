@@ -1,0 +1,222 @@
+{
+  "seedKey": "keep-the-advantage-four-on-three",
+  "title": "Keep the Advantage 4v3",
+  "description": "The offense starts with one extra player and must keep passing, cutting and attacking closeouts until it finds the open shot, without letting the advantage die.",
+  "category": "team_offense",
+  "primarySkill": "decision_making",
+  "secondarySkills": [
+    "passing",
+    "spacing"
+  ],
+  "subSkills": [
+    "numbers_advantage",
+    "reading_the_defense"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 7,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "4v3",
+    "advantage",
+    "closeouts"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Convert a four-on-three advantage into a good shot by making the extra pass and attacking closeouts.",
+    "setup": "Four offensive players around the arc; three defenders in the lane.",
+    "organization": "Defense rotates out after three stops.",
+    "instructions": [
+      "The coach passes to any offensive player.",
+      "Defenders close out and rotate.",
+      "The offense swings the ball one more time than the defense can cover.",
+      "Attack a closeout with a drive or pass.",
+      "Shot must come within five passes."
+    ],
+    "coachingPoints": [
+      "Make the extra pass.",
+      "Catch ready to shoot or drive.",
+      "Do not hold the ball."
+    ],
+    "commonMistakes": [
+      "Taking the first contested shot.",
+      "Dribbling without purpose.",
+      "Standing still off the ball."
+    ],
+    "safety": "Screens are set stationary and legal; defenders are allowed to see the screen in walk-throughs before live play.",
+    "progressions": [
+      "Fourth defender joins after three passes.",
+      "Shot within three passes."
+    ],
+    "regressions": [
+      "Defenders start further away.",
+      "5v3."
+    ],
+    "variations": [
+      "3v2 version.",
+      "Shooters can only drive closeouts."
+    ],
+    "successCriteria": [
+      "Open shot on most possessions.",
+      "No turnovers."
+    ],
+    "gameApplication": "Advantages appear briefly in games; good teams keep them alive.",
+    "repetitions": "10 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [
+                0,
+                0.2
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [
+                -0.6,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "anchor": "left_block",
+              "offset": [
+                0.6,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o3"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x3",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [
+                  0.6,
+                  -0.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

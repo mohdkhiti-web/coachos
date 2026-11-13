@@ -1,0 +1,151 @@
+{
+  "seedKey": "loose-ball-pursuit",
+  "title": "Loose-Ball Pursuit",
+  "description": "Two players chase a ball rolled by the coach; the first to secure it safely (low, two hands, then pivot to a teammate) scores — teaching effort and safe technique.",
+  "category": "individual_defense",
+  "primarySkill": "competitiveness",
+  "secondarySkills": ["speed_agility", "pivoting"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "high",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 9,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["effort", "loose ball", "hustle"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Win loose balls with speed and safe technique: get low, secure with two hands, protect and outlet.",
+    "setup": "Two players at the baseline; coach at the free-throw line with a ball; a teammate at the wing as the outlet.",
+    "organization": "Pairs race; winner stays for two rounds.",
+    "instructions": [
+      "The coach rolls the ball toward open space.",
+      "Both players sprint to it.",
+      "Get low and secure it with two hands (no diving on concrete-like floors for young players).",
+      "Pivot away from pressure and pass to the outlet.",
+      "Score a point for each secure outlet."
+    ],
+    "coachingPoints": [
+      "Low and two hands.",
+      "Body between opponent and ball.",
+      "Find the outlet immediately."
+    ],
+    "commonMistakes": [
+      "Kicking the ball by running past it.",
+      "One-hand swipes.",
+      "Wrestling for the ball."
+    ],
+    "safety": "No diving or sliding for under-14s; tie-ups go to the coach; stop at any risky collision.",
+    "progressions": ["Ball rolled closer to the sideline.", "Outlet player covered."],
+    "regressions": ["Ball placed, not rolled.", "One player at a time against the clock."],
+    "variations": ["Bounce the ball high instead (rebound race).", "Three-player race."],
+    "successCriteria": ["Secure, safe recoveries.", "Fast outlet."],
+    "gameApplication": "Teams that win loose balls win extra possessions in close games.",
+    "repetitions": "6 races per player",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-0.6, -0.8]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [0.6, -0.8]
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "bl1",
+            "type": "ball",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-0.6, -1.6]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [-0.6, -1.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [0, -1.6]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

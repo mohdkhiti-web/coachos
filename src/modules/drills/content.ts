@@ -66,6 +66,12 @@ export const drillContentSchema = z.strictObject({
   progressions: items(10).default([]),
   regressions: items(10).default([]),
   variations: items(10).default([]),
+  /** How the coach knows it worked: observable targets ("8 of 10 makes", "no reaching fouls"). */
+  successCriteria: items(8).default([]),
+  /** Where the drill shows up in a real game, in one or two sentences. */
+  gameApplication: z.string().trim().max(600, { error: "too_long" }).default(""),
+  /** Reps, sets or rounds ("3 rounds of 60 s, 30 s rest"). Free text; the planned minutes live on the drill. */
+  repetitions: z.string().trim().max(160, { error: "too_long" }).default(""),
   resources: z.array(resourceSchema).max(5, { error: "too_many" }).default([]),
 });
 

@@ -1,0 +1,141 @@
+{
+  "seedKey": "spin-lay-up-finish",
+  "title": "Spin Lay-Up Finish",
+  "description": "On a drive cut off by a defender, the player spins on the inside foot and finishes on the other side of the rim.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["dribbling", "footwork"],
+  "subSkills": ["protect_the_ball"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["spin", "finish"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Spin away from a cut-off defender in the lane and finish with the opposite hand.",
+    "setup": "Offense at the wing; defender in the lane ready to cut off the drive.",
+    "organization": "Switch roles each rep.",
+    "instructions": [
+      "Drive toward the middle.",
+      "The defender slides to cut off the drive.",
+      "Plant the inside foot and spin back toward the baseline with the ball tight.",
+      "Gather on the spin and finish with the outside hand.",
+      "Repeat from the other side."
+    ],
+    "coachingPoints": [
+      "Ball tight to the body through the spin.",
+      "Spin on the plant foot close to the defender.",
+      "Head turns first."
+    ],
+    "commonMistakes": [
+      "Wide spin into the help.",
+      "Travelling after the spin gather.",
+      "Losing sight of the rim."
+    ],
+    "safety": "Defender slides only; no reaching from behind.",
+    "progressions": ["Add a help defender on the weak side.", "Spin to a floater."],
+    "regressions": ["Cone instead of defender.", "Walk the spin."],
+    "variations": ["Spin from a baseline drive back to the middle.", "Half-spin and go back."],
+    "successCriteria": ["Legal footwork on every spin.", "Finishes on most reps."],
+    "gameApplication": "Spinning off a cut-off defender is a classic counter in the lane.",
+    "repetitions": "6 each side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [-0.6, -0.8]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [-0.2, -1.2]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.6, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

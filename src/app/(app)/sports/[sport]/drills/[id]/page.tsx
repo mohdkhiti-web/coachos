@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Bot, ExternalLink } from "lucide-react";
 import { getFormatter, getTranslations } from "next-intl/server";
 import { DrillActions } from "@/components/features/drills/drill-actions";
-import { DrillDiagram } from "@/components/features/drills/drill-diagram";
+import { DiagramPlayer } from "@/components/features/drills/diagram-player";
 import {
   IntensityMeter,
   LevelMeter,
@@ -27,7 +27,7 @@ function BulletList({ items, className }: { items: string[]; className?: string 
     <ul className={cn("space-y-2.5 text-base leading-relaxed text-ink", className)}>
       {items.map((item, i) => (
         <li key={i} className="flex gap-3">
-          <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+          <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-bright" />
           <span>{item}</span>
         </li>
       ))}
@@ -52,6 +52,7 @@ export default async function DrillDetailPage({
     { id: "progressions", title: t("detail.progressions"), items: c.progressions },
     { id: "regressions", title: t("detail.regressions"), items: c.regressions },
     { id: "variations", title: t("detail.variations"), items: c.variations },
+    { id: "success", title: t("detail.successCriteria"), items: c.successCriteria },
   ].filter((s) => s.items.length > 0);
   // numbered sections: the optional "Organization" block shifts the ones after it
   const hasOrganization = c.organization.length > 0;
@@ -78,13 +79,13 @@ export default async function DrillDetailPage({
         ) : null}
 
         <header className="space-y-4">
-          <div className="flex flex-wrap items-center gap-3">
-            <p className="eyebrow">{drill.category.name}</p>
-            <ScopeBadge scope={drill.scope} label={t(`scopes.${drill.scope}`)} />
-          </div>
-          <h2 id="drill-title" className="max-w-3xl display text-4xl text-ink md:text-6xl">
+          <h2 id="drill-title" className="max-w-3xl display text-[2.6rem] text-ink md:text-6xl">
             {drill.title}
           </h2>
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="font-semibold text-accent">{drill.category.name}</span>
+            <ScopeBadge scope={drill.scope} label={t(`scopes.${drill.scope}`)} />
+          </div>
           <p className="max-w-3xl text-lg leading-relaxed text-ink-muted">{drill.description}</p>
           <div className="flex flex-wrap items-center gap-2">
             <DrillActions
@@ -114,7 +115,8 @@ export default async function DrillDetailPage({
           </div>
         </header>
 
-        <dl className="grid grid-cols-2 gap-x-6 gap-y-5 border-y border-line py-5 sm:grid-cols-3 lg:grid-cols-4">
+        {/* the drill's facts as a ruled sheet of boxed fields */}
+        <dl className="grid grid-cols-2 overflow-hidden rounded-xl border border-line bg-surface-raised shadow-paper sm:grid-cols-3 lg:grid-cols-4 [&>div]:-mr-px [&>div]:-mb-px [&>div]:border-r [&>div]:border-b [&>div]:border-line [&>div]:px-4 [&>div]:py-3.5">
           <Stat value={range(drill.durationMin, drill.durationMax)} label={t("card.minutes")} />
           <Stat value={range(drill.playersMin, drill.playersMax)} label={t("card.players")} />
           <Stat value={range(drill.ageMin, drill.ageMax)} label={t("card.ages")} />
@@ -166,10 +168,9 @@ export default async function DrillDetailPage({
               key={g.id}
               className="overflow-hidden rounded-lg border border-line bg-surface-raised shadow-paper"
             >
-              <DrillDiagram
+              <DiagramPlayer
                 diagram={g.diagram}
                 title={g.title || t("detail.diagramN", { n: i + 1 })}
-                className="mx-auto max-h-[36rem] w-full"
               />
               {g.title ? (
                 <figcaption className="border-t border-line px-4 py-3 text-sm font-medium text-ink">
@@ -259,6 +260,23 @@ export default async function DrillDetailPage({
                   <BulletList items={s.items} />
                 </div>
               ))}
+            </section>
+          ) : null}
+
+          {c.gameApplication || c.repetitions ? (
+            <section className="grid gap-6 rounded-xl border border-line bg-surface-raised p-5 sm:grid-cols-[minmax(0,1fr)_minmax(0,16rem)]">
+              {c.gameApplication ? (
+                <div className="space-y-2">
+                  <h3 className="eyebrow">{t("detail.gameApplication")}</h3>
+                  <p className="text-base leading-relaxed text-ink">{c.gameApplication}</p>
+                </div>
+              ) : null}
+              {c.repetitions ? (
+                <div className="space-y-2 sm:border-l sm:border-line sm:pl-6">
+                  <h3 className="eyebrow">{t("detail.repetitions")}</h3>
+                  <p className="numeral text-xl leading-snug text-ink">{c.repetitions}</p>
+                </div>
+              ) : null}
             </section>
           ) : null}
 

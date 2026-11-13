@@ -35,6 +35,11 @@ export interface CourtPack {
   anchors: Readonly<Record<string, Pt>>;
   /** Default target of a `shot` action (the basket / goal). */
   primaryTarget: Pt;
+  /**
+   * Baskets standing on this surface, for views that draw in 3D: the rim centre and which way the backboard lies
+   * from it along y (-1 = toward smaller y). Optional — a surface without it is drawn flat.
+   */
+  hoops?: readonly { at: Pt; board: 1 | -1 }[];
   /** Court markings, drawn back to front. */
   primitives: readonly CourtPrimitive[];
   /** Actions this sport's vocabulary allows on this surface. */

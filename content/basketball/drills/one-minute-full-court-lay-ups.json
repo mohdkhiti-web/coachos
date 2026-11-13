@@ -1,0 +1,123 @@
+{
+  "seedKey": "one-minute-full-court-lay-ups",
+  "title": "One-Minute Full-Court Lay-Ups",
+  "description": "A player sprints the length of the court for a lay-up, rebounds and sprints back to the other basket, scoring as many lay-ups as possible in one minute.",
+  "category": "conditioning",
+  "primarySkill": "conditioning",
+  "secondarySkills": ["finishing", "dribbling"],
+  "subSkills": ["both_hands_finishing", "change_of_pace"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "individual",
+  "phases": ["conditioning"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 8,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["lay-ups", "intervals", "speed"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Build game-speed fitness while finishing lay-ups under fatigue.",
+    "setup": "One player with a ball per lane; a partner counts makes and times.",
+    "organization": "One minute work, two minutes rest; partners swap.",
+    "instructions": [
+      "Start under one basket.",
+      "Speed-dribble the full court and finish a lay-up.",
+      "Grab the ball and speed-dribble back.",
+      "Finish at the other end; keep going for one minute.",
+      "The partner counts makes."
+    ],
+    "coachingPoints": [
+      "Push the ball ahead on the dribble.",
+      "Slow down for the last two steps.",
+      "Right hand on the right, left on the left."
+    ],
+    "commonMistakes": [
+      "Sprinting so fast the lay-up is missed.",
+      "Walking after a miss.",
+      "Using one hand only."
+    ],
+    "safety": "Build volume gradually, allow water breaks, and stop any player who shows dizziness or pain; work-to-rest ratios suit the group's age.",
+    "progressions": ["90 seconds.", "Pull-up jumper every third trip."],
+    "regressions": ["30 seconds.", "Half-court only."],
+    "variations": ["Partner chases.", "Reverse lay-ups."],
+    "successCriteria": ["Makes per minute recorded.", "Make rate stays high under fatigue."],
+    "gameApplication": "Late in games, lay-ups are missed because of fatigue; this trains through it.",
+    "repetitions": "3 x 1 minute",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [0.6, 0.4]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_sideline_center",
+                "offset": [-1.6, 0]
+              },
+              {
+                "anchor": "far_left_block",
+                "offset": [0.4, -0.4]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -26,12 +26,12 @@ export function DialogContent({
       <D.Overlay className="fixed inset-0 z-50 bg-overlay data-[state=closed]:animate-out data-[state=open]:animate-in" />
       <D.Content
         className={cn(
-          "fixed top-1/2 left-1/2 z-50 max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg border border-line bg-surface-raised p-6 shadow-paper data-[state=closed]:animate-modal-out data-[state=open]:animate-modal-in",
+          "fixed top-1/2 left-1/2 z-50 max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-xl border border-line bg-surface-raised p-6 shadow-pop data-[state=closed]:animate-modal-out data-[state=open]:animate-modal-in",
           className,
         )}
         {...props}
       >
-        <D.Title className="pr-8 text-lg font-semibold tracking-tight text-ink">{title}</D.Title>
+        <D.Title className="pr-8 display text-2xl text-ink">{title}</D.Title>
         {description ? (
           <D.Description className="mt-1.5 text-sm text-ink-muted">{description}</D.Description>
         ) : (

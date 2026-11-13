@@ -1,0 +1,162 @@
+{
+  "seedKey": "clear-the-backcourt-vs-man-press",
+  "title": "Clear the Backcourt vs a Man Press",
+  "description": "Against a full-court man-to-man press, four players clear up the floor so the best ball handler can beat their defender 1v1 in open space.",
+  "category": "press_break",
+  "primarySkill": "press_break",
+  "secondarySkills": ["dribbling", "spacing"],
+  "subSkills": ["attacking_pressure", "protect_the_ball"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "5v5",
+  "phases": ["skill", "small_sided"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 10,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["man press", "clear out", "1v1"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Beat a man press by giving the ball handler space to attack 1v1 and keeping outlets ahead.",
+    "setup": "5v5 full court; defense in full-court man.",
+    "organization": "Rotate every four possessions.",
+    "instructions": [
+      "Inbound to the best ball handler.",
+      "The other three non-inbounders sprint up the floor beyond half court.",
+      "The inbounder steps in as the safety.",
+      "The ball handler attacks 1v1 in open space.",
+      "If a trap comes, pass ahead to the open player."
+    ],
+    "coachingPoints": [
+      "Clear out quickly.",
+      "Ball handler attacks the defender's front foot.",
+      "Safety behind the ball."
+    ],
+    "commonMistakes": [
+      "Teammates standing near the ball (bringing traps).",
+      "Ball handler turning their back.",
+      "No safety outlet."
+    ],
+    "safety": "Trappers play the ball, not the body; no reaching across the inbounder's arms over the line.",
+    "progressions": ["Defense traps at half court.", "Ten-second count."],
+    "regressions": ["Defense jogs.", "Ball handler gets a head start."],
+    "variations": ["Clear for two guards.", "Clear after a sideline inbound."],
+    "successCriteria": ["Ball across half court in under eight seconds.", "No turnovers."],
+    "gameApplication": "Space is the best press breaker against man pressure.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [0, 0.4]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [0, -0.6]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [-1.6, -1]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [1.6, -1]
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "far_free_throw_line"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_sideline_center",
+                "offset": [-1.6, 0]
+              },
+              {
+                "anchor": "center_circle",
+                "offset": [1, -0.6]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

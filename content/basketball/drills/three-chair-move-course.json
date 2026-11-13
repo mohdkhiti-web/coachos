@@ -1,0 +1,188 @@
+{
+  "seedKey": "three-chair-move-course",
+  "title": "Three-Chair Move Course",
+  "description": "Three chairs act as defenders on a path to the rim; players must make a specific move at each — crossover, inside-out and spin — before finishing.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["finishing"],
+  "subSkills": ["crossover", "change_of_pace"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["moves", "chairs", "course"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "chairs",
+      "rule": "fixed",
+      "quantity": 3
+    }
+  ],
+  "content": {
+    "objective": "Execute three different moves against fixed 'defenders' at game speed and finish with the correct hand.",
+    "setup": "Chairs at half court, the right slot and the left elbow; one line at half court on the left side.",
+    "organization": "Players go one at a time; rebound your own ball and rejoin.",
+    "instructions": [
+      "Attack the first chair: crossover and change direction.",
+      "Attack the second chair: inside-out dribble and keep the same hand.",
+      "Attack the third chair: spin away from it.",
+      "Finish at the rim with the hand away from the last chair.",
+      "Change the order of moves every round."
+    ],
+    "coachingPoints": [
+      "Make each move one arm-length from the chair.",
+      "Accelerate after every move.",
+      "Choose the finish hand away from the defender."
+    ],
+    "commonMistakes": [
+      "Same move at every chair because it feels safe.",
+      "Slowing down between chairs.",
+      "Finishing with the hand next to the chair."
+    ],
+    "safety": "Chairs are kept outside the restricted area; finishers never run through a chair line.",
+    "progressions": [
+      "Live defender replaces the third chair.",
+      "Time each run and set a team record."
+    ],
+    "regressions": ["Two chairs only.", "Jog speed with the moves walked through first."],
+    "variations": [
+      "Finish with a floater or pull-up.",
+      "Start from the right side for the weak hand."
+    ],
+    "successCriteria": [
+      "Correct move at every chair.",
+      "Finishes with the correct hand on every run."
+    ],
+    "gameApplication": "Games rarely offer one defender at a time; chaining different moves at speed prepares players for help defense.",
+    "repetitions": "4 to 6 runs",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_half_court",
+              "offset": [0, -0.6]
+            }
+          },
+          {
+            "id": "eq1",
+            "type": "equipment",
+            "kind": "chair",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [0, -2]
+            }
+          },
+          {
+            "id": "eq2",
+            "type": "equipment",
+            "kind": "chair",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "eq3",
+            "type": "equipment",
+            "kind": "chair",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [0.4, 0.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "half_court_center",
+                "offset": [-0.8, -2.8]
+              },
+              {
+                "anchor": "right_slot",
+                "offset": [-0.8, -0.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [1.4, 0.2]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [0.8, 0.8]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

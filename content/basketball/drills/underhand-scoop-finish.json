@@ -1,0 +1,119 @@
+{
+  "seedKey": "underhand-scoop-finish",
+  "title": "Underhand Scoop Finish",
+  "description": "Finishers scoop the ball up underhand from low to high, releasing early to get it over or around a rim protector's timing.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": [],
+  "subSkills": ["both_hands_finishing"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["scoop", "touch"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Release an underhand scoop early with backspin off the board, finishing before a shot-blocker can time it.",
+    "setup": "Lines at both wings; optional coach with a pad near the rim.",
+    "organization": "Alternate sides.",
+    "instructions": [
+      "Drive into the lane.",
+      "Gather with the hand under the ball, palm up.",
+      "Lift the ball from the hip in one sweeping motion.",
+      "Release early with a soft wrist roll for backspin off the board.",
+      "Repeat with the other hand."
+    ],
+    "coachingPoints": [
+      "Early release beats the block.",
+      "Palm up, fingers spin the ball.",
+      "High off the board."
+    ],
+    "commonMistakes": [
+      "Releasing too late into the blocker.",
+      "Throwing it hard.",
+      "Scooping from too far away."
+    ],
+    "safety": "Finishers land on two feet and clear the lane; the next player waits until the landing area is empty.",
+    "progressions": ["Live shot-blocker.", "Scoop off a euro."],
+    "regressions": ["Stationary scoops close to the rim.", "No defender."],
+    "variations": ["Scoop from the middle.", "Scoop with the opposite hand."],
+    "successCriteria": ["Soft touch on most reps.", "Finishes from both sides."],
+    "gameApplication": "Scoop finishes punish shot-blockers who jump at the ball at the normal lay-up height.",
+    "repetitions": "6 each hand",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [0.4, 1.2]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

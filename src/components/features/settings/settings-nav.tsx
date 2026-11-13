@@ -37,7 +37,7 @@ export function SettingsNav() {
                 {active ? (
                   <span
                     aria-hidden
-                    className="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-accent"
+                    className="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-accent-bright"
                   />
                 ) : null}
               </Link>

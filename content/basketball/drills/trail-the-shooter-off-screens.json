@@ -1,0 +1,165 @@
+{
+  "seedKey": "trail-the-shooter-off-screens",
+  "title": "Trail the Shooter off Screens",
+  "description": "Defenders chase a shooter off a down screen, trailing tight on the hip and contesting the catch-and-shoot from behind.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": ["closeouts", "screening"],
+  "subSkills": ["containing_the_dribble"],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["chase", "off-ball screens", "trail"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Navigate a down screen by trailing the shooter's hip and contesting without fouling.",
+    "setup": "Passer at the wing; screener at the elbow; shooter at the block; defender on the shooter.",
+    "organization": "Rotate roles.",
+    "instructions": [
+      "The screener sets a down screen.",
+      "The defender stays attached to the shooter's hip as they cut.",
+      "Go over the screen, trailing (do not go under).",
+      "Contest the catch with the hand from behind the shooter.",
+      "Recover to contain a drive if they put it down."
+    ],
+    "coachingPoints": [
+      "Hip on the shooter: chase like a shadow.",
+      "Squeeze between screener and shooter.",
+      "High hand on the contest."
+    ],
+    "commonMistakes": [
+      "Going under the screen and giving an open three.",
+      "Running into the screener.",
+      "Fouling on the contest from behind."
+    ],
+    "safety": "Defenders play legally: chest up, no reaching across the body, no pushing; stop play on any dangerous contact.",
+    "progressions": ["Shooter reads curl or fade.", "Add the screener's defender to help."],
+    "regressions": ["Shooter jogs.", "No shot: just the chase."],
+    "variations": ["Stagger screens.", "Flare screen chase."],
+    "successCriteria": ["Shooter rarely gets a clean look.", "No fouls on contests."],
+    "gameApplication": "Shooters live off screens; trailing tight takes away the catch-and-shoot.",
+    "repetitions": "6 reps per defender",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [0.6, 0.8]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [-0.3, 0.4]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o3",
+            "target": {
+              "entity": "x2"
+            },
+            "kind": "down"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [-0.6, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "defend",
+            "kind": "recover",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [-1, 0]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

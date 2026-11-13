@@ -49,7 +49,7 @@ export function ChoiceCard({
           "flex size-5 shrink-0 items-center justify-center border smooth-colors",
           multiple ? "rounded-md" : "rounded-full",
           selected
-            ? "border-accent bg-accent text-accent-ink"
+            ? "border-accent bg-accent-bright text-accent-ink"
             : "border-line-strong bg-transparent",
         )}
       >

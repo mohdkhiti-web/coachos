@@ -32,6 +32,9 @@ const RIM_R = 0.225; // 0.45 m inner diameter
 
 const f = (v: number) => Number(v.toFixed(4));
 
+const NEAR_HOOP = { at: { x: 0, y: 0 }, board: -1 } as const;
+const FAR_HOOP = { at: { x: 0, y: f(FAR_BASKET_Y) }, board: 1 } as const;
+
 /** Markings around ONE basket at the origin, with the baseline at y = BASELINE. */
 function endMarkings(transform?: string): CourtPrimitive[] {
   const p = (d: string, stroke: CourtPrimitive["stroke"] = "line"): CourtPrimitive => ({
@@ -141,6 +144,7 @@ export const FIBA_HALF_COURT: CourtPack = {
   tolerance: 0.6,
   anchors: NEAR_ANCHORS,
   primaryTarget: { x: 0, y: 0 },
+  hoops: [NEAR_HOOP],
   primitives: [
     {
       d: `M ${-HALF_WIDTH} ${BASELINE} H ${HALF_WIDTH} V ${HALF_LINE} H ${-HALF_WIDTH} Z`,
@@ -173,6 +177,7 @@ export const FIBA_HALF_COURT_FAR: CourtPack = {
   tolerance: 0.6,
   anchors: FAR_HALF_ANCHORS,
   primaryTarget: { x: 0, y: f(FAR_BASKET_Y) },
+  hoops: [FAR_HOOP],
   primitives: [
     {
       d: `M ${-HALF_WIDTH} ${HALF_LINE} H ${HALF_WIDTH} V ${f(HALF_LINE * 2 - BASELINE)} H ${-HALF_WIDTH} Z`,
@@ -197,6 +202,7 @@ export const FIBA_FULL_COURT: CourtPack = {
   tolerance: 0.6,
   anchors: FULL_ANCHORS,
   primaryTarget: { x: 0, y: 0 },
+  hoops: [NEAR_HOOP, FAR_HOOP],
   primitives: [
     {
       d: `M ${-HALF_WIDTH} ${BASELINE} H ${HALF_WIDTH} V ${f(HALF_LINE * 2 - BASELINE)} H ${-HALF_WIDTH} Z`,

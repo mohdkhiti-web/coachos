@@ -1,0 +1,141 @@
+{
+  "seedKey": "jump-stop-fake-finish",
+  "title": "Jump-Stop, Fake, Finish",
+  "description": "Drivers jump-stop in the lane, shot-fake to get a defender in the air, then step through or go up after the defender comes down.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["footwork", "decision_making"],
+  "subSkills": ["finishing_with_contact"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["jump stop", "shot fake"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use a shot fake after a jump stop to get a shot-blocker off the floor, then finish.",
+    "setup": "Driver at the top; shot-blocker at the rim.",
+    "organization": "Switch roles each rep.",
+    "instructions": [
+      "Drive into the lane and jump-stop on two feet.",
+      "Shot-fake: eyes and ball up, legs bent.",
+      "The defender jumps: step through past them and finish.",
+      "The defender stays down: go up strong and finish through contact.",
+      "Play it out."
+    ],
+    "coachingPoints": [
+      "Fake high with the eyes.",
+      "Stay low on the fake.",
+      "Step through on the defender's jump."
+    ],
+    "commonMistakes": [
+      "Standing up on the fake.",
+      "Travelling on the step-through.",
+      "Jumping into the defender."
+    ],
+    "safety": "Defender jumps vertically; no landing on the driver.",
+    "progressions": ["Add a second help defender.", "Pass out if both jump."],
+    "regressions": ["Defender jumps on cue.", "No step-through, just fake and go up."],
+    "variations": ["Fake and pivot to the other side.", "Fake and dump off."],
+    "successCriteria": ["Correct read on most reps.", "No travels."],
+    "gameApplication": "Many shot-blockers jump at the first move; the fake turns their aggression into an easy finish.",
+    "repetitions": "6 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "basket",
+              "offset": [0, 1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [0, -1.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [0.6, 1.4]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

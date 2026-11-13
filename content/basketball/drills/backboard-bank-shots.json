@@ -1,0 +1,146 @@
+{
+  "seedKey": "backboard-bank-shots",
+  "title": "Backboard Bank Shots",
+  "description": "Young shooters aim at the top corner of the backboard square from angles near the rim, learning that the board turns many misses into makes.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["finishing"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 6,
+  "ageMax": 14,
+  "playersMin": 1,
+  "playersMax": 12,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["bank shot", "backboard", "fundamentals"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use the backboard square accurately from the 45-degree angles close to the rim.",
+    "setup": "Two spots on each side of the rim at 45 degrees, about two metres out.",
+    "organization": "Pairs share a basket: one shoots, one rebounds and passes.",
+    "instructions": [
+      "Stand square to the backboard at the right 45-degree spot.",
+      "Aim at the top near corner of the square.",
+      "Shoot with a soft arc so the ball kisses the board and drops.",
+      "Make five, then switch to the left side.",
+      "Partner rebounds and passes back."
+    ],
+    "coachingPoints": [
+      "Look at the top corner, not at the rim.",
+      "Soft touch: the board does the work.",
+      "Shoot from 45 degrees, not straight on."
+    ],
+    "commonMistakes": [
+      "Throwing the ball hard against the board.",
+      "Aiming at the middle of the square.",
+      "Using the board from straight in front of the rim."
+    ],
+    "safety": "Shooters rebound their own ball only when the lane is clear; nobody stands under the rim while others shoot.",
+    "progressions": ["Move out to three metres.", "Bank shots off one dribble."],
+    "regressions": ["Lowered rim or smaller ball.", "One metre from the rim."],
+    "variations": ["Bank shot after a jump stop.", "Alternate sides every shot."],
+    "successCriteria": [
+      "Four of five bank shots made from each side.",
+      "Ball hits the board inside the top corner."
+    ],
+    "gameApplication": "Bank shots from the angles are the highest-percentage shots for young players around the rim.",
+    "repetitions": "5 makes per side, twice",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      },
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_block",
+              "offset": [0.6, 1]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-0.6, 1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "basket",
+              "offset": [0, 2.2]
+            },
+            "text": "Top corner of the square"
+          }
+        ]
+      }
+    }
+  ]
+}

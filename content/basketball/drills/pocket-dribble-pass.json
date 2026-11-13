@@ -1,0 +1,151 @@
+{
+  "seedKey": "pocket-dribble-pass",
+  "title": "Pocket Dribble to Pass",
+  "description": "Ball handlers practise picking the ball up into the 'pocket' on the hip at the end of a drive and passing in one motion, instead of holding it in front of the defender.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["passing"],
+  "subSkills": ["passing_on_the_move", "protect_the_ball"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["pocket pass", "drive and kick"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Gather the ball on the hip at the end of a dribble and deliver a one-handed pass without exposing it.",
+    "setup": "Driver at the top, shooters in both corners.",
+    "organization": "Drive, pass, rotate to the corner you passed to.",
+    "instructions": [
+      "Drive toward the elbow with the right hand.",
+      "On the last dribble, gather the ball up into the right hip pocket.",
+      "Pass one-handed from the pocket to the right corner shooter.",
+      "The shooter catches and shoots; the driver replaces the shooter.",
+      "Repeat to the left with the left hand."
+    ],
+    "coachingPoints": [
+      "Gather on the hip, not in front of the chest.",
+      "Pass with a wrist flick from the pocket.",
+      "Keep driving with the eyes up to see the shooter."
+    ],
+    "commonMistakes": [
+      "Bringing the ball to the chest and telegraphing the pass.",
+      "Jump-passing without a target.",
+      "Passing behind the shooter."
+    ],
+    "safety": "Shooters rebound their own ball; next driver waits for the corner to clear.",
+    "progressions": [
+      "A defender stunts at the driver.",
+      "Choose corner or wing shooter based on a help defender."
+    ],
+    "regressions": ["Two-hand pass from the hip.", "Walk the gather first."],
+    "variations": ["Pocket bounce pass.", "Pass to a rolling screener instead of the corner."],
+    "successCriteria": [
+      "Pass arrives on the shooter's shooting pocket.",
+      "Ball never comes above the waist before the pass."
+    ],
+    "gameApplication": "Pocket passes at the end of drives are quicker to deliver and harder to read than chest passes.",
+    "repetitions": "6 reps each side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 0.6]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [-0.2, -0.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

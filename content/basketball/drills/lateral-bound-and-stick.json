@@ -1,0 +1,106 @@
+{
+  "seedKey": "lateral-bound-and-stick",
+  "title": "Lateral Bound and Stick",
+  "description": "Players bound sideways from one leg to the other and stick each landing, building the lateral power and control used in defensive slides and cuts.",
+  "category": "footwork",
+  "primarySkill": "speed_agility",
+  "secondarySkills": ["on_ball_defense"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 5,
+  "durationMax": 6,
+  "space": "any_space",
+  "tags": ["lateral power", "landing"],
+  "equipment": [],
+  "content": {
+    "objective": "Generate lateral power and control the landing on one leg.",
+    "setup": "Players beside a court line.",
+    "organization": "Whole group.",
+    "instructions": [
+      "Stand on the right leg.",
+      "Bound sideways to the left and land on the left leg.",
+      "Stick the landing for two seconds.",
+      "Bound back to the right.",
+      "Repeat for the set."
+    ],
+    "coachingPoints": [
+      "Push off the outside of the foot.",
+      "Land soft and hold.",
+      "Knee over the toes."
+    ],
+    "commonMistakes": ["Short, weak bounds.", "Wobbling landings.", "Knee caving in."],
+    "safety": "Stop and correct knee position; keep sets short.",
+    "progressions": ["Longer bounds.", "Continuous bounds without the hold."],
+    "regressions": ["Two-foot lateral hops.", "Shorter distance."],
+    "variations": ["Bound and catch a pass.", "Bound over a flat cone."],
+    "successCriteria": ["Holds every landing.", "Correct alignment."],
+    "gameApplication": "Lateral power helps defenders stay in front and cutters explode sideways.",
+    "repetitions": "3 sets of 8 bounds",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [-1, 0]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [1, 0]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [-1, 0]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

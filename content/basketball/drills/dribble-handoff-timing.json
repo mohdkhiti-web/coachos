@@ -1,0 +1,162 @@
+{
+  "seedKey": "dribble-handoff-timing",
+  "title": "Dribble Hand-Off Timing",
+  "description": "Pairs practise the dribble hand-off: the dribbler hands the ball to a teammate cutting off their hip, then becomes a screen or rolls to the rim.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["screening", "decision_making"],
+  "subSkills": ["setting_screens"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "2v2",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["hand-off", "DHO", "two-man game"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Execute a safe, well-timed hand-off with a shielding body, and read the defense to shoot, drive or hit the roll.",
+    "setup": "Dribbler at the top of the key, receiver at the wing.",
+    "organization": "Work unopposed first, then 2v2.",
+    "instructions": [
+      "The dribbler dribbles toward the wing receiver.",
+      "The receiver waits, then cuts tight off the dribbler's hip.",
+      "The dribbler stops, hands the ball with two hands, body sideways to protect it.",
+      "The receiver reads: shoot behind the hand-off, or drive if the defender trails.",
+      "The hand-off player rolls to the rim for a possible pass."
+    ],
+    "coachingPoints": [
+      "Hand the ball, do not toss it.",
+      "The receiver cuts shoulder to hip, tight.",
+      "Set your feet at the hand-off: it is a screen."
+    ],
+    "commonMistakes": [
+      "A moving hand-off (illegal screen).",
+      "Receiver cutting too early and too wide.",
+      "Exposing the ball to the defender during the hand-off."
+    ],
+    "safety": "2v2 defenders fight over or under, not through, the screener.",
+    "progressions": ["2v2 live from the hand-off.", "Add a weak-side shooter."],
+    "regressions": ["Stationary hand-off without dribbling into it.", "Walk-through timing."],
+    "variations": ["Fake the hand-off and keep the ball (keeper).", "Hand-off at the elbow."],
+    "successCriteria": [
+      "Hand-off made with the ball shielded every time.",
+      "Receiver makes the correct read in 7 of 10 reps."
+    ],
+    "gameApplication": "Hand-offs are a simple, safe way to start two-player actions, especially against pressure.",
+    "repetitions": "6 reps each side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [0, 0.2]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [-0.6, -0.4]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.2, 0.8]
+              }
+            ]
+          },
+          {
+            "id": "a5",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

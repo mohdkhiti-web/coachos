@@ -1,0 +1,163 @@
+{
+  "seedKey": "pivot-and-pass-square",
+  "title": "Pivot-and-Pass Square",
+  "description": "Four players form a square; each catches, pivots to face the next corner and passes, so the ball travels round the square with constant pivoting.",
+  "category": "passing",
+  "primarySkill": "pivoting",
+  "secondarySkills": ["passing", "catching"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "group",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 6,
+  "ageMax": 14,
+  "playersMin": 4,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["pivot", "square", "fundamentals"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Catch on balance, pivot without travelling and pass to the next player, linking the three basic skills.",
+    "setup": "Four players stand at the corners of a five-metre square.",
+    "organization": "Groups of four; one ball, then two balls.",
+    "instructions": [
+      "The player with the ball passes to the right-hand corner.",
+      "The receiver catches with a jump stop and chins the ball.",
+      "The receiver pivots to face the next corner and passes.",
+      "After two laps, reverse direction (pivot the other way).",
+      "Add a second ball at the opposite corner for more touches."
+    ],
+    "coachingPoints": [
+      "Catch, pivot, pass: three distinct actions.",
+      "Pivot on the ball of the foot.",
+      "Show target hands before the ball comes."
+    ],
+    "commonMistakes": [
+      "Turning by lifting both feet (travel).",
+      "Passing before facing the target.",
+      "Receivers standing flat-footed."
+    ],
+    "safety": "With two balls, call the receiver's name to avoid a player being hit while pivoting.",
+    "progressions": ["Two balls chasing each other round the square.", "Use reverse pivots only."],
+    "regressions": ["Bigger square, one ball, walking pace.", "Allow a step before passing."],
+    "variations": ["Bounce passes only.", "Defender in the middle tries to intercept."],
+    "successCriteria": [
+      "Two laps without a travel or a dropped pass.",
+      "Every catch ends in a balanced stop."
+    ],
+    "gameApplication": "Pivoting to face the play after a catch is how players see the floor and pass without travelling.",
+    "repetitions": "4 laps each direction",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      },
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-1, 0]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-1, 3]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [1, 3]
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [1, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4"
+          },
+          {
+            "id": "a4",
+            "step": 4,
+            "type": "pass",
+            "from": "o4",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

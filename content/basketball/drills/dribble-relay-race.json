@@ -1,0 +1,217 @@
+{
+  "seedKey": "dribble-relay-race",
+  "title": "Dribble Relay Race",
+  "description": "Teams race in relay lines, dribbling around a cone and back with the hand the coach calls; a fun competition for young groups.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["competitiveness", "speed_agility"],
+  "subSkills": ["weak_hand"],
+  "level": "beginner",
+  "intensity": "high",
+  "format": "team",
+  "phases": ["small_sided", "conditioning"],
+  "ageMin": 6,
+  "ageMax": 14,
+  "playersMin": 6,
+  "playersMax": 30,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["relay", "game", "u10"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 4
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Dribble at speed around a turning point without losing control, under the pressure of a team race.",
+    "setup": "Teams of three to six in lines on the baseline; one cone per team at the free-throw line extended.",
+    "organization": "First player in each line holds the team's ball.",
+    "instructions": [
+      "On the whistle, the first player dribbles to the cone with the called hand.",
+      "Dribble around the cone, changing hands on the turn.",
+      "Dribble back and hand the ball to the next player (no throwing).",
+      "The next player cannot leave the baseline before receiving the ball.",
+      "First team with everyone home and seated wins."
+    ],
+    "coachingPoints": [
+      "Turn tight around the cone with the ball on the outside hand.",
+      "Hand-off, not a throw: stop and give it safely.",
+      "Speed is good, control is better: a lost ball costs more."
+    ],
+    "commonMistakes": [
+      "Running ahead of the ball and losing it at the turn.",
+      "Throwing the ball to the next player.",
+      "Leaving early."
+    ],
+    "safety": "Lines at least three metres apart; teammates wait behind the baseline, not on the court.",
+    "progressions": ["Add a crossover at the halfway point.", "Two cones to zig-zag around."],
+    "regressions": ["Walk the race.", "Allow any hand."],
+    "variations": [
+      "Weak-hand only round.",
+      "Players must make a shot before the next teammate goes."
+    ],
+    "successCriteria": [
+      "Team finishes without a lost ball.",
+      "Every hand-off is a safe hand-to-hand exchange."
+    ],
+    "gameApplication": "Competition makes players handle the ball at the speed of a game rather than the speed of a drill.",
+    "repetitions": "4 to 5 races",
+    "resources": [
+      {
+        "title": "Jr. NBA practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner",
+              "offset": [1, 0]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-0.4, -1.2]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_block",
+              "offset": [0.4, -1.2]
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_corner",
+              "offset": [-1, 0]
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing",
+              "offset": [0.6, -0.6]
+            }
+          },
+          {
+            "id": "k2",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-0.4, 0]
+            }
+          },
+          {
+            "id": "k3",
+            "type": "cone",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [0.4, 0]
+            }
+          },
+          {
+            "id": "k4",
+            "type": "cone",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [-0.6, -0.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b3",
+            "type": "ball",
+            "heldBy": "o3"
+          },
+          {
+            "id": "b4",
+            "type": "ball",
+            "heldBy": "o4"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [1.1, -0.2]
+              },
+              {
+                "anchor": "left_corner",
+                "offset": [1.2, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o4",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [-1.1, -0.2]
+              },
+              {
+                "anchor": "right_corner",
+                "offset": [-1.2, 0.4]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "seedKey": "rapid-fire-touch-passing",
+  "title": "Rapid-Fire Touch Passing",
+  "description": "One player in the middle receives and returns passes from three teammates around them as fast as possible, sharpening hands and reaction.",
+  "category": "passing",
+  "primarySkill": "catching",
+  "secondarySkills": ["passing", "communication"],
+  "subSkills": [],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 10,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "any_space",
+  "tags": ["quick hands", "reaction"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Catch and return passes instantly with soft hands, building quick reactions and touch.",
+    "setup": "Groups of four: one player in the middle, three outside in a semicircle three metres away, two balls.",
+    "organization": "30 seconds in the middle, then rotate.",
+    "instructions": [
+      "Two outside players hold a ball.",
+      "The middle player receives a pass and returns it immediately to the player without a ball.",
+      "The next pass comes straight away from another outside player.",
+      "Keep the two balls moving for 30 seconds.",
+      "Rotate so everyone takes a turn in the middle."
+    ],
+    "coachingPoints": [
+      "Soft hands: give with the catch.",
+      "Return the ball to the player with empty hands.",
+      "Stay low and on the balls of the feet."
+    ],
+    "commonMistakes": [
+      "Catching against the chest and losing the ball.",
+      "Returning to a player who already has a ball.",
+      "Outside passers throwing before the middle player is ready."
+    ],
+    "safety": "Chest passes only, not too hard; the middle player calls 'stop' if overwhelmed.",
+    "progressions": ["Three balls.", "Middle player must use one-hand returns."],
+    "regressions": ["One ball.", "Outside players say the middle player's name before passing."],
+    "variations": ["Middle player faces away and turns on a call.", "Bounce passes only."],
+    "successCriteria": [
+      "30 seconds without a drop.",
+      "Returns go to the correct player every time."
+    ],
+    "gameApplication": "Quick hands help players handle hard, unexpected passes in traffic.",
+    "repetitions": "2 turns in the middle",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 1]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-1, 3]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 2]
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [1, 3]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o4"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o2",
+            "to": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o3"
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o4",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

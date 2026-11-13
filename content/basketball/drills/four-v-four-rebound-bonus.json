@@ -1,0 +1,247 @@
+{
+  "seedKey": "four-v-four-rebound-bonus",
+  "title": "4v4 Rebound-Bonus Scrimmage",
+  "description": "A 4v4 scrimmage where offensive rebounds and defensive box-out stops earn bonus points, making rebounding decide the game.",
+  "category": "small_sided_games",
+  "primarySkill": "competitiveness",
+  "secondarySkills": [
+    "rebounding",
+    "boxing_out"
+  ],
+  "subSkills": [
+    "offensive_rebounding",
+    "defensive_rebounding"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "4v4",
+  "phases": [
+    "small_sided",
+    "game"
+  ],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 8,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "rebounding",
+    "bonus",
+    "scrimmage"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 8
+    }
+  ],
+  "content": {
+    "objective": "Make rebounding a priority in live play by rewarding it as much as scoring.",
+    "setup": "Half-court 4v4.",
+    "organization": "Play for six minutes; switch ends.",
+    "instructions": [
+      "Play 4v4 live.",
+      "Offensive rebound = 1 bonus point.",
+      "Defensive rebound with all four attackers boxed out = 1 bonus point (coach judges).",
+      "Baskets count normally.",
+      "Most points wins."
+    ],
+    "coachingPoints": [
+      "Everyone crashes or boxes out.",
+      "Find a body.",
+      "Secure the ball."
+    ],
+    "commonMistakes": [
+      "Watching the shot.",
+      "Guards leaking out.",
+      "Only bigs rebounding."
+    ],
+    "safety": "Fair contact only; the coach stops play for reckless fouls and keeps waiting teams off the playing area.",
+    "progressions": [
+      "Offensive rebound bonus doubles in the last minute.",
+      "5v5."
+    ],
+    "regressions": [
+      "3v3.",
+      "Coach points out the box-outs."
+    ],
+    "variations": [
+      "Points only from rebounds.",
+      "Free-throw rebounding scenario."
+    ],
+    "successCriteria": [
+      "Rebounding battle won.",
+      "Box-outs on most shots."
+    ],
+    "gameApplication": "Rebounding margins decide close games.",
+    "repetitions": "6 minutes x 2",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_block"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                0,
+                -0.8
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [
+                -0.4,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "entity": "o3",
+              "offset": [
+                0.4,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "x4",
+            "type": "player",
+            "side": "defense",
+            "label": "X4",
+            "at": {
+              "entity": "o4",
+              "offset": [
+                0,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x4",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [
+                  -0.2,
+                  0.2
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "move",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [
+                  0.4,
+                  0
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

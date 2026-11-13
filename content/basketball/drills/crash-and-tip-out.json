@@ -1,0 +1,217 @@
+{
+  "seedKey": "crash-and-tip-out",
+  "title": "Crash and Tip-Out",
+  "description": "When an offensive rebounder cannot secure the ball in traffic, they tip it out to a guard at the top to reset the possession.",
+  "category": "rebounding",
+  "primarySkill": "rebounding",
+  "secondarySkills": [
+    "passing",
+    "communication"
+  ],
+  "subSkills": [
+    "offensive_rebounding"
+  ],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [
+    "skill"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "tip-out",
+    "second chance",
+    "reset"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Win extra possessions in traffic by tapping contested rebounds out to a teammate instead of forcing a catch.",
+    "setup": "Two crashers vs two defenders near the basket; a guard at the top of the key.",
+    "organization": "Six shots per group; rotate.",
+    "instructions": [
+      "The coach shoots.",
+      "Crashers fight for position.",
+      "If a clean catch is not possible, tip the ball out toward the guard.",
+      "The guard calls 'Out!' to be found.",
+      "Reset and play live 2v2 inside with the guard."
+    ],
+    "coachingPoints": [
+      "Tip with fingertips toward a target.",
+      "Guard talks and stays behind the arc.",
+      "Choose: catch if clear, tip if contested."
+    ],
+    "commonMistakes": [
+      "Tipping wildly.",
+      "Guard drifting into the paint.",
+      "Trying to catch everything."
+    ],
+    "safety": "Contact is with the body and forearms only: no pushing in the back, no undercutting a jumping player.",
+    "progressions": [
+      "Defensive guard contests the tip-out.",
+      "3v3."
+    ],
+    "regressions": [
+      "Coach tosses high off the board.",
+      "No defenders."
+    ],
+    "variations": [
+      "Tip to the wing.",
+      "Tip to yourself."
+    ],
+    "successCriteria": [
+      "Tip reaches the guard often.",
+      "Extra possessions won."
+    ],
+    "gameApplication": "Teams that tip out keep possession even when outnumbered on the glass.",
+    "repetitions": "6 shots per group",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "basket",
+              "offset": [
+                -0.8,
+                1
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "basket",
+              "offset": [
+                0.8,
+                1
+              ]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "basket",
+              "offset": [
+                -0.4,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "basket",
+              "offset": [
+                0.4,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "c1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  -0.4,
+                  0.4
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                0,
+                -1
+              ]
+            },
+            "text": "Out!"
+          }
+        ]
+      }
+    }
+  ]
+}

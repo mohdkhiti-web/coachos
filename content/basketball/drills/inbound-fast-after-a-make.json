@@ -1,0 +1,179 @@
+{
+  "seedKey": "inbound-fast-after-a-make",
+  "title": "Inbound Fast After a Make",
+  "description": "A designated player grabs the ball out of the net, steps out of bounds and inbounds immediately so the team can run against a defense still celebrating.",
+  "category": "transition",
+  "primarySkill": "inbounding",
+  "secondarySkills": [
+    "passing",
+    "conditioning"
+  ],
+  "subSkills": [
+    "baseline_inbounds",
+    "passing_on_the_move"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": [
+    "make-take",
+    "quick inbound"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Turn opponents' made baskets into fast-break chances with a quick inbound and push.",
+    "setup": "A shooter makes a lay-up; the designated inbounder stands under the basket; the point guard is at the elbow.",
+    "organization": "Repeat for 90 seconds; rotate roles.",
+    "instructions": [
+      "The coach or a player makes a lay-up.",
+      "The inbounder grabs the ball as it comes through the net.",
+      "Step out of bounds quickly (any spot along the baseline).",
+      "Inbound to the point guard turning to the sideline.",
+      "Push and finish at the far end."
+    ],
+    "coachingPoints": [
+      "Ball out of the net immediately.",
+      "Point guard gets open early.",
+      "Run as soon as the pass is in."
+    ],
+    "commonMistakes": [
+      "Waiting for the ball to roll.",
+      "Stepping on the line (turnover).",
+      "Point guard standing still."
+    ],
+    "safety": "Lanes stay wide so players do not collide; runners finishing at speed have clear space behind the basket.",
+    "progressions": [
+      "Add a defender on the point guard.",
+      "Two defenders back."
+    ],
+    "regressions": [
+      "Inbounder starts out of bounds.",
+      "No defense."
+    ],
+    "variations": [
+      "Long pass to a runner.",
+      "Inbound to the wing."
+    ],
+    "successCriteria": [
+      "Inbound within two seconds.",
+      "Shot within eight seconds."
+    ],
+    "gameApplication": "Teams that relax after scoring are vulnerable to quick inbounds.",
+    "repetitions": "90 seconds x 3",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [
+                0.6,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [
+                0.6,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "under_basket",
+                "offset": [
+                  1.2,
+                  1.2
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_sideline_center",
+                "offset": [
+                  -1.6,
+                  0
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

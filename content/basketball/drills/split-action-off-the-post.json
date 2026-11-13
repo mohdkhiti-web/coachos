@@ -1,0 +1,191 @@
+{
+  "seedKey": "split-action-off-the-post",
+  "title": "Split Action Off the Post",
+  "description": "After a post entry, the two perimeter players on that side screen for each other ('split') so one cuts to the rim and the other pops for a shot.",
+  "category": "team_offense",
+  "primarySkill": "screening",
+  "secondarySkills": [
+    "cutting",
+    "decision_making"
+  ],
+  "subSkills": [
+    "setting_screens",
+    "using_screens"
+  ],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "3v3",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 6,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "split",
+    "post",
+    "screen"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Create scoring chances off a post catch by running split screens that punish defenders who help.",
+    "setup": "Post at the right block; perimeter players at the right wing and top; three defenders.",
+    "organization": "Rotate every four possessions.",
+    "instructions": [
+      "The wing enters to the post.",
+      "The passer screens for the top player (or vice versa).",
+      "The cutter reads: if the defender trails, curl to the rim; if they cheat, pop.",
+      "The screener slips or pops opposite.",
+      "The post passes to the open player."
+    ],
+    "coachingPoints": [
+      "Screen right after the pass.",
+      "Cutter reads the defender.",
+      "Post holds the ball high, looks for the cutter first."
+    ],
+    "commonMistakes": [
+      "Both players cutting the same way.",
+      "Screening too close to the post (crowding).",
+      "Post forcing a shot."
+    ],
+    "safety": "Screens are set stationary and legal; defenders are allowed to see the screen in walk-throughs before live play.",
+    "progressions": [
+      "Defense switches the split.",
+      "Add a weak-side shooter."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "No defense."
+    ],
+    "variations": [
+      "Split on the high post.",
+      "Split after a pass from the top."
+    ],
+    "successCriteria": [
+      "Open cut or shot on most possessions.",
+      "Spacing kept."
+    ],
+    "gameApplication": "Split action keeps the post's teammates dangerous instead of standing.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [
+                -0.2,
+                -0.2
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "screen",
+            "entity": "o1",
+            "target": {
+              "anchor": "right_slot",
+              "offset": [
+                -0.2,
+                0
+              ]
+            },
+            "kind": "ball"
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "cut",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [
+                  0.2,
+                  0.4
+                ]
+              },
+              {
+                "anchor": "right_elbow",
+                "offset": [
+                  -0.4,
+                  0.6
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

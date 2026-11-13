@@ -1,0 +1,202 @@
+{
+  "seedKey": "rondo-four-v-two-passing",
+  "title": "Rondo 4v2 Passing Box",
+  "description": "Four passers on the sides of a square keep the ball from two defenders in the middle, using one-touch passes and fakes — borrowed from football and ideal for passing under pressure.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["decision_making", "communication"],
+  "subSkills": ["passing_under_pressure"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["warm_up", "small_sided"],
+  "ageMin": 10,
+  "ageMax": 99,
+  "playersMin": 6,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["rondo", "keep away", "pressure"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 4
+    }
+  ],
+  "content": {
+    "objective": "Keep possession against two defenders through quick decisions, fakes and passes between the defenders.",
+    "setup": "A square about six metres a side marked with cones; one passer on each side, two defenders inside.",
+    "organization": "The defender who forces a turnover swaps with the passer who lost it.",
+    "instructions": [
+      "Passers stay on their side of the square but may slide along it.",
+      "Pass to any other passer; no lob passes over head height.",
+      "Count consecutive passes: ten in a row earns a point.",
+      "A deflection, steal or pass out of the square swaps the defender with the passer at fault.",
+      "Play two-minute rounds."
+    ],
+    "coachingPoints": [
+      "Pass between the two defenders when the gap opens.",
+      "Fake before every pass.",
+      "Receivers slide to make the passing angle."
+    ],
+    "commonMistakes": [
+      "Always passing to the nearest player.",
+      "Holding the ball until both defenders arrive.",
+      "Floaty passes that defenders can step into."
+    ],
+    "safety": "Defenders do not dive for the ball; no slapping arms.",
+    "progressions": ["Shrink the square.", "Passers must pass within two seconds."],
+    "regressions": ["5v2 with an extra passer.", "Bigger square."],
+    "variations": ["Bounce passes only.", "Defenders score by forcing a held ball (five seconds)."],
+    "successCriteria": [
+      "Ten consecutive passes at least once per round.",
+      "Splitting passes between the defenders."
+    ],
+    "gameApplication": "Passing against two defenders mirrors passing out of traps and against active zones.",
+    "repetitions": "3 rounds of 2 minutes",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-0.8, 2.2]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [0.8, 2.2]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [0.8, -1.2]
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-0.8, -1.2]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [-0.6, 1]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0.6, 0]
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-1.6, 3]
+            }
+          },
+          {
+            "id": "k2",
+            "type": "cone",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [1.6, 3]
+            }
+          },
+          {
+            "id": "k3",
+            "type": "cone",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [1.6, -2]
+            }
+          },
+          {
+            "id": "k4",
+            "type": "cone",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-1.6, -2]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o3",
+            "kind": "bounce"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

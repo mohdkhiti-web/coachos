@@ -1,0 +1,225 @@
+{
+  "seedKey": "crossover-gates",
+  "title": "Crossover Gates",
+  "description": "Pairs of cones form gates across the half court; players must make a crossover in front of each gate and explode through it.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["speed_agility"],
+  "subSkills": ["crossover", "change_of_pace"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 16,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["crossover", "cones"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Make a low, tight crossover with a change of speed so the ball goes from hand to hand below the knees and away from a defender.",
+    "setup": "Five gates (two cones a metre apart) are set in a zig-zag from the baseline to half court.",
+    "organization": "One line on the baseline; the next player starts when the one ahead passes the second gate.",
+    "instructions": [
+      "Dribble toward the first gate with the right hand.",
+      "Slow down one stride before the gate (sell it).",
+      "Cross the ball low to the left hand in front of the gate.",
+      "Burst through the gate with the left hand and head to the next gate.",
+      "Repeat at every gate, alternating hands, and finish with a lay-up."
+    ],
+    "coachingPoints": [
+      "Cross the ball below the knees, not across the waist.",
+      "Plant the outside foot hard to change direction.",
+      "Speed up after the cross, not before it."
+    ],
+    "commonMistakes": [
+      "Wide, high crossovers a defender could poke away.",
+      "Making the move at the gate instead of before it.",
+      "Same speed through the whole course."
+    ],
+    "safety": "Use flat cones or discs so no one trips; keep the next player waiting until the gap is safe.",
+    "progressions": [
+      "Replace each crossover with a between-the-legs or behind-the-back change.",
+      "Add a passive defender at the last gate."
+    ],
+    "regressions": ["Walk the course first, then jog.", "Widen the gates."],
+    "variations": [
+      "Two-move gates: cross then in-and-out.",
+      "Time each run and chase a personal best."
+    ],
+    "successCriteria": [
+      "All five crossovers made below the knees without touching a cone.",
+      "Clear burst of speed after each gate."
+    ],
+    "gameApplication": "The crossover-and-burst is the most common way to beat a defender who is overplaying one hand.",
+    "repetitions": "4 to 6 runs per player",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner",
+              "offset": [0.6, 0]
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-1.2, 0.8]
+            }
+          },
+          {
+            "id": "k2",
+            "type": "cone",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-0.2, 0.8]
+            }
+          },
+          {
+            "id": "k3",
+            "type": "cone",
+            "at": {
+              "anchor": "right_block",
+              "offset": [0.2, 2.5]
+            }
+          },
+          {
+            "id": "k4",
+            "type": "cone",
+            "at": {
+              "anchor": "right_block",
+              "offset": [1.2, 2.5]
+            }
+          },
+          {
+            "id": "k5",
+            "type": "cone",
+            "at": {
+              "anchor": "left_slot",
+              "offset": [-0.6, 0]
+            }
+          },
+          {
+            "id": "k6",
+            "type": "cone",
+            "at": {
+              "anchor": "left_slot",
+              "offset": [0.4, 0]
+            }
+          },
+          {
+            "id": "k7",
+            "type": "cone",
+            "at": {
+              "anchor": "right_slot",
+              "offset": [0.2, 1.8]
+            }
+          },
+          {
+            "id": "k8",
+            "type": "cone",
+            "at": {
+              "anchor": "right_slot",
+              "offset": [1.2, 1.8]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [-0.7, 0.2]
+              },
+              {
+                "anchor": "right_block",
+                "offset": [0.7, 1.9]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_slot",
+                "offset": [-0.1, -0.6]
+              },
+              {
+                "anchor": "right_slot",
+                "offset": [0.7, 1.2]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [0.4, -1]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

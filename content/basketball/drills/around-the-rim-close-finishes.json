@@ -1,0 +1,156 @@
+{
+  "seedKey": "around-the-rim-close-finishes",
+  "title": "Around-the-Rim Close Finishes",
+  "description": "Players finish from five spots right around the rim with both hands, building touch on short shots that decide close games.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": [],
+  "subSkills": ["both_hands_finishing"],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "individual",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 7,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 10,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["touch", "close range", "both hands"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Finish close shots with either hand from every angle around the rim.",
+    "setup": "Five spots in a tight arc one metre from the rim.",
+    "organization": "Individual; two or three players per basket in turns.",
+    "instructions": [
+      "From the right baseline spot, finish with the right hand off the board.",
+      "Move to the right angle, then straight in, then the left angle and left baseline.",
+      "Use the left hand on the left side.",
+      "Make two at each spot before moving on.",
+      "Repeat starting from the left."
+    ],
+    "coachingPoints": [
+      "Soft touch: the ball kisses the board.",
+      "Hand away from where a defender would be.",
+      "Jump straight up."
+    ],
+    "commonMistakes": [
+      "Using the strong hand on both sides.",
+      "Throwing the ball too hard.",
+      "Not using the board at angles."
+    ],
+    "safety": "Players take turns; no one under the rim during another's shot.",
+    "progressions": ["Add a pad bump.", "One dribble into each spot."],
+    "regressions": ["One make per spot.", "Lowered rim."],
+    "variations": ["Reverse finishes at the baseline spots.", "Power finishes off two feet."],
+    "successCriteria": [
+      "Two makes at every spot with the correct hand.",
+      "Under 20 attempts for the round."
+    ],
+    "gameApplication": "Close finishes are where most points are scored; touch from every angle matters.",
+    "repetitions": "2 rounds",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "basket",
+              "offset": [1.4, 0.2]
+            }
+          },
+          {
+            "id": "mk1",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "basket",
+              "offset": [1.4, 0.2]
+            }
+          },
+          {
+            "id": "mk2",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "basket",
+              "offset": [1.1, 1]
+            }
+          },
+          {
+            "id": "mk3",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "basket",
+              "offset": [0, 1.4]
+            }
+          },
+          {
+            "id": "mk4",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "basket",
+              "offset": [-1.1, 1]
+            }
+          },
+          {
+            "id": "mk5",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "basket",
+              "offset": [-1.4, 0.2]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

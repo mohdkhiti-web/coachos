@@ -1,0 +1,145 @@
+{
+  "seedKey": "open-and-pinch-vs-back-cut",
+  "title": "Open and Pinch vs the Back Cut",
+  "description": "A defender in denial reacts to a back cut by opening the hips toward the ball and pinching to the rim side, keeping vision of ball and cutter.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": ["help_defense", "footwork"],
+  "subSkills": ["help_position"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["back cut", "denial"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Defend a back cut without losing sight of the ball by opening to the ball, not turning away.",
+    "setup": "Passer at the top; wing with a defender in denial.",
+    "organization": "Rotate roles.",
+    "instructions": [
+      "The defender denies the wing pass.",
+      "The wing cuts back door.",
+      "The defender opens the hips toward the ball (head turns to the ball side).",
+      "Sprint to beat the cutter to the rim side, arm in the passing lane.",
+      "Play live if the pass is made."
+    ],
+    "coachingPoints": [
+      "Open toward the ball, never turn your back to it.",
+      "Lead with the hand in the lane.",
+      "Beat the cutter to the rim."
+    ],
+    "commonMistakes": [
+      "Turning toward the cutter and losing the ball.",
+      "Getting stuck in denial.",
+      "Running behind the cutter."
+    ],
+    "safety": "Defenders play legally: chest up, no reaching across the body, no pushing; stop play on any dangerous contact.",
+    "progressions": ["Cutter reads denial and chooses.", "Add weak-side help."],
+    "regressions": ["Cutter jogs.", "No pass."],
+    "variations": ["Back cut from the corner.", "Back cut from the high post."],
+    "successCriteria": ["Back-door pass denied on most reps.", "Vision of the ball maintained."],
+    "gameApplication": "Denial defense invites back cuts; opening and pinching shuts them down.",
+    "repetitions": "6 reps per defender",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [-0.6, -0.4]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.6, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "recover",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.2, 0.2]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

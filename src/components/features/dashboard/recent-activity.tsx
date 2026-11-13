@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { getFormatter, getTranslations } from "next-intl/server";
 import { Card, CardBody } from "@/components/ui/card";
-import { SectionMarker } from "@/components/ui/section-marker";
 import { listOwnActivity } from "@/modules/audit";
 import type { WidgetProps } from "./widgets";
 
@@ -18,7 +17,6 @@ export async function RecentActivity({ viewer }: WidgetProps) {
   return (
     <Card interactive>
       <CardBody className="space-y-4">
-        <SectionMarker n={3}>{t("eyebrow")}</SectionMarker>
         <h2 className="text-lg font-semibold tracking-tight text-ink">{t("title")}</h2>
         {events.length === 0 ? (
           <p className="text-sm text-ink-muted">{t("empty")}</p>

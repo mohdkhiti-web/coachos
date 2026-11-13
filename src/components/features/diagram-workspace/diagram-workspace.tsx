@@ -1803,7 +1803,7 @@ function Workspace({
                   className={cn(
                     "h-10 min-w-11 rounded-md border px-2 text-xs font-medium tabular-nums",
                     speed === s
-                      ? "border-accent bg-accent text-accent-ink"
+                      ? "border-accent bg-accent-bright text-accent-ink"
                       : "border-line-strong bg-surface-raised text-ink hover:bg-surface-sunken",
                   )}
                 >
@@ -2053,6 +2053,7 @@ function Workspace({
               step={playMode ? undefined : step}
               positions={positions}
               visibleActions={playFrame?.visibleActions}
+              ballFx={playFrame?.ballFx}
               hideActions={false}
               viewBox={vb}
               className="block h-full w-full"

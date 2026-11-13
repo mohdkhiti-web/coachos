@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Check, Circle } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Card, CardBody } from "@/components/ui/card";
-import { SectionMarker } from "@/components/ui/section-marker";
 import { cn } from "@/lib/cn";
 import { buildSetupChecklist } from "@/modules/identity/checklist";
 import type { WidgetProps } from "./widgets";
@@ -18,7 +17,6 @@ export async function SetupChecklist({ viewer }: WidgetProps) {
       <CardBody className="space-y-5">
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-2">
-            <SectionMarker n={1}>{t("eyebrow")}</SectionMarker>
             <h2 className="text-lg font-semibold tracking-tight text-ink">
               {allDone ? t("doneTitle") : t("title")}
             </h2>
@@ -38,7 +36,7 @@ export async function SetupChecklist({ viewer }: WidgetProps) {
                 className={cn(
                   "mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full border",
                   item.done
-                    ? "border-success bg-success text-white dark:text-black"
+                    ? "border-success bg-success text-status-ink"
                     : "border-line-strong text-ink-faint",
                 )}
               >

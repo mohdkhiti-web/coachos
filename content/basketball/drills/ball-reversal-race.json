@@ -1,0 +1,156 @@
+{
+  "seedKey": "ball-reversal-race",
+  "title": "Ball Reversal Race",
+  "description": "Four perimeter players reverse the ball from one corner to the other as fast as possible, with catch-ready feet; teams race the clock or each other.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["spacing", "catching"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "4v4",
+  "phases": ["skill", "small_sided"],
+  "ageMin": 9,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["ball reversal", "spacing", "race"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Swing the ball side to side with sharp, accurate passes and good spacing, as a team does against a shifting defense.",
+    "setup": "Players in the left corner, left wing, right wing and right corner.",
+    "organization": "One group works, another counts; switch after each race.",
+    "instructions": [
+      "The left corner starts with the ball.",
+      "Pass along the arc to the right corner, then back to the left: that is one reversal.",
+      "Each receiver must catch with feet set, ready to shoot.",
+      "Count reversals in 30 seconds.",
+      "A dropped or loose pass resets the count to zero."
+    ],
+    "coachingPoints": [
+      "Catch with feet set and turn the shoulders to the next receiver early.",
+      "Pass to the outside shoulder of the receiver.",
+      "Spacing: about five metres between players."
+    ],
+    "commonMistakes": [
+      "Drifting together and shortening the passes.",
+      "Holding the ball after the catch.",
+      "Catching with feet still moving."
+    ],
+    "safety": "Players stay outside the arc; passes chest or overhead only.",
+    "progressions": [
+      "Add two defenders who try to deflect.",
+      "Skip pass required on every second reversal."
+    ],
+    "regressions": ["Three players only.", "No time limit: focus on clean catches."],
+    "variations": ["Bounce passes only.", "Last receiver must shoot."],
+    "successCriteria": [
+      "At least four reversals in 30 seconds without a drop.",
+      "Every catch made with feet set."
+    ],
+    "gameApplication": "Reversing the ball quickly makes a zone or help defense shift, which opens the weak side.",
+    "repetitions": "3 races per group",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3",
+            "kind": "overhead"
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

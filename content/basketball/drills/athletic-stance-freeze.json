@@ -1,0 +1,157 @@
+{
+  "seedKey": "athletic-stance-freeze",
+  "title": "Athletic Stance Freeze",
+  "description": "Players jog around and freeze into a basketball stance on the whistle; the coach checks feet, knees, hips, back and hands — the base of every skill.",
+  "category": "footwork",
+  "primarySkill": "footwork",
+  "secondarySkills": ["on_ball_defense"],
+  "subSkills": ["stance_and_slides"],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "group",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 5,
+  "ageMax": 12,
+  "playersMin": 4,
+  "playersMax": 30,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "any_space",
+  "tags": ["stance", "fundamentals", "u8"],
+  "equipment": [],
+  "content": {
+    "objective": "Find a balanced athletic stance instantly: feet wider than shoulders, knees bent, back flat, hands ready.",
+    "setup": "Players spread over the half court.",
+    "organization": "Whole group.",
+    "instructions": [
+      "Jog in any direction.",
+      "On the whistle, freeze in an athletic stance.",
+      "The coach walks around and gives each player one correction.",
+      "On 'offense', hold the ball position (triple threat); on 'defense', hands out and active.",
+      "Repeat with faster whistles."
+    ],
+    "coachingPoints": [
+      "Weight on the balls of the feet.",
+      "Knees bent, hips back, chest up.",
+      "Hands ready: no hands on knees."
+    ],
+    "commonMistakes": [
+      "Standing straight-legged.",
+      "Bending at the waist instead of the knees.",
+      "Feet too close together."
+    ],
+    "safety": "Use a clear, dry floor and space players so nobody collides when changing direction.",
+    "progressions": [
+      "Hold the stance for ten seconds.",
+      "Push test: a partner gently nudges to check balance."
+    ],
+    "regressions": ["Mirror the coach's stance first.", "Shorter jogs."],
+    "variations": ["Freeze on a colour call.", "Freeze, then slide two steps."],
+    "successCriteria": [
+      "Correct stance within one second of the whistle.",
+      "Holds balance when nudged gently."
+    ],
+    "gameApplication": "Every move, catch and defensive slide starts from a balanced stance.",
+    "repetitions": "8 to 10 freezes",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      },
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 1.4]
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [0, -1]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_slot",
+                "offset": [-0.8, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [0.8, 0.6]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 2.4]
+            },
+            "text": "Whistle = freeze"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "seedKey": "baseline-out-of-bounds-vs-zone",
+  "title": "Baseline Out-of-Bounds Against a Zone",
+  "description": "Many teams play zone on baseline inbounds; this set overloads one side of the zone with a screen on the bottom defender to free a corner shooter or the post.",
+  "category": "special_situations",
+  "primarySkill": "inbounding",
+  "secondarySkills": ["screening", "shooting_form"],
+  "subSkills": ["baseline_inbounds", "setting_screens", "catch_and_shoot"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "5v5",
+  "phases": ["game"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 10,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["BLOB", "zone", "inbounds"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    },
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Score from a baseline inbound against a zone by screening the zone's bottom defender.",
+    "setup": "Inbounder on the baseline; offense in a box; defense in a 2-3 zone.",
+    "organization": "Run four times; rotate inbounders.",
+    "instructions": [
+      "Offense lines up in a box.",
+      "The post on the ball side screens the bottom zone defender.",
+      "The shooter on that side pops to the corner.",
+      "The weak-side post ducks into the middle.",
+      "Inbound to the open option."
+    ],
+    "coachingPoints": [
+      "Screen the zone defender, not space.",
+      "Shooter ready on the catch.",
+      "Inbounder reads the bottom defender."
+    ],
+    "commonMistakes": [
+      "Screening the wrong defender.",
+      "Shooter drifting out of the corner.",
+      "Inbounder holding too long (five seconds)."
+    ],
+    "safety": "Situations are walked through before being played live at game speed.",
+    "progressions": ["Zone switches to man.", "Second option on the far side."],
+    "regressions": ["Walk-through.", "Zone passive."],
+    "variations": ["Sideline version vs zone.", "Inbounder cuts after passing."],
+    "successCriteria": ["Open shot on most reps.", "No five-second violations."],
+    "gameApplication": "Baseline inbounds are scoring chances that teams often waste.",
+    "repetitions": "4 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [1, 1]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [-0.2, 0]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_block",
+              "offset": [0.2, 0]
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "right_block",
+              "offset": [-0.8, 0.4]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o2",
+            "target": {
+              "anchor": "right_block",
+              "offset": [-0.8, 0.2]
+            },
+            "kind": "back"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "cut",
+            "entity": "o4",
+            "path": [
+              {
+                "anchor": "right_corner",
+                "offset": [-0.4, 0]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o4"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

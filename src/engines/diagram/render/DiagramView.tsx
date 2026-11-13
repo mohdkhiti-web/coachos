@@ -1,4 +1,5 @@
 import { memo, useId, type ReactNode, type SVGProps } from "react";
+import type { BallFx } from "../animate";
 import { describeDiagram } from "../describe";
 import { EQUIPMENT } from "../equipment";
 import type { CourtPack, Pt } from "../pack";
@@ -46,6 +47,11 @@ export interface DiagramViewProps {
    * then), that step's actions are drawn in full, earlier steps' actions faintly, later steps' not at all.
    */
   step?: number;
+  /**
+   * Height and spin of balls in the air or being dribbled (playback). A lifted ball is drawn larger and a little
+   * up-screen, with its shadow left on the floor beneath it — the third dimension, seen from above.
+   */
+  ballFx?: ReadonlyMap<string, BallFx>;
   /** Where things stand right now, by id — used by playback to slide players and balls along their paths. */
   positions?: ReadonlyMap<string, Pt>;
   /** Draw only these actions (by id). Absent = the step rule above (or all of them). */
@@ -88,6 +94,7 @@ export function DiagramView({
   className,
   step,
   positions,
+  ballFx,
   visibleActions,
   hideActions = false,
   viewBox,
@@ -288,9 +295,20 @@ export function DiagramView({
       })}
 
       {entities
-        .filter((re) => re.entity.type !== "equipment")
+        .filter((re) => re.entity.type !== "equipment" && re.entity.type !== "ball")
         .map((re) => (
           <EntityShape key={re.entity.id} re={re} p={p} animated={animated} />
+        ))}
+      {entities
+        .filter((re) => re.entity.type === "ball")
+        .map((re) => (
+          <EntityShape
+            key={re.entity.id}
+            re={re}
+            p={p}
+            animated={animated}
+            fx={ballFx?.get(re.entity.id)}
+          />
         ))}
 
       {resolved.annotations.map(({ annotation: a, a: pa, points }, i) => {
@@ -425,6 +443,21 @@ function Placed({
   );
 }
 
+/** The shadow of a ball in the air: it stays on the floor, widening and fading as the ball climbs. Any theme. */
+function LiftShadow({ at, lift, p }: { at: Pt; lift: number; p: Palette }) {
+  const spread = 1 + lift * 0.22;
+  return (
+    <ellipse
+      cx={n(at.x)}
+      cy={n(at.y + 0.05)}
+      rx={n(0.2 * spread)}
+      ry={n(0.09 * spread)}
+      fill={p.wood ? "black" : p.arrow}
+      fillOpacity={n(Math.max(0.06, 0.26 - lift * 0.05))}
+    />
+  );
+}
+
 /** A flat grounding shadow (no blur — cheap) under an object standing on a hardwood court. Screen theme only. */
 function Shadow({ at, r, p }: { at: Pt; r: number; p: Palette }) {
   if (!p.wood) return null;
@@ -440,7 +473,17 @@ function Shadow({ at, r, p }: { at: Pt; r: number; p: Palette }) {
   );
 }
 
-function EntityShape({ re, p, animated }: { re: ResolvedEntity; p: Palette; animated: boolean }) {
+function EntityShape({
+  re,
+  p,
+  animated,
+  fx,
+}: {
+  re: ResolvedEntity;
+  p: Palette;
+  animated: boolean;
+  fx?: BallFx;
+}) {
   const { entity: e, at } = re;
   const r = PLAYER_RADIUS;
   // `points` (polygon) does not tween smoothly across browsers, so only circle/rect entities — whose position
@@ -537,22 +580,28 @@ function EntityShape({ re, p, animated }: { re: ResolvedEntity; p: Palette; anim
     case "ball": {
       // the crosshair `path` cannot tween with the circle, so the ball only fades in on mount; it does not
       // glide (a rare movement in practice — the ball normally travels as a pass/dribble action, not a move).
+      // In playback a lifted ball rises up-screen and grows (nearer the eye) while its shadow stays on the floor.
+      const lift = fx?.lift ?? 0;
+      const r = 0.22 * (1 + lift * 0.09);
+      const ball = { x: at.x, y: at.y - lift * 0.42 };
+      const spin = fx ? n(((fx.spin * 180) / Math.PI) % 360) : 0;
       return (
         <Placed at={at} scale={scale} className={fadeIn}>
-          <Shadow at={at} r={0.22} p={p} />
+          {fx ? <LiftShadow at={at} lift={lift} p={p} /> : <Shadow at={at} r={0.22} p={p} />}
           <circle
-            cx={n(at.x)}
-            cy={n(at.y)}
-            r={0.22}
+            cx={n(ball.x)}
+            cy={n(ball.y)}
+            r={n(r)}
             fill={p.ball}
             stroke={p.arrow}
             strokeWidth={0.05}
           />
           <path
-            d={`M ${n(at.x - 0.22)} ${n(at.y)} H ${n(at.x + 0.22)} M ${n(at.x)} ${n(at.y - 0.22)} V ${n(at.y + 0.22)}`}
+            d={`M ${n(ball.x - r)} ${n(ball.y)} H ${n(ball.x + r)} M ${n(ball.x)} ${n(ball.y - r)} V ${n(ball.y + r)}`}
             stroke={p.arrow}
             strokeWidth={0.035}
             fill="none"
+            transform={spin ? `rotate(${spin} ${n(ball.x)} ${n(ball.y)})` : undefined}
           />
         </Placed>
       );

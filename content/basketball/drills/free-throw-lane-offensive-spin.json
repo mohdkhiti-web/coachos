@@ -1,0 +1,177 @@
+{
+  "seedKey": "free-throw-lane-offensive-spin",
+  "title": "Free-Throw Lane: Offensive Rebound Spin",
+  "description": "Offensive lane players learn to beat the inside defender's box-out on a missed free throw with a spin or a step-across to the middle.",
+  "category": "rebounding",
+  "primarySkill": "rebounding",
+  "secondarySkills": [
+    "boxing_out",
+    "late_game_execution"
+  ],
+  "subSkills": [
+    "offensive_rebounding",
+    "foul_situations"
+  ],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [
+    "skill",
+    "game"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 5,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "free throws",
+    "offensive rebounding",
+    "spin"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Win inside position on a missed free throw by spinning off or stepping across the inside defender.",
+    "setup": "Shooter at the line; an offensive player in the second lane space; a defender inside.",
+    "organization": "Five misses each, then switch roles.",
+    "instructions": [
+      "Coach (or shooter) deliberately misses.",
+      "On the release, the attacker steps the inside foot across the defender's front foot.",
+      "If the defender seals, spin off the contact toward the middle.",
+      "Get a hand on the ball: catch or tip back to the shooter.",
+      "Score if possible."
+    ],
+    "coachingPoints": [
+      "Move on the release.",
+      "Step across or spin; never push.",
+      "Middle of the lane is the target."
+    ],
+    "commonMistakes": [
+      "Waiting to see the miss.",
+      "Pushing the defender (foul).",
+      "Spinning away from the rim."
+    ],
+    "safety": "Contact is with the body and forearms only: no pushing in the back, no undercutting a jumping player.",
+    "progressions": [
+      "Two attackers vs two defenders.",
+      "Shooter crashes too."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "Defender passive."
+    ],
+    "variations": [
+      "Tip to the shooter instead of catching.",
+      "From the third lane space."
+    ],
+    "successCriteria": [
+      "Hand on the ball on most misses.",
+      "No fouls."
+    ],
+    "gameApplication": "A well-practised spin turns a free-throw miss into a second chance.",
+    "repetitions": "5 misses x 2",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [
+                0,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "right_block",
+              "offset": [
+                -0.2,
+                0
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [
+                -0.2,
+                -1.2
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  0.6,
+                  0.6
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

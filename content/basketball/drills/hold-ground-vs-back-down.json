@@ -1,0 +1,137 @@
+{
+  "seedKey": "hold-ground-vs-back-down",
+  "title": "Hold Your Ground vs the Back-Down",
+  "description": "Post defenders practise holding position against a player backing them down: low stance, forearm in the back, without giving ground.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": ["footwork"],
+  "subSkills": ["stance_and_slides"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["post defense", "strength"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Absorb a back-down legally with a strong base and keep the post player away from the rim.",
+    "setup": "Post player with the ball at the edge of the lane, back to the defender.",
+    "organization": "Switch roles every two reps.",
+    "instructions": [
+      "The post player dribbles and backs down toward the rim.",
+      "The defender holds a low, wide base with a forearm (not a push) in the back.",
+      "Step back only when forced, keeping the chest square.",
+      "Contest the shot vertically with both arms up.",
+      "Box out on the miss."
+    ],
+    "coachingPoints": [
+      "Low and wide beats strong.",
+      "Forearm to feel, not to push.",
+      "Vertical contest at the end."
+    ],
+    "commonMistakes": [
+      "Pushing with both hands (foul).",
+      "Standing up and getting moved.",
+      "Jumping at the fake."
+    ],
+    "safety": "Short reps, matched sizes; stop immediately on any dangerous contact.",
+    "progressions": ["Post player adds a spin.", "Live from the catch."],
+    "regressions": ["Post player backs down without a dribble.", "Shorter distance."],
+    "variations": ["Front the post instead.", "Defend from the high post."],
+    "successCriteria": ["Post finishes further than one metre from the rim.", "No pushing fouls."],
+    "gameApplication": "Strong positional post defense forces tough, contested shots.",
+    "repetitions": "4 reps per defender",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_block",
+              "offset": [0.6, 1.2]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [-0.4, -0.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.4, 0.2]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.8, -0.2]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

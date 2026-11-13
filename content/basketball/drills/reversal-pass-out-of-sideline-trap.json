@@ -1,0 +1,161 @@
+{
+  "seedKey": "reversal-pass-out-of-sideline-trap",
+  "title": "Reversal Pass Out of the Sideline Trap",
+  "description": "When the press traps the ball on the sideline, the ball handler pivots and reverses the ball back to the safety, who swings it to the open side.",
+  "category": "press_break",
+  "primarySkill": "press_break",
+  "secondarySkills": ["passing", "pivoting"],
+  "subSkills": ["press_release", "passing_under_pressure"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill", "small_sided"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 5,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["trap", "reversal", "swing"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    }
+  ],
+  "content": {
+    "objective": "Escape a sideline trap with a reversal pass and attack the weak side.",
+    "setup": "Ball handler near the sideline in the backcourt; two trappers; safety behind the ball; weak-side receiver.",
+    "organization": "Rotate every four reps.",
+    "instructions": [
+      "The ball handler is trapped on the sideline.",
+      "Pivot away from the trap, ball high or low.",
+      "Pass back to the safety (behind the ball, middle of the floor).",
+      "The safety swings to the open weak side.",
+      "Attack up the weak side quickly."
+    ],
+    "coachingPoints": [
+      "Pivot, do not dribble out.",
+      "Safety always behind the ball.",
+      "Swing fast, the trap is slow to recover."
+    ],
+    "commonMistakes": [
+      "Dribbling into the corner.",
+      "Safety level with or ahead of the ball.",
+      "Slow reversal."
+    ],
+    "safety": "Trappers play the ball, not the body; no reaching across the inbounder's arms over the line.",
+    "progressions": ["Interceptor in the middle.", "Count five seconds on the trap."],
+    "regressions": ["Trappers passive.", "No interceptor."],
+    "variations": ["Reverse to the inbounder.", "Middle flash instead of reversal."],
+    "successCriteria": ["Reversal completed.", "Weak side attacked within two passes."],
+    "gameApplication": "Sideline traps leave the opposite side open; reversal finds it.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_sideline_center",
+              "offset": [-1, 1.6]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [-0.6, -0.6]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o1",
+              "offset": [-0.6, 0.6]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [-2.4, -0.4]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_sideline_center",
+              "offset": [1.6, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

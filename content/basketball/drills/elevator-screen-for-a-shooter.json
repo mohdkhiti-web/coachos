@@ -1,0 +1,225 @@
+{
+  "seedKey": "elevator-screen-for-a-shooter",
+  "title": "Elevator Screen for a Shooter",
+  "description": "Two screeners stand side by side; the shooter runs between them and the screeners close the 'elevator doors' behind, stopping the chasing defender.",
+  "category": "team_offense",
+  "primarySkill": "screening",
+  "secondarySkills": [
+    "shooting_form",
+    "cutting"
+  ],
+  "subSkills": [
+    "using_screens",
+    "setting_screens",
+    "catch_and_shoot"
+  ],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "elevator",
+    "shooter",
+    "screens"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Create an open catch-and-shoot three for a shooter by running elevator doors timed with the cut.",
+    "setup": "Two screeners at the top of the key a metre apart; shooter under the basket; passer at the wing; one defender on the shooter.",
+    "organization": "Rotate every four reps.",
+    "instructions": [
+      "The shooter sets up the defender near the basket.",
+      "The shooter sprints between the two screeners.",
+      "As the shooter passes, the screeners step together to close the gap.",
+      "The passer hits the shooter at the top.",
+      "Catch and shoot."
+    ],
+    "coachingPoints": [
+      "Screeners close together, legally.",
+      "Shooter runs straight through.",
+      "Catch ready to shoot."
+    ],
+    "commonMistakes": [
+      "Closing too early (shooter blocked).",
+      "Moving screens into the defender.",
+      "Shooter fading off course."
+    ],
+    "safety": "Screens are set stationary and legal; defenders are allowed to see the screen in walk-throughs before live play.",
+    "progressions": [
+      "Defender may cheat over the top.",
+      "Screeners slip after closing."
+    ],
+    "regressions": [
+      "No defense.",
+      "Walk-through."
+    ],
+    "variations": [
+      "Elevator to the wing.",
+      "Elevator into a hand-off."
+    ],
+    "successCriteria": [
+      "Open shot on most reps.",
+      "No illegal screens."
+    ],
+    "gameApplication": "Elevator doors are a late-clock or after-timeout action for a team's best shooter.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "basket",
+              "offset": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                -0.5,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                0.5,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o4"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [
+                  0,
+                  0
+                ]
+              },
+              {
+                "anchor": "top_key",
+                "offset": [
+                  0,
+                  -0.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [
+                  -0.15,
+                  0.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "move",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [
+                  0.15,
+                  0.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "pass",
+            "from": "o4",
+            "to": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "seedKey": "flare-screen-shooting",
+  "title": "Flare Screen Shooting",
+  "description": "A shooter fades away from the ball off a flare screen and catches a skip pass for an open shot.",
+  "category": "shooting",
+  "primarySkill": "screening",
+  "secondarySkills": ["shooting_form"],
+  "subSkills": ["using_screens", "catch_and_shoot"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["flare screen", "skip pass"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use a flare screen to drift away from the ball and shoot off a skip pass, square on the catch.",
+    "setup": "Ball handler at the left slot; screener at the top; shooter at the right slot.",
+    "organization": "Rotate all three roles.",
+    "instructions": [
+      "The ball handler dribbles toward the left wing.",
+      "The screener sets a flare screen facing away from the ball on the shooter's defender.",
+      "The shooter fakes toward the ball, then fades to the right wing behind the screen.",
+      "The ball handler throws an overhead skip pass.",
+      "The shooter catches with the feet set and shoots."
+    ],
+    "coachingPoints": [
+      "Sell the fake toward the ball before fading.",
+      "Fade with the hands up and the body square to the passer.",
+      "Overhead skip with arc over the help."
+    ],
+    "commonMistakes": [
+      "Fading too early, before the screen.",
+      "Fading too far out of range.",
+      "Flat skip pass that gets intercepted."
+    ],
+    "safety": "Screen set with feet stationary; no extended hips.",
+    "progressions": [
+      "Defender on the shooter who fights through.",
+      "Screener slips to the rim if the defender jumps the flare."
+    ],
+    "regressions": ["Pass from closer, chest pass.", "No defender."],
+    "variations": ["Flare screen in the corner.", "Shooter drives the closeout instead."],
+    "successCriteria": [
+      "Catch arrives with the feet set.",
+      "Correct timing between fade and pass."
+    ],
+    "gameApplication": "Flare screens free shooters away from the ball where help defenders cannot reach.",
+    "repetitions": "6 reps each side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [0.4, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "screen",
+            "entity": "o2",
+            "target": {
+              "anchor": "right_slot",
+              "offset": [-0.6, -0.4]
+            },
+            "kind": "flare"
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [0.8, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o3",
+            "kind": "skip"
+          },
+          {
+            "id": "a5",
+            "step": 3,
+            "type": "shot",
+            "entity": "o3"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

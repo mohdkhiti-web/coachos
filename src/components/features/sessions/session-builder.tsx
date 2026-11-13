@@ -10,6 +10,7 @@ import {
   Coffee,
   Copy,
   Eye,
+  Play,
   FileCheck2,
   ListPlus,
   MoreHorizontal,
@@ -101,6 +102,7 @@ export function SessionBuilder({
   assistantHref?: string | null;
 }) {
   const t = useTranslations("sessions.builder");
+  const tr = useTranslations("sessions.run");
   const ts = useTranslations("sessions");
   const te = useTranslations("errors");
   const tc = useTranslations("common");
@@ -524,6 +526,14 @@ export function SessionBuilder({
                 </Link>
               </Button>
             ) : null}
+            {view.length > 0 ? (
+              <Button asChild variant="secondary">
+                <Link href={`${listHref}/${plan.id}/run`} data-testid="run-practice">
+                  <Play className="size-4" aria-hidden />
+                  {tr("open")}
+                </Link>
+              </Button>
+            ) : null}
             <Button type="button" variant="secondary" onClick={() => void openDocument("design")}>
               <Eye className="size-4" aria-hidden />
               {t("document.open")}
@@ -660,6 +670,20 @@ export function SessionBuilder({
               </div>
             }
           />
+
+          <TotalsBar
+            className="sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-20 md:bottom-4"
+            total={summary.totalMinutes}
+            target={Number.isFinite(targetMinutes) ? targetMinutes : 0}
+            remaining={summary.remainingMinutes}
+            endTime={summary.schedule?.endTime ?? null}
+            endsNextDay={summary.schedule?.endsNextDay ?? false}
+            segments={view.map((a) => ({
+              id: a.id,
+              minutes: a.durationMin,
+              phase: a.kind === "break" ? "break" : a.phase,
+            }))}
+          />
         </section>
 
         <aside
@@ -685,15 +709,6 @@ export function SessionBuilder({
           </Card>
         </aside>
       </div>
-
-      <TotalsBar
-        className="sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-20 md:bottom-4"
-        total={summary.totalMinutes}
-        target={Number.isFinite(targetMinutes) ? targetMinutes : 0}
-        remaining={summary.remainingMinutes}
-        endTime={summary.schedule?.endTime ?? null}
-        endsNextDay={summary.schedule?.endsNextDay ?? false}
-      />
 
       <div role="status" aria-live="polite" className="sr-only">
         {announcement}

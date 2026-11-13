@@ -1,0 +1,136 @@
+{
+  "seedKey": "inside-hand-reach-finish",
+  "title": "Inside-Hand Reach Finish",
+  "description": "Finishers extend the ball away from a defender with the inside hand on a baseline drive, using reach to avoid the block.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": ["footwork"],
+  "subSkills": ["both_hands_finishing"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["inside hand", "reach"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "cones",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use the arm away from the defender and a long extension to finish around a shot-blocker.",
+    "setup": "A cone (or coach with a pad) in front of the rim as the shot-blocker; lines at both wings.",
+    "organization": "Alternate wings.",
+    "instructions": [
+      "Drive baseline toward the cone.",
+      "Gather with the ball on the outside hip, away from the blocker.",
+      "Reach under and around the blocker with the far hand.",
+      "Finish high off the board.",
+      "Repeat from the other side."
+    ],
+    "coachingPoints": [
+      "Body between the blocker and the ball.",
+      "Extend fully: long arm, soft touch.",
+      "Use the board."
+    ],
+    "commonMistakes": [
+      "Finishing with the hand nearest the blocker.",
+      "Releasing low and short.",
+      "Charging into the blocker."
+    ],
+    "safety": "Coach with a pad stands still; no hitting arms.",
+    "progressions": ["Live shot-blocker.", "Finish on the opposite side of the rim."],
+    "regressions": ["No blocker.", "Walk the gather."],
+    "variations": ["Reach finish from the middle.", "Reach finish off one foot or two."],
+    "successCriteria": [
+      "Finishes without the pad touching the ball on most reps.",
+      "Uses the far hand every time."
+    ],
+    "gameApplication": "Taller defenders block finishes that come straight at them; reaching away avoids them.",
+    "repetitions": "6 each side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "basket",
+              "offset": [-0.4, 0.9]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_short_corner",
+                "offset": [-1, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

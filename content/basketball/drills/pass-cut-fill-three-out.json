@@ -1,0 +1,212 @@
+{
+  "seedKey": "pass-cut-fill-three-out",
+  "title": "Pass, Cut, Fill (3-Out)",
+  "description": "The foundation of motion offense for beginners: pass, basket-cut, and the other players fill the empty spot so the floor stays balanced.",
+  "category": "team_offense",
+  "primarySkill": "cutting",
+  "secondarySkills": [
+    "spacing",
+    "passing"
+  ],
+  "subSkills": [
+    "passing_on_the_move"
+  ],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "3v3",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 8,
+  "ageMax": 14,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "motion",
+    "beginner",
+    "PE"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Learn the pass-cut-fill rule so three players keep good spacing and create lay-ups without set plays.",
+    "setup": "Three players at the top and both wings; no defense at first.",
+    "organization": "Continuous for one minute, then add defenders.",
+    "instructions": [
+      "The top passes to a wing.",
+      "The passer cuts hard to the basket, hand up.",
+      "If not open, they exit to the empty wing.",
+      "The other wing fills the top.",
+      "Repeat from the new spots."
+    ],
+    "coachingPoints": [
+      "Pass then cut, every time.",
+      "Fill the empty spot.",
+      "Hand up on the cut."
+    ],
+    "commonMistakes": [
+      "Standing after the pass.",
+      "Two players in the same spot.",
+      "Cutting slowly."
+    ],
+    "safety": "Cutters keep their eyes up so they do not run into each other under the basket.",
+    "progressions": [
+      "Passive then live defense.",
+      "Four players (4-out)."
+    ],
+    "regressions": [
+      "Coach points to the spot to fill.",
+      "Cones for the three spots."
+    ],
+    "variations": [
+      "Cut must be a backdoor if overplayed.",
+      "Score only from a cut."
+    ],
+    "successCriteria": [
+      "Three spots filled after every pass.",
+      "Lay-ups from cuts."
+    ],
+    "gameApplication": "Every motion offense grows from pass-cut-fill.",
+    "repetitions": "4 x 1 minute",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "k1",
+            "type": "cone",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "k2",
+            "type": "cone",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "k3",
+            "type": "cone",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  -0.4,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_wing"
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "move",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [
+                  -0.6,
+                  0
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

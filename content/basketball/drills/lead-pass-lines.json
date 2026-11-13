@@ -1,0 +1,147 @@
+{
+  "seedKey": "lead-pass-lines",
+  "title": "Lead Pass Lines",
+  "description": "A passer leads a running teammate with a pass into the space ahead of them, so the receiver catches in stride without slowing down.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["catching", "cutting"],
+  "subSkills": ["passing_on_the_move"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 4,
+  "playersMax": 16,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["lead pass", "moving target"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Pass to where a moving teammate will be, not where they are, so the catch happens in stride.",
+    "setup": "Passers at the top of the key with balls; runners line up at the wing.",
+    "organization": "Runner becomes passer; passer goes to the runner line.",
+    "instructions": [
+      "The runner jogs from the wing toward the basket along the lane line.",
+      "The passer throws a bounce or chest pass one stride ahead of the runner.",
+      "The runner catches in stride and finishes with a lay-up.",
+      "Repeat from the other wing.",
+      "Increase the runner's speed each round."
+    ],
+    "coachingPoints": [
+      "Aim at the space ahead of the runner's lead hand.",
+      "Pass early, as soon as the runner's direction is clear.",
+      "Runners show a target with the outside hand."
+    ],
+    "commonMistakes": [
+      "Passing behind the runner.",
+      "Waiting until the runner arrives and throwing too late.",
+      "Runner slowing down to catch."
+    ],
+    "safety": "Runners finish and clear to the baseline away from the next runner's path.",
+    "progressions": [
+      "Runner changes direction once (V-cut) before the pass.",
+      "Pass from the opposite slot for a longer lead."
+    ],
+    "regressions": ["Runner walks.", "Passer stands closer."],
+    "variations": ["Overhead lead pass from half court.", "Lead pass to a back-door cut."],
+    "successCriteria": [
+      "Runner catches without breaking stride on 8 of 10 passes.",
+      "Finishes the lay-up."
+    ],
+    "gameApplication": "Leading cutters with the pass turns a half-step advantage into a lay-up.",
+    "repetitions": "6 passes per passer, both sides",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      },
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [0.4, 1.6]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "bounce"
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

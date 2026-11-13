@@ -1,0 +1,183 @@
+{
+  "seedKey": "high-post-flash-feed",
+  "title": "High-Post Flash Feed",
+  "description": "A post player flashes from the weak-side block to the high post against a zone; the wing feeds the flash, and the high post turns to read the low post or the shooter.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["cutting", "decision_making"],
+  "subSkills": ["reading_the_defense"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["high post", "zone offense", "flash"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Get the ball into the high post against a zone and make the next decision quickly: high-low pass, kick-out or shot.",
+    "setup": "Wing with the ball, post players on both blocks, a shooter in the opposite corner; optional zone defenders.",
+    "organization": "Rotate through all four spots.",
+    "instructions": [
+      "The weak-side post flashes to the free-throw line when the ball is on the wing.",
+      "The wing passes to the flash with a bounce or chest pass.",
+      "The high post catches, pivots to face the rim and reads.",
+      "Options: high-low pass to the other post sealing, kick to the corner shooter, or shoot.",
+      "Repeat from the other wing."
+    ],
+    "coachingPoints": [
+      "Flash hard and show two hands.",
+      "Catch and face: the high post sees everything.",
+      "Low post seals the defender as soon as the flash catches."
+    ],
+    "commonMistakes": [
+      "Flashing too slowly, so the zone closes.",
+      "High post catching with the back to the basket and not turning.",
+      "Forcing the high-low pass into a defender."
+    ],
+    "safety": "Zone defenders play legally; posts do not push off when sealing.",
+    "progressions": [
+      "Add a 2-3 zone of five defenders.",
+      "Shot clock of six seconds from the flash."
+    ],
+    "regressions": ["No defenders: pattern only.", "Pass to the high post from the top."],
+    "variations": [
+      "Short-corner option for the low post.",
+      "High post drives if the middle defender steps up."
+    ],
+    "successCriteria": [
+      "Correct decision after the catch on most reps.",
+      "Catch made in the gap of the zone."
+    ],
+    "gameApplication": "The high post is the weak spot of most zones; a good feed and a quick decision break them down.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_block"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [-0.4, 0]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "bounce"
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "move",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.6, -0.2]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3",
+            "kind": "bounce"
+          },
+          {
+            "id": "a5",
+            "step": 3,
+            "type": "shot",
+            "entity": "o3"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

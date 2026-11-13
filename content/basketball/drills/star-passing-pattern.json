@@ -1,0 +1,177 @@
+{
+  "seedKey": "star-passing-pattern",
+  "title": "Star Passing Pattern",
+  "description": "Five lines form a star; players pass across the star and follow their pass, creating continuous movement, communication and accurate passing at angles.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["catching", "communication"],
+  "subSkills": ["passing_on_the_move"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 9,
+  "ageMax": 99,
+  "playersMin": 8,
+  "playersMax": 20,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["pattern", "follow the pass"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Pass accurately at different angles and follow the pass to the new line, keeping the pattern flowing.",
+    "setup": "Five lines at the points of a star (top, both wings, both blocks) around the half court.",
+    "organization": "Two or more players per line; start with one ball.",
+    "instructions": [
+      "The top line passes to the left block line (skipping the nearest line).",
+      "The passer follows the pass to the back of that line.",
+      "The receiver passes to the right wing line, and so on round the star.",
+      "Once the pattern flows, add a second ball at the opposite point.",
+      "Reverse the direction every two minutes."
+    ],
+    "coachingPoints": [
+      "Call the receiver's name before passing.",
+      "Follow your pass at speed.",
+      "Meet the pass with a step toward it."
+    ],
+    "commonMistakes": [
+      "Following the wrong pass and blocking a line.",
+      "Floating lob passes across the star.",
+      "Receivers waiting flat-footed."
+    ],
+    "safety": "With two balls, passers must call loudly; nobody runs across a pass in flight.",
+    "progressions": ["Two balls.", "Add a jump stop and pivot before each pass."],
+    "regressions": ["Pass to the nearest line only.", "Walking pace."],
+    "variations": ["Bounce passes only.", "Receiver must shot-fake before passing."],
+    "successCriteria": [
+      "Two minutes without a dropped ball.",
+      "Everyone follows the correct pass."
+    ],
+    "gameApplication": "Passing at angles and filling the spot you passed to are habits of good team offense.",
+    "repetitions": "2 x 2 minutes each direction",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_block",
+              "offset": [-1, 0]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": {
+              "anchor": "right_block",
+              "offset": [1, 0]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [-1.4, -0.6]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o2",
+            "to": "o3"
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "pass",
+            "from": "o3",
+            "to": "o4"
+          },
+          {
+            "id": "a5",
+            "step": 4,
+            "type": "pass",
+            "from": "o4",
+            "to": "o5"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

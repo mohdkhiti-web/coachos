@@ -569,6 +569,28 @@ export function DrillForm({
             {lines("regressions", "content.regressions", t("regressions"), undefined, 3)}
             {lines("variations", "content.variations", t("variations"), undefined, 3)}
           </div>
+          {lines("successCriteria", "content.successCriteria", t("successCriteria"), undefined, 3)}
+          <div className="grid gap-5 md:grid-cols-2">
+            <Field label={t("gameApplication")} errors={text("content.gameApplication")}>
+              {(c) => (
+                <Textarea
+                  {...c}
+                  rows={2}
+                  value={v.gameApplication}
+                  onChange={(e) => set("gameApplication", e.target.value)}
+                />
+              )}
+            </Field>
+            <Field label={t("repetitions")} errors={text("content.repetitions")}>
+              {(c) => (
+                <Input
+                  {...c}
+                  value={v.repetitions}
+                  onChange={(e) => set("repetitions", e.target.value)}
+                />
+              )}
+            </Field>
+          </div>
         </CardBody>
       </Card>
 

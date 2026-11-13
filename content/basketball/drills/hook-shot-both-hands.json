@@ -1,0 +1,131 @@
+{
+  "seedKey": "hook-shot-both-hands",
+  "title": "Hook Shot Both Hands",
+  "description": "Post players learn the jump hook with either hand from the block, shielding the ball with the body and the off arm.",
+  "category": "shooting",
+  "primarySkill": "finishing",
+  "secondarySkills": ["footwork", "shooting_form"],
+  "subSkills": ["both_hands_finishing"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 8,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["hook shot", "post", "both hands"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Shoot a jump hook with the right and left hand, keeping the body between the defender and the ball.",
+    "setup": "Player on the right block with a ball, back to the baseline-side sideline.",
+    "organization": "Individual or pairs (one rebounds and passes).",
+    "instructions": [
+      "Start on the right block facing the sideline, ball under the chin.",
+      "Drop-step toward the middle with the left foot and turn the shoulders square to the sideline.",
+      "Lift the ball with the right hand past the ear, off arm up as a shield.",
+      "Release at the top with a wrist flick over the head; land on both feet.",
+      "Repeat from the left block with the left hand."
+    ],
+    "coachingPoints": [
+      "Shoulders stay perpendicular to the baseline.",
+      "Release at the highest point.",
+      "Off arm protects, never pushes."
+    ],
+    "commonMistakes": [
+      "Turning to face the rim (it becomes a fade).",
+      "Pushing off with the off arm.",
+      "Releasing low in front of the face."
+    ],
+    "safety": "Shooters rebound their own ball only when the lane is clear; nobody stands under the rim while others shoot.",
+    "progressions": [
+      "Add a defender with a pad.",
+      "Hook from a catch on the move across the lane."
+    ],
+    "regressions": ["Stand one step closer to the rim.", "Two-hand set-up, one-hand release."],
+    "variations": ["Baby hook without a jump.", "Hook after a spin move."],
+    "successCriteria": ["Six of ten made with each hand.", "No offensive fouls with the off arm."],
+    "gameApplication": "The hook is the hardest post shot to block because the body is between the defender and the ball.",
+    "repetitions": "10 shots each hand",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_block"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-1, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [0, 0.8]
+            },
+            "text": "Shield · lift · flick"
+          }
+        ]
+      }
+    }
+  ]
+}

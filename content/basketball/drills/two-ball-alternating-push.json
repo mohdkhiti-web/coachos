@@ -1,0 +1,159 @@
+{
+  "seedKey": "two-ball-alternating-push",
+  "title": "Two-Ball Alternating Push",
+  "description": "Advanced handlers push two balls in an alternating rhythm up the court, then two together, building hand independence at speed.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["ball_control"],
+  "subSkills": ["weak_hand"],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "full_court",
+  "tags": ["two ball", "speed"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Control two balls at speed with independent hands, strengthening the weak hand so both hands can push the ball in transition.",
+    "setup": "Players on the baseline with two balls each, spaced in three lanes.",
+    "organization": "Waves of three; the next wave goes when the previous one reaches half court.",
+    "instructions": [
+      "Dribble both balls at the same time, jogging to half court.",
+      "Switch to alternating (one up, one down) and jog to the far baseline.",
+      "Return at a faster pace with both balls together.",
+      "On the last trip, sprint the alternating rhythm to half court.",
+      "Finish with 20 stationary alternating dribbles at knee height."
+    ],
+    "coachingPoints": [
+      "Push both balls out in front, not straight down.",
+      "Same height for both balls.",
+      "Eyes up: count the players ahead of you."
+    ],
+    "commonMistakes": [
+      "The weak-hand ball drifting wide.",
+      "Slowing down to rescue the weak-hand ball.",
+      "Bouncing too hard so the ball comes up above the waist."
+    ],
+    "safety": "Wide lanes; a lost ball is left until the wave has passed.",
+    "progressions": ["Add a crossover of both balls at half court.", "Sprint the whole length."],
+    "regressions": [
+      "Walk the alternating rhythm.",
+      "Use one ball and one tennis ball held in the other hand."
+    ],
+    "variations": ["One high, one low dribble.", "Change lanes at half court."],
+    "successCriteria": [
+      "Full length without losing either ball.",
+      "Even height and rhythm on both sides."
+    ],
+    "gameApplication": "Players who can push the ball with either hand at speed are much harder to force to one side in transition.",
+    "repetitions": "4 lengths",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner",
+              "offset": [2.5, 0.3]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_corner",
+              "offset": [-2.5, 0.3]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_sideline_center",
+                "offset": [2.5, 0]
+              },
+              {
+                "anchor": "far_right_corner",
+                "offset": [2.5, -0.3]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_sideline_center",
+                "offset": [-2.5, 0]
+              },
+              {
+                "anchor": "far_left_corner",
+                "offset": [-2.5, -0.3]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [0, 1.6]
+            },
+            "text": "2 balls"
+          }
+        ]
+      }
+    }
+  ]
+}

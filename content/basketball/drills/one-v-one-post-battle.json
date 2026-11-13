@@ -1,0 +1,173 @@
+{
+  "seedKey": "one-v-one-post-battle",
+  "title": "1v1 Post Battle",
+  "description": "A 1v1 post game from the block: the post seals, receives an entry from a coach and has three dribbles to score against a live defender.",
+  "category": "small_sided_games",
+  "primarySkill": "footwork",
+  "secondarySkills": [
+    "finishing",
+    "competitiveness",
+    "on_ball_defense"
+  ],
+  "subSkills": [
+    "finishing_with_contact"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "1v1",
+  "phases": [
+    "small_sided",
+    "game"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "post",
+    "1v1",
+    "game"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Win post position and score through contact, or defend the post without fouling.",
+    "setup": "Coach at the wing with the ball; post and defender on the block.",
+    "organization": "Games to three; winner stays.",
+    "instructions": [
+      "The post fights for position; the defender fights to deny.",
+      "The coach enters when the post is open.",
+      "Three dribbles maximum to score.",
+      "Defender scores a point for a stop.",
+      "Rotate in a new challenger."
+    ],
+    "coachingPoints": [
+      "Seal with the hip, hands up.",
+      "Feel the defender before moving.",
+      "Defense: play behind or three-quarter, no fouls."
+    ],
+    "commonMistakes": [
+      "Catching too far out.",
+      "Rushing the move.",
+      "Defender fouling with the arm bar."
+    ],
+    "safety": "Fair contact only; the coach stops play for reckless fouls and keeps waiting teams off the playing area.",
+    "progressions": [
+      "Weak-side digger.",
+      "Two dribbles maximum."
+    ],
+    "regressions": [
+      "Defender passive on the catch.",
+      "Coach enters every time."
+    ],
+    "variations": [
+      "High-post version.",
+      "Face-up post game."
+    ],
+    "successCriteria": [
+      "Scores or stops counted fairly.",
+      "Few fouls."
+    ],
+    "gameApplication": "Post play rewards footwork and strength; this game tests both.",
+    "repetitions": "Games to 3",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_block",
+              "offset": [
+                -0.2,
+                -0.2
+              ]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [
+                -0.4,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "c1",
+            "to": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  -0.4,
+                  0.6
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

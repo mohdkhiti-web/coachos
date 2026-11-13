@@ -3,6 +3,9 @@ import { describe, expect, it } from "vitest";
 import {
   applyOps,
   buildTimeline,
+  dribbleLift,
+  flightLift,
+  PEAK_LIFT,
   countInventory,
   DiagramView,
   diagramSchema,
@@ -417,6 +420,68 @@ describe("playback", () => {
     // the shot ends at the basket
     const end = tl.frameAt(tl.duration).positions.get("b1")!;
     expect(end).toEqual({ x: pack.primaryTarget.x, y: pack.primaryTarget.y });
+  });
+
+  it("the ball has height: a pass arcs, a shot climbs higher and lands, a caught ball is back in hand", () => {
+    const d = drill();
+    const tl = buildTimeline(d, pack);
+    const [s1, s2] = tl.spans;
+    // sample step 1 densely: the pass is airborne for a while, never higher than a chest pass peaks
+    const passLifts: number[] = [];
+    for (let t = s1!.start; t < s1!.end; t += 0.02) {
+      const fx = tl.frameAt(t).ballFx.get("b1");
+      if (fx) passLifts.push(fx.lift);
+    }
+    expect(passLifts.length).toBeGreaterThan(3);
+    expect(Math.max(...passLifts)).toBeLessThanOrEqual(PEAK_LIFT.standard + 1e-9);
+    expect(Math.max(...passLifts)).toBeGreaterThan(PEAK_LIFT.standard * 0.6);
+    expect(tl.frameAt(s1!.end - 0.01).ballFx.has("b1")).toBe(false); // caught
+    // the shot goes far higher than the pass, and the ball comes down to the rim
+    let shotPeak = 0;
+    for (let t = s2!.start; t < s2!.end; t += 0.02)
+      shotPeak = Math.max(shotPeak, tl.frameAt(t).ballFx.get("b1")?.lift ?? 0);
+    expect(shotPeak).toBeGreaterThan(PEAK_LIFT.shot * 0.8);
+    expect(tl.frameAt(tl.duration).ballFx.has("b1")).toBe(false);
+  });
+
+  it("a dribbled ball bounces in rhythm with the dribbler, and a bounce pass touches the floor halfway", () => {
+    const d = run([
+      {
+        op: "add_action",
+        action: { type: "dribble", entity: "o1", path: [{ x: 0, y: 3 }], step: 1 },
+      },
+    ]);
+    const tl = buildTimeline(d, pack);
+    const lifts: number[] = [];
+    for (let t = 0; t < tl.duration; t += 0.01) {
+      const fx = tl.frameAt(t).ballFx.get("b1");
+      if (fx) lifts.push(fx.lift);
+    }
+    expect(Math.max(...lifts)).toBeGreaterThan(PEAK_LIFT.dribble * 0.9);
+    expect(Math.min(...lifts)).toBeLessThan(0.05); // it hits the floor
+    expect(dribbleLift(0)).toBe(0);
+    expect(flightLift("bounce", 0.5)).toBeCloseTo(0);
+    expect(flightLift("bounce", 0.25)).toBeGreaterThan(0.4);
+    expect(flightLift("skip", 0.5)).toBeCloseTo(PEAK_LIFT.skip);
+  });
+
+  it("draws an airborne ball lifted with its shadow left on the floor, and a resting ball exactly as before", () => {
+    const d = drill();
+    const tl = buildTimeline(d, pack);
+    let t = tl.spans[1]!.start;
+    while (!tl.frameAt(t).ballFx.has("b1")) t += 0.02;
+    t += 0.3;
+    const f = tl.frameAt(t);
+    const html = renderToStaticMarkup(
+      <DiagramView diagram={d} pack={pack} positions={f.positions} ballFx={f.ballFx} />,
+    );
+    const ground = f.positions.get("b1")!;
+    const lift = f.ballFx.get("b1")!.lift;
+    expect(html).toContain(`cy="${Math.round((ground.y - lift * 0.42) * 1000) / 1000}"`);
+    const still = renderToStaticMarkup(<DiagramView diagram={d} pack={pack} />);
+    expect(still).toBe(
+      renderToStaticMarkup(<DiagramView diagram={d} pack={pack} ballFx={new Map()} />),
+    );
   });
 
   it("a diagram with no actions has nothing to play", () => {

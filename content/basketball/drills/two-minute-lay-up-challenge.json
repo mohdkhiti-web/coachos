@@ -1,0 +1,202 @@
+{
+  "seedKey": "two-minute-lay-up-challenge",
+  "title": "Two-Minute Lay-Up Challenge",
+  "description": "The whole team makes as many lay-ups as possible in two minutes, using two lines and both hands, chasing a team record.",
+  "category": "competition",
+  "primarySkill": "finishing",
+  "secondarySkills": [
+    "competitiveness",
+    "conditioning",
+    "passing"
+  ],
+  "subSkills": [
+    "both_hands_finishing"
+  ],
+  "level": "beginner",
+  "intensity": "high",
+  "format": "team",
+  "phases": [
+    "warm_up",
+    "game"
+  ],
+  "ageMin": 8,
+  "ageMax": 99,
+  "playersMin": 6,
+  "playersMax": 20,
+  "durationMin": 4,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": [
+    "team record",
+    "lay-ups",
+    "PE"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 3
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Make as many lay-ups as possible as a team in two minutes while staying organised and using both hands.",
+    "setup": "Two lines at the wings: a lay-up line and a rebound line; three balls.",
+    "organization": "Shooters go to the rebound line, rebounders to the shooting line.",
+    "instructions": [
+      "The first shooter dribbles in for a lay-up.",
+      "The rebounder grabs it and passes to the next shooter.",
+      "Count makes out loud.",
+      "After one minute, switch sides (other hand).",
+      "Beat the team record."
+    ],
+    "coachingPoints": [
+      "Count together.",
+      "Quick, accurate outlet passes.",
+      "Correct hand on each side."
+    ],
+    "commonMistakes": [
+      "Rushing and missing.",
+      "Two balls colliding.",
+      "Using the wrong hand."
+    ],
+    "safety": "Fair contact only; the coach stops play for reckless fouls and keeps waiting teams off the playing area.",
+    "progressions": [
+      "Only makes on the first attempt count.",
+      "Reverse lay-ups."
+    ],
+    "regressions": [
+      "One ball.",
+      "Rebounder hands the ball."
+    ],
+    "variations": [
+      "Power lay-ups.",
+      "Mikan finishes."
+    ],
+    "successCriteria": [
+      "Team record broken.",
+      "Both hands used."
+    ],
+    "gameApplication": "Lay-ups in a game come at speed and under fatigue; this rehearses both.",
+    "repetitions": "2 minutes x 2",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [
+                0.6,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing",
+              "offset": [
+                -0.6,
+                -0.6
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [
+                1,
+                -1.2
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o3"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  0.6,
+                  0.4
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [
+                  -0.6,
+                  0.8
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

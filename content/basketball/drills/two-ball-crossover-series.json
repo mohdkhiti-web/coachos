@@ -1,0 +1,142 @@
+{
+  "seedKey": "two-ball-crossover-series",
+  "title": "Two-Ball Crossover Series",
+  "description": "Stationary two-ball work where both balls swap hands — side-by-side, front crossovers and between-the-legs — for advanced handlers.",
+  "category": "ball_handling",
+  "primarySkill": "ball_control",
+  "secondarySkills": ["dribbling"],
+  "subSkills": ["crossover", "weak_hand"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "individual",
+  "phases": ["skill"],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "any_space",
+  "tags": ["two ball", "crossover"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Exchange two balls between the hands in timing, building coordination and a confident weak hand.",
+    "setup": "Each player has two balls and a personal space.",
+    "organization": "Whole group; 30 seconds per exercise.",
+    "instructions": [
+      "Pound both balls together at knee height for 10 dribbles.",
+      "Front crossover: cross both balls in front, one bouncing slightly before the other.",
+      "Lateral swap: each ball bounces in front of the opposite foot, passing each other.",
+      "Between-the-legs: one ball goes between the legs while the other crosses in front.",
+      "Finish with 15 seconds of alternating dribbles as fast as possible."
+    ],
+    "coachingPoints": [
+      "Stagger the two balls so they never collide.",
+      "Keep both balls below the waist.",
+      "Eyes forward; feel the balls."
+    ],
+    "commonMistakes": [
+      "Crossing both balls at the same moment so they collide.",
+      "Standing up to save a ball.",
+      "Dribbling one ball much higher than the other."
+    ],
+    "safety": "Plenty of space between players; loose balls retrieved only between rounds.",
+    "progressions": [
+      "Do the series walking forward.",
+      "Add a cone pickup during the alternating set."
+    ],
+    "regressions": [
+      "One ball and one tennis ball.",
+      "Two balls without crossovers, just pounds and alternates."
+    ],
+    "variations": ["Partner calls the next exercise.", "Count completed swaps in 20 seconds."],
+    "successCriteria": [
+      "Ten clean swaps in a row for each exercise.",
+      "Even height for both balls."
+    ],
+    "gameApplication": "Two-ball coordination makes single-ball changes of hand feel easy and automatic under pressure.",
+    "repetitions": "5 exercises x 30 s, twice",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_slot"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          },
+          {
+            "id": "b3",
+            "type": "ball",
+            "heldBy": "o3"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 2.6]
+            },
+            "text": "2 balls each"
+          }
+        ]
+      }
+    }
+  ]
+}

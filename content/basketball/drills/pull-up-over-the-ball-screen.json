@@ -1,0 +1,163 @@
+{
+  "seedKey": "pull-up-over-the-ball-screen",
+  "title": "Pull-Up Over the Ball Screen",
+  "description": "The ball handler uses a ball screen and pulls up behind it when the screener's defender drops back, the counter to drop coverage.",
+  "category": "shooting",
+  "primarySkill": "pick_and_roll",
+  "secondarySkills": ["shooting_form", "decision_making"],
+  "subSkills": ["pnr_ball_handler", "shooting_off_the_dribble"],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "2v2",
+  "phases": ["skill"],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["pick and roll", "drop coverage", "pull-up"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Read drop coverage and punish it with a pull-up jumper over the screen.",
+    "setup": "Ball handler at the top; screener at the right slot; screener's defender plays drop near the free-throw line.",
+    "organization": "Rotate ball handler, screener and defender.",
+    "instructions": [
+      "The screener sets a ball screen at the top.",
+      "The ball handler comes off the screen tight.",
+      "The screener's defender sits back in the lane (drop).",
+      "Pull up on one or two dribbles at the free-throw line or behind the arc.",
+      "If the drop defender steps up, hit the rolling screener."
+    ],
+    "coachingPoints": [
+      "Come off the screen shoulder to hip.",
+      "Get to the shot before the defender recovers.",
+      "Read the big, not your own defender."
+    ],
+    "commonMistakes": [
+      "Driving into the drop defender.",
+      "Pulling up too late after the big steps up.",
+      "Wide path off the screen."
+    ],
+    "safety": "Screen legal and stationary; defenders do not undercut the shooter.",
+    "progressions": ["Defender chases over the screen from behind.", "Pull-up three."],
+    "regressions": ["No defender on the ball handler.", "Drop defender stays fixed."],
+    "variations": ["Use a snake dribble back toward the screen.", "Pull-up after a re-screen."],
+    "successCriteria": ["Correct read on most reps.", "Pull-up made at a good rate."],
+    "gameApplication": "Drop coverage concedes the mid-range; good pull-up shooters make defenses pay.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_slot",
+              "offset": [-0.4, 0.6]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 0.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o2",
+            "target": {
+              "entity": "o1",
+              "offset": [0.6, -0.4]
+            },
+            "kind": "ball"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [0, 0.8]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.6, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

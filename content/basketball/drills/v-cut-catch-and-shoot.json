@@ -1,0 +1,139 @@
+{
+  "seedKey": "v-cut-catch-and-shoot",
+  "title": "V-Cut Catch-and-Shoot",
+  "description": "Shooters create space with a V-cut toward the lane and back out to the wing, catching square for a shot.",
+  "category": "shooting",
+  "primarySkill": "cutting",
+  "secondarySkills": ["shooting_form"],
+  "subSkills": ["catch_and_shoot"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["v-cut", "get open"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Use a sharp V-cut to get open and turn the catch into a balanced shot.",
+    "setup": "Passer at the top; shooter at the wing.",
+    "organization": "Shooter rebounds, passes to the passer line, and joins the other wing.",
+    "instructions": [
+      "Walk toward the block as if cutting inside.",
+      "Plant the inside foot and push hard back toward the wing.",
+      "Show the outside hand as the target.",
+      "Catch with the feet set (hop or 1-2) and shoot.",
+      "Alternate wings."
+    ],
+    "coachingPoints": [
+      "Slow in, fast out.",
+      "Plant on the inside foot to change direction.",
+      "Hands ready before the catch."
+    ],
+    "commonMistakes": [
+      "Rounding the cut into a lazy loop.",
+      "Catching off balance and drifting.",
+      "Cutting at the same speed both ways."
+    ],
+    "safety": "Shooters rebound their own ball only when the lane is clear; nobody stands under the rim while others shoot.",
+    "progressions": ["Add a denying defender.", "V-cut into a one-dribble pull-up."],
+    "regressions": ["Walk the cut.", "Shoot from inside the arc."],
+    "variations": ["L-cut from the block to the wing.", "V-cut in the corner."],
+    "successCriteria": ["Catch made square on most reps.", "Seven makes from each wing."],
+    "gameApplication": "Getting open is the first part of shooting; the V-cut creates the space.",
+    "repetitions": "10 shots per wing",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.6, 1.4]
+              },
+              {
+                "anchor": "right_wing",
+                "offset": [0.2, 0.2]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

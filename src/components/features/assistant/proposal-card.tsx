@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { CircleAlert, Loader2, Sparkles } from "lucide-react";
 import { BasketballIcon } from "@/components/basketball";
-import { DrillDiagram } from "@/components/features/drills/drill-diagram";
+import { DiagramPlayer } from "@/components/features/drills/diagram-player";
 import { PhaseBadge } from "@/components/features/sessions/badges";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent } from "@/components/ui/dialog";
@@ -189,13 +189,12 @@ export function ProposalCard({
                 ? t("diagram.replace", { title: proposal.title })
                 : t("diagram.create", { title: proposal.title })}
             </p>
-            <div className="max-w-sm overflow-hidden rounded-md border border-line bg-surface-sunken">
-              <DrillDiagram
-                diagram={proposal.diagram}
-                title={t("diagram.alt")}
-                className="block h-auto w-full"
-              />
-            </div>
+            {/* the coach can watch the movement the AI drew before applying it */}
+            <DiagramPlayer
+              diagram={proposal.diagram}
+              title={t("diagram.alt")}
+              className="max-w-md overflow-hidden rounded-md border border-line bg-surface-sunken"
+            />
           </div>
         );
     }

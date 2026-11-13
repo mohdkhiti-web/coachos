@@ -14,7 +14,7 @@ export function NavLinks({ variant, assistant }: { variant: "rail" | "bar"; assi
 
   return (
     <ul
-      className={cn(variant === "rail" && "flex flex-col gap-1", variant === "bar" && "grid")}
+      className={cn(variant === "rail" && "flex flex-col gap-0.5", variant === "bar" && "grid")}
       style={
         variant === "bar"
           ? { gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }
@@ -32,31 +32,33 @@ export function NavLinks({ variant, assistant }: { variant: "rail" | "bar"; assi
               className={cn(
                 "group relative flex items-center smooth-colors",
                 variant === "rail"
-                  ? "min-h-11 gap-3 rounded-md px-3 text-sm font-medium"
-                  : "min-h-16 flex-col justify-center gap-1 text-xs font-medium",
+                  ? "min-h-10 gap-3 rounded-md px-3 text-[0.9rem] font-medium"
+                  : "min-h-16 flex-col justify-center gap-1 text-[0.7rem] font-semibold",
                 active
                   ? variant === "rail"
-                    ? "bg-accent-soft text-ink"
+                    ? "bg-rail-raised text-rail-ink"
                     : "text-accent"
-                  : "text-ink-muted hover:text-ink",
-                variant === "rail" && !active && "hover:bg-surface-sunken",
+                  : variant === "rail"
+                    ? "text-rail-muted hover:text-rail-ink"
+                    : "text-ink-muted hover:text-ink",
+                variant === "rail" && !active && "hover:bg-rail-raised/60",
               )}
             >
               {/* court-line marker for the active destination */}
               {active && variant === "rail" ? (
                 <span
                   aria-hidden
-                  className="absolute inset-y-2 left-0 w-0.5 animate-fade-in rounded-full bg-accent"
+                  className="absolute inset-y-2 left-0 w-[3px] animate-fade-in rounded-r-full bg-accent-bright"
                 />
               ) : null}
               {active && variant === "bar" ? (
                 <span
                   aria-hidden
-                  className="absolute inset-x-6 top-0 h-0.5 animate-fade-in rounded-full bg-accent"
+                  className="absolute inset-x-6 top-0 h-0.5 animate-fade-in rounded-full bg-accent-bright"
                 />
               ) : null}
               <Icon
-                className="size-5 shrink-0 transition-transform duration-200 ease-out group-hover:scale-110 group-active:scale-95"
+                className="size-[1.15rem] shrink-0 transition-transform duration-150 ease-out group-active:scale-90"
                 aria-hidden
               />
               <span>{t(labelKey)}</span>

@@ -1,0 +1,131 @@
+{
+  "seedKey": "poke-check-timing",
+  "title": "Poke-Check Timing",
+  "description": "Defenders learn when to poke at the ball — on the dribble's way up on the side, never across the body — trailing a dribbler at half speed.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": ["competitiveness"],
+  "subSkills": ["containing_the_dribble"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": ["steal", "poke", "timing"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Steal the dribble from the side with correct timing, without fouling or losing position.",
+    "setup": "Pairs on the baseline; the dribbler has a ball.",
+    "organization": "Down with defense, back with offense.",
+    "instructions": [
+      "The dribbler dribbles up the sideline at half speed.",
+      "The defender runs alongside, half a step behind.",
+      "Poke the ball forward with the inside hand as it rises from the floor.",
+      "Recover the ball or keep running if missed.",
+      "Switch roles."
+    ],
+    "coachingPoints": [
+      "Poke up and forward, not down on the arm.",
+      "Use the near hand only.",
+      "Keep running: a miss must not cost position."
+    ],
+    "commonMistakes": [
+      "Reaching across the body.",
+      "Swiping down on the arm.",
+      "Stopping after a failed poke."
+    ],
+    "safety": "Poke the ball only; any arm contact is a foul and the rep restarts.",
+    "progressions": ["Dribbler at three-quarter speed.", "Poke from behind (trailing) only."],
+    "regressions": ["Dribbler walks.", "Dribbler dribbles high on purpose."],
+    "variations": ["Poke from the front on a crossover.", "Team competition: most clean pokes."],
+    "successCriteria": ["Clean pokes with no contact.", "Recovers position after misses."],
+    "gameApplication": "Well-timed pokes create steals in transition without fouls.",
+    "repetitions": "3 trips each role",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_corner",
+              "offset": [1, 0.4]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [0.8, -0.4]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_sideline_center",
+                "offset": [1.6, 0]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "sprint",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "left_sideline_center",
+                "offset": [2.2, -0.6]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

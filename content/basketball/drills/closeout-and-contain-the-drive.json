@@ -1,28 +1,28 @@
 {
   "seedKey": "closeout-and-contain-the-drive",
-  "title": "Closeout and Contain the Drive",
-  "description": "A defender closes out hard on a catch, then must contain a live drive without fouling or giving up an easy middle drive.",
+  "title": "Skip-Pass Long Closeout",
+  "description": "A help-side defender sitting in the lane must cover a long distance to close out on a skip pass to the corner, arriving under control and still able to contain the drive.",
   "category": "individual_defense",
   "primarySkill": "closeouts",
-  "secondarySkills": ["on_ball_defense"],
-  "subSkills": [],
+  "secondarySkills": ["help_defense", "on_ball_defense"],
+  "subSkills": ["help_position", "containing_the_dribble"],
   "level": "advanced",
-  "intensity": "medium",
+  "intensity": "high",
   "format": "1v1",
-  "phases": [],
-  "ageMin": 11,
-  "ageMax": 18,
-  "playersMin": 2,
-  "playersMax": 16,
-  "durationMin": 4,
-  "durationMax": 6,
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 10,
   "space": "half_court",
-  "tags": ["defense", "closeout"],
+  "tags": ["long closeout", "skip pass", "help side"],
   "equipment": [
     {
       "type": "basketball",
       "rule": "fixed",
-      "quantity": 2
+      "quantity": 1
     },
     {
       "type": "hoop",
@@ -31,29 +31,40 @@
     }
   ],
   "content": {
-    "objective": "Close out under control and then contain whatever the shooter decides to do next.",
-    "setup": "A defender starts in a help position as a shooter catches on the wing.",
-    "organization": "",
+    "objective": "Recover from deep help position on a skip pass, covering eight metres fast but arriving balanced enough to stop the drive.",
+    "setup": "Passer at the right wing; shooter in the left corner; defender in help position in the lane (two passes away).",
+    "organization": "Rotate passer, shooter and defender.",
     "instructions": [
-      "The defender sprints to close out, chopping the feet down on the last two steps.",
-      "If the shooter attacks, the defender contains the drive by sliding, not lunging.",
-      "If the shooter holds, the defender contests the shot with a high hand, staying down.",
-      "Rotate the shooter's decision randomly across reps."
+      "The defender starts in help position on the lane line, pointing at the ball and the corner shooter.",
+      "The passer throws an overhead skip pass to the left corner.",
+      "Sprint while the ball is in the air; start chopping the feet one-third of the way from the shooter.",
+      "Arrive with a high hand and the inside foot forward to force baseline.",
+      "Play live: contain the drive or contest the shot."
     ],
     "coachingPoints": [
-      "Chop the feet on the approach so the closeout lands balanced.",
-      "Stay low on the contest — jumping out of control gives up the drive.",
-      "Keep the hands active without fouling."
+      "Leave on the pass, not on the catch.",
+      "Longer sprint, earlier chop.",
+      "Take away the middle drive: force baseline toward help."
     ],
     "commonMistakes": [
-      "Flying in too fast and losing balance on the closeout.",
-      "Standing straight up to contest instead of staying in a stance.",
-      "Standing upright instead of staying in a low stance."
+      "Flying past the shooter because the chop started late.",
+      "Arriving square and giving up the middle.",
+      "Waiting in help too long."
     ],
-    "safety": "Contest verticality only; no reaching across the shooter's body.",
-    "progressions": [],
-    "regressions": [],
-    "variations": []
+    "safety": "Defenders close out under control and never land on the shooter's feet.",
+    "progressions": ["Add a second shooter who relocates.", "Shooter may shot-fake and drive."],
+    "regressions": ["Defender starts closer (lane edge).", "Slower, lofted skip pass."],
+    "variations": ["Long closeout to the wing.", "Two-person closeout game with X-out rotation."],
+    "successCriteria": ["Arrives balanced on most reps.", "No middle drives allowed."],
+    "gameApplication": "Skip passes beat help defense; long closeouts decide whether the corner three is open or contested.",
+    "repetitions": "6 reps per defender",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
   },
   "diagrams": [
     {
@@ -76,13 +87,22 @@
             }
           },
           {
-            "id": "x1",
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_corner"
+            }
+          },
+          {
+            "id": "x2",
             "type": "player",
             "side": "defense",
-            "label": "X1",
+            "label": "X2",
             "at": {
-              "anchor": "right_wing",
-              "offset": [-1.5, 0.8]
+              "anchor": "left_block",
+              "offset": [1.2, 1.2]
             }
           },
           {
@@ -93,23 +113,25 @@
         ],
         "actions": [
           {
-            "id": "x1",
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "skip"
+          },
+          {
+            "id": "a2",
             "step": 1,
             "type": "defend",
             "kind": "closeout",
-            "entity": "x1",
+            "entity": "x2",
             "path": [
               {
-                "anchor": "right_wing",
-                "offset": [0.9, 0]
+                "anchor": "left_corner",
+                "offset": [1, 0.8]
               }
             ]
-          },
-          {
-            "id": "sh2",
-            "step": 2,
-            "type": "shot",
-            "entity": "o1"
           }
         ],
         "annotations": []

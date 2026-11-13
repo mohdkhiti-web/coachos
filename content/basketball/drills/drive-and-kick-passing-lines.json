@@ -1,0 +1,185 @@
+{
+  "seedKey": "drive-and-kick-passing-lines",
+  "title": "Drive-and-Kick Passing Lines",
+  "description": "Drivers attack the lane from the top and kick out to shooters who relocate to open spots, learning the timing of the most common half-court pass.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["decision_making", "spacing"],
+  "subSkills": ["passing_on_the_move", "reading_the_defense"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 15,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["drive and kick", "spacing"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Penetrate to draw the defense and deliver an on-time kick-out to a spaced, relocating shooter.",
+    "setup": "Driver at the top; shooters at both wings; a coach as help defender at the elbow.",
+    "organization": "Driver goes to the wing they passed to; shooter rebounds and joins the driver line.",
+    "instructions": [
+      "The driver attacks the elbow-to-rim gap.",
+      "The coach steps in to help.",
+      "The wing on that side drifts to the corner; the opposite wing lifts.",
+      "The driver kicks out to the open shooter with a one-hand push or pocket pass.",
+      "The shooter catches ready and shoots."
+    ],
+    "coachingPoints": [
+      "Drive two feet into the lane before passing.",
+      "Pass to the shooter's shooting pocket.",
+      "Shooters move to the space, not toward the ball."
+    ],
+    "commonMistakes": [
+      "Kicking out before the help commits.",
+      "Shooters standing still in the driver's line of sight blocked by the help.",
+      "Driver jumping in the air without a plan."
+    ],
+    "safety": "Coach-helper steps in but does not take contact; shooters rebound their own ball.",
+    "progressions": [
+      "Live help defender and a closing-out defender.",
+      "Add an extra pass from the shooter to the next shooter."
+    ],
+    "regressions": ["Driver stops with a jump stop before passing.", "One shooter only."],
+    "variations": [
+      "Drive from the wing and kick to the corner.",
+      "Baseline drive and kick to the opposite corner."
+    ],
+    "successCriteria": [
+      "Kick-outs arrive on time for a rhythm shot.",
+      "Driver passes only after the help commits."
+    ],
+    "gameApplication": "Drive-and-kick is the backbone of modern spacing offense.",
+    "repetitions": "8 drives per driver",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [0.4, -0.4]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [-0.6, -1.2]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "cut",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_corner"
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 1,
+            "type": "cut",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "left_slot",
+                "offset": [-0.4, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a5",
+            "step": 3,
+            "type": "shot",
+            "entity": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

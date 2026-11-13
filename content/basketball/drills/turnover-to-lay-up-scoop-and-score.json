@@ -1,0 +1,218 @@
+{
+  "seedKey": "turnover-to-lay-up-scoop-and-score",
+  "title": "Turnover to Lay-Up: Scoop and Score",
+  "description": "The coach rolls a loose ball; the nearest player scoops it on the run and either scores or pushes ahead to a teammate before the defense recovers.",
+  "category": "transition",
+  "primarySkill": "decision_making",
+  "secondarySkills": [
+    "ball_control",
+    "finishing",
+    "speed_agility"
+  ],
+  "subSkills": [
+    "numbers_advantage",
+    "both_hands_finishing"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": [
+    "loose ball",
+    "steal",
+    "transition"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Turn loose balls into points by scooping on the run and attacking before the defense recovers.",
+    "setup": "Two attackers and two defenders around the half-court line; coach with the ball.",
+    "organization": "Rotate pairs every two reps.",
+    "instructions": [
+      "The coach rolls the ball between the players.",
+      "Attackers race to scoop it on the run (no diving).",
+      "The scorer attacks the basket immediately.",
+      "The partner sprints the lane for a pass.",
+      "Defenders recover and try to stop it."
+    ],
+    "coachingPoints": [
+      "Scoop with two hands on the run.",
+      "Eyes up after the scoop.",
+      "Fill a lane, do not trail."
+    ],
+    "commonMistakes": [
+      "Stopping to pick up the ball.",
+      "Dribbling into the recovering defender.",
+      "Teammate standing."
+    ],
+    "safety": "Players scoop the ball from the floor without diving; the roll goes into open space so nobody collides.",
+    "progressions": [
+      "Defenders start closer.",
+      "Two loose balls."
+    ],
+    "regressions": [
+      "Ball rolled toward the attackers.",
+      "One defender."
+    ],
+    "variations": [
+      "Tipped pass instead of a roll.",
+      "Start from a deflection drill."
+    ],
+    "successCriteria": [
+      "Score on most reps.",
+      "Scoop without stopping."
+    ],
+    "gameApplication": "Live-ball turnovers are the best scoring chances in basketball.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [
+                0,
+                -1
+              ]
+            }
+          },
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [
+                -1.4,
+                0
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [
+                1.4,
+                0
+              ]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [
+                -1.4,
+                -1
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [
+                1.4,
+                -1
+              ]
+            }
+          },
+          {
+            "id": "bl1",
+            "type": "ball",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [
+                0,
+                0.6
+              ]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "center_circle",
+                "offset": [
+                  0,
+                  0.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [
+                  0,
+                  -0.4
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

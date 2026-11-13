@@ -1,23 +1,23 @@
 {
   "seedKey": "rebound-and-outlet-push",
-  "title": "Rebound and Outlet Push",
-  "description": "A rebounder secures a missed shot and immediately pushes to find the outlet pass that starts a fast break, under light simulated pressure.",
+  "title": "Tip-to-Self Rebounding",
+  "description": "Seated players learn to tip a high rebound up and toward their own chair with one hand, then secure it with two, a key technique when opponents' reach is similar and the ball is above everyone.",
   "category": "rebounding",
   "primarySkill": "rebounding",
-  "secondarySkills": ["passing"],
-  "subSkills": ["defensive_rebounding"],
+  "secondarySkills": ["ball_control", "chair_maneuvering"],
+  "subSkills": ["defensive_rebounding", "offensive_rebounding"],
   "level": "intermediate",
   "intensity": "medium",
   "format": "group",
-  "phases": [],
-  "ageMin": 9,
-  "ageMax": 18,
-  "playersMin": 3,
-  "playersMax": 16,
-  "durationMin": 4,
-  "durationMax": 6,
+  "phases": ["skill"],
+  "ageMin": 10,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 10,
   "space": "half_court",
-  "tags": ["rebounding", "outlet pass"],
+  "tags": ["tip", "rebounding", "seated reach"],
   "equipment": [
     {
       "type": "basketball",
@@ -36,29 +36,46 @@
     }
   ],
   "content": {
-    "objective": "Secure the rebound with two hands and find the outlet pass quickly to start the break.",
-    "setup": "A shot is missed on purpose near the rim; a rebounder and an outlet target wait nearby.",
-    "organization": "",
+    "objective": "Control a rebound you cannot catch cleanly by tipping it up and toward yourself, then securing it with two hands before an opponent can.",
+    "setup": "Rebounder in front of the rim at the right block; coach shoots from the elbow; later a competing rebounder.",
+    "organization": "Five shots per rebounder, then rotate; progress to two rebounders competing.",
     "instructions": [
-      "Secure the rebound at its highest reachable point with both hands.",
-      "Pivot the chair away from any pressure immediately after securing it.",
-      "Find the outlet pass to the wing, leading them up the floor.",
-      "Rotate the rebounder every three reps."
+      "The coach shoots and misses off the rim.",
+      "Position the chair under the likely landing spot and reach with the outside hand.",
+      "Tip the ball up and back toward your own chair with the fingertips.",
+      "Catch the tipped ball with two hands and pull it into the lap.",
+      "Pivot the chair away from pressure and outlet."
     ],
     "coachingPoints": [
-      "Chin the ball above the shoulders right after the catch.",
-      "Turn the chair away from pressure before looking to pass.",
-      "Make the outlet pass sharp and on time, not a lazy lob."
+      "Tip up and toward yourself, not out.",
+      "Use the fingertips, keep the wrist firm.",
+      "Two hands to secure, ball into the lap."
     ],
     "commonMistakes": [
-      "Bringing the ball down low where it can be knocked away.",
-      "Outletting to a spot instead of leading the receiver forward.",
-      "Reaching for the ball with one hand instead of securing it with two."
+      "Slapping the ball away from the rim.",
+      "Reaching so far that the chair tips.",
+      "Securing with one hand and losing the ball."
     ],
-    "safety": "Light contact only when simulating pressure on the rebounder.",
-    "progressions": [],
-    "regressions": [],
-    "variations": []
+    "safety": "Anti-tip casters fitted; rebounders keep both wheels down when reaching; no ramming other chairs.",
+    "progressions": [
+      "Competing rebounder on the same spot.",
+      "Tip-in to score instead of securing (offensive version)."
+    ],
+    "regressions": [
+      "Coach tosses the ball high off the backboard.",
+      "Catch without tipping first."
+    ],
+    "variations": ["Tip to a teammate (tip-out).", "Tip-to-self from the weak side."],
+    "successCriteria": ["Secures most tipped balls.", "Chair stays stable on every reach."],
+    "gameApplication": "When several players reach at the same height, the one who tips the ball to themselves wins the rebound.",
+    "repetitions": "5 rebounds per player, 3 rounds",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
   },
   "diagrams": [
     {
@@ -77,43 +94,55 @@
             "side": "offense",
             "label": "1",
             "at": {
-              "anchor": "under_basket"
+              "anchor": "right_block",
+              "offset": [-0.4, 0.6]
             },
             "mobility": "chair"
           },
           {
-            "id": "o2",
-            "type": "player",
-            "side": "offense",
-            "label": "2",
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
             "at": {
-              "anchor": "left_wing"
-            },
-            "mobility": "chair"
+              "anchor": "left_elbow"
+            }
           },
           {
             "id": "b1",
             "type": "ball",
-            "heldBy": "o1"
+            "heldBy": "c1"
           }
         ],
         "actions": [
           {
-            "id": "p1",
+            "id": "a1",
             "step": 1,
-            "type": "pass",
-            "from": "o1",
-            "to": "o2"
+            "type": "shot",
+            "entity": "c1"
           },
           {
-            "id": "p2",
+            "id": "a2",
             "step": 2,
-            "type": "pass",
-            "from": "o2",
-            "to": "o1"
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "basket",
+                "offset": [0.6, 0.9]
+              }
+            ]
           }
         ],
-        "annotations": []
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [0.8, 0.6]
+            },
+            "text": "Tip up · secure"
+          }
+        ]
       }
     }
   ]

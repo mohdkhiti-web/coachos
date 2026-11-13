@@ -1,0 +1,196 @@
+{
+  "seedKey": "long-rebound-leak-out-decision",
+  "title": "Long Rebound Leak-Out Decision",
+  "description": "Guards learn when to leak out early on a shot (long rebound, teammates in position) and when to stay and rebound, with a coach-controlled scenario.",
+  "category": "transition",
+  "primarySkill": "decision_making",
+  "secondarySkills": [
+    "rebounding",
+    "conditioning"
+  ],
+  "subSkills": [
+    "reading_the_defense",
+    "defensive_rebounding"
+  ],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "group",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 13,
+  "ageMax": 99,
+  "playersMin": 6,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": [
+    "leak out",
+    "rebounding",
+    "decision"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Decide correctly whether to release early for a fast break or stay to rebound based on the shot and teammates' positions.",
+    "setup": "3v3 half court; the coach shoots from different distances; a guard decides whether to leak out.",
+    "organization": "Rotate guards every four shots.",
+    "instructions": [
+      "The coach shoots from three-point range (long rebound likely) or close range.",
+      "The defending guard reads: long shot and two bigs boxing out = leak out.",
+      "Close shot or bigs beaten = stay and rebound.",
+      "If leaking, sprint wide and call for the outlet.",
+      "Play the break 2v1 or 3v2 if leaking."
+    ],
+    "coachingPoints": [
+      "Read before leaving.",
+      "Leak out wide, call for the ball.",
+      "When in doubt, rebound."
+    ],
+    "commonMistakes": [
+      "Leaking out on every shot.",
+      "Leaving before the shot is released.",
+      "Rebounders not looking for the leaker."
+    ],
+    "safety": "Lanes stay wide so players do not collide; runners finishing at speed have clear space behind the basket.",
+    "progressions": [
+      "Offense crashes four.",
+      "Live score on both outcomes."
+    ],
+    "regressions": [
+      "Coach tells the decision.",
+      "No offensive rebounders."
+    ],
+    "variations": [
+      "Leak out after a free throw.",
+      "Two guards with one allowed to leak."
+    ],
+    "successCriteria": [
+      "Correct decision on most shots.",
+      "Leak-outs lead to lay-ups."
+    ],
+    "gameApplication": "Leaking out wins easy baskets but costs rebounds; the decision matters.",
+    "repetitions": "12 shots",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "top_key",
+              "offset": [
+                0,
+                -0.8
+              ]
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "right_wing",
+              "offset": [
+                -0.6,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "right_block",
+              "offset": [
+                -0.2,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "anchor": "left_block",
+              "offset": [
+                0.2,
+                0.6
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "c1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "sprint",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_sideline_center",
+                "offset": [
+                  -0.8,
+                  0
+                ]
+              },
+              {
+                "anchor": "center_circle",
+                "offset": [
+                  1.6,
+                  1
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

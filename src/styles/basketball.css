@@ -13,29 +13,21 @@
  * The arena: a dark court-at-night surface (uses the dark tokens via `.arena`, see globals.css)
  * ------------------------------------------------------------------------------------------------------------- */
 
+/* The dark sheet: flat blue-ink stock. No grid, no glow — structure comes from the content's own rules. */
 @utility arena-surface {
-  background:
-    radial-gradient(120% 90% at 78% 8%, rgb(249 115 22 / 0.13), transparent 55%),
-    radial-gradient(90% 70% at 0% 100%, rgb(249 115 22 / 0.06), transparent 60%), var(--surface);
+  background-color: var(--surface);
 }
 
-/* Brushed-metal / glass panel: a hairline, a faint top highlight, a soft shadow. Used sparingly. */
+/* A sheet panel: solid raised stock, the one hairline, a soft offset shadow. (Name kept for existing callers.) */
 @utility glass-panel {
-  background:
-    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0.015)),
-    var(--surface-raised);
+  background: var(--surface-raised);
   border: 1px solid var(--line);
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.06),
-    var(--shadow-paper);
+  box-shadow: var(--shadow-paper);
 }
 
-/* Hardwood-orange text gradient for one or two words of a headline — never body copy. */
+/* The coach's orange mark on a word of a headline: solid ink, never a gradient. */
 @utility text-ember {
-  background: linear-gradient(100deg, #fdba74 0%, #f97316 55%, #ea580c 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--accent);
 }
 
 /* ---------------------------------------------------------------------------------------------------------------
@@ -218,7 +210,7 @@
 
 /* Overscroll and short pages must not flash the app's paper colour behind an arena page. */
 html:has(.arena) {
-  background: #0d0f12;
+  background: #121f3b;
   color-scheme: dark;
 }
 

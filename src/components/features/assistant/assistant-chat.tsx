@@ -567,7 +567,9 @@ function MessageView({
       <div
         className={cn(
           "max-w-[92%] space-y-3 rounded-lg px-4 py-3 sm:max-w-[85%]",
-          mine ? "bg-accent text-accent-ink" : "border border-line bg-surface-raised text-ink",
+          mine
+            ? "bg-accent-bright text-accent-ink"
+            : "border border-line bg-surface-raised text-ink",
         )}
       >
         {!mine ? (

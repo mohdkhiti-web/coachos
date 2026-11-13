@@ -1,0 +1,189 @@
+{
+  "seedKey": "drift-and-lift-spacing",
+  "title": "Drift and Lift Spacing",
+  "description": "Off-ball players learn to move with a drive: the corner 'drifts' along the baseline, the wing 'lifts' higher, opening passing angles for the driver.",
+  "category": "team_offense",
+  "primarySkill": "spacing",
+  "secondarySkills": [
+    "decision_making",
+    "passing"
+  ],
+  "subSkills": [
+    "reading_the_defense"
+  ],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "4v4",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 4,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "spacing",
+    "drift",
+    "lift"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Move away from drives in a way that creates a passing lane: drift on baseline drives, lift on middle drives.",
+    "setup": "Four players: top, two wings, corner; defense added later.",
+    "organization": "Coach calls the drive direction; live after four reps.",
+    "instructions": [
+      "A wing drives baseline.",
+      "The corner on that side drifts up to the 45 behind the driver.",
+      "A wing drives middle: the weak-side wing lifts to the slot.",
+      "The driver passes to the player who moved.",
+      "Shoot or attack again."
+    ],
+    "coachingPoints": [
+      "Move when the driver moves.",
+      "Stay behind the line of the ball.",
+      "Give a clear passing angle."
+    ],
+    "commonMistakes": [
+      "Standing still on the drive.",
+      "Drifting into the driver's path.",
+      "Moving too late."
+    ],
+    "safety": "Screens are set stationary and legal; defenders are allowed to see the screen in walk-throughs before live play.",
+    "progressions": [
+      "Live 4v4.",
+      "Two drives before a shot."
+    ],
+    "regressions": [
+      "No defense.",
+      "Cones for drift and lift spots."
+    ],
+    "variations": [
+      "5-out version.",
+      "Add a dunker spot."
+    ],
+    "successCriteria": [
+      "Correct movement on every drive.",
+      "Open passing lane created."
+    ],
+    "gameApplication": "Spacing is not standing still; good spacing moves with the ball.",
+    "repetitions": "10 drives",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_short_corner",
+                "offset": [
+                  -1,
+                  0.8
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "move",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_wing",
+                "offset": [
+                  -0.2,
+                  -0.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

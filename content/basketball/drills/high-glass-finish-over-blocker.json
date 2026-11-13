@@ -1,0 +1,128 @@
+{
+  "seedKey": "high-glass-finish-over-blocker",
+  "title": "High-Glass Finish over a Blocker",
+  "description": "Finishers use the top of the backboard to get the ball over a tall shot-blocker, practising height, touch and timing.",
+  "category": "finishing",
+  "primarySkill": "finishing",
+  "secondarySkills": [],
+  "subSkills": ["finishing_with_contact"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["high glass", "shot blocker"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Release higher off the glass with soft touch so a shot-blocker cannot reach the ball.",
+    "setup": "Coach or tall player with arms up in front of the rim; lines at both wings.",
+    "organization": "Alternate sides.",
+    "instructions": [
+      "Drive to the block.",
+      "Take off strong and extend the arm fully.",
+      "Aim above the square, higher than a normal lay-up.",
+      "Let the ball drop softly off the board.",
+      "Repeat with the other hand."
+    ],
+    "coachingPoints": [
+      "Extend fully at the top.",
+      "Higher target, same soft touch.",
+      "Jump strong: height matters."
+    ],
+    "commonMistakes": [
+      "Throwing hard off the glass.",
+      "Same target as a normal lay-up.",
+      "Leaning into the blocker."
+    ],
+    "safety": "Blocker keeps arms vertical; no swatting at the shooter's arm.",
+    "progressions": ["Blocker jumps.", "Finish off a pro hop."],
+    "regressions": ["Blocker stands still with one arm up.", "Closer start."],
+    "variations": ["High glass from the middle.", "Weak-hand only."],
+    "successCriteria": ["Ball released above the blocker's hand on most reps.", "Makes over half."],
+    "gameApplication": "Smaller finishers use height on the glass to score over rim protectors.",
+    "repetitions": "8 each side",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "basket",
+              "offset": [0, 0.9]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_block",
+                "offset": [0.4, 1]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

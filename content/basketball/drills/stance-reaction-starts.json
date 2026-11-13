@@ -1,0 +1,122 @@
+{
+  "seedKey": "stance-reaction-starts",
+  "title": "Stance Reaction Starts",
+  "description": "From a defensive stance, players react to a ball dropped or pointed by the coach and explode in that direction for three steps.",
+  "category": "footwork",
+  "primarySkill": "speed_agility",
+  "secondarySkills": ["on_ball_defense", "footwork"],
+  "subSkills": ["change_of_direction"],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 10,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 16,
+  "durationMin": 5,
+  "durationMax": 6,
+  "space": "half_court",
+  "tags": ["reaction", "first step"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Improve first-step quickness from a stance in response to a visual cue.",
+    "setup": "Players in a stance facing the coach, who holds two balls out at shoulder height.",
+    "organization": "Pairs or small groups.",
+    "instructions": [
+      "The coach drops one ball.",
+      "The player reacts and moves toward the dropped ball.",
+      "Catch it before the second bounce.",
+      "Return to the stance and reset.",
+      "Repeat; vary the drop side."
+    ],
+    "coachingPoints": [
+      "Push off the far foot.",
+      "Low first step.",
+      "React to the ball, not a guess."
+    ],
+    "commonMistakes": [
+      "Guessing early.",
+      "Standing up first.",
+      "Stepping back before going forward."
+    ],
+    "safety": "Use a clear, dry floor and space players so nobody collides when changing direction.",
+    "progressions": ["Catch before the first bounce.", "Coach stands further away."],
+    "regressions": ["Two bounces allowed.", "Coach points before dropping."],
+    "variations": ["Partner drops the balls.", "React to a coloured cone being raised."],
+    "successCriteria": ["Catches most balls before the second bounce.", "Low first step."],
+    "gameApplication": "A fast first step steals passes and beats opponents to loose balls.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 1]
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1.6]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "top_key",
+                "offset": [-1, 1.2]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 2.8]
+            },
+            "text": "Drop · react · catch"
+          }
+        ]
+      }
+    }
+  ]
+}

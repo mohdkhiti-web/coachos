@@ -1,0 +1,202 @@
+{
+  "seedKey": "zipper-cut-into-ball-screen",
+  "title": "Zipper Cut Into a Ball Screen",
+  "description": "A guard cuts from the block up the lane line off a down screen ('zipper') to catch at the top, then immediately runs a ball screen with the screener.",
+  "category": "team_offense",
+  "primarySkill": "screening",
+  "secondarySkills": [
+    "pick_and_roll",
+    "cutting"
+  ],
+  "subSkills": [
+    "using_screens",
+    "setting_screens",
+    "pnr_ball_handler"
+  ],
+  "level": "advanced",
+  "intensity": "medium",
+  "format": "3v3",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 6,
+  "playersMax": 10,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "zipper",
+    "Z action",
+    "ball screen"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Chain an off-ball screen into an on-ball screen so the defense never gets set.",
+    "setup": "Guard on the left block; screener at the left elbow; wing passer at the right slot.",
+    "organization": "Rotate every four possessions.",
+    "instructions": [
+      "The screener down-screens for the guard at the elbow.",
+      "The guard zippers up the lane line to the top and catches.",
+      "The screener follows into a ball screen.",
+      "The guard attacks off the screen; the screener rolls or pops.",
+      "Read and score."
+    ],
+    "coachingPoints": [
+      "Zipper cut tight to the screen.",
+      "Catch already facing the rim.",
+      "Quick flow into the ball screen."
+    ],
+    "commonMistakes": [
+      "Wide cut that lets the defender recover.",
+      "Pause between actions.",
+      "Screener late to the ball screen."
+    ],
+    "safety": "Screens are set stationary and legal; post contact uses the body, never hooking or pushing with the arms.",
+    "progressions": [
+      "Live 3v3.",
+      "Defense switches the zipper."
+    ],
+    "regressions": [
+      "Walk-through.",
+      "No defense."
+    ],
+    "variations": [
+      "Zipper into a hand-off.",
+      "Zipper into a pick-and-pop."
+    ],
+    "successCriteria": [
+      "Clean catch at the top.",
+      "Advantage from the ball screen."
+    ],
+    "gameApplication": "Linked actions keep defenders chasing and create the advantage before the ball screen.",
+    "repetitions": "8 possessions",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "left_block"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [
+                0,
+                -0.4
+              ]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_slot"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o3"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "screen",
+            "entity": "o2",
+            "target": {
+              "anchor": "left_block",
+              "offset": [
+                0.2,
+                -0.8
+              ]
+            },
+            "kind": "down"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "left_elbow",
+                "offset": [
+                  0.4,
+                  0
+                ]
+              },
+              {
+                "anchor": "top_key"
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "pass",
+            "from": "o3",
+            "to": "o1"
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "screen",
+            "entity": "o2",
+            "target": {
+              "anchor": "top_key",
+              "offset": [
+                -0.4,
+                0.6
+              ]
+            },
+            "kind": "ball"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

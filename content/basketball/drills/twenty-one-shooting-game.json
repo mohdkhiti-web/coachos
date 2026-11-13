@@ -1,0 +1,145 @@
+{
+  "seedKey": "twenty-one-shooting-game",
+  "title": "Twenty-One Shooting Game",
+  "description": "A long shot from the free-throw line is worth two points and the follow-up from where the rebound is caught is worth one; first to exactly 21 wins.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["rebounding", "competitiveness"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["small_sided"],
+  "ageMin": 8,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 6,
+  "durationMin": 8,
+  "durationMax": 12,
+  "space": "half_court",
+  "tags": ["game", "21", "follow up"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Combine set shooting with following up quickly for a second shot, in a simple scoring game.",
+    "setup": "Two to six players at one basket; one ball.",
+    "organization": "Players shoot in turn.",
+    "instructions": [
+      "Shoot from the free-throw line: a make is worth two points.",
+      "Rebound your own shot and shoot again from where you caught it: worth one point.",
+      "Then pass to the next player.",
+      "Players must reach exactly 21; going over drops you back to 13.",
+      "First to 21 wins."
+    ],
+    "coachingPoints": [
+      "Follow the long shot immediately.",
+      "Take the second shot under control.",
+      "Same routine on the long shot every time."
+    ],
+    "commonMistakes": [
+      "Watching the shot instead of following it.",
+      "Rushing the follow-up.",
+      "Losing count."
+    ],
+    "safety": "Only the shooter goes for the rebound; others wait outside the lane.",
+    "progressions": ["Long shot from the three-point line.", "Follow-up must be a weak-hand shot."],
+    "regressions": ["Long shot from the block.", "Target 11."],
+    "variations": ["Team version in pairs.", "Follow-up must be a jump stop shot."],
+    "successCriteria": ["Reaches 21 exactly.", "Follows every long shot."],
+    "gameApplication": "Following your own shot and finishing quickly is a game habit this game rewards.",
+    "repetitions": "1 to 2 games",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-1, 1]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [1, 1]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_block",
+                "offset": [-0.4, 0.6]
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "seedKey": "numbered-fast-break-lanes",
+  "title": "Numbered Fast Break Lanes",
+  "description": "Every position learns its job in the break: 1 brings the ball, 2 and 3 run wide to the corners, 4 trails, 5 runs to the rim, run 5-on-0 until it is automatic.",
+  "category": "transition",
+  "primarySkill": "spacing",
+  "secondarySkills": [
+    "conditioning",
+    "passing"
+  ],
+  "subSkills": [
+    "passing_on_the_move"
+  ],
+  "level": "beginner",
+  "intensity": "high",
+  "format": "team",
+  "phases": [
+    "skill"
+  ],
+  "ageMin": 10,
+  "ageMax": 99,
+  "playersMin": 5,
+  "playersMax": 15,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "full_court",
+  "tags": [
+    "lanes",
+    "5-on-0",
+    "roles"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Fill the five transition lanes by role so the team attacks the same way after every rebound.",
+    "setup": "Five players around the defensive basket; coach shoots and the team rebounds.",
+    "organization": "Run down, finish, run back; rotate positions every two trips.",
+    "instructions": [
+      "The coach shoots; 4 or 5 rebounds.",
+      "1 calls for the outlet at the free-throw line extended.",
+      "2 and 3 sprint wide to the corners.",
+      "5 sprints rim to rim; 4 trails behind the ball.",
+      "Finish with a lay-up, corner shot or trailer shot as the coach calls."
+    ],
+    "coachingPoints": [
+      "Run wide: touch the sideline.",
+      "Rim runner sprints first.",
+      "Trailer stays behind the ball."
+    ],
+    "commonMistakes": [
+      "Wings running in the middle.",
+      "Point guard running away from the outlet.",
+      "Bunching at half court."
+    ],
+    "safety": "Lanes stay wide so players do not collide; runners finishing at speed have clear space behind the basket.",
+    "progressions": [
+      "Add two defenders (5v2).",
+      "Coach calls the finish late."
+    ],
+    "regressions": [
+      "Walk the lanes with cones.",
+      "Three lanes only."
+    ],
+    "variations": [
+      "Finish into a drag screen.",
+      "Rebounder pushes instead of outletting."
+    ],
+    "successCriteria": [
+      "All five lanes filled each trip.",
+      "Shot within seven seconds."
+    ],
+    "gameApplication": "Shared lane rules make transition fast without having to call plays.",
+    "repetitions": "6 trips",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "far_free_throw_line",
+              "offset": [
+                -2,
+                0
+              ]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "far_left_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "far_right_wing"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "far_free_throw_line",
+              "offset": [
+                1,
+                1.6
+              ]
+            }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": {
+              "anchor": "far_left_block"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o2",
+            "path": [
+              {
+                "anchor": "right_sideline_center",
+                "offset": [
+                  -0.8,
+                  0
+                ]
+              },
+              {
+                "anchor": "right_corner"
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "left_sideline_center",
+                "offset": [
+                  0.8,
+                  0
+                ]
+              },
+              {
+                "anchor": "left_corner"
+              }
+            ]
+          },
+          {
+            "id": "a3",
+            "step": 1,
+            "type": "sprint",
+            "entity": "o5",
+            "path": [
+              {
+                "anchor": "center_circle",
+                "offset": [
+                  0.6,
+                  0
+                ]
+              },
+              {
+                "anchor": "basket",
+                "offset": [
+                  0,
+                  0.8
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

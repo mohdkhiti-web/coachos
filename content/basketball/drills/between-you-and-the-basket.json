@@ -1,0 +1,168 @@
+{
+  "seedKey": "between-you-and-the-basket",
+  "title": "Between You and the Basket",
+  "description": "Young defenders learn the first rule of defense: stay between your player and the basket, using a simple walking-pace 1v1.",
+  "category": "individual_defense",
+  "primarySkill": "on_ball_defense",
+  "secondarySkills": ["footwork"],
+  "subSkills": ["stance_and_slides"],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "1v1",
+  "phases": ["skill"],
+  "ageMin": 6,
+  "ageMax": 12,
+  "playersMin": 2,
+  "playersMax": 20,
+  "durationMin": 5,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": ["fundamentals", "positioning", "u10"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_pair",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Keep your body on the line between the offensive player and the basket.",
+    "setup": "Pairs at different spots around the arc; the offensive player has a ball.",
+    "organization": "Switch after 30 seconds.",
+    "instructions": [
+      "The coach points to the basket and draws an imaginary line from the offensive player to it.",
+      "The offensive player walks with the ball (no dribble) to different spots.",
+      "The defender moves to stay on the line, about one arm-length away.",
+      "On the whistle, everyone freezes; the coach checks the lines.",
+      "Progress to a slow dribble."
+    ],
+    "coachingPoints": [
+      "Your back points to the basket.",
+      "One arm-length away.",
+      "Move your feet, not your arms."
+    ],
+    "commonMistakes": [
+      "Standing beside the player.",
+      "Getting too close and being beaten.",
+      "Turning to watch the ball."
+    ],
+    "safety": "Walking pace only for younger players.",
+    "progressions": ["Slow dribble.", "Offense tries to get past to the basket."],
+    "regressions": ["Coach places a cone on the line.", "Static positions first."],
+    "variations": [
+      "Use a hoop on the floor as the basket.",
+      "Partner calls 'freeze' instead of the coach."
+    ],
+    "successCriteria": ["On the line at every freeze.", "Correct distance."],
+    "gameApplication": "Every team defense is built on players staying between their player and the basket.",
+    "repetitions": "4 rounds",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      },
+      {
+        "title": "Jr. NBA Rookie practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/rookie/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [-0.5, -0.7]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_slot"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [0.3, -0.8]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o2"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [0.2, 0.4]
+              }
+            ]
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "slide",
+            "entity": "x1",
+            "path": [
+              {
+                "anchor": "right_slot",
+                "offset": [-0.2, -0.4]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

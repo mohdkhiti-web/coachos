@@ -1,0 +1,125 @@
+{
+  "seedKey": "free-throw-routine-builder",
+  "title": "Free-Throw Routine Builder",
+  "description": "Young players design their own short, repeatable free-throw routine (dribbles, breath, look) and practise it until it is automatic.",
+  "category": "shooting",
+  "primarySkill": "free_throws",
+  "secondarySkills": ["shooting_form"],
+  "subSkills": ["follow_through"],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "individual",
+  "phases": ["skill", "cool_down"],
+  "ageMin": 8,
+  "ageMax": 16,
+  "playersMin": 1,
+  "playersMax": 20,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["free throws", "routine", "PE"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "per_player",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Create and repeat a personal free-throw routine that takes about five seconds and stays the same every time.",
+    "setup": "Players at the free-throw lines of available baskets (shorter distance for younger players).",
+    "organization": "Players take turns; teammates check the routine is identical.",
+    "instructions": [
+      "Choose a routine: e.g. three dribbles, a deep breath, eyes on the front of the rim.",
+      "Say the routine out loud once, then do it silently.",
+      "Shoot five free throws with the routine.",
+      "A teammate checks that each one was the same.",
+      "Refine anything that feels rushed."
+    ],
+    "coachingPoints": [
+      "Short and simple: under ten seconds.",
+      "Same every time, make or miss.",
+      "Breath out before the shot to relax."
+    ],
+    "commonMistakes": [
+      "A routine that changes after misses.",
+      "Overly long routines.",
+      "Skipping the routine when rushed."
+    ],
+    "safety": "Shooters rebound their own ball only when the lane is clear; nobody stands under the rim while others shoot.",
+    "progressions": [
+      "Routine under pressure (teammates count down).",
+      "Use the routine after a sprint."
+    ],
+    "regressions": ["Shoot from a step inside the line.", "Lowered rim."],
+    "variations": [
+      "Routine for the first and second shot.",
+      "Routine visualisation without the ball."
+    ],
+    "successCriteria": [
+      "Routine identical on five shots in a row.",
+      "Routine takes under ten seconds."
+    ],
+    "gameApplication": "A routine calms nerves and makes the free throw feel the same in any game.",
+    "repetitions": "3 sets of 5",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "shot",
+            "entity": "o1"
+          }
+        ],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 1.6]
+            },
+            "text": "Dribble · breathe · shoot"
+          }
+        ]
+      }
+    }
+  ]
+}

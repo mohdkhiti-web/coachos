@@ -1,0 +1,168 @@
+{
+  "seedKey": "up-three-with-ten-seconds",
+  "title": "Up Three With Ten Seconds",
+  "description": "The defense is up three with ten seconds left and practises its plan — switch everything on the arc, deny the three, and decide when to foul.",
+  "category": "special_situations",
+  "primarySkill": "late_game_execution",
+  "secondarySkills": ["communication", "on_ball_defense"],
+  "subSkills": ["foul_situations", "clock_management"],
+  "level": "advanced",
+  "intensity": "high",
+  "format": "5v5",
+  "phases": ["game"],
+  "ageMin": 14,
+  "ageMax": 99,
+  "playersMin": 10,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["up three", "end of game", "decision"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 10
+    },
+    {
+      "type": "stopwatch",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Protect a three-point lead by taking away the three and choosing when to foul in the final seconds.",
+    "setup": "Half court; offense down three with ten seconds; ball at half court.",
+    "organization": "Run four times; change the team's foul policy each time.",
+    "instructions": [
+      "The coach announces the policy: foul under five seconds or defend.",
+      "Defense switches all screens at the arc.",
+      "No help off shooters; concede a quick two if needed.",
+      "If fouling, foul before the shooting motion starts.",
+      "Rebound any free-throw miss."
+    ],
+    "coachingPoints": [
+      "Everyone knows the plan.",
+      "Run shooters off the line.",
+      "Foul early and clearly, not on the shot."
+    ],
+    "commonMistakes": [
+      "Fouling a three-point shooter.",
+      "Helping off a shooter.",
+      "Not knowing the time."
+    ],
+    "safety": "Situations are walked through before being played live at game speed.",
+    "progressions": ["Six seconds.", "Offense has a timeout."],
+    "regressions": ["Walk-through.", "Offense must use one action."],
+    "variations": ["Up two version.", "Up one with the ball."],
+    "successCriteria": ["No tying three conceded.", "Plan executed."],
+    "gameApplication": "Late-game decisions on fouling and denying threes decide close games.",
+    "repetitions": "4 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, -1]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "x1",
+            "type": "player",
+            "side": "defense",
+            "label": "X1",
+            "at": {
+              "entity": "o1",
+              "offset": [0, 0.6]
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "entity": "o2",
+              "offset": [-0.4, -0.6]
+            }
+          },
+          {
+            "id": "x3",
+            "type": "player",
+            "side": "defense",
+            "label": "X3",
+            "at": {
+              "entity": "o3",
+              "offset": [0.4, -0.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [],
+        "annotations": [
+          {
+            "type": "text",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [0, 0.6]
+            },
+            "text": "Up 3 · 0:10"
+          }
+        ]
+      }
+    }
+  ]
+}

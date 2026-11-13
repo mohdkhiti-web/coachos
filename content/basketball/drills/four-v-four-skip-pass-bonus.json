@@ -1,0 +1,195 @@
+{
+  "seedKey": "four-v-four-skip-pass-bonus",
+  "title": "4v4 Skip-Pass Bonus Game",
+  "description": "A 4v4 game where a basket scored within two seconds of catching a skip pass is worth double, teaching ball movement against help defense.",
+  "category": "small_sided_games",
+  "primarySkill": "competitiveness",
+  "secondarySkills": [
+    "passing",
+    "spacing",
+    "decision_making"
+  ],
+  "subSkills": [
+    "skip_passes",
+    "reading_the_defense"
+  ],
+  "level": "intermediate",
+  "intensity": "high",
+  "format": "4v4",
+  "phases": [
+    "small_sided",
+    "game"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 8,
+  "playersMax": 12,
+  "durationMin": 8,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": [
+    "skip pass",
+    "ball movement"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "bibs",
+      "rule": "fixed",
+      "quantity": 8
+    }
+  ],
+  "content": {
+    "objective": "Use skip passes to beat help defense and rotate the ball faster than the defense can.",
+    "setup": "Half-court 4v4, offense in a 4-out shape.",
+    "organization": "Games to ten; rotate.",
+    "instructions": [
+      "Play 4v4 live.",
+      "A skip pass goes over or past two defenders across the floor.",
+      "A basket within two seconds of a skip catch is worth double.",
+      "Defense works on closeouts and X-out rotations.",
+      "Turnovers on skips cost a point."
+    ],
+    "coachingPoints": [
+      "Skip when help sinks.",
+      "Catch ready to shoot or drive.",
+      "Defense: rotate on the pass."
+    ],
+    "commonMistakes": [
+      "Forcing skips into traffic.",
+      "Lob skips that hang.",
+      "Holding the ball after the catch."
+    ],
+    "safety": "Fair contact only; the coach stops play for reckless fouls and keeps waiting teams off the playing area.",
+    "progressions": [
+      "Defense may trap.",
+      "Shot within one second of the skip."
+    ],
+    "regressions": [
+      "5v4 offense advantage.",
+      "No turnover penalty."
+    ],
+    "variations": [
+      "Skip only after a drive.",
+      "Skip from the post."
+    ],
+    "successCriteria": [
+      "Double-point baskets.",
+      "Low turnover rate on skips."
+    ],
+    "gameApplication": "Skip passes beat help-side defense and force long closeouts.",
+    "repetitions": "Games to 10",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "right_corner"
+            }
+          },
+          {
+            "id": "x2",
+            "type": "player",
+            "side": "defense",
+            "label": "X2",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [
+                0,
+                0.2
+              ]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2",
+            "kind": "skip"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "defend",
+            "kind": "closeout",
+            "entity": "x2",
+            "path": [
+              {
+                "anchor": "left_wing",
+                "offset": [
+                  0.6,
+                  -0.6
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "seedKey": "ucla-cut-to-the-rim",
+  "title": "UCLA Cut to the Rim",
+  "description": "After passing to the wing, the guard uses a back screen from the high post to cut to the rim; the screener then pops to the top.",
+  "category": "team_offense",
+  "primarySkill": "cutting",
+  "secondarySkills": [
+    "screening",
+    "passing"
+  ],
+  "subSkills": [
+    "using_screens",
+    "setting_screens"
+  ],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "3v3",
+  "phases": [
+    "skill",
+    "small_sided"
+  ],
+  "ageMin": 12,
+  "ageMax": 99,
+  "playersMin": 3,
+  "playersMax": 10,
+  "durationMin": 6,
+  "durationMax": 8,
+  "space": "half_court",
+  "tags": [
+    "back screen",
+    "UCLA",
+    "lob"
+  ],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Score at the rim with a back-screen cut and keep the screener as a safety outlet.",
+    "setup": "Guard at the top; wing at the right wing; post at the right elbow.",
+    "organization": "Rotate positions every four reps.",
+    "instructions": [
+      "The guard passes to the wing.",
+      "The post sets a back screen at the elbow.",
+      "The guard cuts off the screen to the rim, hand up.",
+      "The wing passes to the cutter (bounce or lob).",
+      "If covered, the screener pops to the top for the reversal."
+    ],
+    "coachingPoints": [
+      "Set up the defender before cutting.",
+      "Cut shoulder to shoulder off the screen.",
+      "Screener pops immediately."
+    ],
+    "commonMistakes": [
+      "Cutting wide.",
+      "Moving screen.",
+      "Wing holding the ball too long."
+    ],
+    "safety": "Screens are set stationary and legal; defenders are allowed to see the screen in walk-throughs before live play.",
+    "progressions": [
+      "Defense switches.",
+      "Live 3v3."
+    ],
+    "regressions": [
+      "No defense.",
+      "Coach as wing passer."
+    ],
+    "variations": [
+      "Guard pops back after the UCLA cut.",
+      "Lob version."
+    ],
+    "successCriteria": [
+      "Open lay-up or a clean pop.",
+      "No offensive fouls."
+    ],
+    "gameApplication": "A back screen at the elbow is one of the most reliable ways to get a guard to the rim.",
+    "repetitions": "8 reps",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "top_key"
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o2"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "screen",
+            "entity": "o3",
+            "target": {
+              "anchor": "right_elbow",
+              "offset": [
+                -0.4,
+                -0.4
+              ]
+            },
+            "kind": "back"
+          },
+          {
+            "id": "a3",
+            "step": 2,
+            "type": "cut",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow",
+                "offset": [
+                  -0.6,
+                  0
+                ]
+              },
+              {
+                "anchor": "basket",
+                "offset": [
+                  -0.4,
+                  0.6
+                ]
+              }
+            ]
+          },
+          {
+            "id": "a4",
+            "step": 3,
+            "type": "cut",
+            "entity": "o3",
+            "path": [
+              {
+                "anchor": "top_key"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

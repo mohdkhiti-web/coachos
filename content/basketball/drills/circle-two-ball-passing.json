@@ -1,0 +1,166 @@
+{
+  "seedKey": "circle-two-ball-passing",
+  "title": "Circle Two-Ball Passing",
+  "description": "Players stand in a circle and pass two balls around at once in the same direction; the second ball must never catch the first.",
+  "category": "passing",
+  "primarySkill": "passing",
+  "secondarySkills": ["catching", "communication"],
+  "subSkills": [],
+  "level": "beginner",
+  "intensity": "low",
+  "format": "group",
+  "phases": ["warm_up"],
+  "ageMin": 7,
+  "ageMax": 16,
+  "playersMin": 6,
+  "playersMax": 12,
+  "durationMin": 5,
+  "durationMax": 7,
+  "space": "half_court",
+  "tags": ["circle", "two balls", "warm-up"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    }
+  ],
+  "content": {
+    "objective": "Make quick, accurate catches and passes with no hesitation, as a group, under the time pressure of a second ball.",
+    "setup": "Six to ten players in a circle about six metres across.",
+    "organization": "Whole group in one circle; two balls start on opposite sides.",
+    "instructions": [
+      "Both balls start on opposite sides of the circle.",
+      "Pass to the player on your right with a chest pass.",
+      "Each ball goes round as fast as possible; one ball chases the other.",
+      "If a ball catches the other, the chasing side wins the round.",
+      "Change direction and pass type every round."
+    ],
+    "coachingPoints": [
+      "Hands ready before the ball arrives.",
+      "Pass on the step, not after a pause.",
+      "Call the name of the player you pass to."
+    ],
+    "commonMistakes": [
+      "Watching the other ball and missing your own catch.",
+      "Rushing into fumbles.",
+      "Throwing across the circle by mistake."
+    ],
+    "safety": "Use chest and bounce passes only; no throwing across the circle.",
+    "progressions": ["Add a third ball.", "Skip a player with each pass."],
+    "regressions": ["One ball, slower pace.", "Smaller circle."],
+    "variations": ["Overhead passes only.", "Players must jump-stop on each catch."],
+    "successCriteria": ["Three laps without a dropped pass.", "Every pass called by name."],
+    "gameApplication": "Quick, clean ball movement in the half court comes from catching ready and passing on the beat.",
+    "repetitions": "4 rounds",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, 2.5]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-1.8, 1.5]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "left_elbow",
+              "offset": [-1.6, -1]
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, -2.2]
+            }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [1.6, -1]
+            }
+          },
+          {
+            "id": "o6",
+            "type": "player",
+            "side": "offense",
+            "label": "6",
+            "at": {
+              "anchor": "right_elbow",
+              "offset": [1.8, 1.5]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          },
+          {
+            "id": "b2",
+            "type": "ball",
+            "heldBy": "o4"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "o1",
+            "to": "o6"
+          },
+          {
+            "id": "a2",
+            "step": 1,
+            "type": "pass",
+            "from": "o4",
+            "to": "o3"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

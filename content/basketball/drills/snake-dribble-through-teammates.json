@@ -1,0 +1,178 @@
+{
+  "seedKey": "snake-dribble-through-teammates",
+  "title": "Snake Dribble Through Teammates",
+  "description": "Players stand in a line as human cones; the last player dribbles in and out through the line, then becomes the new head of the line.",
+  "category": "ball_handling",
+  "primarySkill": "dribbling",
+  "secondarySkills": ["ball_control"],
+  "subSkills": ["crossover"],
+  "level": "beginner",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["warm_up", "skill"],
+  "ageMin": 6,
+  "ageMax": 14,
+  "playersMin": 5,
+  "playersMax": 15,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "full_court",
+  "tags": ["u10", "weave", "team"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Change direction and hands around real bodies, keeping the ball on the side away from each 'defender'.",
+    "setup": "Players stand in a straight line two metres apart down the middle of the court.",
+    "organization": "One ball per line of five to eight players.",
+    "instructions": [
+      "The last player in the line dribbles in and out between teammates.",
+      "Change hands every time you pass a teammate, keeping the ball away from them.",
+      "At the front, jump-stop two metres ahead and become the new head of the line.",
+      "Hand the ball back down the line to the new last player.",
+      "Continue until everyone has run the snake twice."
+    ],
+    "coachingPoints": [
+      "Ball on the outside hand as you pass each teammate.",
+      "Crossover early, before you reach the teammate.",
+      "Stay low around the bodies."
+    ],
+    "commonMistakes": [
+      "Wide swerves instead of tight changes of direction.",
+      "Same hand round every teammate.",
+      "Bumping teammates."
+    ],
+    "safety": "Teammates stand still with arms down; dribblers walk or jog only.",
+    "progressions": [
+      "Teammates hold out an arm to tap at loose balls.",
+      "Two lines race each other."
+    ],
+    "regressions": ["Space teammates three metres apart.", "Walk the course."],
+    "variations": [
+      "Behind-the-back changes only.",
+      "Pass the ball to the front instead of handing it back."
+    ],
+    "successCriteria": [
+      "Completes the snake without touching a teammate or losing the ball.",
+      "Changes hands at every teammate."
+    ],
+    "gameApplication": "Dribbling around real bodies is closer to driving past defenders than dribbling around cones.",
+    "repetitions": "2 runs per player",
+    "resources": [
+      {
+        "title": "Jr. NBA practice plans (concept reference)",
+        "url": "https://jr.nba.com/basketball-practice-plans/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "full",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [0, 1.4]
+            }
+          },
+          {
+            "id": "o2",
+            "type": "player",
+            "side": "offense",
+            "label": "2",
+            "at": {
+              "anchor": "free_throw_line",
+              "offset": [0, -1]
+            }
+          },
+          {
+            "id": "o3",
+            "type": "player",
+            "side": "offense",
+            "label": "3",
+            "at": {
+              "anchor": "top_key",
+              "offset": [0, 0.4]
+            }
+          },
+          {
+            "id": "o4",
+            "type": "player",
+            "side": "offense",
+            "label": "4",
+            "at": {
+              "anchor": "half_court_center",
+              "offset": [0, -1.6]
+            }
+          },
+          {
+            "id": "o5",
+            "type": "player",
+            "side": "offense",
+            "label": "5",
+            "at": {
+              "anchor": "center_circle",
+              "offset": [0, 1.6]
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "o1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "dribble",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "free_throw_line",
+                "offset": [1, -1.6]
+              },
+              {
+                "anchor": "free_throw_line",
+                "offset": [-1, -0.2]
+              },
+              {
+                "anchor": "top_key",
+                "offset": [1, 0.8]
+              },
+              {
+                "anchor": "half_court_center",
+                "offset": [-1, -1.2]
+              },
+              {
+                "anchor": "center_circle",
+                "offset": [1, 1.2]
+              },
+              {
+                "anchor": "center_circle",
+                "offset": [0, 3.4]
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}

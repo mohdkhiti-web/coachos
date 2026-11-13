@@ -1,0 +1,918 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-07T19:39:04.464Z",
+  "title": "Design System: CoachOS",
+  "extensions": {
+    "colorMeta": {
+      "sheet": {
+        "role": "neutral",
+        "displayName": "Cool Sheet",
+        "canonical": "#F4F6F9",
+        "tonalRamp": [
+          "oklch(15% 0.001 258.3)",
+          "oklch(26% 0.003 258.3)",
+          "oklch(37% 0.004 258.3)",
+          "oklch(48% 0.005 258.3)",
+          "oklch(59% 0.005 258.3)",
+          "oklch(70% 0.005 258.3)",
+          "oklch(82% 0.003 258.3)",
+          "oklch(95% 0.001 258.3)"
+        ]
+      },
+      "sheet-raised": {
+        "role": "neutral",
+        "displayName": "Raised Sheet",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "oklch(15% 0 89.9)",
+          "oklch(26% 0 89.9)",
+          "oklch(37% 0 89.9)",
+          "oklch(48% 0 89.9)",
+          "oklch(59% 0 89.9)",
+          "oklch(70% 0 89.9)",
+          "oklch(82% 0 89.9)",
+          "oklch(95% 0 89.9)"
+        ]
+      },
+      "sheet-sunken": {
+        "role": "neutral",
+        "displayName": "Sunken Sheet",
+        "canonical": "#E9EDF3",
+        "tonalRamp": [
+          "oklch(15% 0.002 258.3)",
+          "oklch(26% 0.005 258.3)",
+          "oklch(37% 0.009 258.3)",
+          "oklch(48% 0.009 258.3)",
+          "oklch(59% 0.009 258.3)",
+          "oklch(70% 0.009 258.3)",
+          "oklch(82% 0.005 258.3)",
+          "oklch(95% 0.002 258.3)"
+        ]
+      },
+      "scorer-ink": {
+        "role": "neutral",
+        "displayName": "Scorer Ink",
+        "canonical": "#0F1B33",
+        "tonalRamp": [
+          "oklch(15% 0.012 262.9)",
+          "oklch(26% 0.03 262.9)",
+          "oklch(37% 0.048 262.9)",
+          "oklch(48% 0.05 262.9)",
+          "oklch(59% 0.05 262.9)",
+          "oklch(70% 0.05 262.9)",
+          "oklch(82% 0.03 262.9)",
+          "oklch(95% 0.008 262.9)"
+        ]
+      },
+      "scorer-ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#48546C",
+        "tonalRamp": [
+          "oklch(15% 0.01 264)",
+          "oklch(26% 0.025 264)",
+          "oklch(37% 0.041 264)",
+          "oklch(48% 0.042 264)",
+          "oklch(59% 0.042 264)",
+          "oklch(70% 0.042 264)",
+          "oklch(82% 0.025 264)",
+          "oklch(95% 0.007 264)"
+        ]
+      },
+      "scorer-ink-faint": {
+        "role": "neutral",
+        "displayName": "Faint Ink",
+        "canonical": "#7B869B",
+        "tonalRamp": [
+          "oklch(15% 0.008 263.4)",
+          "oklch(26% 0.021 263.4)",
+          "oklch(37% 0.033 263.4)",
+          "oklch(48% 0.034 263.4)",
+          "oklch(59% 0.034 263.4)",
+          "oklch(70% 0.034 263.4)",
+          "oklch(82% 0.021 263.4)",
+          "oklch(95% 0.006 263.4)"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#D8DEE8",
+        "tonalRamp": [
+          "oklch(15% 0.004 260.7)",
+          "oklch(26% 0.009 260.7)",
+          "oklch(37% 0.015 260.7)",
+          "oklch(48% 0.015 260.7)",
+          "oklch(59% 0.015 260.7)",
+          "oklch(70% 0.015 260.7)",
+          "oklch(82% 0.009 260.7)",
+          "oklch(95% 0.003 260.7)"
+        ]
+      },
+      "hairline-strong": {
+        "role": "neutral",
+        "displayName": "Strong Hairline",
+        "canonical": "#B2BCCC",
+        "tonalRamp": [
+          "oklch(15% 0.006 259.8)",
+          "oklch(26% 0.015 259.8)",
+          "oklch(37% 0.024 259.8)",
+          "oklch(48% 0.025 259.8)",
+          "oklch(59% 0.025 259.8)",
+          "oklch(70% 0.025 259.8)",
+          "oklch(82% 0.015 259.8)",
+          "oklch(95% 0.004 259.8)"
+        ]
+      },
+      "coach-orange": {
+        "role": "primary",
+        "displayName": "Coach's Orange",
+        "canonical": "#F26A1B",
+        "tonalRamp": [
+          "oklch(15% 0.043 44.8)",
+          "oklch(26% 0.112 44.8)",
+          "oklch(37% 0.18 44.8)",
+          "oklch(48% 0.186 44.8)",
+          "oklch(59% 0.186 44.8)",
+          "oklch(70% 0.186 44.8)",
+          "oklch(82% 0.112 44.8)",
+          "oklch(95% 0.031 44.8)"
+        ]
+      },
+      "coach-orange-strong": {
+        "role": "primary",
+        "displayName": "Coach's Orange, Pressed",
+        "canonical": "#E65C0E",
+        "tonalRamp": [
+          "oklch(15% 0.044 42.8)",
+          "oklch(26% 0.112 42.8)",
+          "oklch(37% 0.181 42.8)",
+          "oklch(48% 0.187 42.8)",
+          "oklch(59% 0.187 42.8)",
+          "oklch(70% 0.187 42.8)",
+          "oklch(82% 0.112 42.8)",
+          "oklch(95% 0.031 42.8)"
+        ]
+      },
+      "coach-orange-text": {
+        "role": "primary",
+        "displayName": "Text-Safe Orange",
+        "canonical": "#C63F0A",
+        "tonalRamp": [
+          "oklch(15% 0.042 37.5)",
+          "oklch(26% 0.108 37.5)",
+          "oklch(37% 0.174 37.5)",
+          "oklch(48% 0.18 37.5)",
+          "oklch(59% 0.18 37.5)",
+          "oklch(70% 0.18 37.5)",
+          "oklch(82% 0.108 37.5)",
+          "oklch(95% 0.03 37.5)"
+        ]
+      },
+      "coach-orange-text-strong": {
+        "role": "primary",
+        "displayName": "Text-Safe Orange, Deep",
+        "canonical": "#A53305",
+        "tonalRamp": [
+          "oklch(15% 0.037 37.8)",
+          "oklch(26% 0.094 37.8)",
+          "oklch(37% 0.152 37.8)",
+          "oklch(48% 0.157 37.8)",
+          "oklch(59% 0.157 37.8)",
+          "oklch(70% 0.157 37.8)",
+          "oklch(82% 0.094 37.8)",
+          "oklch(95% 0.026 37.8)"
+        ]
+      },
+      "orange-wash": {
+        "role": "primary",
+        "displayName": "Orange Wash",
+        "canonical": "#FDE8DC",
+        "tonalRamp": [
+          "oklch(15% 0.007 51.8)",
+          "oklch(26% 0.017 51.8)",
+          "oklch(37% 0.027 51.8)",
+          "oklch(48% 0.028 51.8)",
+          "oklch(59% 0.028 51.8)",
+          "oklch(70% 0.028 51.8)",
+          "oklch(82% 0.017 51.8)",
+          "oklch(95% 0.005 51.8)"
+        ]
+      },
+      "rail": {
+        "role": "neutral",
+        "displayName": "Blue-Ink Rail",
+        "canonical": "#12224A",
+        "tonalRamp": [
+          "oklch(15% 0.018 265.1)",
+          "oklch(26% 0.046 265.1)",
+          "oklch(37% 0.075 265.1)",
+          "oklch(48% 0.077 265.1)",
+          "oklch(59% 0.077 265.1)",
+          "oklch(70% 0.077 265.1)",
+          "oklch(82% 0.046 265.1)",
+          "oklch(95% 0.013 265.1)"
+        ]
+      },
+      "rail-raised": {
+        "role": "neutral",
+        "displayName": "Rail, Raised",
+        "canonical": "#1A2D5C",
+        "tonalRamp": [
+          "oklch(15% 0.02 265.1)",
+          "oklch(26% 0.053 265.1)",
+          "oklch(37% 0.085 265.1)",
+          "oklch(48% 0.088 265.1)",
+          "oklch(59% 0.088 265.1)",
+          "oklch(70% 0.088 265.1)",
+          "oklch(82% 0.053 265.1)",
+          "oklch(95% 0.015 265.1)"
+        ]
+      },
+      "rail-ink": {
+        "role": "neutral",
+        "displayName": "Rail Ink",
+        "canonical": "#EEF2FB",
+        "tonalRamp": [
+          "oklch(15% 0.003 266.7)",
+          "oklch(26% 0.008 266.7)",
+          "oklch(37% 0.012 266.7)",
+          "oklch(48% 0.013 266.7)",
+          "oklch(59% 0.013 266.7)",
+          "oklch(70% 0.013 266.7)",
+          "oklch(82% 0.008 266.7)",
+          "oklch(95% 0.002 266.7)"
+        ]
+      },
+      "rail-muted": {
+        "role": "neutral",
+        "displayName": "Rail Muted",
+        "canonical": "#A5B2CF",
+        "tonalRamp": [
+          "oklch(15% 0.01 266.2)",
+          "oklch(26% 0.026 266.2)",
+          "oklch(37% 0.043 266.2)",
+          "oklch(48% 0.044 266.2)",
+          "oklch(59% 0.044 266.2)",
+          "oklch(70% 0.044 266.2)",
+          "oklch(82% 0.026 266.2)",
+          "oklch(95% 0.007 266.2)"
+        ]
+      },
+      "rail-line": {
+        "role": "neutral",
+        "displayName": "Rail Hairline",
+        "canonical": "#263B6C",
+        "tonalRamp": [
+          "oklch(15% 0.021 264.9)",
+          "oklch(26% 0.053 264.9)",
+          "oklch(37% 0.086 264.9)",
+          "oklch(48% 0.089 264.9)",
+          "oklch(59% 0.089 264.9)",
+          "oklch(70% 0.089 264.9)",
+          "oklch(82% 0.053 264.9)",
+          "oklch(95% 0.015 264.9)"
+        ]
+      },
+      "focus-blue": {
+        "role": "tertiary",
+        "displayName": "Focus Blue",
+        "canonical": "#1F4FBF",
+        "tonalRamp": [
+          "oklch(15% 0.043 263.4)",
+          "oklch(26% 0.11 263.4)",
+          "oklch(37% 0.177 263.4)",
+          "oklch(48% 0.184 263.4)",
+          "oklch(59% 0.184 263.4)",
+          "oklch(70% 0.184 263.4)",
+          "oklch(82% 0.11 263.4)",
+          "oklch(95% 0.031 263.4)"
+        ]
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Danger Red",
+        "canonical": "#B42318",
+        "tonalRamp": [
+          "oklch(15% 0.042 29.5)",
+          "oklch(26% 0.109 29.5)",
+          "oklch(37% 0.176 29.5)",
+          "oklch(48% 0.182 29.5)",
+          "oklch(59% 0.182 29.5)",
+          "oklch(70% 0.182 29.5)",
+          "oklch(82% 0.109 29.5)",
+          "oklch(95% 0.03 29.5)"
+        ]
+      },
+      "warning": {
+        "role": "tertiary",
+        "displayName": "Warning Amber",
+        "canonical": "#935A06",
+        "tonalRamp": [
+          "oklch(15% 0.026 67.2)",
+          "oklch(26% 0.068 67.2)",
+          "oklch(37% 0.109 67.2)",
+          "oklch(48% 0.113 67.2)",
+          "oklch(59% 0.113 67.2)",
+          "oklch(70% 0.113 67.2)",
+          "oklch(82% 0.068 67.2)",
+          "oklch(95% 0.019 67.2)"
+        ]
+      },
+      "success": {
+        "role": "tertiary",
+        "displayName": "Success Green",
+        "canonical": "#17724A",
+        "tonalRamp": [
+          "oklch(15% 0.024 158.8)",
+          "oklch(26% 0.063 158.8)",
+          "oklch(37% 0.101 158.8)",
+          "oklch(48% 0.105 158.8)",
+          "oklch(59% 0.105 158.8)",
+          "oklch(70% 0.105 158.8)",
+          "oklch(82% 0.063 158.8)",
+          "oklch(95% 0.017 158.8)"
+        ]
+      },
+      "arena-sheet": {
+        "role": "neutral",
+        "displayName": "Arena Sheet (dark ground)",
+        "canonical": "#121F3B",
+        "tonalRamp": [
+          "oklch(15% 0.013 263.9)",
+          "oklch(26% 0.034 263.9)",
+          "oklch(37% 0.055 263.9)",
+          "oklch(48% 0.057 263.9)",
+          "oklch(59% 0.057 263.9)",
+          "oklch(70% 0.057 263.9)",
+          "oklch(82% 0.034 263.9)",
+          "oklch(95% 0.009 263.9)"
+        ]
+      },
+      "arena-raised": {
+        "role": "neutral",
+        "displayName": "Arena Sheet, Raised",
+        "canonical": "#192A4C",
+        "tonalRamp": [
+          "oklch(15% 0.015 262.9)",
+          "oklch(26% 0.04 262.9)",
+          "oklch(37% 0.064 262.9)",
+          "oklch(48% 0.066 262.9)",
+          "oklch(59% 0.066 262.9)",
+          "oklch(70% 0.066 262.9)",
+          "oklch(82% 0.04 262.9)",
+          "oklch(95% 0.011 262.9)"
+        ]
+      },
+      "arena-sunken": {
+        "role": "neutral",
+        "displayName": "Arena Sheet, Sunken",
+        "canonical": "#0D1830",
+        "tonalRamp": [
+          "oklch(15% 0.012 264.1)",
+          "oklch(26% 0.03 264.1)",
+          "oklch(37% 0.048 264.1)",
+          "oklch(48% 0.05 264.1)",
+          "oklch(59% 0.05 264.1)",
+          "oklch(70% 0.05 264.1)",
+          "oklch(82% 0.03 264.1)",
+          "oklch(95% 0.008 264.1)"
+        ]
+      },
+      "arena-ink": {
+        "role": "neutral",
+        "displayName": "Sheet-White Ink",
+        "canonical": "#EDF1F9",
+        "tonalRamp": [
+          "oklch(15% 0.003 264.5)",
+          "oklch(26% 0.007 264.5)",
+          "oklch(37% 0.011 264.5)",
+          "oklch(48% 0.012 264.5)",
+          "oklch(59% 0.012 264.5)",
+          "oklch(70% 0.012 264.5)",
+          "oklch(82% 0.007 264.5)",
+          "oklch(95% 0.002 264.5)"
+        ]
+      },
+      "arena-ink-muted": {
+        "role": "neutral",
+        "displayName": "Arena Muted Ink",
+        "canonical": "#A3AFC8",
+        "tonalRamp": [
+          "oklch(15% 0.009 265.1)",
+          "oklch(26% 0.023 265.1)",
+          "oklch(37% 0.037 265.1)",
+          "oklch(48% 0.038 265.1)",
+          "oklch(59% 0.038 265.1)",
+          "oklch(70% 0.038 265.1)",
+          "oklch(82% 0.023 265.1)",
+          "oklch(95% 0.006 265.1)"
+        ]
+      },
+      "arena-line": {
+        "role": "neutral",
+        "displayName": "Arena Hairline",
+        "canonical": "#263A62",
+        "tonalRamp": [
+          "oklch(15% 0.017 263)",
+          "oklch(26% 0.045 263)",
+          "oklch(37% 0.072 263)",
+          "oklch(48% 0.075 263)",
+          "oklch(59% 0.075 263)",
+          "oklch(70% 0.075 263)",
+          "oklch(82% 0.045 263)",
+          "oklch(95% 0.012 263)"
+        ]
+      },
+      "arena-line-strong": {
+        "role": "neutral",
+        "displayName": "Arena Strong Hairline",
+        "canonical": "#3A5080",
+        "tonalRamp": [
+          "oklch(15% 0.02 264.5)",
+          "oklch(26% 0.051 264.5)",
+          "oklch(37% 0.081 264.5)",
+          "oklch(48% 0.084 264.5)",
+          "oklch(59% 0.084 264.5)",
+          "oklch(70% 0.084 264.5)",
+          "oklch(82% 0.051 264.5)",
+          "oklch(95% 0.014 264.5)"
+        ]
+      },
+      "arena-orange": {
+        "role": "primary",
+        "displayName": "Coach's Orange (dark)",
+        "canonical": "#FF7A2E",
+        "tonalRamp": [
+          "oklch(15% 0.043 46.2)",
+          "oklch(26% 0.109 46.2)",
+          "oklch(37% 0.176 46.2)",
+          "oklch(48% 0.182 46.2)",
+          "oklch(59% 0.182 46.2)",
+          "oklch(70% 0.182 46.2)",
+          "oklch(82% 0.109 46.2)",
+          "oklch(95% 0.03 46.2)"
+        ]
+      },
+      "arena-orange-strong": {
+        "role": "primary",
+        "displayName": "Coach's Orange, Pressed (dark)",
+        "canonical": "#FF8F4D",
+        "tonalRamp": [
+          "oklch(15% 0.037 49.1)",
+          "oklch(26% 0.094 49.1)",
+          "oklch(37% 0.152 49.1)",
+          "oklch(48% 0.157 49.1)",
+          "oklch(59% 0.157 49.1)",
+          "oklch(70% 0.157 49.1)",
+          "oklch(82% 0.094 49.1)",
+          "oklch(95% 0.026 49.1)"
+        ]
+      },
+      "arena-orange-ink": {
+        "role": "primary",
+        "displayName": "Ink on Orange (dark)",
+        "canonical": "#1C0B02",
+        "tonalRamp": [
+          "oklch(15% 0.008 54)",
+          "oklch(26% 0.022 54)",
+          "oklch(37% 0.035 54)",
+          "oklch(48% 0.036 54)",
+          "oklch(59% 0.036 54)",
+          "oklch(70% 0.036 54)",
+          "oklch(82% 0.022 54)",
+          "oklch(95% 0.006 54)"
+        ]
+      },
+      "arena-rail": {
+        "role": "neutral",
+        "displayName": "Arena Rail",
+        "canonical": "#0C1730",
+        "tonalRamp": [
+          "oklch(15% 0.012 264.5)",
+          "oklch(26% 0.031 264.5)",
+          "oklch(37% 0.05 264.5)",
+          "oklch(48% 0.052 264.5)",
+          "oklch(59% 0.052 264.5)",
+          "oklch(70% 0.052 264.5)",
+          "oklch(82% 0.031 264.5)",
+          "oklch(95% 0.009 264.5)"
+        ]
+      },
+      "arena-focus": {
+        "role": "tertiary",
+        "displayName": "Focus Blue (dark)",
+        "canonical": "#8FB0FF",
+        "tonalRamp": [
+          "oklch(15% 0.028 266.3)",
+          "oklch(26% 0.072 266.3)",
+          "oklch(37% 0.116 266.3)",
+          "oklch(48% 0.12 266.3)",
+          "oklch(59% 0.12 266.3)",
+          "oklch(70% 0.12 266.3)",
+          "oklch(82% 0.072 266.3)",
+          "oklch(95% 0.02 266.3)"
+        ]
+      },
+      "phase-warm-up": {
+        "role": "tertiary",
+        "displayName": "Phase: Warm-up",
+        "canonical": "#C2630A",
+        "tonalRamp": [
+          "oklch(15% 0.034 53.9)",
+          "oklch(26% 0.089 53.9)",
+          "oklch(37% 0.143 53.9)",
+          "oklch(48% 0.148 53.9)",
+          "oklch(59% 0.148 53.9)",
+          "oklch(70% 0.148 53.9)",
+          "oklch(82% 0.089 53.9)",
+          "oklch(95% 0.025 53.9)"
+        ]
+      },
+      "phase-skill": {
+        "role": "tertiary",
+        "displayName": "Phase: Skill",
+        "canonical": "#1F4FBF",
+        "tonalRamp": [
+          "oklch(15% 0.043 263.4)",
+          "oklch(26% 0.11 263.4)",
+          "oklch(37% 0.177 263.4)",
+          "oklch(48% 0.184 263.4)",
+          "oklch(59% 0.184 263.4)",
+          "oklch(70% 0.184 263.4)",
+          "oklch(82% 0.11 263.4)",
+          "oklch(95% 0.031 263.4)"
+        ]
+      },
+      "phase-small-sided": {
+        "role": "tertiary",
+        "displayName": "Phase: Small-sided",
+        "canonical": "#7A3DB8",
+        "tonalRamp": [
+          "oklch(15% 0.043 303)",
+          "oklch(26% 0.112 303)",
+          "oklch(37% 0.18 303)",
+          "oklch(48% 0.186 303)",
+          "oklch(59% 0.186 303)",
+          "oklch(70% 0.186 303)",
+          "oklch(82% 0.112 303)",
+          "oklch(95% 0.031 303)"
+        ]
+      },
+      "phase-game": {
+        "role": "tertiary",
+        "displayName": "Phase: Game",
+        "canonical": "#C0263F",
+        "tonalRamp": [
+          "oklch(15% 0.044 18.5)",
+          "oklch(26% 0.113 18.5)",
+          "oklch(37% 0.182 18.5)",
+          "oklch(48% 0.188 18.5)",
+          "oklch(59% 0.188 18.5)",
+          "oklch(70% 0.188 18.5)",
+          "oklch(82% 0.113 18.5)",
+          "oklch(95% 0.031 18.5)"
+        ]
+      },
+      "phase-conditioning": {
+        "role": "tertiary",
+        "displayName": "Phase: Conditioning",
+        "canonical": "#12775A",
+        "tonalRamp": [
+          "oklch(15% 0.023 167.5)",
+          "oklch(26% 0.059 167.5)",
+          "oklch(37% 0.095 167.5)",
+          "oklch(48% 0.098 167.5)",
+          "oklch(59% 0.098 167.5)",
+          "oklch(70% 0.098 167.5)",
+          "oklch(82% 0.059 167.5)",
+          "oklch(95% 0.016 167.5)"
+        ]
+      },
+      "phase-cool-down": {
+        "role": "tertiary",
+        "displayName": "Phase: Cool-down",
+        "canonical": "#0C7489",
+        "tonalRamp": [
+          "oklch(15% 0.021 216.7)",
+          "oklch(26% 0.054 216.7)",
+          "oklch(37% 0.086 216.7)",
+          "oklch(48% 0.089 216.7)",
+          "oklch(59% 0.089 216.7)",
+          "oklch(70% 0.089 216.7)",
+          "oklch(82% 0.054 216.7)",
+          "oklch(95% 0.015 216.7)"
+        ]
+      },
+      "phase-break": {
+        "role": "tertiary",
+        "displayName": "Phase: Break",
+        "canonical": "#6A7488",
+        "tonalRamp": [
+          "oklch(15% 0.008 264.3)",
+          "oklch(26% 0.02 264.3)",
+          "oklch(37% 0.032 264.3)",
+          "oklch(48% 0.033 264.3)",
+          "oklch(59% 0.033 264.3)",
+          "oklch(70% 0.033 264.3)",
+          "oklch(82% 0.02 264.3)",
+          "oklch(95% 0.006 264.3)"
+        ]
+      },
+      "court-wood": {
+        "role": "tertiary",
+        "displayName": "Court Hardwood",
+        "canonical": "#E4C495",
+        "tonalRamp": [
+          "oklch(15% 0.017 77.1)",
+          "oklch(26% 0.043 77.1)",
+          "oklch(37% 0.069 77.1)",
+          "oklch(48% 0.072 77.1)",
+          "oklch(59% 0.072 77.1)",
+          "oklch(70% 0.072 77.1)",
+          "oklch(82% 0.043 77.1)",
+          "oklch(95% 0.012 77.1)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Page titles (page header), landing section heads, dialog titles. Condensed 78%, heavy, tight: 2.6rem phone, 3rem desktop, 3.5rem dashboard greeting, up to 7.5rem landing wordmark."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Featured session title in the dashboard court panel and empty-state statements."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card and section titles at normal width."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Descriptions and running text, capped near 42rem."
+      },
+      "label": {
+        "displayName": "Box Label",
+        "purpose": "Condensed uppercase label naming a box, field group, stat or small section. Never a kicker above a page heading."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "Minutes, counts, clocks and time ranges: condensed 75%, tabular figures."
+      }
+    },
+    "shadows": [
+      {
+        "name": "paper",
+        "value": "0 1px 2px rgb(15 27 51 / 0.05), 0 8px 22px -14px rgb(15 27 51 / 0.2)",
+        "purpose": "Every card and panel at rest (light). Dark: 0 1px 0 rgb(255 255 255 / 0.03), 0 12px 30px -16px rgb(0 0 0 / 0.75)."
+      },
+      {
+        "name": "lift",
+        "value": "0 1px 2px rgb(15 27 51 / 0.06), 0 16px 32px -16px rgb(15 27 51 / 0.28)",
+        "purpose": "Hover on interactive cards, with a 2px rise (light). Dark: 0 1px 0 rgb(255 255 255 / 0.04), 0 18px 36px -16px rgb(0 0 0 / 0.8)."
+      },
+      {
+        "name": "pop",
+        "value": "0 2px 6px rgb(15 27 51 / 0.08), 0 24px 48px -20px rgb(15 27 51 / 0.36)",
+        "purpose": "Menus, dialogs, toasts, the landing hero sheet (light). Dark: 0 1px 0 rgb(255 255 255 / 0.05), 0 28px 56px -20px rgb(0 0 0 / 0.85)."
+      },
+      {
+        "name": "button-primary-edge",
+        "value": "0 1px 0 rgb(0 0 0 / 0.12), inset 0 1px 0 rgb(255 255 255 / 0.14)",
+        "purpose": "The printed edge on the orange primary button."
+      }
+    ],
+    "motion": [
+      {
+        "name": "motion-fast",
+        "value": "120ms",
+        "purpose": "Press feedback and exits."
+      },
+      {
+        "name": "motion-base",
+        "value": "180ms",
+        "purpose": "Enters, colour changes, popovers, dialogs, collapse."
+      },
+      {
+        "name": "motion-slow",
+        "value": "240ms",
+        "purpose": "Content fade-up, list stagger items, the changed mark."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Anything entering or answering the pointer."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "purpose": "Things moving on screen, exits, collapse."
+      },
+      {
+        "name": "ease-drawer",
+        "value": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "purpose": "Sheets and drawers."
+      },
+      {
+        "name": "press",
+        "value": "scale(0.97), 120ms ease-out",
+        "purpose": "Every button, chip and icon button on :active."
+      },
+      {
+        "name": "stagger",
+        "value": "40ms per item, capped at 240ms",
+        "purpose": "First-load list and grid entrance only."
+      },
+      {
+        "name": "tally-fill",
+        "value": "clip-path wipe from the left, 360ms ease-out",
+        "purpose": "A tally block added while the coach watches."
+      },
+      {
+        "name": "tally-strike",
+        "value": "2px orange stroke, scaleX 0 to 1 then fade, 520ms ease-out",
+        "purpose": "The strike across a freshly added tally block."
+      },
+      {
+        "name": "digit-roll",
+        "value": "translateY per digit column, 260ms ease-out",
+        "purpose": "Totals changing in place."
+      },
+      {
+        "name": "changed-mark",
+        "value": "3px orange left bar, scaleY in over 240ms",
+        "purpose": "A row that just moved or arrived, held until the next interaction."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "durations to 0.01ms; footage replaced by its poster",
+        "purpose": "All movement off under prefers-reduced-motion and in print."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The coach's main action: brand orange fill, blue-ink text.",
+      "html": "<button class=\"ds-btn-primary\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg>Build a session</button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border:0;border-radius:6px;background:var(--accent-bright,#F26A1B);color:var(--accent-ink,#0F1B33);font:600 14px/1 var(--font-archivo), Archivo, ui-sans-serif, system-ui, sans-serif;box-shadow:0 1px 0 rgb(0 0 0/0.12),inset 0 1px 0 rgb(255 255 255/0.14);cursor:pointer;transition:background-color 180ms cubic-bezier(0.23,1,0.32,1),transform 120ms cubic-bezier(0.23,1,0.32,1)}.ds-btn-primary:hover{background:var(--accent-bright-strong,#E65C0E)}.ds-btn-primary:focus-visible{outline:2px solid var(--focus,#1F4FBF);outline-offset:2px}.ds-btn-primary:active{transform:scale(0.97)}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Supporting action: raised sheet with a strong hairline.",
+      "html": "<button class=\"ds-btn-secondary\">Session document</button>",
+      "css": ".ds-btn-secondary{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border:1px solid var(--line-strong,#B2BCCC);border-radius:6px;background:var(--surface-raised,#FFFFFF);color:var(--ink,#0F1B33);font:600 14px/1 var(--font-archivo), Archivo, ui-sans-serif, system-ui, sans-serif;box-shadow:0 1px 0 rgb(15 27 51/0.04);cursor:pointer;transition:background-color 180ms cubic-bezier(0.23,1,0.32,1),border-color 180ms cubic-bezier(0.23,1,0.32,1),transform 120ms cubic-bezier(0.23,1,0.32,1)}.ds-btn-secondary:hover{background:var(--surface-sunken,#E9EDF3);border-color:var(--ink-faint,#7B869B)}.ds-btn-secondary:focus-visible{outline:2px solid var(--focus,#1F4FBF);outline-offset:2px}.ds-btn-secondary:active{transform:scale(0.97)}"
+    },
+    {
+      "name": "Ink Button",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "A strong action that is not the coach's mark: blue-ink fill.",
+      "html": "<button class=\"ds-btn-ink\">Export PDF</button>",
+      "css": ".ds-btn-ink{display:inline-flex;align-items:center;height:44px;padding:0 16px;border:0;border-radius:6px;background:var(--ink,#0F1B33);color:var(--surface,#F4F6F9);font:600 14px/1 var(--font-archivo), Archivo, ui-sans-serif, system-ui, sans-serif;cursor:pointer;transition:opacity 180ms cubic-bezier(0.23,1,0.32,1),transform 120ms cubic-bezier(0.23,1,0.32,1)}.ds-btn-ink:hover{opacity:.9}.ds-btn-ink:focus-visible{outline:2px solid var(--focus,#1F4FBF);outline-offset:2px}.ds-btn-ink:active{transform:scale(0.97)}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Label, 44px control, hint; orange border and blue ring on focus.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Session title</span><input class=\"ds-input\" placeholder=\"Tuesday U14 practice\"/><span class=\"ds-field-hint\">Shown on the printed sheet.</span></label>",
+      "css": ".ds-field{display:grid;gap:6px;max-width:360px;font-family:var(--font-archivo), Archivo, ui-sans-serif, system-ui, sans-serif}.ds-field-label{font-size:14px;font-weight:500;color:var(--ink,#0F1B33)}.ds-field-hint{font-size:14px;color:var(--ink-muted,#48546C)}.ds-input{height:44px;padding:0 12px;border:1px solid var(--line-strong,#B2BCCC);border-radius:6px;background:var(--surface-raised,#FFFFFF);color:var(--ink,#0F1B33);font:400 16px var(--font-archivo), Archivo, ui-sans-serif, system-ui, sans-serif;caret-color:var(--accent,#C63F0A);transition:border-color 180ms cubic-bezier(0.23,1,0.32,1)}.ds-input::placeholder{color:var(--ink-faint,#7B869B)}.ds-input:focus-visible{border-color:var(--accent,#C63F0A);outline:2px solid var(--focus,#1F4FBF);outline-offset:0}"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "A sheet of paper: raised stock, one hairline, paper shadow; lifts only when the whole card is a control.",
+      "html": "<a class=\"ds-card\" href=\"#\"><span class=\"ds-card-title\">Closeout and contest</span><span class=\"ds-card-body\">Defence · 12 min · 6 to 10 players</span></a>",
+      "css": ".ds-card{display:grid;gap:6px;max-width:320px;padding:20px 24px;border:1px solid var(--line,#D8DEE8);border-radius:10px;background:var(--surface-raised,#FFFFFF);box-shadow:0 1px 2px rgb(15 27 51/0.05),0 8px 22px -14px rgb(15 27 51/0.2);color:var(--ink,#0F1B33);text-decoration:none;font-family:var(--font-archivo), Archivo, ui-sans-serif, system-ui, sans-serif;transition:transform 180ms cubic-bezier(0.23,1,0.32,1),box-shadow 180ms cubic-bezier(0.23,1,0.32,1),border-color 180ms cubic-bezier(0.23,1,0.32,1)}.ds-card:hover{transform:translateY(-2px);border-color:var(--line-strong,#B2BCCC);box-shadow:0 1px 2px rgb(15 27 51/0.06),0 16px 32px -16px rgb(15 27 51/0.28)}.ds-card:focus-visible{outline:2px solid var(--focus,#1F4FBF);outline-offset:2px}.ds-card:active{transform:translateY(0) scale(0.99)}.ds-card-title{font-size:18px;font-weight:600;letter-spacing:-0.015em}.ds-card-body{font-size:14px;color:var(--ink-muted,#48546C)}"
+    },
+    {
+      "name": "Rail Navigation",
+      "kind": "nav",
+      "refersTo": "rail",
+      "description": "The blue-ink rail: muted items, active item raised with a 3px orange tick.",
+      "html": "<nav class=\"ds-rail\"><a class=\"ds-rail-item\" aria-current=\"page\" href=\"#\">Dashboard</a><a class=\"ds-rail-item\" href=\"#\">Drills</a><a class=\"ds-rail-item\" href=\"#\">Sessions</a></nav>",
+      "css": ".ds-rail{display:flex;flex-direction:column;gap:2px;width:248px;padding:12px;background:var(--rail,#12224A);font-family:var(--font-archivo), Archivo, ui-sans-serif, system-ui, sans-serif}.ds-rail-item{position:relative;display:flex;align-items:center;min-height:40px;padding:0 12px;border-radius:6px;color:var(--rail-muted,#A5B2CF);font-size:14.4px;font-weight:500;text-decoration:none;transition:color 180ms cubic-bezier(0.23,1,0.32,1),background-color 180ms cubic-bezier(0.23,1,0.32,1)}.ds-rail-item:hover{color:var(--rail-ink,#EEF2FB);background:color-mix(in srgb,var(--rail-raised,#1A2D5C) 60%,transparent)}.ds-rail-item:focus-visible{outline:2px solid var(--focus,#8FB0FF);outline-offset:2px}.ds-rail-item[aria-current=page]{background:var(--rail-raised,#1A2D5C);color:var(--rail-ink,#EEF2FB)}.ds-rail-item[aria-current=page]::before{content:\"\";position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:0 9999px 9999px 0;background:var(--accent-bright,#F26A1B)}"
+    },
+    {
+      "name": "Meta Tag",
+      "kind": "chip",
+      "refersTo": "meta-tag",
+      "description": "A small boxed context tag in printed-form style; the accent tone uses the orange wash.",
+      "html": "<span class=\"ds-meta\">Wheelchair basketball</span> <span class=\"ds-meta ds-meta-accent\">12 drills</span>",
+      "css": ".ds-meta{display:inline-flex;align-items:center;height:28px;padding:0 10px;border:1px solid var(--line,#D8DEE8);border-radius:5px;background:var(--surface-raised,#FFFFFF);color:var(--ink-muted,#48546C);font:600 12.8px var(--font-archivo), Archivo, ui-sans-serif, system-ui, sans-serif}.ds-meta-accent{border-color:color-mix(in srgb,var(--accent,#C63F0A) 30%,transparent);background:var(--accent-soft,#FDE8DC);color:var(--accent,#C63F0A)}"
+    },
+    {
+      "name": "Running Tally",
+      "kind": "custom",
+      "refersTo": "tally",
+      "description": "The signature: a ruled strip of minute blocks in phase colours; a freshly added block wipes in and is struck with an orange stroke.",
+      "html": "<div class=\"ds-tally\" aria-hidden=\"true\"><span style=\"width:16.7%;background:var(--phase-warm-up,#C2630A)\"></span><span style=\"width:25%;background:var(--phase-skill,#1F4FBF)\"></span><span style=\"width:25%;background:var(--phase-skill,#1F4FBF)\"></span><span style=\"width:25%;background:var(--phase-game,#C0263F)\"></span><span class=\"ds-tally-fresh\" style=\"width:8.3%;background:var(--phase-cool-down,#0C7489)\"><i></i></span><b class=\"ds-tally-rule\"></b></div>",
+      "css": ".ds-tally{position:relative;display:flex;width:100%;max-width:520px;height:28px;overflow:hidden;border:1px solid var(--line,#D8DEE8);border-radius:5px;background:var(--surface-sunken,#E9EDF3)}.ds-tally>span{position:relative;height:100%;flex-shrink:0}.ds-tally>span+span{border-left:1px solid var(--surface-raised,#FFFFFF)}.ds-tally-rule{position:absolute;inset:0;opacity:.5;pointer-events:none;background-image:linear-gradient(to right,transparent calc(100% - 1px),var(--surface-raised,#FFFFFF) 0);background-size:8.333% 100%}.ds-tally-fresh{animation:ds-fill 360ms cubic-bezier(0.23,1,0.32,1) backwards}.ds-tally-fresh i{position:absolute;left:4px;right:4px;top:50%;height:2px;margin-top:-1px;border-radius:9999px;background:var(--accent-bright,#F26A1B);transform-origin:left center;animation:ds-strike 520ms cubic-bezier(0.23,1,0.32,1) forwards}@keyframes ds-fill{from{clip-path:inset(0 100% 0 0)}}@keyframes ds-strike{0%{transform:scaleX(0);opacity:1}55%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}@media (prefers-reduced-motion:reduce){.ds-tally-fresh,.ds-tally-fresh i{animation:none}.ds-tally-fresh i{opacity:0}}"
+    },
+    {
+      "name": "Section Label",
+      "kind": "custom",
+      "refersTo": "label",
+      "description": "Condensed caps box label with a short orange tick; heads a small section inside a page or panel, never a kicker above a page title.",
+      "html": "<h3 class=\"ds-section-label\"><span aria-hidden=\"true\"></span>Timeline</h3>",
+      "css": ".ds-section-label{display:flex;align-items:center;gap:10px;margin:0;font:600 12.5px var(--font-archivo), Archivo, ui-sans-serif, system-ui, sans-serif;font-stretch:80%;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-muted,#48546C)}.ds-section-label span{width:16px;height:3px;border-radius:9999px;background:var(--accent-bright,#F26A1B)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Official Scoresheet",
+    "overview": "CoachOS is laid out like the scoresheet a coach signs after every game: a crisp, ruled, two-ink document. Structure is printed in scorer-blue ink; the coach's own marks are in orange. Every session, drill and minute is accounted for in boxes, hairlines and tabular figures, so the product reads as a record a coach can trust and hand out on paper. The world rejects the category default of a grey SaaS shell with one accent, and the dark \"arena\" of black ground and orange glow.\n\nLight mode is a cool white sheet under bright gym lights, with blue-ink type. Dark mode is the same sheet under arena lights: a deep blue-ink ground (never neutral black) with sheet-white type and the same orange. A blue-ink rail, the sheet's printed header band, holds navigation in both themes. The `.arena` scope puts the dark sheet on the landing page, sign-in and onboarding whatever the app theme is.\n\nDensity is working-tool density: 44px controls for the on-court tablet, ruled lists rather than card mosaics, numbers set condensed and tabular so they line up like a scoresheet column. Motion is short and understated, except for one signature: the running tally, where minute blocks are struck in with an orange stroke.",
+    "keyCharacteristics": [
+      "Two inks on sheet stock: scorer-blue for structure, orange for the coach's marks.",
+      "One hairline weight (1px) for every rule, border and divider.",
+      "One type family, Archivo, using its width axis: normal for interface, condensed for display, numbers and form labels.",
+      "Depth is a hairline plus a soft, blue-tinted offset shadow; no glow.",
+      "The running tally is the signature component; digit rolls and the orange \"changed\" mark are its supporting moves.",
+      "Photography and footage are content on Persuade surfaces and sport banners, never chrome."
+    ],
+    "rules": [
+      {
+        "name": "The Two Inks Rule",
+        "body": "Structure is blue ink; the coach's marks are orange. If an element is not something the coach did, chose or must act on, it is not orange.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Orange Rule",
+        "body": "Fills and strokes use the brand orange in both themes. Only orange text on the light sheet switches to the text-safe orange (coach-orange-text); orange text never sits on the light sheet at the fill value.",
+        "section": "colors"
+      },
+      {
+        "name": "The Blue Night Rule",
+        "body": "Dark mode is blue ink (arena-sheet, arena-raised, arena-sunken, arena-rail), never neutral black or grey.",
+        "section": "colors"
+      },
+      {
+        "name": "The Written-Out Rule",
+        "body": "A phase colour never stands alone: every tally, legend and timeline row also names the phase in words.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Every number a coach compares (minutes, counts, clock times) is set as a numeral: condensed, tabular. Tables are tabular by default.",
+        "section": "typography"
+      },
+      {
+        "name": "The Label Is Not a Kicker Rule",
+        "body": "The condensed caps label names a box or a small section. It never sits above a page heading as a kicker; the page title carries its own weight.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sheet-on-Desk Rule",
+        "body": "Elevation is always hairline plus paper shadow. Never a shadow without a border, never a glow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Opaque Sheet Rule",
+        "body": "Panels and cards are solid stock. Translucency with backdrop blur is reserved for sticky bars over scrolling content (top bar, tab bar, landing header) and the video pause control; it is never a panel material.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use semantic tokens (surface, ink, line, accent, rail) in components; never raw hexes.",
+      "Do fill primary actions with the brand orange (coach-orange / arena-orange) and set blue-ink text on it in light mode.",
+      "Do use the text-safe orange (coach-orange-text) whenever orange is text on the light sheet.",
+      "Do keep dark mode in the blue-ink family: arena-sheet, arena-raised, arena-sunken, arena-rail.",
+      "Do set every comparable number as a condensed tabular numeral.",
+      "Do draw every rule at 1px from the hairline token.",
+      "Do write out the phase name wherever a phase colour appears.",
+      "Do label the featured session honestly: \"Next on court\" when one is scheduled ahead, \"Latest session\" otherwise.",
+      "Do keep UI motion between 120 and 240ms with the strong ease-out (cubic-bezier(0.23, 1, 0.32, 1)), animate only opacity and transform, and switch movement off under reduced motion and print.",
+      "Do keep cinematic photography and footage on Persuade surfaces and sport overview banners, with provenance recorded."
+    ],
+    "donts": [
+      "Don't label a session \"Tonight\" or \"Tonight's court\" unless it is scheduled tonight.",
+      "Don't set orange text at the fill value (#F26A1B) on the light sheet.",
+      "Don't use neutral black or grey grounds in dark mode.",
+      "Don't use gradient text, glow, or glass panels; gradients appear only as legibility scrims over footage and as the tally's ruling.",
+      "Don't put a condensed caps label above a page heading as a kicker.",
+      "Don't use photography or footage as UI chrome (backgrounds behind controls, card textures, nav decoration).",
+      "Don't use orange for focus; focus is always the blue focus ring.",
+      "Don't add signature motion beyond the tally strike, digit roll and changed mark; the court-line draw and text rise are reserved for Persuade surfaces and onboarding."
+    ]
+  }
+}

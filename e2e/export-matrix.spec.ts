@@ -301,7 +301,8 @@ test("a 25-drill session: every drill, correct pagination, all the way to the la
   await signedIn(page);
   const builder = await createSession(page, { title: "Everything session", objective: "Shooting" });
   expect(libraryTitles.length).toBeGreaterThanOrEqual(25);
-  for (const title of libraryTitles)
+  // the first 25 library drills (the library has grown well past 25; a session caps at 60 activities)
+  for (const title of libraryTitles.slice(0, 25))
     await pickDrill(page, builder, title, title).then(async () => {
       await page.getByRole("button", { name: "Add to session" }).click();
       await expect(page).toHaveURL(/\/sessions\/basketball\/[0-9a-f-]{36}#activity-/);
@@ -316,7 +317,7 @@ test("a 25-drill session: every drill, correct pagination, all the way to the la
     landscape: false,
   });
   expect(r.pageCount).toBeGreaterThanOrEqual(25);
-  for (const title of libraryTitles)
+  for (const title of libraryTitles.slice(0, 25))
     expect(r.flat, `drill "${title}" is in the file`).toContain(title);
   expect(r.pages.filter((p) => p.paths > 20).length, "many diagrams").toBeGreaterThanOrEqual(15);
 

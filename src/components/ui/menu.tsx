@@ -21,7 +21,7 @@ export function MenuContent({ className, ...props }: React.ComponentProps<typeof
         sideOffset={8}
         align="end"
         className={cn(
-          "z-50 min-w-56 origin-[var(--radix-dropdown-menu-content-transform-origin)] rounded-lg border border-line bg-surface-raised p-1.5 shadow-paper data-[state=closed]:animate-out data-[state=open]:animate-in",
+          "z-50 min-w-56 origin-[var(--radix-dropdown-menu-content-transform-origin)] rounded-lg border border-line bg-surface-raised p-1.5 shadow-pop data-[state=closed]:animate-scale-out data-[state=open]:animate-scale-in",
           className,
         )}
         {...props}

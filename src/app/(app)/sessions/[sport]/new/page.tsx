@@ -9,6 +9,7 @@ import { requireViewer, sessionDefaults } from "@/modules/identity";
 import { getAgeGroups, getObjectives, getSport } from "@/modules/sports";
 import { listTemplateChoices } from "@/modules/templates";
 import { getSportModule } from "@/sports/registry";
+import { MetaTag } from "@/components/ui/page-header";
 
 export const metadata: Metadata = { title: "Create session" };
 
@@ -36,23 +37,30 @@ export default async function NewSessionPage({
   const wanted = typeof sp.template === "string" ? sp.template : "";
   const initialTemplateId = templates.some((x) => x.id === wanted) ? wanted : "";
   const personal = viewer.organization.type === "personal";
+  // a link from a team on the Roster (?team=…) fills in the Team field; the form validates it like typed text
+  const team = typeof sp.team === "string" ? sp.team.trim().slice(0, 80) : "";
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
-      <header className="space-y-2">
-        <p className="eyebrow text-accent">{sport.name}</p>
-        <h1 className="display text-4xl text-ink md:text-5xl">{t("title")}</h1>
+      <header className="space-y-2 border-b border-line pb-6">
+        <h1 className="display text-[2.6rem] text-ink md:text-5xl">{t("title")}</h1>
         <p className="max-w-2xl text-base text-ink-muted">{t("subtitle")}</p>
+        <div className="pt-1">
+          <MetaTag>{sport.name}</MetaTag>
+        </div>
       </header>
       <SessionCreateForm
         sportKey={sport.key}
-        initial={emptySessionValues({
-          timezone: viewer.profile.timezone ?? "UTC",
-          coachName: viewer.user.name,
-          clubName: personal ? "" : viewer.organization.name,
-          targetMinutes: mod.defaults.sessionMinutes,
-          coaching: sessionDefaults(viewer.profile.coaching),
-        })}
+        initial={{
+          ...emptySessionValues({
+            timezone: viewer.profile.timezone ?? "UTC",
+            coachName: viewer.user.name,
+            clubName: personal ? "" : viewer.organization.name,
+            targetMinutes: mod.defaults.sessionMinutes,
+            coaching: sessionDefaults(viewer.profile.coaching),
+          }),
+          teamName: team,
+        }}
         catalog={{
           ageGroups: ageGroups.map((g) => ({
             key: g.key,

@@ -1,0 +1,169 @@
+{
+  "seedKey": "spot-up-twenty-shot-test",
+  "title": "Spot-Up Twenty-Shot Test",
+  "description": "A repeatable shooting test: twenty catch-and-shoot attempts from four spots, recorded each week to track progress honestly.",
+  "category": "shooting",
+  "primarySkill": "shooting_form",
+  "secondarySkills": ["catching"],
+  "subSkills": ["catch_and_shoot"],
+  "level": "intermediate",
+  "intensity": "medium",
+  "format": "group",
+  "phases": ["skill"],
+  "ageMin": 11,
+  "ageMax": 99,
+  "playersMin": 2,
+  "playersMax": 12,
+  "durationMin": 6,
+  "durationMax": 10,
+  "space": "half_court",
+  "tags": ["test", "tracking", "spot up"],
+  "equipment": [
+    {
+      "type": "basketball",
+      "rule": "fixed",
+      "quantity": 2
+    },
+    {
+      "type": "hoop",
+      "rule": "fixed",
+      "quantity": 1
+    }
+  ],
+  "content": {
+    "objective": "Measure catch-and-shoot accuracy in a consistent format to track improvement over time.",
+    "setup": "Four marked spots: both elbows and both wings at mid-range (or three-point range for older players). A passer with a ball.",
+    "organization": "One shooter, one passer-rebounder; record the score.",
+    "instructions": [
+      "Five shots from the right wing, catching from the passer.",
+      "Five from the right elbow.",
+      "Five from the left elbow.",
+      "Five from the left wing.",
+      "Record makes out of 20; repeat next week from the same spots."
+    ],
+    "coachingPoints": [
+      "Same rhythm on every shot.",
+      "Do not rush: it is a test, not a race.",
+      "Track honestly: no re-dos."
+    ],
+    "commonMistakes": [
+      "Changing the distance between tests.",
+      "Shooting tired from another drill without noting it.",
+      "Rushing to finish."
+    ],
+    "safety": "Shooters rebound their own ball only when the lane is clear; nobody stands under the rim while others shoot.",
+    "progressions": ["Move the spots out to three-point range.", "Two-minute time limit."],
+    "regressions": ["Ten shots, two spots.", "Shoot from inside the lane."],
+    "variations": [
+      "Test off the dribble instead of the catch.",
+      "Test with the weak-side passer for different angles."
+    ],
+    "successCriteria": ["Score recorded every week.", "Improvement over the season."],
+    "gameApplication": "Players and coaches see shooting progress in numbers instead of guesses.",
+    "repetitions": "1 test of 20 shots",
+    "resources": [
+      {
+        "title": "Jr. NBA curriculum (concept reference)",
+        "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+        "kind": "article"
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "title": "",
+      "diagram": {
+        "schemaVersion": 1,
+        "sport": "basketball",
+        "court": {
+          "type": "half",
+          "variant": "fiba"
+        },
+        "entities": [
+          {
+            "id": "o1",
+            "type": "player",
+            "side": "offense",
+            "label": "1",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "c1",
+            "type": "coach",
+            "label": "C",
+            "at": {
+              "anchor": "under_basket",
+              "offset": [0, 0.4]
+            }
+          },
+          {
+            "id": "mk1",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "right_wing"
+            }
+          },
+          {
+            "id": "mk2",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "right_elbow"
+            }
+          },
+          {
+            "id": "mk3",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "left_elbow"
+            }
+          },
+          {
+            "id": "mk4",
+            "type": "marker",
+            "kind": "spot",
+            "at": {
+              "anchor": "left_wing"
+            }
+          },
+          {
+            "id": "b1",
+            "type": "ball",
+            "heldBy": "c1"
+          }
+        ],
+        "actions": [
+          {
+            "id": "a1",
+            "step": 1,
+            "type": "pass",
+            "from": "c1",
+            "to": "o1"
+          },
+          {
+            "id": "a2",
+            "step": 2,
+            "type": "shot",
+            "entity": "o1"
+          },
+          {
+            "id": "a3",
+            "step": 3,
+            "type": "move",
+            "entity": "o1",
+            "path": [
+              {
+                "anchor": "right_elbow"
+              }
+            ]
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ]
+}
