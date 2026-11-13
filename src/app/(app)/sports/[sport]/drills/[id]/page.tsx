@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Bot, ExternalLink } from "lucide-react";
 import { getFormatter, getTranslations } from "next-intl/server";
 import { DrillActions } from "@/components/features/drills/drill-actions";
-import { DrillDiagram } from "@/components/features/drills/drill-diagram";
+import { DiagramPlayer } from "@/components/features/drills/diagram-player";
 import {
   IntensityMeter,
   LevelMeter,
@@ -168,10 +168,9 @@ export default async function DrillDetailPage({
               key={g.id}
               className="overflow-hidden rounded-lg border border-line bg-surface-raised shadow-paper"
             >
-              <DrillDiagram
+              <DiagramPlayer
                 diagram={g.diagram}
                 title={g.title || t("detail.diagramN", { n: i + 1 })}
-                className="mx-auto max-h-[36rem] w-full"
               />
               {g.title ? (
                 <figcaption className="border-t border-line px-4 py-3 text-sm font-medium text-ink">

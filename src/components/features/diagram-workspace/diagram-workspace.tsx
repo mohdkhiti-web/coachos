@@ -2053,6 +2053,7 @@ function Workspace({
               step={playMode ? undefined : step}
               positions={positions}
               visibleActions={playFrame?.visibleActions}
+              ballFx={playFrame?.ballFx}
               hideActions={false}
               viewBox={vb}
               className="block h-full w-full"

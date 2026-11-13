@@ -3074,5 +3074,19 @@
       "assistant": "AI Coach",
       "settings": "Settings"
     }
+  },
+  "diagramPlayer": {
+    "controls": "Playback",
+    "play": "Play the drill",
+    "pause": "Pause",
+    "replay": "Play again",
+    "restart": "Restart",
+    "prevStep": "Previous step",
+    "nextStep": "Next step",
+    "position": "Playback position",
+    "stepOf": "Step {n} of {total}",
+    "speed": "Playback speed {speed}×, change speed",
+    "broadcast": "Broadcast",
+    "whole": "Whole drill"
   }
 }
