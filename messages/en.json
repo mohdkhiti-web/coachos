@@ -2012,6 +2012,41 @@
       "classification": "Classification (optional)",
       "classificationHint": "A wheelchair-basketball functional classification point value, 1.0–4.5, if you track it. Reference only — never used to limit or suggest drills.",
       "classificationNone": "Not recorded"
+    },
+    "age": "{age} yrs",
+    "born": "Born {date}",
+    "noDetails": "No details yet",
+    "editPlayer": "Edit {name}",
+    "removePlayer": "Remove {name}",
+    "squadList": "{name} squad",
+    "figures": {
+      "label": "Roster at a glance",
+      "teams": "Active teams",
+      "players": "Players",
+      "unassigned": "Unassigned",
+      "sessions28": "Sessions · 28 days"
+    },
+    "sheet": {
+      "archived": "Archived",
+      "players": "{count, plural, =0 {No players yet} one {# player} other {# players}}",
+      "playersLabel": "Players",
+      "ages": "Ages",
+      "medianAge": "Median age",
+      "sessions28": "Sessions · 28 d",
+      "minutes28": "Minutes · 28 d",
+      "weeksLabel": "{minutes} scheduled minutes over the last six weeks, this week and next",
+      "next": "Next",
+      "last": "Done",
+      "planFor": "Plan a session for this team",
+      "ageProfile": "Age profile",
+      "ageN": "{count, plural, one {# player} other {# players}} aged {age}",
+      "withoutDob": "{count, plural, one {# player} other {# players}} without a date of birth",
+      "noAges": "Add dates of birth to see the squad's age spread.",
+      "classification": "Classification points",
+      "pointsN": "{count, plural, =0 {No players} one {# player} other {# players}} at {points}",
+      "training": "Training",
+      "eightWeeks": "Last 6 weeks · this · next",
+      "noSessions": "No dated sessions for {team} yet. Sessions count here when their Team field matches this team's name."
     }
   },
   "templates": {

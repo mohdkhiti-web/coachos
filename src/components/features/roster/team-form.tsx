@@ -19,10 +19,13 @@ type DoneState = FormState<{ id: string; version: number }>;
 
 export function TeamForm({
   sports,
+  defaultSport,
   defaults,
 }: {
   /** Only needed to create: an existing team's sport cannot change. */
   sports?: readonly { key: string; name: string }[];
+  /** Preselected sport for a new team: the one the coach is working in. */
+  defaultSport?: string;
   defaults?: { id: string; version: number; name: string; notes: string };
 }) {
   const t = useTranslations("roster");
@@ -51,7 +54,7 @@ export function TeamForm({
               <Select
                 {...c}
                 name="sportKey"
-                defaultValue={failedValue(state, "sportKey") ?? ""}
+                defaultValue={failedValue(state, "sportKey") ?? defaultSport ?? ""}
                 required
               >
                 <option value="" disabled>

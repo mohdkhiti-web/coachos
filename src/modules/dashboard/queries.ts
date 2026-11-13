@@ -2,6 +2,7 @@ import "server-only";
 import { and, eq, inArray, isNull, sql } from "drizzle-orm";
 import { planActivities, plans } from "@/db/schema";
 import type { Actor } from "@/lib/authz/can";
+import { todayIn } from "@/lib/calendar";
 import { tenantTx } from "@/lib/db/tx";
 import { parseFilters, searchDrills, type DrillCardDto } from "@/modules/drills";
 import { getSportOverview } from "@/modules/drills";
@@ -64,15 +65,6 @@ export interface CommandCenterDto {
 
 const LIVE = ["draft", "published"] as const;
 const MAX_RECOMMENDATIONS = 6;
-
-/** Today's date (YYYY-MM-DD) in the coach's own timezone. */
-function todayIn(timeZone: string | null): string {
-  try {
-    return new Intl.DateTimeFormat("en-CA", { timeZone: timeZone ?? "UTC" }).format(new Date());
-  } catch {
-    return new Intl.DateTimeFormat("en-CA", { timeZone: "UTC" }).format(new Date());
-  }
-}
 
 export async function getCommandCenter(
   viewer: Viewer,

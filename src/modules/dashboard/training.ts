@@ -5,6 +5,10 @@
  * Breaks are not training time.
  */
 
+import { addDays, PAST_WEEKS, trainingWindow, weekStart } from "@/lib/calendar";
+
+export { PAST_WEEKS, todayIn, trainingWindow, weekStart } from "@/lib/calendar";
+
 export interface TrainingRow {
   /** The session's scheduled date, YYYY-MM-DD. */
   date: string;
@@ -54,26 +58,8 @@ export interface TrainingSummary {
   coverageTo: string;
 }
 
-export const PAST_WEEKS = 6;
 /** Coverage looks at this week and the three before it. */
 export const COVERAGE_WEEKS = 4;
-
-const DAY = 86_400_000;
-const toDate = (s: string) => new Date(`${s}T00:00:00Z`);
-const toStr = (d: Date) => d.toISOString().slice(0, 10);
-const addDays = (s: string, n: number) => toStr(new Date(toDate(s).getTime() + n * DAY));
-
-/** Monday of the week containing `day`. */
-export function weekStart(day: string): string {
-  const dow = (toDate(day).getUTCDay() + 6) % 7; // Monday = 0
-  return addDays(day, -dow);
-}
-
-/** The dates the dashboard reads: from the first charted Monday to the end of next week. */
-export function trainingWindow(today: string): { from: string; to: string } {
-  const current = weekStart(today);
-  return { from: addDays(current, -7 * PAST_WEEKS), to: addDays(current, 13) };
-}
 
 export function summarizeTraining(
   rows: readonly TrainingRow[],

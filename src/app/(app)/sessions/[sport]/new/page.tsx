@@ -37,6 +37,8 @@ export default async function NewSessionPage({
   const wanted = typeof sp.template === "string" ? sp.template : "";
   const initialTemplateId = templates.some((x) => x.id === wanted) ? wanted : "";
   const personal = viewer.organization.type === "personal";
+  // a link from a team on the Roster (?team=…) fills in the Team field; the form validates it like typed text
+  const team = typeof sp.team === "string" ? sp.team.trim().slice(0, 80) : "";
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
@@ -49,13 +51,16 @@ export default async function NewSessionPage({
       </header>
       <SessionCreateForm
         sportKey={sport.key}
-        initial={emptySessionValues({
-          timezone: viewer.profile.timezone ?? "UTC",
-          coachName: viewer.user.name,
-          clubName: personal ? "" : viewer.organization.name,
-          targetMinutes: mod.defaults.sessionMinutes,
-          coaching: sessionDefaults(viewer.profile.coaching),
-        })}
+        initial={{
+          ...emptySessionValues({
+            timezone: viewer.profile.timezone ?? "UTC",
+            coachName: viewer.user.name,
+            clubName: personal ? "" : viewer.organization.name,
+            targetMinutes: mod.defaults.sessionMinutes,
+            coaching: sessionDefaults(viewer.profile.coaching),
+          }),
+          teamName: team,
+        }}
         catalog={{
           ageGroups: ageGroups.map((g) => ({
             key: g.key,

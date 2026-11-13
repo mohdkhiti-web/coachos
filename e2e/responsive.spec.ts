@@ -537,3 +537,29 @@ test("the drill diagram player fits a phone: 44px controls, no overflow, and the
   await page.waitForTimeout(500);
   await court.screenshot({ path: testInfo.outputPath("court-3d-phone.png") });
 });
+
+test("the roster fits a phone: team sheet and squad, 44px player actions, no overflow", async ({
+  page,
+}) => {
+  await signUpAndVerify(page, newUser());
+  await completeOnboarding(page);
+  await page.goto("/roster/new");
+  await page.getByLabel("Name").fill("Phone Squad");
+  await page.getByRole("button", { name: "Save changes" }).click();
+  await expect(page).toHaveURL(/\/roster\/[0-9a-f-]{36}$/);
+  const teamPath = new URL(page.url()).pathname;
+  await page.goto(`${teamPath}/players/new`);
+  await page.getByLabel("Name").fill("Jordan Mbeki-Lindqvist");
+  await page.getByLabel("Date of birth").fill("2012-04-02");
+  await page.getByRole("button", { name: "Save changes" }).click();
+  await expect(page).toHaveURL(new RegExp(`${teamPath}$`));
+
+  expect(await noHorizontalScroll(page), "team page overflows horizontally").toBe(true);
+  for (const name of ["Edit Jordan Mbeki-Lindqvist", "Remove Jordan Mbeki-Lindqvist"]) {
+    const box = await page.getByRole("button", { name }).boundingBox();
+    expect(box?.height ?? 0, name).toBeGreaterThanOrEqual(44);
+  }
+  await page.goto("/roster");
+  await expect(page.getByRole("link", { name: "Phone Squad" })).toBeVisible();
+  expect(await noHorizontalScroll(page), "roster overflows horizontally").toBe(true);
+});
